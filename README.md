@@ -25,4 +25,4 @@ pip freeze > requirement.txt
 pip install mongoengine
 ```
 ##接口使用
-请查看 api.md。
+请查看 api.md，暂无。
