@@ -1,6 +1,6 @@
 # chuangplus
 ##框架结构
-后台框架：django+mysql
+后台框架：django+mongodb
 前台框架：angularjs
 ##环境配置
 ###python2.7
@@ -9,6 +9,7 @@ ubuntu 预安装  windows 自行百度
 ```
 apt-get install python-pip
 ```
+windows下，下载脚本运行
 ###安装所有 python 依赖包
 ```
 pip install -r requirement.txt
@@ -17,13 +18,11 @@ pip install -r requirement.txt
 ```
 pip freeze > requirement.txt
 ```
-###mysql
+###mongodb
+数据库安装
+###mongodbengine module
 ```
-apt-get install mysql-server
-```
-###mysqldb module
-```
-apt-get install python-mysqldb
+pip install mongoengine
 ```
 ##接口使用
-请查看 api.md。
+请查看 api.md，暂无。
