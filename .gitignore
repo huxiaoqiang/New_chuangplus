@@ -1,0 +1,12 @@
+*~
+.#*
+*.pyc
+*.swp
+db.sqlite3
+.DS_Store
+*#
+.sass-cache/*
+node_modules/*
+media/*
+*.old
+.css

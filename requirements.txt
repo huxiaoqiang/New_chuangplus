@@ -1,0 +1,4 @@
+Django==1.8.1
+djangorestframework==3.1.2
+Pillow==2.8.1
+wheezy.captcha[Pillow]==0.1.44
