@@ -6,6 +6,14 @@ import datetime
 
 # Create your models here
 # project table.
+
+class Post(Document):
+    title=StringField(max_length=50)
+    content=StringField(max_length=300)
+    link=URLField()
+    image_path=ReferenceField(Image)
+    date=DateTimeField()
+
 class Project(Document):
     project_name = StringField(max_length=50)
     project_field = StringField(max_length=50)
@@ -18,6 +26,8 @@ class Project(Document):
     contact_phone=StringField(max_length=30)
     contact_email=EmailField()
     link=URLField()
+    wechat=StringField(max_length=40)
+    qrcode=ReferenceField(Image)
     business_model=StringField(max_length=10000)
     team_info = ListField(ReferenceField(Member))
     post=ListField(ReferenceField(Post))
@@ -28,13 +38,4 @@ class Project(Document):
     is_checked=BooleanField()
     is_roadshowing=BooleanField()
     date = DateTimeField()
-
-#
-class Post(Document):
-    project=ReferenceField("Project")
-    title=StringField(max_length=50)
-    content=StringField(max_length=300)
-    link=URLField()
-    image_path=ReferenceField(Image)
-    date=DateTimeField(default=datetime.datetime.now)
 
