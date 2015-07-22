@@ -27,37 +27,44 @@ def register(request):
         request_captcha = request.data['captcha']
     except KeyError:
         re['error']=error(100,"Need captcha!")
-        return HttpResponse(json.dumps(re), content_type='application/json')
+        return Response(json.dumps(re), status=status.HTTP_201_CREATED)
 
     if session_captcha.upper() != request_captcha.upper():
-        return HttpResponse(json.dumps(re), content_type='application/json')
+        re['error']=error(101,'Captcha error!')
+        return Response(re, status=status.HTTP_400_BAD_REQUEST)
 
     if serialized.is_valid():
+        re['error']=error(1,"register succeed!")
         user_data = {field: data for (field, data) in request.data.items() if field in VALID_USER_FIELDS}
+        user = User.objects.create_user(**user_data)
         for (field, data) in request.data.items():
             if field == "role":
-                user_data.is_staff = data
-        user = User.objects.create_user(**user_data)
+                user.is_staff = data
+        re['data']=UserSerializer(instance=user).data
         #try:
         #    user = User.objects.create_user(**user_data)
         #except MySQLdb.IntegrityError:
         #    return Response({'email': 'Email 已经注册。'}, status=status.HTTP_400_BAD_REQUEST)
-        return Response(UserSerializer(instance=user).data, status=status.HTTP_201_CREATED)
+        return Response(re, status=status.HTTP_201_CREATED)
 
     return Response(serialized._errors, status=status.HTTP_400_BAD_REQUEST)
 
-
 @api_view(['POST'])
 def check_username(request):
+    re=dict()
     try:
         name = request.data['username']
+        re['error']=error(1,"succeed!")
     except KeyError:
-        return Response({'username': '请填写要检查的用户名。'}, status=status.HTTP_400_BAD_REQUEST)
+        re['error']=error(102,'Need post username')
+        return Response(re, status=status.HTTP_400_BAD_REQUEST)
 
     if User.objects.filter(username=name).count() != 0:
-        return Response({'exist': 'True'})
+        re['data']={{'exist': 'ture'}}
+        return Response(re)
     else:
-        return Response({'exist': 'False'})
+        re['data']={{'exist': 'false'}}
+        return Response(re)
 
 #login
 class ObtainAuthToken(APIView):
@@ -76,7 +83,7 @@ class ObtainAuthToken(APIView):
 
 
 @api_view(['POST', 'PUT'])
-@permission_classes((IsAuthenticated, ))
+#@permission_classes((IsAuthenticated, ))
 def userinfo_create_or_update(request):
     try:
         userinfo = Userinfo.objects.get(user=request.user)
@@ -101,26 +108,61 @@ def userinfo_create_or_update(request):
 
 @api_view(['GET'])
 def userinfo_retrieve(request, username):
+    re=dict()
     try:
         user = User.objects.get(username=username)
+        re['error']=error(1,"succeed!")
     except User.DoesNotExist:
-        return Response({"username": "用户不存在。"}, status=status.HTTP_400_BAD_REQUEST)
+        re['error']=error(103,'user not exist!')
+        return Response(re, status=status.HTTP_400_BAD_REQUEST)
 
     try:
         userinfo = Userinfo.objects.get(user=user)
     except Userinfo.DoesNotExist:
-        return Response({"username": "用户尚未填写资料。"}, status=status.HTTP_400_BAD_REQUEST)
+        re['error']=error(104,'user data not exist')
+        return Response(re, status=status.HTTP_400_BAD_REQUEST)
 
     serialized = UserinfoSerializer(userinfo)
-    return Response(serialized.data)
+    re['data']=serialized.data
+    return Response(re)
 
-#todo: complete the company info create or update
 @api_view(['POST,PUT'])
 @permission_classes((IsAuthenticated, ))
 def companyinfo_create_or_update(request):
-    pass
+    try:
+        companyinfo = Companyinfo.objects.get(user=request.user)
 
-#todo: complete the company info retrieve
+    except ObjectDoesNotExist:
+        serialized = CompanyinfoSerializer(data=request.DATA)
+
+        if serialized.is_valid():
+            serialized.save(user=request.user)
+            return Response(serialized.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    serialized = CompanyinfoSerializer(companyinfo, data=request.DATA)
+
+    if serialized.is_valid():
+        serialized.save(user=request.user)
+        return Response(serialized.data, status=status.HTTP_202_ACCEPTED)
+    else:
+        return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
+
 @api_view(['GET'])
-def companyinfo_retrieve(request, companyname):
-    pass
+def companyinfo_retrieve(request, name):
+    re['error']=error(1,"succeed!")
+    try:
+        user = User.objects.get(username=name)
+    except User.DoesNotExist:
+        re['error']=error(103,"User not exist!")
+        return Response(re, status=status.HTTP_400_BAD_REQUEST)
+    try:
+        companyinfo = Companyinfo.objects.get(user=user)
+    except Companyinfo.DoesNotExist:
+        re['error']=error(105,"company data not exist")
+        return Response(re, status=status.HTTP_400_BAD_REQUEST)
+
+    serialized = CompanyinfoSerializer(companyinfo)
+    re['data']=serialized.data
+    return Response(re)

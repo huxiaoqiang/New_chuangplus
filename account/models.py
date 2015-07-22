@@ -68,10 +68,11 @@ class Companyinfo(Document):
     User = ReferenceField("User")
 
 
-##user and company relationship
-#class UC_Relationship(Document):
-#    company=ReferenceField(Companyinfo)
-#    user=ReferenceField(Userinfo)
+#user and company relationship
+#the user collect the company
+class UC_Relationship(Document):
+    company=ReferenceField(Companyinfo)
+    user=ReferenceField(Userinfo)
 
 #position and company relationship
 class PC_Relationship(Document):

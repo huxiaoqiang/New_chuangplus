@@ -12,8 +12,8 @@ urlpatterns = [
     url(r'^userinfo/createorupdate/$', views.userinfo_create_or_update),
     url(r'^userinfo/(?P<username>.+)/$', views.userinfo_retrieve),
 
-    #url(r'^companyinfo/createorupdate/$', views.companyinfo_create_or_update),
-    #url(r'^companyinfo/(?P<companyname>.+)/$', views.companyinfo_retrieve),
+    url(r'^companyinfo/createorupdate/$', views.companyinfo_create_or_update),
+    url(r'^companyinfo/(?P<companyname>.+)/$', views.companyinfo_retrieve),
 ]
 
 #urlpatterns = format_suffix_patterns(urlpatterns)
