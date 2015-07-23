@@ -13,11 +13,11 @@ class Userinfo(Document):
     position_type = StringField(max_length=30)
     work_city = StringField(max_length=100)
     cellphone = StringField(max_length=20)
-    school = StringField(max_length=100)
+    university = StringField(max_length=100)
     major = StringField(max_length=100)
     grade = IntField(default=1)
     gender = IntField(default=0)  #0 is woman 1 is man
-    work_days = IntField(default=1)
+    work_days = IntField(default=3)
     description = StringField(max_length=200)
     attachment = FileField()
     info_complete=BooleanField(default=0)
