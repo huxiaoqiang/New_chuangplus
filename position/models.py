@@ -17,7 +17,6 @@ class Position(Document):
     position_request=StringField(max_length=500)
     daysperweek=IntField(default=3)
     internship_time=IntField(default=1)
-    salary_max=IntField()
-    salary_min=IntField()
+    salary_range=StringField(max_length=30)
     delivery_number=IntField()
     status = StringField(max_length=15,choices=STATUS)
