@@ -2,14 +2,23 @@ from django.db import models
 from django.contrib.auth.models import User
 from position.models import Position
 from filedata.models import Image
+from django.http import HttpResponse
 from mongoengine import *
 import json
 import re
 # Create your models here.
 
+try:
+    # django >= 1.4
+    from django.utils.timezone import now as datetime_now
+except ImportError:
+    from datetime import datetime
+    datetime_now = datetime.now
 
 #Userinfo
 class Userinfo(Document):
+    username=StringField(max_length=30)
+    email=EmailField()
     position_type = StringField(max_length=30)
     work_city = StringField(max_length=100)
     cellphone = StringField(max_length=20)
@@ -22,6 +31,8 @@ class Userinfo(Document):
     attachment = FileField()
     info_complete=BooleanField(default=0)
     has_resume=BooleanField(default=0)
+    date_joined=DateTimeField(datetime.now)
+    update_time=DateTimeField(datetime.now)
     User = ReferenceField("User")
 
 STAGE=('no','angel','A','B','C','D_plus')
@@ -82,3 +93,32 @@ class PC_Relationship(Document):
 
 def error(code, message):
     return {'code':code, 'message':message}
+
+
+def user_permission(level):
+    def check_login_state(func):
+        def __decorator(*args, **kwargs):
+            request = args[0]
+            if request.user.is_authenticated():
+                return func(*args, **kwargs)
+            return HttpResponse(json.dumps({'error':error(100,'请登录')}), content_type = 'application/json')
+        return __decorator
+
+    def check_roles(func):
+        def __decorator(*args, **kwargs):
+            request = args[0]
+            try:
+                if request.session['role'] <= level:
+                    return func(*args, **kwargs)
+                return HttpResponse(json.dumps({'error':error(100+level,'权限错误')}), content_type = 'application/json')
+            except:
+                import traceback
+                traceback.print_exc()
+                return HttpResponse(json.dumps({'error':error(100+level,'权限错误')}), content_type = 'application/json')
+        return __decorator
+
+    if level == 'login':
+        return check_login_state
+    else:
+        return check_roles
+
