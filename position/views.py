@@ -29,6 +29,15 @@ def create_position(request):
     except:
         re['error'] = error(2, 'error, need post!')
         return HttpResponse(json.dumps(re), content_type = 'application/json')
+        
+    try:
+        assert request.User != None
+        assert request.User.is_stuff
+        assert request.User.is_authenticated()
+        cpn = Companyinfo.objects.all().filter(User = request.User)
+    except:
+        re['error'] = error(300,"Permission denied!")
+  
     name = request.POST.get('name','')
     type = request.POST.get('type','')
     work_city = request.POST.get('work_city','')
@@ -188,9 +197,12 @@ def create_position(request):
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     re['error'] = error(1,'Create position succeed!')
+    cpn.position.append(posi)
+    cpn.position_number = cpn.position_number + 1
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
 def delete_position(request):
+
     re = dict()
     try:
         assert request.method == "POST"
@@ -219,6 +231,15 @@ def delete_position(request):
     except:
         re['error'] = error(299,'Unkown Error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
+    
+        try:
+        assert request.User != None
+        assert request.User.is_stuff
+        assert request.User.is_authenticated()
+        cpn = Companyinfo.objects.all().filter(User = request.User)
+        assert posi in cpn.position    
+    except:
+        re['error'] = error(300,"Permission denied!")
     
     try:
         posi.delete()
@@ -404,7 +425,7 @@ def change_position(request):
     except ValueError,AssertionError:
         re['error'] = error(230,"Invaild search id!")
         return HttpResponse(json.dumps(re), content_type = 'application/json')
-    
+        
     try:
         posi = Position.objects.get(id = id)
     except ObjectDoesNotExist:
@@ -416,6 +437,15 @@ def change_position(request):
     except:
         re['error'] = error(299,'Unkown Error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
+    
+    try:
+        assert request.User != None
+        assert request.User.is_stuff
+        assert request.User.is_authenticated()
+        cpn = Companyinfo.objects.all().filter(User = request.User)
+        assert posi in cpn.position    
+    except:
+        re['error'] = error(300,"Permission denied!")
     
     name = request.POST.get('name','')
     type = request.POST.get('type','')

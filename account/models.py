@@ -76,7 +76,7 @@ class Companyinfo(Document):
     position_number = IntField(default=0)
     position = ListField(ReferenceField(Position))
     slogan = StringField(max_length=25)
-    status = BooleanField(default=0)
+    status = BooleanField(default=0) # if the company is accepted
     User = ReferenceField("User")
 
 
