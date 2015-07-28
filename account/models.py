@@ -52,6 +52,7 @@ class Member(Document):
 # company position type
 TYPE = ('technology','product','design','operate','marketing','functions','others')
 class Companyinfo(Document):
+    username = StringField(max_length=30)
     contacts = StringField(max_length=20)
     abbreviation = StringField(max_length=100)
     city = StringField(max_length=30)
@@ -71,11 +72,11 @@ class Companyinfo(Document):
     product_description = StringField(max_length=300)
     team_description = StringField(max_length=300)
     team_info = ListField(ReferenceField(Member))
-    position_type = StringField(max_length=30,choices=TYPE)
+    position_type = StringField(max_length=100)
     position_number = IntField(default=0)
-    position=ListField(ReferenceField(Position))
+    position = ListField(ReferenceField(Position))
     slogan = StringField(max_length=25)
-    status=BooleanField(default=0)
+    status = BooleanField(default=0)
     User = ReferenceField("User")
 
 
