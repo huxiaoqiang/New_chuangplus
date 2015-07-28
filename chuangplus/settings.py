@@ -85,12 +85,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)
+#STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 TEMPLATE_DIRS = (
     BASE_DIR + '/templates',
@@ -103,8 +101,9 @@ from mongoengine import connect
 connect('chuangplus', host='localhost', port=27017, username='root', password='')
 
 # add session
-SESSION_ENGINE = 'mongoengine.django.sessions'
-SESSION_SERIALIZER = 'mongoengine.django.sessions.BSONSerializer'
+#SESSION_ENGINE = 'mongoengine.django.sessions'
+#SESSION_SERIALIZER = 'mongoengine.django.sessions.BSONSerializer'
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
 # add authentication
 AUTHENTICATION_BACKENDS = (
@@ -116,3 +115,32 @@ DATABASES = {
         'ENGINE': 'django.db.backends.dummy'
     }
 }
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins','console'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    }
+}
+
