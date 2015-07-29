@@ -44,3 +44,23 @@ id            |primarykey |         |主键
 103          |User not exist |用户不存在
 104          |user data not exist|用户资料尚未填写资料
 105          |company data not exist|企业资料尚未填写
+
+##api接口
+考虑到django的csrf机制，需要在HTTP请求头添加X-CSRF-token,内容为cookie中的csrftoken，或者在请求中增加一个csrfmiddlewaretoken字段，内容也是cookie中的csrftoken。我们使用的方法是后者，在static/js/services.js中构建了CsfrService，在post表单之前执行
+```javascript
+set_csrf(data)
+```
+###/api/captcha/image/
+获取验证码
+###/api/account/register/
+新用户注册
+向url post一个json格式的请求，需要post的内容如下
+```javascrip
+  {
+    "username" : "someone",           //用户名
+    "password" : "password",          //密码
+    "email"    : "someone@where.com", //邮箱
+    "captcha"  : "FCR3",              //验证码
+    "role"     : "0"                  //角色，0代表求职者，1代表企业
+  }
+```
