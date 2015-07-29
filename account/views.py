@@ -2,8 +2,8 @@
 import sys
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.auth.models import User
 from django.contrib import auth
+import traceback
 
 # Create your views here.
 from .models import *
@@ -14,7 +14,7 @@ def register(request):
     #Validate the captcha
         try:
             session_captcha = request.session.get('captcha', False)
-            request_captcha = request.DATA['captcha']
+            request_captcha = request.POST.get('captcha','')
         except KeyError:
             re['error']=error(100,"Need captcha!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -28,11 +28,13 @@ def register(request):
         email = request.POST.get('email', '')
         role=request.POST.get('role','')
         try:
-            User.create_user(username=username, password=password, email=email,is_staff=role)
+            User.create_user(username=username, password=password, email=email)
             userinfo = Userinfo(username=username)
-            userinfo.email=email
+            userinfo.email = email
             userinfo.date_joined = datetime_now()
             userinfo.update_time = datetime_now()
+            userinfo.has_resume = False
+            userinfo.info_complete = False
             userinfo.save()
             user = auth.authenticate(username=username, password=password)
             if user is not None and user.is_active:
@@ -54,7 +56,8 @@ def register(request):
             #    user = User.objects.create_user(**user_data)
             #except MySQLdb.IntegrityError:
             #    return Response({'email': 'Email 已经注册。'}, status=status.HTTP_400_BAD_REQUEST)
-        except:
+        except Exception as e:
+            print traceback.print_exc()
             re['error'] = error(107, 'username exist or username include special character')
     else:
         re['error'] = error(2, 'error, need post!')
