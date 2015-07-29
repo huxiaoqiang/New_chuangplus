@@ -20,4 +20,4 @@ class Position(Document):
     salary_min=IntField(default=0)
     salary_max=IntField(default=0)
     delivery_number=IntField(default=0)
-    status = StringField(max_length=15,choices=STATUS,defalut='hide')
+    status = StringField(max_length=15,choices=STATUS,default='hide')

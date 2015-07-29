@@ -2,8 +2,8 @@
 import sys
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.auth.models import User
 from django.contrib import auth
+import traceback
 
 # Create your views here.
 from .models import *
@@ -14,7 +14,7 @@ def register(request):
     #Validate the captcha
         try:
             session_captcha = request.session.get('captcha', False)
-            request_captcha = request.DATA['captcha']
+            request_captcha = request.POST.get('captcha','')
         except KeyError:
             re['error']=error(100,"Need captcha!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -28,11 +28,13 @@ def register(request):
         email = request.POST.get('email', '')
         role=request.POST.get('role','')
         try:
-            User.create_user(username=username, password=password, email=email,is_staff=role)
+            User.create_user(username=username, password=password, email=email)
             userinfo = Userinfo(username=username)
-            userinfo.email=email
+            userinfo.email = email
             userinfo.date_joined = datetime_now()
             userinfo.update_time = datetime_now()
+            userinfo.has_resume = False
+            userinfo.info_complete = False
             userinfo.save()
             user = auth.authenticate(username=username, password=password)
             if user is not None and user.is_active:
@@ -54,7 +56,8 @@ def register(request):
             #    user = User.objects.create_user(**user_data)
             #except MySQLdb.IntegrityError:
             #    return Response({'email': 'Email 已经注册。'}, status=status.HTTP_400_BAD_REQUEST)
-        except:
+        except Exception as e:
+            print traceback.print_exc()
             re['error'] = error(107, 'username exist or username include special character')
     else:
         re['error'] = error(2, 'error, need post!')
@@ -107,4 +110,81 @@ def logout(request):
     re = dict()
     re['error'] = error(1, '注销成功')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+
+@user_permission('login')
+def set_password(request):
+    re = dict()
+    if request.method == 'POST':
+        password = request.POST.get('password', '')
+        new_password = request.POST.get('new_password', '')
+        if password == new_password:
+            re['error'] = error(109, 'password is the same')
+        else:
+            user = auth.authenticate(username=request.user.username, password=password)
+            if user is not None and user.is_active:
+                user.set_password(new_password)
+                user.save()
+                re['error'] = error(1, 'settings OK')
+            else:
+                re['error'] = error(101, 'password error')
+    else:
+        re['error'] = error(2, 'error,need get')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+
+@user_permission('login')
+def get_userinfo(request):
+    re = dict()
+    if request.method == 'GET':
+        username = request.user.username
+        try:
+            userinfo = Userinfo.objects.get(username=username)
+        except:
+            re['error'] = error(110, 'user do not exist')
+        re['userinfo'] = json.loads(userinfo.to_json())
+        re['error'] = error(1, 'get succeed')
+    else:
+        re['error'] = error(2, 'error, need get')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+
+@user_permission('login')
+def set_userinfo(request):
+    re = dict()
+    if request.method == 'POST':
+        username = request.POST.get('username', '')
+        if username == request.user.username:
+            try:
+                userinfo = Userinfo.objects.get(username=username)
+            except:
+                re['error'] = error(110, 'user do not exist')
+                re['username'] = username
+            else:
+                userinfo.username = request.POST.get('username', '')
+                userinfo.email = request.POST.get('email', '')
+                userinfo.position_type = request.POST.get('position_type', '')
+                userinfo.work_city = request.POST.get('work_city', '')
+                userinfo.cellphone = request.POST.get('cellphone', '')
+                userinfo.university = request.POST.get('university', '')
+                userinfo.major = request.POST.get('major', '')
+                userinfo.grade = request.POST.get('grade', '')
+                userinfo.gender = request.POST.get('gender', '')
+                userinfo.work_days = request.POST.get('work_days', '')
+                userinfo.description = request.POST.get('description', '')
+                userinfo.update_time = datetime_now()
+                userinfo.save()
+
+                user = User.objects.get(username=username)
+                user.email = userinfo.email
+                user.save()
+
+                re['userinfo'] = json.loads(userinfo.to_json())
+                re['error'] = error(1, 'updated successfully')
+        else:
+            re['error'] = error(111, 'no change permissions')
+    else:
+        re['error'] = error(2, 'erroe，need post')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
 
