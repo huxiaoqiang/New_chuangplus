@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 from position.models import Position
-from filedata.models import Image
+from filedata.models import Image,Resume
 from django.http import HttpResponse
 from mongoengine import *
 import json
@@ -12,7 +13,6 @@ try:
     # django >= 1.4
     from django.utils.timezone import now as datetime_now
 except ImportError:
-    from datetime import datetime
     datetime_now = datetime.now
 
 #Userinfo
@@ -28,11 +28,11 @@ class Userinfo(Document):
     gender = IntField(default=0)  #0 is woman 1 is man
     work_days = IntField(default=3)
     description = StringField(max_length=200)
-    attachment = FileField()
+    attachment = ReferenceField(Resume)
     info_complete=BooleanField(default=0)
     has_resume=BooleanField(default=0)
-    date_joined=DateTimeField(datetime.now)
-    update_time=DateTimeField(datetime.now)
+    date_joined=DateTimeField()
+    update_time=DateTimeField()
     User = ReferenceField("User")
 
 STAGE=('no','angel','A','B','C','D_plus')
