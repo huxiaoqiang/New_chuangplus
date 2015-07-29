@@ -22,7 +22,7 @@ pip freeze > requirement.txt
 数据库安装
 ###mongodbengine module
 ```
-pip install mongoengine
+pip install mongoengine==0.8.7
 ```
 ##接口使用
 请查看 api.md，暂无。
