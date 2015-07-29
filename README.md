@@ -22,7 +22,8 @@ pip freeze > requirement.txt
 数据库安装
 ###mongodbengine module
 ```
-pip install mongoengine
+pip install pymongo==2.7.2
+pip install mongoengine==0.9.0
 ```
 ##接口使用
 请查看 api.md，暂无。
