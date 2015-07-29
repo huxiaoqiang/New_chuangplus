@@ -8,7 +8,7 @@ def image(request):
     response = HttpResponse(content_type="image/png")
 
     randstr,img = getNewCaptcha()
-    img.save(response, 'png')
+    img.save(response, 'png',quality=100)
 
     request.session['captcha'] = randstr
     return response
