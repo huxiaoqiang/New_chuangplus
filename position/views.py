@@ -12,6 +12,9 @@ TYPE = ('technology','product','design','operate','marketing','functions','other
 STATUS = ('employing','hide','delete')
 POSITIONS_PER_PAGE = 10
 
+def error(code, message):
+    return {'code':code, 'message':message}
+
 def if_legal(str,enter = false):
     str_uni = str.decode('utf8')
     for c in str_uni:
@@ -36,7 +39,7 @@ def create_position(request):
         assert request.User.is_authenticated()
         cpn = Companyinfo.objects.all().filter(User = request.User)
     except:
-        re['error'] = error(300,"Permission denied!")
+        re['error'] = error(100,"Permission denied!")
   
     name = request.POST.get('name','')
     type = request.POST.get('type','')
@@ -239,7 +242,7 @@ def delete_position(request):
         cpn = Companyinfo.objects.all().filter(User = request.User)
         assert posi in cpn.position    
     except:
-        re['error'] = error(300,"Permission denied!")
+        re['error'] = error(100,"Permission denied!")
     
     try:
         posi.delete()
@@ -408,7 +411,7 @@ def search_position(request):
     re["error"] = error(1,"Search succeed!")
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
-def change_position(request):
+def update_position(request):
     re = dict()
     try:
         assert request.method == "POST"
@@ -445,7 +448,7 @@ def change_position(request):
         cpn = Companyinfo.objects.all().filter(User = request.User)
         assert posi in cpn.position    
     except:
-        re['error'] = error(300,"Permission denied!")
+        re['error'] = error(100,"Permission denied!")
     
     name = request.POST.get('name','')
     type = request.POST.get('type','')
@@ -618,3 +621,23 @@ def change_position(request):
     
     re['error'] = error(1,'Create position succeed!')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
+    
+def edit_position(request):
+    re = dict()
+    try:
+        assert request.method == "POST"
+    except:
+        re['error'] = error(2, 'error, need post!')
+        return HttpResponse(json.dumps(re), content_type = 'application/json')
+   
+    try:
+        assert request.POST['operation'] == 'delete' or request.POST['operation'] == 'update'
+    except:
+        re['error'] = error(200,"Invaild request!")
+        return HttpResponse(json.dumps(re), content_type = 'application/json')
+    
+    if request.POST['operation'] == 'delete':
+        return delete_position(request)
+    
+    if request.POST['operation'] == 'update':
+        return update_position(request)
