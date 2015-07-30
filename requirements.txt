@@ -4,7 +4,6 @@ apt-xapian-index==0.45
 argparse==1.2.1
 chardet==2.0.1
 colorama==0.2.5
-djangorestframework==3.1.2
 html5lib==0.999
 python-apt==0.9.3.5ubuntu1
 python-debian==0.1.21-nmu2ubuntu2
@@ -14,3 +13,5 @@ ssh-import-id==3.21
 urllib3==1.7.1
 wheezy.captcha==0.1.44
 wsgiref==0.1.2
+pymongo==2.7.2
+mongoengine==0.9.0
