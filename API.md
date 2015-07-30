@@ -61,8 +61,12 @@ position           |ListField   |Position     |发布的职位
 slogan             |StringFiled |             |公司标语
 status             |BooleanField|             |是否被后台管理员认证通过
 User               |OnetoOne    |关联数据     |对应的user
-###公司信息表
 ###融资信息表
+字段   |类型   |修饰   |解释
+------------|-----------|-----------|-----------
+stage       |StringField|           |融资阶段
+organization|StringField|           |融资机构
+amount      |StringField|choices=AMOUNT           |数量级
 ###公司成员表
 ###求职者和公司关系表
 ###求职者和职位关系表
