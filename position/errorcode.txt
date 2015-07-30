@@ -32,7 +32,7 @@
 236: Invaild search max salary
 237: Invaild search status
 249: Object does not exist
-250~252
+250~252: Database error
 250: Database error: Failed to save
 251: Database error: Failed to search
 252: Database error: Failed to delete
