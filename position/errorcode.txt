@@ -1,0 +1,41 @@
+1:succeed
+2:need post
+100:permission denied
+200: illegal request # A request without necessary keys
+210~228: Creating / Updating position failures (Invaild keys)
+210: Invaild length for name(should be in [1,30])
+211: Illegal character found in name
+212: Invaild position type
+213: Invaild length for work city(should be in [1,50])
+214: Illegal character found in work city
+215: Invaild length for work address(should be in [1,1000])
+216: Illegal character found in work address
+217: Invaild end time format
+218: End time is too early
+219: Invaild length for description.
+220: Illegal character found in description
+221: Invaild length for request
+222: Illegal character found in request
+223: Invaild days_per_week (should be a integer in [0,7])
+224: Invaild internship_time (should be a non-negative integer)
+225: Invaild min_salary (should be a integer in [0,1000000])
+226: Invaild max_salary (should be a integer in [0,1000000])
+227: Max salary should be more than min salary
+228: Invaild position status
+230~237: Searching position failures (Invaild keys)
+230: Invaild search id (should be non-negative integer)
+231: Invaild search name
+232: Invaild search work city
+233: Invaild search min daysperweek
+234: Invaild search max daysperweek
+235: Invaild search min salary
+236: Invaild search max salary
+237: Invaild search status
+249: Object does not exist
+250~252
+250: Database error: Failed to save
+251: Database error: Failed to search
+252: Database error: Failed to delete
+
+299: Unknown error
+
