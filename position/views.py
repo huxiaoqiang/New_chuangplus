@@ -7,6 +7,8 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.db import DatabaseError
 from django.db.models import Q
+from account.models import Companyinfo
+
 
 TYPE = ('technology','product','design','operate','marketing','functions','others')
 STATUS = ('employing','hide','delete')
@@ -15,7 +17,7 @@ POSITIONS_PER_PAGE = 10
 def error(code, message):
     return {'code':code, 'message':message}
 
-def if_legal(str,enter = false):
+def if_legal(str,enter = False):
     str_uni = str.decode('utf8')
     for c in str_uni:
         if c in range (u'\u0021',u'\u00fe') or c in range (u'\u4e00',u'\u9fa5'):
@@ -23,7 +25,7 @@ def if_legal(str,enter = false):
         if (c == u'\u000a' or c == u'\u000d') and enter:
             continue;
         raise ValueError,c
-    return true
+    return True
 
 def create_position(request):
     re = dict()
@@ -57,7 +59,7 @@ def create_position(request):
     
     try:
         assert len(name) in range(1,30)
-        if_legal(name,false)
+        if_legal(name,False)
     except AssertionError:
         re['error'] = error(210,'Position name is too short or too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
@@ -69,14 +71,14 @@ def create_position(request):
         return HttpResponse(json.dumps(re),content_type = 'application/json')
 
     try:
-        assert type in TYPE:
+        assert type in TYPE
     except AssertionError:
         re['error'] = error(212,'Invaild position type')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     try:
         assert len(work_city) in range(1,50)
-        if_legal(work_city,false)
+        if_legal(work_city,False)
     except AssertionError:
         re['error'] = error(213,'Work city is too short or too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
@@ -90,7 +92,7 @@ def create_position(request):
     
     try:
         assert len(work_address) in range(1,100)
-        if_legal(work_address,false)
+        if_legal(work_address,False)
     except AssertionError:
         re['error'] = error(215,'The length of work address is too short or too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
@@ -101,7 +103,7 @@ def create_position(request):
     try:
         etint = int(et)
         end_time = datetime.datetime.utcfromtimestamp(etint)
-        assert endtime > release_time
+        assert end_time > release_time
     except ValueError:
         re['error'] = error(217,'Invaild end time format!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
@@ -112,7 +114,7 @@ def create_position(request):
     
     try:
         assert len(position_description) in range(0,500)
-        if_legal(position_description,false)
+        if_legal(position_description,False)
     except AssertionError:
         re['error'] = error(219,'The length of description is too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
@@ -125,7 +127,7 @@ def create_position(request):
     
     try:
         assert len(position_request) in range(0,500)
-        if_legal(position_request,false)
+        if_legal(position_request,False)
     except AssertionError:
         re['error'] = error(221,'The length of request is too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
@@ -183,7 +185,7 @@ def create_position(request):
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     try:
-        assert status in STATUS:
+        assert status in STATUS
     except AssertionError:
         re['error'] = error(228,'Invaild position status')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
@@ -235,7 +237,7 @@ def delete_position(request):
         re['error'] = error(299,'Unkown Error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
-        try:
+    try:
         assert request.User != None
         assert request.User.is_stuff
         assert request.User.is_authenticated()
@@ -289,7 +291,7 @@ def search_position(request):
                 assert len(name) < 30
                 if_legal(name)
                 qs = qs.filter(name = name)
-            except AssertionError,UnicodeDecodeError,ValueError:
+            except AssertionError, ValueError: #UnicodeDecodeError is missing
                 re['error'] = error(231,"Invaild search name!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             except DatabaseError:
@@ -306,7 +308,7 @@ def search_position(request):
                 assert len(work_city) < 50
                 if_legal(work_city)
                 qs = qs.filter(work_city = work_city)
-            except AssertionError,UnicodeDecodeError,ValueError:
+            except AssertionError,ValueError: #UnicodeDecodeError is missing
                 re['error'] = error(232,"Invaild search work city!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             except DatabaseError:
@@ -465,7 +467,7 @@ def update_position(request):
     
     try:
         assert len(name) in range(1,30)
-        if_legal(name,false)
+        if_legal(name,False)
     except AssertionError:
         re['error'] = error(210,'Position name is too short or too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
@@ -477,14 +479,14 @@ def update_position(request):
         return HttpResponse(json.dumps(re),content_type = 'application/json')
 
     try:
-        assert type in TYPE:
+        assert type in TYPE
     except AssertionError:
         re['error'] = error(212,'Invaild position type')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     try:
         assert len(work_city) in range(1,50)
-        if_legal(work_city,false)
+        if_legal(work_city,False)
     except AssertionError:
         re['error'] = error(213,'Work city is too short or too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
@@ -498,7 +500,7 @@ def update_position(request):
     
     try:
         assert len(work_address) in range(1,100)
-        if_legal(work_address,false)
+        if_legal(work_address,False)
     except AssertionError:
         re['error'] = error(215,'The length of work address is too short or too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
@@ -509,7 +511,7 @@ def update_position(request):
     try:
         etint = int(et)
         end_time = datetime.datetime.utcfromtimestamp(etint)
-        assert endtime > release_time
+        assert end_time > datetime.now()
     except ValueError:
         re['error'] = error(217,'Invaild end time format!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
@@ -520,7 +522,7 @@ def update_position(request):
     
     try:
         assert len(position_description) in range(0,500)
-        if_legal(position_description,false)
+        if_legal(position_description,False)
     except AssertionError:
         re['error'] = error(219,'The length of description is too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
@@ -533,7 +535,7 @@ def update_position(request):
     
     try:
         assert len(position_request) in range(0,500)
-        if_legal(position_request,false)
+        if_legal(position_request,False)
     except AssertionError:
         re['error'] = error(221,'The length of request is too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
@@ -591,7 +593,7 @@ def update_position(request):
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     try:
-        assert status in STATUS:
+        assert status in STATUS
     except AssertionError:
         re['error'] = error(228,'Invaild position status')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
@@ -600,7 +602,6 @@ def update_position(request):
     posi.type = type
     posi.work_city = work_city
     posi.work_address = work_address
-    posi.release_time = release_time
     posi.end_time = end_time
     posi.position_description = position_description
     posi.position_request = position_request

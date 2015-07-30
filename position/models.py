@@ -1,6 +1,8 @@
 from django.db import models
 from datetime import datetime
 from mongoengine import *
+import json
+import re
 # Create your models here
 
 TYPE = ('technology','product','design','operate','marketing','functions','others')
