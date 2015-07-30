@@ -23,8 +23,7 @@ class TestPositionCreate:
         res = self.c.post("/api/account/login/",{'username':'ryz','password' = '123457'})
         self.assertEqual(res.context['error']['code'],108)
     
-    def testCreatePosition(self):
-        res = self.c.post("/api/account/login/",{'username':'ryz','password' = '123456'})
-        self.assertEqual(res.context['error']['code'],1)
-        res = self.c.post("/api/position/create/",{})
-        
+    #def testCreatePosition(self):
+    #    res = self.c.post("/api/account/login/",{'username':'ryz','password' = '123456'})
+    #    self.assertEqual(res.context['error']['code'],1)
+    #    res = self.c.post("/api/position/create/",{})

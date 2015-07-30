@@ -98,7 +98,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media/'
 
 from mongoengine import connect
-connect('chuangplus', host='localhost', port=27017, username='root', password='')
+connect('chuangplus', host='123.56.88.173', port=27017, username='chuangplus', password='THUcj2014')
 
 # add session
 SESSION_ENGINE = 'mongoengine.django.sessions'
