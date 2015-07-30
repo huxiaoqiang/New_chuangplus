@@ -187,4 +187,71 @@ def set_userinfo(request):
         re['error'] = error(2, 'erroe，need post')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+@user_permission("login")
+def get_companyinfo(request):
+    re=dict()
+    if request.method == "GET":
+        username=request.user.username
+        try:
+            companyinfo=Companyinfo.objects.get(username=username)
+        except:
+            re["error"] = error(110,"company dose not exist!")
+            re["username"] = username
+        re['company'] = json.loads(companyinfo.to_json())
+        re['error'] = error(1, 'get succeed')
+    else:
+        re["error"] = error(2,"error,need GET!")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+#todo: this function is not completed!!
+@user_permission("login")
+def set_companyinfo(request):
+    re=dict()
+    if request.method == "POST":
+            username=request.POST.get('username','')
+            if username == request.user.username:
+                try:
+                    companyinfo=Companyinfo.objects.get(username=username)
+                except:
+                    re['error'] = error(110, 'companyinfo do not exist')
+                    re['username'] = username
+                else:
+                    companyinfo.username = request.POST.get('username', '')
+                    companyinfo.contacts = request.POST.get('contacts', '')
+                    companyinfo.abbreviation = request.POST.get('abbreviation', '')
+                    companyinfo.city = request.POST.get('city', '')
+                    companyinfo.field = request.POST.get('field', '')
+                    companyinfo.financing_info = request.POST.get('financing_info', '')
+                    companyinfo.grade = request.POST.get('grade', '')
+                    companyinfo.gender = request.POST.get('gender', '')
+                    companyinfo.work_days = request.POST.get('work_days', '')
+                    companyinfo.description = request.POST.get('description', '')
+                    companyinfo.update_time = datetime_now()
+            else:
+                re['error'] = error(111,'no change permissions')
+    else:
+        re['error'] = error(2,"error,need POST")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+@user_permission("login")
+def set_company_member(request,mem_id):
+    re=dict()
+    if request.method == 'POST':
+        try:
+            member = Member.objects.get(id=mem_id)
+        except:
+            re['error'] = error(112,"member dose not exist")
+        #todo add permission!!!
+        member.m_name = request.POST.get('m_name','')
+        member.m_position = request.POST.get('m_position','')
+        member.m_introduction = request.POST.get('m_introduction','')
+        member.m_avatar_path = request.POST.get('m_avatar_path','')
+        member.update()
+        re['error'] = error(1, '修改成功')
+        re['member'] = json.loads(member.to_json())
+    else:
+        re['error'] = error(2,"errer,need POST")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+
+#todo add organization auth function (for admin)
