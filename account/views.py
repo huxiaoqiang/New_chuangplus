@@ -108,7 +108,7 @@ def login(request):
 def logout(request):
     auth.logout(request)
     re = dict()
-    re['error'] = error(1, '注销成功')
+    re['error'] = error(1, 'logout successfully!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 
