@@ -66,7 +66,8 @@ User               |OnetoOne    |关联数据     |对应的user
 ------------|-----------|-----------|-----------
 stage       |StringField|           |融资阶段
 organization|StringField|           |融资机构
-amount      |StringField|choices=AMOUNT           |数量级
+amount      |StringField|choices=AMOUNT|数量级
+AMOUNT=('ten','hundred','thousand','thousand_plus')
 ###公司成员表
 ###求职者和公司关系表
 ###求职者和职位关系表
