@@ -13,6 +13,7 @@ username      |StringField |          |
 password      |            |          |
 email         |EmailFiedl  |          |
 is_staff      |BooleanFiled|          |True：企业用户，False：个人用户
+
 ####用户信息表（求职者）
 字段   |类型   |修饰   |解释
 ----------|----------|----------|----------
@@ -30,12 +31,11 @@ info_complete |BooleanField|默认：0   |信息是否完整
 has_resume    |BooleanFiedl|默认：0   |是否上传简历
 User          |OnetoOne    |关联数据  |对应的user
 
-#todo 填完整信息
 ####公司信息表
 字段   |类型   |修饰   |解释
 ----------|----------|----------|----------
 id            |primarykey |         |主键
-
+用户名        |String
 ###公司信息表
 ###融资信息表
 ###公司成员表
