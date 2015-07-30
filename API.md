@@ -5,6 +5,14 @@ chuangplus项目api文档
 =========================
 ##<a name="table"/>数据模型结构
 ###Account
+####User
+字段      |类型      |修饰      |解释
+----------|----------|----------|----------
+id            |primarykey  |          |主键
+username      |StringField |          |
+password      |            |          |
+email         |EmailFiedl  |          |
+is_staff      |BooleanFiled|          |True：企业用户，False：个人用户
 ####用户信息表（求职者）
 字段   |类型   |修饰   |解释
 ----------|----------|----------|----------
