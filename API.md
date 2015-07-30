@@ -64,13 +64,20 @@ User               |OnetoOne    |关联数据     |对应的user
 ###融资信息表
 字段   |类型   |修饰   |解释
 ------------|-----------|-----------|-----------
-stage       |StringField|           |融资阶段
+stage       |StringField|choices=STAGE|融资阶段
 organization|StringField|           |融资机构
 amount      |StringField|choices=AMOUNT|数量级
-AMOUNT=('ten','hundred','thousand','thousand_plus')<br/>
-数量级分别表示十万级，百万级，千万级，以及亿级
+AMOUNT=('ten','hundred','thousand','thousand_plus')数量级分别表示十万级，百万级，千万级，以及亿级<br/>
+STAGE=('no','angel','A','B','C','D_plus') 分别表示没有融资，天使轮，A轮，B轮，C轮，D及D以上轮融资<br/>
 
 ###公司成员表
+字段   |类型   |修饰   |解释
+------------|-----------|-----------|-----------
+m_name        |StringField|         |成员名字
+m_position    |StringField|         |成员职位
+m_introduction|StringField|         |成员介绍
+m_avatar_path |StringField|关联Image|成员头像
+
 ###求职者和公司关系表
 ###求职者和职位关系表
 
