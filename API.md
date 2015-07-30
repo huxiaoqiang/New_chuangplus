@@ -61,7 +61,7 @@ position           |ListField   |Position     |发布的职位
 slogan             |StringFiled |             |公司标语
 status             |BooleanField|             |是否被后台管理员认证通过
 User               |OnetoOne    |关联数据     |对应的user
-###融资信息表Financing
+####融资信息表Financing
 字段   |类型   |修饰   |解释
 ------------|-----------|-----------|-----------
 stage       |StringField|choices=STAGE|融资阶段
@@ -70,7 +70,7 @@ amount      |StringField|choices=AMOUNT|数量级
 AMOUNT=('ten','hundred','thousand','thousand_plus')数量级分别表示十万级，百万级，千万级，以及亿级<br/>
 STAGE=('no','angel','A','B','C','D_plus') 分别表示没有融资，天使轮，A轮，B轮，C轮，D及D以上轮融资<br/>
 
-###公司成员表Member
+####公司成员表Member
 字段   |类型   |修饰   |解释
 ------------|-----------|-----------|-----------
 m_name        |StringField|         |成员名字
@@ -78,18 +78,40 @@ m_position    |StringField|         |成员职位
 m_introduction|StringField|         |成员介绍
 m_avatar_path |StringField|关联Image|成员头像
 
-###求职者和公司关系表UC_Relationship
+####求职者和公司关系表UC_Relationship
 字段   |域
 ------------|-----------
 company     |Companyinfo
 user        |Userinfo
-###求职者和职位关系表PC_Relationship
+####求职者和职位关系表PC_Relationship
 字段   |域
 ------------|-----------
 user        |Userinfo
 position    |Position
 status      |IntField(default=0)
 status 有四种状态，默认是0，表示没有关系，1表示投递了，但是hr还未处理，2表示投递了hr也处理了，3表示收藏
+
+###职位表Position
+字段   |类型   |修饰   |解释
+------------|-----------|-----------|-----------
+id                  |primarykey     |              |
+name                |StringField    |              |职位名
+type                |StringField    |choices=TYPE  |类别
+work_city           |StringField    |              |工作城市
+work_addr           |StringField    |              |工作具体地点
+release_time        |DateTimeField  |=now          |发布时间
+end_time            |DateTimeField  |              |职位截止时间
+position_description|StringField    |              |职位描述
+position_request    |StringField    |              |职位要求
+daysperweek         |IntField       |default=3     |每周工作天数
+internship_time     |IntField       |default=1     |实习时间（月）
+salary_min          |IntField       |default=0     |薪水下限
+salary_max          |IntField       |default=0     |薪水上限
+delivery_number     |IntField       |default=0     |职位已经投递的人数
+status              |Stringfield    |choices=STATUS|职位状态
+
+TYPE = ('technology','product','design','operate','marketing','functions','others')
+STATUS = ('employing','hide','delete')
 ##<a name="table"/>错误信息码
 错误码   |返回信息   |意义
 -------------|-------------|-------------
