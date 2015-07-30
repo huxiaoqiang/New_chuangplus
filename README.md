@@ -22,4 +22,4 @@ pip freeze > requirement.txt
 数据库安装
 
 ##接口使用
-请查看 api.md，暂无。
+请查看 api.md
