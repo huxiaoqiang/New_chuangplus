@@ -34,20 +34,33 @@ User          |OnetoOne    |关联数据  |对应的user
 ####公司信息表
 字段   |类型   |修饰   |解释
 ----------|----------|----------|----------
-id               |primarykey  |             |主键
-username         |StringField |             |和注册的用户名一样
-contacts         |StringField |             |联系人
-abbreviation     |StringField |             |公司简称
-city             |StringFiled |             |公司所在地
-field            |StringFiled |             |行业领域
-financing_info   |ListField   |关联Financing|融资信息
-is_auth          |BooleanField|default=False|投资机构认证
-auth_organization|StringField |             |
-people_scale     |IntField    |             |
-homepage         |URLField    |             |
-wechat           |StringField |             |
-email_resume     |EmailField  |             |
-qrcode           |
+id                 |primarykey  |             |主键
+username           |StringField |             |和注册的用户名一样
+contacts           |StringField |             |联系人
+abbreviation       |StringField |             |公司简称
+city               |StringFiled |             |公司所在地
+field              |StringFiled |             |行业领域
+financing_info     |ListField   |关联Financing|融资信息
+is_auth            |BooleanField|default=False|投资机构认证
+auth_organization  |StringField |             |认证机构
+people_scale       |IntField    |             |规模人数
+homepage           |URLField    |             |公司主页
+wechat             |StringField |             |公司公众号
+email_resume       |EmailField  |             |收简历邮箱
+qrcode             |ReferenceField|Image      |微信二维码
+welfare_tags       |StringField |             |福利标签
+product_link       |URLField    |             |产品链接
+ICregist_name      |StringField |             |公司工商注册名称
+Company_descrition |StringFiled |             |公司简介
+product_description|StringField |             |产品简介
+team_description   |StringField |             |团队介绍
+team_info          |ListField   |Member       |团队信息
+position_type      |StringField |             |职位类别
+position_number    |IntField    |default=0    |发布的职位数
+position           |ListField   |Position     |发布的职位
+slogan             |StringFiled |             |公司标语
+status             |BooleanField|             |是否被后台管理员认证通过
+User               |OnetoOne    |关联数据     |对应的user
 ###公司信息表
 ###融资信息表
 ###公司成员表
