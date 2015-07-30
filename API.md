@@ -34,8 +34,15 @@ User          |OnetoOne    |关联数据  |对应的user
 ####公司信息表
 字段   |类型   |修饰   |解释
 ----------|----------|----------|----------
-id            |primarykey |         |主键
-用户名        |String
+id            |primarykey  |             |主键
+username      |StringField |             |和注册的用户名一样
+contacts      |StringField |             |联系人
+abbreviation  |StringField |             |公司简称
+city          |StringFiled |             |公司所在地
+field         |StringFiled |             |行业领域
+financing_info|ListField   |关联Financing|融资信息
+is_auth       |BooleanField|default=False|投资机构认证
+auth_organization
 ###公司信息表
 ###融资信息表
 ###公司成员表
