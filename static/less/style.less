@@ -30,15 +30,14 @@
 @info-input-mag:  20px;
 
 //complist.html
-@cl-header-hgt  :   54px;
+@cl-header-hgt  :   50px;
 
-@cl-require-hgt:   50px;
+@cl-require-hgt:   46px;
 @cl-require-fsize:  16px;
 @cl-require-boxpd:  12px;
 
-@cl-search-hgt:    50px;
+@cl-search-hgt:    46px;
 
-@cl-listbox-hgt:    80px;
 
 @cl-nav-hgt:        54px;  
 @cl-nav-fsize:        20px;   
@@ -49,6 +48,19 @@
 
 @cl-header-fsize:    23px;
 @cl-header-logo-mgn:    10px;
+
+@cl-listbox-hgt:    110px;
+@cl-comp-img-size:  90px;
+@cl-comp-name-fsize:    16px;
+@cl-comp-desc-fsize:    10px;
+@cl-comp-req-fsize:    12px;
+@cl-comp-tag-radius:    2px;
+@cl-comp-tag-mag:    5px;
+@cl-comp-reqt-fsize:    10px;
+@cl-comp-desct-fsize:    10px;
+@cl-comp-bent-fsize:    9px;
+@cl-come-lineh: 18px;
+
 
 //gengeral
 
@@ -294,12 +306,108 @@ body
     border-radius: @cl-input-radius;
     height: @cl-search-hgt - @cl-padding-ver * 2;
 }
+/*
 
-.listbox
+@cl-comp-img-size:  80px;
+@cl-comp-name-fsize:    16px;
+@cl-comp-desc-fsize:    10px;
+@cl-comp-req-fsize:    12px;
+@cl-comp-reqt-fsize:    9px;
+@cl-comp-desct-fsize:    9px;
+@cl-comp-bent-fsize:    8px;
+*/
+
+.comp-list
+{
+    background-color: @lit-gray;
+    padding-bottom: 1px;
+}
+.comp-listbox
 {
     display: block;
     height: @cl-listbox-hgt;
+    margin-bottom: 3px;
+    background-color: white;
+    overflow: hidden;
 }
+.comp-prev-img
+{
+    float: left;
+    width: @cl-comp-img-size;
+    height: @cl-comp-img-size;
+    margin: (@cl-listbox-hgt - @cl-comp-img-size)/2 
+            (@cl-listbox-hgt - @cl-comp-img-size)/2
+            (@cl-listbox-hgt - @cl-comp-img-size)/2
+            (@cl-listbox-hgt - @cl-comp-img-size)/2;
+
+
+}
+.comp-auth
+{
+    float: right;
+    margin-top:(@cl-listbox-hgt - @cl-comp-img-size);
+    margin-right: (@cl-listbox-hgt - @cl-comp-img-size);
+    font-size: @cl-comp-desc-fsize;
+}
+.comp-name
+{
+    margin-top: (@cl-listbox-hgt - @cl-comp-img-size)/2 ;
+    line-height: @cl-come-lineh;
+    font-size: @cl-comp-name-fsize;
+}
+.comp-desc
+{
+    line-height: @cl-come-lineh;
+    font-size: @cl-comp-desc-fsize;
+    font: @lit-gray;
+}
+.comp-req-list
+{   
+    line-height: @cl-come-lineh;
+}
+.comp-req-title
+{
+    color:   @std-purple;
+    font-size: @cl-comp-req-fsize;
+}
+.comp-req-tag
+{
+    padding: 1px 1px 1px 1px ;
+    border-radius: @cl-comp-tag-radius;
+    background-color: @std-purple;
+    border: 1px solid @std-purple;
+    color: white;
+    font-size: @cl-comp-reqt-fsize;
+    margin-right: @cl-comp-tag-mag;
+
+}
+
+.comp-desc-list{
+    line-height: @cl-come-lineh;
+}
+.comp-desc-tag
+{
+    padding: 1px 1px 1px 1px ;
+    border-radius: @cl-comp-tag-radius;
+    background-color: white;
+    color:   @std-purple;
+    border: 1px solid @std-purple;
+    text-align: center;
+    font-size: @cl-comp-desct-fsize;
+    margin-right: @cl-comp-tag-mag;
+
+}
+
+.comp-benefit-list{
+    line-height: @cl-come-lineh;
+}
+.comp-benefit-tag
+{
+    color:   @lit-gray;
+    font-size: @cl-comp-bent-fsize;
+    float: left;
+}
+
 
 .nav-bar
 {
@@ -309,6 +417,7 @@ body
     width: 100%;
     bottom: 0;
     border: 1px solid @lit-gray;
+    background: white;
 }
 .nav-bar-3
 {
