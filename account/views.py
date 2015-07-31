@@ -3,6 +3,7 @@ import sys
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import auth
+from app.common_api import error,user_permission
 import traceback
 
 # Create your views here.
@@ -247,11 +248,31 @@ def set_company_member(request,mem_id):
         member.m_introduction = request.POST.get('m_introduction','')
         member.m_avatar_path = request.POST.get('m_avatar_path','')
         member.update()
-        re['error'] = error(1, '修改成功')
+        re['error'] = error(1, 'change member information successfully!')
         re['member'] = json.loads(member.to_json())
     else:
         re['error'] = error(2,"errer,need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-
+@user_permission("login")
+def create_company_member(request):
+    re = dict()
+    if request.method == 'POST':
+        username = request.user.username
+        try:
+            companyinfo = Companyinfo.objects.get(username=username)
+            new_member = Member()
+            new_member.m_name = request.POST.get('m_name','')
+            new_member.m_position = request.POST.get('m_position','')
+            new_member.m_introduction = request.POST.get('m_introduction','')
+            new_member.m_avatar_path = request.POST.get('m_avatar_path','')
+            new_member.save()
+            companyinfo.team_info.append(new_member)
+            companyinfo.save()
+            re['error'] = error(1,'create new member successfully!')
+            re['member'] = json.loads(new_member.to_json())
+        except:
+            re['error'] = error(110,"companyinfo dose not exist!")
+    else:
+        re['error'] = error(2,"error, need POST")
 #todo add organization auth function (for admin)
