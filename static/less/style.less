@@ -1,0 +1,351 @@
+//genernal
+@std-purple :   #966497;
+@dark-gray  :   #707070;
+@mid-gray   :   #b5b5b5;
+@lit-gray   :   #dcdcdc;
+
+@padding-hor:   30px;
+
+@btn-border :   3px;
+@btn-radius :   10px;
+@btn-height     : 54px;
+@btn-font-size  : 25px;
+
+
+@input-height   : 60px;
+@input-left-mag : 16px;
+@input-font-size  : 18px;
+
+//login.html
+@login-part2:   180px;
+@login-part3:   50px;
+@login-logo-size:   90px;
+@login-btn-mag :   18px;
+@login-logo-top:    20px;
+@login-header-top:  16px;
+
+//info.html
+@info-input:    120px; 
+@info-enter:    130px;
+@info-input-mag:  20px;
+
+//complist.html
+@cl-header-hgt  :   54px;
+
+@cl-require-hgt:   50px;
+@cl-require-fsize:  16px;
+@cl-require-boxpd:  12px;
+
+@cl-search-hgt:    50px;
+
+@cl-listbox-hgt:    80px;
+
+@cl-nav-hgt:        54px;  
+@cl-nav-fsize:        20px;   
+
+@cl-input-radius  :  10px;
+@cl-padding-hor:    10px;
+@cl-padding-ver:    5px;
+
+@cl-header-fsize:    23px;
+@cl-header-logo-mgn:    10px;
+
+//gengeral
+
+body
+{
+
+    overflow-y:scroll;
+}
+
+.main-content
+{
+    min-width: 280px;
+    display: block;
+}
+
+
+.panel-group-top
+{
+    height: @input-height ;
+    border-top-left-radius:     @btn-radius;
+    border-top-right-radius:  @btn-radius;
+    border-bottom-left-radius:     0;
+    border-bottom-right-radius: 0;
+    border: @btn-border solid @std-purple;
+    background:                 white;
+    width: 100%;
+    display: block;
+}
+
+.panel-group-mid
+{
+    height: @input-height ;
+    background: white;
+    border-radius:     0;
+    margin-top: -@btn-border;
+    border: @btn-border solid @std-purple;
+    width: 100%;
+    display: block;
+}
+
+.panel-group-bot
+{
+    height: @input-height ;
+    border-top-left-radius:     0;
+    border-top-right-radius:  0;
+    border-bottom-left-radius:     @btn-radius;
+    border-bottom-right-radius: @btn-radius;
+    border: @btn-border solid @std-purple;
+    margin-top: -@btn-border;
+    width: 100%;
+    display: block;
+
+}
+
+.panel-radius
+{
+    height: @btn-height;
+    border: @btn-border solid @std-purple;
+    background:                 white;
+    color:                 @std-purple;
+    font-size:      @btn-font-size;
+    border-radius: @btn-radius;
+    
+}
+
+.login-btn
+{
+    margin-bottom: @login-btn-mag;
+}
+
+
+.panel-list
+{
+    width: 100%;
+    padding: 0 @padding-hor 0 @padding-hor;
+}
+
+.panel-elem
+{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font-size: @input-font-size ;
+}
+.panel-elem-4
+{
+    position: relative;
+    width: 25%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font-size: @input-font-size ;
+}
+.panel-elem-43
+{
+    position: relative;
+    width: 75%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font-size: @input-font-size ;
+}
+.panel-elem-2
+{
+    position: relative;
+    width: 50%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font-size: @input-font-size ;
+}
+.panel-elem-1
+{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font-size: @input-font-size ;
+    background: white;
+}
+
+//login.html
+
+.check-pic
+{
+}
+
+.panel-title
+{
+    color: @std-purple;
+    margin: 0 @input-left-mag 0 @input-left-mag;
+}
+
+.login-header
+{
+    height: @login-part2;
+    text-align: center;
+}
+.login-header .logo
+{
+    width:@login-logo-size;
+    margin-top: @login-logo-top;
+}
+.login-header .name
+{
+    margin-top: @login-header-top;
+    text-align: center;
+    font-size: 20pt;
+}
+
+.login-input
+{
+    position: relative;
+    margin-bottom: @login-part3;
+}
+
+//info.html
+
+.info-input-content
+{
+    margin-top: @info-input;
+}
+
+.info-input
+{
+    margin-bottom: @info-input-mag;
+}
+
+.info-enter
+{
+    margin-top: @info-enter;
+}
+
+
+//complist.html
+
+.header-bar
+{
+    display: block;
+    height: @cl-header-hgt;
+    background: @std-purple;
+}
+.header-bar .header
+{
+    width: 50%;
+    text-align: center;
+    height: @cl-header-hgt;
+    line-height:@cl-header-hgt;
+    color: white;
+    font-size: @cl-header-fsize;
+
+    margin: auto;  
+    position: absolute;  
+    left:0; right: 0; 
+}
+.header-bar .logo
+{
+    float: left;
+    height: @cl-header-hgt - @cl-header-logo-mgn *2;
+    margin: @cl-header-logo-mgn @cl-header-logo-mgn @cl-header-logo-mgn @cl-header-logo-mgn ;
+}
+
+.require-bar
+{
+    overflow: hidden;
+    display: block;
+    height: @cl-require-hgt;
+}
+.require-bar .require-box
+{
+    font-size: @cl-require-fsize;
+    height: @cl-require-hgt;
+    line-height: @cl-require-hgt;
+    display: block;
+    padding: 0 0 0 @cl-require-boxpd;
+    float: left;
+    color:  @dark-gray;
+}
+.require-bar .requires
+{
+    position: absolute;
+    display: block;
+    width: 78%;
+    height: @cl-require-hgt;
+    background: white;
+}
+.require-bar .require-btn
+{
+    height: @cl-require-hgt - 10px;
+    margin: 5px 5px 5px 0 ;
+    position: absolute;
+    border-radius: @btn-radius;
+    width: 22%;
+    padding: 0;
+    right: 0;
+}
+
+.search-bar
+{
+    display: block;
+    height: @cl-search-hgt;
+    background: @mid-gray;
+    vertical-align: center;
+    padding: @cl-padding-ver @cl-padding-hor @cl-padding-ver @cl-padding-hor ;
+}
+
+.search-input
+{
+    border: 0px solid;
+    border-radius: @cl-input-radius;
+    height: @cl-search-hgt - @cl-padding-ver * 2;
+}
+
+.listbox
+{
+    display: block;
+    height: @cl-listbox-hgt;
+}
+
+.nav-bar
+{
+    display: block;
+    height: @cl-nav-hgt;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    border: 1px solid @lit-gray;
+}
+.nav-bar-3
+{
+    display: block;
+    width: 33.33%;
+    float: left;
+    height: @cl-nav-hgt;
+    line-height: @cl-nav-hgt;
+    font-size: @cl-nav-fsize;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid @lit-gray;
+    border-top: 0;
+}
+.nav-bar .selected
+{
+    background: @std-purple;
+    border: 0;
+}
+
+
+
+
+
+
