@@ -9,6 +9,7 @@ from django.db.models import Q
 from account.models import Companyinfo
 import traceback
 import time
+from app.common_api import error,user_permission,if_legal
 
 TYPE = ('technology','product','design','operate','marketing','functions','others')
 STATUS = ('employing','hide','delete')
@@ -45,6 +46,7 @@ def if_legal(str,enter = False):
         raise ValueError,c
     return True
 
+@user_permission('login')
 def create_position(request):
     re = dict()
     cpn = Companyinfo()
@@ -56,8 +58,7 @@ def create_position(request):
         
     try:
         assert request.User != None
-        assert request.User.is_stuff
-        assert request.User.is_authenticated()
+        assert request.User.is_staff
         cpn = Companyinfo.objects.all().filter(User = request.User)
     except:
         re['error'] = error(100,"Permission denied!")
@@ -239,15 +240,14 @@ def create_position(request):
     cpn.position_number = cpn.position_number + 1
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
+@user_permission('login')
 def delete_position(request):
-
     re = dict()
     try:
         assert request.method == "POST"
     except:
         re['error'] = error(2, 'error, need post!')
         return HttpResponse(json.dumps(re), content_type = 'application/json')
-    
     try:
         id = int(request.POST['id'])
         assert id >= 0
@@ -272,8 +272,7 @@ def delete_position(request):
     
     try:
         assert request.User != None
-        assert request.User.is_stuff
-        assert request.User.is_authenticated()
+        assert request.User.is_staff
         cpn = Companyinfo.objects.all().filter(User = request.User)
         assert posi in cpn.position    
     except:
@@ -465,6 +464,7 @@ def search_position(request):
     re["error"] = error(1,"Search succeed!")
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
+@user_permission("login")
 def update_position(request):
     re = dict()
     try:
@@ -497,8 +497,7 @@ def update_position(request):
     
     try:
         assert request.User != None
-        assert request.User.is_stuff
-        assert request.User.is_authenticated()
+        assert request.User.is_staff
         cpn = Companyinfo.objects.all().filter(User = request.User)
         assert posi in cpn.position    
     except:

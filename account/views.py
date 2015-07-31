@@ -3,6 +3,8 @@ import sys
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import auth
+from app.common_api import error,user_permission
+from django.db import DatabaseError
 import traceback
 
 # Create your views here.
@@ -65,19 +67,39 @@ def register(request):
 
 def check_username(request):
     re=dict()
-    try:
+    if request.method == "POST":
         name = request.POST.get('username','')
-        re['error']=error(1,"succeed!")
-    except KeyError:
-        re['error']=error(102,'Need post username')
-        return HttpResponse(json.dumps(re), content_type = 'application/json')
+        if name == "":  
+            re['error']=error(102,'Need post username')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        else:
+            re['error']=error(1,"succeed!")
 
-    if User.objects.filter(username=name).count() != 0:
-        re['data']={'exist': 'ture'}
-        return  HttpResponse(json.dumps(re), content_type = 'application/json')
+        if User.objects.filter(username=name).count() != 0:
+            re['username']={'exist': 'ture'}
+        else:
+            re['username']={'exist': 'false'}
     else:
-        re['data']={'exist': 'false'}
-        return  HttpResponse(json.dumps(re), content_type = 'application/json')
+        re['error'] = error(2,"error, need POST!")
+    return  HttpResponse(json.dumps(re), content_type = 'application/json')
+
+def check_email(request):
+    re=dict()
+    if request.method == "POST":
+        email = request.POST.get('email','')
+        if email == "":
+            re['error']=error(102,'Need post email')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        else:
+            re['error'] = error(1,"succeed!")
+        
+        if User.objects.filter(email=email).count() != 0:
+            re['email'] = {'exist': 'ture'}
+        else:
+            re['email'] = {'exist': 'false'}
+    else:
+        re['error'] = error(2,"error, need POST!")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 #login
 def login(request):
@@ -234,6 +256,43 @@ def set_companyinfo(request):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission("login")
+def create_financing_info(request):
+    re=dict()
+    if request.method == "POST":
+        username = request.user.username
+        try:
+            companyinfo = Companyinfo.objects.get(username=username)
+        except:
+            re["error"] = error(110,"company dose not exist!")
+        financing_info = Financing()
+        financing_info.stage = request.POST.get('stage','')
+        financing_info.organization = request.POST.get('organization','')
+        financing_info.amount = request.POST.get('amount','')
+        try:
+            financing_info.save()
+        except DatabaseError:
+            re['error'] = error(250,'Database error: Failed to save')
+        companyinfo.financing_info.append(financing_info)
+        try:
+            companyinfo.save()
+            re['error'] = error(1,"financing_info created ")
+        except DatabaseError:
+            re['error'] = error(250,'Database error: Failed to save')
+
+    else:
+        re['error'] = error(2,"error, need post")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+
+@user_permission("login")
+def set_financing_info(requset,fin_id):
+    pass
+
+@user_permission("login")
+def delete_financing_info(request,fin_id):
+    pass
+
+@user_permission("login")
 def set_company_member(request,mem_id):
     re=dict()
     if request.method == 'POST':
@@ -247,11 +306,36 @@ def set_company_member(request,mem_id):
         member.m_introduction = request.POST.get('m_introduction','')
         member.m_avatar_path = request.POST.get('m_avatar_path','')
         member.update()
-        re['error'] = error(1, '修改成功')
+        re['error'] = error(1, 'change member information successfully!')
         re['member'] = json.loads(member.to_json())
     else:
         re['error'] = error(2,"errer,need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+@user_permission("login")
+def create_company_member(request):
+    re = dict()
+    if request.method == 'POST':
+        username = request.user.username
+        try:
+            companyinfo = Companyinfo.objects.get(username=username)
+            new_member = Member()
+            new_member.m_name = request.POST.get('m_name','')
+            new_member.m_position = request.POST.get('m_position','')
+            new_member.m_introduction = request.POST.get('m_introduction','')
+            new_member.m_avatar_path = request.POST.get('m_avatar_path','')
+            new_member.save()
+            companyinfo.team_info.append(new_member)
+            companyinfo.save()
+            re['error'] = error(1,'create new member successfully!')
+            re['member'] = json.loads(new_member.to_json())
+        except:
+            re['error'] = error(110,"companyinfo dose not exist!")
+    else:
+        re['error'] = error(2,"error, need POST")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+@user_permission("login")
+def delete_company_member(requset,mem_id):
+    pass
 #todo add organization auth function (for admin)
