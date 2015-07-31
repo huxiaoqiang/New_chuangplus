@@ -38,6 +38,9 @@ angular.module('chuangplus', [
         $locationProvider.html5Mode(true);
         $locationProvider.hashPrefix = '';
         $routeProvider.when('/', {templateUrl: urls.part + '/homepage.html', controller: 'HomepageCtrl', title: 'HomePage'});
+        $routeProvider.when('/mobile/login', {templateUrl: urls.part + '/login.html'});
+        $routeProvider.when('/mobile/complist', {templateUrl: urls.part + '/complist.html'});
+        $routeProvider.when('/mobile/info', {templateUrl: urls.part + '/info.html'});
         $routeProvider.otherwise({redirectTo: '/'});
     }]).
 //  the google analytics configure
