@@ -126,7 +126,6 @@ def logout(request):
     re['error'] = error(1, 'logout successfully!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-
 @user_permission('login')
 def set_password(request):
     re = dict()
@@ -257,33 +256,120 @@ def create_financing_info(request):
             companyinfo = Companyinfo.objects.get(username=username)
         except:
             re["error"] = error(110,"company dose not exist!")
-        financing_info = Financing()
-        financing_info.stage = request.POST.get('stage','')
-        financing_info.organization = request.POST.get('organization','')
-        financing_info.amount = request.POST.get('amount','')
-        try:
-            financing_info.save()
-        except DatabaseError:
-            re['error'] = error(250,'Database error: Failed to save')
-        companyinfo.financing_info.append(financing_info)
-        try:
-            companyinfo.save()
+        if request.user.is_staff == True or request.user.is_superuser == True:
+            financing_info = Financing()
+            financing_info.stage = request.POST.get('stage','')
+            financing_info.organization = request.POST.get('organization','')
+            financing_info.amount = request.POST.get('amount','')
+            try:
+                financing_info.save()
+            except DatabaseError:
+                re['error'] = error(250,'Database error: Failed to save')
+            companyinfo.financing_info.append(financing_info)
+            try:
+                companyinfo.save()
+            except DatabaseError:
+                re['error'] = error(250,'Database error: Failed to save')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            try:
+                companyinfo.financing_info.append(financing_info)
+                companyinfo.save()
+            except:
+                re['error'] = error(250,'Database error: Failed to save')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
             re['error'] = error(1,"financing_info created ")
-        except DatabaseError:
-            re['error'] = error(250,'Database error: Failed to save')
-
+            re['data'] = json.loads(financing_info.to_json())
+        else:
+            re['error'] = error(100,"permission denied!")
     else:
         re['error'] = error(2,"error, need post")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 
 @user_permission("login")
-def set_financing_info(requset,fin_id):
-    pass
+def set_financing_info(request,fin_id):
+    re = dict()
+    if request.method == "POST":
+        try:
+            financing_info = Financing.objects.get(id=fin_id)
+        except:
+            re['error'] = error(112,"financing_info dose not exist!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        if request.user.is_staff == True or request.user.is_superuser == True:
+            financing_info.stage = request.POST.get("stage","")
+            financing_info.organization = request.POST.get("organization","")
+            financing_info.amount = request.POST.get("amount","")
+            try:
+                financing_info.update()
+            except DatabaseError:
+                re['error'] = error(250,'Database error: Failed to save')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            re['error'] = error(1,"financing_info update successfully!")
+            re['data'] = json.loads(financing_info.to_json())
+        else:
+            re["error"] = error(100,"permission denied!")
+    else:
+        re['error'] = error(2,"error, need POST")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission("login")
 def delete_financing_info(request,fin_id):
-    pass
+    re=dict()
+    if request.method == "POST":
+        try:
+            financing_info = Financing.objects.get(id=fin_id)
+        except:
+            re['error'] = error(112,"financing_info dose not exist!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        if request.user.is_staff == True or request.user.is_superuser == True:
+            try:
+                financing_info.delete()
+            except DatabaseError:
+                re['error'] = error(252,"Database error: Failed to delete!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            re['error'] = error(1,'Delete position succeed!')
+        else:
+            re["error"] = error(100,"permission denied!")
+    else:
+        re['error'] = error(2,"error, need POST")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+
+@user_permission("login")
+def create_company_member(request):
+    re = dict()
+    if request.method == 'POST':
+        username = request.user.username
+        try:
+            companyinfo = Companyinfo.objects.get(username=username)
+        except:
+            re['error'] = error(110,"companyinfo dose not exist!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        if request.user.is_staff == True or request.user.is_superuser == True:
+            new_member = Member()
+            new_member.m_name = request.POST.get('m_name','')
+            new_member.m_position = request.POST.get('m_position','')
+            new_member.m_introduction = request.POST.get('m_introduction','')
+            new_member.m_avatar_path = request.POST.get('m_avatar_path','')
+            try:
+                new_member.save()
+            except DatabaseError:
+                re['error'] = error(250,'Database error: Failed to save')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            try:
+                companyinfo.team_info.append(new_member)
+                companyinfo.save()
+            except DatabaseError:
+                re['error'] = error(250,'Database error: Failed to save')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+            re['error'] = error(1,'create new member successfully!')
+            re['data'] = json.loads(new_member.to_json())
+        else:
+            re['error'] = error(100,"permission denied!")
+    else:
+        re['error'] = error(2,"error, need POST")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission("login")
 def set_company_member(request,mem_id):
@@ -293,42 +379,45 @@ def set_company_member(request,mem_id):
             member = Member.objects.get(id=mem_id)
         except:
             re['error'] = error(112,"member dose not exist")
-        #todo add permission!!!
-        member.m_name = request.POST.get('m_name','')
-        member.m_position = request.POST.get('m_position','')
-        member.m_introduction = request.POST.get('m_introduction','')
-        member.m_avatar_path = request.POST.get('m_avatar_path','')
-        member.update()
-        re['error'] = error(1, 'change member information successfully!')
-        re['member'] = json.loads(member.to_json())
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        if request.user.is_staff == True or request.user.is_superuser == True:
+            member.m_name = request.POST.get('m_name','')
+            member.m_position = request.POST.get('m_position','')
+            member.m_introduction = request.POST.get('m_introduction','')
+            member.m_avatar_path = request.POST.get('m_avatar_path','')
+            try:
+                member.update()
+            except DatabaseError:
+                re['error'] = error(250,'Database error: Failed to update')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            re['error'] = error(1, 'change member information successfully!')
+            re['data'] = json.loads(member.to_json())
+        else:
+            re['error'] = error(100,"permission denied!")
     else:
         re['error'] = error(2,"errer,need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission("login")
-def create_company_member(request):
+def delete_company_member(request,mem_id):
     re = dict()
-    if request.method == 'POST':
-        username = request.user.username
+    if request.method == "POST":
         try:
-            companyinfo = Companyinfo.objects.get(username=username)
-            new_member = Member()
-            new_member.m_name = request.POST.get('m_name','')
-            new_member.m_position = request.POST.get('m_position','')
-            new_member.m_introduction = request.POST.get('m_introduction','')
-            new_member.m_avatar_path = request.POST.get('m_avatar_path','')
-            new_member.save()
-            companyinfo.team_info.append(new_member)
-            companyinfo.save()
-            re['error'] = error(1,'create new member successfully!')
-            re['member'] = json.loads(new_member.to_json())
+            del_member = Member.objects.get(id=mem_id)
         except:
-            re['error'] = error(110,"companyinfo dose not exist!")
+            re['error'] = error(112,"member dose not exist")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        if request.user.is_staff == True or request.user.is_superuser == True:
+            try:
+                del_member.delete()
+            except DatabaseError:
+                re['error'] = error(252,"Database error: Failed to delete!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            re['error'] = error(1,"delete member successfully")
+        else:
+            re['error'] = error(100,"permission denied!")
     else:
-        re['error'] = error(2,"error, need POST")
+        re["error"] = error(2,"error,need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-@user_permission("login")
-def delete_company_member(requset,mem_id):
-    pass
 #todo add organization auth function (for admin)
