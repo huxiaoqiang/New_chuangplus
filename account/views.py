@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import auth
 from app.common_api import error,user_permission
+from django.db import DatabaseError
 import traceback
 
 # Create your views here.
@@ -74,11 +75,24 @@ def check_username(request):
         return HttpResponse(json.dumps(re), content_type = 'application/json')
 
     if User.objects.filter(username=name).count() != 0:
-        re['data']={'exist': 'ture'}
-        return  HttpResponse(json.dumps(re), content_type = 'application/json')
+        re['username']={'exist': 'ture'}
     else:
-        re['data']={'exist': 'false'}
-        return  HttpResponse(json.dumps(re), content_type = 'application/json')
+        re['username']={'exist': 'false'}
+    return  HttpResponse(json.dumps(re), content_type = 'application/json')
+
+def check_email(request):
+    re=dict()
+    try:
+        email = request.POST.get('email','')
+        re['error'] = error(1,"succeed!")
+    except KeyError:
+        re['error']=error(102,'Need post email')
+        return HttpResponse(json.dumps(re), content_type = 'application/json')
+    if User.objects.filter(email=email).count() != 0:
+        re['email'] = {'exist': 'ture'}
+    else:
+        re['email'] = {'exist': 'false'}
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 #login
 def login(request):
@@ -235,6 +249,43 @@ def set_companyinfo(request):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission("login")
+def create_financing_info(request):
+    re=dict()
+    if request.method == "POST":
+        username = request.user.username
+        try:
+            companyinfo = Companyinfo.objects.get(username=username)
+        except:
+            re["error"] = error(110,"company dose not exist!")
+        financing_info = Financing()
+        financing_info.stage = request.POST.get('stage','')
+        financing_info.organization = request.POST.get('organization','')
+        financing_info.amount = request.POST.get('amount','')
+        try:
+            financing_info.save()
+        except DatabaseError:
+            re['error'] = error(250,'Database error: Failed to save')
+        companyinfo.financing_info.append(financing_info)
+        try:
+            companyinfo.save()
+            re['error'] = error(1,"financing_info created ")
+        except DatabaseError:
+            re['error'] = error(250,'Database error: Failed to save')
+
+    else:
+        re['error'] = error(2,"error, need post")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+
+@user_permission("login")
+def set_financing_info(requset,fin_id):
+    pass
+
+@user_permission("login")
+def delete_financing_info(request,fin_id):
+    pass
+
+@user_permission("login")
 def set_company_member(request,mem_id):
     re=dict()
     if request.method == 'POST':
@@ -275,4 +326,9 @@ def create_company_member(request):
             re['error'] = error(110,"companyinfo dose not exist!")
     else:
         re['error'] = error(2,"error, need POST")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+@user_permission("login")
+def delete_company_member(requset,mem_id):
+    pass
 #todo add organization auth function (for admin)
