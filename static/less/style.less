@@ -4,9 +4,9 @@
 @mid-gray   :   #b5b5b5;
 @lit-gray   :   #dcdcdc;
 
-@padding-hor:   30px;
+@padding-hor:   20px;
 
-@btn-border :   3px;
+@btn-border :   2px;
 @btn-radius :   10px;
 @btn-height     : 54px;
 @btn-font-size  : 25px;
@@ -125,57 +125,40 @@ body
     width: 100%;
     padding: 0 @padding-hor 0 @padding-hor;
 }
+.panel-list input
+{
+    border: 0;
+    border-radius: inherit;
+}
 
 .panel-elem
 {
+    display: block;
+    float: left;
     position: relative;
-    width: 100%;
     height: 100%;
     padding: 0;
     border: 0;
     margin: 0;
     font-size: @input-font-size ;
 }
-.panel-elem-4
+
+.elem-width-4
 {
-    position: relative;
     width: 25%;
-    height: 100%;
-    padding: 0;
-    border: 0;
-    margin: 0;
-    font-size: @input-font-size ;
 }
-.panel-elem-43
+
+.elem-width-43
 {
-    position: relative;
     width: 75%;
-    height: 100%;
-    padding: 0;
-    border: 0;
-    margin: 0;
-    font-size: @input-font-size ;
 }
-.panel-elem-2
+.elem-width-2
 {
-    position: relative;
     width: 50%;
-    height: 100%;
-    padding: 0;
-    border: 0;
-    margin: 0;
-    font-size: @input-font-size ;
 }
-.panel-elem-1
+.elem-width-full
 {
-    position: relative;
     width: 100%;
-    height: 100%;
-    padding: 0;
-    border: 0;
-    margin: 0;
-    font-size: @input-font-size ;
-    background: white;
 }
 
 //login.html
@@ -187,7 +170,9 @@ body
 .panel-title
 {
     color: @std-purple;
-    margin: 0 @input-left-mag 0 @input-left-mag;
+    text-align: center;
+    line-height: @input-height - 6px;
+    margin: 0 0 0 0;
 }
 
 .login-header
