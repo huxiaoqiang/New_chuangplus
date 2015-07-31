@@ -62,9 +62,9 @@ class Companyinfo(Document):
     is_auth = BooleanField(default=False)
     auth_organization = StringField(max_length=100,default = "")
     people_scale = IntField(default=0)  # 0: 1~10, 1:10~20, 2: more than 30
-    homepage = URLField(default="")
+    #homepage = URLField(default="www.chuangplus.com")
     wechat = StringField(max_length=40,default = "")
-    email_resume=EmailField(max_length=50,default = "")  #email for receiving resume
+    email_resume=EmailField(max_length=50,default = "default@default.com")  #email for receiving resume
     qrcode = ReferenceField(Image,default = None)
     welfare_tags = StringField(max_length=200,default = "")
     product_link = URLField()
@@ -77,7 +77,7 @@ class Companyinfo(Document):
     position_number = IntField(default=0)
     position = ListField(ReferenceField(Position))
     slogan = StringField(max_length=25,default = "")
-    status = BooleanField(default=0) # if the company is accepted
+    status = BooleanField(default=False) # if the company is accepted
     User = ReferenceField("User")
 
 
