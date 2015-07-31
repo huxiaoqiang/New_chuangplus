@@ -1,4 +1,3 @@
-import sys
 from .models import *
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -8,15 +7,49 @@ from django.contrib import auth
 from django.db import DatabaseError
 from django.db.models import Q
 from account.models import Companyinfo
+import traceback
+import time
 from app.common_api import error,user_permission,if_legal
 
 TYPE = ('technology','product','design','operate','marketing','functions','others')
 STATUS = ('employing','hide','delete')
 POSITIONS_PER_PAGE = 10
 
+def dump_position(posi):
+    re = dict()
+    re['name'] = posi.name
+    re['type'] = posi.type
+    re['work_city'] = posi.work_city
+    re['work_address'] = posi.work_address
+    re['release_time'] = int(time.mktime(posi.release_time.timetuple()))
+    re['end_time'] = int(time.mktime(posi.end_time.timetuple()))
+    re['position_description'] = posi.position_description
+    re['position_request'] = posi.position_request
+    re['daysperweek'] = posi.daysperweek
+    re['internship_time'] = posi.internship_time
+    re['salary_min'] = posi.salary_min
+    re['salary_max'] = posi.salary_max
+    re['delivery_number'] = posi.delivery_number
+    re['status'] = posi.status
+    return re
+
+def error(code, message):
+    return {'code':code, 'message':message}
+
+def if_legal(str,enter = False):
+    str_uni = str.decode('utf8')
+    for c in str_uni:
+        if (c >= u'\u0021' and c <= u'\u00fe') or (c >= u'\u4e00' and c <= u'\u9fa5'):
+            continue;
+        if (c == u'\u000a' or c == u'\u000d' or c == u'\u0020') and enter:
+            continue;
+        raise ValueError,c
+    return True
+
 @user_permission('login')
 def create_position(request):
     re = dict()
+    cpn = Companyinfo()
     try:
         assert request.method == "POST"
     except:
@@ -31,10 +64,10 @@ def create_position(request):
         re['error'] = error(100,"Permission denied!")
   
     name = request.POST.get('name','')
-    type = request.POST.get('type','')
+    position_type = request.POST.get('type','')
     work_city = request.POST.get('work_city','')
     work_address = request.POST.get('work_address','')
-    release_time = datetime.datetime.now()
+    release_time = datetime.now()
     et = request.POST.get('end_time','')
     position_description = request.POST.get('position_description','')
     position_request = request.POST.get('position_request','')
@@ -44,32 +77,36 @@ def create_position(request):
     samax = request.POST.get('salary_max','1000000')
     status = request.POST.get("status","hide")
     
+    print "ok"
+    
     try:
         assert len(name) in range(1,30)
         if_legal(name,False)
-    except AssertionError:
+    except (AssertionError):
         re['error'] = error(210,'Position name is too short or too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
-    except UnicodeDecodeError,ValueError:
+    except (UnicodeDecodeError,ValueError):
         re['error'] = error(211,'Illeage character found in position name!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
         re['error'] = error(299,'Unkown error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
-
+    
+    print "check name ok"
+    
     try:
-        assert type in TYPE
-    except AssertionError:
+        assert position_type in TYPE
+    except (AssertionError):
         re['error'] = error(212,'Invaild position type')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     try:
         assert len(work_city) in range(1,50)
         if_legal(work_city,False)
-    except AssertionError:
+    except (AssertionError):
         re['error'] = error(213,'Work city is too short or too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
-    except UnicodeDecodeError,ValueError:
+    except (UnicodeDecodeError,ValueError):
         re['error'] = error(214,'Illeage character found in work city!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
@@ -80,33 +117,34 @@ def create_position(request):
     try:
         assert len(work_address) in range(1,100)
         if_legal(work_address,False)
-    except AssertionError:
+    except (AssertionError):
         re['error'] = error(215,'The length of work address is too short or too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
-    except UnicodeDecodeError,ValueError:
+    except (UnicodeDecodeError,ValueError):
         re['error'] = error(216,'Illeage character found in work address!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
 
     try:
         etint = int(et)
-        end_time = datetime.datetime.utcfromtimestamp(etint)
+        end_time = datetime.utcfromtimestamp(etint)
         assert end_time > release_time
-    except ValueError:
+    except (ValueError):
         re['error'] = error(217,'Invaild end time format!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
-    except AssertionError:
+    except (AssertionError):
         re['error'] = error(218,'End time is too early!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
+    print "done0"
     
     try:
         assert len(position_description) in range(0,500)
-        if_legal(position_description,False)
-    except AssertionError:
+        if_legal(position_description,True)
+    except (AssertionError):
         re['error'] = error(219,'The length of description is too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
-    except UnicodeDecodeError,ValueError:
-        re['error'] = error(220,'Illegal character found in work address!')
+    except (UnicodeDecodeError,ValueError):
+        re['error'] = error(220,'Illegal character found in description!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
         re['error'] = error(299,'Unkown error!')
@@ -114,21 +152,23 @@ def create_position(request):
     
     try:
         assert len(position_request) in range(0,500)
-        if_legal(position_request,False)
-    except AssertionError:
+        if_legal(position_request,True)
+    except (AssertionError):
         re['error'] = error(221,'The length of request is too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
-    except UnicodeDecodeError,ValueError:
+    except (UnicodeDecodeError,ValueError):
         re['error'] = error(222,'Illegal character found in request!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
         re['error'] = error(299,'Unkown error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
-
+    
+    print "done1"
+    
     try:
         daysperweek = int(days)
-        assert days in range(0,7)
-    except ValueError,AssertionError:
+        assert daysperweek in range(0,7)
+    except (ValueError,AssertionError):
         re['error'] = error(223,'Invaild days perweek!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
@@ -138,7 +178,7 @@ def create_position(request):
     try:
         internship_time = int(intime)
         assert internship_time >= 0
-    except ValueError,AssertionError:
+    except (ValueError,AssertionError):
         re['error'] = error(224,'Invaild internship time!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
@@ -148,17 +188,19 @@ def create_position(request):
     try:
         salary_min = int(samin)
         assert salary_min in range(0,1000000)
-    except ValueError,AssertionError:
+    except (ValueError,AssertionError):
         re['error'] = error(225,'Invaild min salary!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
         re['error'] = error(299,'Unkown Error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
-
+    
+    print 'done2'
+    
     try:
         salary_max = int(samax)
         assert salary_max in range(0,1000000)
-    except ValueError,AssertionError:
+    except (ValueError,AssertionError):
         re['error'] = error(226,'Invaild max salary!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
@@ -173,20 +215,25 @@ def create_position(request):
     
     try:
         assert status in STATUS
-    except AssertionError:
+    except (AssertionError):
         re['error'] = error(228,'Invaild position status')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
-    posi = Position(name = name,type = type,work_city = work_city,work_address = work_address,release_time = release_time,end_time = end_time,position_description = position_description,position_request = position_request,daysperweek = daysperweek,internship_time = internship_time,salary_min = salary_min,salary_max = salary_max,status = status)
+    posi = Position(name = name,type = position_type,work_city = work_city,work_address = work_address,
+                    end_time = end_time,position_description = position_description,
+                    position_request = position_request,daysperweek = daysperweek,
+                    internship_time = internship_time,salary_min = salary_min,salary_max = salary_max,status = status)
+    
+    print "done3"
     
     try:
         posi.save()
-    except DatabaseError:
+    except (DatabaseError):
         re['error'] = error(250,'Database error: Failed to save')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
-    except:
-        re['error'] = error(299,'Unkown Error!')
-        return HttpResponse(json.dumps(re),content_type = 'application/json')
+    #except:
+    #    re['error'] = error(299,'Unkown Error!')
+    #    return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     re['error'] = error(1,'Create position succeed!')
     cpn.position.append(posi)
@@ -204,19 +251,19 @@ def delete_position(request):
     try:
         id = int(request.POST['id'])
         assert id >= 0
-    except KeyError:
+    except (KeyError):
         re['error'] = error(200,"Illegal request!")
         return HttpResponse(json.dumps(re), content_type = 'application/json')
-    except ValueError,AssertionError:
+    except (ValueError,AssertionError):
         re['error'] = error(230,"Invaild search id!")
         return HttpResponse(json.dumps(re), content_type = 'application/json')
     
     try:
         posi = Position.objects.get(id = id)
-    except ObjectDoesNotExist:
+    except (ObjectDoesNotExist):
         re['error'] = error(249,"Object does not exist")
         return HttpResponse(json.dumps(re), content_type = 'application/json')
-    except DatabaseError:
+    except (DatabaseError):
         re['error'] = error(251,"Database error: Failed to search!")
         return HttpResponse(json.dumps(re), content_type = 'application/json')
     except:
@@ -233,7 +280,7 @@ def delete_position(request):
     
     try:
         posi.delete()
-    except DatabaseError:
+    except (DatabaseError):
         re['error'] = error(252,"Database error: Failed to delete!")
         return HttpResponse(json.dumps(re), content_type = 'application/json')
     except:
@@ -245,11 +292,11 @@ def delete_position(request):
 
 def search_position(request):
     re = dict()
-    try:
-        assert request.mothod == "GET"
-    except:
-        re['error'] = error(3, 'error, need get!')
-        return HttpResponse(json.dumps(re), content_type = 'application/json')
+    #try:
+    #assert request.mothod == "GET"
+    #except:
+    #    re['error'] = error(3, 'error, need get!')
+    #    return HttpResponse(json.dumps(re), content_type = 'application/json')
     
     qs = Position.objects.all()
     
@@ -258,10 +305,10 @@ def search_position(request):
             try:
                 id = request.GET["id"]
                 qs = qs.filter(id = id)
-            except ValueError:
+            except (ValueError):
                 re['error'] = error(230,"Invaild search id!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
-            except DatabaseError:
+            except (DatabaseError):
                 re['error'] = error(251,"Database error: Failed to search!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             except:
@@ -276,16 +323,32 @@ def search_position(request):
                 assert len(name) < 30
                 if_legal(name)
                 qs = qs.filter(name = name)
-            except AssertionError, ValueError: #UnicodeDecodeError is missing
+            except (AssertionError, ValueError, UnicodeDecodeError):
                 re['error'] = error(231,"Invaild search name!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
-            except DatabaseError:
+            except (DatabaseError):
                 re['error'] = error(251,"Database error: Failed to search!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             except:
                 re['error'] = error(299,'Unkown Error!')
                 return HttpResponse(json.dumps(re),content_type = 'application/json')
-
+    
+    if "type" in request.GET.keys():
+        if len(request.GET["type"]) > 0:
+            try:
+                position_type = request.GET["type"]
+                assert position_type in TYPE
+                qs = qs.filter(type = position_type)
+            except (AssertionError,ValueError,UnicodeDecodeError):
+                re['error'] = error(238,"Invaild search type!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            except (DatabaseError):
+                re['error'] = error(251,"Database error: Failed to search!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            except:
+                re['error'] = error(299,'Unkown Error!')
+                return HttpResponse(json.dumps(re),content_type = 'application/json')            
+    
     if "work_city" in request.GET.keys():
         if len(request.GET["work_city"]) > 0:
             try:
@@ -293,10 +356,10 @@ def search_position(request):
                 assert len(work_city) < 50
                 if_legal(work_city)
                 qs = qs.filter(work_city = work_city)
-            except AssertionError,ValueError: #UnicodeDecodeError is missing
+            except (AssertionError,ValueError,UnicodeDecodeError):
                 re['error'] = error(232,"Invaild search work city!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
-            except DatabaseError:
+            except (DatabaseError):
                 re['error'] = error(251,"Database error: Failed to search!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             except:
@@ -308,10 +371,10 @@ def search_position(request):
             try:
                 mindays = int(request.GET["mindays"])
                 qs = qs.filter(daysperweek__gte = mindays)
-            except ValueError:
+            except (ValueError):
                 re['error'] = error(233,"Invaild search min daysperweek!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
-            except DatabaseError:
+            except (DatabaseError):
                 re['error'] = error(251,"Database error: Failed to search!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             except:
@@ -323,10 +386,10 @@ def search_position(request):
             try:
                 maxdays = int(request.GET["maxdays"])
                 qs = qs.filter(Q(daysperweek__lte = maxdays) | Q(daysperweek = 0))
-            except ValueError:
+            except (ValueError):
                 re['error'] = error(234,"Invaild search max daysperweek!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
-            except DatabaseError:
+            except (DatabaseError):
                 re['error'] = error(251,"Database error: Failed to search!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             except:
@@ -338,10 +401,10 @@ def search_position(request):
             try:
                 sa_min = int(request.GET["salary_min"])
                 qs = qs.filter(Q(salary_max__gte = sa_min) | Q(salary_max = 0))
-            except ValueError:
+            except (ValueError):
                 re['error'] = error(235,"Invaild search min salary!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
-            except DatabaseError:
+            except (DatabaseError):
                 re['error'] = error(251,"Database error: Failed to search!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             except:
@@ -353,10 +416,10 @@ def search_position(request):
             try:
                 sa_max = int(request.GET["salary_max"])
                 qs = qs.filter(salary_min__lte = sa_max)
-            except ValueError:
+            except (ValueError):
                 re['error'] = error(236,"Invaild search max salary!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
-            except DatabaseError:
+            except (DatabaseError):
                 re['error'] = error(251,"Database error: Failed to search!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             except:
@@ -368,10 +431,11 @@ def search_position(request):
             try:
                 status = request.GET["status"]
                 assert status in STATUS
-            except AssertionError:
+                qs = qs.filter(status = status)
+            except (AssertionError):
                 re['error'] = error(237,"Invaild search status!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
-            except DatabaseError:
+            except (DatabaseError):
                 re['error'] = error(251,"Database error: Failed to search!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             except:
@@ -384,7 +448,7 @@ def search_position(request):
             try:
                 page = int(request.GET["page"])
                 assert page > 0
-            except ValueError,AssertionError:
+            except (ValueError,AssertionError):
                 re['error'] = error(200,"Invaild request!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             except:
@@ -394,7 +458,9 @@ def search_position(request):
     qs.order_by(orderValue)
     qs = qs[(page - 1) * POSITIONS_PER_PAGE: page * POSITIONS_PER_PAGE]
     
-    re["positions"] = qs
+    re["positions"] = list()
+    for po in qs:
+        re["positions"].append(dump_position(po))
     re["error"] = error(1,"Search succeed!")
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
@@ -410,19 +476,19 @@ def update_position(request):
     try:
         id = int(request.POST['id'])
         assert id >= 0
-    except KeyError:
+    except (KeyError):
         re['error'] = error(200,"Illegal request!")
         return HttpResponse(json.dumps(re), content_type = 'application/json')
-    except ValueError,AssertionError:
+    except (ValueError,AssertionError):
         re['error'] = error(230,"Invaild search id!")
         return HttpResponse(json.dumps(re), content_type = 'application/json')
         
     try:
         posi = Position.objects.get(id = id)
-    except ObjectDoesNotExist:
+    except (ObjectDoesNotExist):
         re['error'] = error(249,"Object does not exist")
         return HttpResponse(json.dumps(re), content_type = 'application/json')
-    except DatabaseError:
+    except (DatabaseError):
         re['error'] = error(251,"Database error: Failed to search!")
         return HttpResponse(json.dumps(re), content_type = 'application/json')
     except:
@@ -438,7 +504,7 @@ def update_position(request):
         re['error'] = error(100,"Permission denied!")
     
     name = request.POST.get('name','')
-    type = request.POST.get('type','')
+    position_type = request.POST.get('type','')
     work_city = request.POST.get('work_city','')
     work_address = request.POST.get('work_address','')
     et = request.POST.get('end_time','')
@@ -453,10 +519,10 @@ def update_position(request):
     try:
         assert len(name) in range(1,30)
         if_legal(name,False)
-    except AssertionError:
+    except (AssertionError):
         re['error'] = error(210,'Position name is too short or too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
-    except UnicodeDecodeError,ValueError:
+    except (UnicodeDecodeError,ValueError):
         re['error'] = error(211,'Illeage character found in position name!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
@@ -464,18 +530,18 @@ def update_position(request):
         return HttpResponse(json.dumps(re),content_type = 'application/json')
 
     try:
-        assert type in TYPE
-    except AssertionError:
+        assert position_type in TYPE
+    except (AssertionError):
         re['error'] = error(212,'Invaild position type')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     try:
         assert len(work_city) in range(1,50)
         if_legal(work_city,False)
-    except AssertionError:
+    except (AssertionError):
         re['error'] = error(213,'Work city is too short or too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
-    except UnicodeDecodeError,ValueError:
+    except (UnicodeDecodeError,ValueError):
         re['error'] = error(214,'Illeage character found in work city!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
@@ -486,10 +552,10 @@ def update_position(request):
     try:
         assert len(work_address) in range(1,100)
         if_legal(work_address,False)
-    except AssertionError:
+    except (AssertionError):
         re['error'] = error(215,'The length of work address is too short or too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
-    except UnicodeDecodeError,ValueError:
+    except (UnicodeDecodeError,ValueError):
         re['error'] = error(216,'Illeage character found in work address!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
 
@@ -497,10 +563,10 @@ def update_position(request):
         etint = int(et)
         end_time = datetime.datetime.utcfromtimestamp(etint)
         assert end_time > datetime.now()
-    except ValueError:
+    except (ValueError):
         re['error'] = error(217,'Invaild end time format!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
-    except AssertionError:
+    except (AssertionError):
         re['error'] = error(218,'End time is too early!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
@@ -508,10 +574,10 @@ def update_position(request):
     try:
         assert len(position_description) in range(0,500)
         if_legal(position_description,False)
-    except AssertionError:
+    except (AssertionError):
         re['error'] = error(219,'The length of description is too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
-    except UnicodeDecodeError,ValueError:
+    except (UnicodeDecodeError,ValueError):
         re['error'] = error(220,'Illegal character found in work address!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
@@ -521,10 +587,10 @@ def update_position(request):
     try:
         assert len(position_request) in range(0,500)
         if_legal(position_request,False)
-    except AssertionError:
+    except (AssertionError):
         re['error'] = error(221,'The length of request is too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
-    except UnicodeDecodeError,ValueError:
+    except (UnicodeDecodeError,ValueError):
         re['error'] = error(222,'Illegal character found in request!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
@@ -533,8 +599,9 @@ def update_position(request):
 
     try:
         daysperweek = int(days)
-        assert days in range(0,7)
-    except ValueError,AssertionError:
+        print daysperweek
+        assert daysperweek in range(0,7)
+    except (ValueError,AssertionError):
         re['error'] = error(223,'Invaild days perweek!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
@@ -544,7 +611,7 @@ def update_position(request):
     try:
         internship_time = int(intime)
         assert internship_time >= 0
-    except ValueError,AssertionError:
+    except (ValueError,AssertionError):
         re['error'] = error(224,'Invaild internship time!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
@@ -554,7 +621,7 @@ def update_position(request):
     try:
         salary_min = int(samin)
         assert salary_min in range(0,1000000)
-    except ValueError,AssertionError:
+    except (ValueError,AssertionError):
         re['error'] = error(225,'Invaild min salary!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
@@ -564,7 +631,7 @@ def update_position(request):
     try:
         salary_max = int(samax)
         assert salary_max in range(0,1000000)
-    except ValueError,AssertionError:
+    except (ValueError,AssertionError):
         re['error'] = error(226,'Invaild max salary!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
@@ -579,12 +646,12 @@ def update_position(request):
     
     try:
         assert status in STATUS
-    except AssertionError:
+    except (AssertionError):
         re['error'] = error(228,'Invaild position status')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     posi.name = name
-    posi.type = type
+    posi.type = position_type
     posi.work_city = work_city
     posi.work_address = work_address
     posi.end_time = end_time
@@ -598,7 +665,7 @@ def update_position(request):
     
     try:
         posi.save()
-    except DatabaseError:
+    except (DatabaseError):
         re['error'] = error(250,'Database error: Failed to save')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:

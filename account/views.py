@@ -67,31 +67,38 @@ def register(request):
 
 def check_username(request):
     re=dict()
-    try:
+    if request.method == "POST":
         name = request.POST.get('username','')
-        re['error']=error(1,"succeed!")
-    except KeyError:
-        re['error']=error(102,'Need post username')
-        return HttpResponse(json.dumps(re), content_type = 'application/json')
+        if name == "":  
+            re['error']=error(102,'Need post username')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        else:
+            re['error']=error(1,"succeed!")
 
-    if User.objects.filter(username=name).count() != 0:
-        re['username']={'exist': 'ture'}
+        if User.objects.filter(username=name).count() != 0:
+            re['username']={'exist': 'ture'}
+        else:
+            re['username']={'exist': 'false'}
     else:
-        re['username']={'exist': 'false'}
+        re['error'] = error(2,"error, need POST!")
     return  HttpResponse(json.dumps(re), content_type = 'application/json')
 
 def check_email(request):
     re=dict()
-    try:
+    if request.method == "POST":
         email = request.POST.get('email','')
-        re['error'] = error(1,"succeed!")
-    except KeyError:
-        re['error']=error(102,'Need post email')
-        return HttpResponse(json.dumps(re), content_type = 'application/json')
-    if User.objects.filter(email=email).count() != 0:
-        re['email'] = {'exist': 'ture'}
+        if email == "":
+            re['error']=error(102,'Need post email')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        else:
+            re['error'] = error(1,"succeed!")
+        
+        if User.objects.filter(email=email).count() != 0:
+            re['email'] = {'exist': 'ture'}
+        else:
+            re['email'] = {'exist': 'false'}
     else:
-        re['email'] = {'exist': 'false'}
+        re['error'] = error(2,"error, need POST!")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 #login

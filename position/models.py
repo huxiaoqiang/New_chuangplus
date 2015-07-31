@@ -13,7 +13,7 @@ class Position(Document):
     type = StringField(max_length=15,choices=TYPE)
     work_city=StringField(max_length=50)
     work_address=StringField(max_length=100)
-    release_time=DateTimeField(datetime.now)
+    release_time=DateTimeField(default=datetime.now())
     end_time=DateTimeField()
     position_description=StringField(max_length=500)
     position_request=StringField(max_length=500)

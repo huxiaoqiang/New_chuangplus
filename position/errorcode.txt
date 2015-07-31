@@ -1,6 +1,7 @@
-1:succeed
-2:need post
-100:permission denied
+1: succeed
+2: need post
+3: need get
+100: permission denied
 200: illegal request # A request without necessary keys
 210~228: Creating / Updating position failures (Invaild keys)
 210: Invaild length for name(should be in [1,30])
