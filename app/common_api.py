@@ -1,3 +1,4 @@
+#coding = utf-8
 from django.http import HttpResponse
 import json
 import sys
@@ -15,7 +16,7 @@ def user_permission(level):
             request = args[0]
             if request.user.is_authenticated():
                 return func(*args, **kwargs)
-            return HttpResponse(json.dumps({'error':error(100,'请登录')}), content_type = 'application/json')
+            return HttpResponse(json.dumps({'error':error(100,'please login')}), content_type = 'application/json')
         return __decorator
 
     def check_roles(func):
@@ -24,11 +25,11 @@ def user_permission(level):
             try:
                 if request.session['role'] <= level:
                     return func(*args, **kwargs)
-                return HttpResponse(json.dumps({'error':error(100+level,'权限错误')}), content_type = 'application/json')
+                return HttpResponse(json.dumps({'error':error(100+level,'permission error')}), content_type = 'application/json')
             except:
                 import traceback
                 traceback.print_exc()
-                return HttpResponse(json.dumps({'error':error(100+level,'权限错误')}), content_type = 'application/json')
+                return HttpResponse(json.dumps({'error':error(100+level,'permission error')}), content_type = 'application/json')
         return __decorator
 
     if level == 'login':
