@@ -144,3 +144,26 @@ set_csrf(data)
 ```
 ###/api/account/checkusername/
 验证用户名是否存在，在注册页面，可以通过Ajax来测试用户名是否可用。向该 url 发送一个 json 来检测。发送内容只有一个键 "username"，内容是需要检测的用户名。返回的 json 也只有一个键 "exist"，即用户是否存在。
+###/api/account/login
+用户登录，向url post用户名和密码
+```javascript
+  {
+    "username" : "someone",
+    "password" : "password"
+  }
+```
+###/api/account/logout
+用户注销
+###/api/account/password/set
+修改密码，向url post密码和新密码（在用户已经登录的条件下）
+```javascript
+  {
+    "password" : "*******",
+    "new_password" : "********"
+  }
+```
+###/api/account/userinfo/get
+获取实习生用户信息，返回实习生用户信息的json对象和错误码
+###/api/account/userinfo/set
+修改实习生用户信息，post userinfo信息，返回错误码和post的用户信息json对象
+###/
