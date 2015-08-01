@@ -12,7 +12,7 @@ class File(Document):
     description = StringField(max_length=1000)
     file = FileField()
 
-class resume_post(Document):
+class ResumePost(Document):
     submit_date = DateTimeField()
     resume_copy = FileField()
     position = ReferenceField(Position)
