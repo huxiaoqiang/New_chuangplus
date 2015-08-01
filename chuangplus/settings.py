@@ -144,3 +144,9 @@ LOGGING = {
     }
 }
 
+EMAIL_USE_SSL = True
+EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.mxhichina.com'
+EMAIL_HOST_USER = 'support@chuangplus.com'
+EMAIL_HOST_PASSWORD = 'THUcj2015'
+

@@ -5,6 +5,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import auth
 from app.common_api import error,user_permission
 from django.db import DatabaseError
+from django.core.mail import send_mail
+from random import randint
 import traceback
 
 # Create your views here.
@@ -428,3 +430,40 @@ def delete_company_member(request,mem_id):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 #todo add organization auth function (for admin)
+
+def send_email(request):
+    re = dict()
+    if request.method == 'POST':
+        email = request.POST.get('email', '')
+        if email == '':
+            re['error'] = error(102, 'Need post email')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+        correct_code = ''
+        for i in range(6):
+            correct_code += str(randint(0, 9)) 
+        request.session['correct_code'] = correct_code
+
+        try:
+            send_mail('[创+]找回密码', '你找回密码的验证码为：%s。\n请在10分钟内输入验证码进行下一步操作。如非你本人操作，请忽略此邮件。' % correct_code, 'support@chuangplus.com', [email])
+            re['error'] = error(1, 'Success!')
+        except:
+            re['error'] = error(2, 'Email sending failed')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+    else:
+        re['error'] = error(2, 'Error, need POST!')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+def verify_code(request):
+    re = dict()
+    if request.method == 'POST':
+        input_code = request.POST.get('input_code', '') 
+        correct_code = request.session['correct_code']
+        if input_code == correct_code:
+            re['pass_verify'] = True
+        else:
+            re['pass_verify'] = False 
+    else:
+        re['error'] = error(2, 'Error, need POST!')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+    

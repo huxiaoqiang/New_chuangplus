@@ -11,6 +11,8 @@ urlpatterns = [
     url(r'^password/set$',views.set_password, name='set_password'),
     url(r'^userinfo/get$',views.get_userinfo, name='get_userinfo'),
     url(r'^userinfo/set$',views.set_userinfo, name='set_userinfo'),
+    url(r'^sendemail$', views.send_email, name='send_email'),
+    url(r'^verifycode$', views.verify_code, name='verify_code'),
 ]
 
 #urlpatterns = format_suffix_patterns(urlpatterns)

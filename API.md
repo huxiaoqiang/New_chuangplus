@@ -133,7 +133,7 @@ set_csrf(data)
 ###/api/account/register/
 新用户注册
 向url post一个json格式的请求，需要post的内容如下
-```javascrip
+```javascript
   {
     "username" : "someone",           //用户名
     "password" : "password",          //密码
@@ -169,4 +169,33 @@ set_csrf(data)
 获取实习生用户信息，返回实习生用户信息的json对象和错误码
 ###/api/account/userinfo/set
 修改实习生用户信息，post userinfo信息，返回错误码和post的用户信息json对象
+
+
+###/api/account/sendemail
+“找回密码”时，向用户邮箱发送验证码
+向url post用户邮箱：
+```javascript
+  {
+    "email"    : "someone@where.com", //邮箱
+  }
+```
+
+###/api/account/verifycode
+验证用户输入的验证码与发送到用户邮箱的验证码是否一致
+向url post用户输入的验证码：
+```javascript
+  {
+    "input_code"    : "******", //用户输入的验证码，六位0-9的数字 
+  }
+```
+返回内容为：
+```javascript
+  {
+    "pass_verify"    : True or False, //True表示验证通过，False表示验证不通过
+  }
+```
+
+###/
+
+
 ###/
