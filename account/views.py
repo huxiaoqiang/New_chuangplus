@@ -525,7 +525,7 @@ def send_email(request):
         request.session['correct_code'] = correct_code
 
         try:
-            send_mail('[创+]找回密码', '你找回密码的验证码为：%s。\n请在10分钟内输入验证码进行下一步操作。如非你本人操作，请忽略此邮件。' % correct_code, 'support@chuangplus.com', [email])
+            send_mail('[创+]找回密码', '您找回密码的验证码为：%s。\n请在10分钟内输入验证码进行下一步操作。如非您本人操作，请忽略此邮件。' % correct_code, 'support@chuangplus.com', [email])
             re['error'] = error(1, 'Success!')
         except:
             re['error'] = error(2, 'Email sending failed')
