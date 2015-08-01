@@ -68,7 +68,7 @@ class Companyinfo(Document):
     welfare_tags = StringField(max_length=200,default = "")
     product_link = URLField()
     ICregist_name = StringField(max_length=200,default = "")  #Industrial and commercial registration name
-    Company_descrition = StringField(max_length=300,default = "")
+    company_descrition = StringField(max_length=300,default = "")
     product_description = StringField(max_length=300,default = "")
     team_description = StringField(max_length=300,default = "")
     team_info = ListField(ReferenceField(Member))
@@ -76,7 +76,7 @@ class Companyinfo(Document):
     position_number = IntField(default=0)
     position = ListField(ReferenceField(Position))
     slogan = StringField(max_length=25,default = "")
-    status = BooleanField(default=False) # if the company is accepted
+    status = BooleanField(default=False) # if the company is accepted by the admin
     User = ReferenceField("User")
 
 
