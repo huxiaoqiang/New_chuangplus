@@ -26,43 +26,49 @@ def register(request):
             re['error']=error(101,'Captcha error!')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+        #todo
         #Validate and register information
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
         email = request.POST.get('email', '')
         role=request.POST.get('role','')
         try:
-            User.create_user(username=username, password=password, email=email)
-            userinfo = Userinfo(username=username)
-            userinfo.email = email
-            userinfo.date_joined = datetime_now()
-            userinfo.update_time = datetime_now()
-            userinfo.has_resume = False
-            userinfo.info_complete = False
-            userinfo.save()
-            user = auth.authenticate(username=username, password=password)
-            if user is not None and user.is_active:
-                auth.login(request, user)
-                request.session['role'] = role
-                #request.session['status'] = userinfo.status
-                #request.session['practice_code'] = userinfo.practice_code
-                re['error'] = error(1, 'regist succeed!')
-                #re['status'] = userinfo.status
-                re['role'] = role
-                resp = HttpResponse(json.dumps(re), content_type = 'application/json')
-                resp.set_cookie('username', username)
-                #resp.set_cookie('status', userinfo.status)
-                resp.set_cookie('role', role)
-                return resp
-            else:
-                re['error']=error(106,"register fail!")
-            #try:
-            #    user = User.objects.create_user(**user_data)
-            #except MySQLdb.IntegrityError:
-            #    return Response({'email': 'Email 已经注册。'}, status=status.HTTP_400_BAD_REQUEST)
+            reguser = User.create_user(username=username, password=password, email=email)
         except Exception as e:
             print traceback.print_exc()
             re['error'] = error(107, 'username exist or username include special character')
+        #todo care for role's type
+        if role == 1:
+            reguser.is_staff == True
+            reguser.save()
+
+        userinfo = Userinfo(username=username)
+        userinfo.email = email
+        userinfo.date_joined = datetime_now()
+        userinfo.update_time = datetime_now()
+        userinfo.has_resume = False
+        userinfo.info_complete = False
+        userinfo.save()
+        user = auth.authenticate(username=username, password=password)
+        if user is not None and user.is_active:
+            auth.login(request, user)
+            request.session['role'] = role
+            #request.session['status'] = userinfo.status
+            #request.session['practice_code'] = userinfo.practice_code
+            re['error'] = error(1, 'regist succeed!')
+            #re['status'] = userinfo.status
+            re['role'] = role
+            resp = HttpResponse(json.dumps(re), content_type = 'application/json')
+            resp.set_cookie('username', username)
+            #resp.set_cookie('status', userinfo.status)
+            resp.set_cookie('role', role)
+            return resp
+        else:
+            re['error']=error(106,"register fail!")
+        #try:
+        #    user = User.objects.create_user(**user_data)
+        #except MySQLdb.IntegrityError:
+        #    return Response({'email': 'Email 已经注册。'}, status=status.HTTP_400_BAD_REQUEST)
     else:
         re['error'] = error(2, 'error, need post!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -165,7 +171,7 @@ def get_userinfo(request):
             userinfo = Userinfo.objects.get(username=username)
         except:
             re['error'] = error(110, 'user do not exist')
-        re['userinfo'] = json.loads(userinfo.to_json())
+        re['data'] = json.loads(userinfo.to_json())
         re['error'] = error(1, 'get succeed')
     else:
         re['error'] = error(2, 'error, need get')
@@ -184,7 +190,6 @@ def set_userinfo(request):
                 re['error'] = error(110, 'user do not exist')
                 re['username'] = username
             else:
-                userinfo.username = request.POST.get('username', '')
                 userinfo.email = request.POST.get('email', '')
                 userinfo.position_type = request.POST.get('position_type', '')
                 userinfo.work_city = request.POST.get('work_city', '')
@@ -205,28 +210,31 @@ def set_userinfo(request):
                 re['userinfo'] = json.loads(userinfo.to_json())
                 re['error'] = error(1, 'updated successfully')
         else:
-            re['error'] = error(111, 'no change permissions')
+            re['error'] = error(111, 'permission denied')
     else:
         re['error'] = error(2, 'erroe，need post')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-@user_permission("login")
-def get_companyinfo(request):
+#todo get list
+def get_company_list(request,field,scale,organization):
     re=dict()
-    if request.method == "GET":
-        username=request.user.username
-        try:
-            companyinfo=Companyinfo.objects.get(username=username)
-        except:
-            re["error"] = error(110,"company dose not exist!")
-            re["username"] = username
-        re['company'] = json.loads(companyinfo.to_json())
-        re['error'] = error(1, 'get succeed')
-    else:
-        re["error"] = error(2,"error,need GET!")
+
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-#todo: this function is not completed!!
+def get_companyinfo_detail(request,compamy_id):
+    re=dict()
+    if request.method == "GET":
+        try:
+            companyinfo=Companyinfo.objects.get(id=compamy_id)
+        except:
+            re["error"] = error(110,"company dose not exist!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        re['data'] = json.loads(companyinfo.to_json())
+        re['error'] = error(1, 'get succeed')
+    else:
+        re["error"] = error(3,"error,need GET!")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
 @user_permission("login")
 def set_companyinfo(request):
     re=dict()
@@ -239,21 +247,55 @@ def set_companyinfo(request):
                     re['error'] = error(110, 'companyinfo do not exist')
                     re['username'] = username
                 else:
-                    companyinfo.username = request.POST.get('username', '')
                     companyinfo.contacts = request.POST.get('contacts', '')
                     companyinfo.abbreviation = request.POST.get('abbreviation', '')
                     companyinfo.city = request.POST.get('city', '')
                     companyinfo.field = request.POST.get('field', '')
-                    companyinfo.financing_info = request.POST.get('financing_info', '')
+                    companyinfo.people_scale = request.POST.get('people_scale','')
+                    companyinfo.wechat = request.POST.get('wechat','')
+                    companyinfo.email_resume = request.POST('email_resume','')
+                    companyinfo.qrcode = request.POST.get('qrcode','')
+                    companyinfo.welfare_tags = request.POST.get('welfare_tags','')
+                    companyinfo.product_link = request.POST.get('welfare_tags','')
+                    companyinfo.product_description = request.POST.get('product_description','')
+                    companyinfo.ICregist_name = request.POST.get('ICregist_name','')
+                    companyinfo.company_descrition = request.POST.get('company_descrition','')
+                    companyinfo.team_description = request.POST.get('team_description','')
+                    companyinfo.position_type = request.POST.get('position_type','')
                     companyinfo.grade = request.POST.get('grade', '')
                     companyinfo.gender = request.POST.get('gender', '')
                     companyinfo.work_days = request.POST.get('work_days', '')
                     companyinfo.description = request.POST.get('description', '')
+                    companyinfo.slogan = request.POST.get('slogan','')
                     companyinfo.update_time = datetime_now()
             else:
-                re['error'] = error(111,'no change permissions')
+                re['error'] = error(111,'permission denied')
     else:
         re['error'] = error(2,"error,need POST")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+#admin api: for modifying the companyinfo.status
+@user_permission("login")
+def auth_company(request,company_id):
+    re = dict()
+    if request.method == "POST":
+        # only the superuser can modify the auth status
+        if request.user.is_superuser == True:
+            try:
+                companyinfo = Companyinfo.objects.get(id = company_id)
+            except DatabaseError:
+                re['error'] = error(250,'Database error: Failed to get companyinfo')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            companyinfo.status = True
+            try:
+                companyinfo.save()
+            except DatabaseError:
+                re['error'] = error(250,'Database error: Failed to get companyinfo')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+        else:
+            re['error'] = error(111, 'permission denied!')
+    else:
+        re['error'] = error(2,"error, need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission("login")
@@ -265,6 +307,7 @@ def create_financing_info(request):
             companyinfo = Companyinfo.objects.get(username=username)
         except:
             re["error"] = error(110,"company dose not exist!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
         if request.user.is_staff == True or request.user.is_superuser == True:
             financing_info = Financing()
             financing_info.stage = request.POST.get('stage','')
@@ -294,9 +337,26 @@ def create_financing_info(request):
         re['error'] = error(2,"error, need post")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+def get_financinginfo_list(request,compamy_id):
+    re = dict()
+    if request.method == "GET":
+        try:
+            companyinfo = Companyinfo.objects.get(id=compamy_id)
+        except:
+            re["error"] = error(110,"company dose not exist!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        try:
+            financinginfo_list = companyinfo.financing_info.all()
+        except DatabaseError:
+            re['error'] = error(250,'Database error: Failed to get')
+        re['data'] = json.loads(financinginfo_list.to_json())
+        re['error'] = error(1,"get financinginfo_list successfully")
+    else:
+        re['error'] = error(3,"error, need GET")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission("login")
-def set_financing_info(request,fin_id):
+def set_financinginfo(request,fin_id):
     re = dict()
     if request.method == "POST":
         try:
@@ -322,7 +382,7 @@ def set_financing_info(request,fin_id):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission("login")
-def delete_financing_info(request,fin_id):
+def delete_financinginfo(request,fin_id):
     re=dict()
     if request.method == "POST":
         try:
@@ -378,6 +438,26 @@ def create_company_member(request):
             re['error'] = error(100,"permission denied!")
     else:
         re['error'] = error(2,"error, need POST")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+def get_member_list(request,company_id):
+    re=dict()
+    if request.method == 'POST':
+        try:
+            companyinfo = Companyinfo.objects.get(id=company_id)
+        except:
+            re['error'] = error(110,"companyinfo dose not exist!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        try:
+            member_list = companyinfo.team_info.all()
+        except DatabaseError:
+             re['error'] = error(250,'Database error: Failed to save')
+             return HttpResponse(json.dumps(re), content_type = 'application/json')
+        re['error'] = error(1,"get memberlist successfully")
+        re['data'] = json.loads(member_list.to_json())
+
+    else:
+        re['error'] = error(3,"error,need GET")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission("login")
