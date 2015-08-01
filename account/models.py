@@ -3,7 +3,7 @@ from django.db import models
 from mongoengine.django.auth import User
 from datetime import datetime
 from position.models import Position
-from filedata.models import Image,Resume
+from filedata.models import File
 from mongoengine import *
 import json
 import re
@@ -28,7 +28,7 @@ class Userinfo(Document):
     gender = IntField(default=0)  #0 is woman 1 is man
     work_days = IntField(default=3)
     description = StringField(max_length=200)
-    attachment = ReferenceField(Resume)
+    resume = ReferenceField(File)
     info_complete=BooleanField(default=0)
     has_resume=BooleanField(default=0)
     date_joined=DateTimeField()
@@ -47,7 +47,7 @@ class Member(Document):
     m_name=StringField(max_length=30)
     m_position=StringField(max_length=30)
     m_introduction=StringField(max_length=10000)
-    m_avatar_path=ReferenceField(Image)
+    m_avatar_path=ReferenceField(File)
 
 # company position type
 TYPE = ('technology','product','design','operate','marketing','functions','others')
@@ -61,10 +61,10 @@ class Companyinfo(Document):
     is_auth = BooleanField(default=False)
     auth_organization = StringField(max_length=100,default = "")
     people_scale = IntField(default=0)  # 0: 1~10, 1:10~20, 2: more than 30
-    #homepage = URLField(default="www.chuangplus.com")
+    homepage = URLField(default="www.chuangplus.com")
     wechat = StringField(max_length=40,default = "")
     email_resume=EmailField(max_length=50,default = "default@default.com")  #email for receiving resume
-    qrcode = ReferenceField(Image,default = None)
+    qrcode = ReferenceField(File,default = None)
     welfare_tags = StringField(max_length=200,default = "")
     product_link = URLField()
     ICregist_name = StringField(max_length=200,default = "")  #Industrial and commercial registration name

@@ -1,16 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import User
+from position.models import Position
 from mongoengine import *
 
 # Create your models here.
 
-class Image(Document):
-    title=StringField(max_length=60)
-    text=StringField(max_length=60)
-    data=ImageField()
+class File(Document):
+    name = StringField(max_length=1000)
+    file_type = StringField(max_length=1000)
+    category = StringField(max_length=1000)
+    description = StringField(max_length=1000)
+    file = FileField()
 
-class Resume(Document):
-    User_id=ReferenceField("User")
-    #description=StringField(max_length=100)
-    title=StringField(max_length=60)
-    data=FileField()
+class resume_post(Document):
+    submit_date = DateTimeField()
+    resume_copy = FileField()
+    position = ReferenceField(Position)
+    user = ReferenceField(User)
