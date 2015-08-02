@@ -31,7 +31,7 @@ class Userinfo(Document):
     has_resume=BooleanField(default=False)
     date_joined=DateTimeField()
     update_time=DateTimeField()
-    User = ReferenceField("User")
+    user = ReferenceField("User")
 
 # company position type
 TYPE = ('technology','product','design','operate','marketing','functions','others')
@@ -44,7 +44,7 @@ class Companyinfo(Document):
     is_auth = BooleanField(default=False)
     auth_organization = StringField(max_length=100,default = "")
     people_scale = IntField(default=0)  # 0: 1~10, 1:10~20, 2: more than 30
-    homepage = URLField(default="www.chuangplus.com")
+    homepage = URLField(default="http://www.chuangplus.com")
     wechat = StringField(max_length=40,default = "")
     email_resume=EmailField(max_length=50,default = "default@default.com")  #email for receiving resume
     qrcode = ReferenceField(File,default = None)
@@ -56,7 +56,7 @@ class Companyinfo(Document):
     team_description = StringField(max_length=300,default = "")
     slogan = StringField(max_length=25,default = "")
     status = BooleanField(default=False) # if the company is accepted by the admin
-    User = ReferenceField(User)
+    user = ReferenceField(User)
 
 #project member table
 class Member(Document):
