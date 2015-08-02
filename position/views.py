@@ -746,7 +746,10 @@ def submit_resume(request):
 
 def email_resume(request):
     re = dict()
+    datetime_now = datetime.now()
     for company in Companyinfo.objects.all():
         for position in company.position_set:
-            pass
+            for rp in ResumePost.objects.filter(position == position, submit_date = ): 
+                rp.resume_copy
+                
 
