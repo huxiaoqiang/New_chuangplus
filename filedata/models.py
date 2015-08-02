@@ -1,5 +1,4 @@
-from django.db import models
-from django.contrib.auth.models import User
+from mongoengine.django.auth import User
 from position.models import Position
 from mongoengine import *
 
@@ -8,10 +7,10 @@ from mongoengine import *
 class File(Document):
     name = StringField(max_length=1000)
     file_type = StringField(max_length=1000)
-    id = StringField(max_length=1000)
+    category = StringField(max_length=1000)
     description = StringField(max_length=1000)
     upload_time = DateTimeField()
-    file = FileField()
+    value = FileField()
 
 
 class ResumePost(Document):

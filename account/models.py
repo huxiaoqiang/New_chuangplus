@@ -1,5 +1,4 @@
 #coding=utf-8
-from django.db import models
 from mongoengine.django.auth import User
 from datetime import datetime
 from position.models import Position
@@ -77,7 +76,7 @@ class Companyinfo(Document):
     position = ListField(ReferenceField(Position))
     slogan = StringField(max_length=25,default = "")
     status = BooleanField(default=False) # if the company is accepted by the admin
-    User = ReferenceField("User")
+    User = ReferenceField(User)
 
 
 #user and company relationship
