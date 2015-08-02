@@ -1,7 +1,6 @@
 #coding=utf-8
 from mongoengine.django.auth import User
 from datetime import datetime
-from position.models import Position
 from filedata.models import File
 from mongoengine import *
 import json
@@ -72,8 +71,6 @@ class Companyinfo(Document):
     product_description = StringField(max_length=300,default = "")
     team_description = StringField(max_length=300,default = "")
     position_type = StringField(max_length=100,default = "")
-    position_number = IntField(default=0)
-    position = ListField(ReferenceField(Position))
     slogan = StringField(max_length=25,default = "")
     status = BooleanField(default=False) # if the company is accepted by the admin
     User = ReferenceField(User)
@@ -84,9 +81,3 @@ class Companyinfo(Document):
 class UC_Relationship(Document):
     company=ReferenceField(Companyinfo)
     user=ReferenceField(Userinfo)
-
-#Position and User relationship
-class PC_Relationship(Document):
-    user=ReferenceField(Userinfo)
-    position=ReferenceField(Position)
-    status=IntField(default=0) #0:not send 1: send and not handle 2: send and handled 3:user collect the position

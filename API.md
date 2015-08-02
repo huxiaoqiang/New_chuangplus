@@ -88,9 +88,7 @@ user        |Userinfo
 ------------|-----------
 user        |Userinfo
 position    |Position
-status      |IntField(default=0)
-status 有四种状态，默认是0，表示没有关系，1表示投递了，但是hr还未处理，2表示投递了hr也处理了，3表示收藏
-
+这里建立关系，表明求职者收藏职位
 ###职位表Position
 字段   |类型   |修饰   |解释
 ------------|-----------|-----------|-----------
