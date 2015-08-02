@@ -15,7 +15,7 @@ except ImportError:
 
 #Userinfo
 class Userinfo(Document):
-    username=StringField(max_length=30)
+    username=StringField(max_length=30,required=True)
     email=EmailField()
     position_type = StringField(max_length=30)
     work_city = StringField(max_length=100)
@@ -36,7 +36,7 @@ class Userinfo(Document):
 # company position type
 TYPE = ('technology','product','design','operate','marketing','functions','others')
 class Companyinfo(Document):
-    username = StringField(max_length=30)
+    username = StringField(max_length=30,required=True)
     contacts = StringField(max_length=20,default = "")
     abbreviation = StringField(max_length=100,default = "")
     city = StringField(max_length=30,default = "")

@@ -44,13 +44,16 @@ def register(request):
             companyinfo = Companyinfo(username=username)
             companyinfo.user = reguser
             companyinfo.save()
-        else:
+        elif role == 0:
             userinfo = Userinfo(username=username)
             userinfo.email = email
             userinfo.date_joined = datetime_now()
             userinfo.update_time = datetime_now()
             userinfo.user = reguser
             userinfo.save()
+        elif role == -1:
+            reguser.is_superuser = True
+            reguser.save()
         user = auth.authenticate(username=username, password=password)
         if user is not None and user.is_active:
             auth.login(request, user)
