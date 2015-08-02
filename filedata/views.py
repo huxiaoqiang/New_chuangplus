@@ -108,13 +108,13 @@ def upload_file(request):
                         re['error'] = error(250,'Database error: Failed to save file!')
                         return HttpResponse(json.dumps(re), content_type = 'application/json')
                     try:
-                        Userinfo.resume = f
-                        Userinfo.save()
+                        userinfo.resume = f
+                        userinfo.save()
                     except DatabaseError:
                         re['error'] = error(250,'Database error: Failed to save companyinfo!')
                         return HttpResponse(json.dumps(re), content_type = 'application/json')
                     re['error'] = error(1, 'file upload successfully')
-                    re['data'] = f.id
+                    re['data'] = str(f.id)
 
     else:
         re['error'] = error(2,"error, need POST")
