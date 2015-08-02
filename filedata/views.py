@@ -12,13 +12,16 @@ def submit_resume(request):
             userinfo = Userinfo.objects.get(username = username)
         except:
             re['error'] = error(110, 'user do not exist')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
 
         resume_choice = request.POST.get('resume_choice', '1')
+        resume = None
         if resume_choice == '1': # use the long-term resume
             if userinfo.has_resume:
-                pass
+                resume = userinfo.resume
             else:
                 re['error'] = error(120, 'Resume does not exist')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
 
         elif resume_choice == '2': # use the resume uploaded
             pass
