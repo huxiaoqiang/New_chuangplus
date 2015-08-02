@@ -6,7 +6,8 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.db import DatabaseError
 from django.db.models import Q
-from account.models import Companyinfo
+from account.models import Companyinfo,Userinfo
+from datetime import datetime
 import traceback
 import time
 from app.common_api import error,user_permission,if_legal
@@ -694,3 +695,58 @@ def edit_position(request):
     
     if request.POST['operation'] == 'update':
         return update_position(request)
+
+@user_permission('login')
+def submit_resume(request):
+    re = dict()
+    if request.method == 'POST':
+        try:
+            username = request.user.username
+            userinfo = Userinfo.objects.get(username = username)
+        except:
+            re['error'] = error(110, 'User do not exist')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+        resume_choice = request.POST.get('resume_choice', '1')
+        
+        # use the long-term resume
+        if resume_choice == '1': 
+            if userinfo.has_resume:
+                resume = userinfo.resume.value
+            else:
+                re['error'] = error(120, 'Resume does not exist')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+        # use the resume uploaded
+        elif resume_choice == '2': 
+            file_obj = request.FILES.get('file', None)
+            if file_obj:
+                if file_obj.size > 10000000:
+                    re['error'] = error(15, 'Error, file size is bigger than 10M!')
+                    return HttpResponse(json.dumps(re), content_type = 'application/json')
+                else:
+                    resume = file_obj
+            else:
+                re['error'] = error(19, 'File is empty')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+        
+        position_id = request.POST.get('position_id', '-1')
+        try:
+            position = Position.objects.get(pk = position_id)    
+        except:
+            re['error'] = error(260, 'Position does not exist') 
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+        submit_date = datetime.now()
+        resume_post = ResumePost(submit_date = submit_date, resume_copy = resume, position = position, user = request.user)
+        resume_post.save()
+        re['error'] = error(1, 'Success!')
+    else:
+        re['error'] = error(2, 'Error, need post!')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+def email_resume(request):
+    re = dict()
+    for company in Companyinfo.objects.all():
+        for position in company.position_set:
+            pass
+

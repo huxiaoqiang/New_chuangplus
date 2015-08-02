@@ -1,5 +1,7 @@
-from django.db import models
+#coding=utf-8
 from datetime import datetime
+from account.models import Userinfo,Companyinfo
+from mongoengine.django.auth import User
 from mongoengine import *
 import json
 import re
@@ -23,3 +25,16 @@ class Position(Document):
     salary_max=IntField(default=0)
     delivery_number=IntField(default=0)
     status = StringField(max_length=15,choices=STATUS,default='hide')
+    company = ReferenceField(Companyinfo)
+
+#Position and User favorite relationship
+class PC_Relationship(Document):
+    user=ReferenceField(Userinfo)
+    position=ReferenceField(Position)
+
+class ResumePost(Document):
+    submit_date = DateTimeField()
+    resume_copy = FileField()
+    position = ReferenceField(Position)
+    user = ReferenceField(User)
+
