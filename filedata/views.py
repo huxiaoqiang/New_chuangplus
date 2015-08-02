@@ -3,6 +3,7 @@ from models import *
 from django.http import HttpResponse
 from app.common_api import user_permission,error
 from account.models import Member,Companyinfo,Userinfo
+from datetime import datetime
 from django.db import DatabaseError
 import json
 import re
@@ -151,6 +152,7 @@ def delete_file(request,file_id=''):
             except:
                 re['error'] = error(31,'file dose not exist, fail to delete the file!')
             else:
+
                 f.value.delete()
                 f.delete()
                 re['error'] = error(1,'delete file successfully!')

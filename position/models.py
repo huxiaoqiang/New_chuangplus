@@ -25,7 +25,7 @@ class Position(Document):
     salary_max=IntField(default=0)
     delivery_number=IntField(default=0)
     status = StringField(max_length=15,choices=STATUS,default='hide')
-    company = ReferenceField(Companyinfo)
+    company = ReferenceField(Companyinfo,required=True)
 
 #Position and User favorite relationship
 class PC_Relationship(Document):

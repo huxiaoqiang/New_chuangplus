@@ -15,7 +15,7 @@ except ImportError:
 
 #Userinfo
 class Userinfo(Document):
-    username=StringField(max_length=30)
+    username=StringField(max_length=30,required=True)
     email=EmailField()
     position_type = StringField(max_length=30)
     work_city = StringField(max_length=100)
@@ -31,31 +31,16 @@ class Userinfo(Document):
     has_resume=BooleanField(default=False)
     date_joined=DateTimeField()
     update_time=DateTimeField()
-    User = ReferenceField("User")
-
-STAGE=('no','angel','A','B','C','D_plus')
-AMOUNT=('ten','hundred','thousand','thousand_plus')
-class Financing(Document):
-    stage=StringField(max_length=15,choices=STAGE)
-    organization = StringField(max_length=50)
-    amount=StringField(choices=AMOUNT)
-
-#project member table
-class Member(Document):
-    m_name=StringField(max_length=30)
-    m_position=StringField(max_length=30)
-    m_introduction=StringField(max_length=10000)
-    m_avatar=ReferenceField(File)
+    user = ReferenceField("User")
 
 # company position type
 TYPE = ('technology','product','design','operate','marketing','functions','others')
 class Companyinfo(Document):
-    username = StringField(max_length=30)
+    username = StringField(max_length=30,required=True)
     contacts = StringField(max_length=20,default = "")
     abbreviation = StringField(max_length=100,default = "")
     city = StringField(max_length=30,default = "")
     field = StringField(max_length=100,default = "")
-    financing_info = ListField(ReferenceField(Financing),default = None)
     is_auth = BooleanField(default=False)
     auth_organization = StringField(max_length=100,default = "")
     people_scale = IntField(default=0)  # 0: 1~10, 1:10~20, 2: more than 30
@@ -69,11 +54,25 @@ class Companyinfo(Document):
     company_description = StringField(max_length=300,default = "")
     product_description = StringField(max_length=300,default = "")
     team_description = StringField(max_length=300,default = "")
-    team_info = ListField(ReferenceField(Member))
     slogan = StringField(max_length=25,default = "")
     status = BooleanField(default=False) # if the company is accepted by the admin
-    User = ReferenceField(User)
+    user = ReferenceField(User)
 
+#project member table
+class Member(Document):
+    m_name= StringField(max_length=30)
+    m_position = StringField(max_length=30)
+    m_introduction = StringField(max_length=10000)
+    m_avatar = ReferenceField(File)
+    company = ReferenceField(Companyinfo,required=True)
+
+STAGE=('no','angel','A','B','C','D_plus')
+AMOUNT=('ten','hundred','thousand','thousand_plus')
+class Financing(Document):
+    stage = StringField(max_length=15,choices=STAGE)
+    organization = StringField(max_length=50)
+    amount = StringField(choices=AMOUNT)
+    company = ReferenceField(Companyinfo,required=True)
 
 #user and company relationship
 #the user collect the company
