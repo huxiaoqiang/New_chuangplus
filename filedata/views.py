@@ -152,6 +152,7 @@ def delete_file(request,file_id=''):
             except:
                 re['error'] = error(31,'file dose not exist, fail to delete the file!')
             else:
+
                 f.value.delete()
                 f.delete()
                 re['error'] = error(1,'delete file successfully!')

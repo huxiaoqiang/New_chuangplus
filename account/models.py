@@ -43,10 +43,11 @@ class Financing(Document):
 
 #project member table
 class Member(Document):
-    m_name=StringField(max_length=30)
-    m_position=StringField(max_length=30)
-    m_introduction=StringField(max_length=10000)
-    m_avatar=ReferenceField(File)
+    m_name= StringField(max_length=30)
+    m_position = StringField(max_length=30)
+    m_introduction = StringField(max_length=10000)
+    m_avatar = ReferenceField(File)
+    company = ReferenceField(Companyinfo)
 
 # company position type
 TYPE = ('technology','product','design','operate','marketing','functions','others')
@@ -70,7 +71,6 @@ class Companyinfo(Document):
     company_descrition = StringField(max_length=300,default = "")
     product_description = StringField(max_length=300,default = "")
     team_description = StringField(max_length=300,default = "")
-    team_info = ListField(ReferenceField(Member))
     position_type = StringField(max_length=100,default = "")
     position_number = IntField(default=0)
     position = ListField(ReferenceField(Position))
