@@ -13,7 +13,8 @@ class File(Document):
     upload_time = DateTimeField()
     file = FileField()
 
-class ResumePpost(Document):
+
+class ResumePost(Document):
     submit_date = DateTimeField()
     resume_copy = FileField()
     position = ReferenceField(Position)

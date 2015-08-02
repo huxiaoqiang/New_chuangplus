@@ -546,4 +546,3 @@ def verify_code(request):
     else:
         re['error'] = error(2, 'Error, need POST!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
-    
