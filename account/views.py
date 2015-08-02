@@ -20,10 +20,10 @@ def register(request):
             session_captcha = request.session.get('captcha', False)
             request_captcha = request.POST.get('captcha','')
         except KeyError:
-            re['error']=error(100,"Need captcha!")
+            re['error'] = error(100,"Need captcha!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         if session_captcha.upper() != request_captcha.upper():
-            re['error']=error(101,'Captcha error!')
+            re['error'] = error(101,'Captcha error!')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
 
         #todo
@@ -31,7 +31,7 @@ def register(request):
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
         email = request.POST.get('email', '')
-        role=request.POST.get('role','')
+        role = request.POST.get('role','')
         try:
             reguser = User.create_user(username=username, password=password, email=email)
         except Exception as e:
@@ -51,9 +51,9 @@ def register(request):
             userinfo.update_time = datetime_now()
             userinfo.user = reguser
             userinfo.save()
-        elif role == -1:
-            reguser.is_superuser = True
-            reguser.save()
+        #elif role == -1:
+        #    reguser.is_superuser = True
+        #    reguser.save()
         user = auth.authenticate(username=username, password=password)
         if user is not None and user.is_active:
             auth.login(request, user)
@@ -69,7 +69,7 @@ def register(request):
             resp.set_cookie('role', role)
             return resp
         else:
-            re['error']=error(106,"register fail!")
+            re['error'] = error(106,"register fail!")
         #try:
         #    user = User.objects.create_user(**user_data)
         #except MySQLdb.IntegrityError:
@@ -79,7 +79,7 @@ def register(request):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 def check_username(request):
-    re=dict()
+    re = dict()
     if request.method == "POST":
         name = request.POST.get('username','')
         if name == "":  
@@ -89,19 +89,19 @@ def check_username(request):
             re['error']=error(1,"succeed!")
 
         if User.objects.filter(username=name).count() != 0:
-            re['username']={'exist': 'ture'}
+            re['username'] = {'exist': 'ture'}
         else:
-            re['username']={'exist': 'false'}
+            re['username'] = {'exist': 'false'}
     else:
         re['error'] = error(2,"error, need POST!")
     return  HttpResponse(json.dumps(re), content_type = 'application/json')
 
 def check_email(request):
-    re=dict()
+    re = dict()
     if request.method == "POST":
         email = request.POST.get('email','')
         if email == "":
-            re['error']=error(102,'Need post email')
+            re['error'] = error(102,'Need post email')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         else:
             re['error'] = error(1,"succeed!")
