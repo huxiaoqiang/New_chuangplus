@@ -66,7 +66,7 @@ class Companyinfo(Document):
     welfare_tags = StringField(max_length=200,default = "")
     product_link = URLField()
     ICregist_name = StringField(max_length=200,default = "")  #Industrial and commercial registration name
-    company_descrition = StringField(max_length=300,default = "")
+    company_description = StringField(max_length=300,default = "")
     product_description = StringField(max_length=300,default = "")
     team_description = StringField(max_length=300,default = "")
     team_info = ListField(ReferenceField(Member))
