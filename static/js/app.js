@@ -25,7 +25,7 @@ angular.module('chuangplus', [
 	'angularify.semantic.sidebar',
 	'angularify.semantic.wizard'
 ]).
-    constant('urls', {'part': '/static/partials', 'api': '/api'}).
+    constant('urls', {'part_mobile': '/static/partials/mobile','part_desktop': '/static/partials/desktop', 'api': '/api'}).
     config(['$interpolateProvider', function($interpolateProvider){
         $interpolateProvider.startSymbol('[[');
         $interpolateProvider.endSymbol(']]');
@@ -37,10 +37,11 @@ angular.module('chuangplus', [
         //Route configure
         $locationProvider.html5Mode(true);
         $locationProvider.hashPrefix = '';
-        $routeProvider.when('/', {templateUrl: urls.part + '/homepage.html', controller: 'HomepageCtrl', title: 'HomePage'});
-        $routeProvider.when('/mobile/login', {templateUrl: urls.part + '/login.html',title:'Login'});
-        $routeProvider.when('/mobile/complist', {templateUrl: urls.part + '/complist.html',title:'Companylist'});
-        $routeProvider.when('/mobile/info', {templateUrl: urls.part + '/info.html',title:'Info'});
+        $routeProvider.when('/', {templateUrl: urls.part_desktop + '/homepage.html', controller: 'HomepageCtrl', title: 'HomePage'});
+
+        $routeProvider.when('/mobile/login', {templateUrl: urls.part_mobile + '/login.html',title:'Login'});
+        $routeProvider.when('/mobile/complist', {templateUrl: urls.part_mobile + '/complist.html',title:'Companylist'});
+        $routeProvider.when('/mobile/info', {templateUrl: urls.part_mobile + '/info.html',title:'Info'});
         $routeProvider.otherwise({redirectTo: '/'});
     }]).
 //  the google analytics configure
