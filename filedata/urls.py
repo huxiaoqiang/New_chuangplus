@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^download',views.download_file,name='download_file'),
     url(r'^delete',views.delete_file,name='delete_file'),
     url(r'^submit',views.submit_resume,name='submit_resume'),
+    url(r'^emailresume',views.email_resume,name='email_resume'),
 ]

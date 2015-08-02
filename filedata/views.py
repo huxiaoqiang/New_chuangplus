@@ -216,3 +216,8 @@ def submit_resume(request):
         re['error'] = error(2, 'Error, need post!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+def email_resume(request):
+    re = dict()
+    for company in Companyinfo.objects.all():
+        for position in company.position_set:
+            pass
