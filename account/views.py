@@ -41,14 +41,16 @@ def register(request):
         if role == 1:
             reguser.is_staff == True
             reguser.save()
-
-        userinfo = Userinfo(username=username)
-        userinfo.email = email
-        userinfo.date_joined = datetime_now()
-        userinfo.update_time = datetime_now()
-        userinfo.has_resume = False
-        userinfo.info_complete = False
-        userinfo.save()
+            companyinfo = Companyinfo(username=username)
+            companyinfo.user = reguser
+            companyinfo.save()
+        else:
+            userinfo = Userinfo(username=username)
+            userinfo.email = email
+            userinfo.date_joined = datetime_now()
+            userinfo.update_time = datetime_now()
+            userinfo.user = reguser
+            userinfo.save()
         user = auth.authenticate(username=username, password=password)
         if user is not None and user.is_active:
             auth.login(request, user)
