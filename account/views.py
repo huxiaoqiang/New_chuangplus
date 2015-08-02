@@ -313,22 +313,11 @@ def create_financing_info(request):
             financing_info.stage = request.POST.get('stage','')
             financing_info.organization = request.POST.get('organization','')
             financing_info.amount = request.POST.get('amount','')
+            financing_info.company = companyinfo
             try:
                 financing_info.save()
             except DatabaseError:
                 re['error'] = error(250,'Database error: Failed to save')
-            companyinfo.financing_info.append(financing_info)
-            try:
-                companyinfo.save()
-            except DatabaseError:
-                re['error'] = error(250,'Database error: Failed to save')
-                return HttpResponse(json.dumps(re), content_type = 'application/json')
-            try:
-                companyinfo.financing_info.append(financing_info)
-                companyinfo.save()
-            except:
-                re['error'] = error(250,'Database error: Failed to save')
-                return HttpResponse(json.dumps(re), content_type = 'application/json')
             re['error'] = error(1,"financing_info created ")
             re['data'] = json.loads(financing_info.to_json())
         else:
@@ -337,16 +326,16 @@ def create_financing_info(request):
         re['error'] = error(2,"error, need post")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-def get_financinginfo_list(request,compamy_id):
+def get_financinginfo_list(request,company_id):
     re = dict()
     if request.method == "GET":
         try:
-            companyinfo = Companyinfo.objects.get(id=compamy_id)
+            companyinfo = Companyinfo.objects.get(id=company_id)
         except:
             re["error"] = error(110,"company dose not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         try:
-            financinginfo_list = companyinfo.financing_info.all()
+            financinginfo_list = Financing.objects.get(company = companyinfo)
         except DatabaseError:
             re['error'] = error(250,'Database error: Failed to get')
         re['data'] = json.loads(financinginfo_list.to_json())
@@ -420,18 +409,12 @@ def create_company_member(request):
             new_member.m_position = request.POST.get('m_position','')
             new_member.m_introduction = request.POST.get('m_introduction','')
             new_member.m_avatar_path = request.POST.get('m_avatar_path','')
+            new_member.company = companyinfo
             try:
                 new_member.save()
             except DatabaseError:
                 re['error'] = error(250,'Database error: Failed to save')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
-            try:
-                companyinfo.team_info.append(new_member)
-                companyinfo.save()
-            except DatabaseError:
-                re['error'] = error(250,'Database error: Failed to save')
-                return HttpResponse(json.dumps(re), content_type = 'application/json')
-
             re['error'] = error(1,'create new member successfully!')
             re['data'] = json.loads(new_member.to_json())
         else:
@@ -449,13 +432,12 @@ def get_member_list(request,company_id):
             re['error'] = error(110,"companyinfo dose not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         try:
-            member_list = companyinfo.team_info.all()
+            member_list = Member.objects.get(company=companyinfo)
         except DatabaseError:
              re['error'] = error(250,'Database error: Failed to save')
              return HttpResponse(json.dumps(re), content_type = 'application/json')
         re['error'] = error(1,"get memberlist successfully")
         re['data'] = json.loads(member_list.to_json())
-
     else:
         re['error'] = error(3,"error,need GET")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
