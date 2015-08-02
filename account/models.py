@@ -64,7 +64,7 @@ class Member(Document):
     m_position = StringField(max_length=30)
     m_introduction = StringField(max_length=10000)
     m_avatar = ReferenceField(File)
-    company = ReferenceField(Companyinfo)
+    company = ReferenceField(Companyinfo,required=True)
 
 STAGE=('no','angel','A','B','C','D_plus')
 AMOUNT=('ten','hundred','thousand','thousand_plus')
@@ -72,7 +72,7 @@ class Financing(Document):
     stage = StringField(max_length=15,choices=STAGE)
     organization = StringField(max_length=50)
     amount = StringField(choices=AMOUNT)
-    company = ReferenceField(Companyinfo)
+    company = ReferenceField(Companyinfo,required=True)
 
 #user and company relationship
 #the user collect the company
