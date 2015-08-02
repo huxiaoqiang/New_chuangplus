@@ -123,6 +123,7 @@ STATUS = ('employing','hide','delete')
 104          |user data not exist|用户资料尚未填写资料
 105          |company data not exist|企业资料尚未填写
 120          |Resume does not exist |简历不存在
+260          |Position does not exist |职位不存在
 
 ##api接口
 考虑到django的csrf机制，需要在HTTP请求头添加X-CSRF-token,内容为cookie中的csrftoken，或者在请求中增加一个csrfmiddlewaretoken字段，内容也是cookie中的csrftoken。我们使用的方法是后者，在static/js/services.js中构建了CsfrService，在post表单之前执行
