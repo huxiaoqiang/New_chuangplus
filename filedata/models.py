@@ -12,7 +12,6 @@ class File(Document):
     upload_time = DateTimeField()
     value = FileField()
 
-
 class ResumePost(Document):
     submit_date = DateTimeField()
     resume_copy = FileField()

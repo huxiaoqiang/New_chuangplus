@@ -16,12 +16,12 @@ def upload_file(request):
     if request.method == 'POST':
         file_type = request.POST.get('file_type','')
         if file_type not in ['member_avatar','qr_code','resume']:
-            re['error'] = error(4,'params error!')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         category = request.POST.get('category', '')
         description = request.POST.get('description', '')
         file_obj = request.FILES.get('file', None)
         if file_obj:
+            re['error'] = error(1, 'Success')
             if file_obj.size > 10000000:
                 re['error'] = error(15,"error,file size is bigger than 10M!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -182,7 +182,7 @@ def submit_resume(request):
         # use the long-term resume
         if resume_choice == '1': 
             if userinfo.has_resume:
-                resume = userinfo.resume
+                resume = userinfo.resume.value
             else:
                 re['error'] = error(120, 'Resume does not exist')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -199,20 +199,17 @@ def submit_resume(request):
                 re['error'] = error(19, 'File is empty')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
         
-        position_id = int(request.POST.get('position_id', '-1'))
+        position_id = request.POST.get('position_id', '-1')
         try:
             position = Position.objects.get(pk = position_id)    
         except:
             re['error'] = error(260, 'Position does not exist') 
             return HttpResponse(json.dumps(re), content_type = 'application/json')
-        
+
         submit_date = datetime.now()
         resume_post = ResumePost(submit_date = submit_date, resume_copy = resume, position = position, user = request.user)
         resume_post.save()
         re['error'] = error(1, 'Success!')
-        re['test_submit_date'] = resume_post.submit_date
-        re['test_position'] = resume_post.position.name
-        re['test_user'] = resume_post.user.username
     else:
         re['error'] = error(2, 'Error, need post!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
