@@ -110,6 +110,7 @@ def upload_file(request):
                         return HttpResponse(json.dumps(re), content_type = 'application/json')
                     try:
                         userinfo.resume = f
+                        userinfo.has_resume = True
                         userinfo.save()
                     except DatabaseError:
                         re['error'] = error(250,'Database error: Failed to save companyinfo!')
