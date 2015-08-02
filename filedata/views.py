@@ -17,7 +17,7 @@ def upload_file(request):
         if file_type not in ['member_avatar','qr_code','resume']:
             re['error'] = error(4,'params error!')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
-        id = request.POST.get('id', '')
+        category = request.POST.get('category', '')
         description = request.POST.get('description', '')
         file_obj = request.FILES.get('file', None)
         if file_obj:
@@ -26,14 +26,14 @@ def upload_file(request):
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             if file_type == "member_avatar":
                 try:
-                    member = Member.objects.get(id=id)
+                    member = Member.objects.get(id=category)
                 except:
                     re['error'] = error(16,'member dose not exist,fail to upload!')
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
                 try:
-                    f = File.objects.get(file_type=file_type,id=id)
+                    f = File.objects.get(file_type=file_type,category=category)
                 except:
-                    f = File(file_type=file_type,id=id)
+                    f = File(file_type=file_type,category=category)
                     f.value.put(file_obj.read(),content_type=file_obj.content_type)
                 else:
                     f.value.replace(file_obj.read(),content_type=file_obj.content_type)
@@ -54,7 +54,7 @@ def upload_file(request):
                 re['data'] = str(f.id)
             elif file_type == 'qr_code':
                 try:
-                    companyinfo = Companyinfo.objects.get(id=id)
+                    companyinfo = Companyinfo.objects.get(id=category)
                 except:
                     re['error'] = error(17,"company dose not exist,fail to upload file!")
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -63,9 +63,9 @@ def upload_file(request):
                         re['error'] = error(18,'no permission to upload,fail to upload file!')
                         return HttpResponse(json.dumps(re), content_type = 'application/json')
                     try:
-                        f = File.objects.get(file_type=file_type,id=id)
+                        f = File.objects.get(file_type=file_type,category=category)
                     except:
-                        f = File(file_type=file_type,id=id)
+                        f = File(file_type=file_type,category=category)
                         f.value.put(file_obj.read(),content_type=file_obj.content_type)
                     else:
                         f.value.replace(file_obj.read(), content_type=file_obj.content_type)
@@ -94,9 +94,9 @@ def upload_file(request):
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
                 else:
                     try:
-                        f = File.objects.get(file_type = file_type,id=id)
+                        f = File.objects.get(file_type = file_type,category=category)
                     except:
-                        f = File(file_type=file_type,id=id)
+                        f = File(file_type=file_type,category=category)
                         f.value.put(file_obj.read(),content_type=file_obj.content_type)
                     else:
                         f.value.replace(file_obj.read(),content_type=file_obj.content_type)
@@ -115,6 +115,7 @@ def upload_file(request):
                         return HttpResponse(json.dumps(re), content_type = 'application/json')
                     re['error'] = error(1, 'file upload successfully')
                     re['data'] = f.id
+
     else:
         re['error'] = error(2,"error, need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -156,6 +157,8 @@ def delete_file(request,file_id=''):
     else:
         re['error'] = error(2,'error, need POST')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+
 
 
 @user_permission('login')
