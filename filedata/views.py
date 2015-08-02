@@ -116,6 +116,7 @@ def upload_file(request):
                         return HttpResponse(json.dumps(re), content_type = 'application/json')
                     re['error'] = error(1, 'file upload successfully')
                     re['data'] = f.id
+
     else:
         re['error'] = error(2,"error, need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -157,6 +158,8 @@ def delete_file(request,file_id=''):
     else:
         re['error'] = error(2,'error, need POST')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+
 
 
 @user_permission('login')

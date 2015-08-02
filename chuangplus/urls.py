@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^api/captcha/', include('Captcha.urls')),
     url(r'^api/account/', include('account.urls')),
     url(r'^api/position/',include('position.urls')),
+    url(r'^api/file/',include('filedata.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [

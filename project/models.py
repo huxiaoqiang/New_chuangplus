@@ -1,6 +1,6 @@
 from django.db import models
 from account.models import Member
-from filedata.models import Image
+from filedata.models import File
 from mongoengine import *
 import datetime
 
@@ -11,7 +11,7 @@ class Post(Document):
     title=StringField(max_length=50)
     content=StringField(max_length=300)
     link=URLField()
-    image_path=ReferenceField(Image)
+    image_path=ReferenceField(File)
     date=DateTimeField()
 
 class Project(Document):
@@ -27,7 +27,7 @@ class Project(Document):
     contact_email=EmailField()
     link=URLField()
     wechat=StringField(max_length=40)
-    qrcode=ReferenceField(Image)
+    qrcode=ReferenceField(File)
     business_model=StringField(max_length=10000)
     team_info = ListField(ReferenceField(Member))
     post=ListField(ReferenceField(Post))
