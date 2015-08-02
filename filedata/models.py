@@ -10,9 +10,10 @@ class File(Document):
     file_type = StringField(max_length=1000)
     category = StringField(max_length=1000)
     description = StringField(max_length=1000)
+    upload_time = DateTimeField()
     file = FileField()
 
-class resume_post(Document):
+class ResumePpost(Document):
     submit_date = DateTimeField()
     resume_copy = FileField()
     position = ReferenceField(Position)
