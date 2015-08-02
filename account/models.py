@@ -70,7 +70,6 @@ class Companyinfo(Document):
     product_description = StringField(max_length=300,default = "")
     team_description = StringField(max_length=300,default = "")
     team_info = ListField(ReferenceField(Member))
-    position_type = StringField(max_length=100,default = "")
     slogan = StringField(max_length=25,default = "")
     status = BooleanField(default=False) # if the company is accepted by the admin
     User = ReferenceField(User)
