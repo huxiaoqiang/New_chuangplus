@@ -47,7 +47,7 @@ class Member(Document):
     m_name=StringField(max_length=30)
     m_position=StringField(max_length=30)
     m_introduction=StringField(max_length=10000)
-    m_avatar_path=ReferenceField(File)
+    m_avatar=ReferenceField(File)
 
 # company position type
 TYPE = ('technology','product','design','operate','marketing','functions','others')
