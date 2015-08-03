@@ -42,13 +42,13 @@ def register(request):
             print traceback.print_exc()
             re['error'] = error(107, 'Username exist or username include special character')
         #todo care for role's type
-        if reguser is not None and role == 1:
+        if reguser is not None and role == "1":
             reguser.is_staff == True
             reguser.save()
             companyinfo = Companyinfo(username=username)
             companyinfo.user = reguser
             companyinfo.save()
-        elif reguser is not None and role == 0:
+        elif reguser is not None and role == "0":
             userinfo = Userinfo(username=username)
             userinfo.email = email
             userinfo.date_joined = datetime_now()
