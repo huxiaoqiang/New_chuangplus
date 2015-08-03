@@ -45,6 +45,8 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         console.log("regist successfully!");
+                        alert("注册成功");
+                        setTimeout(function(){location.href='/'},2000);
                     }
                     else{
                         alert(data.error.message);

@@ -132,13 +132,13 @@ def login(request):
         if user is not None and user.is_active:
             auth.login(request, user)
             user = User.objects.get(username=username)
-            request.session['role'] = user.is_staff
+            request.session['role'] = 1 if user.is_staff else 0
             re['error'] = error(1, 'login succeed!')
             #re['status'] = request.session['status']
             re['role'] = request.session['role']
             resp = HttpResponse(json.dumps(re), content_type = 'application/json')
             resp.set_cookie('username', username)
-            resp.set_cookie('role',user.is_staff)
+            resp.set_cookie('role',request.session['role'])
             return resp
         else:
             re['error'] = error(108, 'username or password error!')
