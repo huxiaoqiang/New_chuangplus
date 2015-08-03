@@ -175,7 +175,7 @@ def get_userinfo(request):
         try:
             userinfo = Userinfo.objects.get(username=username)
         except:
-            re['error'] = error(110, 'user do not exist')
+            re['error'] = error(103, 'user do not exist')
         re['data'] = json.loads(userinfo.to_json())
         re['error'] = error(1, 'get succeed')
     else:
@@ -192,7 +192,7 @@ def set_userinfo(request):
             try:
                 userinfo = Userinfo.objects.get(username=username)
             except:
-                re['error'] = error(110, 'user do not exist')
+                re['error'] = error(103, 'user do not exist')
                 re['username'] = username
             else:
                 userinfo.email = request.POST.get('email', '')
@@ -215,7 +215,7 @@ def set_userinfo(request):
                 re['userinfo'] = json.loads(userinfo.to_json())
                 re['error'] = error(1, 'updated successfully')
         else:
-            re['error'] = error(111, 'permission denied')
+            re['error'] = error(110, 'Permission denied,no permission to change')
     else:
         re['error'] = error(2, 'erroe，need post')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -232,7 +232,7 @@ def get_companyinfo_detail(request,compamy_id):
         try:
             companyinfo=Companyinfo.objects.get(id=compamy_id)
         except:
-            re["error"] = error(110,"company dose not exist!")
+            re["error"] = error(105,"company dose not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         re['data'] = json.loads(companyinfo.to_json())
         re['error'] = error(1, 'get succeed')
@@ -249,7 +249,7 @@ def set_companyinfo(request):
                 try:
                     companyinfo=Companyinfo.objects.get(username=username)
                 except:
-                    re['error'] = error(110, 'companyinfo do not exist')
+                    re['error'] = error(105, 'companyinfo dose not exist')
                     re['username'] = username
                 else:
                     companyinfo.contacts = request.POST.get('contacts', '')
@@ -274,7 +274,7 @@ def set_companyinfo(request):
                     companyinfo.slogan = request.POST.get('slogan','')
                     companyinfo.update_time = datetime_now()
             else:
-                re['error'] = error(111,'permission denied')
+                re['error'] = error(110,'Permission denied, no permission to change ')
     else:
         re['error'] = error(2,"error,need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -298,7 +298,7 @@ def auth_company(request,company_id):
                 re['error'] = error(250,'Database error: Failed to get companyinfo')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
         else:
-            re['error'] = error(111, 'permission denied!')
+            re['error'] = error(110, 'Permission denied, no permission to change ')
     else:
         re['error'] = error(2,"error, need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -311,7 +311,7 @@ def create_financing_info(request):
         try:
             companyinfo = Companyinfo.objects.get(username=username)
         except:
-            re["error"] = error(110,"company dose not exist!")
+            re["error"] = error(105,"companyinfo dose not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         if request.user.is_staff == True or request.user.is_superuser == True:
             financing_info = Financing()
@@ -337,7 +337,7 @@ def get_financinginfo_list(request,company_id):
         try:
             companyinfo = Companyinfo.objects.get(id=company_id)
         except:
-            re["error"] = error(110,"company dose not exist!")
+            re["error"] = error(105,"company dose not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         try:
             financinginfo_list = Financing.objects.get(company = companyinfo)
@@ -406,7 +406,7 @@ def create_company_member(request):
         try:
             companyinfo = Companyinfo.objects.get(username=username)
         except:
-            re['error'] = error(110,"companyinfo dose not exist!")
+            re['error'] = error(105,"companyinfo dose not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         if request.user.is_staff == True or request.user.is_superuser == True:
             new_member = Member()
@@ -434,7 +434,7 @@ def get_member_list(request,company_id):
         try:
             companyinfo = Companyinfo.objects.get(id=company_id)
         except:
-            re['error'] = error(110,"companyinfo dose not exist!")
+            re['error'] = error(105,"companyinfo dose not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         try:
             member_list = Member.objects.get(company=companyinfo)
