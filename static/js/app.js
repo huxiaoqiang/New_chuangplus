@@ -13,7 +13,8 @@ angular.module('chuangplus', [
     'chuangplus.filters',
     'chuangplus.services',
     'chuangplus.directives',
-    'chuangplus.controllers',
+    'chuangplus.controllers_desktop',
+    'chuangplus.controllers_mobile',
     //semantic directives
     'angularify.semantic.accordion',
 	'angularify.semantic.checkbox',
@@ -37,8 +38,12 @@ angular.module('chuangplus', [
         //Route configure
         $locationProvider.html5Mode(true);
         $locationProvider.hashPrefix = '';
-        $routeProvider.when('/', {templateUrl: urls.part_desktop + '/homepage.html', controller: 'HomepageCtrl', title: 'HomePage'});
+        //desktop configure
+        $routeProvider.when('/', {templateUrl: urls.part_desktop + '/homepage.html', controller: 'MB_HomepageCtrl', title: 'HomePage'});
+        $routeProvider.when('/login', {templateUrl: urls.part_desktop + '/login.html', controller: 'MB_LoginCtrl', title: 'LoginPage'});
+        $routeProvider.when('/register', {templateUrl: urls.part_desktop + '/register.html', controller: 'MB_RegisterCtrl', title: 'RegisterPage'});
 
+        //mobile configure
         $routeProvider.when('/mobile/login', {templateUrl: urls.part_mobile + '/login.html',title:'Login'});
         $routeProvider.when('/mobile/complist', {templateUrl: urls.part_mobile + '/complist.html',title:'Companylist'});
         $routeProvider.when('/mobile/info', {templateUrl: urls.part_mobile + '/info.html',title:'Info'});
