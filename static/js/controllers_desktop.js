@@ -8,10 +8,10 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_LoginCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_LoginCtrl');
-        $scope.login_info={};
+        $scope.login_info = {};
         $scope.captcha_url = urls.api+"/captcha/image/";
 
-        $scope.refresh=function(){
+        $scope.refresh = function(){
             $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
         };
         $scope.login_user = function(){
@@ -34,6 +34,23 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_RegisterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_RegisterCtrl');
+        $scope.reg_info = {};
+        $scope.captcha_url = urls.api+"/captcha/image/";
+        $scope.refresh = function(){
+            $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
+        };
+        $scope.register = function(){
+            $csrf.set_csrf($scope.reg_info);
+            $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        console.log("regist successfully!");
+                    }
+                    else{
+                        alert(data.error.message);
+                    }
+                });
+        };
     }]).
     controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_HeaderCtrl');
