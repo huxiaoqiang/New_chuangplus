@@ -13,8 +13,7 @@ angular.module('chuangplus', [
     'chuangplus.filters',
     'chuangplus.services',
     'chuangplus.directives',
-    'chuangplus.controllers_desktop',
-    'chuangplus.controllers_mobile',
+    'chuangplus.controllers',
     //semantic directives
     'angularify.semantic.accordion',
 	'angularify.semantic.checkbox',
@@ -39,9 +38,9 @@ angular.module('chuangplus', [
         $locationProvider.html5Mode(true);
         $locationProvider.hashPrefix = '';
         //desktop configure
-        $routeProvider.when('/', {templateUrl: urls.part_desktop + '/homepage.html', controller: 'MB_HomepageCtrl', title: 'HomePage'});
-        $routeProvider.when('/login', {templateUrl: urls.part_desktop + '/login.html', controller: 'MB_LoginCtrl', title: 'LoginPage'});
-        $routeProvider.when('/register', {templateUrl: urls.part_desktop + '/register.html', controller: 'MB_RegisterCtrl', title: 'RegisterPage'});
+        $routeProvider.when('/', {templateUrl: urls.part_desktop + '/homepage.html', controller: 'DT_HomepageCtrl', title: 'HomePage'});
+        $routeProvider.when('/login', {templateUrl: urls.part_desktop + '/login.html', controller: 'DT_LoginCtrl', title: 'LoginPage'});
+        $routeProvider.when('/register', {templateUrl: urls.part_desktop + '/register.html', controller: 'DT_RegisterCtrl', title: 'RegisterPage'});
 
         //mobile configure
         $routeProvider.when('/mobile/login', {templateUrl: urls.part_mobile + '/login.html',title:'Login'});
