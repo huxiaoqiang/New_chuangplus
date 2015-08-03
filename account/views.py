@@ -20,10 +20,10 @@ def register(request):
             session_captcha = request.session.get('captcha', False)
             request_captcha = request.POST.get('captcha','')
         except KeyError:
-            re['error']=error(100,"Need captcha!")
+            re['error'] = error(100,"Need captcha!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         if session_captcha.upper() != request_captcha.upper():
-            re['error']=error(101,'Captcha error!')
+            re['error'] = error(101,'Captcha error!')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
 
         #todo
@@ -31,7 +31,7 @@ def register(request):
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
         email = request.POST.get('email', '')
-        role=request.POST.get('role','')
+        role = request.POST.get('role','')
         if username == '' or password == '' or email == '':
             re['error'] = error(112,"Username or password or email is empty,fail to register!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -40,7 +40,7 @@ def register(request):
             reguser = User.create_user(username=username, password=password, email=email)
         except Exception as e:
             print traceback.print_exc()
-            re['error'] = error(107, 'username exist or username include special character')
+            re['error'] = error(107, 'Username exist or username include special character')
         #todo care for role's type
         if reguser is not None and role == 1:
             reguser.is_staff == True
@@ -55,6 +55,9 @@ def register(request):
             userinfo.update_time = datetime_now()
             userinfo.user = reguser
             userinfo.save()
+        #elif role == -1:
+        #    reguser.is_superuser = True
+        #    reguser.save()
         user = auth.authenticate(username=username, password=password)
         if user is not None and user.is_active:
             auth.login(request, user)
@@ -70,7 +73,7 @@ def register(request):
             resp.set_cookie('role', role)
             return resp
         else:
-            re['error']=error(106,"register fail!")
+            re['error'] = error(106,"register fail!")
         #try:
         #    user = User.objects.create_user(**user_data)
         #except MySQLdb.IntegrityError:
@@ -80,7 +83,7 @@ def register(request):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 def check_username(request):
-    re=dict()
+    re = dict()
     if request.method == "POST":
         name = request.POST.get('username','')
         if name == "":  
@@ -90,19 +93,19 @@ def check_username(request):
             re['error']=error(1,"succeed!")
 
         if User.objects.filter(username=name).count() != 0:
-            re['username']={'exist': 'ture'}
+            re['username'] = {'exist': 'ture'}
         else:
-            re['username']={'exist': 'false'}
+            re['username'] = {'exist': 'false'}
     else:
         re['error'] = error(2,"error, need POST!")
     return  HttpResponse(json.dumps(re), content_type = 'application/json')
 
 def check_email(request):
-    re=dict()
+    re = dict()
     if request.method == "POST":
         email = request.POST.get('email','')
         if email == "":
-            re['error']=error(102,'Need post email')
+            re['error'] = error(102,'Need post email')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         else:
             re['error'] = error(1,"succeed!")
@@ -121,6 +124,9 @@ def login(request):
     if request.method=="POST":
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
+        if username == '' or password == "":
+            re['error'] = error(111,"username or password is empty")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
         user = auth.authenticate(username=username, password=password)
         re['username'] = username
         if user is not None and user.is_active:
@@ -176,7 +182,7 @@ def get_userinfo(request):
         try:
             userinfo = Userinfo.objects.get(username=username)
         except:
-            re['error'] = error(110, 'user do not exist')
+            re['error'] = error(103, 'user do not exist')
         re['data'] = json.loads(userinfo.to_json())
         re['error'] = error(1, 'get succeed')
     else:
@@ -193,7 +199,7 @@ def set_userinfo(request):
             try:
                 userinfo = Userinfo.objects.get(username=username)
             except:
-                re['error'] = error(110, 'user do not exist')
+                re['error'] = error(103, 'user do not exist')
                 re['username'] = username
             else:
                 userinfo.email = request.POST.get('email', '')
@@ -216,7 +222,7 @@ def set_userinfo(request):
                 re['userinfo'] = json.loads(userinfo.to_json())
                 re['error'] = error(1, 'updated successfully')
         else:
-            re['error'] = error(111, 'permission denied')
+            re['error'] = error(110, 'Permission denied,no permission to change')
     else:
         re['error'] = error(2, 'erroe，need post')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -233,7 +239,7 @@ def get_companyinfo_detail(request,compamy_id):
         try:
             companyinfo=Companyinfo.objects.get(id=compamy_id)
         except:
-            re["error"] = error(110,"company dose not exist!")
+            re["error"] = error(105,"company dose not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         re['data'] = json.loads(companyinfo.to_json())
         re['error'] = error(1, 'get succeed')
@@ -250,7 +256,7 @@ def set_companyinfo(request):
                 try:
                     companyinfo=Companyinfo.objects.get(username=username)
                 except:
-                    re['error'] = error(110, 'companyinfo do not exist')
+                    re['error'] = error(105, 'companyinfo dose not exist')
                     re['username'] = username
                 else:
                     companyinfo.contacts = request.POST.get('contacts', '')
@@ -275,7 +281,7 @@ def set_companyinfo(request):
                     companyinfo.slogan = request.POST.get('slogan','')
                     companyinfo.update_time = datetime_now()
             else:
-                re['error'] = error(111,'permission denied')
+                re['error'] = error(110,'Permission denied, no permission to change ')
     else:
         re['error'] = error(2,"error,need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -299,7 +305,7 @@ def auth_company(request,company_id):
                 re['error'] = error(250,'Database error: Failed to get companyinfo')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
         else:
-            re['error'] = error(111, 'permission denied!')
+            re['error'] = error(110, 'Permission denied, no permission to change ')
     else:
         re['error'] = error(2,"error, need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -312,7 +318,7 @@ def create_financing_info(request):
         try:
             companyinfo = Companyinfo.objects.get(username=username)
         except:
-            re["error"] = error(110,"company dose not exist!")
+            re["error"] = error(105,"companyinfo dose not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         if request.user.is_staff == True or request.user.is_superuser == True:
             financing_info = Financing()
@@ -338,7 +344,7 @@ def get_financinginfo_list(request,company_id):
         try:
             companyinfo = Companyinfo.objects.get(id=company_id)
         except:
-            re["error"] = error(110,"company dose not exist!")
+            re["error"] = error(105,"company dose not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         try:
             financinginfo_list = Financing.objects.get(company = companyinfo)
@@ -407,7 +413,7 @@ def create_company_member(request):
         try:
             companyinfo = Companyinfo.objects.get(username=username)
         except:
-            re['error'] = error(110,"companyinfo dose not exist!")
+            re['error'] = error(105,"companyinfo dose not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         if request.user.is_staff == True or request.user.is_superuser == True:
             new_member = Member()
@@ -435,7 +441,7 @@ def get_member_list(request,company_id):
         try:
             companyinfo = Companyinfo.objects.get(id=company_id)
         except:
-            re['error'] = error(110,"companyinfo dose not exist!")
+            re['error'] = error(105,"companyinfo dose not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         try:
             member_list = Member.objects.get(company=companyinfo)

@@ -31,14 +31,18 @@ angular.module('chuangplus', [
         $interpolateProvider.endSymbol(']]');
     }]).
     config(['$httpProvider', function($httpProvider){
-        $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
+        $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
     }]).
     config(['$routeProvider', '$locationProvider', 'urls', function($routeProvider, $locationProvider, urls) {
         //Route configure
         $locationProvider.html5Mode(true);
         $locationProvider.hashPrefix = '';
-        $routeProvider.when('/', {templateUrl: urls.part_desktop + '/homepage.html', controller: 'HomepageCtrl', title: 'HomePage'});
+        //desktop configure
+        $routeProvider.when('/', {templateUrl: urls.part_desktop + '/homepage.html', controller: 'DT_HomepageCtrl', title: 'HomePage'});
+        $routeProvider.when('/login', {templateUrl: urls.part_desktop + '/login.html', controller: 'DT_LoginCtrl', title: 'LoginPage'});
+        $routeProvider.when('/register', {templateUrl: urls.part_desktop + '/register.html', controller: 'DT_RegisterCtrl', title: 'RegisterPage'});
 
+        //mobile configure
         $routeProvider.when('/mobile/login', {templateUrl: urls.part_mobile + '/login.html',title:'Login'});
         $routeProvider.when('/mobile/complist', {templateUrl: urls.part_mobile + '/complist.html',title:'Companylist'});
         $routeProvider.when('/mobile/info', {templateUrl: urls.part_mobile + '/info.html',title:'Info'});

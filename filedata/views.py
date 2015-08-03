@@ -16,6 +16,7 @@ def upload_file(request):
     if request.method == 'POST':
         file_type = request.POST.get('file_type','')
         if file_type not in ['member_avatar','qr_code','resume']:
+            re['error'] = error(4,'Parameter error')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         category = request.POST.get('category', '')
         description = request.POST.get('description', '')
@@ -23,21 +24,21 @@ def upload_file(request):
         if file_obj:
             re['error'] = error(1, 'Success')
             if file_obj.size > 10000000:
-                re['error'] = error(15,"error,file size is bigger than 10M!")
+                re['error'] = error(15,"File size is bigger than 10M!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             if file_type == "member_avatar":
                 try:
-                    member = Member.objects.get(id=category)
+                    member = Member.objects.get(id = category)
                 except:
-                    re['error'] = error(16,'member dose not exist,fail to upload!')
+                    re['error'] = error(16,'Member dose not exist,fail to upload member avatar')
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
                 try:
-                    f = File.objects.get(file_type=file_type,category=category)
+                    f = File.objects.get(file_type = file_type,category = category)
                 except:
-                    f = File(file_type=file_type,category=category)
-                    f.value.put(file_obj.read(),content_type=file_obj.content_type)
+                    f = File(file_type = file_type,category = category)
+                    f.value.put(file_obj.read(), content_type = file_obj.content_type)
                 else:
-                    f.value.replace(file_obj.read(),content_type=file_obj.content_type)
+                    f.value.replace(file_obj.read(), content_type = file_obj.content_type)
                 f.name = file_obj.name
                 f.description = description
                 try:
@@ -57,19 +58,19 @@ def upload_file(request):
                 try:
                     companyinfo = Companyinfo.objects.get(id=category)
                 except:
-                    re['error'] = error(17,"company dose not exist,fail to upload file!")
+                    re['error'] = error(17,"Company dose not exist,fail to upload qr code")
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
                 else:
                     if companyinfo.username != request.user.username:
                         re['error'] = error(18,'no permission to upload,fail to upload file!')
                         return HttpResponse(json.dumps(re), content_type = 'application/json')
                     try:
-                        f = File.objects.get(file_type=file_type,category=category)
+                        f = File.objects.get(file_type = file_type, category = category)
                     except:
-                        f = File(file_type=file_type,category=category)
-                        f.value.put(file_obj.read(),content_type=file_obj.content_type)
+                        f = File(file_type = file_type,category = category)
+                        f.value.put(file_obj.read(),content_type = file_obj.content_type)
                     else:
-                        f.value.replace(file_obj.read(), content_type=file_obj.content_type)
+                        f.value.replace(file_obj.read(), content_type = file_obj.content_type)
                     f.name = file_obj.name
                     f.description = description
                     try:
@@ -91,16 +92,16 @@ def upload_file(request):
                     username = request.user.username
                     userinfo = Userinfo.objects.get(username=username)
                 except:
-                    re['error'] = error(110,"user dose not exist!")
+                    re['error'] = error(103,"user dose not exist!")
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
                 else:
                     try:
                         f = File.objects.get(file_type = file_type,category=category)
                     except:
-                        f = File(file_type=file_type,category=category)
-                        f.value.put(file_obj.read(),content_type=file_obj.content_type)
+                        f = File(file_type = file_type,category=category)
+                        f.value.put(file_obj.read(),content_type = file_obj.content_type)
                     else:
-                        f.value.replace(file_obj.read(),content_type=file_obj.content_type)
+                        f.value.replace(file_obj.read(),content_type = file_obj.content_type)
                     f.name = file_obj.name
                     f.description = description
                     try:
@@ -117,7 +118,8 @@ def upload_file(request):
                         return HttpResponse(json.dumps(re), content_type = 'application/json')
                     re['error'] = error(1, 'file upload successfully')
                     re['data'] = str(f.id)
-
+        else:
+            re['error'] = error(19,'File is empty,fail to upload file')
     else:
         re['error'] = error(2,"error, need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -127,11 +129,11 @@ def download_file(request):
     if request.method == "GET":
         try:
             file_id = request.GET.get('file_id')
-            file = File.objects.get(id=file_id)
+            file = File.objects.get(id = file_id)
         except:
-            re['error'] = error(20,'file does not exist!fail to download file')
+            re['error'] = error(20,'File does not exist,fail to download file')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
-        resp = HttpResponse(file.value.read(), content_type=file.value.content_type)
+        resp = HttpResponse(file.value.read(), content_type = file.value.content_type)
         from urllib import quote_plus
         resp['Content-Disposition'] = 'attachment; filename="' + quote_plus(unicode(file.name).encode('utf8')) + '"'
         return resp
@@ -142,22 +144,22 @@ def download_file(request):
 def get_filelist(request):
     re = dict()
 
-def delete_file(request,file_id=''):
+def delete_file(request,file_id = ''):
     re = dict()
     if request.method ==  'POST':
         #only the superuser can delete file
         if request.user.is_superuser == True:
             try:
-                f = File.objects.get(id=file_id)
+                f = File.objects.get(id = file_id)
             except:
-                re['error'] = error(31,'file dose not exist, fail to delete the file!')
+                re['error'] = error(31,'File dose not exist, fail to delete the file')
             else:
 
                 f.value.delete()
                 f.delete()
                 re['error'] = error(1,'delete file successfully!')
         else:
-            re['error'] = error(30,'no permission to delete the file!')
+            re['error'] = error(30,'No permission to delete the file!')
     else:
         re['error'] = error(2,'error, need POST')
     return HttpResponse(json.dumps(re), content_type = 'application/json')

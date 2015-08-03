@@ -15,8 +15,8 @@ except ImportError:
 
 #Userinfo
 class Userinfo(Document):
-    username=StringField(max_length=30)
-    email=EmailField()
+    username = StringField(max_length=30,required=True)
+    email = EmailField()
     position_type = StringField(max_length=30)
     work_city = StringField(max_length=100)
     cellphone = StringField(max_length=20)
@@ -27,16 +27,16 @@ class Userinfo(Document):
     work_days = IntField(default=3)
     description = StringField(max_length=200)
     resume = ReferenceField(File)
-    info_complete=BooleanField(default=False)
-    has_resume=BooleanField(default=False)
-    date_joined=DateTimeField()
-    update_time=DateTimeField()
+    info_complete = BooleanField(default=False)
+    has_resume = BooleanField(default=False)
+    date_joined = DateTimeField()
+    update_time = DateTimeField()
     user = ReferenceField("User")
 
 # company position type
 TYPE = ('technology','product','design','operate','marketing','functions','others')
 class Companyinfo(Document):
-    username = StringField(max_length=30)
+    username = StringField(max_length=30,required=True)
     contacts = StringField(max_length=20,default = "")
     abbreviation = StringField(max_length=100,default = "")
     city = StringField(max_length=30,default = "")
@@ -77,5 +77,5 @@ class Financing(Document):
 #user and company relationship
 #the user collect the company
 class UC_Relationship(Document):
-    company=ReferenceField(Companyinfo)
-    user=ReferenceField(Userinfo)
+    company = ReferenceField(Companyinfo)
+    user = ReferenceField(Userinfo)

@@ -1,3 +1,4 @@
+#coding=utf-8
 from .models import *
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -7,7 +8,10 @@ from django.contrib import auth
 from django.db import DatabaseError
 from django.db.models import Q
 from account.models import Companyinfo,Userinfo
-from datetime import datetime
+from datetime import datetime, timedelta
+from django.core.mail import EmailMessage
+from StringIO import StringIO
+import zipfile
 import traceback
 import time
 from app.common_api import error,user_permission,if_legal
@@ -744,9 +748,34 @@ def submit_resume(request):
         re['error'] = error(2, 'Error, need post!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+#TODO: NOT BEEN TESTED
 def email_resume(request):
     re = dict()
+    t = datetime.now()
+    # 8am Today
+    time_end = datetime(year=t.year, month=t.month, day=t.day, hour=8)
+    time_delta = timedelta(days=1)
+    # 8am Yesterday
+    time_start = time_end - time_delta
+    
     for company in Companyinfo.objects.all():
-        for position in company.position_set:
-            pass
+        zip_company = zipfile.ZipFile('%s.zip' % company.abbreviation, 'w')
+        
+        for position in Position.objects.filter(company = company):
+            f = StringIO()
+            zip_position = zipfile.ZipFile(f, 'w', compression=zipfile.ZIP_DEFLATED)
+
+            for rp in ResumePost.objects.filter(position == position, submit_date__gte = time_start, submit_date__lte = time_end): 
+                zip_position.writestr('%s.pdf' % rp.user.username, rp.resume_copy.read())
+            zip_position.close()
+            fp = open('%s.zip' % position.name, 'wb')
+            fp.write(f.getvalue())
+            fp.close()
+
+            zip_company.write('%s.zip' % position.name)
+
+        zip_company.close()
+        mail = EmailMessage('[创+]简历%s' % time.strftime('%Y%m%d'), '附件为昨天8am至今天8am之间投递到您公司的简历。', 'support@chuangplus.com', [company.email_resume]);
+        mail.attach('%s.zip' % company.abbreviation, zip_company, 'application/zip')
+        mail.send()
 
