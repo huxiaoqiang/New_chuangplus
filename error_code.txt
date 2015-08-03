@@ -23,6 +23,7 @@
 108: Username or password error
 109: New password is the same as the old password
 110: Permission denied, no permission to change 
+111: Username or password is empty
 120: Resume does not exist
 200: illegal request # A request without necessary keys
 210~228: Creating / Updating position failures (Invaild keys)
