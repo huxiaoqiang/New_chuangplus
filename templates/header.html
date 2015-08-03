@@ -1,0 +1,47 @@
+<header>
+    <div id="header">
+        <nav class="navbar navbar-default" role="navigation">
+           <div class="navbar-header">
+               <img src="/static/image/logo/comp_prev.jpg">
+              <a class="navbar-brand" href="/">犀牛</a>
+           </div>
+           <div>
+              <ul class="nav navbar-nav">
+                 <li class="active"><a href="#">公司列表</a></li>
+                 <li><a href="#">职位列表</a></li>
+                 {% if user.is_authenticated %}
+                 <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                           我的
+                    <b class="caret"></b>
+                    </a>
+                    {% if role == 1 %}
+                    <ul class="dropdown-menu">
+                       <li><a href="#">公司信息</a></li>
+                       <li><a href="#">编辑公司信息</a></li>
+                       <li><a href="#">发布职位</a></li>
+                       <li><a href="#">管理职位</a></li>
+                       <li class="divider"></li>
+                       <li><a href="#">退出登录</a></li>
+                    </ul>
+                    {% else %}
+                    <ul class="dropdown-menu">
+                       <li><a href="#">个人主页</a></li>
+                       <li><a href="#">我的投递</a></li>
+                       <li><a href="#">收藏的公司</a></li>
+                       <li class="divider"></li>
+                       <li><a href="#">收藏的岗位</a></li>
+                       <li class="divider"></li>
+                       <li><a href="#">退出登录</a></li>
+                    </ul>
+                    {% endif %}
+                    {% else %}
+                    <li><a href="/login">登录</a></li>
+                    <li><a href="/register">注册</a></li>
+                    {% endif %}
+                 </li>
+              </ul>
+           </div>
+        </nav>
+    </div>
+</header>
