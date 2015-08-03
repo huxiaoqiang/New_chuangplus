@@ -32,11 +32,15 @@ def register(request):
         password = request.POST.get('password', '')
         email = request.POST.get('email', '')
         role = request.POST.get('role','')
+        if username == '' or password == '' or email == '':
+            re['error'] = error(112,"Username or password or email is empty,fail to register!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        reguser = User()
         try:
             reguser = User.create_user(username=username, password=password, email=email)
         except Exception as e:
             print traceback.print_exc()
-            re['error'] = error(107, 'username exist or username include special character')
+            re['error'] = error(107, 'Username exist or username include special character')
         #todo care for role's type
         if role == 1:
             reguser.is_staff == True
@@ -120,6 +124,9 @@ def login(request):
     if request.method=="POST":
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
+        if username == '' or password == "":
+            re['error'] = error(111,"username or password is empty")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
         user = auth.authenticate(username=username, password=password)
         re['username'] = username
         if user is not None and user.is_active:
