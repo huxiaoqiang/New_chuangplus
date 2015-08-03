@@ -34,5 +34,15 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_RegisterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_RegisterCtrl');
+    }]).
+    controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+        console.log('DT_HeaderCtrl');
+        $scope.logout = function(){
+            $http.get(urls.api+"/account/logout").
+                success(function(data){
+                    if(data.error.code == 1){
+                        window.location.href = '/login';
+                    }
+                });
+        };
     }]);
-
