@@ -31,7 +31,7 @@ angular.module('chuangplus', [
         $interpolateProvider.endSymbol(']]');
     }]).
     config(['$httpProvider', function($httpProvider){
-        $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
+        $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
     }]).
     config(['$routeProvider', '$locationProvider', 'urls', function($routeProvider, $locationProvider, urls) {
         //Route configure

@@ -29,3 +29,7 @@
   color: white;
   padding-top: 4%;
 }
+#container {
+  margin: 0 auto;
+  display: block;
+}
