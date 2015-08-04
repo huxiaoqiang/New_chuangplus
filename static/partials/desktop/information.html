@@ -1,0 +1,30 @@
+<div id="container" controller="DT_InfoCtrl">
+    <div id="information" class="col-md-6" >
+        <form class="ui form segment" ng-submit="info_user()">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="icon-user icon-large"></i>
+                    </div>
+                    <input type="text" class="form-control" placeholder="学校" ng-model="infos.university" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="icon-key icon-large"></i></div>
+                     <input type="text" class="form-control" placeholder="专业" ng-model="infos.major" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="icon-picture icon-large"></i></div>
+                    <input type="text" class="form-control" placeholder="年级" ng-model="infos.grade" required>
+                </div>
+            </div>
+
+            <button id="enter_button">进入犀牛<i class="icon-circle-arrow-right"></i></button>
+        </form>
+    </div>
+</div>

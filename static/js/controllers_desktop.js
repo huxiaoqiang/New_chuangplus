@@ -64,6 +64,24 @@ angular.module('chuangplus.controllers', []).
                 });
         };
     }]).
+    controller('DT_InformationCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+      console.log('DT_InformationCtrl');
+      $scope.infos = {};
+      $scope.enter = function(){
+        $csrf.set_csrf($scope.infos);
+        $http.post(urls.api+"/account/userinfo/set",$.param($scope.infos)).
+          success(function(data){
+            if (data.error.code){
+              console.log("Set information successfully!");
+              alert("个人信息设置成功");
+              setTimeout(function(){location.href='/'},2000);
+            }
+            else{
+              alert(data.error.message);
+            }
+          });
+      };
+    }]).
     controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_HeaderCtrl');
         $scope.logout = function(){
