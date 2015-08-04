@@ -1,47 +1,54 @@
 <div id="container" controller="DT_RegisterCtrl">
-    <div id="register" class="col-md-6">
+    <div id="register" class="col-md-5">
+
         <form class="ui form segment" ng-submit="register()">
-            <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-addon">
-                        <i class="icon-user icon-large"></i>
+            <ul class="nav nav-tabs">
+              <li role="presentation" class="active"><a href="#">我是学生</a></li>
+              <li role="presentation"><a href="#">我是企业HR</a></li>
+            </ul>
+            <div id="reg_form">
+               <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="icon-user icon-large"></i>
+                        </div>
+                        <input type="text" class="form-control" placeholder="用户名" ng-model="reg_info.username" required>
                     </div>
-                    <input type="text" class="form-control" placeholder="用户名" ng-model="reg_info.username" required>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-addon">
-                        <i class="icon-user icon-large"></i>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="icon-user icon-large"></i>
+                        </div>
+                        <input type="text" class="form-control" placeholder="邮箱" ng-model="reg_info.email" required>
                     </div>
-                    <input type="text" class="form-control" placeholder="邮箱" ng-model="reg_info.email" required>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="icon-key icon-large"></i></div>
+                         <input type="password" class="form-control" placeholder="密码" ng-model="reg_info.password" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="icon-key icon-large"></i></div>
+                         <input type="password" class="form-control" placeholder="密码" ng-model="reg_info.re_password" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group"  id = "captcha_form">
+                        <div class="input-group-addon"><i class="icon-picture icon-large"></i></div>
+                        <input type="text" class="form-control" placeholder="请输入验证码" ng-model="reg_info.captcha" required>
+                    </div>
+                    <img ng-src='[[captcha_url]]' id="captcha_img" alt="验证码">
+                    <a ng-click="refresh()" class="btn btn-link">换一张</a>
+
                 </div>
             </div>
-
-            <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-addon"><i class="icon-key icon-large"></i></div>
-                     <input type="password" class="form-control" placeholder="密码" ng-model="reg_info.password" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-addon"><i class="icon-key icon-large"></i></div>
-                     <input type="password" class="form-control" placeholder="密码" ng-model="reg_info.re_password" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-addon"><i class="icon-picture icon-large"></i></div>
-                    <input type="text" class="form-control" placeholder="验证码" ng-model="reg_info.captcha" required>
-                </div>
-                <img ng-src='[[captcha_url]]' id="captcha" alt="验证码">
-                <button type="button" ng-click="refresh()" class="btn btn-link">看不清？刷新验证码</button>
-            </div>
-
             <button id="login_button">注册<i class="icon-circle-arrow-right"></i></button>
         </form>
     </div>
