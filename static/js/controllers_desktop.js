@@ -44,7 +44,7 @@ angular.module('chuangplus.controllers', []).
             $csrf.set_csrf($scope.login_info);
             $http.post(urls.api+"/account/login", $.param($scope.login_info)).
                 success(function(data){
-                    if(data.code == 1){
+                    if(data.error.code == 1){
                         console.log("login successfully!");
                         window.location.href = '/';
                     }
@@ -80,7 +80,7 @@ angular.module('chuangplus.controllers', []).
             $csrf.set_csrf($scope.reg_info);
             $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
                 success(function(data){
-                    if(data.code == 1){
+                    if(data.error.code == 1){
                         console.log("regist successfully!");
                         alert("注册成功");
                         setTimeout(function(){location.href='/'},2000);
@@ -102,7 +102,7 @@ angular.module('chuangplus.controllers', []).
         $csrf.set_csrf($scope.find);
         $http.post(urls.api+"/account/sendemail", $.param($scope.find)).
             success(function(data){
-                if(data.code == 1){
+                if(data.error.code == 1){
                     $cookieStore.put("email",$scope.find.email);
                     window.location.href = '/password/set';
                 }
@@ -126,7 +126,7 @@ angular.module('chuangplus.controllers', []).
         $csrf.set_csrf($scope.infos);
         $http.post(urls.api+"/account/userinfo/set",$.param($scope.infos)).
           success(function(data){
-            if (data.code == 1){
+            if (data.error.code == 1){
               console.log("Set information successfully!");
               alert("个人信息设置成功");
               setTimeout(function(){location.href='/'},2000);
