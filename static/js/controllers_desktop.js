@@ -15,9 +15,6 @@ angular.module('chuangplus.controllers', []).
                     if(data.error.code == 1){
                         window.location.href = '/login';
                     }
-                    else{
-                        alert('error');
-                    }
                 });
         };
     }]).
@@ -46,7 +43,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         console.log("login successfully!");
-                        window.location.href = '/';
+                        setTimeout(function(){window.location.href='/'},1000);
                     }
                     else{
                         console.log(data.error.message);
@@ -83,7 +80,7 @@ angular.module('chuangplus.controllers', []).
                     if(data.error.code == 1){
                         console.log("regist successfully!");
                         alert("注册成功");
-                        setTimeout(function(){location.href='/'},2000);
+                        setTimeout(function(){window.location.href='/'},1500);
                     }
                     else{
                         alert(data.error.message);
@@ -107,10 +104,8 @@ angular.module('chuangplus.controllers', []).
                     window.location.href = '/password/set';
                 }
                 else{
-                    $cookieStore.put("email",$scope.find.email);
-                    window.location.href = '/password/set';
-                    //alert(data.error.message);
-                    //setTimeout(function(){location.href='/password/findpwd'},2000);
+                    alert(data.error.message);
+                    setTimeout(function(){location.href='/password/findpwd'},2000);
                 }
             });
       }
