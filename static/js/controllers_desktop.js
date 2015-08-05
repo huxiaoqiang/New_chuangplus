@@ -12,7 +12,7 @@ angular.module('chuangplus.controllers', []).
             $http.get(urls.api+"/account/logout").
                 success(function(data){
                     console.log(data);
-                    if(data.code == 1){
+                    if(data.error.code == 1){
                         window.location.href = '/login';
                     }
                     else{
