@@ -1,0 +1,188 @@
+header {
+  font-family: "微软雅黑";
+}
+header #header .navbar {
+  border-radius: 0px;
+}
+header #header .navbar .navbar-header {
+  margin-left: 10%;
+}
+header #header .navbar .navbar-header img {
+  width: 22%;
+}
+header #header .navbar .navbar-nav {
+  float: right;
+  margin-right: 10%;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body,
+#wrap {
+  height: 100%;
+}
+body > #wrap {
+  height: auto;
+  min-height: 81%;
+}
+#main-container {
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 70px;
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearfix {
+  display: inline-block;
+}
+* html .clearfix {
+  height: 1%;
+}
+.clearfix {
+  display: block;
+}
+#footer {
+  font-family: "微软雅黑";
+  background-color: #8e8e8e;
+}
+#footer .container .navbar-footer #footer-navbar-logo {
+  padding-top: 43px;
+  padding-bottom: 43px;
+  float: left;
+}
+#footer .container #footer-nav {
+  float: left;
+}
+#footer .container #footer-nav li {
+  height: 136px;
+  float: left;
+  list-style-type: none;
+  padding-top: 27%;
+}
+#footer .container #footer-nav li a {
+  padding-top: 56.5px;
+  padding-right: 4px;
+  padding-bottom: 56.5px;
+  padding-left: 4px;
+  text-align: center;
+  color: white;
+}
+#footer .container #footer-brand {
+  float: right;
+  color: white;
+  padding-top: 4%;
+}
+#container {
+  margin: 0 auto;
+  display: block;
+}
+#container #login {
+  font-family: "微软雅黑";
+}
+#container #login .ui.segment.form {
+  padding: 0em;
+}
+#container #login .ui.segment.form .nav-tabs {
+  border-bottom: 0px;
+}
+#container #login .ui.segment.form .nav-tabs li {
+  width: 50%;
+  text-align: center;
+  background-color: #d8d8d8;
+}
+#container #login .ui.segment.form .nav-tabs li .active {
+  background-color: #FFFFFF;
+}
+#container #login .ui.segment.form .nav-tabs li a {
+  font-size: 18px;
+  color: #000000;
+}
+#container #login .ui.segment.form .nav-tabs li a:hover {
+  background-color: white;
+}
+#container #login .ui.segment.form #login_form {
+  padding: 2em;
+}
+#container #login .ui.segment.form #login_form #captcha_form {
+  width: 40%;
+  float: left;
+}
+#container #login .ui.segment.form #login_form #captcha_form input {
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  height: 40px;
+}
+#container #login .ui.segment.form #login_form #captcha_img {
+  margin-left: 3%;
+  height: 40px;
+}
+#container #login .ui.segment.form #login_form #login_button {
+  width: 100%;
+  height: 40px;
+  border-radius: 0.3em;
+  background-color: #a372ff;
+  color: white;
+  font-size: 1.2em;
+}
+#container #login .ui.segment.form #login_form #options #findpwd {
+  color: #000000;
+}
+#container #login .ui.segment.form #login_form #options .regbtn {
+  float: right;
+  color: #61c2f2;
+}
+#container #register {
+  font-family: "微软雅黑";
+}
+#container #register .ui.segment.form {
+  padding: 0em;
+}
+#container #register .ui.segment.form .nav-tabs {
+  border-bottom: 0px;
+}
+#container #register .ui.segment.form .nav-tabs li {
+  width: 50%;
+  text-align: center;
+  background-color: #d8d8d8;
+}
+#container #register .ui.segment.form .nav-tabs li .active {
+  background-color: #FFFFFF;
+}
+#container #register .ui.segment.form .nav-tabs li a {
+  font-size: 18px;
+  color: #000000;
+}
+#container #register .ui.segment.form .nav-tabs li a:hover {
+  background-color: white;
+}
+#container #register .ui.segment.form #reg_form {
+  padding: 2em;
+}
+#container #register .ui.segment.form #reg_form #captcha_form {
+  width: 40%;
+  float: left;
+}
+#container #register .ui.segment.form #reg_form #captcha_form input {
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  height: 40px;
+}
+#container #register .ui.segment.form #reg_form #captcha_img {
+  margin-left: 3%;
+  height: 40px;
+}
+#container #register .ui.segment.form #reg_form #options {
+  float: right;
+}
+.input-group-addon {
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+}
