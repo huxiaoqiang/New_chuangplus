@@ -9,6 +9,7 @@ angular.module('chuangplus.controllers', []).
     controller('DT_LoginCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_LoginCtrl');
         $scope.login_info = {};
+        $scope.login_info.role = 0;
         $scope.captcha_url = urls.api+"/captcha/image/";
 
         $scope.student = function(){
@@ -45,6 +46,7 @@ angular.module('chuangplus.controllers', []).
     controller('DT_RegisterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_RegisterCtrl');
         $scope.reg_info = {};
+        $scope.reg_info.role = 0;
         $scope.captcha_url = urls.api+"/captcha/image/";
         $scope.refresh = function(){
             $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
@@ -52,12 +54,12 @@ angular.module('chuangplus.controllers', []).
          $scope.student = function(){
             $scope.tab1 = true;
             $scope.tab2 = false;
-            $scope.login_info.role = 0;
+            $scope.reg_info.role = 0;
         };
         $scope.hr = function(){
             $scope.tab1 = false;
             $scope.tab2 = true;
-            $scope.login_info.role = 1;
+            $scope.reg_info.role = 1;
         };
         $scope.register = function(){
             $csrf.set_csrf($scope.reg_info);
