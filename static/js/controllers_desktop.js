@@ -49,6 +49,16 @@ angular.module('chuangplus.controllers', []).
         $scope.refresh = function(){
             $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
         };
+         $scope.student = function(){
+            $scope.tab1 = true;
+            $scope.tab2 = false;
+            $scope.login_info.role = 0;
+        };
+        $scope.hr = function(){
+            $scope.tab1 = false;
+            $scope.tab2 = true;
+            $scope.login_info.role = 1;
+        };
         $scope.register = function(){
             $csrf.set_csrf($scope.reg_info);
             $http.post(urls.api+"/account/register", $.param($scope.reg_info)).

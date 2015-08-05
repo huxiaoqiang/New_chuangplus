@@ -2,9 +2,9 @@
     <div id="register" class="col-md-5">
 
         <form class="ui form segment" ng-submit="register()">
-            <ul class="nav nav-tabs">
-              <li role="presentation" class="active"><a href="#">我是学生</a></li>
-              <li role="presentation"><a href="#">我是企业HR</a></li>
+            <ul class="nav nav-tabs" ng-init="tab1=true">
+              <li role="presentation" ng-class="{'active':tab1}" ng-click="student()"><a href="#">我是学生</a></li>
+              <li role="presentation" ng-class="{'active':tab2}" ng-click="hr()"><a href="#">我是企业HR</a></li>
             </ul>
             <div id="reg_form">
                <div class="form-group">
@@ -19,7 +19,7 @@
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon">
-                            <i class="icon-user icon-large"></i>
+                            <i class="icon-envelope icon-large"></i>
                         </div>
                         <input type="text" class="form-control" placeholder="邮箱" ng-model="reg_info.email" required>
                     </div>
@@ -42,14 +42,20 @@
                 <div class="form-group">
                     <div class="input-group"  id = "captcha_form">
                         <div class="input-group-addon"><i class="icon-picture icon-large"></i></div>
-                        <input type="text" class="form-control" placeholder="请输入验证码" ng-model="reg_info.captcha" required>
+                        <input type="text" class="form-control" placeholder="验证码" ng-model="reg_info.captcha" required>
                     </div>
                     <img ng-src='[[captcha_url]]' id="captcha_img" alt="验证码">
                     <a ng-click="refresh()" class="btn btn-link">换一张</a>
 
                 </div>
+                <button id="regist_button">注册<i class="icon-circle-arrow-right"></i></button>
+                </br>
+                <div id="options">
+                    已有犀牛账号？
+                    <a title="登录账号" class="regbtn" href="/login">立即登录</a>
+                </div>
             </div>
-            <button id="login_button">注册<i class="icon-circle-arrow-right"></i></button>
+
         </form>
     </div>
 </div>
