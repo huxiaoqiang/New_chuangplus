@@ -76,6 +76,34 @@ angular.module('chuangplus.controllers', []).
                 });
         };
     }]).
+    controller('DT_FindPwdCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','$cookieStore', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$cookieStore){
+      console.log('DT_FindPwdCtrl');
+      $scope.find = {};
+      $scope.captcha_url = urls.api+"/captcha/image/";
+      $scope.refresh = function(){
+            $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
+        };
+      $scope.findpwd = function(){
+        $csrf.set_csrf($scope.find);
+        $http.post(urls.api+"/account/sendemail", $.param($scope.find)).
+            success(function(data){
+                if(data.error.code == 1){
+                    $cookieStore.put("email",$scope.find.email);
+                    window.location.href = '/password/set';
+                }
+                else{
+                    $cookieStore.put("email",$scope.find.email);
+                    window.location.href = '/password/set';
+                    //alert(data.error.message);
+                    //setTimeout(function(){location.href='/password/findpwd'},2000);
+                }
+            });
+      }
+    }]).
+    controller('DT_SetPwdCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','$cookieStore', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $cookieStore){
+      console.log('DT_SetPwdCtrl');
+      $scope.email = $cookieStore.get("email");
+    }]).
     controller('DT_InformationCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
       console.log('DT_InformationCtrl');
       $scope.infos = {};
@@ -93,6 +121,9 @@ angular.module('chuangplus.controllers', []).
             }
           });
       };
+    }]).
+    controller('DT_FinishPwdCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+        console.log('DT_FinishPwdCtrl');
     }]).
     controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_HeaderCtrl');

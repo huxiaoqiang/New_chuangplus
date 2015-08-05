@@ -522,7 +522,7 @@ def send_email(request):
         if session_captcha.upper() != request_captcha.upper():
             re['error'] = error(101,'Captcha error!')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
-        
+
         correct_code = ''
         for i in range(6):
             correct_code += str(randint(0, 9)) 

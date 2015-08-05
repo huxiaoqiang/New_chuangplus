@@ -129,11 +129,11 @@ body > #wrap {
   width: 100%;
   height: 40px;
   border-radius: 0.3em;
-  background-color: #a372ff;
+  background-color: #8c5d90;
   color: white;
   font-size: 1.2em;
 }
-#container #login .ui.segment.form #login_form #options #findpwd {
+#container #login .ui.segment.form #login_form #options .findpwd {
   color: #000000;
 }
 #container #login .ui.segment.form #login_form #options .regbtn {
@@ -185,12 +185,49 @@ body > #wrap {
   width: 100%;
   height: 40px;
   border-radius: 0.3em;
-  background-color: #a372ff;
+  background-color: #8c5d90;
   color: white;
   font-size: 1.2em;
 }
 #container #register .ui.segment.form #reg_form #options {
   float: right;
+}
+#container {
+  font-family: "微软雅黑";
+}
+#container #findpwd #passport-finder #progress ul li {
+  list-style-type: none;
+  position: relative;
+  float: left;
+  background-color: #e4e4e4;
+  width: 30%;
+  line-height: 30px;
+  text-align: center;
+}
+#container #findpwd #passport-finder #progress ul li em {
+  background-image: url(/static/image/icon/arrow_progress.png);
+  width: 32px;
+  height: 30px;
+  position: absolute;
+  left: -16px;
+}
+#container #findpwd #passport-finder #progress ul li.current {
+  background-color: #8c5d90;
+  color: white;
+}
+#container #findpwd #passport-finder #verify {
+  width: 50%;
+  margin-left: 11%;
+  margin-top: 25px;
+}
+#container #findpwd #passport-finder #verify #findpwd-form {
+  padding-top: 20%;
+}
+#container #findpwd #finish {
+  margin: 0 auto;
+  margin-top: 20%;
+  text-align: center;
+  font-size: 1.5em;
 }
 .input-group-addon {
   border-top-left-radius: 0.5em;
