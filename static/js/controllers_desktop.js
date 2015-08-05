@@ -6,6 +6,21 @@ angular.module('chuangplus.controllers', []).
     controller('DT_HomepageCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('HomepageCtrl');
     }]).
+    controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+        console.log('DT_HeaderCtrl');
+        $scope.logout = function(){
+            $http.get(urls.api+"/account/logout").
+                success(function(data){
+                    console.log(data);
+                    if(data.error.code == 1){
+                        window.location.href = '/login';
+                    }
+                    else{
+                        alert('error');
+                    }
+                });
+        };
+    }]).
     controller('DT_LoginCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_LoginCtrl');
         $scope.login_info = {};
@@ -124,15 +139,4 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_FinishPwdCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_FinishPwdCtrl');
-    }]).
-    controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
-        console.log('DT_HeaderCtrl');
-        $scope.logout = function(){
-            $http.get(urls.api+"/account/logout").
-                success(function(data){
-                    if(data.error.code == 1){
-                        window.location.href = '/login';
-                    }
-                });
-        };
     }]);
