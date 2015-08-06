@@ -54,6 +54,8 @@ angular.module('chuangplus', [
         $routeProvider.when('/mobile/compfilter', {templateUrl: urls.part_mobile + '/compfilter.html',title:'Companyfilter'});
         $routeProvider.when('/mobile/posifilter', {templateUrl: urls.part_mobile + '/posifilter.html',title:'Posifilter'});
         $routeProvider.when('/mobile/info', {templateUrl: urls.part_mobile + '/info.html',title:'Info'});
+        $routeProvider.when('/mobile/', {templateUrl: urls.part_mobile + '/mobile_index.html',title:'HomePage'});
+        
         $routeProvider.otherwise({redirectTo: '/'});
     }]).
 //  the google analytics configure
