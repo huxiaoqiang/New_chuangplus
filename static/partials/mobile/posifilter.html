@@ -1,16 +1,4 @@
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
-<meta name="apple-mobile-web-app-status-bar-style" content="yes" />
-
-<link rel="stylesheet" href="/static/lib/mobile-angular/css/mobile-angular-ui-hover.min.css" />
-<link rel="stylesheet" href="/static/lib/mobile-angular/css/mobile-angular-ui-base.min.css" />
-<link rel="stylesheet" href="/static/lib/mobile-angular/css/mobile-angular-ui-desktop.min.css" />
-<link rel="stylesheet" href="/static/css/style.css" />
-<script src="/static/lib/mobile-angular/js/mobile-angular-ui.min.js"></script>
-<!-- Required to use $touch, $swipe, $drag and $translate services -->
-<script src="/static/lib/mobile-angular/js/mobile-angular-ui.gestures.min.js"></script>
-
+ 
 <div class="main-content">
 
     <div class="header-bar">
@@ -18,51 +6,101 @@
     </div>    
     <div class="padding">
     <form name="posi-filter" id="posi-filter" >
-        <div class="filter-box">
+        <div class="filter-squ">
             <div class="filter-title">
-                请选择您想要查看的职位类型
+                每周只多工作几天
             </div>
 
             <div class="filter-elem">
-                <input type="checkbox" value="1" id="1"/><label for="1">没有要求</label> 
+                <label><input type="checkbox" value="1" >弹性时间</label> 
             </div>
             <div class="filter-elem">
-                <input type="checkbox" value="2" id="2"/><label for="2">技术</label> 
+                <label><input type="checkbox" value="2"/>3天</label> 
             </div>
             <div class="filter-elem">
-                <input type="checkbox" value="3" id="3"/><label for="3">运营</label> 
+                <label><input type="checkbox" value="3"/>4天</label> 
             </div>
             <div class="filter-elem">
-                <input type="checkbox" value="4" id="4"/><label for="4">产品</label> 
+                <label><input type="checkbox" value="4"/>5天</label> 
             </div>
             <div class="filter-elem">
-                <input type="checkbox" value="5" id="5"/><label for="5">设计</label> 
+                <label><input type="checkbox" value="5"/>6天</label> 
             </div>
 
         </div>
 
-        <div class="filter-box">
+        <div class="filter-squ">
             <div class="filter-title">
-                现阶段犀牛只提供工作地点在北京的职位
+                月薪下限
             </div>
 
-            <p>
-                如果您有在其他城市实习的需求
-                <br>
-                请在下方文本框中填写目标城市
-                <br>
-                犀牛会尽快拓展业务
-                <br>
-                更好地为您服务
-            </p>
-
-          <span class="panel-radius form-control info-input">
-            <input class="panel-elem-1" type="text" placeholder="城市名称">
-          </span>
+            <div class="filter-elem">
+                <label><input type="checkbox" value="1" id="1"/>没有要求</label> 
+            </div>
 
 
+            <div class="filter-elem">
+                请填写整数
+                <input type="text" class="inline-input"/>
+                K
+            </div>
+        </div>
 
-        <button class="panel-radius form-control btn-b-pur filter-btn">查看在招岗位</button>
+        <div class="filter-squ">
+            <div class="filter-title">
+                行业/领域
+            </div>
+
+            <div class="filter-elem">
+                <label><input type="checkbox" value="1" />没有要求</label> 
+            </div>
+            <div class="filter-elem">
+                <label><input type="checkbox" value="2" />社交</label> 
+            </div>
+            <div class="filter-elem">
+                <label><input type="checkbox" value="3" />电子商务</label> 
+            </div>
+            <div class="filter-elem">
+                <label><input type="checkbox" value="4" />教育</label> 
+            </div>
+            <div class="filter-elem">
+                <label><input type="checkbox" value="5" />健康医疗</label> 
+            </div>
+            <div class="filter-elem">
+                <label><input type="checkbox" value="6" />文化创意</label> 
+            </div>
+
+        </div>
+
+        <div class="filter-squ">
+            <div class="filter-title">
+                职位类型
+            </div>
+
+            <div class="filter-elem">
+                <label><input type="checkbox" value="1" />没有要求</label> 
+            </div>
+            <div class="filter-elem">
+                <label><input type="checkbox" value="2" />技术</label> 
+            </div>
+            <div class="filter-elem">
+                <label><input type="checkbox" value="3" />运营</label> 
+            </div>
+            <div class="filter-elem">
+                <label><input type="checkbox" value="4" />产品</label> 
+            </div>
+            <div class="filter-elem">
+                <label><input type="checkbox" value="5" />设计</label> 
+            </div>
+            <div class="filter-elem">
+                <label><input type="checkbox" value="6" />市场销售</label> 
+            </div>
+
+        </div>
+
+
+
+        <button class="panel-radius form-control btn-b-pur filter-btn">按条件筛选职位</button>
     </form>
     </div>
 
@@ -72,8 +110,3 @@
         <div class="nav-bar-3 ">个人中心</div>
     </div>
 </div>
-<script src="/static/js/app.js"></script>
-<script src="/static/js/services.js"></script>
-<script src="/static/js/controllers.js"></script>
-<script src="/static/js/filters.js"></script>
-<script src="/static/js/directives.js"></script>

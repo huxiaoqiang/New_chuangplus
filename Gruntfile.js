@@ -7,7 +7,8 @@ module.exports = function(grunt) {
                     yuicompress: true
                 },
                 files: {
-                    './static/css/desktop/base.css': './static/less/desktop/base.less'
+                    './static/css/desktop/base.css': './static/less/desktop/base.less',
+                    './static/css/mobile/style.css': './static/less/mobile/base.less'
                 }
             }
         },
@@ -23,7 +24,7 @@ module.exports = function(grunt) {
 //            }
 //        },
         watch: {
-            files: "./static/less/desktop/*.less",
+            files: ["./static/less/desktop/*.less","./static/less/mobile/*.less"],
             tasks: ['less']
         }
     });

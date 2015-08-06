@@ -38,7 +38,7 @@
 @cl-require-boxpd:  12px;
 
 @cl-search-hgt:    46px;
-
+@cl-require-btn-rad :   8px;
 
 @cl-nav-hgt:        54px;  
 @cl-nav-fsize:        20px;   
@@ -50,7 +50,7 @@
 @cl-header-fsize:    23px;
 @cl-header-logo-mgn:    10px;
 
-@cl-listbox-hgt:    110px;
+@cl-listbox-hgt:    114px;
 @cl-comp-img-size:  95px;
 @cl-comp-name-fsize:    16px;
 @cl-comp-desc-fsize:    10px;
@@ -69,12 +69,26 @@
 @fil-header-bottom :   5px;
 @fil-header-fsize:  18px;
 @filter-fsize   : 15px;
+
+//posifilter.html
+
+@detail-bottom :   15px;
+
 //gengeral
 
 body
 {
-
+    font-weight: normal;
     overflow-y:scroll;
+}
+
+.absolute-center
+{
+
+  margin: auto;  
+  position: absolute;  
+  top: 0; left: 0; bottom: 0; right: 0;  
+
 }
 
 .main-content
@@ -82,7 +96,6 @@ body
     min-width: 280px;
     display: block;
 }
-
 
 .panel-group-top
 {
@@ -300,12 +313,12 @@ body
     background: white;
     overflow: hidden;
 }
-.require-bar .require-btn
+.require-btn
 {
     height: @cl-require-hgt - 10px;
     margin: 5px 5px 5px 0 ;
     position: absolute;
-    border-radius: @btn-radius;
+    border-radius: @cl-require-btn-rad ;
     width: 22%;
     padding: 0;
     right: 0;
@@ -365,21 +378,21 @@ body
 
 
 }
-.comp-auth
+.comp-listbox .comp-auth
 {
     float: right;
     margin-top:(@cl-listbox-hgt - @cl-comp-img-size);
     margin-right: (@cl-listbox-hgt - @cl-comp-img-size);
     font-size: @cl-comp-desc-fsize;
 }
-.comp-name
+.comp-listbox .comp-name
 {
     margin-top: (@cl-listbox-hgt - @cl-comp-img-size)/2 ;
     line-height: @cl-come-lineh;
     font-size: @cl-comp-name-fsize;
     overflow: hidden;
 }
-.comp-desc
+.comp-listbox .comp-desc
 {
     line-height: @cl-come-lineh;
     font-size: @cl-comp-desc-fsize;
@@ -388,7 +401,7 @@ body
 }
 .comp-req-list
 {   
-    line-height: @cl-come-lineh;
+    line-height: @cl-come-lineh+2px;
     overflow: hidden;
 }
 .comp-req-title
@@ -409,7 +422,7 @@ body
 }
 
 .comp-desc-list{
-    line-height: @cl-come-lineh;
+    line-height: @cl-come-lineh+2px;
     overflow: hidden;
 }
 .comp-desc-tag
@@ -427,6 +440,7 @@ body
 
 .comp-benefit-list{
     line-height: @cl-come-lineh;
+    overflow: hidden;
 }
 .comp-benefit-tag
 {
@@ -448,14 +462,27 @@ body
     height: @cl-nav-hgt;
     position: fixed;
     width: 100%;
-    bottom: 0;
+    bottom: 0; left: 0;
     border: 1px solid @lit-gray;
     background: white;
 }
 .nav-bar-3
 {
     display: block;
-    width: 33.33%;
+    width: 33.32%;
+    float: left;
+    height: @cl-nav-hgt;
+    line-height: @cl-nav-hgt;
+    font-size: @cl-nav-fsize;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid @lit-gray;
+    border-top: 0;
+}
+.nav-bar-2
+{
+    display: block;
+    width: 49.99%;
     float: left;
     height: @cl-nav-hgt;
     line-height: @cl-nav-hgt;
@@ -485,17 +512,13 @@ body
     overflow: auto;
 }
 
-.filter-squ input[type="checkbox"]
-{
-    border:3px solid #CCC;
-}
-
 .filter-squ label
 {
     border-radius: 0;
     border-color: @std-purple;
     border-width: @btn-border;
     font-size: @filter-fsize;
+    text-wrap:none;
 }
 
 .filter-btn
@@ -513,9 +536,14 @@ body
 .filter-elem
 {
     float: left;
-    width: (100% / @filter-each-line);
+    //width: (100% / @filter-each-line);
+    min-width: (100% / @filter-each-line);
     display: block;
     overflow: hidden;
+}
+.filter-elem input[type="checkbox"]
+{
+    margin-right: 3px;
 }
 
 .btn-b-pur
@@ -525,7 +553,65 @@ body
 }
 
 
+//posifilter.html
 
+.inline-input{
+    height: inherit;
+    margin: 5px 5px 5px 0 ;
+    border-radius: @btn-radius;
+    width: 22%;
+    background: white;
+    border: 1px solid @mid-gray;
+}
 
+//id.html
+.id-list
+{
+    height: (@info-input-mag+ @btn-height) *4 + @btn-height;
+}
 
+//posidetail.html
+.comp-detail
+{
+    padding-bottom: @detail-bottom;
+    background: @lit-gray;
+}
+
+.posi-detail
+{
+    background: white;
+    padding-bottom: 5px;
+    margin: 10px 0 0px 0;
+}
+.posi-detail .detail-name
+{
+    font-size: @cl-header-fsize;
+}
+
+.comp-map
+{
+    padding: 8px @padding-hor 8px @padding-hor;
+    background-color: white;
+    margin-top: 2px;
+    color: @dark-gray;
+    font-size: 18px;
+}
+
+.detail-desc
+{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: block;
+}
+.detail-desc .desc-block
+{
+    margin-bottom: 20px;
+}
+.detail-desc .desc-block .desc-title
+{
+    color: @std-purple;
+    padding-bottom: 10px;
+    font-size: 18px;
+    display: block;
+}
 
