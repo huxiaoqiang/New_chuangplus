@@ -20,6 +20,6 @@ urlpatterns = [
 
 urlpatterns += [
     url(r'^weixin/','app.weixinInterface.weixin'),
-    url(r'^mobile/$','app.views.mobile_index'),
+    url(r'^mobile/.*','app.views.mobile_index'),
     url(r'^.*$', 'app.views.index'),
 ]

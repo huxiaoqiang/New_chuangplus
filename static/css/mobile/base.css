@@ -1,188 +1,280 @@
-header {
-  font-family: "微软雅黑";
+body {
+  overflow-y: scroll;
 }
-header #header .navbar {
-  border-radius: 0px;
-}
-header #header .navbar .navbar-header {
-  margin-left: 10%;
-}
-header #header .navbar .navbar-header img {
-  width: 22%;
-}
-header #header .navbar .navbar-nav {
-  float: right;
-  margin-right: 10%;
-}
-* {
-  margin: 0;
-  padding: 0;
-}
-html,
-body,
-#wrap {
-  height: 100%;
-}
-body > #wrap {
-  height: auto;
-  min-height: 81%;
-}
-#main-container {
-  width: 960px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-bottom: 70px;
-}
-.clearfix:after {
-  content: ".";
-  display: block;
-  height: 0;
-  clear: both;
-  visibility: hidden;
-}
-.clearfix {
-  display: inline-block;
-}
-* html .clearfix {
-  height: 1%;
-}
-.clearfix {
+.main-content {
+  min-width: 280px;
   display: block;
 }
-#footer {
-  font-family: "微软雅黑";
-  background-color: #8e8e8e;
-}
-#footer .container .navbar-footer #footer-navbar-logo {
-  padding-top: 43px;
-  padding-bottom: 43px;
-  float: left;
-}
-#footer .container #footer-nav {
-  float: left;
-}
-#footer .container #footer-nav li {
-  height: 136px;
-  float: left;
-  list-style-type: none;
-  padding-top: 27%;
-}
-#footer .container #footer-nav li a {
-  padding-top: 56.5px;
-  padding-right: 4px;
-  padding-bottom: 56.5px;
-  padding-left: 4px;
-  text-align: center;
-  color: white;
-}
-#footer .container #footer-brand {
-  float: right;
-  color: white;
-  padding-top: 4%;
-}
-#container {
-  margin: 0 auto;
-  display: block;
-}
-#container #login {
-  font-family: "微软雅黑";
-}
-#container #login .ui.segment.form {
-  padding: 0em;
-}
-#container #login .ui.segment.form .nav-tabs {
-  border-bottom: 0px;
-}
-#container #login .ui.segment.form .nav-tabs li {
-  width: 50%;
-  text-align: center;
-  background-color: #d8d8d8;
-}
-#container #login .ui.segment.form .nav-tabs li .active {
-  background-color: #FFFFFF;
-}
-#container #login .ui.segment.form .nav-tabs li a {
-  font-size: 18px;
-  color: #000000;
-}
-#container #login .ui.segment.form .nav-tabs li a:hover {
-  background-color: white;
-}
-#container #login .ui.segment.form #login_form {
-  padding: 2em;
-}
-#container #login .ui.segment.form #login_form #captcha_form {
-  width: 40%;
-  float: left;
-}
-#container #login .ui.segment.form #login_form #captcha_form input {
-  border-top-right-radius: 0.5em;
-  border-bottom-right-radius: 0.5em;
-  height: 40px;
-}
-#container #login .ui.segment.form #login_form #captcha_img {
-  margin-left: 3%;
-  height: 40px;
-}
-#container #login .ui.segment.form #login_form #login_button {
+.panel-group-top {
+  height: 60px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border: 2px solid #966497;
+  background: white;
   width: 100%;
-  height: 40px;
-  border-radius: 0.3em;
-  background-color: #a372ff;
-  color: white;
-  font-size: 1.2em;
+  display: block;
 }
-#container #login .ui.segment.form #login_form #options #findpwd {
-  color: #000000;
+.panel-group-mid {
+  height: 60px;
+  background: white;
+  border-radius: 0;
+  margin-top: -2px;
+  border: 2px solid #966497;
+  width: 100%;
+  display: block;
 }
-#container #login .ui.segment.form #login_form #options .regbtn {
-  float: right;
-  color: #61c2f2;
+.panel-group-bot {
+  height: 60px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: 2px solid #966497;
+  margin-top: -2px;
+  width: 100%;
+  display: block;
 }
-#container #register {
-  font-family: "微软雅黑";
+.panel-radius {
+  height: 54px;
+  border: 2px solid #966497;
+  background: white;
+  color: #966497;
+  font-size: 25px;
+  border-radius: 10px;
 }
-#container #register .ui.segment.form {
-  padding: 0em;
+.login-btn {
+  margin-bottom: 18px;
 }
-#container #register .ui.segment.form .nav-tabs {
-  border-bottom: 0px;
+.panel-list {
+  width: 100%;
+  padding: 0 20px 0 20px;
 }
-#container #register .ui.segment.form .nav-tabs li {
+.panel-list input {
+  border: 0;
+  border-radius: inherit;
+}
+.panel-elem {
+  display: block;
+  float: left;
+  position: relative;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  font-size: 18px;
+}
+.elem-width-4 {
+  width: 25%;
+}
+.elem-width-43 {
+  width: 75%;
+}
+.elem-width-2 {
+  width: 50%;
+}
+.elem-width-full {
+  width: 100%;
+}
+.panel-title {
+  color: #966497;
+  text-align: center;
+  line-height: 54px;
+  margin: 0 0 0 0;
+}
+.login-header {
+  height: 180px;
+  text-align: center;
+}
+.login-header .logo {
+  width: 90px;
+  margin-top: 20px;
+}
+.login-header .name {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 20pt;
+}
+.login-input {
+  position: relative;
+  margin-bottom: 50px;
+}
+.info-input-content {
+  margin-top: 120px;
+}
+.info-input {
+  margin-bottom: 20px;
+}
+.info-enter {
+  margin-top: 130px;
+}
+.header-bar {
+  display: block;
+  height: 50px;
+  background: #966497;
+}
+.header-bar .header {
   width: 50%;
   text-align: center;
-  background-color: #d8d8d8;
+  height: 50px;
+  line-height: 50px;
+  color: white;
+  font-size: 23px;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
 }
-#container #register .ui.segment.form .nav-tabs li .active {
-  background-color: #FFFFFF;
+.header-bar .logo {
+  float: left;
+  height: 30px;
+  margin: 10px 10px 10px 10px;
 }
-#container #register .ui.segment.form .nav-tabs li a {
-  font-size: 18px;
-  color: #000000;
+.require-bar {
+  overflow: hidden;
+  display: block;
+  height: 46px;
 }
-#container #register .ui.segment.form .nav-tabs li a:hover {
+.require-bar .require-box {
+  font-size: 16px;
+  height: 46px;
+  line-height: 46px;
+  display: block;
+  padding: 0 0 0 12px;
+  float: left;
+  color: #707070;
+}
+.require-bar .requires {
+  position: absolute;
+  display: block;
+  width: 78%;
+  height: 46px;
+  background: white;
+}
+.require-bar .require-btn {
+  height: 36px;
+  margin: 5px 5px 5px 0 ;
+  position: absolute;
+  border-radius: 10px;
+  width: 22%;
+  padding: 0;
+  right: 0;
+}
+.search-bar {
+  display: block;
+  height: 46px;
+  background: #b5b5b5;
+  vertical-align: center;
+  padding: 5px 10px 5px 10px;
+}
+.search-input {
+  border: 0px solid;
+  border-radius: 10px;
+  height: 36px;
+}
+/*
+
+@cl-comp-img-size:  80px;
+@cl-comp-name-fsize:    16px;
+@cl-comp-desc-fsize:    10px;
+@cl-comp-req-fsize:    12px;
+@cl-comp-reqt-fsize:    9px;
+@cl-comp-desct-fsize:    9px;
+@cl-comp-bent-fsize:    8px;
+*/
+.comp-list {
+  background-color: #dcdcdc;
+  padding-bottom: 1px;
+}
+.comp-listbox {
+  display: block;
+  height: 110px;
+  margin-bottom: 3px;
   background-color: white;
+  overflow: hidden;
 }
-#container #register .ui.segment.form #reg_form {
-  padding: 2em;
+.comp-prev-img {
+  float: left;
+  width: 95px;
+  height: 95px;
+  margin: 7.5px 7.5px 7.5px 7.5px;
 }
-#container #register .ui.segment.form #reg_form #captcha_form {
-  width: 40%;
+.comp-auth {
+  float: right;
+  margin-top: 15px;
+  margin-right: 15px;
+  font-size: 10px;
+}
+.comp-name {
+  margin-top: 7.5px;
+  line-height: 19px;
+  font-size: 16px;
+}
+.comp-desc {
+  line-height: 19px;
+  font-size: 10px;
+  color: #dcdcdc;
+}
+.comp-req-list {
+  line-height: 19px;
+}
+.comp-req-title {
+  color: #966497;
+  font-size: 12px;
+}
+.comp-req-tag {
+  padding: 1px 1px 1px 1px ;
+  border-radius: 2px;
+  background-color: #966497;
+  border: 1px solid #966497;
+  color: white;
+  font-size: 10px;
+  margin-right: 5px;
+}
+.comp-desc-list {
+  line-height: 19px;
+}
+.comp-desc-tag {
+  padding: 1px 1px 1px 1px ;
+  border-radius: 2px;
+  background-color: white;
+  color: #966497;
+  border: 1px solid #966497;
+  text-align: center;
+  font-size: 10px;
+  margin-right: 5px;
+}
+.comp-benefit-list {
+  line-height: 19px;
+}
+.comp-benefit-tag {
+  color: #dcdcdc;
+  font-size: 9px;
   float: left;
 }
-#container #register .ui.segment.form #reg_form #captcha_form input {
-  border-top-right-radius: 0.5em;
-  border-bottom-right-radius: 0.5em;
-  height: 40px;
+.nav-bar {
+  display: block;
+  height: 54px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  border: 1px solid #dcdcdc;
+  background: white;
 }
-#container #register .ui.segment.form #reg_form #captcha_img {
-  margin-left: 3%;
-  height: 40px;
+.nav-bar-3 {
+  display: block;
+  width: 33.33%;
+  float: left;
+  height: 54px;
+  line-height: 54px;
+  font-size: 20px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #dcdcdc;
+  border-top: 0;
 }
-#container #register .ui.segment.form #reg_form #options {
-  float: right;
-}
-.input-group-addon {
-  border-top-left-radius: 0.5em;
-  border-bottom-left-radius: 0.5em;
+.nav-bar .selected {
+  background: #966497;
+  border: 0;
 }

@@ -45,11 +45,14 @@ angular.module('chuangplus', [
         $routeProvider.when('/password/set', {templateUrl: urls.part_desktop + '/password/set.html', controller: 'DT_SetPwdCtrl', title: 'SetPwdPage'});
         $routeProvider.when('/password/finish', {templateUrl: urls.part_desktop + '/password/finish.html', controller: 'DT_FinishPwdCtrl', title: 'FinishSetPwdPage'});
         $routeProvider.when('/information', {templateUrl: urls.part_desktop + '/information.html', controller: 'DT_InformationCtrl', title: 'InformationPage'});
-        
+
+        $routeProvider.when('/user/info', {templateUrl: urls.part_desktop + '/user/info.html', controller: 'DT_UserInfoCtrl', title: 'UserInfoPage'});
+       // $routeProvider.when('/user/info', {templateUrl: urls.part_desktop + '/user/info.html', controller: 'DT_UserInfoCtrl', title: 'UserInfoPage'});
+
         //mobile configure
-        $routeProvider.when('/mobile/login', {templateUrl: urls.part_mobile + '/login.html',title:'Login'});
-        $routeProvider.when('/mobile/complist', {templateUrl: urls.part_mobile + '/complist.html',title:'Companylist'});
-        $routeProvider.when('/mobile/info', {templateUrl: urls.part_mobile + '/info.html',title:'Info'});
+        $routeProvider.when('/mobile/login', {templateUrl: urls.part_mobile + '/login.html',controller:'MB_LoginCtrl', title:'Login'});
+        $routeProvider.when('/mobile/complist', {templateUrl: urls.part_mobile + '/complist.html',controller:'MB_CompanyListCtrl', title:'Companylist'});
+        $routeProvider.when('/mobile/info', {templateUrl: urls.part_mobile + '/info.html',controller:'MB_InfoCtrl',title:'Info'});
         $routeProvider.otherwise({redirectTo: '/'});
     }]).
 //  the google analytics configure
