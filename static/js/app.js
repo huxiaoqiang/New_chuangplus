@@ -58,6 +58,8 @@ angular.module('chuangplus', [
 
 
         //mobile configure
+        //mobile configure
+        $routeProvider.when('/mobile/register', {templateUrl: urls.part_mobile + '/register.html',controller:'MB_RegisterCtrl', title:'Register'});
         $routeProvider.when('/mobile/login', {templateUrl: urls.part_mobile + '/login.html',controller:'MB_LoginCtrl', title:'Login'});
         $routeProvider.when('/mobile/complist', {templateUrl: urls.part_mobile + '/complist.html',controller:'MB_CompanyListCtrl', title:'Companylist'});
         $routeProvider.when('/mobile/info', {templateUrl: urls.part_mobile + '/info.html',controller:'MB_InfoCtrl',title:'Info'});
@@ -66,7 +68,19 @@ angular.module('chuangplus', [
         $routeProvider.when('/mobile/compfilter', {templateUrl: urls.part_mobile + '/compfilter.html',title:'Companyfilter'});
         $routeProvider.when('/mobile/posifilter', {templateUrl: urls.part_mobile + '/posifilter.html',title:'Posifilter'});
         $routeProvider.when('/mobile/', {templateUrl: urls.part_mobile + '/mobile_index.html',title:'HomePage'});
+        $routeProvider.when('/mobile/pcenter', {templateUrl: urls.part_mobile + '/pcenter.html',title:'Individual Center'});
+        $routeProvider.when('/mobile/posidetail', {templateUrl: urls.part_mobile + '/posidetail.html',title:'Position Detail'});
+        $routeProvider.when('/mobile/compdetail', {templateUrl: urls.part_mobile + '/compdetail.html',title:'Company Detail'});
+        $routeProvider.when('/mobile/compposi', {templateUrl: urls.part_mobile + '/compposi.html',title:'Company Positions'});
+        $routeProvider.when('/mobile/infoupdate', {templateUrl: urls.part_mobile + '/infoupdate.html',title:'Update Info'});
+        $routeProvider.when('/mobile/mypost', {templateUrl: urls.part_mobile + '/mypost.html',title:'My Posts'});
+
+        $routeProvider.when('/mobile/posicollect', {templateUrl: urls.part_mobile + '/posicollect.html',title:'Position Collection'});
+        $routeProvider.when('/mobile/compcollect', {templateUrl: urls.part_mobile + '/compcollect.html',title:'Company Collection'});
+        $routeProvider.when('/mobile/editresume', {templateUrl: urls.part_mobile + '/editresume.html',title:'Edit Resume'});
+        $routeProvider.when('/mobile/uploadresume', {templateUrl: urls.part_mobile + '/uploadresume.html',title:'Upload Resume'});
         
+
         $routeProvider.otherwise({redirectTo: '/'});
     }]).
 //  the google analytics configure
