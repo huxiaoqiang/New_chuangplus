@@ -8,6 +8,7 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_HeaderCtrl');
+
         $scope.logout = function(){
             $http.get(urls.api+"/account/logout").
                 success(function(data){
@@ -16,6 +17,19 @@ angular.module('chuangplus.controllers', []).
                         window.location.href = '/login';
                     }
                 });
+        };
+        //tab active control
+        $scope.company_active = function(){
+            $scope.company = true;
+            $scope.position = $scope.resume = false;
+        };
+        $scope.position_active = function(){
+            $scope.position = true;
+            $scope.company = $scope.resume = false;
+        };
+        $scope.resume_active = function(){
+            $scope.resume = true;
+            $scope.position = $scope.company = false;
         };
     }]).
     controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
@@ -159,5 +173,8 @@ angular.module('chuangplus.controllers', []).
         $scope.Enter_Xiniu = function(){
             window.location.href = '/';
         }
+    }]).
+    controller('DT_PositionListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+        console.log('DT_PositionListCtrl');
     }]);
 
