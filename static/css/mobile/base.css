@@ -145,6 +145,9 @@ body > #wrap {
 #container #register .ui.segment.form {
   padding: 0em;
 }
+#container #register .ui.segment.form .nav-tabs {
+  border-bottom: 0px;
+}
 #container #register .ui.segment.form .nav-tabs li {
   width: 50%;
   text-align: center;
@@ -175,6 +178,9 @@ body > #wrap {
 #container #register .ui.segment.form #reg_form #captcha_img {
   margin-left: 3%;
   height: 40px;
+}
+#container #register .ui.segment.form #reg_form #options {
+  float: right;
 }
 .input-group-addon {
   border-top-left-radius: 0.5em;

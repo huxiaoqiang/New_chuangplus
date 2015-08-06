@@ -513,6 +513,16 @@ def send_email(request):
             re['error'] = error(102, 'Need post email')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+        try:
+            session_captcha = request.session.get('captcha', False)
+            request_captcha = request.POST.get('captcha','')
+        except KeyError:
+            re['error'] = error(100,"Need captcha!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        if session_captcha.upper() != request_captcha.upper():
+            re['error'] = error(101,'Captcha error!')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+
         correct_code = ''
         for i in range(6):
             correct_code += str(randint(0, 9)) 

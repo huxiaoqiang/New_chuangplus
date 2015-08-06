@@ -1,11 +1,17 @@
-<header controller="DT_HeaderCtrl">
+<header>
     <div id="header">
         <nav class="navbar navbar-default" role="navigation">
            <div class="navbar-header">
-               <img src="/static/image/logo/comp_prev.jpg">
-              <a class="navbar-brand" href="/">犀牛</a>
+               <div id="test">
+                   <a class="navbar-brand" href="/">
+                         <img src="/static/image/logo/comp_prev.jpg">
+                   </a>
+                   <a class="navbar-brand" href="/">
+                                 犀牛
+                   </a>
+               </div>
            </div>
-           <div>
+           <div ng-controller="DT_HeaderCtrl">
               <ul class="nav navbar-nav">
                  <li class="active"><a href="#">公司列表</a></li>
                  <li><a href="#">职位列表</a></li>
@@ -22,7 +28,7 @@
                        <li><a href="#">发布职位</a></li>
                        <li><a href="#">管理职位</a></li>
                        <li class="divider"></li>
-                       <li><a href="#" ng-click="logout()">退出登录</a></li>
+                       <li><a ng-click="logout()">退出登录</a></li>
                     </ul>
                     {% else %}
                     <ul class="dropdown-menu">
@@ -32,7 +38,7 @@
                        <li class="divider"></li>
                        <li><a href="#">收藏的岗位</a></li>
                        <li class="divider"></li>
-                       <li><a href="#" ng-click="logout()">退出登录</a></li>
+                       <li><a ng-click="logout()">退出登录</a></li>
                     </ul>
                     {% endif %}
                     {% else %}

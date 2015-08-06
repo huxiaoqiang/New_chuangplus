@@ -1,0 +1,50 @@
+<div id="container" controller="DT_SetPwdCtrl">
+    <div id="findpwd">
+        <div id="passport-title">
+            <h3>密码找回</h3>
+        </div>
+        <div id="passport-finder">
+            <div id="progress">
+                <ul>
+                    <li>验证用户</li>
+                    <li class="current">修改密码<em></em></li>
+                    <li>完成<em></em></li>
+                </ul>
+            </div>
+            <div id="verify">
+                <form class="form-horizontal" id="findpwd-form" ng-submit="findpwd()">
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">账户邮箱</label>
+                    <div class="col-sm-8">
+                      <label class="control-label">[[email]]</label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="usernameoremail" class="col-sm-4 control-label">邮箱验证码</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" ng-model="find.username_email">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="password" class="col-sm-4 control-label">新密码</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" ng-model="find.captcha">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="password" class="col-sm-4 control-label">确认密码</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" ng-model="find.captcha">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4"></label>
+                    <div class="col-sm-8">
+                        <button type="submit" class="btn btn-primary">下一步</button>
+                    </div>
+                  </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
