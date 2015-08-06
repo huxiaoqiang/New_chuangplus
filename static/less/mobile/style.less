@@ -51,7 +51,7 @@
 @cl-header-logo-mgn:    10px;
 
 @cl-listbox-hgt:    114px;
-@cl-comp-img-size:  95px;
+@cl-comp-img-size:  94px;
 @cl-comp-name-fsize:    16px;
 @cl-comp-desc-fsize:    10px;
 @cl-comp-req-fsize:    12px;
@@ -59,8 +59,8 @@
 @cl-comp-tag-mag:    5px;
 @cl-comp-reqt-fsize:    10px;
 @cl-comp-desct-fsize:    10px;
-@cl-comp-bent-fsize:    9px;
-@cl-come-lineh: 19px;
+@cl-comp-bent-fsize:    10px;
+@cl-come-lineh: 18px;
 
 //compfilter.html
 @filter-each-line : 3;
@@ -80,6 +80,13 @@ body
 {
     font-weight: normal;
     overflow-y:scroll;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+#main-container
+{
+    height: 100%;
+    display: block;
 }
 
 .absolute-center
@@ -95,6 +102,9 @@ body
 {
     min-width: 280px;
     display: block;
+    padding-bottom: @cl-nav-hgt + 10px;
+    height: 100%;
+    background-color: white;
 }
 
 .panel-group-top
@@ -267,6 +277,7 @@ body
     display: block;
     height: @cl-header-hgt;
     background: @std-purple;
+    position: relative;
 }
 .header-bar .header
 {
@@ -278,12 +289,13 @@ body
     font-size: @cl-header-fsize;
     overflow: hidden;
     margin: auto;  
-    position: absolute;  
+    position: relative;  
     left:0; right: 0; 
 }
 .header-bar .logo
 {
     float: left;
+    position: absolute;
     height: @cl-header-hgt - @cl-header-logo-mgn *2;
     margin: @cl-header-logo-mgn @cl-header-logo-mgn @cl-header-logo-mgn @cl-header-logo-mgn ;
 }
@@ -357,6 +369,7 @@ body
 {
     background-color: @lit-gray;
     padding-bottom: 1px;
+    height: 100%;
 }
 .comp-listbox
 {
@@ -365,29 +378,30 @@ body
     margin-bottom: 3px;
     background-color: white;
     overflow: hidden;
+    position: relative;
+
+    padding: (@cl-listbox-hgt - @cl-comp-img-size)/2 
+             0
+            (@cl-listbox-hgt - @cl-comp-img-size)/2
+            (@cl-listbox-hgt - @cl-comp-img-size)/2;
 }
 .comp-prev-img
 {
+    position: relative;
     float: left;
     width: @cl-comp-img-size;
     height: @cl-comp-img-size;
-    margin: (@cl-listbox-hgt - @cl-comp-img-size)/2 
-            (@cl-listbox-hgt - @cl-comp-img-size)/2
-            (@cl-listbox-hgt - @cl-comp-img-size)/2
-            (@cl-listbox-hgt - @cl-comp-img-size)/2;
-
-
+    margin-right: (@cl-listbox-hgt - @cl-comp-img-size)/2 ;
 }
 .comp-listbox .comp-auth
 {
     float: right;
-    margin-top:(@cl-listbox-hgt - @cl-comp-img-size);
+    margin-top:(@cl-listbox-hgt - @cl-comp-img-size)/2;
     margin-right: (@cl-listbox-hgt - @cl-comp-img-size);
     font-size: @cl-comp-desc-fsize;
 }
 .comp-listbox .comp-name
 {
-    margin-top: (@cl-listbox-hgt - @cl-comp-img-size)/2 ;
     line-height: @cl-come-lineh;
     font-size: @cl-comp-name-fsize;
     overflow: hidden;
@@ -396,7 +410,7 @@ body
 {
     line-height: @cl-come-lineh;
     font-size: @cl-comp-desc-fsize;
-    color: @lit-gray;
+    color: @mid-gray;
     overflow: hidden;
 }
 .comp-req-list
@@ -418,7 +432,7 @@ body
     color: white;
     font-size: @cl-comp-reqt-fsize;
     margin-right: @cl-comp-tag-mag;
-
+    text-align: center;
 }
 
 .comp-desc-list{
@@ -435,7 +449,7 @@ body
     text-align: center;
     font-size: @cl-comp-desct-fsize;
     margin-right: @cl-comp-tag-mag;
-
+    text-align: center;
 }
 
 .comp-benefit-list{
@@ -444,7 +458,7 @@ body
 }
 .comp-benefit-tag
 {
-    color:   @lit-gray;
+    color:   @mid-gray;
     font-size: @cl-comp-bent-fsize;
     float: left;
     margin-right: @cl-comp-tag-mag;
@@ -483,6 +497,19 @@ body
 {
     display: block;
     width: 49.99%;
+    float: left;
+    height: @cl-nav-hgt;
+    line-height: @cl-nav-hgt;
+    font-size: @cl-nav-fsize;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid @lit-gray;
+    border-top: 0;
+}
+.nav-bar-1
+{
+    display: block;
+    width: 100%;
     float: left;
     height: @cl-nav-hgt;
     line-height: @cl-nav-hgt;
@@ -575,6 +602,7 @@ body
 {
     padding-bottom: @detail-bottom;
     background: @lit-gray;
+    position: relative;
 }
 
 .posi-detail
@@ -600,12 +628,12 @@ body
 .detail-desc
 {
     padding-top: 15px;
-    padding-bottom: 15px;
     display: block;
+    background-color: white;
 }
 .detail-desc .desc-block
 {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 .detail-desc .desc-block .desc-title
 {
@@ -613,5 +641,152 @@ body
     padding-bottom: 10px;
     font-size: 18px;
     display: block;
+}
+
+.posi-condition{
+  float: right;
+  font-size: 10px;
+}
+.posi-condition-elem {
+  padding: 1px 1px 1px 1px;
+  border-radius: 2px;
+  background-color: @std-purple;
+  border: 1px solid @std-purple;
+  color: white;
+  font-size: 10px;
+  margin-right: 5px;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.comp-more-info
+{
+    margin: auto;
+    position: absolute;
+    top: 0; bottom: 0; right: 15px;
+    font-size: 16px;
+    height: 18px;
+    color: @dark-gray;
+}
+
+.comp-listbox table td
+{
+    overflow: hidden;
+    vertical-align: -webkit-baseline-middle;
+}
+.comp-listbox table
+{
+    font-size: 12px;
+}
+
+.fi-cond
+{
+    float: left;
+    width: 33.33%;
+}
+
+.comp-full-name
+{
+    font-size: 16px;
+    color: @std-purple;
+}
+
+.slash
+{
+    border-top: 2px solid @lit-gray;
+    display: -webkit-box;
+    margin: 7px 0 7px 0;
+}
+
+.desc-subtitle
+{
+  color: @std-purple;
+  padding-bottom: 10px;
+  font-size: 15px;
+}
+.desc-img
+{
+    width: 80px;
+    height: 80px;
+    float: left;
+    margin-right: 15px;
+}
+.desc-content
+{
+    display: -webkit-box;
+}
+
+//compposi.html
+.comp-posi-list
+{
+    background-color: @lit-gray;
+    height: 100%;
+}
+.comp-posi-block
+{
+    position: relative;
+    background-color: white;
+    padding: 6px 0 6px 10px;
+    margin-bottom: 2px;
+}
+.comp-posi-title
+{
+    font-size: 16px;
+}
+.comp-posi-detail
+{
+    margin: auto;
+    position: absolute;
+    top: 0; bottom: 0; right: 15px;
+    font-size: 14px;
+    height: 14px;
+    color: @dark-gray;
+}
+
+//mypost.html
+.posi-close
+{
+    float: right;
+    position: absolute;
+    bottom: ((@cl-listbox-hgt - @cl-comp-img-size) / 2) + 16px; right:15px;
+    font-size: 12px;
+}
+.hr-solve
+{
+    float: right;
+    position: absolute;
+    bottom: (@cl-listbox-hgt - @cl-comp-img-size)/2 ; right:15px;
+    color: @std-purple;
+    font-size: 12px;
+}
+
+//posicollect.html
+.send-resume
+{
+    position: absolute;
+    bottom: 20px; right:15px;
+    text-align: center;
+}
+.send-resume .send-resume-logo
+{
+    width: 25px;
+    margin-bottom: 2px;
+}
+.send-resume .send-resume-text
+{
+    font-size: 12px;
+    color: @std-purple; 
+}
+
+//compcollect.html
+.comp-msg-remind
+{
+    width: 17px;
+    height: 17px;
+    text-align: center;
+    line-height: 17px;
+    position: absolute;
+    right: 0; top: 0;
+    background-color: #e66665;
 }
 
