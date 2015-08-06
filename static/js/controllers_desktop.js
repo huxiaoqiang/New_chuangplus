@@ -18,6 +18,17 @@ angular.module('chuangplus.controllers', []).
                 });
         };
     }]).
+    controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+        console.log('DT_HeaderCtrl');
+        $scope.logout = function(){
+            $http.get(urls.api+"/account/logout").
+                success(function(data){
+                    if(data.error.code == 1){
+                        window.location.href = '/login';
+                    }
+                });
+        };
+    }]).
     controller('DT_LoginCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_LoginCtrl');
         $scope.login_info = {};
@@ -117,7 +128,7 @@ angular.module('chuangplus.controllers', []).
     controller('DT_InformationCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
       console.log('DT_InformationCtrl');
       $scope.infos = {};
-      $scope.enter = function(){
+      $scope.info_user = function(){
         $csrf.set_csrf($scope.infos);
         $http.post(urls.api+"/account/userinfo/set",$.param($scope.infos)).
           success(function(data){
@@ -142,3 +153,4 @@ angular.module('chuangplus.controllers', []).
             $scope.view_tab = tab;
         }
     }]);
+

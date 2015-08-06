@@ -193,6 +193,61 @@ body > #wrap {
   float: right;
 }
 #container {
+  margin: 0 auto;
+  display: block;
+}
+#container #information {
+  font-family: "微软雅黑";
+}
+#container #information .ui.segment.form {
+  padding: 0em;
+}
+#container #information .ui.segment.form .nav-tabs {
+  border-bottom: 0px;
+}
+#container #information .ui.segment.form .nav-tabs li {
+  width: 50%;
+  text-align: center;
+  background-color: #d8d8d8;
+}
+#container #information .ui.segment.form .nav-tabs li .active {
+  background-color: #FFFFFF;
+}
+#container #information .ui.segment.form .nav-tabs li a {
+  font-size: 18px;
+  color: #000000;
+}
+#container #information .ui.segment.form .nav-tabs li a:hover {
+  background-color: white;
+}
+#container #information .ui.segment.form #info_form {
+  padding: 2em;
+}
+#container #information .ui.segment.form #info_form #captcha_form {
+  width: 40%;
+  float: left;
+}
+#container #information .ui.segment.form #info_form #captcha_form input {
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  height: 40px;
+}
+#container #information .ui.segment.form #info_form #enter_button {
+  width: 100%;
+  height: 40px;
+  border-radius: 0.3em;
+  background-color: #a372ff;
+  color: white;
+  font-size: 1.2em;
+}
+#container #information .ui.segment.form #info_form #options #findpwd {
+  color: #000000;
+}
+#container #information .ui.segment.form #info_form #options .regbtn {
+  float: right;
+  color: #61c2f2;
+}
+#container {
   font-family: "微软雅黑";
 }
 #container #findpwd #passport-finder #progress ul li {
