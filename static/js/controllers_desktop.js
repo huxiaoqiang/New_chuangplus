@@ -134,4 +134,11 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_FinishPwdCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_FinishPwdCtrl');
+    }]).
+    controller('DT_UserInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+        console.log('DT_UserInfoCtrl');
+        $scope.view_tab = 'tab1';
+        $scope.changeTab = function(tab){
+            $scope.view_tab = tab;
+        }
     }]);
