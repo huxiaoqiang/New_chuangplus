@@ -44,8 +44,8 @@
                     </ul>
                     {% endif %}
                     {% else %}
-                    <li><a href="/login">登录</a></li>
-                    <li><a href="/register">注册</a></li>
+                    <li ng-class = "{'active':login}" ng-click="login_active()"><a  href="/login">登录</a></li>
+                    <li ng-class = "{'active':register}" ng-click="register_active()"><a href="/register">注册</a></li>
                     {% endif %}
                  </li>
               </ul>

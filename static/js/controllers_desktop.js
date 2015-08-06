@@ -8,7 +8,6 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_HeaderCtrl');
-
         $scope.logout = function(){
             $http.get(urls.api+"/account/logout").
                 success(function(data){
@@ -21,26 +20,23 @@ angular.module('chuangplus.controllers', []).
         //tab active control
         $scope.company_active = function(){
             $scope.company = true;
-            $scope.position = $scope.resume = false;
+            $scope.position = $scope.resume = $scope.login = $scope.register = false;
         };
         $scope.position_active = function(){
             $scope.position = true;
-            $scope.company = $scope.resume = false;
+            $scope.company = $scope.resume = $scope.login = $scope.register = false;
         };
         $scope.resume_active = function(){
             $scope.resume = true;
-            $scope.position = $scope.company = false;
+            $scope.position = $scope.company = $scope.login = $scope.register = false;
         };
-    }]).
-    controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
-        console.log('DT_HeaderCtrl');
-        $scope.logout = function(){
-            $http.get(urls.api+"/account/logout").
-                success(function(data){
-                    if(data.error.code == 1){
-                        window.location.href = '/login';
-                    }
-                });
+        $scope.login_active = function(){
+            $scope.login = true;
+            $scope.position = $scope.company = $scope.resume = $scope.register = false;
+        };
+        $scope.register_active = function(){
+            $scope.register = true;
+            $scope.position = $scope.company = $scope.login = $scope.resume = false;
         };
     }]).
     controller('DT_LoginCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
@@ -160,15 +156,15 @@ angular.module('chuangplus.controllers', []).
     controller('DT_FinishPwdCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_FinishPwdCtrl');
     }]).
-    controller('DT_UserInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
-        console.log('DT_UserInfoCtrl');
-        $scope.view_tab = 'tab1';
-        $scope.changeTab = function(tab){
-            $scope.view_tab = tab;
-        }
-    }]).
-    controller('DT_EnterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
-        console.log('DT_EnterCtrl');
+//    controller('DT_UserInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+//        console.log('DT_UserInfoCtrl');
+//        $scope.view_tab = 'tab1';
+//        $scope.changeTab = function(tab){
+//            $scope.view_tab = tab;
+//        }
+//    }]).
+    controller('DT_InternEnterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+        console.log('DT_InternEnterCtrl');
         $scope.Upload_personal_profile = function(){}
         $scope.Enter_Xiniu = function(){
             window.location.href = '/';
