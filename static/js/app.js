@@ -49,6 +49,10 @@ angular.module('chuangplus', [
         //mobile configure
         $routeProvider.when('/mobile/login', {templateUrl: urls.part_mobile + '/login.html',title:'Login'});
         $routeProvider.when('/mobile/complist', {templateUrl: urls.part_mobile + '/complist.html',title:'Companylist'});
+        $routeProvider.when('/mobile/posilist', {templateUrl: urls.part_mobile + '/posilist.html',title:'Posilist'});
+        $routeProvider.when('/mobile/posiimport', {templateUrl: urls.part_mobile + '/posiimportimportl',title:'Posiimport'});
+        $routeProvider.when('/mobile/compfilter', {templateUrl: urls.part_mobile + '/compfilter.html',title:'Companyfilter'});
+        $routeProvider.when('/mobile/posifilter', {templateUrl: urls.part_mobile + '/posifilter.html',title:'Posifilter'});
         $routeProvider.when('/mobile/info', {templateUrl: urls.part_mobile + '/info.html',title:'Info'});
         $routeProvider.otherwise({redirectTo: '/'});
     }]).

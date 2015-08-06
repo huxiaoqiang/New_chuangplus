@@ -8,13 +8,14 @@
 
 @btn-border :   2px;
 @btn-radius :   10px;
-@btn-height     : 54px;
-@btn-font-size  : 25px;
+@btn-height     : 50px;
+@btn-font-size  : 22px;
 
 
 @input-height   : 60px;
 @input-left-mag : 16px;
 @input-font-size  : 18px;
+
 
 //login.html
 @login-part2:   180px;
@@ -61,7 +62,13 @@
 @cl-comp-bent-fsize:    9px;
 @cl-come-lineh: 19px;
 
-
+//compfilter.html
+@filter-each-line : 3;
+@fil-content-top    :   30px;
+@fil-box-top:   20px;
+@fil-header-bottom :   5px;
+@fil-header-fsize:  18px;
+@filter-fsize   : 15px;
 //gengeral
 
 body
@@ -131,16 +138,28 @@ body
     margin-bottom: @login-btn-mag;
 }
 
+.padding
+{
+    width: 100%;
+    padding: 0 @padding-hor 0 @padding-hor;
+}
 
 .panel-list
 {
     width: 100%;
     padding: 0 @padding-hor 0 @padding-hor;
 }
-.panel-list input
+.panel-radius input
 {
     border: 0;
     border-radius: inherit;
+    width: 100%;
+}
+.panel-radius select
+{
+    border: 0;
+    border-radius: inherit;
+    width: 100%;
 }
 
 .panel-elem
@@ -244,7 +263,7 @@ body
     line-height:@cl-header-hgt;
     color: white;
     font-size: @cl-header-fsize;
-
+    overflow: hidden;
     margin: auto;  
     position: absolute;  
     left:0; right: 0; 
@@ -279,6 +298,7 @@ body
     width: 78%;
     height: @cl-require-hgt;
     background: white;
+    overflow: hidden;
 }
 .require-bar .require-btn
 {
@@ -289,6 +309,9 @@ body
     width: 22%;
     padding: 0;
     right: 0;
+    background: white;
+    border: 1px solid @mid-gray;
+    color: @mid-gray;
 }
 
 .search-bar
@@ -354,16 +377,19 @@ body
     margin-top: (@cl-listbox-hgt - @cl-comp-img-size)/2 ;
     line-height: @cl-come-lineh;
     font-size: @cl-comp-name-fsize;
+    overflow: hidden;
 }
 .comp-desc
 {
     line-height: @cl-come-lineh;
     font-size: @cl-comp-desc-fsize;
     color: @lit-gray;
+    overflow: hidden;
 }
 .comp-req-list
 {   
     line-height: @cl-come-lineh;
+    overflow: hidden;
 }
 .comp-req-title
 {
@@ -384,6 +410,7 @@ body
 
 .comp-desc-list{
     line-height: @cl-come-lineh;
+    overflow: hidden;
 }
 .comp-desc-tag
 {
@@ -406,8 +433,14 @@ body
     color:   @lit-gray;
     font-size: @cl-comp-bent-fsize;
     float: left;
+    margin-right: @cl-comp-tag-mag;
 }
 
+.post-time{
+    line-height: @cl-come-lineh;
+    color: @mid-gray;
+    font-size: @cl-comp-bent-fsize;
+}
 
 .nav-bar
 {
@@ -436,6 +469,59 @@ body
 {
     background: @std-purple;
     border: 0;
+}
+
+//compfilter.html
+
+#comp-filter
+{
+    margin-top : @fil-content-top;
+}
+
+.filter-squ
+{
+    margin-top: @fil-box-top;
+    display: block;
+    overflow: auto;
+}
+
+.filter-squ input[type="checkbox"]
+{
+    border:3px solid #CCC;
+}
+
+.filter-squ label
+{
+    border-radius: 0;
+    border-color: @std-purple;
+    border-width: @btn-border;
+    font-size: @filter-fsize;
+}
+
+.filter-btn
+{
+    margin-top: @fil-box-top;
+}
+
+.filter-title
+{
+    color: @std-purple;
+    font-size: @fil-header-fsize;
+    margin-bottom: @fil-header-bottom;
+}
+
+.filter-elem
+{
+    float: left;
+    width: (100% / @filter-each-line);
+    display: block;
+    overflow: hidden;
+}
+
+.btn-b-pur
+{
+    color: white;
+    background-color: @std-purple;
 }
 
 
