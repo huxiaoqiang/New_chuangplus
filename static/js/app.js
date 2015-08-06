@@ -53,6 +53,12 @@ angular.module('chuangplus', [
         $routeProvider.when('/mobile/login', {templateUrl: urls.part_mobile + '/login.html',controller:'MB_LoginCtrl', title:'Login'});
         $routeProvider.when('/mobile/complist', {templateUrl: urls.part_mobile + '/complist.html',controller:'MB_CompanyListCtrl', title:'Companylist'});
         $routeProvider.when('/mobile/info', {templateUrl: urls.part_mobile + '/info.html',controller:'MB_InfoCtrl',title:'Info'});
+        $routeProvider.when('/mobile/posilist', {templateUrl: urls.part_mobile + '/posilist.html',title:'Posilist'});
+        $routeProvider.when('/mobile/posiimport', {templateUrl: urls.part_mobile + '/posiimportimportl',title:'Posiimport'});
+        $routeProvider.when('/mobile/compfilter', {templateUrl: urls.part_mobile + '/compfilter.html',title:'Companyfilter'});
+        $routeProvider.when('/mobile/posifilter', {templateUrl: urls.part_mobile + '/posifilter.html',title:'Posifilter'});
+        $routeProvider.when('/mobile/', {templateUrl: urls.part_mobile + '/mobile_index.html',title:'HomePage'});
+        
         $routeProvider.otherwise({redirectTo: '/'});
     }]).
 //  the google analytics configure
