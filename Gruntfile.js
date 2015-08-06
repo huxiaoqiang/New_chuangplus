@@ -12,17 +12,6 @@ module.exports = function(grunt) {
                 }
             }
         },
-//        less: {
-//            development: {
-//                options: {
-//                    path: ['./static/less/mobile'],
-//                    yuicompress: true
-//                },
-//                files: {
-//                    './static/css/mobile/base.css': './static/less/mobile/base.less'
-//                }
-//            }
-//        },
         watch: {
             files: ["./static/less/desktop/*.less","./static/less/mobile/*.less"],
             tasks: ['less']
