@@ -45,7 +45,7 @@ angular.module('chuangplus', [
         $routeProvider.when('/password/set', {templateUrl: urls.part_desktop + '/password/set.html', controller: 'DT_SetPwdCtrl', title: 'SetPwdPage'});
         $routeProvider.when('/password/finish', {templateUrl: urls.part_desktop + '/password/finish.html', controller: 'DT_FinishPwdCtrl', title: 'FinishSetPwdPage'});
         $routeProvider.when('/information', {templateUrl: urls.part_desktop + '/information.html', controller: 'DT_InformationCtrl', title: 'InformationPage'});
-        $routeProvider.when('/enter',{templateURL: urls.part_desktop + '/enter.html',controller:'DT_EnterCtrl',title:'EnterPage'});
+        $routeProvider.when('/enter', {templateUrl: urls.part_desktop + '/enter.html', controller: 'DT_EnterCtrl', title: 'EnterPage'});
 
         $routeProvider.when('/user/info', {templateUrl: urls.part_desktop + '/user/info.html', controller: 'DT_UserInfoCtrl', title: 'UserInfoPage'});
        // $routeProvider.when('/user/info', {templateUrl: urls.part_desktop + '/user/info.html', controller: 'DT_UserInfoCtrl', title: 'UserInfoPage'});

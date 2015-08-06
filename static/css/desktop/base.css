@@ -149,11 +149,20 @@ body > #wrap {
 }
 #container .right-word {
   padding-left: 15%;
-  margin-top: 4%;
+  margin: 0 auto;
+  margin-top: 5%;
 }
 #container .right-word h2 {
+  margin-top: 0;
   font-family: "微软雅黑";
   color: #8c5d90;
+}
+#container .right-word img {
+  margin: 0 auto;
+}
+#container .right-word p {
+  padding-left: 8%;
+  color: gray;
 }
 #container #register {
   font-family: "微软雅黑";
