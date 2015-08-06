@@ -5,10 +5,17 @@ header #header .navbar {
   border-radius: 0px;
 }
 header #header .navbar .navbar-header {
-  margin-left: 10%;
+  margin-left: 20%;
 }
-header #header .navbar .navbar-header img {
-  width: 22%;
+header #header .navbar .navbar-header #head-logo {
+  position: relative;
+  float: left;
+}
+header #header .navbar .navbar-header #head-logo img {
+  width: 25%;
+  padding-top: 3%;
+  position: relative;
+  left: -64%;
 }
 header #header .navbar .navbar-nav {
   float: right;
@@ -139,6 +146,14 @@ body > #wrap {
 #container #login .ui.segment.form #login_form #options .regbtn {
   float: right;
   color: #61c2f2;
+}
+#container .right-word {
+  padding-left: 15%;
+  margin-top: 4%;
+}
+#container .right-word h2 {
+  font-family: "微软雅黑";
+  color: #8c5d90;
 }
 #container #register {
   font-family: "微软雅黑";
