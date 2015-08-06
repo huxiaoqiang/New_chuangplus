@@ -135,7 +135,7 @@ angular.module('chuangplus.controllers', []).
             if (data.error.code == 1){
               console.log("Set information successfully!");
               alert("个人信息设置成功");
-              setTimeout(function(){location.href='/'},2000);
+              setTimeout(function(){window.location.href='/'},2000);
             }
             else{
               alert(data.error.message);
@@ -151,6 +151,13 @@ angular.module('chuangplus.controllers', []).
         $scope.view_tab = 'tab1';
         $scope.changeTab = function(tab){
             $scope.view_tab = tab;
+        }
+    }]).
+    controller('DT_EnterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+        console.log('DT_EnterCtrl');
+        $scope.Upload_personal_profile = function(){}
+        $scope.Enter_Xiniu = function(){
+            window.location.href = '/';
         }
     }]);
 
