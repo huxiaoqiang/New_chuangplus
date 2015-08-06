@@ -77,7 +77,7 @@ angular.module('chuangplus.controllers', []).
     controller('DT_InformationCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
       console.log('DT_InformationCtrl');
       $scope.infos = {};
-      $scope.enter = function(){
+      $scope.info_user = function(){
         $csrf.set_csrf($scope.infos);
         $http.post(urls.api+"/account/userinfo/set",$.param($scope.infos)).
           success(function(data){
