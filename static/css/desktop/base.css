@@ -163,6 +163,7 @@ body > #wrap {
 #container .right-word p {
   padding-left: 8%;
   color: gray;
+  margin-top: -2%;
 }
 #container #register {
   font-family: "微软雅黑";
@@ -222,6 +223,14 @@ body > #wrap {
 }
 #container #information {
   font-family: "微软雅黑";
+  padding-top: 5%;
+}
+#container #information h2 {
+  color: #8c5d90;
+  font-family: "微软雅黑";
+  text-align: center;
+  padding-top: 20px;
+  margin-bottom: 0px;
 }
 #container #information .ui.segment.form {
   padding: 0em;
@@ -260,16 +269,10 @@ body > #wrap {
   width: 100%;
   height: 40px;
   border-radius: 0.3em;
-  background-color: #a372ff;
+  background-color: #8c5d90;
   color: white;
   font-size: 1.2em;
-}
-#container #information .ui.segment.form #info_form #options #findpwd {
-  color: #000000;
-}
-#container #information .ui.segment.form #info_form #options .regbtn {
-  float: right;
-  color: #61c2f2;
+  margin-bottom: 20px;
 }
 #container {
   font-family: "微软雅黑";
