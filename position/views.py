@@ -20,6 +20,7 @@ TYPE = ('technology','product','design','operate','marketing','functions','other
 STATUS = ('employing','hide','delete')
 POSITIONS_PER_PAGE = 10
 
+'''
 def dump_position(posi):
     re = dict()
     re['name'] = posi.name
@@ -37,7 +38,7 @@ def dump_position(posi):
     re['delivery_number'] = posi.delivery_number
     re['status'] = posi.status
     return re
-
+'''
 def error(code, message):
     return {'code':code, 'message':message}
 
@@ -463,9 +464,7 @@ def search_position(request):
     qs.order_by(orderValue)
     qs = qs[(page - 1) * POSITIONS_PER_PAGE: page * POSITIONS_PER_PAGE]
     
-    re["positions"] = list()
-    for po in qs:
-        re["positions"].append(dump_position(po))
+    re["positions"] = qs.to_json()
     re["error"] = error(1,"Search succeed!")
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
