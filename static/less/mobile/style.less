@@ -3,6 +3,7 @@
 @dark-gray  :   #707070;
 @mid-gray   :   #b5b5b5;
 @lit-gray   :   #dcdcdc;
+@lit-purple :   #d4abd3;
 
 @padding-hor:   20px;
 
@@ -22,7 +23,7 @@
 @login-part3:   50px;
 @login-logo-size:   90px;
 @login-btn-mag :   18px;
-@login-logo-top:    20px;
+@login-logo-top:    40px;
 @login-header-top:  16px;
 
 //info.html
@@ -78,6 +79,7 @@
 
 body
 {
+    height:100%;
     font-weight: normal;
     overflow-y:scroll;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -107,6 +109,18 @@ body
     background-color: white;
 }
 
+.purple-border
+{
+    border: @btn-border solid @std-purple;
+}
+.mid-gray-border
+{
+    border: @btn-border solid @mid-gray;
+}
+.lit-gray-border
+{
+    border: @btn-border solid @lit-gray;
+}
 .panel-group-top
 {
     height: @input-height ;
@@ -114,7 +128,6 @@ body
     border-top-right-radius:  @btn-radius;
     border-bottom-left-radius:     0;
     border-bottom-right-radius: 0;
-    border: @btn-border solid @std-purple;
     background:                 white;
     width: 100%;
     display: block;
@@ -126,9 +139,28 @@ body
     background: white;
     border-radius:     0;
     margin-top: -@btn-border;
-    border: @btn-border solid @std-purple;
     width: 100%;
     display: block;
+}
+.panel-select
+{
+    border: 0;
+    border-radius: inherit;
+    width: 75%;
+    height: 100%;
+    font-size: 18px;
+    display: inline-block;
+    background-color: white;
+}
+.panel-select select
+{
+    border: 0;
+    border-radius: inherit;
+    width: 100%;
+    height: 100%;
+    font-size: 18px;
+    display: inline-block;
+    background-color: white;
 }
 
 .panel-group-bot
@@ -138,11 +170,10 @@ body
     border-top-right-radius:  0;
     border-bottom-left-radius:     @btn-radius;
     border-bottom-right-radius: @btn-radius;
-    border: @btn-border solid @std-purple;
     margin-top: -@btn-border;
     width: 100%;
     display: block;
-
+    background-color: white;
 }
 
 .panel-radius
@@ -176,13 +207,17 @@ body
 {
     border: 0;
     border-radius: inherit;
-    width: 100%;
+    width: 92%;
+    height: 100%;
+    margin-left: 8%;
 }
 .panel-radius select
 {
     border: 0;
     border-radius: inherit;
     width: 100%;
+    height: 100%;
+    background-color: white;
 }
 
 .panel-elem
@@ -195,6 +230,7 @@ body
     border: 0;
     margin: 0;
     font-size: @input-font-size ;
+    border-radius: inherit;
 }
 
 .elem-width-4
@@ -204,7 +240,7 @@ body
 
 .elem-width-43
 {
-    width: 75%;
+    width: 75% !important;
 }
 .elem-width-2
 {
@@ -225,14 +261,17 @@ body
 {
     color: @std-purple;
     text-align: center;
-    line-height: @input-height - 6px;
+    line-height: @input-height;
     margin: 0 0 0 0;
+    position: relative;
+    left: 0;
 }
 
 .login-header
 {
     height: @login-part2;
     text-align: center;
+    margin-bottom: 25px;
 }
 .login-header .logo
 {
@@ -262,6 +301,7 @@ body
 .info-input
 {
     margin-bottom: @info-input-mag;
+    padding: 0;
 }
 
 .info-enter
@@ -790,3 +830,125 @@ body
     background-color: #e66665;
 }
 
+//infoupdate.html
+.info-update
+{
+    background-color: @std-purple;
+    height: 100%;
+}
+.info-block
+{
+    margin-bottom: 25px;
+    padding-top: 15px;
+}
+.info-block-last
+{
+    padding-top: 15px;
+    padding-bottom: 30px;
+}
+.info-block-title
+{
+    color: @lit-purple;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 700;
+}
+.lit-p-bg
+{
+    background-color: @lit-purple;
+    color: white;
+    border-color: @lit-purple;
+}
+.lit-g-bt
+{
+    border-bottom: 2px solid @lit-gray;
+}
+
+
+//editresume.html
+.edit-resume
+{
+    background-color: @lit-gray;
+}
+.resume-block-title
+{
+    color: @std-purple;
+    margin-bottom: 12px;
+    font-size: 18px;
+    font-weight: 700;
+}
+.font-color-g
+{
+    color: @mid-gray !important;
+}
+.info-block-tip
+{
+    color: @dark-gray;
+    font-size: 13px;
+    margin: 10px 0 10px 0;
+    width: 100%;
+}
+.info-block-textarea
+{
+    font-size: 16px;
+    background-color: white;
+    width: 100%;
+    overflow-y:visible;
+    height: 120px;
+    border: 0;
+    border-radius: @cl-input-radius;
+}
+
+.resume-block-att
+{
+    font-size: 18px;
+    text-decoration: underline;
+    font-style: italic;
+    margin-bottom: 10px;
+    display: block;
+}
+
+//uploadresume.html
+.upload-header
+{
+    height: @login-part2;
+    text-align: center;
+    margin-bottom: 45px;
+    display: block;
+}
+.upload-header .logo
+{
+    margin-top: @login-logo-top;
+    display: block;
+
+    margin-bottom: 15px;
+}
+.upload-header .logo img
+{
+    margin-left: 0;
+    width:@login-logo-size;
+    margin-right: 0;
+}
+.upload-header .text
+{
+    margin-top: @login-header-top;
+    text-align: center;
+    font-size: 20px;
+    color: @std-purple;
+    display: block;
+}
+.upload-header .web-text
+{
+    display: block;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 25px;
+    text-decoration: underline;
+    font-style: italic;
+    color: @std-purple;
+}
+.upload-btn-group
+{
+    margin-top: 30px;
+}
