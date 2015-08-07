@@ -1,25 +1,45 @@
 header{
   font-family: "微软雅黑";
   #header{
-    .navbar{
-      border-radius: 0px;
+    .navbar.first-bar{
+      margin-bottom: 0px;
+      background-color: #98679E;
       .navbar-header{
         margin-left: 20%;
         #head-logo{
-          position: relative;
-          float: left;
           img{
-            width:25%;
+            width: 19%;
             padding-top: 3%;
-            position: relative;
-            left: -64%;
+            padding-bottom: 3%;
+          }
+          .brand{
+            color: white;
+            padding: 15px 15px;
+            font-size: 18px;
+            line-height: 20px;
+            text-decoration: none;
           }
         }
-
       }
-      .navbar-nav{
-        float: right;
-        margin-right: 10%;
+    }
+    .navbar.navbar-default{
+      border-radius: 0px;
+      .nav.navbar-nav{
+        float: left;
+        margin-left: 20%;
+        #search{
+          padding-top: 0.6em;
+          position: absolute;
+          left: 60%;
+        }
+        #search_btn{
+          position: absolute;
+          left: 71.5%;
+          button{
+            height: 34px;
+            margin-top: 0.6em;
+          }
+        }
       }
     }
   }
