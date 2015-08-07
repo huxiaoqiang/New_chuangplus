@@ -48,7 +48,7 @@ angular.module('chuangplus', [
         //intern user
         $routeProvider.when('/intern/information', {templateUrl: urls.part_desktop + '/intern/information.html', controller: 'DT_InformationCtrl', title: 'InformationPage'});
         //$routeProvider.when('/intern/enter', {templateUrl: urls.part_desktop + '/intern/enter.html', controller: 'DT_InternEnterCtrl', title: 'EnterPage'});
-        //$routeProvider.when('/intern/info', {templateUrl: urls.part_desktop + '/intern/info.html', controller: 'DT_InternInfoCtrl', title: 'InternInfoPage'});
+        $routeProvider.when('/intern/info', {templateUrl: urls.part_desktop + '/intern/info.html', controller: 'DT_InternInfoCtrl', title: 'InternInfoPage'});
         $routeProvider.when('/intern/post', {templateUrl: urls.part_desktop + '/intern/post.html', controller: 'DT_InternPostCtrl', title: 'InternPostPage'});
         $routeProvider.when('/intern/favor/company', {templateUrl: urls.part_desktop + '/intern/companyfavor.html', controller: 'DT_InternCompanyFavorCtrl', title: 'InternCompanyFavorPage'});
         $routeProvider.when('/intern/favor/position', {templateUrl: urls.part_desktop + '/intern/positionfavor.html', controller: 'DT_InternPositionFavorCtrl', title: 'InternPositionFavorPage'});

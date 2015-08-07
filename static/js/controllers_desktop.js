@@ -138,6 +138,9 @@ angular.module('chuangplus.controllers', []).
         console.log('DT_FinishPwdCtrl');
     }]).
     //intern controllers
+    controller('DT_InternInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+        console.log('DT_InternInfoCtrl');
+    }]).
     controller('DT_InternPostCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_InternPostCtrl');
     }]).

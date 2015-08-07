@@ -14,9 +14,9 @@
                  <li ng-class = "{'active':position}" ng-click="position_active()"><a href="/position/list">职位列表</a></li>
               {% if user.is_authenticated %}
                  {% if role == 1 %}
-                 <li ng-class = "{'active':resume}" ng-click="resume_active()"><a href="#">处理简历</a></li>
+                 <li ng-class = "{'active':resume}" ng-click="resume_active()"><a href="/company/resume">处理简历</a></li>
                  {% else %}
-                 <li ng-class = "{'active':resume}" ng-click="resume_active()"><a href="#">查看简历</a></li>
+                 <li ng-class = "{'active':resume}" ng-click="resume_active()"><a href="/intern/resume">查看简历</a></li>
                  {% endif %}
                  <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -25,20 +25,19 @@
                     </a>
                     {% if role == 1 %}
                     <ul class="dropdown-menu">
-                       <li><a href="#">公司信息</a></li>
-                       <li><a href="#">编辑公司信息</a></li>
-                       <li><a href="#">发布职位</a></li>
-                       <li><a href="#">管理职位</a></li>
+                       <li><a href="/company/info">公司信息</a></li>
+                       <li><a href="/company/position/edit">发布职位</a></li>
+                       <li><a href="/company/position/manage">管理职位</a></li>
                        <li class="divider"></li>
                        <li><a ng-click="logout()">退出登录</a></li>
                     </ul>
                     {% else %}
                     <ul class="dropdown-menu">
-                       <li><a href="#">个人主页</a></li>
-                       <li><a href="#">我的投递</a></li>
-                       <li><a href="#">收藏的公司</a></li>
+                       <li><a href="/intern/info">个人主页</a></li>
+                       <li><a href="/intern/post">我的投递</a></li>
+                       <li><a href="/intern/favor/company">收藏的公司</a></li>
                        <li class="divider"></li>
-                       <li><a href="#">收藏的岗位</a></li>
+                       <li><a href="/intern/favor/position">收藏的岗位</a></li>
                        <li class="divider"></li>
                        <li><a ng-click="logout()">退出登录</a></li>
                     </ul>

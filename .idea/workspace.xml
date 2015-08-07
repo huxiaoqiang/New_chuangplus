@@ -5,11 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
-      <change type="DELETED" beforePath="E:\chuangplus_xiniu\chuangplus\static\partials\desktop\enter.html" afterPath="" />
-      <change type="DELETED" beforePath="E:\chuangplus_xiniu\chuangplus\static\partials\desktop\information.html" afterPath="" />
-      <change type="DELETED" beforePath="E:\chuangplus_xiniu\chuangplus\static\partials\desktop\user\info.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\chuangplus_xiniu\chuangplus\Git Bash.vbs" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/app.js" afterPath="$PROJECT_DIR$/static/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/desktop/base.css" afterPath="$PROJECT_DIR$/static/css/desktop/base.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/base.less" afterPath="$PROJECT_DIR$/static/less/desktop/base.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/controllers_desktop.js" afterPath="$PROJECT_DIR$/static/js/controllers_desktop.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/feedback.html" afterPath="$PROJECT_DIR$/static/partials/desktop/feedback.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/footer.html" afterPath="$PROJECT_DIR$/templates/footer.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/header.html" afterPath="$PROJECT_DIR$/templates/header.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/company/regenter.html" afterPath="$PROJECT_DIR$/static/partials/desktop/company/regenter.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/mobile/style.css" afterPath="$PROJECT_DIR$/static/css/mobile/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="chuangplus.iws" />
@@ -32,22 +37,31 @@
     <favorites_list name="chuangplus" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.63256115">
+    <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="login.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/static/partials/desktop/login.html">
+          <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/static/js/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="2" column="63" selection-start="152" selection-end="152" vertical-scroll-proportion="-0.0" vertical-offset="38" max-vertical-offset="988">
+                <state line="50" column="44" selection-start="2726" selection-end="2726" vertical-scroll-proportion="0.0" vertical-offset="823" max-vertical-offset="2299">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/static/js/app.js">
+          <file leaf-file-name="findpwd.html" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/static/partials/desktop/password/findpwd.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="69" column="36" selection-start="5344" selection-end="5344" vertical-scroll-proportion="0.74961597" vertical-offset="823" max-vertical-offset="2299">
+                <state line="40" column="23" selection-start="454" selection-end="1811" vertical-scroll-proportion="-19.535715" vertical-offset="213" max-vertical-offset="950">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="feedback.html" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/static/partials/desktop/feedback.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="24" column="0" selection-start="933" selection-end="933" vertical-scroll-proportion="0.68986386" vertical-offset="0" max-vertical-offset="661">
                   <folding />
                 </state>
               </provider>
@@ -56,16 +70,16 @@
           <file leaf-file-name="base.css" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/css/desktop/base.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="307" column="29" selection-start="6591" selection-end="6591" vertical-scroll-proportion="0.0" vertical-offset="5448" max-vertical-offset="6137">
+                <state line="375" column="13" selection-start="8024" selection-end="8024" vertical-scroll-proportion="0.0" vertical-offset="6740" max-vertical-offset="7410">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="login.less" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/static/less/desktop/login.less">
+          <file leaf-file-name="regenter.html" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/regenter.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="70" column="25" selection-start="1655" selection-end="1655" vertical-scroll-proportion="-5.6603775" vertical-offset="1030" max-vertical-offset="1691">
+                <state line="0" column="0" selection-start="0" selection-end="20" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="703">
                   <folding />
                 </state>
               </provider>
@@ -75,19 +89,10 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="header.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/templates/header.html">
+          <file leaf-file-name="feedback.less" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/static/less/desktop/feedback.less">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="47" column="75" selection-start="2402" selection-end="2402" vertical-scroll-proportion="-14.107142" vertical-offset="498" max-vertical-offset="1159">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="controllers_desktop.js" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="181" column="35" selection-start="9605" selection-end="9605" vertical-scroll-proportion="-0.16743472" vertical-offset="3548" max-vertical-offset="4408">
+                <state line="14" column="27" selection-start="288" selection-end="288" vertical-scroll-proportion="0.418239" vertical-offset="0" max-vertical-offset="636">
                   <folding />
                 </state>
               </provider>
@@ -113,12 +118,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Gruntfile.js" />
-        <option value="$PROJECT_DIR$/templates/mobile_index.html" />
-        <option value="$PROJECT_DIR$/static/partials/mobile/posiimport.html" />
-        <option value="$PROJECT_DIR$/static/partials/mobile/posilist.html" />
-        <option value="$PROJECT_DIR$/static/partials/mobile/compfilter.html" />
-        <option value="$PROJECT_DIR$/static/less/desktop/header.less" />
         <option value="$PROJECT_DIR$/static/partials/desktop/register.html" />
         <option value="$PROJECT_DIR$/static/partials/desktop/login.html" />
         <option value="$PROJECT_DIR$/static/partials/desktop/enter.html" />
@@ -126,9 +125,15 @@
         <option value="$PROJECT_DIR$/static/less/desktop/information.less" />
         <option value="$PROJECT_DIR$/static/partials/desktop/information.html" />
         <option value="$PROJECT_DIR$/templates/index.html" />
-        <option value="$PROJECT_DIR$/templates/header.html" />
         <option value="$PROJECT_DIR$/static/js/app.js" />
         <option value="$PROJECT_DIR$/static/js/controllers_desktop.js" />
+        <option value="$PROJECT_DIR$/templates/header.html" />
+        <option value="$PROJECT_DIR$/templates/footer.html" />
+        <option value="$PROJECT_DIR$/static/partials/desktop/company/regenter.html" />
+        <option value="$PROJECT_DIR$/static/less/desktop/regenter.less" />
+        <option value="$PROJECT_DIR$/static/less/desktop/base.less" />
+        <option value="$PROJECT_DIR$/static/partials/desktop/feedback.html" />
+        <option value="$PROJECT_DIR$/static/less/desktop/feedback.less" />
       </list>
     </option>
   </component>
@@ -164,6 +169,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -192,13 +198,118 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chuangplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chuangplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="partials" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chuangplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chuangplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="partials" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="desktop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chuangplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chuangplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="partials" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="desktop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="password" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chuangplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chuangplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="less" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chuangplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chuangplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="less" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="desktop" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -302,27 +413,7 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="chuangplus" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <option name="port" value="8000" />
-      <option name="host" value="" />
-      <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="" />
-      <option name="runTestServer" value="false" />
-      <option name="runNoReload" value="false" />
-      <option name="useCustomRunCommand" value="false" />
-      <option name="customRunCommand" value="" />
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
@@ -348,7 +439,27 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="chuangplus" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -461,8 +572,8 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16280566" sideWeight="0.49162012" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5083799" sideWeight="0.5823681" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16280566" sideWeight="0.7569832" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24301676" sideWeight="0.5823681" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5083799" sideWeight="0.41763192" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -491,9 +602,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16280566" sideWeight="0.49162012" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -510,87 +621,112 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/partials/mobile/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="8" selection-start="1887" selection-end="1887" vertical-scroll-proportion="0.51134646" vertical-offset="479" max-vertical-offset="1140" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/partials/mobile/posilist.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="154" column="0" selection-start="4791" selection-end="4791" vertical-scroll-proportion="0.827534" vertical-offset="2379" max-vertical-offset="3040" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/less/desktop/information.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="13" selection-start="1397" selection-end="1397" vertical-scroll-proportion="0.6871069" vertical-offset="551" max-vertical-offset="1216" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/partials/desktop/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="63" selection-start="152" selection-end="152" vertical-scroll-proportion="0.0" vertical-offset="38" max-vertical-offset="988">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/less/desktop/header.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="7" selection-start="7" selection-end="7" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="589">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="0" selection-start="1570" selection-end="1570" vertical-scroll-proportion="0.7473525" vertical-offset="0" max-vertical-offset="1064">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/less/desktop/base.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="210" selection-end="210" vertical-scroll-proportion="0.29874215" vertical-offset="0" max-vertical-offset="636">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/partials/desktop/register.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="13" selection-start="536" selection-end="536" vertical-scroll-proportion="0.0" vertical-offset="190" max-vertical-offset="1349">
-          <folding />
-        </state>
+        <state line="10" column="13" selection-start="536" selection-end="536" vertical-scroll-proportion="0.0" vertical-offset="190" max-vertical-offset="1349" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/desktop/base.css">
+    <entry file="file://$PROJECT_DIR$/templates/footer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="307" column="29" selection-start="6591" selection-end="6591" vertical-scroll-proportion="0.0" vertical-offset="5448" max-vertical-offset="6137">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/less/desktop/login.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="25" selection-start="1655" selection-end="1655" vertical-scroll-proportion="-5.6603775" vertical-offset="1030" max-vertical-offset="1691">
+        <state line="9" column="26" selection-start="354" selection-end="354" vertical-scroll-proportion="0.2638889" vertical-offset="0" max-vertical-offset="648">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/header.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="75" selection-start="2402" selection-end="2402" vertical-scroll-proportion="-14.107142" vertical-offset="498" max-vertical-offset="1159">
+        <state line="43" column="31" selection-start="2276" selection-end="2276" vertical-scroll-proportion="0.7654321" vertical-offset="321" max-vertical-offset="1140">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="181" column="35" selection-start="9605" selection-end="9605" vertical-scroll-proportion="-0.16743472" vertical-offset="3548" max-vertical-offset="4408">
+        <state line="141" column="38" selection-start="6373" selection-end="6373" vertical-scroll-proportion="0.5502958" vertical-offset="2307" max-vertical-offset="4465">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/less/desktop/regenter.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="14" selection-start="875" selection-end="875" vertical-scroll-proportion="0.6415094" vertical-offset="257" max-vertical-offset="1064">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/less/desktop/information.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="13" selection-start="1397" selection-end="1397" vertical-scroll-proportion="0.6415094" vertical-offset="580" max-vertical-offset="1216">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/partials/desktop/intern/information.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="0" selection-start="1204" selection-end="1344" vertical-scroll-proportion="0.6550681" vertical-offset="156" max-vertical-offset="817">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/less/desktop/login.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="25" selection-start="1655" selection-end="1655" vertical-scroll-proportion="0.4716981" vertical-offset="1030" max-vertical-offset="1691">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/partials/desktop/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="8" selection-start="8" selection-end="19" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="988">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="36" selection-start="5344" selection-end="5344" vertical-scroll-proportion="0.74961597" vertical-offset="823" max-vertical-offset="2299">
+        <state line="50" column="44" selection-start="2726" selection-end="2726" vertical-scroll-proportion="0.0" vertical-offset="823" max-vertical-offset="2299">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/partials/desktop/password/findpwd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="23" selection-start="454" selection-end="1811" vertical-scroll-proportion="-19.535715" vertical-offset="213" max-vertical-offset="950">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/regenter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="20" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="703">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/desktop/base.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="375" column="13" selection-start="8024" selection-end="8024" vertical-scroll-proportion="0.0" vertical-offset="6740" max-vertical-offset="7410">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/less/desktop/base.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="19" selection-start="134" selection-end="134" vertical-scroll-proportion="0.17924528" vertical-offset="0" max-vertical-offset="636">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/less/desktop/feedback.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="27" selection-start="288" selection-end="288" vertical-scroll-proportion="0.418239" vertical-offset="0" max-vertical-offset="636">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/partials/desktop/feedback.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="0" selection-start="933" selection-end="933" vertical-scroll-proportion="0.68986386" vertical-offset="0" max-vertical-offset="661">
           <folding />
         </state>
       </provider>

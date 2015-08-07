@@ -311,6 +311,73 @@ body > #wrap {
   text-align: center;
   font-size: 1.5em;
 }
+#container {
+  margin: 0 auto;
+  display: block;
+}
+#container #regenter {
+  font-family: "微软雅黑";
+  padding-top: 5%;
+}
+#container #regenter h2 {
+  color: #8c5d90;
+  font-family: "微软雅黑";
+  text-align: center;
+  padding-top: 20px;
+  margin-bottom: 0px;
+}
+#container #regenter .ui.segment.form {
+  padding: 0em;
+}
+#container #regenter .ui.segment.form .nav-tabs {
+  border-bottom: 0px;
+}
+#container #regenter .ui.segment.form .nav-tabs li {
+  width: 50%;
+  text-align: center;
+  background-color: #d8d8d8;
+}
+#container #regenter .ui.segment.form .nav-tabs li .active {
+  background-color: #FFFFFF;
+}
+#container #regenter .ui.segment.form .nav-tabs li a {
+  font-size: 18px;
+  color: #000000;
+}
+#container #regenter .ui.segment.form .nav-tabs li a:hover {
+  background-color: white;
+}
+#container #regenter .ui.segment.form #contact_form {
+  padding: 2em;
+}
+#container #regenter .ui.segment.form #contact_form p {
+  text-align: right;
+}
+#container #regenter .ui.segment.form #contact_form #enter_button {
+  width: 49%;
+  height: 40px;
+  border-radius: 0.3em;
+  background-color: #8c5d90;
+  color: white;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+#container #feedback {
+  width: 70%;
+  border: solid;
+  border-radius: 1em;
+  border-color: purple;
+  margin: 0 auto;
+  margin-top: 10%;
+}
+#container #feedback #feedback-form {
+  padding: 3em;
+}
+#container #feedback button {
+  width: 100%;
+  background-color: #B08BB1;
+  border-color: #800080;
+}
 .input-group-addon {
   border-top-left-radius: 0.5em;
   border-bottom-left-radius: 0.5em;
