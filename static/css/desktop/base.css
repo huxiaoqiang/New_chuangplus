@@ -80,18 +80,18 @@ body > #wrap {
   background-color: #8e8e8e;
 }
 #footer .container .navbar-footer #footer-navbar-logo {
-  padding-top: 43px;
-  padding-bottom: 43px;
+  padding-top: 35px;
+  padding-bottom: 35px;
   float: left;
 }
 #footer .container #footer-nav {
   float: left;
 }
 #footer .container #footer-nav li {
-  height: 136px;
+  height: 137px;
   float: left;
   list-style-type: none;
-  padding-top: 27%;
+  padding-top: 23%;
 }
 #footer .container #footer-nav li a {
   padding-top: 56.5px;
