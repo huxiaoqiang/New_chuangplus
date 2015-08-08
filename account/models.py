@@ -35,15 +35,16 @@ class Userinfo(Document):
 
 # company position type
 TYPE = ('technology','product','design','operate','marketing','functions','others')
+FIELD = ('social','e-commerce','education','health_medical','culture_creativity','living_consumption','hardware','O2O','others')
 class Companyinfo(Document):
     username = StringField(max_length=30,required=True)
     contacts = StringField(max_length=20,default = "")
     abbreviation = StringField(max_length=100,default = "")
-    city = StringField(max_length=30,default = "")
-    field = StringField(max_length=100,default = "")
+    city = StringField(max_length=40,default = "")
+    field = StringField(max_length=30,default = "")
     is_auth = BooleanField(default=False)
     auth_organization = StringField(max_length=100,default = "")
-    people_scale = IntField(default=0)  # 0: 1~10, 1:10~20, 2: more than 30
+    scale = IntField(default=0)  #0 newly established  1:rapid expansion 2:mature period
     homepage = URLField(default="http://www.chuangplus.com")
     wechat = StringField(max_length=40,default = "")
     email_resume=EmailField(max_length=50,default = "default@default.com")  #email for receiving resume
