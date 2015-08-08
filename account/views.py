@@ -131,9 +131,10 @@ def login(request):
         user = auth.authenticate(username=username, password=password)
         if user.is_staff == '1' and role == '0':
             re['error'] = error(113,'Role error,turn hr tab to login')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
         elif user.is_staff == '0' and role == '1':
             re['error'] = error(114,'Role error,turn intern tab to login')
-        return HttpResponse(json.dumps(re), content_type = 'application/json')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
         re['username'] = username
         if user is not None and user.is_active:
             auth.login(request, user)
