@@ -48,7 +48,8 @@ class Companyinfo(Document):
     wechat = StringField(max_length=40,default = "")
     email_resume=EmailField(max_length=50,default = "default@default.com")  #email for receiving resume
     qrcode = ReferenceField(File,default = None)
-    welfare_tags = StringField(max_length=200,default = "")
+    logo = ReferenceField(File,default = None)
+    welfare_tags = ListField(StringField(max_length=18,default = ""))
     product_link = URLField()
     ICregist_name = StringField(max_length=200,default = "")  #Industrial and commercial registration name
     company_description = StringField(max_length=300,default = "")

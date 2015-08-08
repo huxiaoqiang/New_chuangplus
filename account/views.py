@@ -35,49 +35,53 @@ def register(request):
         if username == '' or password == '' or email == '':
             re['error'] = error(112,"Username or password or email is empty,fail to register!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
-        reguser = User()
+
+        #check the email
         try:
-            reguser = User.create_user(username=username, password=password, email=email)
-        except Exception as e:
-            print traceback.print_exc()
-            re['error'] = error(107, 'Username exist or username include special character')
-        #todo care for role's type
-        if reguser is not None and role == "1":
-            reguser.is_staff == True
-            reguser.save()
-            companyinfo = Companyinfo(username=username)
-            companyinfo.user = reguser
-            companyinfo.save()
-        elif reguser is not None and role == "0":
-            userinfo = Userinfo(username=username)
-            userinfo.email = email
-            userinfo.date_joined = datetime_now()
-            userinfo.update_time = datetime_now()
-            userinfo.user = reguser
-            userinfo.save()
-        #elif role == -1:
-        #    reguser.is_superuser = True
-        #    reguser.save()
-        user = auth.authenticate(username=username, password=password)
-        if user is not None and user.is_active:
-            auth.login(request, user)
-            request.session['role'] = role
-            #request.session['status'] = userinfo.status
-            #request.session['practice_code'] = userinfo.practice_code
-            re['error'] = error(1, 'regist succeed!')
-            #re['status'] = userinfo.status
-            re['role'] = role
-            resp = HttpResponse(json.dumps(re), content_type = 'application/json')
-            resp.set_cookie('username', username)
-            #resp.set_cookie('status', userinfo.status)
-            resp.set_cookie('role', role)
-            return resp
-        else:
-            re['error'] = error(106,"register fail!")
-        #try:
-        #    user = User.objects.create_user(**user_data)
-        #except MySQLdb.IntegrityError:
-        #    return Response({'email': 'Email 已经注册。'}, status=status.HTTP_400_BAD_REQUEST)
+            find_user_email = User.objects.get(email=email)
+            if find_user_email is not None:
+                re['error'] = error(115,"Email has been registed")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+        except DoesNotExist:
+            reguser = User()
+            try:
+                reguser = User.create_user(username=username, password=password, email=email)
+            except Exception as e:
+                #print traceback.print_exc()
+                re['error'] = error(107, 'Username exist or username include special character')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            if reguser is not None and role == "1":
+                reguser.is_staff == True
+                reguser.save()
+                companyinfo = Companyinfo(username=username)
+                companyinfo.user = reguser
+                companyinfo.save()
+            elif reguser is not None and role == "0":
+                userinfo = Userinfo(username=username)
+                userinfo.email = email
+                userinfo.date_joined = datetime_now()
+                userinfo.update_time = datetime_now()
+                userinfo.user = reguser
+                userinfo.save()
+            #elif role == -1:
+            #    reguser.is_superuser = True
+            #    reguser.save()
+            user = auth.authenticate(username=username, password=password)
+            if user is not None and user.is_active:
+                auth.login(request, user)
+                request.session['role'] = int(role)
+                #request.session['status'] = userinfo.status
+                #request.session['practice_code'] = userinfo.practice_code
+                re['error'] = error(1, 'regist succeed!')
+                #re['status'] = userinfo.status
+                re['role'] = role
+                resp = HttpResponse(json.dumps(re), content_type = 'application/json')
+                resp.set_cookie('username', username)
+                #resp.set_cookie('status', userinfo.status)
+                resp.set_cookie('role', int(role))
+                return resp
+            else:
+                re['error'] = error(106,"register fail!")
     else:
         re['error'] = error(2, 'error, need post!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -124,12 +128,19 @@ def login(request):
     if request.method=="POST":
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
+        role = request.POST.get('role','')
         if username == '' or password == "":
             re['error'] = error(111,"username or password is empty")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         user = auth.authenticate(username=username, password=password)
-        re['username'] = username
         if user is not None and user.is_active:
+            if user.is_staff == '1' and role == '0':
+                re['error'] = error(113,'Role error,turn hr tab to login')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            elif user.is_staff == '0' and role == '1':
+                re['error'] = error(114,'Role error,turn intern tab to login')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            re['username'] = username
             auth.login(request, user)
             user = User.objects.get(username=username)
             request.session['role'] = 1 if user.is_staff else 0
