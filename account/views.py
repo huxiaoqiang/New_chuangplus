@@ -39,9 +39,9 @@ def register(request):
         try:
             reguser = User.create_user(username=username, password=password, email=email)
         except Exception as e:
-            print traceback.print_exc()
+            #print traceback.print_exc()
             re['error'] = error(107, 'Username exist or username include special character')
-        #todo care for role's type
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
         if reguser is not None and role == "1":
             reguser.is_staff == True
             reguser.save()
@@ -124,10 +124,16 @@ def login(request):
     if request.method=="POST":
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
+        role = request.POST.get('role','')
         if username == '' or password == "":
             re['error'] = error(111,"username or password is empty")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         user = auth.authenticate(username=username, password=password)
+        if user.is_staff == '1' and role == '0':
+            re['error'] = error(113,'Role error,turn hr tab to login')
+        elif user.is_staff == '0' and role == '1':
+            re['error'] = error(114,'Role error,turn intern tab to login')
+        return HttpResponse(json.dumps(re), content_type = 'application/json')
         re['username'] = username
         if user is not None and user.is_active:
             auth.login(request, user)
