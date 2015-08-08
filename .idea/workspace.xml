@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/account/models.py" line="55" />
+    <bookmark url="file://$PROJECT_DIR$/account/models.py" line="57" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
@@ -43,7 +43,7 @@
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/account/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="146" column="52" selection-start="6398" selection-end="6398" vertical-scroll-proportion="0.0" vertical-offset="2332" max-vertical-offset="10811">
+            <state line="153" column="13" selection-start="6732" selection-end="6732" vertical-scroll-proportion="0.0" vertical-offset="2465" max-vertical-offset="10925">
               <folding>
                 <element signature="e#14#24#0" expanded="true" />
               </folding>
@@ -54,7 +54,7 @@
       <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/account/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="36" selection-start="1538" selection-end="1538" vertical-scroll-proportion="0.3689759" vertical-offset="458" max-vertical-offset="1596">
+            <state line="48" column="52" selection-start="1895" selection-end="1895" vertical-scroll-proportion="0.6551205" vertical-offset="382" max-vertical-offset="1634">
               <folding />
             </state>
           </provider>
@@ -432,7 +432,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -577,7 +577,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/account/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="146" column="52" selection-start="6398" selection-end="6398" vertical-scroll-proportion="0.0" vertical-offset="2332" max-vertical-offset="10811">
+        <state line="153" column="13" selection-start="6732" selection-end="6732" vertical-scroll-proportion="0.0" vertical-offset="2465" max-vertical-offset="10925">
           <folding>
             <element signature="e#14#24#0" expanded="true" />
           </folding>
@@ -586,7 +586,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/account/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="36" selection-start="1538" selection-end="1538" vertical-scroll-proportion="0.3689759" vertical-offset="458" max-vertical-offset="1596">
+        <state line="48" column="52" selection-start="1895" selection-end="1895" vertical-scroll-proportion="0.6551205" vertical-offset="382" max-vertical-offset="1634">
           <folding />
         </state>
       </provider>

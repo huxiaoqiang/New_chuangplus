@@ -36,6 +36,7 @@ class Userinfo(Document):
 # company position type
 TYPE = ('technology','product','design','operate','marketing','functions','others')
 FIELD = ('social','e-commerce','education','health_medical','culture_creativity','living_consumption','hardware','O2O','others')
+STAGE=('no','angel','A','B','C','D_plus')
 class Companyinfo(Document):
     username = StringField(max_length=30,required=True)
     contacts = StringField(max_length=20,default = "")
@@ -45,6 +46,7 @@ class Companyinfo(Document):
     is_auth = BooleanField(default=False)
     auth_organization = StringField(max_length=100,default = "")
     scale = IntField(default=0)  #0 newly established  1:rapid expansion 2:mature period
+    stage = StringField(max_length=10,choices=STAGE)
     homepage = URLField(default="http://www.chuangplus.com")
     wechat = StringField(max_length=40,default = "")
     email_resume=EmailField(max_length=50,default = "default@default.com")  #email for receiving resume
