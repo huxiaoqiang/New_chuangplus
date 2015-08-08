@@ -747,7 +747,6 @@ def submit_resume(request):
         re['error'] = error(2, 'Error, need post!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-#TODO: NOT BEEN TESTED
 def email_resume(request):
     re = dict()
     t = datetime.now()
@@ -758,23 +757,21 @@ def email_resume(request):
     time_start = time_end - time_delta
     
     for company in Companyinfo.objects.all():
-        zip_company = zipfile.ZipFile('%s.zip' % company.abbreviation, 'w')
+        f_company = StringIO()
+        zip_company = zipfile.ZipFile(f_company, 'w', zipfile.ZIP_DEFLATED)
         
         for position in Position.objects.filter(company = company):
-            f = StringIO()
-            zip_position = zipfile.ZipFile(f, 'w', compression=zipfile.ZIP_DEFLATED)
+            f_position = StringIO()
+            zip_position = zipfile.ZipFile(f_position, 'w', zipfile.ZIP_DEFLATED)
 
-            for rp in ResumePost.objects.filter(position == position, submit_date__gte = time_start, submit_date__lte = time_end): 
+            for rp in ResumePost.objects.filter(position = position, submit_date__gte = time_start, submit_date__lte = time_end): 
                 zip_position.writestr('%s.pdf' % rp.user.username, rp.resume_copy.read())
             zip_position.close()
-            fp = open('%s.zip' % position.name, 'wb')
-            fp.write(f.getvalue())
-            fp.close()
 
-            zip_company.write('%s.zip' % position.name)
+            zip_company.writestr('%s.zip' % position.name, f_position.getvalue())
 
         zip_company.close()
-        mail = EmailMessage('[创+]简历%s' % time.strftime('%Y%m%d'), '附件为昨天8am至今天8am之间投递到您公司的简历。', 'support@chuangplus.com', [company.email_resume]);
-        mail.attach('%s.zip' % company.abbreviation, zip_company, 'application/zip')
-        mail.send()
 
+        mail = EmailMessage('[创+]简历%s' % time.strftime('%Y%m%d'), '附件为昨天8am至今天8am之间投递到您公司的简历。', 'support@chuangplus.com', [company.email_resume]);
+        mail.attach('%s.zip' % company.abbreviation, f_company.getvalue(), 'application/zip')
+        mail.send()
