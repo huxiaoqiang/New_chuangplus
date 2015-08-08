@@ -732,7 +732,7 @@ def submit_resume(request):
                 re['error'] = error(19, 'File is empty')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
         
-        position_id = request.POST.get('position_id', '-1')
+        position_id = request.POST.get('position_id', '')
         try:
             position = Position.objects.get(pk = position_id)    
         except:
@@ -775,3 +775,23 @@ def email_resume(request):
         mail = EmailMessage('[创+]简历%s' % time.strftime('%Y%m%d'), '附件为昨天8am至今天8am之间投递到您公司的简历。', 'support@chuangplus.com', [company.email_resume]);
         mail.attach('%s.zip' % company.abbreviation, f_company.getvalue(), 'application/zip')
         mail.send()
+
+@user_permission("login")
+def user_likes_position(request):
+    re = dict()
+    if request.method == 'POST':
+        position_id = request.POST.get('position_id', '')
+
+        try:
+            position = Position.objects.get(pk = position_id)    
+        except:
+            re['error'] = error(260, 'Position does not exist') 
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        
+        pc = PC_Relationship(position = position, user = request.user)
+        pc.save()
+        re['error'] = error(1, "success!")
+    else:
+        re['error'] = error(2, 'error, need POST!')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+

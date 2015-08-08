@@ -7,10 +7,12 @@ from app.common_api import error,user_permission
 from django.db import DatabaseError
 from django.core.mail import send_mail
 from random import randint
+from django.db.models import Q
 import traceback
 
 # Create your views here.
 from .models import *
+from position.models import *
 
 def register(request):
     re=dict()
@@ -238,12 +240,6 @@ def set_userinfo(request):
         re['error'] = error(2, 'erroe，need post')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-#todo get list
-def get_company_list(request,field,scale,organization):
-    re=dict()
-
-    return HttpResponse(json.dumps(re), content_type = 'application/json')
-
 def get_companyinfo_detail(request,compamy_id):
     re=dict()
     if request.method == "GET":
@@ -341,6 +337,19 @@ def create_financing_info(request):
                 financing_info.save()
             except DatabaseError:
                 re['error'] = error(250,'Database error: Failed to save')
+
+            stage = financing_info.stage
+            if stage == 'D_plus':
+                scale = 2
+            elif stage == 'A' or stage == 'B' or stage == 'C':
+                scale = 1
+            else:
+                scale = 0
+
+            if scale > companyinfo.scale:
+                companyinfo.scale = scale
+                companyinfo.save()
+
             re['error'] = error(1,"financing_info created ")
             re['data'] = json.loads(financing_info.to_json())
         else:
@@ -566,4 +575,49 @@ def verify_code(request):
             re['pass_verify'] = False 
     else:
         re['error'] = error(2, 'Error, need POST!')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+def get_company_list(request):
+    re = dict()
+    if request.method == 'POST':
+        text = request.POST.get('text', '')
+        field = request.POST.get('field', '')
+        auth_organization = request.POST.get('auth_organization', '')
+        scale = request.POST.get('scale', '')
+
+        companies = Companyinfo.objects.all()
+
+        if text != '':
+            companies = companies.filter(
+                Q(abbreviation__icontains = text) | 
+                Q(ICregist_name__icontains = text))
+        if field != '':
+            companies = companies.filter(field = field)
+        if auth_organization != '':
+            companies = companies.filter(auth_organization = auth_organization)
+        if scale != '':
+            companies = companies.filter(scale = scale)
+            
+        re['error'] = error(1, "get company list successfully")
+        re['data'] = json.loads(companies.to_json())
+    else:
+        re['error'] = error(2, 'error, need POST!')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+@user_permission("login")
+def user_likes_company(request):
+    re = dict()
+    if request.method == 'POST':
+        company_id = request.POST.get('company_id', '')
+        try:
+            company = Companyinfo.objects.get(id = company_id)
+        except:
+            re["error"] = error(105,"company does not exist!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        
+        uc = UC_Relationship(company = company, user = request.user)
+        uc.save()
+        re['error'] = error(1, "success!")
+    else:
+        re['error'] = error(2, 'error, need POST!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
