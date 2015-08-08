@@ -10,7 +10,7 @@ def index(request):
     context = {
         'role': request.session.get('role', 0)
     }
-    return render_to_response('index.html', context_instance=RequestContext(request))
+    return render_to_response('index.html', context_instance=RequestContext(request,context))
 
 #mobile index
 def mobile_index(request):
@@ -18,4 +18,4 @@ def mobile_index(request):
     context = {
         'role': request.session.get('role', 0)
     }
-    return render_to_response('mobile_index.html', context_instance=RequestContext(request))
+    return render_to_response('mobile_index.html', context_instance=RequestContext(request,context))

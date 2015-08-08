@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/account/views.py" afterPath="$PROJECT_DIR$/account/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/header.html" afterPath="$PROJECT_DIR$/templates/header.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="chuangplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,6 +39,33 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="46" selection-start="316" selection-end="316" vertical-scroll-proportion="-5.32" vertical-offset="0" max-vertical-offset="456">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="36" column="33" selection-start="2045" selection-end="2045" vertical-scroll-proportion="-10.178572" vertical-offset="399" max-vertical-offset="1064">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/header.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="44" column="73" selection-start="2365" selection-end="2365" vertical-scroll-proportion="1.2647504" vertical-offset="0" max-vertical-offset="1197">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="set.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/partials/desktop/password/set.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -46,22 +75,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/account/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="144" column="54" selection-start="6281" selection-end="6281" vertical-scroll-proportion="0.36463225" vertical-offset="2503" max-vertical-offset="10811">
+            <state line="146" column="52" selection-start="6398" selection-end="6398" vertical-scroll-proportion="-8.84" vertical-offset="2332" max-vertical-offset="10811">
               <folding>
                 <element signature="e#14#24#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="header.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/header.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="74" selection-start="2158" selection-end="2158" vertical-scroll-proportion="-14.25" vertical-offset="361" max-vertical-offset="1235">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -102,7 +122,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/templates/footer.html" />
         <option value="$PROJECT_DIR$/static/partials/desktop/company/regenter.html" />
         <option value="$PROJECT_DIR$/static/less/desktop/regenter.less" />
         <option value="$PROJECT_DIR$/static/less/desktop/base.less" />
@@ -110,7 +129,6 @@
         <option value="$PROJECT_DIR$/static/less/desktop/feedback.less" />
         <option value="$PROJECT_DIR$/static/partials/desktop/position/list.html" />
         <option value="$PROJECT_DIR$/static/less/desktop/header.less" />
-        <option value="$PROJECT_DIR$/templates/header.html" />
         <option value="$PROJECT_DIR$/static/less/desktop/footer.less" />
         <option value="$PROJECT_DIR$/static/partials/desktop/position/detail.html" />
         <option value="$PROJECT_DIR$/weichat/views.py" />
@@ -118,6 +136,8 @@
         <option value="$PROJECT_DIR$/static/partials/desktop/password/set.html" />
         <option value="$PROJECT_DIR$/static/js/controllers_desktop.js" />
         <option value="$PROJECT_DIR$/account/views.py" />
+        <option value="$PROJECT_DIR$/app/views.py" />
+        <option value="$PROJECT_DIR$/templates/header.html" />
       </list>
     </option>
   </component>
@@ -197,6 +217,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chuangplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chuangplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -539,11 +573,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/partials/desktop/password/findpwd.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="23" selection-start="454" selection-end="1811" vertical-scroll-proportion="0.8441358" vertical-offset="213" max-vertical-offset="950" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/regenter.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="20" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="703" />
@@ -595,20 +624,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="38" selection-start="2408" selection-end="2408" vertical-scroll-proportion="0.0" vertical-offset="684" max-vertical-offset="4465">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="689">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/account/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="40" column="52" selection-start="1365" selection-end="1365" vertical-scroll-proportion="-12.92" vertical-offset="342" max-vertical-offset="1577">
@@ -616,9 +631,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/header.html">
+    <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="74" selection-start="2158" selection-end="2158" vertical-scroll-proportion="-14.25" vertical-offset="361" max-vertical-offset="1235">
+        <state line="55" column="38" selection-start="2408" selection-end="2408" vertical-scroll-proportion="0.0" vertical-offset="684" max-vertical-offset="4465">
           <folding />
         </state>
       </provider>
@@ -632,10 +647,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/account/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="144" column="54" selection-start="6281" selection-end="6281" vertical-scroll-proportion="0.36463225" vertical-offset="2503" max-vertical-offset="10811">
+        <state line="146" column="52" selection-start="6398" selection-end="6398" vertical-scroll-proportion="-8.84" vertical-offset="2332" max-vertical-offset="10811">
           <folding>
             <element signature="e#14#24#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="33" selection-start="2045" selection-end="2045" vertical-scroll-proportion="-10.178572" vertical-offset="399" max-vertical-offset="1064">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="46" selection-start="316" selection-end="316" vertical-scroll-proportion="-5.32" vertical-offset="0" max-vertical-offset="456">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="73" selection-start="2365" selection-end="2365" vertical-scroll-proportion="1.2647504" vertical-offset="0" max-vertical-offset="1197">
+          <folding />
         </state>
       </provider>
     </entry>
