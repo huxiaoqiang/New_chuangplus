@@ -777,7 +777,7 @@ def email_resume(request):
         mail.send()
 
 @user_permission("login")
-def user_likes_position(request):
+def user_like_position(request):
     re = dict()
     if request.method == 'POST':
         position_id = request.POST.get('position_id', '')

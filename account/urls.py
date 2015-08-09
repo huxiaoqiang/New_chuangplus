@@ -18,8 +18,8 @@ urlpatterns = [
     url(r'^member/create', views.create_company_member, name='create_company_member'),
     url(r'^member/get', views.get_member_list, name='get_member_list'),
     url(r'^member/set', views.get_member_list, name='get_member_list'),
-
-
+    url(r'^company/get', views.get_company_list, name='get_company_list'),
+    url(r'^userlikecompany', views.user_like_company, name='user_like_company'),
 ]
 
 #urlpatterns = format_suffix_patterns(urlpatterns)

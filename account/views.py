@@ -605,7 +605,7 @@ def get_company_list(request):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission("login")
-def user_likes_company(request):
+def user_like_company(request):
     re = dict()
     if request.method == 'POST':
         company_id = request.POST.get('company_id', '')
