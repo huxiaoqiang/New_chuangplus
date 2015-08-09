@@ -27,18 +27,21 @@ header #header .navbar.navbar-default .nav.navbar-nav {
   float: left;
   margin-left: 20%;
 }
-header #header .navbar.navbar-default .nav.navbar-nav #search {
+header #header .navbar.navbar-default .nav.navbar-nav.search {
+  float: right;
+  margin-right: 10%;
+  margin-left: 0%;
+}
+header #header .navbar.navbar-default .nav.navbar-nav.search #search {
   padding-top: 0.6em;
-  position: absolute;
-  left: 60%;
 }
-header #header .navbar.navbar-default .nav.navbar-nav #search_btn {
-  position: absolute;
-  left: 71.5%;
+header #header .navbar.navbar-default .nav.navbar-nav.search #search input {
+  border-radius: 0px;
 }
-header #header .navbar.navbar-default .nav.navbar-nav #search_btn button {
+header #header .navbar.navbar-default .nav.navbar-nav.search #search_btn button {
   height: 34px;
   margin-top: 0.6em;
+  border-radius: 0px;
 }
 * {
   margin: 0;

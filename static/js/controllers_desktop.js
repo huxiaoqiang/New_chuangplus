@@ -74,6 +74,7 @@ angular.module('chuangplus.controllers', []).
                     console.log(data);
                 });
         };
+        $scope.refresh();
     }]).
     controller('DT_RegisterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_RegisterCtrl');
@@ -107,6 +108,7 @@ angular.module('chuangplus.controllers', []).
                     }
                 });
         };
+        $scope.refresh();
     }]).
     controller('DT_FindPwdCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','$cookieStore', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$cookieStore){
       console.log('DT_FindPwdCtrl');
@@ -128,7 +130,8 @@ angular.module('chuangplus.controllers', []).
                     setTimeout(function(){location.href='/password/findpwd'},2000);
                 }
             });
-      }
+      };
+      $scope.refresh();
     }]).
     controller('DT_SetPwdCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','$cookieStore', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $cookieStore){
       console.log('DT_SetPwdCtrl');

@@ -23,7 +23,6 @@
                  <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">我的<b class="caret"></b></a>
                     {% if role == 1 %}
-
                     <ul class="dropdown-menu">
                        <li><a href="/company/info">公司信息</a></li>
                        <li><a href="/company/position/edit">发布职位</a></li>
@@ -47,11 +46,14 @@
                     <li ng-class = "{'active':register}" ng-click="register_active()"><a href="/register">注册</a></li>
                     {% endif %}
                  </li>
+              </ul>
+              <ul class="nav navbar-nav search">
                  <li id="search">
                      <input type="text" class="form-control" placeholder="搜索公司或职位">
                  </li>
-                 <li id="search_btn"><button type="button" class="btn btn-default navbar-btn"><i class="icon-search"></i>搜索</button></li>
+                 <li id="search_btn"><button type="button" class="btn btn-default navbar-btn"><i class="icon-search"></i></button></li>
               </ul>
+
            </div>
         </nav>
     </div>
