@@ -31,7 +31,9 @@ class Userinfo(Document):
     has_resume = BooleanField(default=False)
     date_joined = DateTimeField()
     update_time = DateTimeField()
-    user = ReferenceField("User")
+    user = ReferenceField(User)
+    position = ListField(ReferenceField("position.Position"))
+
 
 # company position type
 TYPE = ('technology','product','design','operate','marketing','functions','others')
@@ -48,6 +50,7 @@ class Companyinfo(Document):
     scale = IntField(default=0)  #0 newly established  1:rapid expansion 2:mature period
     stage = StringField(max_length=10,choices=STAGE)
     homepage = URLField()
+    financing = ListField(ReferenceField("Financing"))
     wechat = StringField(max_length=40,default = "")
     email_resume=EmailField()  #email for receiving resume
     qrcode = ReferenceField(File,default = None)
@@ -58,6 +61,8 @@ class Companyinfo(Document):
     company_description = StringField(max_length=1000,default = "")
     product_description = StringField(max_length=1000,default = "")
     team_description = StringField(max_length=1000,default = "")
+    member = ListField(ReferenceField("Member"))
+    position = ListField(ReferenceField("position.Position"))
     slogan = StringField(max_length=50,default = "")
     status = BooleanField(default=False) # if the company is accepted by the admin
     user = ReferenceField(User)

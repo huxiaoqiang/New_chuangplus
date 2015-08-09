@@ -1,25 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/account/models.py" line="57" />
+    <bookmark url="file://$PROJECT_DIR$/account/models.py" line="60" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/desktop/base.css" afterPath="$PROJECT_DIR$/static/css/desktop/base.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/controllers_desktop.js" afterPath="$PROJECT_DIR$/static/js/controllers_desktop.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/footer.html" afterPath="$PROJECT_DIR$/templates/footer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/header.html" afterPath="$PROJECT_DIR$/templates/header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/header.less" afterPath="$PROJECT_DIR$/static/less/desktop/header.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/account/models.py" afterPath="$PROJECT_DIR$/account/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/filedata/models.py" afterPath="$PROJECT_DIR$/filedata/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/position/models.py" afterPath="$PROJECT_DIR$/position/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="E:\chuangplus_xiniu\chuangplus\weichat\__init__.py" afterPath="$PROJECT_DIR$/wechat/__init__.py" />
-      <change type="MOVED" beforePath="E:\chuangplus_xiniu\chuangplus\weichat\admin.py" afterPath="$PROJECT_DIR$/wechat/admin.py" />
-      <change type="MOVED" beforePath="E:\chuangplus_xiniu\chuangplus\weichat\migrations\__init__.py" afterPath="$PROJECT_DIR$/wechat/migrations/__init__.py" />
-      <change type="MOVED" beforePath="E:\chuangplus_xiniu\chuangplus\weichat\models.py" afterPath="$PROJECT_DIR$/wechat/models.py" />
-      <change type="MOVED" beforePath="E:\chuangplus_xiniu\chuangplus\weichat\tests.py" afterPath="$PROJECT_DIR$/wechat/tests.py" />
-      <change type="MOVED" beforePath="E:\chuangplus_xiniu\chuangplus\weichat\views.py" afterPath="$PROJECT_DIR$/wechat/views.py" />
     </list>
     <ignored path="chuangplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,7 +28,7 @@
     <favorites_list name="chuangplus" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.32893717">
+    <splitter split-orientation="horizontal" split-proportion="0.40884405">
       <split-first>
         <leaf>
           <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
@@ -93,28 +80,39 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="header.less" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="header.less" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/static/less/desktop/header.less">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="27" column="20" selection-start="608" selection-end="608" vertical-scroll-proportion="-1.6037736" vertical-offset="428" max-vertical-offset="1064">
+                <state line="27" column="20" selection-start="608" selection-end="608" vertical-scroll-proportion="0.1336478" vertical-offset="428" max-vertical-offset="1064">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
           <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/position/models.py">
+            <entry file="file://$PROJECT_DIR$/account/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="28" column="0" selection-start="1054" selection-end="1054" vertical-scroll-proportion="-13.64" vertical-offset="96" max-vertical-offset="760">
+                <state line="64" column="61" selection-start="2798" selection-end="2798" vertical-scroll-proportion="3.44" vertical-offset="1388" max-vertical-offset="1805">
+                  <folding>
+                    <element signature="e#14#54#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://C:/Python27/Lib/importlib/__init__.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="36" column="0" selection-start="1277" selection-end="1277" vertical-scroll-proportion="0.0" vertical-offset="169" max-vertical-offset="836">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/filedata/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="5" column="39" selection-start="116" selection-end="116" vertical-scroll-proportion="0.14307229" vertical-offset="0" max-vertical-offset="664">
+                <state line="11" column="0" selection-start="302" selection-end="302" vertical-scroll-proportion="-8.36" vertical-offset="0" max-vertical-offset="323">
                   <folding />
                 </state>
               </provider>
@@ -162,9 +160,9 @@
         <option value="$PROJECT_DIR$/static/js/controllers_desktop.js" />
         <option value="$PROJECT_DIR$/templates/header.html" />
         <option value="$PROJECT_DIR$/Captcha/views.py" />
+        <option value="$PROJECT_DIR$/filedata/models.py" />
         <option value="$PROJECT_DIR$/position/models.py" />
         <option value="$PROJECT_DIR$/account/models.py" />
-        <option value="$PROJECT_DIR$/filedata/models.py" />
       </list>
     </option>
   </component>
@@ -229,6 +227,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="position" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chuangplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chuangplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="account" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -558,11 +570,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="33" selection-start="2045" selection-end="2045" vertical-scroll-proportion="-10.178572" vertical-offset="399" max-vertical-offset="1064" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="46" selection-start="316" selection-end="316" vertical-scroll-proportion="-5.32" vertical-offset="0" max-vertical-offset="456" />
@@ -617,27 +624,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/account/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="31" selection-start="3458" selection-end="3458" vertical-scroll-proportion="0.89457834" vertical-offset="907" max-vertical-offset="1615">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/position/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="0" selection-start="1054" selection-end="1054" vertical-scroll-proportion="-13.64" vertical-offset="96" max-vertical-offset="760">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/less/desktop/header.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="20" selection-start="608" selection-end="608" vertical-scroll-proportion="-1.6037736" vertical-offset="428" max-vertical-offset="1064">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="0" selection-start="63" selection-end="63" vertical-scroll-proportion="0.08584338" vertical-offset="0" max-vertical-offset="664">
@@ -649,8 +635,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="747" column="52" selection-start="31461" selection-end="31461" vertical-scroll-proportion="0.33284023" vertical-offset="13968" max-vertical-offset="15276">
           <folding>
-            <element signature="e#14#35#0" expanded="true" />
+            <element signature="e#14#35#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filedata/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="302" selection-end="302" vertical-scroll-proportion="-8.36" vertical-offset="0" max-vertical-offset="323">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -661,9 +654,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/filedata/models.py">
+    <entry file="file://C:/Python27/Lib/importlib/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="39" selection-start="116" selection-end="116" vertical-scroll-proportion="0.14307229" vertical-offset="0" max-vertical-offset="664">
+        <state line="36" column="0" selection-start="1277" selection-end="1277" vertical-scroll-proportion="0.0" vertical-offset="169" max-vertical-offset="836">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/account/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="64" column="61" selection-start="2798" selection-end="2798" vertical-scroll-proportion="3.44" vertical-offset="1388" max-vertical-offset="1805">
+          <folding>
+            <element signature="e#14#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/position/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="42" selection-start="1096" selection-end="1096" vertical-scroll-proportion="0.40767387" vertical-offset="267" max-vertical-offset="684">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/less/desktop/header.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="20" selection-start="608" selection-end="608" vertical-scroll-proportion="0.1336478" vertical-offset="428" max-vertical-offset="1064">
           <folding />
         </state>
       </provider>

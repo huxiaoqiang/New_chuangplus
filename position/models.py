@@ -26,11 +26,7 @@ class Position(Document):
     delivery_number = IntField(default=0)
     status = StringField(max_length=15,choices=STATUS,default='hiden')
     company = ReferenceField(Companyinfo,required=True)
-
-# Position and User favorite relationship
-class UP_Relationship(Document):
-    user = ReferenceField(User)
-    position = ReferenceField(Position)
+    user = ListField(ReferenceField(User))
 
 class UserPosition(Document):
     submit_date = DateTimeField()
