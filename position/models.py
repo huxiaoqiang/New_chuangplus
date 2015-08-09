@@ -27,8 +27,8 @@ class Position(Document):
     status = StringField(max_length=15,choices=STATUS,default='hide')
     company = ReferenceField(Companyinfo,required=True)
 
-#Position and User favorite relationship
-class PC_Relationship(Document):
+# Position and User favorite relationship
+class UP_Relationship(Document):
     user = ReferenceField(Userinfo)
     position = ReferenceField(Position)
 

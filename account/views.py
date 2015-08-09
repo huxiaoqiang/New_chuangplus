@@ -615,7 +615,8 @@ def user_like_company(request):
             re["error"] = error(105,"company does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         
-        uc = UC_Relationship(company = company, user = request.user)
+        user = Userinfo.objects.get(username = request.user.username)
+        uc = UC_Relationship(company = company, user = user)
         uc.save()
         re['error'] = error(1, "success!")
     else:

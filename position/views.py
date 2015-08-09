@@ -788,8 +788,9 @@ def user_like_position(request):
             re['error'] = error(260, 'Position does not exist') 
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         
-        pc = PC_Relationship(position = position, user = request.user)
-        pc.save()
+        user = Userinfo.objects.get(username = request.user.username)
+        up = UP_Relationship(position = position, user = user)
+        up.save()
         re['error'] = error(1, "success!")
     else:
         re['error'] = error(2, 'error, need POST!')
