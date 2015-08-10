@@ -187,7 +187,6 @@ def set_password(request):
         re['error'] = error(2, 'error,need get')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-
 @user_permission('login')
 def get_userinfo(request):
     re = dict()
@@ -202,7 +201,6 @@ def get_userinfo(request):
     else:
         re['error'] = error(2, 'error, need get')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
-
 
 @user_permission('login')
 def set_userinfo(request):
@@ -226,7 +224,7 @@ def set_userinfo(request):
         request.user.email = u.email
         request.user.save()
 
-        re['userinfo'] = json.loads(userinfo.to_json())
+        re['userinfo'] = json.loads(u.to_json())
         re['error'] = error(1, 'updated successfully')
     else:
         re['error'] = error(2, 'error，need post')
@@ -237,10 +235,11 @@ def check_userinfo_complete(request):
     re = dict()
     if request.method == "GET":
         u = Userinfo.objects.get(username=request.user.username)
-        if u.position_type and u.work_city and u.cellphone
-        and u.university and u.major and u.grade
-        and u.gender and u.work_days and u.description
-        and u.resume and u_real_name:
+        if u.position_type and u.work_city\
+        and u.cellphone and u.university\
+        and u.major and u.grade \
+        and u.gender and u.work_days and u.description\
+        and u.has_resume and u.real_name:
             u.info_complete = True
             u.save() 
     else:
@@ -262,7 +261,7 @@ def get_companyinfo_detail(request,company_id):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission("login")
-def set_companyinfo(request):
+def set_companyinfo(request,company_id):
     re=dict()
     if request.method == "POST":
         c = Companyinfo.objects.get(username=request.user.username)
@@ -293,8 +292,8 @@ def check_companyinfo_complete(request):
     re = dict()
     if request.method == "GET":
         c = Companyinfo.objects.get(username=request.user.username)
-        if c.city and c.field and c.scale and c.stage
-        and c.email_resume and c.welfare_tags and c.ICregist_name 
+        if c.city and c.field and c.scale and c.stage\
+        and c.email_resume and c.welfare_tags and c.ICregist_name\ 
         and c.company_descrition:
             c.info_complete = True
             c.save() 
@@ -447,7 +446,6 @@ def delete_financinginfo(request,fin_id):
         re['error'] = error(2,"error, need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-
 @user_permission("login")
 def create_company_member(request):
     re = dict()
@@ -545,8 +543,6 @@ def delete_company_member(request,mem_id):
     else:
         re["error"] = error(2,"error,need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
-
-#todo add organization auth function (for admin)
 
 def send_email(request):
     re = dict()
