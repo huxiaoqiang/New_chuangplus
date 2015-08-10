@@ -14,11 +14,12 @@ except ImportError:
     datetime_now = datetime.now
 
 #Userinfo
+TYPE = ('technology','product','design','operate','marketing','functions','others')
 class Userinfo(Document):
     username = StringField(max_length=30,required=True)
     email = EmailField(required=True)
     real_name = StringField(max_length=20)
-    position_type = ListField(StringField(max_length=30))
+    position_type = ListField(StringField(max_length=30,choices=TYPE))
     work_city = StringField(max_length=100)
     cellphone = StringField(max_length=20)
     university = StringField(max_length=100)
@@ -35,7 +36,6 @@ class Userinfo(Document):
     position = ListField(ReferenceField("position.Position"))
 
 # company position type
-TYPE = ('technology','product','design','operate','marketing','functions','others')
 FIELD = ('social','e-commerce','education','health_medical','culture_creativity','living_consumption','hardware','O2O','others')
 STAGE=('','seed','angel','A','B','C','D_plus')
 class Companyinfo(Document):
@@ -43,7 +43,7 @@ class Companyinfo(Document):
     hr_cellphone = StringField(max_length=30,required=True)
     abbreviation = StringField(max_length=100)
     city = StringField(max_length=40)
-    field = StringField(max_length=30)
+    field = StringField(max_length=30,choices=FIELD)
     is_auth = BooleanField(default=False)
     auth_organization = StringField(max_length=100)
     scale = IntField()  #0 newly established  1:rapid expansion 2:mature period
@@ -64,6 +64,9 @@ class Companyinfo(Document):
     position = ListField(ReferenceField("position.Position"))
     slogan = StringField(max_length=50)
     status = BooleanField(default=False) # if the company is accepted by the admin
+    info_complete = BooleanField(default=False)
+    date_joined = DateTimeField()
+    update_time = DateTimeField()
     user = ReferenceField(User)
 
 #project member table
