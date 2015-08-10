@@ -52,7 +52,7 @@ def register(request):
                 re['error'] = error(107, 'Username exist or username include special character')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             if reguser is not None and role == "1":
-                reguser.is_staff == True
+                reguser.is_staff = True
                 reguser.save()
                 companyinfo = Companyinfo(username=username)
                 companyinfo.user = reguser
@@ -60,6 +60,7 @@ def register(request):
                 companyinfo.update_time = datetime_now()
                 companyinfo.hr_cellphone = request.POST.get('hr_cellphone', '')
                 companyinfo.save()
+                re['error'] = error(1, 'company user registered!')
             elif reguser is not None and role == "0":
                 userinfo = Userinfo(username=username)
                 userinfo.email = email
@@ -67,6 +68,7 @@ def register(request):
                 userinfo.update_time = datetime_now()
                 userinfo.user = reguser
                 userinfo.save()
+                re['error'] = error(1, 'ordinary user registered!')
             #elif role == -1:
             #    reguser.is_superuser = True
             #    reguser.save()
@@ -76,7 +78,6 @@ def register(request):
                 request.session['role'] = int(role)
                 #request.session['status'] = userinfo.status
                 #request.session['practice_code'] = userinfo.practice_code
-                re['error'] = error(1, 'regist succeed!')
                 #re['status'] = userinfo.status
                 re['role'] = role
                 resp = HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -288,14 +289,6 @@ def set_companyinfo(request,company_id):
         c.abbreviation = request.POST.get('abbreviation', c.abbreviation)
         c.city = request.POST.get('city', c.city)
         c.field = request.POST.get('field', c.field)
-        c.stage = request.POST.get('stage', c.stage)
-
-        if c.stage == 'D_plus':
-            c.scale = 2
-        elif c.stage == 'A' or c.stage == 'B' or c.stage == 'c':
-            c.scale = 1
-        else:
-            c.scale = 0
 
         c.homepage = request.POST.get('homepage', c.homepage)
         c.wechat = request.POST.get('wechat', c.wechat)
@@ -322,19 +315,24 @@ def set_companyinfo(request,company_id):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission('login')
-def check_companyinfo_complete(request):
+def check_companyinfo_complete(request,company_id):
     re = dict()
     if request.method == "GET":
         c = Companyinfo.objects.get(username=request.user.username)
-        if c.city and c.field and c.scale and c.stage\
-        and c.email_resume and c.welfare_tags and c.ICregist_name\
-        and c.company_description:
+        if c.city and c.field and c.email_resume and c.welfare_tags\
+        and c.ICregist_name and c.company_description:
             c.info_complete = True
-            c.save() 
+            re['complete'] = 'True'
+        else:
+            c.info_complete = False
+            re['complete'] = 'False'
+
+        c.save() 
     else:
         re["error"] = error(3,"error,need GET!")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
     
+#TODO TO BE TESTED
 #admin api: for modifying the companyinfo.status, is_auth, auth_organization
 @user_permission("login")
 def auth_company(request,company_id):
@@ -373,43 +371,59 @@ def auth_company(request,company_id):
         re['error'] = error(2,"error, need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+# This is a helper function
+def update_stage_scale(company):
+    scale_hash = {'seed':0, 'angel':0, 'A':1, 'B':1, 'C':1, 'D_plus':2}
+    highest_stage = ''
+    highest_scale = -1
+
+    for f in Financing.objects.filter(company = company):
+        scale = scale_hash[f.stage]
+        if scale > highest_scale:
+            highest_scale = scale
+            highest_stage = f.stage
+
+    company.scale = highest_scale
+    company.stage = highest_stage
+    company.save()
+
 @user_permission("login")
 def create_financing_info(request):
     re=dict()
     if request.method == "POST":
-        username = request.user.username
+        username = ''
+        if request.user.is_superuser:
+            username = request.POST.get('username', '')
+        if request.user.is_staff:
+            username = request.user.username
+
+        if username == '':
+            re['error'] = error(100,"permission denied!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+            
         try:
             companyinfo = Companyinfo.objects.get(username=username)
         except:
-            re["error"] = error(105,"companyinfo does not exist!")
+            re["error"] = error(105, "companyinfo does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
-        if request.user.is_staff == True or request.user.is_superuser == True:
-            financing_info = Financing()
-            financing_info.stage = request.POST.get('stage','')
-            financing_info.organization = request.POST.get('organization','')
-            financing_info.amount = request.POST.get('amount','')
-            financing_info.company = companyinfo
-            try:
-                financing_info.save()
-            except DatabaseError:
-                re['error'] = error(250,'Database error: Failed to save')
 
-            stage = financing_info.stage
-            if stage == 'D_plus':
-                scale = 2
-            elif stage == 'A' or stage == 'B' or stage == 'C':
-                scale = 1
-            else:
-                scale = 0
+        financing_info = Financing()
+        financing_info.stage = request.POST.get('stage','')
+        if financing_info.stage == 'none':
+            financing_info.stage = ''
+        financing_info.organization = request.POST.get('organization','')
+        financing_info.amount = request.POST.get('amount','')
+        financing_info.company = companyinfo
+        try:
+            financing_info.save()
+        except DatabaseError:
+            re['error'] = error(250,'Database error: Failed to save')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-            if scale > companyinfo.scale:
-                companyinfo.scale = scale
-                companyinfo.save()
+        update_stage_scale(companyinfo) 
 
-            re['error'] = error(1,"financing_info created ")
-            re['data'] = json.loads(financing_info.to_json())
-        else:
-            re['error'] = error(100,"permission denied!")
+        re['error'] = error(1,"financing_info created")
+        re['data'] = json.loads(financing_info.to_json())
     else:
         re['error'] = error(2,"error, need post")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -420,10 +434,10 @@ def get_financinginfo_list(request,company_id):
         try:
             companyinfo = Companyinfo.objects.get(id=company_id)
         except:
-            re["error"] = error(105,"company dose not exist!")
+            re["error"] = error(105,"company does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         try:
-            financinginfo_list = Financing.objects.get(company = companyinfo)
+            financinginfo_list = Financing.objects.filter(company = companyinfo)
         except DatabaseError:
             re['error'] = error(250,'Database error: Failed to get')
         re['data'] = json.loads(financinginfo_list.to_json())
@@ -441,15 +455,19 @@ def set_financinginfo(request,fin_id):
         except:
             re['error'] = error(112,"financing_info dose not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
-        if request.user.is_staff == True or request.user.is_superuser == True:
+        if request.user.is_superuser == True or\
+        financing_info.company.username == request.user.username:
             financing_info.stage = request.POST.get("stage","")
             financing_info.organization = request.POST.get("organization","")
             financing_info.amount = request.POST.get("amount","")
             try:
-                financing_info.update()
+                financing_info.save()
             except DatabaseError:
                 re['error'] = error(250,'Database error: Failed to save')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+            update_stage_scale(financing_info.company) 
+
             re['error'] = error(1,"financing_info update successfully!")
             re['data'] = json.loads(financing_info.to_json())
         else:
@@ -467,12 +485,16 @@ def delete_financinginfo(request,fin_id):
         except:
             re['error'] = error(112,"financing_info dose not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
-        if request.user.is_staff == True or request.user.is_superuser == True:
+
+        if request.user.is_superuser == True or\
+        financing_info.company.username == request.user.username:
             try:
                 financing_info.delete()
             except DatabaseError:
                 re['error'] = error(252,"Database error: Failed to delete!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+            update_stage_scale(financing_info.company) 
             re['error'] = error(1,'Delete position succeed!')
         else:
             re["error"] = error(100,"permission denied!")
@@ -488,20 +510,21 @@ def create_company_member(request):
         try:
             companyinfo = Companyinfo.objects.get(username=username)
         except:
-            re['error'] = error(105,"companyinfo dose not exist!")
+            re['error'] = error(105,"companyinfo does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
+
         if request.user.is_staff == True or request.user.is_superuser == True:
             new_member = Member()
             new_member.m_name = request.POST.get('m_name','')
             new_member.m_position = request.POST.get('m_position','')
             new_member.m_introduction = request.POST.get('m_introduction','')
-            new_member.m_avatar_path = request.POST.get('m_avatar_path','')
             new_member.company = companyinfo
             try:
                 new_member.save()
             except DatabaseError:
                 re['error'] = error(250,'Database error: Failed to save')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
+
             re['error'] = error(1,'create new member successfully!')
             re['data'] = json.loads(new_member.to_json())
         else:
@@ -512,14 +535,14 @@ def create_company_member(request):
 
 def get_member_list(request,company_id):
     re=dict()
-    if request.method == 'POST':
+    if request.method == 'GET':
         try:
             companyinfo = Companyinfo.objects.get(id=company_id)
         except:
             re['error'] = error(105,"companyinfo dose not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         try:
-            member_list = Member.objects.get(company=companyinfo)
+            member_list = Member.objects.filter(company=companyinfo)
         except DatabaseError:
              re['error'] = error(250,'Database error: Failed to save')
              return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -536,15 +559,16 @@ def set_company_member(request,mem_id):
         try:
             member = Member.objects.get(id=mem_id)
         except:
-            re['error'] = error(112,"member dose not exist")
+            re['error'] = error(112,"member does not exist")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
-        if request.user.is_staff == True or request.user.is_superuser == True:
+
+        if request.user.is_superuser == True\
+        or member.company.username == request.user.username:
             member.m_name = request.POST.get('m_name','')
             member.m_position = request.POST.get('m_position','')
             member.m_introduction = request.POST.get('m_introduction','')
-            member.m_avatar_path = request.POST.get('m_avatar_path','')
             try:
-                member.update()
+                member.save()
             except DatabaseError:
                 re['error'] = error(250,'Database error: Failed to update')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -563,9 +587,11 @@ def delete_company_member(request,mem_id):
         try:
             del_member = Member.objects.get(id=mem_id)
         except:
-            re['error'] = error(112,"member dose not exist")
+            re['error'] = error(112,"member does not exist")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
-        if request.user.is_staff == True or request.user.is_superuser == True:
+
+        if request.user.is_superuser == True\
+        or del_member.company.username == request.user.username:
             try:
                 del_member.delete()
             except DatabaseError:
@@ -637,6 +663,7 @@ def get_company_list(request):
         field = request.POST.get('field', '')
         auth_organization = request.POST.get('auth_organization', '')
         scale = request.POST.get('scale', '')
+        status = request.POST.get('status', '')
 
         companies = Companyinfo.objects.all()
 
@@ -649,7 +676,9 @@ def get_company_list(request):
         if auth_organization != '':
             companies = companies.filter(auth_organization = auth_organization)
         if scale != '':
-            companies = companies.filter(scale = scale)
+            companies = companies.filter(scale = int(scale))
+        if status != '':
+            companies = companies.filter(status = bool(status))
             
         re['error'] = error(1, "get company list successfully")
         re['data'] = json.loads(companies.to_json())
