@@ -293,7 +293,7 @@ def check_companyinfo_complete(request):
     if request.method == "GET":
         c = Companyinfo.objects.get(username=request.user.username)
         if c.city and c.field and c.scale and c.stage\
-        and c.email_resume and c.welfare_tags and c.ICregist_name\ 
+        and c.email_resume and c.welfare_tags and c.ICregist_name\
         and c.company_descrition:
             c.info_complete = True
             c.save() 

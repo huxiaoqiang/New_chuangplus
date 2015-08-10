@@ -11,8 +11,8 @@ def get_custom_menu():
     rjson = json.loads(res)
     return  rjson.get('menu', {})
 
-def modify_custom_menu(button):
+def modify_custom_menu(buttons):
     access_token = get_access_token()
     url = WECHAT_URLS['create_custom_menu'](access_token)
-    res = http_post(url)
+    res = http_post(url,buttons)
     return res
