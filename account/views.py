@@ -328,11 +328,7 @@ def check_companyinfo_complete(request):
         c = Companyinfo.objects.get(username=request.user.username)
         if c.city and c.field and c.scale and c.stage\
         and c.email_resume and c.welfare_tags and c.ICregist_name\
-<<<<<<< HEAD
-        and c.company_descrition:
-=======
         and c.company_description:
->>>>>>> 5678d8ebe4f41403663afc8ba03b3c75bd961ef6
             c.info_complete = True
             c.save() 
     else:
