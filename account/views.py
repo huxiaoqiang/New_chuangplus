@@ -58,6 +58,7 @@ def register(request):
                 companyinfo.user = reguser
                 companyinfo.date_joined = datetime_now()
                 companyinfo.update_time = datetime_now()
+                companyinfo.hr_cellphone = request.POST.get('hr_cellphone', '')
                 companyinfo.save()
             elif reguser is not None and role == "0":
                 userinfo = Userinfo(username=username)
@@ -100,7 +101,7 @@ def check_username(request):
             re['error']=error(1,"succeed!")
 
         if User.objects.filter(username=name).count() != 0:
-            re['username'] = {'exist': 'ture'}
+            re['username'] = {'exist': 'true'}
         else:
             re['username'] = {'exist': 'false'}
     else:
@@ -118,7 +119,7 @@ def check_email(request):
             re['error'] = error(1,"succeed!")
         
         if User.objects.filter(email=email).count() != 0:
-            re['email'] = {'exist': 'ture'}
+            re['email'] = {'exist': 'true'}
         else:
             re['email'] = {'exist': 'false'}
     else:
@@ -207,9 +208,22 @@ def set_userinfo(request):
     re = dict()
     if request.method == 'POST':
         u = Userinfo.objects.get(username=request.user.username)
+
         u.email = request.POST.get('email', u.email)
+        request.user.email = u.email
+
+        try:
+            request.user.save()
+        except:
+            re['error'] = error(250, 'Database error: Failed to save')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+
         u.real_name = request.POST.get('real_name', u.real_name)
-        u.position_type = request.POST.get('position_type', u.position_type)
+
+        position_type = request.POST.get('position_type', '')
+        if position_type != '':
+            u.position_type = position_type.split(',')
+
         u.work_city = request.POST.get('work_city', u.work_city)
         u.cellphone = request.POST.get('cellphone', u.cellphone)
         u.university = request.POST.get('university', u.university)
@@ -219,10 +233,12 @@ def set_userinfo(request):
         u.work_days = request.POST.get('work_days', u.work_days)
         u.description = request.POST.get('description', u.description)
         u.update_time = datetime_now()
-        u.save()
 
-        request.user.email = u.email
-        request.user.save()
+        try:
+            u.save()
+        except:
+            re['error'] = error(250, 'Database error: Failed to save')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
 
         re['userinfo'] = json.loads(u.to_json())
         re['error'] = error(1, 'updated successfully')
@@ -237,11 +253,15 @@ def check_userinfo_complete(request):
         u = Userinfo.objects.get(username=request.user.username)
         if u.position_type and u.work_city\
         and u.cellphone and u.university\
-        and u.major and u.grade \
+        and u.major and u.grade\
         and u.gender and u.work_days and u.description\
-        and u.has_resume and u.real_name:
+        and u.resume and u.real_name:
             u.info_complete = True
-            u.save() 
+            re["complete"] = 'True' 
+        else:
+            u.info_complete = False
+            re["complete"] = 'False' 
+        u.save() 
     else:
         re["error"] = error(3,"error,need GET!")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -268,21 +288,35 @@ def set_companyinfo(request,company_id):
         c.abbreviation = request.POST.get('abbreviation', c.abbreviation)
         c.city = request.POST.get('city', c.city)
         c.field = request.POST.get('field', c.field)
-        c.scale = request.POST.get('scale', c.scale)
-        c.stage = request.POST.get('scale', c.stage)
-        c.homepage = request.POST.get('scale', c.homepage)
+        c.stage = request.POST.get('stage', c.stage)
+
+        if c.stage == 'D_plus':
+            c.scale = 2
+        elif c.stage == 'A' or c.stage == 'B' or c.stage == 'c':
+            c.scale = 1
+        else:
+            c.scale = 0
+
+        c.homepage = request.POST.get('homepage', c.homepage)
         c.wechat = request.POST.get('wechat', c.wechat)
-        c.email_resume = request.POST('email_resume', c.email_resume)
+        c.email_resume = request.POST.get('email_resume', c.email_resume)
         c.qrcode = request.POST.get('qrcode', c.qrcode)
-        c.welfare_tags = request.POST.get('welfare_tags', c.welfare_tags)
+
+        welfare_tags = request.POST.get('welfare_tags', '')
+        if welfare_tags != '':
+            c.welfare_tags = welfare_tags.split(',') 
+
         c.product_link = request.POST.get('product_link', c.product_link)
         c.ICregist_name = request.POST.get('ICregist_name', c.ICregist_name)
-        c.company_descrition = request.POST.get('company_descrition', c.company_descrition)
+        c.company_description = request.POST.get('company_description', c.company_description)
         c.product_description = request.POST.get('product_description', c.product_description)
         c.team_description = request.POST.get('team_description', c.team_description)
         c.slogan = request.POST.get('slogan', c.slogan)
         c.update_time = datetime_now()
         c.save()
+
+        re['companyinfo'] = json.loads(c.to_json())
+        re['error'] = error(1, 'updated successfully')
     else:
         re['error'] = error(2,"error,need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -294,7 +328,11 @@ def check_companyinfo_complete(request):
         c = Companyinfo.objects.get(username=request.user.username)
         if c.city and c.field and c.scale and c.stage\
         and c.email_resume and c.welfare_tags and c.ICregist_name\
+<<<<<<< HEAD
         and c.company_descrition:
+=======
+        and c.company_description:
+>>>>>>> 5678d8ebe4f41403663afc8ba03b3c75bd961ef6
             c.info_complete = True
             c.save() 
     else:
@@ -347,7 +385,7 @@ def create_financing_info(request):
         try:
             companyinfo = Companyinfo.objects.get(username=username)
         except:
-            re["error"] = error(105,"companyinfo dose not exist!")
+            re["error"] = error(105,"companyinfo does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         if request.user.is_staff == True or request.user.is_superuser == True:
             financing_info = Financing()

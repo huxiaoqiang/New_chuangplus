@@ -25,7 +25,7 @@ angular.module('chuangplus', [
 	'angularify.semantic.sidebar',
 	'angularify.semantic.wizard'
 ]).
-    constant('urls', {'part_mobile': '/static/partials/mobile','part_desktop': '/static/partials/desktop', 'api': '/api'}).
+    constant('urls', {'part_mobile': '/static/partials/mobile','part_desktop': '/static/partials/desktop','part_admin': '/static/partials/admin', 'api': '/api'}).
     config(['$interpolateProvider', function($interpolateProvider){
         $interpolateProvider.startSymbol('[[');
         $interpolateProvider.endSymbol(']]');
@@ -40,6 +40,8 @@ angular.module('chuangplus', [
         //desktop configure
         $routeProvider.when('/', {templateUrl: urls.part_desktop + '/homepage.html', controller: 'DT_HomepageCtrl', title: 'HomePage'});
         $routeProvider.when('/login', {templateUrl: urls.part_desktop + '/login.html', controller: 'DT_LoginCtrl', title: 'LoginPage'});
+        $routeProvider.when('/admin/login', {templateUrl: urls.part_admin + '/login.html', controller: 'DT_AdminLoginCtrl', title: 'AdminLoginPage'});
+
         $routeProvider.when('/register', {templateUrl: urls.part_desktop + '/register.html', controller: 'DT_RegisterCtrl', title: 'RegisterPage'});
         $routeProvider.when('/password/forgetpwd', {templateUrl: urls.part_desktop + '/password/findpwd.html', controller: 'DT_FindPwdCtrl', title: 'FindPwdPage'});
         $routeProvider.when('/password/set', {templateUrl: urls.part_desktop + '/password/set.html', controller: 'DT_SetPwdCtrl', title: 'SetPwdPage'});
@@ -68,7 +70,7 @@ angular.module('chuangplus', [
 
         $routeProvider.when('/feedback', {templateUrl: urls.part_desktop + '/feedback.html', controller: 'DT_FeedbackCtrl', title: 'FeedbackPage'});
         $routeProvider.when('/about', {templateUrl: urls.part_desktop + '/about.html', controller: 'DT_AboutCtrl', title: 'AboutPage'});
-
+        $routeProvider.otherwise({redirectTo: '/'});
 
 
        // $routeProvider.when('/user/info', {templateUrl: urls.part_desktop + '/user/info.html', controller: 'DT_UserInfoCtrl', title: 'UserInfoPage'});
@@ -97,9 +99,7 @@ angular.module('chuangplus', [
         $routeProvider.when('/mobile/compcollect', {templateUrl: urls.part_mobile + '/compcollect.html',title:'Company Collection'});
         $routeProvider.when('/mobile/editresume', {templateUrl: urls.part_mobile + '/editresume.html',title:'Edit Resume'});
         $routeProvider.when('/mobile/uploadresume', {templateUrl: urls.part_mobile + '/uploadresume.html',title:'Upload Resume'});
-        
 
-        $routeProvider.otherwise({redirectTo: '/'});
     }]).
 //  the google analytics configure
 //    config(function(AnalyticsProvider){

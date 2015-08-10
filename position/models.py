@@ -8,7 +8,7 @@ import re
 # Create your models here
 
 TYPE = ('technology','product','design','operate','marketing','functions','others')
-STATUS = ('open','hiden','closed')
+STATUS = ('open','hidden','closed')
 
 class Position(Document):
     name = StringField(max_length=30)
@@ -24,7 +24,7 @@ class Position(Document):
     salary_min = IntField(default=0)
     salary_max = IntField(default=0)
     delivery_number = IntField(default=0)
-    status = StringField(max_length=15,choices=STATUS,default='hiden')
+    status = StringField(max_length=15,choices=STATUS,default='hidden')
     company = ReferenceField(Companyinfo,required=True)
     user = ListField(ReferenceField(User))
 
