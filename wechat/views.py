@@ -4,6 +4,4 @@ from django.http import HttpResponse
 import json
 # Create your views here.
 
-@user_permission('login')
-def GetAccessToken(request):
-    pass
+

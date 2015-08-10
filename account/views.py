@@ -186,7 +186,6 @@ def set_password(request):
         re['error'] = error(2, 'error,need get')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-
 @user_permission('login')
 def get_userinfo(request):
     re = dict()
@@ -201,7 +200,6 @@ def get_userinfo(request):
     else:
         re['error'] = error(2, 'error, need get')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
-
 
 @user_permission('login')
 def set_userinfo(request):
@@ -255,40 +253,36 @@ def get_companyinfo_detail(request,compamy_id):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission("login")
-def set_companyinfo(request):
+def set_companyinfo(request,company_id):
     re=dict()
     if request.method == "POST":
-            username=request.POST.get('username','')
-            if username == request.user.username:
-                try:
-                    companyinfo=Companyinfo.objects.get(username=username)
-                except:
-                    re['error'] = error(105, 'companyinfo dose not exist')
-                    re['username'] = username
-                else:
-                    companyinfo.contacts = request.POST.get('contacts', '')
-                    companyinfo.abbreviation = request.POST.get('abbreviation', '')
-                    companyinfo.city = request.POST.get('city', '')
-                    companyinfo.field = request.POST.get('field', '')
-                    companyinfo.people_scale = request.POST.get('people_scale','')
-                    companyinfo.wechat = request.POST.get('wechat','')
-                    companyinfo.email_resume = request.POST('email_resume','')
-                    companyinfo.qrcode = request.POST.get('qrcode','')
-                    companyinfo.welfare_tags = request.POST.get('welfare_tags','')
-                    companyinfo.product_link = request.POST.get('welfare_tags','')
-                    companyinfo.product_description = request.POST.get('product_description','')
-                    companyinfo.ICregist_name = request.POST.get('ICregist_name','')
-                    companyinfo.company_descrition = request.POST.get('company_descrition','')
-                    companyinfo.team_description = request.POST.get('team_description','')
-                    companyinfo.position_type = request.POST.get('position_type','')
-                    companyinfo.grade = request.POST.get('grade', '')
-                    companyinfo.gender = request.POST.get('gender', '')
-                    companyinfo.work_days = request.POST.get('work_days', '')
-                    companyinfo.description = request.POST.get('description', '')
-                    companyinfo.slogan = request.POST.get('slogan','')
-                    companyinfo.update_time = datetime_now()
-            else:
-                re['error'] = error(110,'Permission denied, no permission to change ')
+        try:
+            companyinfo=Companyinfo.objects.get(id=company_id)
+        except:
+            re['error'] = error(105, 'companyinfo dose not exist')
+            re['company_id'] = company_id
+        else:
+            companyinfo.contacts = request.POST.get('contacts', '')
+            companyinfo.abbreviation = request.POST.get('abbreviation', '')
+            companyinfo.city = request.POST.get('city', '')
+            companyinfo.field = request.POST.get('field', '')
+            companyinfo.people_scale = request.POST.get('people_scale','')
+            companyinfo.wechat = request.POST.get('wechat','')
+            companyinfo.email_resume = request.POST('email_resume','')
+            companyinfo.qrcode = request.POST.get('qrcode','')
+            companyinfo.welfare_tags = request.POST.get('welfare_tags','')
+            companyinfo.product_link = request.POST.get('welfare_tags','')
+            companyinfo.product_description = request.POST.get('product_description','')
+            companyinfo.ICregist_name = request.POST.get('ICregist_name','')
+            companyinfo.company_descrition = request.POST.get('company_descrition','')
+            companyinfo.team_description = request.POST.get('team_description','')
+            companyinfo.position_type = request.POST.get('position_type','')
+            companyinfo.grade = request.POST.get('grade', '')
+            companyinfo.gender = request.POST.get('gender', '')
+            companyinfo.work_days = request.POST.get('work_days', '')
+            companyinfo.description = request.POST.get('description', '')
+            companyinfo.slogan = request.POST.get('slogan','')
+            companyinfo.update_time = datetime_now()
     else:
         re['error'] = error(2,"error,need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -424,7 +418,6 @@ def delete_financinginfo(request,fin_id):
         re['error'] = error(2,"error, need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-
 @user_permission("login")
 def create_company_member(request):
     re = dict()
@@ -522,8 +515,6 @@ def delete_company_member(request,mem_id):
     else:
         re["error"] = error(2,"error,need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
-
-#todo add organization auth function (for admin)
 
 def send_email(request):
     re = dict()
