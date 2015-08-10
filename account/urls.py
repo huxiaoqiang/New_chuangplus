@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from . import views
+from . import views,tests
 
 urlpatterns = [
     url(r'^register$', views.register, name='register'),
@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^company/(?P<compamy_id>.*?)/auth', views.auth_company, name='auth_company'),
 
     url(r'^userlikecompany', views.user_like_company, name='user_like_company'),
-
+    
 ]
 
 #urlpatterns = format_suffix_patterns(urlpatterns)
