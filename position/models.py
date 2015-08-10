@@ -12,7 +12,7 @@ STATUS = ('open','hiden','closed')
 
 class Position(Document):
     name = StringField(max_length=30)
-    type = StringField(max_length=15,choices=TYPE)
+    type = StringField(max_length=30,choices=TYPE)
     work_city = StringField(max_length=50)
     work_address = StringField(max_length=200)
     release_time = DateTimeField(default=datetime.now())

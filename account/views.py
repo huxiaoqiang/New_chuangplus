@@ -56,6 +56,8 @@ def register(request):
                 reguser.save()
                 companyinfo = Companyinfo(username=username)
                 companyinfo.user = reguser
+                companyinfo.date_joined = datetime_now()
+                companyinfo.update_time = datetime_now()
                 companyinfo.save()
             elif reguser is not None and role == "0":
                 userinfo = Userinfo(username=username)
@@ -262,32 +264,44 @@ def get_companyinfo_detail(request,company_id):
 def set_companyinfo(request,company_id):
     re=dict()
     if request.method == "POST":
-        companyinfo = Companyinfo.objects.get(username=request.user.username)
-        companyinfo.contacts = request.POST.get('contacts', companyinfo.contacts)
-        companyinfo.abbreviation = request.POST.get('abbreviation', companyinfo.abbreviation)
-        companyinfo.city = request.POST.get('city', companyinfo.city)
-        companyinfo.field = request.POST.get('field', companyinfo.field)
-        companyinfo.wechat = request.POST.get('wechat', companyinfo.wechat)
-        companyinfo.email_resume = request.POST('email_resume', companyinfo.email_resume)
-        companyinfo.qrcode = request.POST.get('qrcode', companyinfo.qrcode)
-        companyinfo.welfare_tags = request.POST.get('welfare_tags', companyinfo.welfare_tags)
-        companyinfo.product_link = request.POST.get('product_link', companyinfo.product_link)
-        companyinfo.product_description = request.POST.get('product_description',)
-        companyinfo.ICregist_name = request.POST.get('ICregist_name',)
-        companyinfo.company_descrition = request.POST.get('company_descrition',)
-        companyinfo.team_description = request.POST.get('team_description',)
-        companyinfo.position_type = request.POST.get('position_type',)
-        companyinfo.grade = request.POST.get('grade', )
-        companyinfo.gender = request.POST.get('gender', )
-        companyinfo.work_days = request.POST.get('work_days', )
-        companyinfo.description = request.POST.get('description', )
-        companyinfo.slogan = request.POST.get('slogan',)
-        companyinfo.update_time = datetime_now()
+        c = Companyinfo.objects.get(username=request.user.username)
+        c.abbreviation = request.POST.get('abbreviation', c.abbreviation)
+        c.city = request.POST.get('city', c.city)
+        c.field = request.POST.get('field', c.field)
+        c.scale = request.POST.get('scale', c.scale)
+        c.stage = request.POST.get('scale', c.stage)
+        c.homepage = request.POST.get('scale', c.homepage)
+        c.wechat = request.POST.get('wechat', c.wechat)
+        c.email_resume = request.POST('email_resume', c.email_resume)
+        c.qrcode = request.POST.get('qrcode', c.qrcode)
+        c.welfare_tags = request.POST.get('welfare_tags', c.welfare_tags)
+        c.product_link = request.POST.get('product_link', c.product_link)
+        c.ICregist_name = request.POST.get('ICregist_name', c.ICregist_name)
+        c.company_descrition = request.POST.get('company_descrition', c.company_descrition)
+        c.product_description = request.POST.get('product_description', c.product_description)
+        c.team_description = request.POST.get('team_description', c.team_description)
+        c.slogan = request.POST.get('slogan', c.slogan)
+        c.update_time = datetime_now()
+        c.save()
     else:
         re['error'] = error(2,"error,need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-#admin api: for modifying the companyinfo.status
+@user_permission('login')
+def check_companyinfo_complete(request):
+    re = dict()
+    if request.method == "GET":
+        c = Companyinfo.objects.get(username=request.user.username)
+        if c.city and c.field and c.scale and c.stage\
+        and c.email_resume and c.welfare_tags and c.ICregist_name\ 
+        and c.company_descrition:
+            c.info_complete = True
+            c.save() 
+    else:
+        re["error"] = error(3,"error,need GET!")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+    
+#admin api: for modifying the companyinfo.status, is_auth, auth_organization
 @user_permission("login")
 def auth_company(request,company_id):
     re = dict()
@@ -299,7 +313,21 @@ def auth_company(request,company_id):
             except DatabaseError:
                 re['error'] = error(250,'Database error: Failed to get companyinfo')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
-            companyinfo.status = True
+
+            status = request.POST.get('status', '0')
+            if status == '1':
+                companyinfo.status = True
+            else:
+                companyinfo.status = False
+
+            auth_organization = request.POST.get('auth_organization', '')
+            if auth_organization == '':
+                companyinfo.is_auth = False
+                companyinfo.auth_organization = ''
+            else:
+                companyinfo.is_auth = True
+                companyinfo.auth_organization = auth_organization
+            
             try:
                 companyinfo.save()
             except DatabaseError:
