@@ -15,13 +15,16 @@
                  <li ng-class="{'active':company}" ng-click="company_active()"><a href="#">公司列表</a></li>
                  <li ng-class = "{'active':position}" ng-click="position_active()"><a href="/position/list">职位列表</a></li>
               {% if user.is_authenticated %}
+
                  {% if role == 1 %}
                  <li ng-class = "{'active':resume}" ng-click="resume_active()"><a href="/company/resume">处理简历</a></li>
                  {% else %}
                  <li ng-class = "{'active':resume}" ng-click="resume_active()"><a href="/intern/resume">查看简历</a></li>
                  {% endif %}
+
                  <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">我的<b class="caret"></b></a>
+
                     {% if role == 1 %}
                     <ul class="dropdown-menu">
                        <li><a href="/company/info">公司信息</a></li>
@@ -30,7 +33,7 @@
                        <li class="divider"></li>
                        <li><a ng-click="logout()">退出登录</a></li>
                     </ul>
-                    {% else %}
+                    {% elif role == 0 %}
                     <ul class="dropdown-menu">
                        <li><a href="/intern/info">个人主页</a></li>
                        <li><a href="/intern/post">我的投递</a></li>
@@ -40,7 +43,14 @@
                        <li class="divider"></li>
                        <li><a ng-click="logout()">退出登录</a></li>
                     </ul>
+                    {% elif role == -1 %}
+                        <ul class="dropdown-menu">
+                           <li><a href="#">管理公司</a></li>
+                           <li><a href="#">管理实习生</a></li>
+                           <li><a ng-click="logout()">退出登录</a></li>
+                        </ul>
                     {% endif %}
+
                     {% else %}
                     <li ng-class = "{'active':login}" ng-click="login_active()"><a  href="/login">登录</a></li>
                     <li ng-class = "{'active':register}" ng-click="register_active()"><a href="/register">注册</a></li>

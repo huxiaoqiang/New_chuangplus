@@ -14,6 +14,7 @@ WECHAT_EVENT_KEYS = {
     'activity' : 'XINIU_ACTIVITY',
     'help' : 'XINIU_HELP',
 }
+
 WEIXIN_CUSTOM_MENU_TEMPLATE = {
     "button" : [
     {
