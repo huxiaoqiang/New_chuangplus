@@ -17,7 +17,7 @@ from position.models import *
 def register(request):
     re=dict()
     if request.method == "POST":
-    #Validate the captcha
+        #Validate the captcha
         try:
             session_captcha = request.session.get('captcha', False)
             request_captcha = request.POST.get('captcha','')
@@ -28,12 +28,11 @@ def register(request):
             re['error'] = error(101,'Captcha error!')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-        #todo
         #Validate and register information
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
         email = request.POST.get('email', '')
-        role = request.POST.get('role','')
+        role = request.POST.get('role','0')
         if username == '' or password == '' or email == '':
             re['error'] = error(112,"Username or password or email is empty,fail to register!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -205,46 +204,53 @@ def get_userinfo(request):
 def set_userinfo(request):
     re = dict()
     if request.method == 'POST':
-        username = request.POST.get('username', '')
-        if username == request.user.username:
-            try:
-                userinfo = Userinfo.objects.get(username=username)
-            except:
-                re['error'] = error(103, 'user do not exist')
-                re['username'] = username
-            else:
-                userinfo.email = request.POST.get('email', '')
-                userinfo.position_type = request.POST.get('position_type', '')
-                userinfo.work_city = request.POST.get('work_city', '')
-                userinfo.cellphone = request.POST.get('cellphone', '')
-                userinfo.university = request.POST.get('university', '')
-                userinfo.major = request.POST.get('major', '')
-                userinfo.grade = request.POST.get('grade', '')
-                userinfo.gender = request.POST.get('gender', '')
-                userinfo.work_days = request.POST.get('work_days', '')
-                userinfo.description = request.POST.get('description', '')
-                userinfo.update_time = datetime_now()
-                userinfo.save()
+        u = Userinfo.objects.get(username=request.user.username)
+        u.email = request.POST.get('email', u.email)
+        u.real_name = request.POST.get('real_name', u.real_name)
+        u.position_type = request.POST.get('position_type', u.position_type)
+        u.work_city = request.POST.get('work_city', u.work_city)
+        u.cellphone = request.POST.get('cellphone', u.cellphone)
+        u.university = request.POST.get('university', u.university)
+        u.major = request.POST.get('major', u.major)
+        u.grade = request.POST.get('grade', u.grade)
+        u.gender = request.POST.get('gender', u.gender)
+        u.work_days = request.POST.get('work_days', u.work_days)
+        u.description = request.POST.get('description', u.description)
+        u.update_time = datetime_now()
+        u.save()
 
-                user = User.objects.get(username=username)
-                user.email = userinfo.email
-                user.save()
+        request.user.email = u.email
+        request.user.save()
 
-                re['userinfo'] = json.loads(userinfo.to_json())
-                re['error'] = error(1, 'updated successfully')
-        else:
-            re['error'] = error(110, 'Permission denied,no permission to change')
+        re['userinfo'] = json.loads(u.to_json())
+        re['error'] = error(1, 'updated successfully')
     else:
-        re['error'] = error(2, 'erroe，need post')
+        re['error'] = error(2, 'error，need post')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-def get_companyinfo_detail(request,compamy_id):
+@user_permission('login')
+def check_userinfo_complete(request):
+    re = dict()
+    if request.method == "GET":
+        u = Userinfo.objects.get(username=request.user.username)
+        if u.position_type and u.work_city\
+        and u.cellphone and u.university\
+        and u.major and u.grade \
+        and u.gender and u.work_days and u.description\
+        and u.has_resume and u.real_name:
+            u.info_complete = True
+            u.save() 
+    else:
+        re["error"] = error(3,"error,need GET!")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+    
+def get_companyinfo_detail(request,company_id):
     re=dict()
     if request.method == "GET":
         try:
-            companyinfo=Companyinfo.objects.get(id=compamy_id)
+            companyinfo=Companyinfo.objects.get(id=company_id)
         except:
-            re["error"] = error(105,"company dose not exist!")
+            re["error"] = error(105,"company does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         re['data'] = json.loads(companyinfo.to_json())
         re['error'] = error(1, 'get succeed')
@@ -256,33 +262,27 @@ def get_companyinfo_detail(request,compamy_id):
 def set_companyinfo(request,company_id):
     re=dict()
     if request.method == "POST":
-        try:
-            companyinfo=Companyinfo.objects.get(id=company_id)
-        except:
-            re['error'] = error(105, 'companyinfo dose not exist')
-            re['company_id'] = company_id
-        else:
-            companyinfo.contacts = request.POST.get('contacts', '')
-            companyinfo.abbreviation = request.POST.get('abbreviation', '')
-            companyinfo.city = request.POST.get('city', '')
-            companyinfo.field = request.POST.get('field', '')
-            companyinfo.people_scale = request.POST.get('people_scale','')
-            companyinfo.wechat = request.POST.get('wechat','')
-            companyinfo.email_resume = request.POST('email_resume','')
-            companyinfo.qrcode = request.POST.get('qrcode','')
-            companyinfo.welfare_tags = request.POST.get('welfare_tags','')
-            companyinfo.product_link = request.POST.get('welfare_tags','')
-            companyinfo.product_description = request.POST.get('product_description','')
-            companyinfo.ICregist_name = request.POST.get('ICregist_name','')
-            companyinfo.company_descrition = request.POST.get('company_descrition','')
-            companyinfo.team_description = request.POST.get('team_description','')
-            companyinfo.position_type = request.POST.get('position_type','')
-            companyinfo.grade = request.POST.get('grade', '')
-            companyinfo.gender = request.POST.get('gender', '')
-            companyinfo.work_days = request.POST.get('work_days', '')
-            companyinfo.description = request.POST.get('description', '')
-            companyinfo.slogan = request.POST.get('slogan','')
-            companyinfo.update_time = datetime_now()
+        companyinfo = Companyinfo.objects.get(username=request.user.username)
+        companyinfo.contacts = request.POST.get('contacts', companyinfo.contacts)
+        companyinfo.abbreviation = request.POST.get('abbreviation', companyinfo.abbreviation)
+        companyinfo.city = request.POST.get('city', companyinfo.city)
+        companyinfo.field = request.POST.get('field', companyinfo.field)
+        companyinfo.wechat = request.POST.get('wechat', companyinfo.wechat)
+        companyinfo.email_resume = request.POST('email_resume', companyinfo.email_resume)
+        companyinfo.qrcode = request.POST.get('qrcode', companyinfo.qrcode)
+        companyinfo.welfare_tags = request.POST.get('welfare_tags', companyinfo.welfare_tags)
+        companyinfo.product_link = request.POST.get('product_link', companyinfo.product_link)
+        companyinfo.product_description = request.POST.get('product_description',)
+        companyinfo.ICregist_name = request.POST.get('ICregist_name',)
+        companyinfo.company_descrition = request.POST.get('company_descrition',)
+        companyinfo.team_description = request.POST.get('team_description',)
+        companyinfo.position_type = request.POST.get('position_type',)
+        companyinfo.grade = request.POST.get('grade', )
+        companyinfo.gender = request.POST.get('gender', )
+        companyinfo.work_days = request.POST.get('work_days', )
+        companyinfo.description = request.POST.get('description', )
+        companyinfo.slogan = request.POST.get('slogan',)
+        companyinfo.update_time = datetime_now()
     else:
         re['error'] = error(2,"error,need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
