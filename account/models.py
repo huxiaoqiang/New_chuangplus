@@ -17,23 +17,22 @@ except ImportError:
 class Userinfo(Document):
     username = StringField(max_length=30,required=True)
     email = EmailField(required=True)
+    real_name = StringField(max_length=20)
     position_type = ListField(StringField(max_length=30))
     work_city = StringField(max_length=100)
     cellphone = StringField(max_length=20)
     university = StringField(max_length=100)
     major = StringField(max_length=100)
-    grade = IntField(default=1)
-    gender = IntField(default=0)  #0 is woman 1 is man
-    work_days = IntField(default=3)
+    grade = IntField()
+    gender = IntField()  #0 is woman 1 is man
+    work_days = IntField()
     description = StringField(max_length=200)
     resume = ReferenceField(File)
     info_complete = BooleanField(default=False)
-    has_resume = BooleanField(default=False)
     date_joined = DateTimeField()
     update_time = DateTimeField()
     user = ReferenceField(User)
     position = ListField(ReferenceField("position.Position"))
-
 
 # company position type
 TYPE = ('technology','product','design','operate','marketing','functions','others')
@@ -42,28 +41,28 @@ STAGE=('','seed','angel','A','B','C','D_plus')
 class Companyinfo(Document):
     username = StringField(max_length=30,required=True)
     hr_cellphone = StringField(max_length=30,required=True)
-    abbreviation = StringField(max_length=100,default = "")
-    city = StringField(max_length=40,default = "")
-    field = StringField(max_length=30,default = "")
+    abbreviation = StringField(max_length=100)
+    city = StringField(max_length=40)
+    field = StringField(max_length=30)
     is_auth = BooleanField(default=False)
-    auth_organization = StringField(max_length=100,default = "")
-    scale = IntField(default=0)  #0 newly established  1:rapid expansion 2:mature period
+    auth_organization = StringField(max_length=100)
+    scale = IntField()  #0 newly established  1:rapid expansion 2:mature period
     stage = StringField(max_length=10,choices=STAGE)
     homepage = URLField()
     financing = ListField(ReferenceField("Financing"))
-    wechat = StringField(max_length=40,default = "")
+    wechat = StringField(max_length=40)
     email_resume=EmailField()  #email for receiving resume
-    qrcode = ReferenceField(File,default = None)
-    logo = ReferenceField(File,default = None)
-    welfare_tags = ListField(StringField(max_length=18,default = ""))
+    qrcode = ReferenceField(File)
+    logo = ReferenceField(File)
+    welfare_tags = ListField(StringField(max_length=18))
     product_link = URLField()
-    ICregist_name = StringField(max_length=200,default = "")  #Industrial and commercial registration name
-    company_description = StringField(max_length=1000,default = "")
-    product_description = StringField(max_length=1000,default = "")
-    team_description = StringField(max_length=1000,default = "")
+    ICregist_name = StringField(max_length=200) #Industrial and commercial registration name
+    company_description = StringField(max_length=1000)
+    product_description = StringField(max_length=1000)
+    team_description = StringField(max_length=1000)
     member = ListField(ReferenceField("Member"))
     position = ListField(ReferenceField("position.Position"))
-    slogan = StringField(max_length=50,default = "")
+    slogan = StringField(max_length=50)
     status = BooleanField(default=False) # if the company is accepted by the admin
     user = ReferenceField(User)
 
