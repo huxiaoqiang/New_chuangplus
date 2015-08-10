@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^company/(?P<compamy_id>.*?)/auth', views.auth_company, name='auth_company'),
 
     url(r'^userlikecompany', views.user_like_company, name='user_like_company'),
-    
+
 ]
 
 #urlpatterns = format_suffix_patterns(urlpatterns)

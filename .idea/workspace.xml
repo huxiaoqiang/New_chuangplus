@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/account/urls.py" afterPath="$PROJECT_DIR$/account/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="chuangplus.iws" />
@@ -45,19 +44,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wechat/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="0" selection-start="265" selection-end="265" vertical-scroll-proportion="-8.36" vertical-offset="0" max-vertical-offset="1159">
+            <state line="29" column="22" selection-start="596" selection-end="600" vertical-scroll-proportion="0.31931463" vertical-offset="346" max-vertical-offset="1159">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/account/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="4" selection-start="1915" selection-end="1915" vertical-scroll-proportion="0.73364484" vertical-offset="156" max-vertical-offset="817">
+            <state line="33" column="0" selection-start="1911" selection-end="1911" vertical-scroll-proportion="-18.84" vertical-offset="156" max-vertical-offset="817">
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -655,13 +654,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wechat/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="265" selection-end="265" vertical-scroll-proportion="-8.36" vertical-offset="0" max-vertical-offset="1159">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wechat/wechat_urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="1" selection-start="281" selection-end="281" vertical-scroll-proportion="-6.84" vertical-offset="0" max-vertical-offset="285">
@@ -734,10 +726,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/account/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="4" selection-start="1915" selection-end="1915" vertical-scroll-proportion="0.73364484" vertical-offset="156" max-vertical-offset="817">
+        <state line="33" column="0" selection-start="1911" selection-end="1911" vertical-scroll-proportion="-18.84" vertical-offset="156" max-vertical-offset="817">
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wechat/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="22" selection-start="596" selection-end="600" vertical-scroll-proportion="0.31931463" vertical-offset="346" max-vertical-offset="1159">
+          <folding />
         </state>
       </provider>
     </entry>
