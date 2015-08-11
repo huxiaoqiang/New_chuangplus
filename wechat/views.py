@@ -4,4 +4,5 @@ from django.http import HttpResponse
 import json
 # Create your views here.
 
-
+def wechat_query_handler():
+    pass

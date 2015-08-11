@@ -7,7 +7,7 @@ from wechatlib.base_support import auth
 #todo add a wechat query handler entry
 #wechat request handler entry
 def request_handler(query):
-    pass
+    print query
 
 #turn xml to python dict
 def xml2dict(xml_root):
