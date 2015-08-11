@@ -17,7 +17,7 @@ import time
 from app.common_api import error,user_permission,if_legal
 
 TYPE = ('technology','product','design','operate','marketing','functions','others')
-STATUS = ('employing','hide','delete')
+STATUS = ('open','hidden','closed')
 POSITIONS_PER_PAGE = 10
 
 '''
@@ -65,23 +65,23 @@ def create_position(request):
     try:
         assert request.User != None
         assert request.User.is_staff
-        cpn = Companyinfo.objects.all().filter(User = request.User)
+        cpn = Companyinfo.objects.get(User = request.User)
     except:
         re['error'] = error(100,"Permission denied!")
   
     name = request.POST.get('name','')
-    position_type = request.POST.get('type','')
+    position_type = request.POST.get('position_type','')
     work_city = request.POST.get('work_city','')
     work_address = request.POST.get('work_address','')
     release_time = datetime.now()
     et = request.POST.get('end_time','')
     position_description = request.POST.get('position_description','')
     position_request = request.POST.get('position_request','')
-    days = request.POST.get('daysperweek','0')
+    days = request.POST.get('days_per_week','0')
     intime = request.POST.get('internship_time','0')
     samin = request.POST.get('salary_min','0')
     samax = request.POST.get('salary_max','1000000')
-    status = request.POST.get("status","hide")
+    status = request.POST.get("status","hidden")
     
     print "ok"
     
@@ -172,8 +172,8 @@ def create_position(request):
     print "done1"
     
     try:
-        daysperweek = int(days)
-        assert daysperweek in range(0,7)
+        days_per_week = int(days)
+        assert days_per_week in range(0,7)
     except (ValueError,AssertionError):
         re['error'] = error(223,'Invaild days perweek!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
@@ -225,10 +225,10 @@ def create_position(request):
         re['error'] = error(228,'Invaild position status')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
-    posi = Position(name = name,type = position_type,work_city = work_city,work_address = work_address,
+    posi = Position(name = name,position_type = position_type,work_city = work_city,work_address = work_address,
                     end_time = end_time,position_description = position_description,
-                    position_request = position_request,daysperweek = daysperweek,
-                    internship_time = internship_time,salary_min = salary_min,salary_max = salary_max,status = status)
+                    position_request = position_request,days_per_week = days_per_week,
+                    internship_time = internship_time,salary_min = salary_min,salary_max = salary_max,status = status, company = cpn)
     
     print "done3"
     
@@ -242,8 +242,8 @@ def create_position(request):
     #    return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     re['error'] = error(1,'Create position succeed!')
-    cpn.position.append(posi)
-    cpn.position_number = cpn.position_number + 1
+    cpn.positions.append(posi)
+    cpn.save()
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
 @user_permission('login')
@@ -518,7 +518,7 @@ def update_position(request):
     intime = request.POST.get('internship_time','0')
     samin = request.POST.get('salary_min','0')
     samax = request.POST.get('salary_max','1000000')
-    status = request.POST.get("status","hide")
+    status = request.POST.get("status","hidden")
     
     try:
         assert len(name) in range(1,30)

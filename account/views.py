@@ -134,7 +134,7 @@ def login(request):
     if request.method=="POST":
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
-        role = request.POST.get('role','')
+        role = request.POST.get('role','0')
         if username == '' or password == "":
             re['error'] = error(111,"username or password is empty")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -198,7 +198,7 @@ def get_userinfo(request):
         try:
             userinfo = Userinfo.objects.get(username=username)
         except:
-            re['error'] = error(103, 'user do not exist')
+            re['error'] = error(103, 'user does not exist')
         re['data'] = json.loads(userinfo.to_json())
         re['error'] = error(1, 'get succeed')
     else:
@@ -420,6 +420,7 @@ def create_financing_info(request):
             re['error'] = error(250,'Database error: Failed to save')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+        companyinfo.financings.append(financing_info)
         update_stage_scale(companyinfo) 
 
         re['error'] = error(1,"financing_info created")
@@ -437,7 +438,7 @@ def get_financinginfo_list(request,company_id):
             re["error"] = error(105,"company does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         try:
-            financinginfo_list = Financing.objects.filter(company = companyinfo)
+            financinginfo_list = companyinfo.financings
         except DatabaseError:
             re['error'] = error(250,'Database error: Failed to get')
         re['data'] = json.loads(financinginfo_list.to_json())
@@ -453,7 +454,7 @@ def set_financinginfo(request,fin_id):
         try:
             financing_info = Financing.objects.get(id=fin_id)
         except:
-            re['error'] = error(112,"financing_info dose not exist!")
+            re['error'] = error(112,"financing_info does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         if request.user.is_superuser == True or\
         financing_info.company.username == request.user.username:
@@ -488,13 +489,15 @@ def delete_financinginfo(request,fin_id):
 
         if request.user.is_superuser == True or\
         financing_info.company.username == request.user.username:
+            financing_info.company.financings.remove(financing_info) 
+            update_stage_scale(financing_info.company) 
+
             try:
                 financing_info.delete()
             except DatabaseError:
                 re['error'] = error(252,"Database error: Failed to delete!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-            update_stage_scale(financing_info.company) 
             re['error'] = error(1,'Delete position succeed!')
         else:
             re["error"] = error(100,"permission denied!")
@@ -525,6 +528,9 @@ def create_company_member(request):
                 re['error'] = error(250,'Database error: Failed to save')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+            companyinfo.members.append(new_member)
+            companyinfo.save()
+
             re['error'] = error(1,'create new member successfully!')
             re['data'] = json.loads(new_member.to_json())
         else:
@@ -542,7 +548,7 @@ def get_member_list(request,company_id):
             re['error'] = error(105,"companyinfo dose not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         try:
-            member_list = Member.objects.filter(company=companyinfo)
+            member_list = companyinfo.members
         except DatabaseError:
              re['error'] = error(250,'Database error: Failed to save')
              return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -592,6 +598,9 @@ def delete_company_member(request,mem_id):
 
         if request.user.is_superuser == True\
         or del_member.company.username == request.user.username:
+            del_member.company.members.remove(del_member)
+            del_member.company.save()
+
             try:
                 del_member.delete()
             except DatabaseError:
@@ -687,10 +696,9 @@ def get_company_list(request):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission("login")
-def user_like_company(request):
+def user_like_company(request,company_id):
     re = dict()
     if request.method == 'POST':
-        company_id = request.POST.get('company_id', '')
         try:
             company = Companyinfo.objects.get(id = company_id)
         except:

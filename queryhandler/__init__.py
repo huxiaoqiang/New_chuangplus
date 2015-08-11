@@ -13,6 +13,7 @@ def request_handler(request):
         timestamp=request.GET.get('timestamp','')
         nonce=request.GET.get('nonce','')
         echostr=request.GET.get('echostr','')
+        print echostr
         if not auth(signature, timestamp, nonce):
             print '!!!!! Check weixin signature failed !!!!!'
             return HttpResponse('')
