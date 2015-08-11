@@ -6,8 +6,9 @@ from wechatlib.base_support import auth
 
 #todo add a wechat query handler entry
 #wechat request handler entry
-def request_handler(query):
-    print query
+def request_handler(environ):
+    print environ.method
+    print environ.GET.get('signature','')
 
 #turn xml to python dict
 def xml2dict(xml_root):
