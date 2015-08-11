@@ -7,12 +7,7 @@ import urllib2,json
 from django.http import HttpResponse
 
 
-def auth(request):
-    if request.method == "GET":
-        signature=request.GET.get('signature','')
-        timestamp=request.GET.get('timestamp','')
-        nonce=request.GET.get('nonce','')
-        echostr=request.GET.get('echostr','')
+def auth(signature, timestamp, nonce):
         token="chuangplus"
         list=[token,timestamp,nonce]
         list.sort()
@@ -20,7 +15,9 @@ def auth(request):
         map(sha1.update,list)
         hashcode=sha1.hexdigest()
         if hashcode == signature:
-            return HttpResponse(echostr)
+            return True
+        else:
+            return False
 
 def get_access_token():
     url = WECHAT_URLS['access_token']
