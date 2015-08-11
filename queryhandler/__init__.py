@@ -8,10 +8,10 @@ from wechatlib.base_support import auth
 #wechat request handler entry
 def request_handler(request):
     if request.method == "GET":
-        signature=request.GET.get('signature','')
-        timestamp=request.GET.get('timestamp','')
-        nonce=request.GET.get('nonce','')
-        echostr=request.GET.get('echostr','')
+        signature=request.GET['signature']
+        timestamp=request.GET['timestamp']
+        nonce=request.GET['nonce']
+        echostr=request.GET['echostr']
         if not auth(signature, timestamp, nonce):
             print '!!!!! Check weixin signature failed !!!!!'
             return ''
@@ -24,7 +24,7 @@ def request_handler(request):
         if not auth(signature, timestamp, nonce):
             print '!!!!! Check weixin signature failed !!!!!'
             return ''
-        
+
 
 
 #turn xml to python dict
