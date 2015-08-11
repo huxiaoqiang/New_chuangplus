@@ -20,7 +20,7 @@
 
 //login.html
 @login-part2:   180px;
-@login-part3:   50px;
+@login-part3:   30px;
 @login-logo-size:   90px;
 @login-btn-mag :   18px;
 @login-logo-top:    40px;
@@ -66,7 +66,7 @@
 //compfilter.html
 @filter-each-line : 3;
 @fil-content-top    :   30px;
-@fil-box-top:   20px;
+@fil-box-top:   16px;
 @fil-header-bottom :   5px;
 @fil-header-fsize:  18px;
 @filter-fsize   : 15px;
@@ -81,7 +81,8 @@ body
 {
     height:100%;
     font-weight: normal;
-    overflow-y:scroll;
+    overflow:auto;
+    -webkit-overflow-scrolling: touch;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
@@ -102,9 +103,8 @@ body
 
 .main-content
 {
-    min-width: 280px;
     display: block;
-    padding-bottom: @cl-nav-hgt + 10px;
+    padding-bottom: @cl-nav-hgt;
     height: 100%;
     background-color: white;
 }
@@ -203,6 +203,19 @@ body
     width: 100%;
     padding: 0 @padding-hor 0 @padding-hor;
 }
+
+a
+{
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+}
+a:hover
+{
+    text-decoration: none;
+    color: black;
+}
+
 .panel-radius input
 {
     border: 0;
@@ -345,6 +358,7 @@ body
     overflow: hidden;
     display: block;
     height: @cl-require-hgt;
+    position: relative;
 }
 .require-bar .require-box
 {
@@ -424,6 +438,12 @@ body
              0
             (@cl-listbox-hgt - @cl-comp-img-size)/2
             (@cl-listbox-hgt - @cl-comp-img-size)/2;
+}
+.comp-list a
+{
+    display: block;
+    text-decoration: none;
+    color: black;
 }
 .comp-prev-img
 {
@@ -512,9 +532,10 @@ body
 
 .nav-bar
 {
+    -webkit-transform: translateZ(0);
     display: block;
     height: @cl-nav-hgt;
-    position: fixed;
+    position: absolute;
     width: 100%;
     bottom: 0; left: 0;
     border: 1px solid @lit-gray;
@@ -523,6 +544,8 @@ body
 .nav-bar-3
 {
     display: block;
+    text-decoration: none;
+    color: black;
     width: 33.32%;
     float: left;
     height: @cl-nav-hgt;
@@ -768,6 +791,7 @@ body
     background-color: white;
     padding: 6px 0 6px 10px;
     margin-bottom: 2px;
+    display: block !important;
 }
 .comp-posi-title
 {
@@ -838,7 +862,7 @@ body
 }
 .info-block
 {
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     padding-top: 15px;
 }
 .info-block-last

@@ -75,30 +75,30 @@ angular.module('chuangplus', [
 
        // $routeProvider.when('/user/info', {templateUrl: urls.part_desktop + '/user/info.html', controller: 'DT_UserInfoCtrl', title: 'UserInfoPage'});
 
-
-
         //mobile configure
-        //mobile configure
+        $routeProvider.when('/mobile/', {templateUrl: urls.part_mobile + '/company/list.html',title:'HomePage'});
+
         $routeProvider.when('/mobile/register', {templateUrl: urls.part_mobile + '/register.html',controller:'MB_RegisterCtrl', title:'Register'});
         $routeProvider.when('/mobile/login', {templateUrl: urls.part_mobile + '/login.html',controller:'MB_LoginCtrl', title:'Login'});
-        $routeProvider.when('/mobile/complist', {templateUrl: urls.part_mobile + '/complist.html',controller:'MB_CompanyListCtrl', title:'Companylist'});
         $routeProvider.when('/mobile/info', {templateUrl: urls.part_mobile + '/info.html',controller:'MB_InfoCtrl',title:'Info'});
-        $routeProvider.when('/mobile/posilist', {templateUrl: urls.part_mobile + '/posilist.html',title:'Posilist'});
-        $routeProvider.when('/mobile/posiimport', {templateUrl: urls.part_mobile + '/posiimport.html',title:'Posiimport'});
-        $routeProvider.when('/mobile/compfilter', {templateUrl: urls.part_mobile + '/compfilter.html',title:'Companyfilter'});
-        $routeProvider.when('/mobile/posifilter', {templateUrl: urls.part_mobile + '/posifilter.html',title:'Posifilter'});
-        $routeProvider.when('/mobile/', {templateUrl: urls.part_mobile + '/mobile_index.html',title:'HomePage'});
-        $routeProvider.when('/mobile/pcenter', {templateUrl: urls.part_mobile + '/pcenter.html',title:'Individual Center'});
-        $routeProvider.when('/mobile/posidetail', {templateUrl: urls.part_mobile + '/posidetail.html',title:'Position Detail'});
-        $routeProvider.when('/mobile/compdetail', {templateUrl: urls.part_mobile + '/compdetail.html',title:'Company Detail'});
-        $routeProvider.when('/mobile/compposi', {templateUrl: urls.part_mobile + '/compposi.html',title:'Company Positions'});
-        $routeProvider.when('/mobile/infoupdate', {templateUrl: urls.part_mobile + '/infoupdate.html',title:'Update Info'});
-        $routeProvider.when('/mobile/mypost', {templateUrl: urls.part_mobile + '/mypost.html',title:'My Posts'});
 
-        $routeProvider.when('/mobile/posicollect', {templateUrl: urls.part_mobile + '/posicollect.html',title:'Position Collection'});
-        $routeProvider.when('/mobile/compcollect', {templateUrl: urls.part_mobile + '/compcollect.html',title:'Company Collection'});
-        $routeProvider.when('/mobile/editresume', {templateUrl: urls.part_mobile + '/editresume.html',title:'Edit Resume'});
-        $routeProvider.when('/mobile/uploadresume', {templateUrl: urls.part_mobile + '/uploadresume.html',title:'Upload Resume'});
+        $routeProvider.when('/mobile/position/filter', {templateUrl: urls.part_mobile + '/position/filter.html',title:'Posifilter'});
+        $routeProvider.when('/mobile/position/list', {templateUrl: urls.part_mobile + '/position/list.html',title:'Posilist'});
+        $routeProvider.when('/mobile/position/import', {templateUrl: urls.part_mobile + '/position/import.html',title:'Posiimport'});
+        $routeProvider.when('/mobile/position/detail', {templateUrl: urls.part_mobile + '/position/detail.html',title:'Position Detail'});
+        $routeProvider.when('/mobile/position/collect', {templateUrl: urls.part_mobile + '/position/collect.html',title:'Position Collection'});
+
+        $routeProvider.when('/mobile/company/filter', {templateUrl: urls.part_mobile + '/company/filter.html',title:'Companyfilter'});
+        $routeProvider.when('/mobile/company/detail', {templateUrl: urls.part_mobile + '/company/detail.html',title:'Company Detail'});
+        $routeProvider.when('/mobile/company/posi', {templateUrl: urls.part_mobile + '/company/posi.html',title:'Company Positions'});
+        $routeProvider.when('/mobile/company/list', {templateUrl: urls.part_mobile + '/company/list.html',controller:'MB_CompanyListCtrl', title:'Companylist'});
+        $routeProvider.when('/mobile/company/collect', {templateUrl: urls.part_mobile + '/company/collect.html',title:'Company Collection'});
+
+        $routeProvider.when('/mobile/home/infoupdate', {templateUrl: urls.part_mobile + '/home/infoupdate.html',title:'Update Info'});
+        $routeProvider.when('/mobile/home/editresume', {templateUrl: urls.part_mobile + '/home/editresume.html',title:'Edit Resume'});
+        $routeProvider.when('/mobile/home/uploadresume', {templateUrl: urls.part_mobile + '/home/uploadresume.html',title:'Upload Resume'});
+        $routeProvider.when('/mobile/home', {templateUrl: urls.part_mobile + '/home/pcenter.html',title:'Individual Center'});
+        $routeProvider.when('/mobile/home/mypost', {templateUrl: urls.part_mobile + '/home/mypost.html',title:'My Posts'});
 
     }]).
 //  the google analytics configure
