@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/queryhandler/__init__.py" afterPath="$PROJECT_DIR$/queryhandler/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wechatlib/base_support.py" afterPath="$PROJECT_DIR$/wechatlib/base_support.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="chuangplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,7 +48,7 @@
       <file leaf-file-name="__init__.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/queryhandler/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="8" selection-start="985" selection-end="985" vertical-scroll-proportion="0.68068534" vertical-offset="57" max-vertical-offset="779">
+            <state line="13" column="38" selection-start="459" selection-end="459" vertical-scroll-proportion="0.32554516" vertical-offset="38" max-vertical-offset="779">
               <folding>
                 <element signature="e#49#83#0" expanded="true" />
               </folding>
@@ -644,7 +642,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/queryhandler/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="8" selection-start="985" selection-end="985" vertical-scroll-proportion="0.68068534" vertical-offset="57" max-vertical-offset="779">
+        <state line="13" column="38" selection-start="459" selection-end="459" vertical-scroll-proportion="0.32554516" vertical-offset="38" max-vertical-offset="779">
           <folding>
             <element signature="e#49#83#0" expanded="true" />
           </folding>
