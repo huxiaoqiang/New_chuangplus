@@ -29,10 +29,19 @@
       <file leaf-file-name="__init__.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/queryhandler/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="35" selection-start="1058" selection-end="1058" vertical-scroll-proportion="0.7439759" vertical-offset="0" max-vertical-offset="817">
+            <state line="31" column="0" selection-start="1130" selection-end="1130" vertical-scroll-proportion="0.8584337" vertical-offset="19" max-vertical-offset="855">
               <folding>
                 <element signature="e#49#83#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reply_templates.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/queryhandler/reply_templates.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="26" column="0" selection-start="958" selection-end="958" vertical-scroll-proportion="-12.92" vertical-offset="171" max-vertical-offset="893">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -55,7 +64,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/wechat/base_support.py" />
         <option value="$PROJECT_DIR$/wechat/custom_menu.py" />
         <option value="$PROJECT_DIR$/position/models.py" />
         <option value="$PROJECT_DIR$/app/weixinInterface.py" />
@@ -70,6 +78,7 @@
         <option value="$PROJECT_DIR$/wechat/urls.py" />
         <option value="$PROJECT_DIR$/account/views.py" />
         <option value="$PROJECT_DIR$/wechatlib/base_support.py" />
+        <option value="$PROJECT_DIR$/queryhandler/reply_templates.py" />
         <option value="$PROJECT_DIR$/queryhandler/__init__.py" />
       </list>
     </option>
@@ -466,11 +475,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/account/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="56" selection-start="71" selection-end="128" vertical-scroll-proportion="0.0" vertical-offset="95" max-vertical-offset="874" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/partials/desktop/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="45" selection-start="0" selection-end="2315" vertical-scroll-proportion="0.5173979" vertical-offset="0" max-vertical-offset="988" />
@@ -543,9 +547,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/queryhandler/reply_templates.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="0" selection-start="958" selection-end="958" vertical-scroll-proportion="-12.92" vertical-offset="171" max-vertical-offset="893">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/queryhandler/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="35" selection-start="1058" selection-end="1058" vertical-scroll-proportion="0.7439759" vertical-offset="0" max-vertical-offset="817">
+        <state line="31" column="0" selection-start="1130" selection-end="1130" vertical-scroll-proportion="0.8584337" vertical-offset="19" max-vertical-offset="855">
           <folding>
             <element signature="e#49#83#0" expanded="true" />
           </folding>

@@ -19,15 +19,16 @@ def request_handler(request):
             return HttpResponse('')
         else:
             return HttpResponse(echostr)
+
     elif request.method == "POST":
-        signature=request.POST.get(u'signature','')
-        timestamp=request.POST.get(u'timestamp','')
-        nonce=request.POST.get(u'nonce','')
+        signature=request.POST.get('signature','')
+        timestamp=request.POST.get('timestamp','')
+        nonce=request.POST.get('nonce','')
         if not auth(signature, timestamp, nonce):
             print '!!!!! Check weixin signature failed !!!!!'
             return HttpResponse('')
-
-
+    print request.POST
+    return HttpResponse('')
 
 #turn xml to python dict
 def xml2dict(xml_root):
