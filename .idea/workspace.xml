@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/queryhandler/__init__.py" afterPath="$PROJECT_DIR$/queryhandler/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="chuangplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,13 +25,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="__init__.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/queryhandler/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="35" selection-start="1058" selection-end="1058" vertical-scroll-proportion="0.7439759" vertical-offset="0" max-vertical-offset="817">
+            <state line="27" column="0" selection-start="1056" selection-end="1056" vertical-scroll-proportion="-20.52" vertical-offset="0" max-vertical-offset="779">
               <folding>
                 <element signature="e#49#83#0" expanded="true" />
+                <marker date="1439285180153" expanded="true" signature="304:1055" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reply_templates.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/queryhandler/reply_templates.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="41" column="0" selection-start="1503" selection-end="1503" vertical-scroll-proportion="0.91566265" vertical-offset="171" max-vertical-offset="893">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -55,7 +64,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/wechat/base_support.py" />
         <option value="$PROJECT_DIR$/wechat/custom_menu.py" />
         <option value="$PROJECT_DIR$/position/models.py" />
         <option value="$PROJECT_DIR$/app/weixinInterface.py" />
@@ -71,6 +79,7 @@
         <option value="$PROJECT_DIR$/account/views.py" />
         <option value="$PROJECT_DIR$/wechatlib/base_support.py" />
         <option value="$PROJECT_DIR$/queryhandler/__init__.py" />
+        <option value="$PROJECT_DIR$/queryhandler/reply_templates.py" />
       </list>
     </option>
   </component>
@@ -466,11 +475,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/account/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="56" selection-start="71" selection-end="128" vertical-scroll-proportion="0.0" vertical-offset="95" max-vertical-offset="874" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/partials/desktop/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="45" selection-start="0" selection-end="2315" vertical-scroll-proportion="0.5173979" vertical-offset="0" max-vertical-offset="988" />
@@ -545,10 +549,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/queryhandler/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="35" selection-start="1058" selection-end="1058" vertical-scroll-proportion="0.7439759" vertical-offset="0" max-vertical-offset="817">
+        <state line="27" column="0" selection-start="1056" selection-end="1056" vertical-scroll-proportion="-20.52" vertical-offset="0" max-vertical-offset="779">
           <folding>
             <element signature="e#49#83#0" expanded="true" />
+            <marker date="1439285180153" expanded="true" signature="304:1055" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/queryhandler/reply_templates.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="0" selection-start="1503" selection-end="1503" vertical-scroll-proportion="0.91566265" vertical-offset="171" max-vertical-offset="893">
+          <folding />
         </state>
       </provider>
     </entry>
