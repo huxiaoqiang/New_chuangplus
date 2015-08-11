@@ -35,6 +35,9 @@ class Userinfo(Document):
     user = ReferenceField(User)
     position = ListField(ReferenceField("position.Position"))
 
+    def __str__(self):
+        return self.username
+
 # company position type
 FIELD = ('social','e-commerce','education','health_medical','culture_creativity','living_consumption','hardware','O2O','others')
 STAGE=('none','seed','angel','A','B','C','D_plus')
@@ -69,6 +72,9 @@ class Companyinfo(Document):
     update_time = DateTimeField()
     user = ReferenceField(User,required=True)
 
+    def __str__(self):
+        return self.username
+
 #project member table
 class Member(Document):
     m_name= StringField(max_length=30,required=True)
@@ -77,6 +83,9 @@ class Member(Document):
     m_avatar = ReferenceField(File)
     company = ReferenceField(Companyinfo,required=True)
 
+    def __str__(self):
+        return self.m_name
+
 AMOUNT=('ten','hundred','thousand','thousand_plus')
 class Financing(Document):
     stage = StringField(max_length=15,choices=STAGE)
@@ -84,6 +93,8 @@ class Financing(Document):
     amount = StringField(choices=AMOUNT)
     company = ReferenceField(Companyinfo,required=True)
 
+    def __str__(self):
+        return self.stage
 #user and company relationship
 #the user likes the company
 class UC_Relationship(Document):
