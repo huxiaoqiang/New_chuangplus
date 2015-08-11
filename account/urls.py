@@ -33,7 +33,7 @@ urlpatterns = [
     url(r'^company/(?P<company_id>.*?)/auth', views.auth_company, name='auth_company'),
     url(r'^company/(?P<company_id>.*?)/check', views.check_companyinfo_complete, name='check_companyinfo_complete'),
 
-    url(r'^userlikecompany', views.user_like_company, name='user_like_company'),
+    url(r'^company/(?P<company_id>.*?)/like', views.user_like_company, name='user_like_company'),
 
 ]
 

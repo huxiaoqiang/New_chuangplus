@@ -30,7 +30,7 @@ def upload_file(request):
                 try:
                     member = Member.objects.get(id = category)
                 except:
-                    re['error'] = error(16,'Member dose not exist,fail to upload member avatar')
+                    re['error'] = error(16,'Member does not exist,fail to upload member avatar')
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
                 try:
                     f = File.objects.get(file_type = file_type,category = category)
@@ -58,7 +58,7 @@ def upload_file(request):
                 try:
                     companyinfo = Companyinfo.objects.get(id=category)
                 except:
-                    re['error'] = error(17,"Company dose not exist,fail to upload qr code")
+                    re['error'] = error(17,"Company does not exist,fail to upload qr code")
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
                 else:
                     if companyinfo.username != request.user.username:
@@ -92,7 +92,7 @@ def upload_file(request):
                     username = request.user.username
                     userinfo = Userinfo.objects.get(username=username)
                 except:
-                    re['error'] = error(103,"user dose not exist!")
+                    re['error'] = error(103,"user does not exist!")
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
                 else:
                     try:
@@ -111,7 +111,6 @@ def upload_file(request):
                         return HttpResponse(json.dumps(re), content_type = 'application/json')
                     try:
                         userinfo.resume = f
-                        userinfo.has_resume = True
                         userinfo.save()
                     except DatabaseError:
                         re['error'] = error(250,'Database error: Failed to save companyinfo!')
@@ -152,7 +151,7 @@ def delete_file(request,file_id = ''):
             try:
                 f = File.objects.get(id = file_id)
             except:
-                re['error'] = error(31,'File dose not exist, fail to delete the file')
+                re['error'] = error(31,'File does not exist, fail to delete the file')
             else:
 
                 f.value.delete()
