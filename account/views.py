@@ -18,12 +18,13 @@ def register(request):
     re=dict()
     if request.method == "POST":
         #Validate the captcha
-        try:
-            session_captcha = request.session.get('captcha', False)
-            request_captcha = request.POST.get('captcha','')
-        except KeyError:
+        session_captcha = request.session.get('captcha', '')
+        request_captcha = request.POST.get('captcha','')
+
+        if session_captcha == '' or request_captcha == '':    
             re['error'] = error(100,"Need captcha!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
+
         if session_captcha.upper() != request_captcha.upper():
             re['error'] = error(101,'Captcha error!')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -332,7 +333,6 @@ def check_companyinfo_complete(request,company_id):
         re["error"] = error(3,"error,need GET!")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
     
-#TODO TO BE TESTED
 #admin api: for modifying the companyinfo.status, is_auth, auth_organization
 @user_permission("login")
 def auth_company(request,company_id):
@@ -697,8 +697,7 @@ def user_like_company(request):
             re["error"] = error(105,"company does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         
-        user = Userinfo.objects.get(username = request.user.username)
-        uc = UC_Relationship(company = company, user = user)
+        uc = UC_Relationship(company = company, user = request.user)
         uc.save()
         re['error'] = error(1, "success!")
     else:
