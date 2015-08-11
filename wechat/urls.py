@@ -1,6 +1,5 @@
 from django.conf.urls import url
-from wechatlib.base_support import auth
+from queryhandler import request_handler
 urlpatterns = [
-    url(r'^auth$', auth, name='auth'),
-    #url(r'^handler$',handler, name='handler'),
+    url(r'^handler$',request_handler, name='request_handler'),
 ]
