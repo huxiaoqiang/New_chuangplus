@@ -63,9 +63,9 @@ def create_position(request):
         return HttpResponse(json.dumps(re), content_type = 'application/json')
         
     try:
-        assert request.User != None
-        assert request.User.is_staff
-        cpn = Companyinfo.objects.get(User = request.User)
+        assert request.user != None
+        assert request.user.is_staff
+        cpn = Companyinfo.objects.get(user = request.user)
     except:
         re['error'] = error(100,"Permission denied!")
   
@@ -95,7 +95,7 @@ def create_position(request):
         re['error'] = error(211,'Illeage character found in position name!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
-        re['error'] = error(299,'Unkown error!')
+        re['error'] = error(299,'Unknown error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     print "check name ok"
@@ -116,7 +116,7 @@ def create_position(request):
         re['error'] = error(214,'Illeage character found in work city!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
-        re['error'] = error(299,'Unkown error!')
+        re['error'] = error(299,'Unknown error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
 
     
@@ -153,7 +153,7 @@ def create_position(request):
         re['error'] = error(220,'Illegal character found in description!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
-        re['error'] = error(299,'Unkown error!')
+        re['error'] = error(299,'Unknown error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     try:
@@ -166,7 +166,7 @@ def create_position(request):
         re['error'] = error(222,'Illegal character found in request!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
-        re['error'] = error(299,'Unkown error!')
+        re['error'] = error(299,'Unknown error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     print "done1"
@@ -178,7 +178,7 @@ def create_position(request):
         re['error'] = error(223,'Invaild days perweek!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
-        re['error'] = error(299,'Unkown Error!')
+        re['error'] = error(299,'Unknown Error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
 
     try:
@@ -188,7 +188,7 @@ def create_position(request):
         re['error'] = error(224,'Invaild internship time!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
-        re['error'] = error(299,'Unkown Error!')
+        re['error'] = error(299,'Unknown Error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     try:
@@ -198,7 +198,7 @@ def create_position(request):
         re['error'] = error(225,'Invaild min salary!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
-        re['error'] = error(299,'Unkown Error!')
+        re['error'] = error(299,'Unknown Error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     print 'done2'
@@ -210,7 +210,7 @@ def create_position(request):
         re['error'] = error(226,'Invaild max salary!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
-        re['error'] = error(299,'Unkown Error!')
+        re['error'] = error(299,'Unknown Error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     try:
@@ -238,34 +238,26 @@ def create_position(request):
         re['error'] = error(250,'Database error: Failed to save')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     #except:
-    #    re['error'] = error(299,'Unkown Error!')
+    #    re['error'] = error(299,'Unknown Error!')
     #    return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     re['error'] = error(1,'Create position succeed!')
     cpn.positions.append(posi)
     cpn.save()
+
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
 @user_permission('login')
-def delete_position(request):
+def delete_position(request,position_id):
     re = dict()
     try:
         assert request.method == "POST"
     except:
         re['error'] = error(2, 'error, need post!')
         return HttpResponse(json.dumps(re), content_type = 'application/json')
-    try:
-        id = int(request.POST['id'])
-        assert id >= 0
-    except (KeyError):
-        re['error'] = error(200,"Illegal request!")
-        return HttpResponse(json.dumps(re), content_type = 'application/json')
-    except (ValueError,AssertionError):
-        re['error'] = error(230,"Invaild search id!")
-        return HttpResponse(json.dumps(re), content_type = 'application/json')
     
     try:
-        posi = Position.objects.get(id = id)
+        posi = Position.objects.get(id = position_id)
     except (ObjectDoesNotExist):
         re['error'] = error(249,"Object does not exist")
         return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -273,24 +265,27 @@ def delete_position(request):
         re['error'] = error(251,"Database error: Failed to search!")
         return HttpResponse(json.dumps(re), content_type = 'application/json')
     except:
-        re['error'] = error(299,'Unkown Error!')
+        re['error'] = error(299,'Unknown Error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     try:
-        assert request.User != None
-        assert request.User.is_staff
-        cpn = Companyinfo.objects.all().filter(User = request.User)
+        assert request.user != None
+        assert request.user.is_staff
+        cpn = Companyinfo.objects.get(user = request.user)
         assert posi in cpn.position    
     except:
         re['error'] = error(100,"Permission denied!")
     
+    cpn.positions.remove(posi)
+    cpn.save()
+
     try:
         posi.delete()
     except (DatabaseError):
         re['error'] = error(252,"Database error: Failed to delete!")
         return HttpResponse(json.dumps(re), content_type = 'application/json')
     except:
-        re['error'] = error(299,'Unkown Error!')
+        re['error'] = error(299,'Unknown Error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
       
     re['error'] = error(1,'Delete position succeed!')
@@ -318,7 +313,7 @@ def search_position(request):
                 re['error'] = error(251,"Database error: Failed to search!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             except:
-                re['error'] = error(299,'Unkown Error!')
+                re['error'] = error(299,'Unknown Error!')
                 return HttpResponse(json.dumps(re),content_type = 'application/json')
       
     
@@ -336,7 +331,7 @@ def search_position(request):
                 re['error'] = error(251,"Database error: Failed to search!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             except:
-                re['error'] = error(299,'Unkown Error!')
+                re['error'] = error(299,'Unknown Error!')
                 return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     if "type" in request.GET.keys():
@@ -352,7 +347,7 @@ def search_position(request):
                 re['error'] = error(251,"Database error: Failed to search!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             except:
-                re['error'] = error(299,'Unkown Error!')
+                re['error'] = error(299,'Unknown Error!')
                 return HttpResponse(json.dumps(re),content_type = 'application/json')            
     
     if "work_city" in request.GET.keys():
@@ -369,14 +364,14 @@ def search_position(request):
                 re['error'] = error(251,"Database error: Failed to search!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             except:
-                re['error'] = error(299,'Unkown Error!')
+                re['error'] = error(299,'Unknown Error!')
                 return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     if "mindays" in request.GET.keys():
         if len(request.GET["mindays"]) > 0:
             try:
                 mindays = int(request.GET["mindays"])
-                qs = qs.filter(daysperweek__gte = mindays)
+                qs = qs.filter(days_per_week__gte = mindays)
             except (ValueError):
                 re['error'] = error(233,"Invaild search min daysperweek!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -384,14 +379,14 @@ def search_position(request):
                 re['error'] = error(251,"Database error: Failed to search!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             except:
-                re['error'] = error(299,'Unkown Error!')
+                re['error'] = error(299,'Unknown Error!')
                 return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     if "maxdays" in request.GET.keys():
         if len(request.GET["maxdays"]) > 0:
             try:
                 maxdays = int(request.GET["maxdays"])
-                qs = qs.filter(Q(daysperweek__lte = maxdays) | Q(daysperweek = 0))
+                qs = qs.filter(Q(days_per_week__lte = maxdays) | Q(days_per_week = 0))
             except (ValueError):
                 re['error'] = error(234,"Invaild search max daysperweek!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -399,7 +394,7 @@ def search_position(request):
                 re['error'] = error(251,"Database error: Failed to search!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             except:
-                re['error'] = error(299,'Unkown Error!')
+                re['error'] = error(299,'Unknown Error!')
                 return HttpResponse(json.dumps(re),content_type = 'application/json')
                 
     if "salary_min" in request.GET.keys():
@@ -414,9 +409,9 @@ def search_position(request):
                 re['error'] = error(251,"Database error: Failed to search!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             except:
-                re['error'] = error(299,'Unkown Error!')
+                re['error'] = error(299,'Unknown Error!')
                 return HttpResponse(json.dumps(re),content_type = 'application/json')
-                
+
     if "salary_max" in request.GET.keys():
         if len(request.GET["salary_max"]) > 0:
             try:
@@ -429,9 +424,9 @@ def search_position(request):
                 re['error'] = error(251,"Database error: Failed to search!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             except:
-                re['error'] = error(299,'Unkown Error!')
+                re['error'] = error(299,'Unknown Error!')
                 return HttpResponse(json.dumps(re),content_type = 'application/json')
-    
+
     if "status" in request.GET.keys():
         if len(request.GET["status"]) > 0:
             try:
@@ -445,7 +440,7 @@ def search_position(request):
                 re['error'] = error(251,"Database error: Failed to search!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             except:
-                re['error'] = error(299,'Unkown Error!')
+                re['error'] = error(299,'Unknown Error!')
                 return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     page = 1
@@ -458,18 +453,29 @@ def search_position(request):
                 re['error'] = error(200,"Invaild request!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             except:
-                re['error'] = error(299,'Unkown Error!')
+                re['error'] = error(299,'Unknown Error!')
                 return HttpResponse(json.dumps(re),content_type = 'application/json')
+
     orderValue = "id"            
     qs.order_by(orderValue)
     qs = qs[(page - 1) * POSITIONS_PER_PAGE: page * POSITIONS_PER_PAGE]
     
-    re["positions"] = qs.to_json()
+    re["positions"] = json.loads(qs.to_json())
     re["error"] = error(1,"Search succeed!")
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
+
 @user_permission("login")
-def update_position(request):
+def get_position(request,position_id):
+    re = dict()
+    p = Position.objects.get(id = position_id)
+    re['position'] = json.loads(p.to_json())
+
+    re["error"] = error(1,"Get succeed!")
+    return HttpResponse(json.dumps(re),content_type = 'application/json')
+
+@user_permission("login")
+def update_position(request,position_id):
     re = dict()
     try:
         assert request.method == "POST"
@@ -477,6 +483,7 @@ def update_position(request):
         re['error'] = error(2, 'error, need post!')
         return HttpResponse(json.dumps(re), content_type = 'application/json')
     
+    '''
     try:
         id = int(request.POST['id'])
         assert id >= 0
@@ -486,9 +493,9 @@ def update_position(request):
     except (ValueError,AssertionError):
         re['error'] = error(230,"Invaild search id!")
         return HttpResponse(json.dumps(re), content_type = 'application/json')
-        
+    '''    
     try:
-        posi = Position.objects.get(id = id)
+        posi = Position.objects.get(id = position_id)
     except (ObjectDoesNotExist):
         re['error'] = error(249,"Object does not exist")
         return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -496,13 +503,13 @@ def update_position(request):
         re['error'] = error(251,"Database error: Failed to search!")
         return HttpResponse(json.dumps(re), content_type = 'application/json')
     except:
-        re['error'] = error(299,'Unkown Error!')
+        re['error'] = error(299,'Unknown Error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     try:
-        assert request.User != None
-        assert request.User.is_staff
-        cpn = Companyinfo.objects.all().filter(User = request.User)
+        assert request.user != None
+        assert request.user.is_staff
+        cpn = Companyinfo.objects.filter(user = request.user)
         assert posi in cpn.position    
     except:
         re['error'] = error(100,"Permission denied!")
@@ -514,7 +521,7 @@ def update_position(request):
     et = request.POST.get('end_time','')
     position_description = request.POST.get('position_description','')
     position_request = request.POST.get('position_request','')
-    days = request.POST.get('daysperweek','0')
+    days = request.POST.get('days_per_week','0')
     intime = request.POST.get('internship_time','0')
     samin = request.POST.get('salary_min','0')
     samax = request.POST.get('salary_max','1000000')
@@ -530,7 +537,7 @@ def update_position(request):
         re['error'] = error(211,'Illeage character found in position name!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
-        re['error'] = error(299,'Unkown error!')
+        re['error'] = error(299,'Unknown error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
 
     try:
@@ -549,7 +556,7 @@ def update_position(request):
         re['error'] = error(214,'Illeage character found in work city!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
-        re['error'] = error(299,'Unkown error!')
+        re['error'] = error(299,'Unknown error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
 
     
@@ -565,7 +572,7 @@ def update_position(request):
 
     try:
         etint = int(et)
-        end_time = datetime.datetime.utcfromtimestamp(etint)
+        end_time = datetime.utcfromtimestamp(etint)
         assert end_time > datetime.now()
     except (ValueError):
         re['error'] = error(217,'Invaild end time format!')
@@ -585,7 +592,7 @@ def update_position(request):
         re['error'] = error(220,'Illegal character found in work address!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
-        re['error'] = error(299,'Unkown error!')
+        re['error'] = error(299,'Unknown error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     try:
@@ -598,18 +605,18 @@ def update_position(request):
         re['error'] = error(222,'Illegal character found in request!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
-        re['error'] = error(299,'Unkown error!')
+        re['error'] = error(299,'Unknown error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
 
     try:
-        daysperweek = int(days)
-        print daysperweek
-        assert daysperweek in range(0,7)
+        days_per_week = int(days)
+        print days_per_week
+        assert days_per_week in range(0,7)
     except (ValueError,AssertionError):
         re['error'] = error(223,'Invaild days perweek!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
-        re['error'] = error(299,'Unkown Error!')
+        re['error'] = error(299,'Unknown Error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
 
     try:
@@ -619,7 +626,7 @@ def update_position(request):
         re['error'] = error(224,'Invaild internship time!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
-        re['error'] = error(299,'Unkown Error!')
+        re['error'] = error(299,'Unknown Error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     try:
@@ -629,7 +636,7 @@ def update_position(request):
         re['error'] = error(225,'Invaild min salary!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
-        re['error'] = error(299,'Unkown Error!')
+        re['error'] = error(299,'Unknown Error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
 
     try:
@@ -639,7 +646,7 @@ def update_position(request):
         re['error'] = error(226,'Invaild max salary!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
-        re['error'] = error(299,'Unkown Error!')
+        re['error'] = error(299,'Unknown Error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     try:
@@ -655,13 +662,13 @@ def update_position(request):
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     posi.name = name
-    posi.type = position_type
+    posi.position_type = position_type
     posi.work_city = work_city
     posi.work_address = work_address
     posi.end_time = end_time
     posi.position_description = position_description
     posi.position_request = position_request
-    posi.daysperweek = daysperweek
+    posi.days_per_week = days_per_week
     posi.internship_time = internship_time
     posi.salary_min = salary_min
     posi.salary_max = salary_max
@@ -673,12 +680,13 @@ def update_position(request):
         re['error'] = error(250,'Database error: Failed to save')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     except:
-        re['error'] = error(299,'Unkown Error!')
+        re['error'] = error(299,'Unknown Error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
-    re['error'] = error(1,'Create position succeed!')
+    re['error'] = error(1,'Update position succeed!')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
     
+'''
 def edit_position(request):
     re = dict()
     try:
@@ -698,9 +706,10 @@ def edit_position(request):
     
     if request.POST['operation'] == 'update':
         return update_position(request)
+'''
 
 @user_permission('login')
-def submit_resume(request):
+def submit_resume(request,position_id):
     re = dict()
     if request.method == 'POST':
         try:
@@ -714,7 +723,7 @@ def submit_resume(request):
         
         # use the long-term resume
         if resume_choice == '1': 
-            if userinfo.has_resume:
+            if userinfo.resume: 
                 resume = userinfo.resume.value
             else:
                 re['error'] = error(120, 'Resume does not exist')
@@ -732,23 +741,30 @@ def submit_resume(request):
                 re['error'] = error(19, 'File is empty')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
         
-        position_id = request.POST.get('position_id', '')
         try:
-            position = Position.objects.get(pk = position_id)    
+            position = Position.objects.get(id = position_id)    
         except:
             re['error'] = error(260, 'Position does not exist') 
             return HttpResponse(json.dumps(re), content_type = 'application/json')
 
         submit_date = datetime.now()
-        resume_post = ResumePost(submit_date = submit_date, resume_copy = resume, position = position, user = request.user)
-        resume_post.save()
+        UP = UserPosition(submit_date = submit_date, resume_submitted = resume, position = position, user = request.user)
+        UP.save()
         re['error'] = error(1, 'Success!')
     else:
         re['error'] = error(2, 'Error, need post!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+@user_permission("login")
 def email_resume(request):
     re = dict()
+
+    '''
+    if not request.user.is_superuser:
+        re['error'] = error(100,"Permission denied!")
+        return HttpResponse(json.dumps(re), content_type = 'application/json')
+    ''' 
+
     t = datetime.now()
     # 8am Today
     time_end = datetime(year=t.year, month=t.month, day=t.day, hour=8)
@@ -760,36 +776,38 @@ def email_resume(request):
         f_company = StringIO()
         zip_company = zipfile.ZipFile(f_company, 'w', zipfile.ZIP_DEFLATED)
         
-        for position in Position.objects.filter(company = company):
+        for position in company.positions: 
             f_position = StringIO()
             zip_position = zipfile.ZipFile(f_position, 'w', zipfile.ZIP_DEFLATED)
 
-            for rp in ResumePost.objects.filter(position = position, submit_date__gte = time_start, submit_date__lte = time_end): 
-                zip_position.writestr('%s.pdf' % rp.user.username, rp.resume_copy.read())
+            empty = True
+            for up in UserPosition.objects.filter(position = position, submit_date__gte = time_start, submit_date__lte = time_end): 
+                empty = False
+                zip_position.writestr('%s.pdf' % up.user.username, up.resume_submitted.read())
             zip_position.close()
-
-            zip_company.writestr('%s.zip' % position.name, f_position.getvalue())
+            
+            if not empty:
+                zip_company.writestr('%s.zip' % position.name, f_position.getvalue())
 
         zip_company.close()
 
         mail = EmailMessage('[创+]简历%s' % time.strftime('%Y%m%d'), '附件为昨天8am至今天8am之间投递到您公司的简历。', 'support@chuangplus.com', [company.email_resume]);
         mail.attach('%s.zip' % company.abbreviation, f_company.getvalue(), 'application/zip')
         mail.send()
+        re['error'] = error(1,"Send success")
+        return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission("login")
-def user_like_position(request):
+def user_like_position(request,position_id):
     re = dict()
     if request.method == 'POST':
-        position_id = request.POST.get('position_id', '')
-
         try:
-            position = Position.objects.get(pk = position_id)    
+            position = Position.objects.get(id = position_id)    
         except:
             re['error'] = error(260, 'Position does not exist') 
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         
-        user = Userinfo.objects.get(username = request.user.username)
-        up = UP_Relationship(position = position, user = user)
+        up = UP_Relationship(position = position, user = request.user)
         up.save()
         re['error'] = error(1, "success!")
     else:

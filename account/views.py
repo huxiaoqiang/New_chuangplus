@@ -667,12 +667,12 @@ def verify_code(request):
 
 def get_company_list(request):
     re = dict()
-    if request.method == 'POST':
-        text = request.POST.get('text', '')
-        field = request.POST.get('field', '')
-        auth_organization = request.POST.get('auth_organization', '')
-        scale = request.POST.get('scale', '')
-        status = request.POST.get('status', '')
+    if request.method == 'GET':
+        text = request.GET.get('text', '')
+        field = request.GET.get('field', '')
+        auth_organization = request.GET.get('auth_organization', '')
+        scale = request.GET.get('scale', '')
+        status = request.GET.get('status', '')
 
         companies = Companyinfo.objects.all()
 

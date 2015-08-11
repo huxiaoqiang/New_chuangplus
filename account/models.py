@@ -95,6 +95,7 @@ class Financing(Document):
 
     def __str__(self):
         return self.stage
+
 #user and company relationship
 #the user likes the company
 class UC_Relationship(Document):
@@ -102,4 +103,4 @@ class UC_Relationship(Document):
     company = ReferenceField(Companyinfo,required=True)
 
     def __str__(self):
-        return user.username + '*' + company.username
+        return self.user.username + '*' + self.company.username

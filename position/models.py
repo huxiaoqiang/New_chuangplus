@@ -33,15 +33,15 @@ class UserPosition(Document):
     user = ReferenceField(User,required=True)
     position = ReferenceField(Position,required=True)
     submit_date = DateTimeField()
-    resume_submited = FileField()
+    resume_submitted = FileField()
     processed = BooleanField(default=False)
 
     def __str__(self):
-        return user.username + '->' + position.name
+        return self.user.username + '->' + self.position.name
 
 class UP_Relationship(Document):
     user = ReferenceField(User,required=True)
     position = ReferenceField(Position,required=True)
 
     def __str__(self):
-        return user.username + '*' + position.name
+        return self.user.username + '*' + self.position.name
