@@ -8,6 +8,7 @@ from wechatlib.base_support import auth
 #wechat request handler entry
 def request_handler(request):
     if request.method == "GET":
+        print request.GET
         signature=request.GET.get('signature','')
         timestamp=request.GET.get('timestamp','')
         nonce=request.GET.get('nonce','')
