@@ -80,6 +80,10 @@ angular.module('chuangplus.controllers', []).
         $scope.reg_info = {};
         $scope.reg_info.role = 0;
         $scope.captcha_url = urls.api+"/captcha/image/";
+        $scope.check = {
+                "exist"    : true
+        };
+
         $scope.refresh = function(){
             $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
         };
@@ -94,7 +98,7 @@ angular.module('chuangplus.controllers', []).
             $scope.reg_info.role = 1;
         };
         $scope.register = function(){
-            if ($scope.reg_info.password != $scope.reg_info.re_password)
+            if ($scope.reg_info.password != $scope.repeate_password)
             {
                 $scope.error.code = -1;
                 $scope.error = $errMsg.format_error("两次输入的密码不一致",$scope.error);
@@ -109,6 +113,19 @@ angular.module('chuangplus.controllers', []).
                     }
                     else{
                         $scope.error = $errMsg.format_error("",data.error);
+                    }
+                });
+        };
+        $scope.showError = function(ngModelController,error){
+            return ngModelController.$error[error];
+        };
+        $scope.check_username = function(){
+            $scope.check.username = $scope.reg_info.username;
+            $csrf.set_csrf($scope.check);
+            $http.post(urls.api+"/account/checkusername", $.param($scope.check)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.check.exist = data.username.exist;
                     }
                 });
         };

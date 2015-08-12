@@ -165,4 +165,16 @@ angular.module('chuangplus.services', []).
             var tmp_date = new Date(secs);
             return tmp_date.getFullYear() + '年' + (tmp_date.getMonth() + 1) + '月' + tmp_date.getDate() + '日';
         };
+    }).
+    factory('safeApply', function($rootScope) {
+    return function(scope, fn) {
+        var phase = scope.$root.$$phase;
+        if (phase == '$apply' || phase == '$digest') {
+            if (fn && ( typeof (fn) === 'function')) {
+                fn();
+            }
+        } else {
+            scope.$apply(fn);
+        }
+    }
     });

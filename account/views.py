@@ -46,6 +46,7 @@ def register(request):
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
         except DoesNotExist:
             reguser = User()
+            #todo validate the email
             try:
                 reguser = User.create_user(username=username, password=password, email=email)
             except Exception as e:

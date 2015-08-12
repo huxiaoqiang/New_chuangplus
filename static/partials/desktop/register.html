@@ -1,7 +1,7 @@
 <div id="container" controller="DT_RegisterCtrl">
     <div id="register" class="col-md-5">
 
-        <form class="ui form segment" ng-submit="register()">
+        <form class="ui form segment" ng-submit="register()" name="registerForm">
             <ul class="nav nav-tabs" ng-init="tab1=true">
               <li role="presentation" ng-class="{'active':tab1}" ng-click="student()"><a href="#">我是学生</a></li>
               <li role="presentation" ng-class="{'active':tab2}" ng-click="hr()"><a href="#">我是企业HR</a></li>
@@ -12,8 +12,11 @@
                         <div class="input-group-addon">
                             <i class="icon-user icon-large"></i>
                         </div>
-                        <input type="text" class="form-control" placeholder="用户名" ng-model="reg_info.username" required>
+                        <input name="username" type="text" class="form-control" placeholder="用户名" ng-blur="check_username()" ng-model-options="{ updateOn: 'blur'}" ng-model="reg_info.username" required>
                     </div>
+                    <span ng-hide="check.exist" class="err-msg">
+                        <i class="icon-warning-sign"></i>用户名不存在
+                    </span>
                 </div>
 
                 <div class="form-group">
@@ -21,21 +24,24 @@
                         <div class="input-group-addon">
                             <i class="icon-envelope icon-large"></i>
                         </div>
-                        <input type="text" class="form-control" placeholder="邮箱" ng-model="reg_info.email" required>
+                        <input name="email" type="email" class="form-control" placeholder="邮箱" ng-model="reg_info.email" required>
+                    </div>
+                    <span ng-show="showError(registerForm.email,'email')" class="err-msg">
+                        <i class="icon-warning-sign"></i>请输入正确的邮箱格式，如hxq@xiniu.com
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="icon-key icon-large"></i></div>
+                         <input type="password" class="form-control" placeholder="密码" ng-model="reg_info.password" ng-minlength="6" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon"><i class="icon-key icon-large"></i></div>
-                         <input type="password" class="form-control" placeholder="密码" ng-model="reg_info.password" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon"><i class="icon-key icon-large"></i></div>
-                         <input type="password" class="form-control" placeholder="密码" ng-model="reg_info.re_password" required>
+                         <input type="password" class="form-control" placeholder="密码确认" ng-model="repeate_password" ng-minlength="6" required>
                     </div>
                 </div>
 

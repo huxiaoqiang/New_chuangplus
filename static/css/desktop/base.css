@@ -215,6 +215,10 @@ body > #wrap {
 #container #register .ui.segment.form #reg_form {
   padding: 2em;
 }
+#container #register .ui.segment.form #reg_form .form-group span.err-msg {
+  color: #a94442;
+  margin-left: 30px;
+}
 #container #register .ui.segment.form #reg_form #captcha_form {
   width: 40%;
   float: left;
@@ -404,6 +408,12 @@ body > #wrap {
   border-top-left-radius: 0.5em;
   border-bottom-left-radius: 0.5em;
 }
-#err-msg {
+div#err-msg {
   text-align: center;
+}
+input.form-control.ng-valid.ng-dirty {
+  border: solid #008000 1px;
+}
+input.form-control.ng-invalid.ng-dirty {
+  border: solid #a94442 1px;
 }
