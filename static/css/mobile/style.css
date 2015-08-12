@@ -1,9 +1,16 @@
-body {
+html {
   height: 100%;
+  display: block;
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
+}
+body {
+  min-height: 780px;
   font-weight: normal;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 #main-container {
   height: 100%;
@@ -22,6 +29,7 @@ body {
   padding-bottom: 54px;
   height: 100%;
   background-color: white;
+  overflow-y: scroll;
 }
 .purple-border {
   border: 2px solid #966497;
@@ -185,6 +193,7 @@ a:hover {
   height: 50px;
   background: #966497;
   position: relative;
+  overflow: auto;
 }
 .header-bar .header {
   width: 50%;
@@ -245,6 +254,7 @@ a:hover {
   height: 46px;
   background: #b5b5b5;
   vertical-align: center;
+  overflow: auto;
   padding: 5px 10px 5px 10px;
 }
 .search-input {
@@ -266,6 +276,7 @@ a:hover {
   background-color: #dcdcdc;
   padding-bottom: 1px;
   height: 100%;
+  overflow: auto;
 }
 .comp-listbox {
   display: block;
@@ -353,10 +364,16 @@ a:hover {
   font-size: 10px;
 }
 .nav-bar {
-  -webkit-transform: translateZ(0);
+  margin: 0;
+  padding: 0;
+  border-bottom: 0;
+  z-index: 1000;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  box-sizing: border-box;
   display: block;
   height: 54px;
-  position: absolute;
+  position: fixed !important;
   width: 100%;
   bottom: 0;
   left: 0;
