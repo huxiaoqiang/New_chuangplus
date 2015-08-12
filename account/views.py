@@ -153,10 +153,10 @@ def login(request):
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         user = auth.authenticate(username=username, password=password)
         if user is not None and user.is_active:
-            if user.is_staff == '1' and role == '0':
+            if user.is_staff == True and role == '0':
                 re['error'] = error(113,'Role error,turn hr tab to login')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
-            elif user.is_staff == '0' and role == '1':
+            elif user.is_staff == False and role == '1':
                 re['error'] = error(114,'Role error,turn intern tab to login')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             re['username'] = username
