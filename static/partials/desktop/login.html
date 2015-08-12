@@ -14,7 +14,6 @@
                         <input type="text" class="form-control" placeholder="用户名" ng-model="login_info.username" required>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon"><i class="icon-key icon-large"></i></div>
@@ -25,7 +24,7 @@
                 <div class="form-group">
                     <div class="input-group" id="captcha_form">
                         <div class="input-group-addon"><i class="icon-picture icon-large"></i></div>
-                        <input type="text" class="form-control" id='captcha_input' placeholder="验证码" ng-model="startup.captcha" required>
+                        <input type="text" class="form-control" id='captcha_input' placeholder="验证码" ng-model="login_info.captcha" required>
                     </div>
                     <img ng-src='[[captcha_url]]' id="captcha_img" alt="验证码">
                     <a type="button" ng-click="refresh()" class="btn btn-link">换一张</a>
@@ -36,6 +35,7 @@
                     <a href="/password/forgetpwd" class="findpwd">忘记密码？</a>
                     <a title="注册犀牛账号" class="regbtn" href="/register">立即注册</a>
                 </div>
+                <div id="err-msg" ng-show="error.show"  ng-class="error.class">[[error.message]]</div>
             </div>
         </form>
     </div>

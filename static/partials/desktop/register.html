@@ -54,6 +54,8 @@
                     已有犀牛账号？
                     <a title="登录账号" class="regbtn" href="/login">立即登录</a>
                 </div>
+                <br/>
+                <div id="err-msg" ng-show="error.show"  ng-class="error.class">[[error.message]]</div>
             </div>
 
         </form>

@@ -39,8 +39,9 @@ angular.module('chuangplus.controllers', []).
             $scope.position = $scope.company = $scope.login = $scope.resume = false;
         };
     }]).
-    controller('DT_LoginCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_LoginCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrMsgService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_LoginCtrl');
+
         $scope.login_info = {};
         $scope.login_info.role = 0;
         $scope.captcha_url = urls.api+"/captcha/image/";
@@ -63,20 +64,17 @@ angular.module('chuangplus.controllers', []).
             $http.post(urls.api+"/account/login", $.param($scope.login_info)).
                 success(function(data){
                     if(data.error.code == 1){
-                        console.log("login successfully!");
+                        $scope.error = $errMsg.format_error("登录成功",data.error);
                         setTimeout(function(){window.location.href='/'},1000);
                     }
                     else{
-                        console.log(data.error.message);
+                        $scope.error = $errMsg.format_error('',data.error);
                     }
-                }).
-                error(function(data){
-                    console.log(data);
                 });
         };
         $scope.refresh();
     }]).
-    controller('DT_RegisterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_RegisterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrMsgService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_RegisterCtrl');
         $scope.reg_info = {};
         $scope.reg_info.role = 0;
@@ -95,16 +93,20 @@ angular.module('chuangplus.controllers', []).
             $scope.reg_info.role = 1;
         };
         $scope.register = function(){
+            if ($scope.password != $scope.re_password)
+            {
+                $scope.error = $errMsg.format_error("两次输入的密码不一致",$scope.error);
+                return;
+            }
             $csrf.set_csrf($scope.reg_info);
             $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
                 success(function(data){
                     if(data.error.code == 1){
-                        console.log("regist successfully!");
-                        alert("注册成功");
+                        $scope.error = $errMsg.format_error("注册成功",data.error);
                         setTimeout(function(){window.location.href='/'},1500);
                     }
                     else{
-                        alert(data.error.message);
+                        $scope.error = $errMsg.format_error("",data.error);
                     }
                 });
         };
