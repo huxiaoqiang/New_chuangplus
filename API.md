@@ -261,11 +261,11 @@ set_csrf(data)
   }
 ```
 ###/api/account/member/(?P<company_id>.*?)/list
-获取company_id公司的所有成员
+参数为company_id，获取company_id公司的所有成员
 ###/api/account/member/(?P<mem_id>.*?)/set
-修改成员mem_id的信息
+参数为mem_id，修改成员mem_id的信息
 ###/api/account/member/(?P<mem_id>.*?)/delete
-删除成员mem_id
+参数为mem_id，删除成员mem_id
 
 ##financing相关
 ###/api/account/financing/create
@@ -279,11 +279,11 @@ set_csrf(data)
   }
 ```
 ###/api/account/financing/(?P<company_id>.*?)/list
-获取company_id公司的所有融资信息
+参数为company_id，获取company_id公司的所有融资信息
 ###/api/account/financing/(?P<fin_id>.*?)/set
-修改fin_id的融资信息
+参数为fin_id，修改fin_id的融资信息
 ###/api/account/financing/(?P<fin_id>.*?)/delete
-删除fin_id的融资信息
+参数为fin_id，删除fin_id的融资信息
 
 ##公司相关Company
 ###/api/account/company/list
@@ -298,11 +298,11 @@ set_csrf(data)
   }
 ```
 ###/api/account/company/(?P<company_id>.*?)/detail
-获取company_id公司的详细信息
+参数为company_id，获取company_id公司的详细信息
 ###/api/account/company/(?P<company_id>.*?)/set
-修改company_id公司的信息
+参数为company_id，修改company_id公司的信息
 ###/api/account/company/(?P<company_id>.*?)/auth
-认证company_id这个公司，提交表单如下
+参数为company_id，认证company_id这个公司，提交表单如下
 ```javascript
   {
   "status"            : "0" or "1",    //0代表后台审批不通过
@@ -310,7 +310,7 @@ set_csrf(data)
   }
 ```
 ###/api/account/company/(?P<company_id>.*?)/check
-检查公司信息是否填写完全(完全表示：city、field、email_resume、welfare_tags、ICregist_name、company_description不为空),返回如下：
+参数为company_id，检查公司信息是否填写完全(完全表示：city、field、email_resume、welfare_tags、ICregist_name、company_description不为空),返回如下：
 ```javascript
   {
   "error":{}
@@ -319,4 +319,4 @@ set_csrf(data)
 ```
 
 ###/api/account/company/(?P<company_id>.*?)/like
-收藏公司
+参数为company_id，收藏公司company_id
