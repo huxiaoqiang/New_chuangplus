@@ -151,8 +151,8 @@ description |StringField|           |文件描述
 upload_time |DateTimeField|         |上传时间
 value       |FileField  |           |文件
 
-
-##api接口
+#api接口
+##登录注册相关
 考虑到django的csrf机制，需要在HTTP请求头添加X-CSRF-token,内容为cookie中的csrftoken，或者在请求中增加一个csrfmiddlewaretoken字段，内容也是cookie中的csrftoken。我们使用的方法是后者，在static/js/services.js中构建了CsfrService，在post表单之前执行
 ```javascript
 set_csrf(data)
@@ -320,3 +320,65 @@ set_csrf(data)
 
 ###/api/account/company/(?P<company_id>.*?)/like
 参数为company_id，收藏公司company_id
+
+##职位相关position
+###/api/position/create
+创建职位，post如下字段
+```javascript
+  {
+  "name"                 : "name", 
+  "position_type"        : "position_type",
+  "work_address"         : "work_address",
+  "end_time"             : "end_time",
+  "position_description" : "position_description",
+  "position_request"     : "position_request",
+  "days_per_week"        : "days_per_week",
+  "internship_time"      : "internship_time",
+  "salary_min"           : "salary_min",
+  "salary_max"           : "salary_max",
+  "status"               : "status",
+  }
+```
+###/api/position/(?P<position_id>.*?)/delete
+参数是position_id，删除position_id这个职位
+###/api/position/(?P<position_id>.*?)/set
+参数是position_id，修改position_id这个职位信息
+###/api/position/(?P<position_id>.*?)/get
+参数是position_id，获取position_id这个职位信息
+###/api/position/(?P<position_id>.*?)/like
+参数是position_id，收藏position_id这个职位信息
+###/api/position/(?P<position_id>.*?)/submit
+参数是position_id，投递position_id这个职位信息
+###/api/position/search
+搜索职位，可以通过如下几个字段去过滤
+```javascript
+  {
+  "id"     : "id",
+  "name"   : "name",
+  "type"   : "type",
+  "work_city" : "work_city",
+  "mindays"  : "mindays",
+  "maxdays"  : "maxdays",
+  "salary_min" : "salary_min",
+  "salary_max" : "salary_max",
+  "status"     : "status",
+  "page"       : "page",
+  }
+```
+
+###/api/position/submit
+投递简历，post的字段信息如下
+```javascript
+  {
+  "resume_choice" : "1" or "2", //1表示用上传保存的简历来投递，2表示新上传一个简历马上投递
+  "file"          : "file",     //当resume_choice为2时，必需
+  "position_id"   : "position_id"
+  }
+```
+###/api/position/userlikeposition
+收藏职位
+```javascript
+  {
+  "position_id" : "position_id"
+  }
+```
