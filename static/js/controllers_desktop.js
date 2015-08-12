@@ -76,6 +76,7 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_RegisterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrMsgService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_RegisterCtrl');
+        $scope.error = {};
         $scope.reg_info = {};
         $scope.reg_info.role = 0;
         $scope.captcha_url = urls.api+"/captcha/image/";
@@ -93,8 +94,9 @@ angular.module('chuangplus.controllers', []).
             $scope.reg_info.role = 1;
         };
         $scope.register = function(){
-            if ($scope.password != $scope.re_password)
+            if ($scope.reg_info.password != $scope.reg_info.re_password)
             {
+                $scope.error.code = -1;
                 $scope.error = $errMsg.format_error("两次输入的密码不一致",$scope.error);
                 return;
             }

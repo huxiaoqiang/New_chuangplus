@@ -75,20 +75,21 @@ angular.module('chuangplus.services', []).
         };
         return {
             'format_error': function (msg,error) {
-                if(msg != '')
+                if(msg != '' && error.code == 1)
                 {
                     error.message = msg;
+                    error.class = "alert alert-success";
                 }
                 else
                 {
-                    if(error.code == 1){
-                        error.class = "alert alert-success";
-                    }
-                    else{
-                        error.class = "alert alert-danger";
+                    error.class = "alert alert-danger";
+                    error.message = msg;
+                    if(error.code != -1)
+                    {
                         error.code_key = 'code'+error.code;
                         error.message = error_message[error.code_key];
                     }
+
                 }
                 error.show = true;
                 return error;
