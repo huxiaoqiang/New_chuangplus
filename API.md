@@ -102,7 +102,7 @@ user        |Userinfo
 
 
 
-###职位模块
+###职位模块position
 ####职位表Position
 字段   |类型   |修饰   |解释
 ------------|-----------|-----------|-----------
@@ -140,6 +140,18 @@ submit_date |DateTimeField |        |投递日期
 resume_submitted|FileField |        |投递的简历附件
 processed   |BooleanField  |default=False|处理状态，默认是未处理
 
+
+###文件模块filedata
+####文件表File
+字段   |类型   |修饰   |解释
+------------|-----------|-----------|-----------
+name        |StringField|           |文件名
+type        |StringField|           |文件类型
+description |StringField|           |文件描述
+upload_time |DateTimeField|         |上传时间
+value       |FileField  |           |文件
+
+
 ##api接口
 考虑到django的csrf机制，需要在HTTP请求头添加X-CSRF-token,内容为cookie中的csrftoken，或者在请求中增加一个csrfmiddlewaretoken字段，内容也是cookie中的csrftoken。我们使用的方法是后者，在static/js/services.js中构建了CsfrService，在post表单之前执行
 ```javascript
@@ -169,7 +181,8 @@ set_csrf(data)
 ```javascript
   {
     "username" : "someone",
-    "password" : "password"
+    "password" : "password",
+    "captcha"  : "FCR3",              
   }
 ```
 ###/api/account/logout
@@ -182,11 +195,37 @@ set_csrf(data)
     "new_password" : "********"
   }
 ```
+
 ###/api/account/userinfo/get
 获取实习生用户信息，返回实习生用户信息的json对象和错误码
+
 ###/api/account/userinfo/set
 修改实习生用户信息，post userinfo信息，返回错误码和post的用户信息json对象
+其中必须要写的字段是：
+```javascript
+  {
+    "real_name"     : "real_name",
+    "email"         : "real_name",
+    "position_type" : "type1,type2,type3", //用','连接不同的type
+    "work_city"     : "work_city",
+    "cellphone"     : "cellphone",
+    "university"    : "university",
+    "major"         : "major",
+    "grade"         : "grade",
+    "gender"        : "gender",
+    "work_days"     : "work_days",
+    "description"   : "description"
+  }
+```
 
+###/api/account/userinfo/check
+判断实习生用户的信息是否填写完全,返回如下
+```javascript
+  {
+  "error":{}
+  "complete" : "True"(or "False")
+  }
+```
 
 ###/api/account/sendemail
 “找回密码”时，向用户邮箱发送验证码
@@ -211,8 +250,73 @@ set_csrf(data)
     "pass_verify"    : True or False, //True表示验证通过，False表示验证不通过
   }
 ```
+##member 相关
+###/api/account/member/create
+创建一个成员，需要post的字段必须包含：
+```javascript
+  {
+    "m_name"         : "m_name",
+    "m_position"     : "m_position",
+    "m_introduction" : "m_introduction",
+  }
+```
+###/api/account/member/(?P<company_id>.*?)/list
+获取company_id公司的所有成员
+###/api/account/member/(?P<mem_id>.*?)/set
+修改成员mem_id的信息
+###/api/account/member/(?P<mem_id>.*?)/delete
+删除成员mem_id
 
-###/
+##financing相关
+###/api/account/financing/create
+创建一个融资轮，必须post的字段有：
+```javascript
+  {
+    "username"       : "username"    //如果是企业用户，可为空；如果是超级用户，需要post对应公司的username
+    "stage"          : "stage",
+    "organization"   : "organization",
+    "amount"         : "amount"
+  }
+```
+###/api/account/financing/(?P<company_id>.*?)/list
+获取company_id公司的所有融资信息
+###/api/account/financing/(?P<fin_id>.*?)/set
+修改fin_id的融资信息
+###/api/account/financing/(?P<fin_id>.*?)/delete
+删除fin_id的融资信息
 
+##公司相关Company
+###/api/account/company/list
+获取公司列表,获取公司列表时，有5个过滤字段，分别如下：
+```javascript
+  {
+    "text"              : "text"    //文本信息，根据公司的工商注册名和公司简称来过滤
+    "field"             : "field",  //根据公司所在领域来过滤
+    "auth_organization" : "auth_organization", //根据投资机构认证信息来过滤
+    "scale"             : "scale",   //根据公司规模来过滤
+    "status"            : "status"   //根据公司是否被后台管理员认证来过滤
+  }
+```
+###/api/account/company/(?P<company_id>.*?)/detail
+获取company_id公司的详细信息
+###/api/account/company/(?P<company_id>.*?)/set
+修改company_id公司的信息
+###/api/account/company/(?P<company_id>.*?)/auth
+认证company_id这个公司，提交表单如下
+```javascript
+  {
+  "status"            : "0" or "1",    //0代表后台审批不通过
+  "auth_organization" : "" or "auth_organization"  //空表示没有投资机构认证，有表示投资机构认证
+  }
+```
+###/api/account/company/(?P<company_id>.*?)/check
+检查公司信息是否填写完全(完全表示：city、field、email_resume、welfare_tags、ICregist_name、company_description不为空),返回如下：
+```javascript
+  {
+  "error":{}
+  "complete" : "True"(or "False")
+  }
+```
 
-###/
+###/api/account/company/(?P<company_id>.*?)/like
+收藏公司
