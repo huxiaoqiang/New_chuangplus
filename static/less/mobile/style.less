@@ -57,7 +57,7 @@
 @cl-comp-desc-fsize:    10px;
 @cl-comp-req-fsize:    12px;
 @cl-comp-tag-radius:    2px;
-@cl-comp-tag-mag:    5px;
+@cl-comp-tag-mag:    3px;
 @cl-comp-reqt-fsize:    10px;
 @cl-comp-desct-fsize:    10px;
 @cl-comp-bent-fsize:    10px;
@@ -65,8 +65,8 @@
 
 //compfilter.html
 @filter-each-line : 3;
-@fil-content-top    :   30px;
-@fil-box-top:   16px;
+@fil-content-top    :   20px;
+@fil-box-top:   10px;
 @fil-header-bottom :   5px;
 @fil-header-fsize:  18px;
 @filter-fsize   : 15px;
@@ -87,11 +87,11 @@ html
 }
 body
 {
-    min-height:780px;
     font-weight: normal;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     overflow-x: hidden;
     overflow-y: auto;
+    -webkit-user-select: none;
 }
 
 #main-container
@@ -112,7 +112,7 @@ body
 .main-content
 {
     display: block;
-    padding-bottom: @cl-nav-hgt;
+    padding-bottom: @cl-nav-hgt + 10px;
     height: 100%;
     background-color: white;
     overflow-y: scroll;
@@ -194,7 +194,7 @@ body
     color:                 @std-purple;
     font-size:      @btn-font-size;
     border-radius: @btn-radius;
-    
+    text-align: center;
 }
 
 .login-btn
@@ -254,6 +254,11 @@ a:hover
     margin: 0;
     font-size: @input-font-size ;
     border-radius: inherit;
+}
+.full-width-input
+{
+    width: 92%;
+    margin-left: 8%;
 }
 
 .elem-width-4
@@ -605,6 +610,7 @@ a:hover
 {
     background: @std-purple;
     border: 0;
+    color: white;
 }
 
 //compfilter.html
@@ -649,6 +655,14 @@ a:hover
     min-width: (100% / @filter-each-line);
     display: block;
     overflow: hidden;
+}
+.filter-end-line
+{
+    margin-right: 30%;
+}
+.filter-single-line
+{
+    width: 100%;
 }
 .filter-elem input[type="checkbox"]
 {
@@ -758,13 +772,13 @@ a:hover
 }
 .comp-listbox table
 {
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .fi-cond
 {
     float: left;
-    width: 33.33%;
+    width: 32%;
 }
 
 .comp-full-name
@@ -902,9 +916,19 @@ a:hover
     color: white;
     border-color: @lit-purple;
 }
-.lit-g-bt
+.lit-gray-t-border
 {
-    border-bottom: 2px solid @lit-gray;
+    border-left: @btn-border solid white;
+    border-right: @btn-border solid white;
+    border-bottom: @btn-border solid white;
+    border-top: @btn-border solid @lit-gray;
+}
+.lit-gray-b-border
+{
+    border-left: @btn-border solid white;
+    border-right: @btn-border solid white;
+    border-top: @btn-border solid white;
+    border-bottom: @btn-border solid @lit-gray;
 }
 
 
