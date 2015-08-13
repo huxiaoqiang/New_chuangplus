@@ -17,6 +17,7 @@ import time
 from app.common_api import error,user_permission,if_legal
 
 TYPE = ('technology','product','design','operate','marketing','functions','others')
+FIELD = ('social','e-commerce','education','health_medical','culture_creativity','living_consumption','hardware','O2O','others')
 STATUS = ('open','hidden','closed')
 POSITIONS_PER_PAGE = 10
 
@@ -333,13 +334,15 @@ def search_position(request):
             except:
                 re['error'] = error(299,'Unknown Error!')
                 return HttpResponse(json.dumps(re),content_type = 'application/json')
-    
-    if "type" in request.GET.keys():
-        if len(request.GET["type"]) > 0:
+    #types is a string which connected by ',' it is like "technology,design"
+    if "types" in request.GET.keys():
+        if len(request.GET["types"]) > 0:
             try:
-                position_type = request.GET["type"]
-                assert position_type in TYPE
-                qs = qs.filter(type = position_type)
+                position_types = request.GET["types"]
+                position_types = position_types.split(',')
+                for position_type in position_types:
+                    assert position_type in TYPE
+                qs = qs.filter(position_type_in = position_types)
             except (AssertionError,ValueError,UnicodeDecodeError):
                 re['error'] = error(238,"Invaild search type!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -348,7 +351,44 @@ def search_position(request):
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             except:
                 re['error'] = error(299,'Unknown Error!')
-                return HttpResponse(json.dumps(re),content_type = 'application/json')            
+                return HttpResponse(json.dumps(re),content_type = 'application/json')
+
+    #todo: tobe tested
+    if "fields" in request.GET.keys():
+        if len(request.GET["fields"]) > 0:
+            try:
+                fields = request.GET["fields"]
+                fields = fields.split(',')
+                for field in fields:
+                    assert field in FIELD
+                qs = qs.filter(company__field__in = fields)
+            
+            except (AssertionError,ValueError,UnicodeDecodeError):
+                re['error'] = error(238,"Invaild search type!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            except (DatabaseError):
+                re['error'] = error(251,"Database error: Failed to search!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            except:
+                re['error'] = error(299,'Unknown Error!')
+                return HttpResponse(json.dumps(re),content_type = 'application/json')
+
+    ##single
+    #if "type" in request.GET.keys():
+    #    if len(request.GET["type"]) > 0:
+    #        try:
+    #            position_type = request.GET["type"]
+    #            assert position_type in TYPE
+    #            qs = qs.filter(position_type = position_type)
+    #        except (AssertionError,ValueError,UnicodeDecodeError):
+    #            re['error'] = error(238,"Invaild search type!")
+    #            return HttpResponse(json.dumps(re), content_type = 'application/json')
+    #        except (DatabaseError):
+    #            re['error'] = error(251,"Database error: Failed to search!")
+    #            return HttpResponse(json.dumps(re), content_type = 'application/json')
+    #        except:
+    #            re['error'] = error(299,'Unknown Error!')
+    #            return HttpResponse(json.dumps(re),content_type = 'application/json')
     
     if "work_city" in request.GET.keys():
         if len(request.GET["work_city"]) > 0:
