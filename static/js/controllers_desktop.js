@@ -135,6 +135,8 @@ angular.module('chuangplus.controllers', []).
       console.log('DT_FindPwdCtrl');
       $scope.find = {};
       $scope.captcha_url = urls.api+"/captcha/image/";
+      $scope.e_check = {"exist" : true };
+      $scope.c_check = {"valid" : true};
       $scope.refresh = function(){
             $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
         };
@@ -149,6 +151,32 @@ angular.module('chuangplus.controllers', []).
                 else{
                     alert(data.error.message);
                     setTimeout(function(){location.href='/password/findpwd'},2000);
+                }
+            });
+      };
+      $scope.showError = function(ngModelController,error){
+            return ngModelController.$error[error];
+      };
+      $scope.check_email = function(){
+        $csrf.set_csrf($scope.e_check);
+        $scope.e_check.email = $scope.find.email;
+        $http.post(urls.api+"/account/checkemail", $.param($scope.e_check)).
+            success(function(data){
+                if(data.error.code == 1){
+                    $scope.e_check.exist = data.email.exist;
+                }
+            });
+      };
+      $scope.check_captcha = function(){
+        $csrf.set_csrf($scope.c_check);
+        $scope.c_check.captcha = $scope.find.captcha;
+        $http.post(urls.api+"/captcha/check/", $.param($scope.c_check)).
+            success(function(data){
+                if(data == 'yes'){
+                    $scope.c_check.valid = true;
+                }
+                else{
+                    $scope.c_check.valid = false;
                 }
             });
       };

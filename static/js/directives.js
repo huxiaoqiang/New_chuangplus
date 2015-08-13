@@ -17,4 +17,14 @@ angular.module('chuangplus.directives', []).
           });
         }
       };
+    }).
+    directive('onFocus', function(safeApply) {
+      return {
+        restrict : 'A',
+        link : function(scope, elm, attrs) {
+          elm.bind('focus', function() {
+            safeApply(scope, attrs.onFocus);
+          });
+        }
+      };
     });

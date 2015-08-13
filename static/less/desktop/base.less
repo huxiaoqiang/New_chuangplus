@@ -10,14 +10,19 @@
     border-top-left-radius: 0.5em;
     border-bottom-left-radius: 0.5em;
 }
-div#err-msg{
+div span.err-msg{
   text-align: center;
+  vertical-align: -webkit-baseline-middle;
+  color: #a94442;;
 }
 
-input.form-control.ng-valid.ng-dirty{
-  border: solid #008000 1px;
-}
 
-input.form-control.ng-invalid.ng-dirty{
+input.form-control.ng-valid.ng-dirty.check-invalid{
   border: solid #a94442 1px;
+}
+input.form-control.ng-valid.ng-dirty{
+    border: solid #008000 1px;
+}
+input.form-control.ng-invalid.ng-dirty{
+      border: solid #a94442 1px;
 }

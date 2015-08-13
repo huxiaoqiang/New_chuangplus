@@ -14,6 +14,6 @@ def image(request):
     return response
 
 def check(request):
-    if request.session['captcha'].upper() == request.GET['s'].upper():
+    if request.session['captcha'].upper() == request.POST.get('captcha','').upper():
         return HttpResponse('yes')
-    return HttpResponse('%s != %s'%(request.session['captcha'],request.GET['s']))
+    return HttpResponse('%s != %s'%(request.session['captcha'],request.POST.get('captcha','')))

@@ -324,7 +324,7 @@ body > #wrap {
   color: white;
 }
 #container #findpwd #passport-finder #verify {
-  width: 50%;
+  width: 65%;
   margin-left: 11%;
   margin-top: 25px;
 }
@@ -408,11 +408,16 @@ body > #wrap {
   border-top-left-radius: 0.5em;
   border-bottom-left-radius: 0.5em;
 }
-div#err-msg {
+div span.err-msg {
   text-align: center;
+  vertical-align: -webkit-baseline-middle;
+  color: #a94442;
 }
 input.form-control.ng-valid.ng-dirty {
   border: solid #008000 1px;
+}
+input.form-control.ng-valid.ng-dirty.check-invalid {
+  border: solid #a94442 1px;
 }
 input.form-control.ng-invalid.ng-dirty {
   border: solid #a94442 1px;

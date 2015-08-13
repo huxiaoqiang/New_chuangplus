@@ -12,29 +12,38 @@
                 </ul>
             </div>
             <div id="verify">
-                <form class="form-horizontal" id="findpwd-form" ng-submit="findpwd()">
+                <form class="form-horizontal" id="findpwd-form" ng-submit="findpwd()" name="findpwdForm">
                   <div class="form-group">
-                    <label for="usernameoremail" class="col-sm-4 control-label">用户邮箱</label>
-                    <div class="col-sm-8">
-                      <input type="text" class="form-control" ng-model="find.email" required>
+                    <label for="usernameoremail" class="col-sm-3 control-label">用户邮箱</label>
+                    <div class="col-sm-6">
+                      <input name="email" type="email" ng-class="{true: 'check-valid', false: 'check-invalid'}[e_check.exist]" ng-focus="e_check.exist=true"  ng-blur="check_email()" class="form-control" ng-model="find.email" required>
                     </div>
+                    <div class="col-sm-3">
+                        <span class="err-msg" ng-hide="e_check.exist"><i class="icon-warning-sign"></i>用户邮箱不存在</span>
+                        <span class="err-msg" ng-show="showError(findpwdForm.email,'email')"><i class="icon-warning-sign"></i>请输入正确的邮箱</span>
+                    </div>
+
                   </div>
                   <div class="form-group">
-                    <label for="captcha" class="col-sm-4 control-label">验证码</label>
-                    <div class="col-sm-8">
-                      <input type="text" class="form-control" ng-model="find.captcha" required>
+                    <label for="captcha" class="col-sm-3 control-label">验证码</label>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control" ng-model="find.captcha"  ng-class="{true: 'check-valid', false: 'check-invalid'}[c_check.valid]" ng-focus="c_check.valid=true"  ng-blur="check_captcha()" required>
                     </div>
+                    <div class="col-sm-3">
+                        <span class="err-msg" ng-hide="c_check.valid"><i class="icon-warning-sign"></i>验证码错误</span>
+                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-4"></label>
-                    <div class="col-sm-8">
+                    <label class="col-sm-3"></label>
+                    <div class="col-sm-6">
                       <img ng-src='[[captcha_url]]' style="height: 30px">
                       <a ng-click="refresh()" class="btn btn-link">看不清？换一张</a>
                     </div>
+                    <div class="col-sm-3"></div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-4"></label>
-                    <div class="col-sm-8">
+                    <label class="col-sm-3"></label>
+                    <div class="col-sm-6">
                         <button type="submit" class="btn btn-primary">下一步</button>
                     </div>
                   </div>
