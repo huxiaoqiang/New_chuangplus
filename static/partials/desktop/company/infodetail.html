@@ -1,0 +1,64 @@
+<div id="container">
+    <div id="company_info_detail">
+        <form class="form-horizontal"  name="companyDetailForm">
+            <div class="form-group">
+                <label for="company_name" class="col-sm-3 control-label">公司简称</label>
+                <div class="col-sm-6">
+                  <input name="name" type="text" class="form-control" ng-model="conpanyinfo.abbreviation" disabled>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="company_ICregist_name" class="col-sm-3 control-label">公司工商注册名</label>
+                <div class="col-sm-6">
+                  <input name="ICregist_name" type="text" class="form-control" ng-model="conpanyinfo.ICregist_name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="city" class="col-sm-3 control-label">所在地</label>
+                <div class="col-sm-6">
+                  <input name="city" type="text" class="form-control" ng-model="conpanyinfo.city" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="company_wechat" class="col-sm-3 control-label">二维码</label>
+                <div class="col-sm-6">
+                  <input name="qrcode" type="text" class="form-control" ng-model="conpanyinfo.qrcode">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="company_field" class="col-sm-3 control-label">行业领域</label>
+                <div class="col-sm-6">
+                <table>
+                    <tr>
+                      <td><label><input type="radio" ng-model="conpanyinfo.field" value="social">社交</label></td>
+                      <td><label><input type="radio" ng-model="conpanyinfo.field" value="e-commerce">电子商务</label></td>
+                      <td><label><input type="radio" ng-model="conpanyinfo.field" value="education">教育</label></td>
+                    </tr>
+                    <tr>
+                      <td><label><input type="radio" ng-model="conpanyinfo.field" value="health_medical">健康医疗</label></td>
+                      <td><label><input type="radio" ng-model="conpanyinfo.field" value="culture_creativity">文化创新</label></td>
+                      <td><label><input type="radio" ng-model="conpanyinfo.field" value="living_consumption">生活消费</label></td>
+                    </tr>
+                    <tr>
+                      <td><label><input type="radio" ng-model="conpanyinfo.field" value="hardware">硬件</label></td>
+                      <td><label><input type="radio" ng-model="conpanyinfo.field" value="O2O">O2O</label></td>
+                      <td><label><input type="radio" ng-model="conpanyinfo.field" value="others">其他</label></td>
+                    </tr>
+                </table>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="company_welfare_tags" class="col-sm-3 control-label">福利标签</label>
+                <div class="col-sm-6">
+                  
+                  <input name="welfare_tags" type="text" class="form-control" ng-model="conpanyinfo.welfare_tags">
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

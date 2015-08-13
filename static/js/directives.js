@@ -27,4 +27,24 @@ angular.module('chuangplus.directives', []).
           });
         }
       };
+    }).
+    directive('onMouseover', function(safeApply) {
+      return {
+        restrict : 'A',
+        link : function(scope, elm, attrs) {
+          elm.bind('mouseover', function() {
+            safeApply(scope, attrs.onMouseover);
+          });
+        }
+      };
+    }).
+    directive('onMouseout', function(safeApply) {
+      return {
+        restrict : 'A',
+        link : function(scope, elm, attrs) {
+          elm.bind('mouseout', function() {
+            safeApply(scope, attrs.onMouseout);
+          });
+        }
+      };
     });

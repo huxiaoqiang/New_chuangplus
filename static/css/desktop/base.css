@@ -416,6 +416,37 @@ body > #wrap {
 #container #pisition-list .panel.panel-info .panel-body table td {
   width: 10%;
 }
+#container #company_info h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-family: "微软雅黑";
+}
+#container #company_info .form-horizontal .form-group .file-upload img {
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+}
+#container #company_info .form-horizontal .form-group .file-upload span {
+  background-color: lightgray;
+  font-size: 1.2em;
+  color: white;
+  width: 70px;
+  position: relative;
+  left: -74px;
+  top: 27px;
+}
+#container #company_info .form-horizontal .form-group textarea {
+  width: 100%;
+  padding-left: 12px;
+  padding-top: 6px;
+  border-radius: 4px;
+}
+#container #company_info .form-horizontal .form-group .btn.btn-primary {
+  width: 50%;
+}
+#container #company_info_detail .form-horizontal .form-group table td {
+  width: 10%;
+}
 .input-group-addon {
   border-top-left-radius: 0.5em;
   border-bottom-left-radius: 0.5em;
