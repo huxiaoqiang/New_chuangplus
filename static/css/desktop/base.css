@@ -404,6 +404,18 @@ body > #wrap {
   background-color: #B08BB1;
   border-color: #800080;
 }
+#container #pisition-list .panel.panel-info {
+  border-color: #772B84;
+  margin-bottom: 10px;
+}
+#container #pisition-list .panel.panel-info .panel-heading {
+  color: white;
+  background-color: #98679E;
+  border-color: #B73BB7;
+}
+#container #pisition-list .panel.panel-info .panel-body table td {
+  width: 10%;
+}
 .input-group-addon {
   border-top-left-radius: 0.5em;
   border-bottom-left-radius: 0.5em;
@@ -413,11 +425,11 @@ div span.err-msg {
   vertical-align: -webkit-baseline-middle;
   color: #a94442;
 }
-input.form-control.ng-valid.ng-dirty {
-  border: solid #008000 1px;
-}
 input.form-control.ng-valid.ng-dirty.check-invalid {
   border: solid #a94442 1px;
+}
+input.form-control.ng-valid.ng-dirty {
+  border: solid #008000 1px;
 }
 input.form-control.ng-invalid.ng-dirty {
   border: solid #a94442 1px;

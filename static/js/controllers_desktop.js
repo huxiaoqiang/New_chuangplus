@@ -241,6 +241,41 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_PositionListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_PositionListCtrl');
+        $scope.filter = {
+            "workdays":{
+                "day0": true,
+                "day3": true,
+                "day4": true,
+                "day5": true,
+                "day6": true,
+                "day7": true
+            },
+            "field":{
+                'social':true,
+                'e-commerce':true,
+                'education':true,
+                'health_medical':true,
+                'culture_creativity':true,
+                'living_consumption':true,
+                'hardware':true,
+                'O2O':true,
+                'others':true
+            },
+            "type":{
+                'technology':true,
+                'product':true,
+                'design':true,
+                'operate':true,
+                'marketing':true,
+                'functions':true,
+                'others':true
+            },
+            "salary": ''
+        };
+        $scope.positions = {};
+        $scope.get_positions = function(){
+
+        };
     }]).
     controller('DT_PositionDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_PositionDetailCtrl');
