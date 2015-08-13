@@ -57,6 +57,7 @@ qrcode             |ReferenceField|File       |微信二维码
 logo               |ReferenceField|File       |公司logo
 welfare_tags       |ListField(StringField) |  |福利标签
 product_link       |URLField    |             |产品链接
+brief_introduction |StringField |             |公司一句话简介
 Company_descrition |StringFiled |             |公司简介
 product_description|StringField |             |产品简介
 team_description   |StringField |             |团队介绍
