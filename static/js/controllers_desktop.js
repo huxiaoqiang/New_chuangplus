@@ -80,9 +80,8 @@ angular.module('chuangplus.controllers', []).
         $scope.reg_info = {};
         $scope.reg_info.role = 0;
         $scope.captcha_url = urls.api+"/captcha/image/";
-        $scope.check = {
-                "exist"    : true
-        };
+        $scope.check = {};
+        $scope.e_check = {};
 
         $scope.refresh = function(){
             $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
@@ -126,6 +125,16 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.check.exist = data.username.exist;
+                    }
+                });
+        };
+        $scope.check_email = function(){
+            $scope.e_check.email = $scope.reg_info.email;
+            $csrf.set_csrf($scope.e_check);
+            $http.post(urls.api+"/account/checkemail", $.param($scope.e_check)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.e_check.exist = data.email.exist;
                     }
                 });
         };
