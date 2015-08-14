@@ -608,9 +608,9 @@ a:hover
 }
 .nav-bar .selected
 {
-    background: @std-purple;
+    background: @std-purple !important;
     border: 0;
-    color: white;
+    color: white !important;
 }
 
 //compfilter.html
@@ -768,11 +768,13 @@ a:hover
 .comp-listbox table td
 {
     overflow: hidden;
+    white-space:nowrap;
+    word-break: keep-all;
     vertical-align: -webkit-baseline-middle;
 }
 .comp-listbox table
 {
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .fi-cond
