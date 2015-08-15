@@ -24,7 +24,7 @@ body {
 }
 .main-content {
   display: block;
-  padding-bottom: 54px;
+  padding-bottom: 59px;
   height: 100%;
   background-color: white;
 }
@@ -455,11 +455,17 @@ a:hover {
   display: block;
   overflow: hidden;
 }
+.filter-elem label {
+  padding-left: 3px;
+}
 .filter-end-line {
   margin-right: 30%;
 }
 .filter-single-line {
   width: 100%;
+}
+.filter-elem input[type="radio"] {
+  margin-right: 3px;
 }
 .filter-elem input[type="checkbox"] {
   margin-right: 3px;

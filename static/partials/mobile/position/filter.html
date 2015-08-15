@@ -1,131 +1,132 @@
 <div class="main-content scrollable">
-<div class="scrollable-content">
-    <div class="header-bar">
-        <div class="header"> 编辑条件</div>
-    </div>    
-    <div class="padding">
-    <form name="posi-filter" id="posi-filter" >
-        <div class="filter-squ">
-            <div class="filter-title">
-                每周至多工作几天
+    <div class="scrollable-content">
+        <div class="header-bar">
+            <div class="header"> 编辑条件</div>
+        </div>    
+        <div class="padding">
+        <form name="posi-filter" id="posi-filter" >
+            <div class="filter-squ">
+                <div class="filter-title">
+                    每周至多工作几天
+                </div>
+
+                <div class="filter-elem">
+                    <label><input type="radio" name="work-time" value="0" >弹性时间</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="radio" name="work-time" value="1"/>1天</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="radio" name="work-time" value="2"/>2天</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="radio" name="work-time" value="3"/>3天</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="radio" name="work-time" value="4"/>4天</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="radio" name="work-time" value="5"/>5天</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="radio" name="work-time" value="6"/>6天</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="radio" name="work-time" value="7"/>7天</label> 
+                </div>
+
             </div>
 
-            <div class="filter-elem">
-                <label><input type="radio" name="work-time" value="0" >弹性时间</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="radio" name="work-time" value="1"/>1天</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="radio" name="work-time" value="2"/>2天</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="radio" name="work-time" value="3"/>3天</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="radio" name="work-time" value="4"/>4天</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="radio" name="work-time" value="5"/>5天</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="radio" name="work-time" value="6"/>6天</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="radio" name="work-time" value="7"/>7天</label> 
+            <div class="filter-squ">
+                <div class="filter-title">
+                    月薪下限
+                </div>
+
+                <div class="filter-elem">
+                    <label><input type="checkbox" value="1" id="1"/>没有要求</label> 
+                </div>
+
+
+                <div class="filter-elem">
+                    请填写整数
+                    <input type="text" class="inline-input"/>
+                    K
+                </div>
             </div>
 
+            <div class="filter-squ">
+                <div class="filter-title">
+                    行业/领域
+                </div>
+
+                <div class="filter-elem filter-single-line">
+                    <label><input type="checkbox" value="1" />没有要求</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox" value="2" />社交</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox" value="3" />电子商务</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox" value="4" />教育</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox" value="5" />健康医疗</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox" value="6" />文化创意</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox" value="7" />生活消费</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox" value="8" />硬件</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox" value="9" />O2O</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox" value="10" />其它</label> 
+                </div>
+
+            </div>
+
+            <div class="filter-squ">
+                <div class="filter-title">
+                    职位类型
+                </div>
+
+                <div class="filter-elem filter-single-line">
+                    <label><input type="checkbox" value="1" />没有要求</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox" value="2" />技术</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox" value="3" />运营</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox" value="4" />产品</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox" value="5" />设计</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox" value="6" />市场销售</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox" value="7" />职能</label> 
+                </div>
+
+            </div>
+
+
+
+            <button class="panel-radius form-control btn-b-pur filter-btn">按条件筛选职位</button>
+        </form>
         </div>
-
-        <div class="filter-squ">
-            <div class="filter-title">
-                月薪下限
-            </div>
-
-            <div class="filter-elem">
-                <label><input type="checkbox" value="1" id="1"/>没有要求</label> 
-            </div>
-
-
-            <div class="filter-elem">
-                请填写整数
-                <input type="text" class="inline-input"/>
-                K
-            </div>
-        </div>
-
-        <div class="filter-squ">
-            <div class="filter-title">
-                行业/领域
-            </div>
-
-            <div class="filter-elem filter-single-line">
-                <label><input type="checkbox" value="1" />没有要求</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="checkbox" value="2" />社交</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="checkbox" value="3" />电子商务</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="checkbox" value="4" />教育</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="checkbox" value="5" />健康医疗</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="checkbox" value="6" />文化创意</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="checkbox" value="7" />生活消费</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="checkbox" value="8" />硬件</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="checkbox" value="9" />O2O</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="checkbox" value="10" />其它</label> 
-            </div>
-
-        </div>
-
-        <div class="filter-squ">
-            <div class="filter-title">
-                职位类型
-            </div>
-
-            <div class="filter-elem filter-single-line">
-                <label><input type="checkbox" value="1" />没有要求</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="checkbox" value="2" />技术</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="checkbox" value="3" />运营</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="checkbox" value="4" />产品</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="checkbox" value="5" />设计</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="checkbox" value="6" />市场销售</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="checkbox" value="7" />职能</label> 
-            </div>
-
-        </div>
-
-
-
-        <button class="panel-radius form-control btn-b-pur filter-btn">按条件筛选职位</button>
-    </form>
-</div>
+    </div>
 </div>
 <div ui-content-for="footer">
     <div ng-include="'/static/partials/mobile/partials/nav-3-1.html'" ></div>
