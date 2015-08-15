@@ -3,13 +3,11 @@ html {
   display: block;
   margin: 0;
   padding: 0;
-  overflow-y: scroll;
 }
 body {
   font-weight: normal;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   overflow-x: hidden;
-  overflow-y: auto;
   -webkit-user-select: none;
 }
 #main-container {
@@ -26,10 +24,9 @@ body {
 }
 .main-content {
   display: block;
-  padding-bottom: 64px;
+  padding-bottom: 54px;
   height: 100%;
   background-color: white;
-  overflow-y: scroll;
 }
 .purple-border {
   border: 2px solid #966497;
@@ -280,7 +277,6 @@ a:hover {
 .comp-list {
   background-color: #dcdcdc;
   padding-bottom: 1px;
-  height: 100%;
   overflow: auto;
 }
 .comp-listbox {
@@ -423,7 +419,7 @@ a:hover {
   border: 1px solid #dcdcdc;
   border-top: 0;
 }
-.nav-bar .selected {
+.selected {
   background: #966497 !important;
   border: 0;
   color: white !important;
@@ -578,7 +574,7 @@ a:hover {
 }
 .comp-posi-list {
   background-color: #dcdcdc;
-  height: 100%;
+  padding-bottom: 1px;
 }
 .comp-posi-block {
   position: relative;

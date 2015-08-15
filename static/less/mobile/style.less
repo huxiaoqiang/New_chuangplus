@@ -83,14 +83,12 @@ html
     display: block;
     margin: 0;
     padding: 0;
-    overflow-y:scroll;
 }
 body
 {
     font-weight: normal;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     overflow-x: hidden;
-    overflow-y: auto;
     -webkit-user-select: none;
 }
 
@@ -112,10 +110,9 @@ body
 .main-content
 {
     display: block;
-    padding-bottom: @cl-nav-hgt + 10px;
+    padding-bottom: @cl-nav-hgt;
     height: 100%;
     background-color: white;
-    overflow-y: scroll;
 
 }
 
@@ -440,7 +437,6 @@ a:hover
 {
     background-color: @lit-gray;
     padding-bottom: 1px;
-    height: 100%;
     overflow: auto;
 }
 .comp-listbox
@@ -606,7 +602,7 @@ a:hover
     border: 1px solid @lit-gray;
     border-top: 0;
 }
-.nav-bar .selected
+.selected
 {
     background: @std-purple !important;
     border: 0;
@@ -818,7 +814,7 @@ a:hover
 .comp-posi-list
 {
     background-color: @lit-gray;
-    height: 100%;
+    padding-bottom: 1px;
 }
 .comp-posi-block
 {
