@@ -6,7 +6,8 @@
 var app = angular.module('chuangplus_mobile', [
     "ngRoute",
     "ngTouch",
-    "mobile-angular-ui"
+    "mobile-angular-ui",
+    'mobile-angular-ui.gestures'
 ]).
     constant('urls', {'part_mobile': '/static/partials/mobile','part_desktop': '/static/partials/desktop','part_admin': '/static/partials/admin', 'api': '/api'}).
     config(['$interpolateProvider', function($interpolateProvider){
@@ -48,6 +49,12 @@ var app = angular.module('chuangplus_mobile', [
         $routeProvider.when('/mobile/home/mypost', {templateUrl: urls.part_mobile + '/home/mypost.html',title:'我的投递'});
 
 }]);
+    app.run(['$location', '$rootScope', function($location, $rootScope){
+        //Configure header title of the page
+        $rootScope.$on('$routeChangeSuccess', function(event, current, previous){
+            $rootScope.title = current.$$route.title;
+        });
+    }]);
 
 app.controller('MainController', ['$scope',
     function($scope) {

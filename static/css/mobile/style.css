@@ -384,7 +384,6 @@ a:hover {
 .nav-bar-3 {
   display: block;
   text-decoration: none;
-  color: black;
   width: 33.32%;
   float: left;
   height: 54px;
@@ -394,6 +393,7 @@ a:hover {
   vertical-align: middle;
   border: 1px solid #dcdcdc;
   border-top: 0;
+  color: black;
 }
 .nav-bar-2 {
   display: block;
@@ -406,6 +406,7 @@ a:hover {
   vertical-align: middle;
   border: 1px solid #dcdcdc;
   border-top: 0;
+  color: black;
 }
 .nav-bar-1 {
   display: block;
@@ -418,6 +419,7 @@ a:hover {
   vertical-align: middle;
   border: 1px solid #dcdcdc;
   border-top: 0;
+  color: black;
 }
 .selected {
   background: #966497 !important;
