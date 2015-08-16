@@ -1,71 +1,74 @@
+<div class="scrollable">
+<div class="scrollable-content">
+<div class="header-bar">
+    <div class="header">我的简历</div>
+</div>    
 
-    <div class="header-bar">
-        <div class="header">我的简历</div>
-    </div>    
+<div class="edit-resume">
+  <form name="editresume" id="editresume" role="form" ng-submit='edit_resume()'>
+    <div class="info-block">
+      <div class="panel-list">
+        <div class="resume-block-title">基本信息</div>
+        <span class="panel-group-top lit-gray-border">
+          <div class="panel-elem elem-width-4 panel-title font-color-g">姓名</div>
+          <input class="panel-elem elem-width-43" type="email" placeholder="">
+        </span>
 
-    <div class="edit-resume">
-      <form name="editresume" id="editresume" role="form" ng-submit='edit_resume()'>
-        <div class="info-block">
-          <div class="panel-list">
-            <div class="resume-block-title">基本信息</div>
-            <span class="panel-group-top lit-gray-border">
-              <div class="panel-elem elem-width-4 panel-title font-color-g">昵称</div>
-              <input class="panel-elem elem-width-43" type="email" placeholder="请输入邮箱">
-            </span>
-
-            <span class="panel-group-mid lit-gray-border">
-              <div class="panel-elem elem-width-4 panel-title font-color-g">性别</div>
-              <div class="panel-width-43 panel-select">
-                    <select>
-                      <option value ="1">男</option>
-                      <option value="2">女</option>
-                    </select>
-                  </div>
-            </span>
-            <span class="panel-group-mid lit-gray-border">
-              <div class="panel-elem elem-width-4 panel-title font-color-g">每周工作</div>
-              <div class="panel-width-43 panel-select">
-                    <select>
-                      <option value="2">弹性工作时间</option>
-                      <option value ="3">3天</option>
-                      <option value="4">4天</option>
-                      <option value ="5">5天</option>
-                      <option value="6">6天</option>
-                      <option value ="7">7天</option>
-                    </select>
-                  </div>
-            </span>
-
-            <span class="panel-group-bot lit-gray-border">
-              <div class="panel-elem elem-width-4 panel-title font-color-g">手机</div>
-              <input class="panel-elem elem-width-43" type="text">
-            </span>
-          </div>
-        </div>
-
-        <div class="info-block">
-          <div class="panel-list">
-              <div class="resume-block-title">百字简介</div>
-              <div class="info-block-tip">
-                  未上传简历前，HR只能通过百字简介判断是否邀请面试，请认真填写。建议格式：基本信息+教育经历+工作/项目经历+学生工作经历+技能+性格特点
+        <span class="panel-group-mid lit-gray-border">
+          <div class="panel-elem elem-width-4 panel-title font-color-g">性别</div>
+          <div class="panel-width-43 panel-select">
+                <select>
+                  <option value ="1">男</option>
+                  <option value="2">女</option>
+                </select>
               </div>
-              <textarea class="info-block-textarea">
-                未上传简历前，HR只能通过百字简介判断是否邀请面试，请认真填写。建议格式：基本信息+教育经历+工作/项目经历+学生工作经历+技能+性格特点
-              </textarea>
-          </div>
-        </div>
+        </span>
+        <span class="panel-group-mid lit-gray-border">
+          <div class="panel-elem elem-width-4 panel-title font-color-g">每周工作</div>
+          <div class="panel-width-43 panel-select">
+                <select>
+                  <option value="2">弹性工作时间</option>
+                  <option value ="3">3天</option>
+                  <option value="4">4天</option>
+                  <option value ="5">5天</option>
+                  <option value="6">6天</option>
+                  <option value ="7">7天</option>
+                </select>
+              </div>
+        </span>
 
-
-        <div class="info-block-last">
-          <div class="panel-list">
-              <div class="resume-block-title">简历附件</div>
-              <a class="resume-block-att">小犀牛2015.pdf</a>
-            <a class="panel-radius login-btn form-control btn-b-pur" href="/mobile/home/uploadresume">上传/更新简历附件</a>
-            <a class="panel-radius form-control lit-p-bg">暂不上传，直接投递</a>
-          </div>
-        </div>
-      </form>
+        <span class="panel-group-bot lit-gray-border">
+          <div class="panel-elem elem-width-4 panel-title font-color-g">手机</div>
+          <input class="panel-elem elem-width-43" type="text">
+        </span>
+      </div>
     </div>
+
+    <div class="info-block">
+      <div class="panel-list">
+          <div class="resume-block-title">百字简介</div>
+          <div class="info-block-tip">
+              未上传简历前，HR只能通过百字简介判断是否邀请面试，请认真填写。建议格式：基本信息+教育经历+工作/项目经历+学生工作经历+技能+性格特点
+          </div>
+          <textarea class="info-block-textarea">
+            未上传简历前，HR只能通过百字简介判断是否邀请面试，请认真填写。建议格式：基本信息+教育经历+工作/项目经历+学生工作经历+技能+性格特点
+          </textarea>
+      </div>
+    </div>
+
+
+    <div class="info-block-last">
+      <div class="panel-list">
+          <div class="resume-block-title">简历附件</div>
+          <a class="resume-block-att">小犀牛2015.pdf</a>
+        <a class="panel-radius login-btn form-control btn-b-pur" href="/mobile/home/uploadresume">上传/更新简历附件</a>
+        <a class="panel-radius form-control lit-p-bg">暂不上传，直接投递</a>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+</div>
 
 
 

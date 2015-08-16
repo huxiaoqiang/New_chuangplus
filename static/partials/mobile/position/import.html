@@ -1,60 +1,60 @@
+<div class="main-content scrollable">
+    <div class="scrollable-content">
+        <div class="header-bar">
+            <div class="header"> 编辑条件</div>
+        </div>    
 
-    <div class="header-bar">
-        <div class="header"> 编辑条件</div>
-    </div>    
+        <div class="padding">
+        <form name="posi-filter" id="posi-filter" >
+            <div class="filter-squ">
+                <div class="filter-title">
+                    请选择您想要查看的职位类型
+                </div>
 
-    <div class="padding">
-    <form name="posi-filter" id="posi-filter" >
-        <div class="filter-squ">
-            <div class="filter-title">
-                请选择您想要查看的职位类型
-            </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox" value="1" id="1"/>没有要求</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox" value="2" id="2"/>技术</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox" value="3" id="3"/>运营</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox" value="4" id="4"/>产品</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox" value="5" id="5"/>设计</label> 
+                </div>
 
-            <div class="filter-elem">
-                <label><input type="checkbox" value="1" id="1"/>没有要求</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="checkbox" value="2" id="2"/>技术</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="checkbox" value="3" id="3"/>运营</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="checkbox" value="4" id="4"/>产品</label> 
-            </div>
-            <div class="filter-elem">
-                <label><input type="checkbox" value="5" id="5"/>设计</label> 
             </div>
 
+            <div class="filter-squ">
+                <div class="filter-title">
+                    现阶段犀牛只提供工作地点在北京的职位
+                </div>
+
+                <p>
+                    如果您有在其他城市实习的需求
+                    <br>
+                    请在下方文本框中填写目标城市
+                    <br>
+                    犀牛会尽快拓展业务
+                    <br>
+                    更好地为您服务
+                </p>
+
+              <span class="panel-radius form-control info-input">
+                <input class="panel-elem-1" type="text" placeholder="城市名称">
+              </span>
+
+
+
+            <button class="panel-radius form-control btn-b-pur filter-btn">查看在招岗位</button>
+        </form>
         </div>
-
-        <div class="filter-squ">
-            <div class="filter-title">
-                现阶段犀牛只提供工作地点在北京的职位
-            </div>
-
-            <p>
-                如果您有在其他城市实习的需求
-                <br>
-                请在下方文本框中填写目标城市
-                <br>
-                犀牛会尽快拓展业务
-                <br>
-                更好地为您服务
-            </p>
-
-          <span class="panel-radius form-control info-input">
-            <input class="panel-elem-1" type="text" placeholder="城市名称">
-          </span>
-
-
-
-        <button class="panel-radius form-control btn-b-pur filter-btn">查看在招岗位</button>
-    </form>
     </div>
 </div>
-<div class="nav-bar">
-    <a class="nav-bar-3 selected"  href="/mobile/position/list" >职位</a>
-    <a class="nav-bar-3 " href="/mobile/company/list">公司</a>
-    <a class="nav-bar-3 " href="/mobile/home/" >个人中心</a>
+<div ui-content-for="footer">
+    <div ng-include="'/static/partials/mobile/partials/nav-3-1.html'" ></div>
 </div>

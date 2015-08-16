@@ -2,14 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/desktop/base.css" afterPath="$PROJECT_DIR$/static/css/desktop/base.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/base.less" afterPath="$PROJECT_DIR$/static/less/desktop/base.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/company_info_detail.less" afterPath="$PROJECT_DIR$/static/less/desktop/company_info_detail.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/controllers_desktop.js" afterPath="$PROJECT_DIR$/static/js/controllers_desktop.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/company/infodetail.html" afterPath="$PROJECT_DIR$/static/partials/desktop/company/infodetail.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/lib/mobile-angular/fonts/FontAwesome.otf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/lib/mobile-angular/fonts/fontawesome-webfont.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/lib/mobile-angular/fonts/fontawesome-webfont.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/lib/mobile-angular/fonts/fontawesome-webfont.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/lib/mobile-angular/fonts/glyphicons-halflings-regular.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/lib/mobile-angular/fonts/glyphicons-halflings-regular.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/lib/mobile-angular/fonts/glyphicons-halflings-regular.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/js/app_mobile.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/lib/mobile-angular/fonts/fontawesome-webfont.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/lib/mobile-angular/fonts/glyphicons-halflings-regular.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/partials/mobile/partials/nav-3-1.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/partials/mobile/partials/nav-3-2.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/partials/mobile/partials/nav-3-3.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/partials/mobile/test.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/app.js" afterPath="$PROJECT_DIR$/static/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/mobile/company/collect.html" afterPath="$PROJECT_DIR$/static/partials/mobile/company/collect.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/mobile/position/collect.html" afterPath="$PROJECT_DIR$/static/partials/mobile/position/collect.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/mobile/company/detail.html" afterPath="$PROJECT_DIR$/static/partials/mobile/company/detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/mobile/position/detail.html" afterPath="$PROJECT_DIR$/static/partials/mobile/position/detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/mobile/home/editresume.html" afterPath="$PROJECT_DIR$/static/partials/mobile/home/editresume.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/mobile/company/filter.html" afterPath="$PROJECT_DIR$/static/partials/mobile/company/filter.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/mobile/position/filter.html" afterPath="$PROJECT_DIR$/static/partials/mobile/position/filter.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/mobile/position/import.html" afterPath="$PROJECT_DIR$/static/partials/mobile/position/import.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/mobile/home/infoupdate.html" afterPath="$PROJECT_DIR$/static/partials/mobile/home/infoupdate.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/mobile/company/list.html" afterPath="$PROJECT_DIR$/static/partials/mobile/company/list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/mobile/position/list.html" afterPath="$PROJECT_DIR$/static/partials/mobile/position/list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/mobile_index.html" afterPath="$PROJECT_DIR$/templates/mobile_index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/mobile/home/mypost.html" afterPath="$PROJECT_DIR$/static/partials/mobile/home/mypost.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/mobile/home/pcenter.html" afterPath="$PROJECT_DIR$/static/partials/mobile/home/pcenter.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/mobile/company/posi.html" afterPath="$PROJECT_DIR$/static/partials/mobile/company/posi.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/mobile/style.css" afterPath="$PROJECT_DIR$/static/css/mobile/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/mobile/style.css" afterPath="$PROJECT_DIR$/static/less/mobile/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/mobile/style.less" afterPath="$PROJECT_DIR$/static/less/mobile/style.less" />
     </list>
     <ignored path="chuangplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,10 +77,19 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/js/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="97" column="69" selection-start="7947" selection-end="7947" vertical-scroll-proportion="0.9877676" vertical-offset="1197" max-vertical-offset="2318">
+                <state line="98" column="69" selection-start="8053" selection-end="8053" vertical-scroll-proportion="0.0" vertical-offset="1216" max-vertical-offset="2337">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/static/css/mobile/style.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="257" column="25" selection-start="4275" selection-end="4275" vertical-scroll-proportion="-13.242879" vertical-offset="13716" max-vertical-offset="14383">
                   <folding />
                 </state>
               </provider>
@@ -139,14 +173,12 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/static/partials/desktop/register.html" />
         <option value="$PROJECT_DIR$/position/views.py" />
         <option value="$PROJECT_DIR$/static/less/desktop/position_list.less" />
         <option value="$PROJECT_DIR$/account/models.py" />
         <option value="$PROJECT_DIR$/static/partials/desktop/password/findpwd.html" />
         <option value="$PROJECT_DIR$/static/js/directives.js" />
         <option value="$PROJECT_DIR$/static/less/desktop/conpany_info.less" />
-        <option value="$PROJECT_DIR$/static/js/app.js" />
         <option value="$PROJECT_DIR$/static/partials/desktop/company/info.html" />
         <option value="$PROJECT_DIR$/static/partials/desktop/position/list.html" />
         <option value="$PROJECT_DIR$/static/less/desktop/company_infodetail.less" />
@@ -155,6 +187,8 @@
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/static/partials/desktop/company/infodetail.html" />
         <option value="$PROJECT_DIR$/static/less/desktop/company_info_detail.less" />
+        <option value="$PROJECT_DIR$/static/js/app.js" />
+        <option value="$PROJECT_DIR$/static/css/mobile/style.css" />
       </list>
     </option>
   </component>
@@ -237,7 +271,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chuangplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chuangplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -554,11 +610,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/js/directives.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="0" selection-start="1284" selection-end="1284" vertical-scroll-proportion="0.0" vertical-offset="321" max-vertical-offset="1064" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="667" />
@@ -647,7 +698,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="97" column="69" selection-start="7947" selection-end="7947" vertical-scroll-proportion="0.9877676" vertical-offset="1197" max-vertical-offset="2318">
+        <state line="98" column="69" selection-start="8053" selection-end="8053" vertical-scroll-proportion="0.0" vertical-offset="1216" max-vertical-offset="2337">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/mobile/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="257" column="25" selection-start="4275" selection-end="4275" vertical-scroll-proportion="-13.242879" vertical-offset="13716" max-vertical-offset="14383">
           <folding />
         </state>
       </provider>

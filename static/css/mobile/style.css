@@ -3,13 +3,11 @@ html {
   display: block;
   margin: 0;
   padding: 0;
-  overflow-y: scroll;
 }
 body {
   font-weight: normal;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   overflow-x: hidden;
-  overflow-y: auto;
   -webkit-user-select: none;
 }
 #main-container {
@@ -26,10 +24,9 @@ body {
 }
 .main-content {
   display: block;
-  padding-bottom: 64px;
+  padding-bottom: 59px;
   height: 100%;
   background-color: white;
-  overflow-y: scroll;
 }
 .purple-border {
   border: 2px solid #966497;
@@ -280,7 +277,6 @@ a:hover {
 .comp-list {
   background-color: #dcdcdc;
   padding-bottom: 1px;
-  height: 100%;
   overflow: auto;
 }
 .comp-listbox {
@@ -388,7 +384,6 @@ a:hover {
 .nav-bar-3 {
   display: block;
   text-decoration: none;
-  color: black;
   width: 33.32%;
   float: left;
   height: 54px;
@@ -398,6 +393,7 @@ a:hover {
   vertical-align: middle;
   border: 1px solid #dcdcdc;
   border-top: 0;
+  color: black;
 }
 .nav-bar-2 {
   display: block;
@@ -410,6 +406,7 @@ a:hover {
   vertical-align: middle;
   border: 1px solid #dcdcdc;
   border-top: 0;
+  color: black;
 }
 .nav-bar-1 {
   display: block;
@@ -422,11 +419,12 @@ a:hover {
   vertical-align: middle;
   border: 1px solid #dcdcdc;
   border-top: 0;
+  color: black;
 }
-.nav-bar .selected {
-  background: #966497;
+.selected {
+  background: #966497 !important;
   border: 0;
-  color: white;
+  color: white !important;
 }
 #comp-filter {
   margin-top: 20px;
@@ -457,11 +455,18 @@ a:hover {
   display: block;
   overflow: hidden;
 }
+
+.filter-elem label {
+  padding-left: 3px;
+}
 .filter-end-line {
   margin-right: 30%;
 }
 .filter-single-line {
   width: 100%;
+}
+.filter-elem input[type="radio"] {
+  margin-right: 3px;
 }
 .filter-elem input[type="checkbox"] {
   margin-right: 3px;
@@ -542,6 +547,8 @@ a:hover {
 }
 .comp-listbox table td {
   overflow: hidden;
+  white-space: nowrap;
+  word-break: keep-all;
   vertical-align: -webkit-baseline-middle;
 }
 .comp-listbox table {
@@ -576,7 +583,7 @@ a:hover {
 }
 .comp-posi-list {
   background-color: #dcdcdc;
-  height: 100%;
+  padding-bottom: 1px;
 }
 .comp-posi-block {
   position: relative;
