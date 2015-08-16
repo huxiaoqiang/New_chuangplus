@@ -33,6 +33,7 @@
 
   </head>
   <body style="margin: 0px;">
+
     <div id='wrap'>
       {% include "header.html" %}
       <div ng-view autoscroll="true" class="column clearfix" id="main-container">
@@ -46,5 +47,10 @@
     <script src="/static/js/controllers_desktop.js"></script>
     <script src="/static/js/filters.js"></script>
     <script src="/static/js/directives.js"></script>
+    <script>
+        $('#myModal').on('shown.bs.modal', function () {
+          $('#myInput').focus()
+        })
+    </script>
   </body>
 </html>

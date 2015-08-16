@@ -444,8 +444,121 @@ body > #wrap {
 #container #company_info .form-horizontal .form-group .btn.btn-primary {
   width: 50%;
 }
-#container #company_info_detail .form-horizontal .form-group table td {
+#container #company_info_detail {
+  min-height: 650px;
+}
+#container #company_info_detail form.form-horizontal {
+  min-height: 640px;
+  margin-top: 40px;
+}
+#container #company_info_detail form.form-horizontal .form-group table td {
   width: 10%;
+}
+#container #company_info_detail form.form-horizontal .form-group .checkbox-label {
+  width: 33%;
+}
+#container #company_info_detail form.form-horizontal .form-group .tags_input {
+  width: 50%;
+  float: left;
+  margin-right: 30px;
+}
+#container #company_info_detail form.form-horizontal .form-group .welfare_tags {
+  margin-top: 15px;
+}
+#container #company_info_detail form.form-horizontal .form-group .welfare_tags span.tag {
+  background-color: #98769E;
+  color: white;
+  padding: 2px;
+  border-radius: 6px;
+  margin-right: 3px;
+}
+#container .divider {
+  height: 18px;
+  background-color: #eeeeee;
+  min-width: 125%;
+  margin-left: -30px;
+}
+#container .explanation {
+  min-height: 500px;
+  background-color: white;
+}
+#container .v-divider {
+  background-color: #eeeeee;
+  width: 0.333333%;
+  min-height: 600px;
+}
+#container .option_info .option {
+  min-height: 100px;
+}
+#container .option_info .option .opt-header {
+  position: relative;
+}
+#container .option_info .option .opt-header h3 {
+  font-family: "微软雅黑";
+  padding: 10px;
+  color: #98769E;
+}
+#container .option_info .option .opt-header span {
+  position: absolute;
+  right: 0%;
+  top: 10px;
+  color: #98769E;
+  cursor: pointer;
+}
+#container .option_info .option div.divider-small {
+  height: 1px;
+  background-color: #eeeeee;
+  margin-top: -10px;
+}
+#container .option_info .option div.divider-small span {
+  background-color: #98769E;
+  height: 4px;
+  width: 98px;
+  position: absolute;
+  left: 24px;
+  margin-top: -2px;
+}
+#container .option_info .member .member_list {
+  float: left;
+}
+#container .option_info .member .member_list .member-card {
+  width: 45%;
+}
+#container .option_info .member .member_list .member-card img {
+  width: 45px;
+  height: 45px;
+  margin-top: 8px;
+}
+#container .option_info .member .member_list .member-card .remove {
+  color: #98769E;
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+}
+#container .option_info .member .member_list .file-upload img {
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+}
+#container .option_info .member .member_list .file-upload span {
+  background-color: lightgray;
+  font-size: 1.24em;
+  color: white;
+  width: 70px;
+  position: relative;
+  top: -23px;
+}
+.ui.segment:first-child {
+  margin-top: 10px;
+}
+.ui.segment:last-child {
+  margin-bottom: 10px;
+}
+body {
+  background-color: #eeeeee;
+}
+body #main-container {
+  background-color: #ffffff;
 }
 .input-group-addon {
   border-top-left-radius: 0.5em;

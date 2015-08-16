@@ -280,6 +280,80 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_CompanyInfoDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyInfoDetailCtrl');
+        $scope.welfare_tags = {
+            "tag0":
+            {
+                "chosed":false,
+                "value" :"技能培训"
+            },
+            "tag1":
+            {
+                "chosed":false,
+                "value" :"扁平管理"
+            },
+            "tag2":
+            {
+                "chosed":false,
+                "value" :"可转正"
+            },
+            "tag3":
+            {
+                "chosed":false,
+                "value" :"弹性工作"
+            },
+            "tag4":
+            {
+                "chosed":false,
+                "value" :"定期出游"
+            },
+            "tag5":
+            {
+                "chosed":false,
+                "value" :"地铁周边"
+            },
+            "tag6":
+            {
+                "chosed":false,
+                "value" :"股票期权"
+            },
+            "tag7":
+            {
+                "chosed":false,
+                "value" :"水果零食"
+            },
+            "tag8":
+            {
+                "chosed":false,
+                "value" :"正餐补助"
+            },
+            "tag9":
+            {
+                "chosed":false,
+                "value" :"班车接送"
+            }
+        };
+        $scope.member_list=[
+            {
+                "m_name":"宁博",
+                "m_position":"CEO",
+                "m_introduction": "描述"
+            }];
+        $scope.add_tag = function(){
+            $scope.new_tag_name = "tag"+$scope.tag_added;
+            $scope.welfare_tags[$scope.new_tag_name] = {
+                "chosed":false,
+                "value" :$scope.tag_added
+            };
+        };
+        $scope.canAdd = function(ngModelController){
+            return (ngModelController.$invalid && ngModelController.$dirty) ||  ngModelController.$pristine;
+        };
+        $scope.tag_long_error=function(ngModelController){
+            return ngModelController.$invalid && ngModelController.$dirty;
+        };
+        $scope.add_member = function(){
+            $scope.member_list.push({});
+        };
     }]).
     controller('DT_PositionDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_PositionDetailCtrl');

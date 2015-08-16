@@ -1,64 +1,189 @@
 <div id="container">
     <div id="company_info_detail">
         <form class="form-horizontal"  name="companyDetailForm">
-            <div class="form-group">
-                <label for="company_name" class="col-sm-3 control-label">公司简称</label>
-                <div class="col-sm-6">
-                  <input name="name" type="text" class="form-control" ng-model="conpanyinfo.abbreviation" disabled>
-                </div>
-            </div>
+            <div class="basic_info">
 
-            <div class="form-group">
-                <label for="company_ICregist_name" class="col-sm-3 control-label">公司工商注册名</label>
-                <div class="col-sm-6">
-                  <input name="ICregist_name" type="text" class="form-control" ng-model="conpanyinfo.ICregist_name">
-                </div>
-            </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="company_name" class="col-md-4 control-label">公司简称</label>
+                        <div class="col-md-8">
+                          <input name="name" type="text" class="form-control" ng-model="conpanyinfo.abbreviation" disabled>
+                        </div>
+                    </div>
 
-            <div class="form-group">
-                <label for="city" class="col-sm-3 control-label">所在地</label>
-                <div class="col-sm-6">
-                  <input name="city" type="text" class="form-control" ng-model="conpanyinfo.city" required>
-                </div>
-            </div>
+                    <div class="form-group">
+                        <label for="company_ICregist_name" class="col-md-4 control-label">公司工商注册名</label>
+                        <div class="col-md-8">
+                          <input name="ICregist_name" type="text" class="form-control" ng-model="conpanyinfo.ICregist_name">
+                        </div>
+                    </div>
 
-            <div class="form-group">
-                <label for="company_wechat" class="col-sm-3 control-label">二维码</label>
-                <div class="col-sm-6">
-                  <input name="qrcode" type="text" class="form-control" ng-model="conpanyinfo.qrcode">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="company_field" class="col-sm-3 control-label">行业领域</label>
-                <div class="col-sm-6">
-                <table>
-                    <tr>
-                      <td><label><input type="radio" ng-model="conpanyinfo.field" value="social">社交</label></td>
-                      <td><label><input type="radio" ng-model="conpanyinfo.field" value="e-commerce">电子商务</label></td>
-                      <td><label><input type="radio" ng-model="conpanyinfo.field" value="education">教育</label></td>
-                    </tr>
-                    <tr>
-                      <td><label><input type="radio" ng-model="conpanyinfo.field" value="health_medical">健康医疗</label></td>
-                      <td><label><input type="radio" ng-model="conpanyinfo.field" value="culture_creativity">文化创新</label></td>
-                      <td><label><input type="radio" ng-model="conpanyinfo.field" value="living_consumption">生活消费</label></td>
-                    </tr>
-                    <tr>
-                      <td><label><input type="radio" ng-model="conpanyinfo.field" value="hardware">硬件</label></td>
-                      <td><label><input type="radio" ng-model="conpanyinfo.field" value="O2O">O2O</label></td>
-                      <td><label><input type="radio" ng-model="conpanyinfo.field" value="others">其他</label></td>
-                    </tr>
-                </table>
-                </div>
-            </div>
+                    <div class="form-group">
+                        <label for="city" class="col-md-4 control-label">所在地</label>
+                        <div class="col-md-8">
+                          <input name="city" type="text" class="form-control" ng-model="conpanyinfo.city" required>
+                        </div>
+                    </div>
 
-            <div class="form-group">
-                <label for="company_welfare_tags" class="col-sm-3 control-label">福利标签</label>
-                <div class="col-sm-6">
-                  
-                  <input name="welfare_tags" type="text" class="form-control" ng-model="conpanyinfo.welfare_tags">
-                </div>
-            </div>
+                    <div class="form-group">
+                        <label for="company_wechat" class="col-md-4 control-label">公司微信公众号</label>
+                        <div class="col-md-8">
+                          <input name="qrcode" type="text" class="form-control" ng-model="conpanyinfo.qrcode">
+                        </div>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="company_field" class="col-md-4 control-label">行业领域</label>
+                        <div class="col-md-8">
+                        <table>
+                            <tr>
+                              <td><label><input type="radio" ng-model="conpanyinfo.field" value="social">社交</label></td>
+                              <td><label><input type="radio" ng-model="conpanyinfo.field" value="e-commerce">电子商务</label></td>
+                              <td><label><input type="radio" ng-model="conpanyinfo.field" value="education">教育</label></td>
+                            </tr>
+                            <tr>
+                              <td><label><input type="radio" ng-model="conpanyinfo.field" value="health_medical">健康医疗</label></td>
+                              <td><label><input type="radio" ng-model="conpanyinfo.field" value="culture_creativity">文化创新</label></td>
+                              <td><label><input type="radio" ng-model="conpanyinfo.field" value="living_consumption">生活消费</label></td>
+                            </tr>
+                            <tr>
+                              <td><label><input type="radio" ng-model="conpanyinfo.field" value="hardware">硬件</label></td>
+                              <td><label><input type="radio" ng-model="conpanyinfo.field" value="O2O">O2O</label></td>
+                              <td><label><input type="radio" ng-model="conpanyinfo.field" value="others">其他</label></td>
+                            </tr>
+                        </table>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company_scale" class="col-md-4 control-label">融资阶段</label>
+                        <div class="col-md-8">
+                          <label><input type="radio" ng-model="conpanyinfo.scale" value="0">初创（未融资/种子轮/天使轮）</label><br/>
+                          <label><input type="radio" ng-model="conpanyinfo.scale" value="1">成长（A轮/B轮）</label><br/>
+                          <label><input type="radio" ng-model="conpanyinfo.scale" value="2">成熟（C轮以上/已上市）</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company_welfare_tags" class="col-md-4 control-label">福利标签</label>
+                        <div class="col-md-8">
+                          <label for="company_welfare_tags" class="control-label">可自定义，不多于5个，四字以内</label><br/>
+                          <label class="checkbox-label" ng-repeat="tag in welfare_tags"><input type="checkbox" ng-model="tag.chosed">[[tag.value]]</label>
+                          <br/>
+                              <input name="addtag" type="text" class="form-control tags_input" placeholder="自定义标签" ng-maxlength="4" ng-model="tag_added">
+                              <input type="button" class="btn btn-primary" value="添加" ng-click="add_tag()" ng-disabled="canAdd(companyDetailForm.addtag)">
+                          <br/>
+                            <span class="err-msg" ng-show="tag_long_error(companyDetailForm.addtag)"><i class=" icon-warning-sign"></i>福利标签不能超过4个字</span>
+                          <div class="welfare_tags">
+                            <span class="tag"  ng-repeat="tag in welfare_tags" ng-if="tag.chosed"><i class="icon-tag"></i> [[tag.value]]</span>
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4"></label>
+                        <div class="col-md-8">
+                            <input type="button" class="btn btn-primary" value="保存">
+                            <input type="button" class="btn upload-btn-group" value="取消">
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-4">
+                  <img src="/static/image/logo/comp_prev.jpg"><br/>
+                  <input type="button" class="btn btn-primary" value="更改logo">
+                </div>
+
+            </div>
         </form>
+        <div class="divider"></div>
+
+        <div class="col-md-4 explanation">
+
+        </div>
+        <div class="col-md-1 v-divider">
+        </div>
+
+        <div class="option_info col-md-7">
+            <div class="option financing">
+                <div class="opt-header">
+                    <h3>融资情况</h3>
+                    <span><i class="icon-plus-sign icon-2x"></i></span>
+                </div>
+                <div class="divider-small">
+                    <span></span>
+                </div>
+            </div>
+            <div class="divider"></div>
+
+            <div class="option member">
+                <div class="opt-header">
+                    <h3>团队成员</h3>
+                    <span ng-click="add_member()"><i class="icon-plus-sign icon-2x"></i></span>
+                </div>
+                <div class="divider-small"><span></span></div>
+                <div ng-repeat="member_info in member_list" class="member_list">
+                    <div class="member-card sub-form ui segment form-horizontal">
+                        <div class="col-sm-2">
+                            <img src="/static/image/logo/comp_prev.jpg"><br/>
+                        </div>
+                        <div class="col-sm-8">
+                            <span>[[member_info.m_name]]</span><br/>
+                            <span>[[member_info.m_position]]</span><br/>
+                            <span>[[member_info.m_introduction]]</span>
+                        </div>
+                        <div class="col-sm-2">
+                            <span class="remove" ng-click="delete_member($index)"><i class="icon-remove-circle"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="divider"></div>
+
+            <div class="option team_intro">
+                <div class="opt-header">
+                    <h3>团队介绍</h3>
+                    <span><i class="icon-plus-sign icon-2x"></i></span>
+                </div>
+                <div class="divider-small"><span></span></div>
+            </div>
+            <div class="divider"></div>
+
+            <div class="option company_intro">
+                <div class="opt-header">
+                    <h3>公司介绍</h3>
+                    <span><i class="icon-plus-sign icon-2x"></i></span>
+                </div>
+                <div class="divider-small"><span></span></div>
+            </div>
+            <div class="divider"></div>
+        </div>
     </div>
+</div>
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
