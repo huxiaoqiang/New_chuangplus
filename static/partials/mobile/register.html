@@ -1,39 +1,53 @@
-<div class="login-header">
-  <div >
-  <img class="logo" src="/static/pic/logo.jpg">
-  <div class="name">犀牛</div>
+<div ng-include="'/static/partials/mobile/partials/sidebar-left.html'" ></div>
 
+<div ng-swipe-right='Ui.turnOn("uiSidebarLeft")'>
+    <div class="navbar navbar-app navbar-absolute-top selected" >
+        <div class="navbar-brand navbar-brand-center" style="font-size: 20px;" >
+           <div ui-yield-to="title">
+                注册
+           </div>
+        </div>
+        <div class="btn-group pull-left">
+          <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle" style="color: white; ">
+            <i class="fa fa-bars" style="color: white;"></i> 菜单
+          </div>
+        </div>
+    </div>
+
+  <div class="scrollable">
+    <div classass="scrollable-content padding-header">
+    <div class="login-header">
+        <img class="logo" src="/static/pic/logo.jpg">
+        <div class="name">犀牛</div>
+    </div>
+
+    <form name="login" id="login" role="form" ng-submit='login()'>
+
+      <div class="login-input">
+        <div class="panel-list">
+          <span class="panel-group-top purple-border">
+            <div class="panel-elem elem-width-4 panel-title">邮箱</div>
+            <input class="panel-elem elem-width-43" type="email" placeholder="请输入邮箱">
+          </span>
+
+          <span class="panel-group-mid purple-border">
+            <div class="panel-elem elem-width-4 panel-title">密码</div>
+            <input class="panel-elem elem-width-43" type="password" placeholder="请输入密码">
+          </span>
+
+          <span class="panel-group-bot purple-border">
+            <div class="panel-elem elem-width-4 panel-title">确认密码</div>
+            <input class="panel-elem elem-width-43" type="password" placeholder="请再次输入密码">
+          </span>
+        </div>
+      </div>
+
+      <div class="panel-list">
+          <input type="submit" value="注册" class="panel-radius form-control" />
+      </div>
+
+    </form>
+    </div>      
   </div>
 
 </div>
-
-<form name="login" id="login" role="form" ng-submit='login()'>
-
-<div class="login-input">
-
-  <div class="panel-list">
-    <span class="panel-group-top purple-border">
-      <div class="panel-elem elem-width-4 panel-title">邮箱</div>
-      <input class="panel-elem elem-width-43" type="email" placeholder="请输入邮箱">
-    </span>
-
-    <span class="panel-group-mid purple-border">
-      <div class="panel-elem elem-width-4 panel-title">密码</div>
-      <input class="panel-elem elem-width-43" type="password" placeholder="请输入密码">
-    </span>
-
-    <span class="panel-group-bot purple-border">
-      <div class="panel-elem elem-width-4 panel-title">确认密码</div>
-      <input class="panel-elem elem-width-43" type="password" placeholder="请再次输入密码">
-    </span>
-  </div>
-
-</div>
-
-<div class="panel-list">
-    <input type="submit" value="注册" class="panel-radius form-control" />
-</div>
-
-</form>
-
-

@@ -7,7 +7,11 @@ var app = angular.module('chuangplus_mobile', [
     "ngRoute",
     "ngTouch",
     "mobile-angular-ui",
-    'mobile-angular-ui.gestures'
+    'mobile-angular-ui.gestures',
+    'chuangplus_mobile.filters',
+    'chuangplus_mobile.services',
+    'chuangplus_mobile.directives',
+    "chuangplus_mobile.controllers"
 ]).
     constant('urls', {'part_mobile': '/static/partials/mobile','part_desktop': '/static/partials/desktop','part_admin': '/static/partials/admin', 'api': '/api'}).
     config(['$interpolateProvider', function($interpolateProvider){
@@ -26,9 +30,9 @@ var app = angular.module('chuangplus_mobile', [
         $routeProvider.when('/mobile/', {templateUrl: urls.part_mobile + '/company/list.html',title:'公司列表'});
         $routeProvider.when('/mobile/test', {templateUrl: urls.part_mobile + '/test.html',title:'公司列表'});
 
-        $routeProvider.when('/mobile/register', {templateUrl: urls.part_mobile + '/register.html',controller:'MB_RegisterCtrl', title:'注册'});
-        $routeProvider.when('/mobile/login', {templateUrl: urls.part_mobile + '/login.html',controller:'MB_LoginCtrl', title:'登录'});
-        $routeProvider.when('/mobile/info', {templateUrl: urls.part_mobile + '/info.html',controller:'MB_InfoCtrl',title:'基本信息'});
+        $routeProvider.when('/mobile/register', {templateUrl: urls.part_mobile + '/register.html', title:'注册'});
+        $routeProvider.when('/mobile/login', {templateUrl: urls.part_mobile + '/login.html', title:'登录'});
+        $routeProvider.when('/mobile/info', {templateUrl: urls.part_mobile + '/info.html',title:'基本信息'});
 
         $routeProvider.when('/mobile/position/filter', {templateUrl: urls.part_mobile + '/position/filter.html',title:'筛选'});
         $routeProvider.when('/mobile/position/list', {templateUrl: urls.part_mobile + '/position/list.html',title:'职位列表'});
@@ -55,24 +59,3 @@ var app = angular.module('chuangplus_mobile', [
             $rootScope.title = current.$$route.title;
         });
     }]);
-
-app.controller('MainController', ['$scope',
-    function($scope) {
-
-        // Initialized the user object
-        $scope.user = {
-            username: "",
-            password: ""
-        };
-
-        // Sign In auth function
-        $scope.signin = function() {
-            var email = $scope.user.username;
-            var password = $scope.user.password;
-            if (email && password) {
-                // Sign In Logic
-            }
-        }
-
-    }
-]);

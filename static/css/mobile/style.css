@@ -38,7 +38,7 @@ body {
   border: 2px solid #dcdcdc;
 }
 .panel-group-top {
-  height: 60px;
+  height: 56px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border-bottom-left-radius: 0;
@@ -48,7 +48,7 @@ body {
   display: block;
 }
 .panel-group-mid {
-  height: 60px;
+  height: 56px;
   background: white;
   border-radius: 0;
   margin-top: -2px;
@@ -74,7 +74,7 @@ body {
   background-color: white;
 }
 .panel-group-bot {
-  height: 60px;
+  height: 56px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-bottom-left-radius: 10px;
@@ -157,7 +157,7 @@ a:hover {
 .panel-title {
   color: #966497;
   text-align: center;
-  line-height: 60px;
+  line-height: 56px;
   margin: 0 0 0 0;
   position: relative;
   left: 0;
@@ -165,14 +165,14 @@ a:hover {
 .login-header {
   height: 180px;
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 5px;
 }
 .login-header .logo {
   width: 90px;
-  margin-top: 40px;
+  margin-top: 30px;
 }
 .login-header .name {
-  margin-top: 16px;
+  margin-top: 12px;
   text-align: center;
   font-size: 20pt;
 }
@@ -455,7 +455,6 @@ a:hover {
   display: block;
   overflow: hidden;
 }
-
 .filter-elem label {
   padding-left: 3px;
 }
@@ -552,7 +551,7 @@ a:hover {
   vertical-align: -webkit-baseline-middle;
 }
 .comp-listbox table {
-  font-size: 11px;
+  font-size: 12px;
 }
 .fi-cond {
   float: left;
@@ -720,7 +719,7 @@ a:hover {
   display: block;
 }
 .upload-header .logo {
-  margin-top: 40px;
+  margin-top: 30px;
   display: block;
   margin-bottom: 15px;
 }
@@ -730,7 +729,7 @@ a:hover {
   margin-right: 0;
 }
 .upload-header .text {
-  margin-top: 16px;
+  margin-top: 12px;
   text-align: center;
   font-size: 20px;
   color: #966497;
@@ -748,4 +747,13 @@ a:hover {
 }
 .upload-btn-group {
   margin-top: 30px;
+}
+.padding-header {
+  padding-top: 50px;
+}
+.white-background {
+  background-color: white;
+}
+.app {
+  background: white;
 }

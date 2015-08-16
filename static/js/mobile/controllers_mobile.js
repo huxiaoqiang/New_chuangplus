@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('chuangplus.controllers', []).
+angular.module('chuangplus_mobile.controllers', []).
     controller('MB_LoginCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('MB_LoginCtrl');
     }]).
