@@ -109,21 +109,59 @@
         <div class="option_info col-md-7">
             <div class="option financing">
                 <div class="opt-header">
-                    <h3>融资情况</h3>
-                    <span><i class="icon-plus-sign icon-2x"></i></span>
+                    <h3>融资经历</h3>
+                    <span ng-click="add_financing()"><i class="icon-plus-sign icon-2x"></i></span>
                 </div>
                 <div class="divider-small">
                     <span></span>
                 </div>
+                <div class="financing_list" ng-repeat="financing_add in financing_list">
+                    <select ng-model="financing_add.stage">
+                        <option value="" ng-selectd="financing_add.stage==''">选择轮数</option>
+                        <option value="seed" ng-selectd="financing_add.stage=='seed'">种子轮</option>
+                        <option value="angel" ng-selectd="financing_add.stage='angel'">天使轮</option>
+                        <option value="A" ng-selectd="financing_add.stage=='A'">A轮</option>
+                        <option value="B" ng-selectd="financing_add.stage=='B'">B轮</option>
+                        <option value="C" ng-selectd="financing_add.stage=='C'">C轮</option>
+                        <option value="D_plus" ng-selectd="financing_add.stage=='D'">D及D以上</option>
+                    </select>
+                    <input type="text" placeholder="请输入投资机构名称">
+                    <select ng-model="financing_add.amount">
+                        <option value="" ng-selectd="financing_add.amount==''">选择融资金额</option>
+                        <option value="ten" ng-selectd="financing_add.amount=='ten'">十万级</option>
+                        <option value="hundred" ng-selectd="financing_add.amount='hundred'">百万级</option>
+                        <option value="thousand" ng-selectd="financing_add.amount=='thousand'">千万级</option>
+                        <option value="thousand_plus" ng-selectd="financing_add.amount=='thousand_plus'">亿级</option>
+                    </select>
+                    <input type="button" class="btn btn-primary" value="保存">
+                    <input type="button" class="btn btn-danger" value="删除" ng-click="financing_add.show_warn=true">
+                    <span><i class="icon-ok-circle icon-large saved"></i></span>
+
+                    <div class="alert alert-block alert-danger" ng-show="financing_add.show_warn">
+                        <strong>确认删除？</strong>
+                        <input type="button" class="btn btn-danger" value="删除" ng-click="delete_financing($index)">
+                        <input type="button" class="btn upload-btn-groupr" value="取消" ng-click="financing_add.show_warn=false">
+                    </div>
+                </div>
             </div>
             <div class="divider"></div>
 
-            <div class="option team_intro">
+            <div class="option team_intro" ng-init="edit_team_intro=false">
                 <div class="opt-header">
                     <h3>团队介绍</h3>
-                    <span><i class="icon-plus-sign icon-2x"></i></span>
+                    <span ng-click="edit_team_intro=true"><i class=" icon-pencil icon-large"></i></span>
                 </div>
                 <div class="divider-small"><span></span></div>
+                <div class="add-team-intro" ng-click="edit_team_intro=true" ng-show="!edit_team_intro && team_description==''">
+                    <i class="icon-plus icon-large"></i>添加团队介绍
+                </div>
+                <p class="saved_description" ng-show="team_description!='' && edit_team_intro==false">[[team_description]]</p>
+                <textarea class="team-intro-textarea" placeholder="添加团队介绍" ng-model="team_description" ng-show="edit_team_intro"></textarea>
+                <div class="button">
+                    <input ng-show="edit_team_intro" type="button" class="btn btn-primary" value="保存" ng-click="save_team_description()">
+                    <input ng-show="edit_team_intro" type="button" class="btn upload-btn-groupr" value="取消" ng-click="cancel_edit()">
+                </div>
+                <div style="clear:both;"></div>
             </div>
             <div class="divider"></div>
 
@@ -133,9 +171,11 @@
                     <span ng-click="add_member()"><i class="icon-plus-sign icon-2x"></i></span>
                 </div>
                 <div class="divider-small"><span></span></div>
+
+
                 <div ng-repeat="member_info in member_list" class="member_list">
                     <div class="member-card sub-form form-horizontal">
-                        <span class="delete"><i class=" icon-remove"></i></span>
+                        <span class="delete" ng-click="delete_member($index)"><i class=" icon-remove"></i></span>
                         <div class="first-level">
                             <div class="col-sm-4">
                                 <img src="/static/image/logo/comp_prev.jpg"><br/>
@@ -148,46 +188,30 @@
                         <div class="second-level">
                             <span>[[member_info.m_introduction]]</span>
                         </div>
-
                     </div>
                 </div>
                 <div style="clear:both;"></div>
             </div>
             <div class="divider"></div>
 
-            <div class="option company_intro">
+            <div class="option company_intro" ng-init="edit_company_intro=false">
                 <div class="opt-header">
                     <h3>公司介绍</h3>
-                    <span><i class="icon-plus-sign icon-2x"></i></span>
+                    <span ng-click="edit_company_intro=true"><i class=" icon-pencil icon-large"></i></span>
                 </div>
                 <div class="divider-small"><span></span></div>
+                <div class="add-company-intro" ng-click="edit_company_intro=true" ng-show="!edit_company_intro && company_description==''">
+                    <i class="icon-plus icon-large"></i>添加公司介绍
+                </div>
+                <p class="saved_description" ng-show="company_description!='' && edit_company_intro==false">[[company_description]]</p>
+                <textarea class="company-intro-textarea" placeholder="添加公司介绍" ng-model="company_description" ng-show="edit_company_intro"></textarea>
+                <div class="button">
+                    <input ng-show="edit_company_intro" type="button" class="btn btn-primary" value="保存" ng-click="save_team_description()">
+                    <input ng-show="edit_company_intro" type="button" class="btn upload-btn-groupr" value="取消" ng-click="company_cancel_edit()">
+                </div>
+                <div style="clear:both;"></div>
             </div>
             <div class="divider"></div>
         </div>
     </div>
-</div>
-
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
 </div>

@@ -333,11 +333,36 @@ angular.module('chuangplus.controllers', []).
             }
         };
         $scope.member_list=[
-            {
-                "m_name":"宁博",
-                "m_position":"CEO",
-                "m_introduction": "描述"
-            }];
+        {
+            "m_name":"宁博",
+            "m_position":"CEO",
+            "m_introduction": "描述"
+        }];
+        $scope.financing_list=[];
+        $scope.financing_add = {
+            "stage":"",
+            "organization":"",
+            "amount": ""
+        };
+        $scope.financing = {
+          "stage":{
+            "seed"  :"种子轮",
+            "angel" :"天使轮",
+            "A"      :"A轮",
+            "B"      :"B轮",
+            "C"      :"C轮",
+            "D_plus":"D及D以上"
+           },
+          "amount":{
+            "ten":"十万级",
+            "hundred":"百万级",
+            "thousand":"千万级",
+            "thousand_plus":"亿级"
+          }
+        };
+        $scope.old_team_description = $scope.team_description = "";
+        $scope.old_company_description = $scope.company_description = "";
+
         $scope.add_tag = function(){
             $scope.new_tag_name = "tag"+$scope.tag_added;
             $scope.welfare_tags[$scope.new_tag_name] = {
@@ -353,6 +378,29 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.add_member = function(){
             $scope.member_list.push({});
+        };
+        $scope.add_financing = function(){
+            $scope.financing_list.push({});
+        };
+        $scope.delete_financing = function(index){
+            $scope.financing_list.splice(index,1);
+        };
+        $scope.save_team_description = function(){
+            //todo
+            $scope.edit_team_intro=false;
+            $scope.old_team_description = $scope.team_description;
+        };
+        $scope.cancel_edit = function(){
+            $scope.edit_team_intro=false
+            $scope.team_description = $scope.old_team_description;
+        };
+        $scope.save_team_description = function(){
+            $scope.edit_company_intro=false;
+            $scope.old_company_description = $scope.company_description;
+        };
+        $scope.company_cancel_edit = function(){
+            $scope.edit_company_intro=false
+            $scope.company_description = $scope.old_company_description;
         };
     }]).
     controller('DT_PositionDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
