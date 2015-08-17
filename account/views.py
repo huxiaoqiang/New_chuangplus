@@ -300,7 +300,10 @@ def get_companyinfo_detail(request,company_id):
 def set_companyinfo(request,company_id):
     re=dict()
     if request.method == "POST":
-        c = Companyinfo.objects.get(username=request.user.username)
+        if request.user.is_superuser == False:
+            c = Companyinfo.objects.get(username=request.user.username)
+        else:
+            c = Companyinfo.objects.get(id=company_id)
         c.abbreviation = request.POST.get('abbreviation', c.abbreviation)
         c.city = request.POST.get('city', c.city)
         c.field = request.POST.get('field', c.field)
