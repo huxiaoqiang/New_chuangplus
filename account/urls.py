@@ -29,6 +29,7 @@ urlpatterns = [
 
     url(r'^company/list', views.get_company_list, name='get_company_list'),
     url(r'^company/(?P<company_id>.*?)/detail', views.get_companyinfo_detail, name='get_companyinfo_detail'),
+    url(r'^company/detail', views.get_companyinfo_detail_by_username, name='get_companyinfo_detail_by_username'),
     url(r'^company/(?P<company_id>.*?)/set', views.set_companyinfo, name='set_companyinfo'),
     url(r'^company/(?P<company_id>.*?)/auth', views.auth_company, name='auth_company'),
     url(r'^company/(?P<company_id>.*?)/check', views.check_companyinfo_complete, name='check_companyinfo_complete'),

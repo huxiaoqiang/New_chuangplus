@@ -445,10 +445,10 @@ body > #wrap {
   width: 50%;
 }
 #container #company_info_detail {
-  min-height: 650px;
+  min-height: 730px;
 }
 #container #company_info_detail form.form-horizontal {
-  min-height: 640px;
+  min-height: 730px;
   margin-top: 40px;
 }
 #container #company_info_detail form.form-horizontal .form-group table td {

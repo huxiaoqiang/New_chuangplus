@@ -224,58 +224,63 @@ angular.module('chuangplus.controllers', []).
     controller('DT_CompanyResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyResumeCtrl');
     }]).
-    controller('DT_CompanyInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_CompanyInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,Upload){
         console.log('DT_CompanyInfoCtrl');
-
-    }]).
-    controller('DT_CompanyPositionManageCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
-        console.log('DT_CompanyPositionManageCtrl');
-    }]).
-    controller('DT_CompanyPositionEditCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
-        console.log('DT_CompanyPositionEditCtrl');
-    }]).
-    controller('DT_CompanyListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
-        console.log('DT_CompanyListCtrl');
-    }]).
-    controller('DT_CompanyDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
-        console.log('DT_CompanyDetailCtrl');
-    }]).
-    controller('DT_PositionListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
-        console.log('DT_PositionListCtrl');
-        $scope.filter = {
-            "workdays":{
-                "day0": true,
-                "day3": true,
-                "day4": true,
-                "day5": true,
-                "day6": true,
-                "day7": true
-            },
-            "field":{
-                'social':true,
-                'e-commerce':true,
-                'education':true,
-                'health_medical':true,
-                'culture_creativity':true,
-                'living_consumption':true,
-                'hardware':true,
-                'O2O':true,
-                'others':true
-            },
-            "type":{
-                'technology':true,
-                'product':true,
-                'design':true,
-                'operate':true,
-                'marketing':true,
-                'functions':true,
-                'others':true
-            },
-            "salary": ''
+        if ($user.username() == undefined){
+            window.location.href='/login';
         };
-        $scope.positions = {};
-        $scope.get_positions = function(){
+        $scope.companyinfo = {};
+        $scope.CEO = {
+            "m_position":"CEO"
+        };
+        $scope.get_company_info = function(){
+            $http.get(urls.api+"/account/company/detail").
+                success(function(data){
+                    $scope.companyinfo = data.data;
+                });
+        };
+        $scope.get_company_info();
+        $scope.change_logo = function(){
 
+        };
+        $scope.$watch('companyinfo.logo',function(file){
+            $scope.upload($scope.file);
+        });
+        $scope.upload = function(file,CEO_id){
+            Upload.upload({
+               url:urls.api+'/file/upload',
+               field:{
+                   "file_type":"member_avatar",
+                   "description":"",
+                   "category":CEO_id
+               },
+               file:file
+            }).
+            progress(function(evt){}).
+            success(function(data){});
+
+        };
+        $scope.create_company = function(){
+            $csrf.set_csrf(companyinfo);
+            $http.post(url.api+'/company/set', $.param($scope.companyinfo)).
+                success(function(data){
+                if(data.error.code == 1){
+                    window.location.href='/company/infodetail';
+                }
+                else{
+                    console.log(data.error.message);
+                }
+            });
+            $csrf.set_csrf($scope.CEO);
+            $http.post(url.api+'/member/create', $.param($scope.CEO)).
+                success(function(data){
+                if(data.error.code == 1){
+                    window.location.href='/company/infodetail';
+                }
+                else{
+                    console.log(data.error.message);
+                }
+            });
         };
     }]).
     controller('DT_CompanyInfoDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
@@ -429,6 +434,56 @@ angular.module('chuangplus.controllers', []).
             }
           });
       };
+    }]).
+    controller('DT_CompanyPositionManageCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+        console.log('DT_CompanyPositionManageCtrl');
+    }]).
+    controller('DT_CompanyPositionEditCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+        console.log('DT_CompanyPositionEditCtrl');
+    }]).
+    controller('DT_CompanyListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+        console.log('DT_CompanyListCtrl');
+    }]).
+    controller('DT_CompanyDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+        console.log('DT_CompanyDetailCtrl');
+    }]).
+    controller('DT_PositionListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+        console.log('DT_PositionListCtrl');
+        $scope.filter = {
+            "workdays":{
+                "day0": true,
+                "day3": true,
+                "day4": true,
+                "day5": true,
+                "day6": true,
+                "day7": true
+            },
+            "field":{
+                'social':true,
+                'e-commerce':true,
+                'education':true,
+                'health_medical':true,
+                'culture_creativity':true,
+                'living_consumption':true,
+                'hardware':true,
+                'O2O':true,
+                'others':true
+            },
+            "type":{
+                'technology':true,
+                'product':true,
+                'design':true,
+                'operate':true,
+                'marketing':true,
+                'functions':true,
+                'others':true
+            },
+            "salary": ''
+        };
+        $scope.positions = {};
+        $scope.get_positions = function(){
+
+        };
     }]).
 
 //    controller('DT_UserInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
