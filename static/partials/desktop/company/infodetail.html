@@ -118,6 +118,15 @@
             </div>
             <div class="divider"></div>
 
+            <div class="option team_intro">
+                <div class="opt-header">
+                    <h3>团队介绍</h3>
+                    <span><i class="icon-plus-sign icon-2x"></i></span>
+                </div>
+                <div class="divider-small"><span></span></div>
+            </div>
+            <div class="divider"></div>
+
             <div class="option member">
                 <div class="opt-header">
                     <h3>团队成员</h3>
@@ -125,29 +134,24 @@
                 </div>
                 <div class="divider-small"><span></span></div>
                 <div ng-repeat="member_info in member_list" class="member_list">
-                    <div class="member-card sub-form ui segment form-horizontal">
-                        <div class="col-sm-2">
-                            <img src="/static/image/logo/comp_prev.jpg"><br/>
+                    <div class="member-card sub-form form-horizontal">
+                        <span class="delete"><i class=" icon-remove"></i></span>
+                        <div class="first-level">
+                            <div class="col-sm-4">
+                                <img src="/static/image/logo/comp_prev.jpg"><br/>
+                            </div>
+                            <div class="col-sm-8 name-position">
+                                <span>[[member_info.m_name]]</span><br/>
+                                <span>[[member_info.m_position]]</span><br/>
+                            </div>
                         </div>
-                        <div class="col-sm-8">
-                            <span>[[member_info.m_name]]</span><br/>
-                            <span>[[member_info.m_position]]</span><br/>
+                        <div class="second-level">
                             <span>[[member_info.m_introduction]]</span>
                         </div>
-                        <div class="col-sm-2">
-                            <span class="remove" ng-click="delete_member($index)"><i class="icon-remove-circle"></i></span>
-                        </div>
+
                     </div>
                 </div>
-            </div>
-            <div class="divider"></div>
-
-            <div class="option team_intro">
-                <div class="opt-header">
-                    <h3>团队介绍</h3>
-                    <span><i class="icon-plus-sign icon-2x"></i></span>
-                </div>
-                <div class="divider-small"><span></span></div>
+                <div style="clear:both;"></div>
             </div>
             <div class="divider"></div>
 

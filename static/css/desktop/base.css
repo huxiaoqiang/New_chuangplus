@@ -520,9 +520,32 @@ body > #wrap {
 }
 #container .option_info .member .member_list {
   float: left;
+  width: 33%;
+  margin-left: 0.3%;
 }
 #container .option_info .member .member_list .member-card {
-  width: 45%;
+  height: 150px;
+  border: solid 1.5px #eeeeee;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+#container .option_info .member .member_list .member-card .delete {
+  position: relative;
+  left: 90%;
+  color: #98769E;
+  cursor: pointer;
+}
+#container .option_info .member .member_list .member-card .first-level {
+  padding: 0.5em;
+  margin-top: -15px;
+}
+#container .option_info .member .member_list .member-card .first-level .name-position {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+#container .option_info .member .member_list .member-card .second-level {
+  padding: 0.5em;
+  margin-left: 12px;
 }
 #container .option_info .member .member_list .member-card img {
   width: 45px;
