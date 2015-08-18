@@ -490,9 +490,9 @@ def set_financinginfo(request,fin_id):
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         if request.user.is_superuser == True or\
         financing_info.company.username == request.user.username:
-            financing_info.stage = request.POST.get("stage","")
-            financing_info.organization = request.POST.get("organization","")
-            financing_info.amount = request.POST.get("amount","")
+            financing_info.stage = request.POST.get("stage",financing_info.stage)
+            financing_info.organization = request.POST.get("organization",financing_info.organization)
+            financing_info.amount = request.POST.get("amount",financing_info.amount)
             try:
                 financing_info.save()
             except DatabaseError:
@@ -582,7 +582,7 @@ def get_member_list(request,company_id):
         try:
             member_list = companyinfo.members
         except DatabaseError:
-             re['error'] = error(250,'Database error: Failed to save')
+             re['error'] = error(250,'Database error: Failed to Get')
              return HttpResponse(json.dumps(re), content_type = 'application/json')
         re['error'] = error(1,"get memberlist successfully")
         re['data'] = json.loads(member_list.to_json())
@@ -602,9 +602,9 @@ def set_company_member(request,mem_id):
 
         if request.user.is_superuser == True\
         or member.company.username == request.user.username:
-            member.m_name = request.POST.get('m_name','')
-            member.m_position = request.POST.get('m_position','')
-            member.m_introduction = request.POST.get('m_introduction','')
+            member.m_name = request.POST.get('m_name',member.m_name)
+            member.m_position = request.POST.get('m_position',member.m_position)
+            member.m_introduction = request.POST.get('m_introduction',member.m_introduction)
             try:
                 member.save()
             except DatabaseError:
