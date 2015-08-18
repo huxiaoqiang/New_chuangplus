@@ -15,7 +15,7 @@ def upload_file(request):
     re = dict()
     if request.method == 'POST':
         file_type = request.POST.get('file_type','')
-        if file_type not in ['member_avatar','qr_code','resume']:
+        if file_type not in ['member_avatar','qr_code','resume','logo']:
             re['error'] = error(4,'Parameter error')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         category = request.POST.get('category', '')
@@ -28,9 +28,10 @@ def upload_file(request):
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             if file_type == "member_avatar":
                 try:
-                    member = Member.objects.get(id = category)
+                    id = category.split('_')[0]
+                    companyinfo = Companyinfo.objects.get(id=id)
                 except:
-                    re['error'] = error(16,'Member does not exist,fail to upload member avatar')
+                    re['error'] = error(16,'Company does not exist,fail to upload member avatar')
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
                 try:
                     f = File.objects.get(file_type = file_type,category = category)
@@ -46,17 +47,12 @@ def upload_file(request):
                 except DatabaseError:
                     re['error'] = error(250,'Database error: Failed to get companyinfo')
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
-                try:
-                    member.m_avatar = f
-                    member.save()
-                except DatabaseError:
-                    re['error'] = error(250,'Database error: Failed to save companyinfo!')
-                    return HttpResponse(json.dumps(re), content_type = 'application/json')
                 re['error'] = error(1,"file upload successfully")
                 re['data'] = str(f.id)
-            elif file_type == 'qr_code':
+            elif file_type in['qr_code','logo']:
                 try:
-                    companyinfo = Companyinfo.objects.get(id=category)
+                    id = category.split('_')[0]
+                    companyinfo = Companyinfo.objects.get(id=id)
                 except:
                     re['error'] = error(17,"Company does not exist,fail to upload qr code")
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -88,17 +84,17 @@ def upload_file(request):
                     re['data'] = str(f.id)
 
             elif file_type == 'resume':
+                username = request.user.username
                 try:
-                    username = request.user.username
                     userinfo = Userinfo.objects.get(username=username)
                 except:
                     re['error'] = error(103,"user does not exist!")
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
                 else:
                     try:
-                        f = File.objects.get(file_type = file_type,category=category)
+                        f = File.objects.get(file_type = file_type,category=username)
                     except:
-                        f = File(file_type = file_type,category=category)
+                        f = File(file_type = file_type,category=username)
                         f.value.put(file_obj.read(),content_type = file_obj.content_type)
                     else:
                         f.value.replace(file_obj.read(),content_type = file_obj.content_type)

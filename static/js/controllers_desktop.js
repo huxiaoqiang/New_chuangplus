@@ -224,42 +224,60 @@ angular.module('chuangplus.controllers', []).
     controller('DT_CompanyResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyResumeCtrl');
     }]).
-    controller('DT_CompanyInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,Upload){
+    controller('DT_CompanyInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','$upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$upload){
         console.log('DT_CompanyInfoCtrl');
         if ($user.username() == undefined){
             window.location.href='/login';
         };
+        $scope.company_id = "";
         $scope.companyinfo = {};
         $scope.CEO = {
             "m_position":"CEO"
         };
+        //get company info
         $scope.get_company_info = function(){
             $http.get(urls.api+"/account/company/detail").
                 success(function(data){
                     $scope.companyinfo = data.data;
+                    $scope.company_id = data.data._id;
                 });
         };
         $scope.get_company_info();
-        $scope.change_logo = function(){
 
-        };
-        $scope.$watch('companyinfo.logo',function(file){
-            $scope.upload($scope.file);
-        });
-        $scope.upload = function(file,CEO_id){
-            Upload.upload({
-               url:urls.api+'/file/upload',
-               field:{
-                   "file_type":"member_avatar",
-                   "description":"",
-                   "category":CEO_id
-               },
-               file:file
+        $scope.onFileSelect = function($files,f_type){
+            var param = {
+                'file_type': 'logo',
+                'category': $scope.company_id + '_' + f_type
+            };
+            $csrf.set_csrf(param);
+            $scope.upload = $upload.upload({
+                url:urls.api+'/file/upload',
+                data:param,
+                file:$files[0]
             }).
-            progress(function(evt){}).
-            success(function(data){});
-
+            progress(function(evt){
+                     console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+                }).
+            success(function(data){
+                    console.log("uoload logo successfully!");
+                });
         };
+//        $scope.upload = function(file){
+//            Upload.upload({
+//               url:urls.api+'/file/upload',
+//               field:{
+//                   "file_type":"member_avatar",
+//                   "description":"CEO",
+//                   "category":company_id+"_CEO"
+//               },
+//               file:file
+//            }).
+//            progress(function(evt){}).
+//            success(function(data){
+//                console.log("upload CEO avatar successfully!");
+//                });
+//
+//        };
         $scope.create_company = function(){
             $csrf.set_csrf(companyinfo);
             $http.post(url.api+'/company/set', $.param($scope.companyinfo)).
@@ -271,16 +289,7 @@ angular.module('chuangplus.controllers', []).
                     console.log(data.error.message);
                 }
             });
-            $csrf.set_csrf($scope.CEO);
-            $http.post(url.api+'/member/create', $.param($scope.CEO)).
-                success(function(data){
-                if(data.error.code == 1){
-                    window.location.href='/company/infodetail';
-                }
-                else{
-                    console.log(data.error.message);
-                }
-            });
+
         };
     }]).
     controller('DT_CompanyInfoDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
