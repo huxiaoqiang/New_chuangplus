@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/controllers_desktop.js" afterPath="$PROJECT_DIR$/static/js/controllers_desktop.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/company/info.html" afterPath="$PROJECT_DIR$/static/partials/desktop/company/info.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/filedata/urls.py" afterPath="$PROJECT_DIR$/filedata/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/filedata/views.py" afterPath="$PROJECT_DIR$/filedata/views.py" />
     </list>
     <ignored path="chuangplus.iws" />
@@ -27,13 +25,13 @@
     <favorites_list name="chuangplus" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.48133847">
+    <splitter split-orientation="horizontal" split-proportion="0.4124839">
       <split-first>
         <leaf>
-          <file leaf-file-name="info.html" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="info.html" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/info.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="34" column="29" selection-start="1707" selection-end="1768" vertical-scroll-proportion="0.46004844" vertical-offset="456" max-vertical-offset="1577">
+                <state line="37" column="77" selection-start="2096" selection-end="2096" vertical-scroll-proportion="1.7021792" vertical-offset="0" max-vertical-offset="1577">
                   <folding />
                 </state>
               </provider>
@@ -124,10 +122,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/filedata/views.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="190" column="0" selection-start="8573" selection-end="8573" vertical-scroll-proportion="1.0168269" vertical-offset="3054" max-vertical-offset="3781">
+                <state line="200" column="0" selection-start="8982" selection-end="8982" vertical-scroll-proportion="0.7178218" vertical-offset="3377" max-vertical-offset="3781">
                   <folding />
                 </state>
               </provider>
@@ -222,8 +220,8 @@
         <option value="C:/Python27/Lib/site-packages/django/contrib/auth/__init__.py" />
         <option value="$PROJECT_DIR$/static/lib/fileupload/angular-file-upload.js" />
         <option value="$PROJECT_DIR$/static/js/controllers_desktop.js" />
-        <option value="$PROJECT_DIR$/filedata/views.py" />
         <option value="$PROJECT_DIR$/filedata/urls.py" />
+        <option value="$PROJECT_DIR$/filedata/views.py" />
         <option value="$PROJECT_DIR$/static/partials/desktop/company/info.html" />
       </list>
     </option>
@@ -713,16 +711,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/info.html">
+    <entry file="file://$PROJECT_DIR$/filedata/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="29" selection-start="1707" selection-end="1768" vertical-scroll-proportion="0.46004844" vertical-offset="456" max-vertical-offset="1577">
+        <state line="200" column="0" selection-start="8982" selection-end="8982" vertical-scroll-proportion="0.7178218" vertical-offset="3377" max-vertical-offset="3781">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/filedata/views.py">
+    <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/info.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="190" column="0" selection-start="8573" selection-end="8573" vertical-scroll-proportion="1.0168269" vertical-offset="3054" max-vertical-offset="3781">
+        <state line="37" column="77" selection-start="2096" selection-end="2096" vertical-scroll-proportion="1.7021792" vertical-offset="0" max-vertical-offset="1577">
           <folding />
         </state>
       </provider>
