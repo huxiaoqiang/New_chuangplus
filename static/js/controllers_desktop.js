@@ -240,7 +240,7 @@ angular.module('chuangplus.controllers', []).
             $http.get(urls.api+"/account/company/detail").
                 success(function(data){
                     $scope.companyinfo = data.data;
-                    $scope.company_id = data.data._id.$old;
+                    $scope.company_id = data.data._id.$oid;
                 });
         };
         $scope.get_company_info();
