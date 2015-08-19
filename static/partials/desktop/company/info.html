@@ -60,8 +60,8 @@
             <label for="avatar" class="col-sm-3 control-label">CEO头像</label>
             <div class="col-sm-6">
               <div class="file-upload">
-                <img src="/api/file/avatar/[[company_id]]_avatar/download_special" ng-if='CEO.m_avatar!=null'>
-                <img src="/static/image/logo/comp_prev.jpg" ng-if="CEO.m_avatar==null">
+                <img src="/api/file/avatar/[[company_id]]_CEOavatar/download_special" ng-if='CEOavatar!=null'>
+                <img src="/static/image/logo/comp_prev.jpg" ng-if="CEOavatar==null">
                 <input ngf-select ng-model="CEO_avatar" type="file">
               </div>
             </div>

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/app.js" afterPath="$PROJECT_DIR$/static/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/controllers_desktop.js" afterPath="$PROJECT_DIR$/static/js/controllers_desktop.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/company/info.html" afterPath="$PROJECT_DIR$/static/partials/desktop/company/info.html" />
     </list>
@@ -26,13 +25,13 @@
     <favorites_list name="chuangplus" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.33783785">
+    <splitter split-orientation="horizontal" split-proportion="0.5186615">
       <split-first>
         <leaf>
-          <file leaf-file-name="info.html" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="info.html" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/info.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="35" column="33" selection-start="1881" selection-end="1881" vertical-scroll-proportion="0.5347682" vertical-offset="342" max-vertical-offset="1615">
+                <state line="63" column="60" selection-start="3193" selection-end="3193" vertical-scroll-proportion="0.7284345" vertical-offset="741" max-vertical-offset="1615">
                   <folding />
                 </state>
               </provider>
@@ -96,10 +95,10 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="controllers_desktop.js" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="controllers_desktop.js" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="295" column="88" selection-start="13421" selection-end="13431" vertical-scroll-proportion="-4.264151" vertical-offset="5379" max-vertical-offset="10146">
+                <state line="265" column="27" selection-start="12164" selection-end="12164" vertical-scroll-proportion="0.66056573" vertical-offset="4638" max-vertical-offset="10146">
                   <folding />
                 </state>
               </provider>
@@ -116,10 +115,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/js/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="64" column="80" selection-start="4753" selection-end="4753" vertical-scroll-proportion="0.66715974" vertical-offset="765" max-vertical-offset="2356">
+                <state line="64" column="80" selection-start="4753" selection-end="4753" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="2356">
                   <folding />
                 </state>
               </provider>
@@ -194,9 +193,9 @@
         <option value="$PROJECT_DIR$/static/lib/fileupload/angular-file-upload.js" />
         <option value="$PROJECT_DIR$/filedata/urls.py" />
         <option value="$PROJECT_DIR$/filedata/views.py" />
-        <option value="$PROJECT_DIR$/static/partials/desktop/company/info.html" />
-        <option value="$PROJECT_DIR$/static/js/controllers_desktop.js" />
         <option value="$PROJECT_DIR$/static/js/app.js" />
+        <option value="$PROJECT_DIR$/static/js/controllers_desktop.js" />
+        <option value="$PROJECT_DIR$/static/partials/desktop/company/info.html" />
       </list>
     </option>
   </component>
@@ -714,23 +713,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/info.html">
+    <entry file="file://$PROJECT_DIR$/static/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="33" selection-start="1881" selection-end="1881" vertical-scroll-proportion="0.5347682" vertical-offset="342" max-vertical-offset="1615">
+        <state line="64" column="80" selection-start="4753" selection-end="4753" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="2356">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="295" column="88" selection-start="13421" selection-end="13431" vertical-scroll-proportion="-4.264151" vertical-offset="5379" max-vertical-offset="10146">
+        <state line="265" column="27" selection-start="12164" selection-end="12164" vertical-scroll-proportion="0.66056573" vertical-offset="4638" max-vertical-offset="10146">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/app.js">
+    <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/info.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="80" selection-start="4753" selection-end="4753" vertical-scroll-proportion="0.66715974" vertical-offset="765" max-vertical-offset="2356">
+        <state line="63" column="60" selection-start="3193" selection-end="3193" vertical-scroll-proportion="0.7284345" vertical-offset="741" max-vertical-offset="1615">
           <folding />
         </state>
       </provider>
