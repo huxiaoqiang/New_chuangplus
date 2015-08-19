@@ -5,18 +5,21 @@
           <div class="form-group">
             <label for="company_abbreviation" class="col-sm-3 control-label">公司简称</label>
             <div class="col-sm-6">
-              <input name="abbreviation" type="text" class="form-control" ng-model="companyinfo.abbreviation" required placeholder="如：清华创加">
+              <input name="abbreviation" type="text" class="form-control" ng-model="companyinfo.abbreviation" required placeholder="如：创加" ng-maxlength=8>
+            </div>
+           <div class="col-sm-3">
+                <span class="err-msg" ng-show="showError(companyInfoForm.abbreviation,'required')"><i class="icon-warning-sign"></i>公司简称不能为空</span>
+                <span class="err-msg" ng-show="showError(companyInfoForm.abbreviation,'ng-maxlength')"><i class="icon-warning-sign"></i>公司简称不能超过8个字</span>
             </div>
           </div>
 
           <div class="form-group">
             <label for="homepage" class="col-sm-3 control-label">公司网址</label>
             <div class="col-sm-6">
-              <input name="homepage" type="url" class="form-control" ng-model="companyinfo.homepage" required placeholder="如：www.chuangplus.com">
+              <input name="homepage" type="url" class="form-control" ng-model="companyinfo.homepage" required placeholder="如：http://www.chuangplus.com">
             </div>
             <div class="col-sm-3">
-                <span class="err-msg" ng-hide="e_check.exist"><i class="icon-warning-sign"></i>用户邮箱不存在</span>
-                <span class="err-msg" ng-show="showError(findpwdForm.email,'email')"><i class="icon-warning-sign"></i>请输入正确的邮箱</span>
+                <span class="err-msg" ng-show="showError(companyInfoForm.homepage,'url')"><i class="icon-warning-sign"></i>请输入正确的网址</span>
             </div>
           </div>
 
@@ -30,13 +33,11 @@
 
           <div class="form-group">
             <label for="logo" class="col-sm-3 control-label">公司logo</label>
-            <div class="col-sm-6" ng-init="show_logo=false">
+            <div class="col-sm-6">
               <div class="file-upload">
-                <img src="/api/file/logo/[[company_id]]_logo/download_special" ng-show='logo!=null'> 
-                <img ng-mouseover="show_logo=true" ng-mouseout="show_logo=false" ng-show='logo==null' src="/static/image/logo/comp_prev.jpg">
-                <span ng-show="show_logo" ng-click="change_logo(companyinfo.logo)">上传logo</span>
+                <img src="/api/file/logo/[[company_id]]_logo/download_special" ng-if='logo!=null'>
+                <img src="/static/image/logo/comp_prev.jpg" ng-if="logo==null">
                 <input ngf-select ng-model="logo" type="file" value="上传logo">
-                <p>[[progress]]</p>
               </div>
             </div>
           </div>
@@ -57,11 +58,11 @@
 
           <div class="form-group">
             <label for="avatar" class="col-sm-3 control-label">CEO头像</label>
-            <div class="col-sm-6" ng-init="show=false">
+            <div class="col-sm-6">
               <div class="file-upload">
-                <img ng-mouseover="show=true" ng-mouseout="show=false" src="/static/image/logo/comp_prev.jpg">
-                <span ng-show="show" ng-click="change_avatar()">上传头像</span>
-                <input hidden="" ng-model="CEO.m_avatar">
+                <img src="/api/file/avatar/[[company_id]]_avatar/download_special" ng-if='CEO.m_avatar!=null'>
+                <img src="/static/image/logo/comp_prev.jpg" ng-if="CEO.m_avatar==null">
+                <input ngf-select ng-model="CEO_avatar" type="file">
               </div>
             </div>
           </div>
@@ -69,7 +70,8 @@
           <div class="form-group">
             <label for="CEO" class="col-sm-3 control-label"></label>
             <div class="col-sm-6">
-                <input type="button" class="btn btn-primary" value="下一步" ng-click="create_company()">
+                <div id="err-msg" ng-show="error.show"  ng-class="error.class">[[error.message]]</div>
+                <input type="button" class="btn btn-primary" value="下一步">
             </div>
           </div>
         </form>

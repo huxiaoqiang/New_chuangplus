@@ -224,7 +224,7 @@ angular.module('chuangplus.controllers', []).
     controller('DT_CompanyResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyResumeCtrl');
     }]).
-    controller('DT_CompanyInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, Upload){
+    controller('DT_CompanyInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','Upload','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, Upload,$errMsg){
         console.log('DT_CompanyInfoCtrl');
 //        if ($user.username() == undefined){
 //            window.location.href='/login';
@@ -252,11 +252,15 @@ angular.module('chuangplus.controllers', []).
             $scope.upload($scope.logo,'logo');
           }
         });
-
+        $scope.$watch('CEO_avatar',function(CEO_avatar){
+          if (CEO_avatar != undefined && !CEO_avatar.$error) {
+            $scope.upload($scope.CEO_avatar,'CEO_avatar');
+          }
+        });
         $scope.upload = function(file,file_t){
             var param = {
-               "file_type":"logo",
-               "description":"company logo",
+               "file_type":file_t,
+               "description":$scope.company_id + file_t,
                "category":$scope.company_id + '_'+file_t
             };
             var headers = {
@@ -279,37 +283,26 @@ angular.module('chuangplus.controllers', []).
                 }
                 else{
                     console.log(data.error.message);
+                    $scope.error = $errMsg.format_error('',data.error);
                 }
             });
         };
-//        $scope.upload = function(file){
-//            Upload.upload({
-//               url:urls.api+'/file/upload',
-//               field:{
-//                   "file_type":"member_avatar",
-//                   "description":"CEO",
-//                   "category":company_id+"_CEO"
-//               },
-//               file:file
-//            }).
-//            progress(function(evt){}).
-//            success(function(data){
-//                console.log("upload CEO avatar successfully!");
-//                });
-//
-//        };
+
         $scope.create_company = function(){
             $csrf.set_csrf(companyinfo);
             $http.post(url.api+'/company/set', $.param($scope.companyinfo)).
                 success(function(data){
-                if(data.error.code == 1){
-                    window.location.href='/company/infodetail';
-                }
-                else{
-                    console.log(data.error.message);
-                }
+                    if(data.error.code == 1){
+                        window.location.href='/company/'+$scope.company_id+ '/infodetail';
+                    }
+                    else{
+                        console.log(data.error.message);
+                        $scope.error = $errMsg.format_error('',data.error);
+                    }
             });
-
+        };
+        $scope.showError = function(ngModelController,error){
+            return ngModelController.$error[error];
         };
     }]).
     controller('DT_CompanyInfoDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
