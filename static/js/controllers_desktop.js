@@ -226,9 +226,9 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_CompanyInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, Upload){
         console.log('DT_CompanyInfoCtrl');
-        if ($user.username() == undefined){
-            window.location.href='/login';
-        };
+//        if ($user.username() == undefined){
+//            window.location.href='/login';
+//        };
         $scope.company_id = "";
         $scope.companyinfo = {};
         $scope.company_id = '';
@@ -263,19 +263,23 @@ angular.module('chuangplus.controllers', []).
                    'X-CSRFToken': $csrf.val(),
                    'Content-Type': file.type
                };
-            $csrf.set_csrf(param);
             Upload.upload({
                url:urls.api+'/file/upload',
-               field: param,
+               data: param,
                headers:headers,
                file: file
             }).
             progress(function(evt){
-//                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-//                $scope.progress= 'progress: ' + progressPercentage + '% ' + evt.config.file.name;
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                $scope.progress= 'progress: ' + progressPercentage + '% ' + evt.config.file.name;
             }).
             success(function(data, status, headers, config){
-                console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
+                if(data.error.code == 1){
+                    console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
+                }
+                else{
+                    console.log(data.error.message);
+                }
             });
         };
 //        $scope.upload = function(file){

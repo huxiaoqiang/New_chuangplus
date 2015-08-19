@@ -10,16 +10,18 @@ import re
 
 # Create your views here.
 #todo:to be  moditied and tested
-@user_permission('login')
+#@user_permission('login')
 def upload_file(request):
     re = dict()
     if request.method == 'POST':
-        file_type = request.POST.get('file_type','')
+        data = request.POST.get('data','')
+        data_dict = eval(data)
+        file_type = data_dict['file_type']
         if file_type not in ['member_avatar','qr_code','resume','logo']:
             re['error'] = error(4,'Parameter error')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
-        category = request.POST.get('category', '')
-        description = request.POST.get('description', '')
+        category = data_dict['category']
+        description = data_dict['description']
         file_obj = request.FILES.get('file', None)
         if file_obj:
             re['error'] = error(1, 'Success')
@@ -54,7 +56,7 @@ def upload_file(request):
                     id = category.split('_')[0]
                     companyinfo = Companyinfo.objects.get(id=id)
                 except:
-                    re['error'] = error(17,"Company does not exist,fail to upload qr code")
+                    re['error'] = error(17,"Company does not exist,fail to upload")
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
                 else:
                     if companyinfo.username != request.user.username:
