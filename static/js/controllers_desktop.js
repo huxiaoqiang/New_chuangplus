@@ -257,7 +257,7 @@ angular.module('chuangplus.controllers', []).
             var param = {
                "file_type":"logo",
                "description":"company logo",
-               "category":$scope.company_id + file_t
+               "category":$scope.company_id + '_'+file_t
             };
             var headers = {
                    'X-CSRFToken': $csrf.val(),
