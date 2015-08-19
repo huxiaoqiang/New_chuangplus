@@ -39,7 +39,7 @@ angular.module('chuangplus.controllers', []).
             $scope.position = $scope.company = $scope.login = $scope.resume = false;
         };
     }]).
-    controller('DT_LoginCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrMsgService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
+    controller('DT_LoginCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_LoginCtrl');
 
         $scope.login_info = {};
@@ -74,7 +74,7 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.refresh();
     }]).
-    controller('DT_RegisterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrMsgService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
+    controller('DT_RegisterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_RegisterCtrl');
         $scope.error = {};
         $scope.reg_info = {};
@@ -224,13 +224,14 @@ angular.module('chuangplus.controllers', []).
     controller('DT_CompanyResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyResumeCtrl');
     }]).
-    controller('DT_CompanyInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','$upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$upload){
+    controller('DT_CompanyInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, Upload){
         console.log('DT_CompanyInfoCtrl');
         if ($user.username() == undefined){
             window.location.href='/login';
         };
         $scope.company_id = "";
         $scope.companyinfo = {};
+        $scope.company_id = '';
         $scope.CEO = {
             "m_position":"CEO"
         };
@@ -239,28 +240,37 @@ angular.module('chuangplus.controllers', []).
             $http.get(urls.api+"/account/company/detail").
                 success(function(data){
                     $scope.companyinfo = data.data;
-                    $scope.company_id = data.data._id;
+                    $scope.company_id = data.data._id.$old;
                 });
         };
         $scope.get_company_info();
 
-        $scope.onFileSelect = function($files,f_type){
+        $scope.change_logo = function(){
+
+        };
+//        $scope.$watch('companyinfo.logo',function(file){
+//            $scope.upload($scope.file);
+//        });
+
+        $scope.onFileSelect = function($file,file_t){
             var param = {
-                'file_type': 'logo',
-                'category': $scope.company_id + '_' + f_type
+               "file_type":"logo",
+               "description":"",
+               "category":$scope.company_id +file_t
             };
             $csrf.set_csrf(param);
-            $scope.upload = $upload.upload({
-                url:urls.api+'/file/upload',
-                data:param,
-                file:$files[0]
+            Upload.upload({
+               url:urls.api+'/file/upload',
+               field: param,
+               file: $file
             }).
             progress(function(evt){
-                     console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-                }).
-            success(function(data){
-                    console.log("uoload logo successfully!");
-                });
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+            }).
+            success(function(data, status, headers, config){
+                console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
+            });
         };
 //        $scope.upload = function(file){
 //            Upload.upload({
