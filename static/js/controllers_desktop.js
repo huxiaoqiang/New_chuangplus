@@ -229,6 +229,7 @@ angular.module('chuangplus.controllers', []).
         if ($user.username() == undefined){
             window.location.href='/login';
         };
+        $scope.company_id = "";
         $scope.companyinfo = {};
         $scope.company_id = '';
         $scope.CEO = {
@@ -272,6 +273,22 @@ angular.module('chuangplus.controllers', []).
                 console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
             });
         };
+//        $scope.upload = function(file){
+//            Upload.upload({
+//               url:urls.api+'/file/upload',
+//               field:{
+//                   "file_type":"member_avatar",
+//                   "description":"CEO",
+//                   "category":company_id+"_CEO"
+//               },
+//               file:file
+//            }).
+//            progress(function(evt){}).
+//            success(function(data){
+//                console.log("upload CEO avatar successfully!");
+//                });
+//
+//        };
         $scope.create_company = function(){
             $csrf.set_csrf(companyinfo);
             $http.post(url.api+'/company/set', $.param($scope.companyinfo)).
@@ -283,16 +300,7 @@ angular.module('chuangplus.controllers', []).
                     console.log(data.error.message);
                 }
             });
-            $csrf.set_csrf($scope.CEO);
-            $http.post(url.api+'/member/create', $.param($scope.CEO)).
-                success(function(data){
-                if(data.error.code == 1){
-                    window.location.href='/company/infodetail';
-                }
-                else{
-                    console.log(data.error.message);
-                }
-            });
+
         };
     }]).
     controller('DT_CompanyInfoDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){

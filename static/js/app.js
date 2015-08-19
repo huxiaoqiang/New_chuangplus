@@ -7,7 +7,7 @@ angular.module('chuangplus', [
     'ui.tinymce',
     'ui.bootstrap',
     'ngCookies',
-    'ngFileUpload',
+    'angularFileUpload',
     'ngScrollTo',
     'angular-google-analytics',
     'chuangplus.filters',
