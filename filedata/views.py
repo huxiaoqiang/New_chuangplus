@@ -162,3 +162,42 @@ def delete_file(request,file_id = ''):
 @user_permission('login')
 def delete_file(request,file_id):
     pass
+
+
+
+def download_file_special(request, file_type='', category=''):
+    re = ''
+    print test
+    if request.method == 'GET':
+        if file_type in ['member_avatar','qr_code','resume','logo']:
+            files = File.objects(file_type=file_type, category=category)
+            if files.count() > 1:
+                for f in files[0:-1]:
+                    f.value.delete()
+                    f.delete()
+                f = files[-1]
+            elif files.count() == 1:
+                f = File.objects.get(file_type=file_type, category=category)
+            else:
+                try:
+                    f = File.objects.get(file_type=file_type, category='default_' + category.split('_')[-1])
+                except:
+                    re = u'文件不存在，下载失败'
+                    return HttpResponse(re)
+                else:
+                    resp = HttpResponse(f.value.read(), content_type=f.value.content_type)
+                    from urllib import quote_plus
+                    resp['Content-Disposition'] = 'attachment; filename="' + quote_plus(unicode(f.name).encode('utf8')) + '"'
+                    return resp
+                    
+            resp = HttpResponse(f.value.read(), content_type=f.value.content_type)
+            from urllib import quote_plus
+            resp['Content-Disposition'] = 'attachment; filename="' + quote_plus(unicode(f.name).encode('utf8')) + '"'
+            return resp
+        else:
+            re = '文件不存在，下载失败'
+            return HttpResponse(re)
+    else:
+        re = '错误，需要GET'
+    return HttpResponse(re)
+
