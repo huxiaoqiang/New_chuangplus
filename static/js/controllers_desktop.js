@@ -259,15 +259,20 @@ angular.module('chuangplus.controllers', []).
                "description":"company logo",
                "category":$scope.company_id + file_t
             };
+            var headers = {
+                   'X-CSRFToken': $csrf.val(),
+                   'Content-Type': file.type
+               };
             $csrf.set_csrf(param);
             Upload.upload({
                url:urls.api+'/file/upload',
                field: param,
+               headers:headers,
                file: file
             }).
             progress(function(evt){
-                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                $scope.progress= 'progress: ' + progressPercentage + '% ' + evt.config.file.name;
+//                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+//                $scope.progress= 'progress: ' + progressPercentage + '% ' + evt.config.file.name;
             }).
             success(function(data, status, headers, config){
                 console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
