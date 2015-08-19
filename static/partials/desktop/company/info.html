@@ -32,9 +32,10 @@
             <label for="logo" class="col-sm-3 control-label">公司logo</label>
             <div class="col-sm-6" ng-init="show_logo=false">
               <div class="file-upload">
-                <img ng-mouseover="show_logo=true" ng-mouseout="show_logo=false" ngf-src="file || '/static/image/logo/comp_prev.jpg'">
-                <span ng-show="show_logo" ng-click="change_logo(companyinfo.logo)">上传logo</span>
-                <input ngf-select ng-model="logo" type="file" value="上传logo">
+                <img ng-src="/api/file/logo/55cb3caa38d95e3efb0a4660_logo/download_special" ng-show="logo!=null">
+                <img ng-show="logo == null" ng-mouseover="show_logo=true" ng-mouseout="show_logo=false" src="/static/image/logo/comp_prev.jpg">
+                <span ng-show="show_logo">上传logo</span>
+                <input ngf-select ng-model="logo" type="file"  ngf-accept="'image/*'" accept="image/*"  ngf-max-size="1M" required>
                 <p>[[progress]]</p>
               </div>
             </div>

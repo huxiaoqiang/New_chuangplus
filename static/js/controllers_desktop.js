@@ -248,7 +248,7 @@ angular.module('chuangplus.controllers', []).
         $scope.get_company_info();
 
         $scope.$watch('logo',function(logo){
-          if (!logo.$error) {
+          if (logo != undefined && !logo.$error) {
             $scope.upload($scope.logo,'logo');
           }
         });
