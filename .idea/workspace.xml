@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/controllers_desktop.js" afterPath="$PROJECT_DIR$/static/js/controllers_desktop.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/filedata/views.py" afterPath="$PROJECT_DIR$/filedata/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="chuangplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,7 +30,7 @@
           <file leaf-file-name="info.html" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/info.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="32" column="60" selection-start="1637" selection-end="1637" vertical-scroll-proportion="0.675" vertical-offset="419" max-vertical-offset="1558">
+                <state line="32" column="60" selection-start="1637" selection-end="1637" vertical-scroll-proportion="0.3129139" vertical-offset="419" max-vertical-offset="1558">
                   <folding />
                 </state>
               </provider>
@@ -135,7 +133,7 @@
           <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/filedata/views.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="58" column="83" selection-start="2707" selection-end="2707" vertical-scroll-proportion="0.572327" vertical-offset="787" max-vertical-offset="3097">
+                <state line="12" column="0" selection-start="334" selection-end="334" vertical-scroll-proportion="0.14797507" vertical-offset="0" max-vertical-offset="3097">
                   <folding />
                 </state>
               </provider>
@@ -587,7 +585,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20925808" sideWeight="0.5460894" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.45251396" sideWeight="0.5823681" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45251396" sideWeight="0.5823681" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5083799" sideWeight="0.41763192" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -668,7 +666,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/info.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="60" selection-start="1637" selection-end="1637" vertical-scroll-proportion="0.675" vertical-offset="419" max-vertical-offset="1558">
+        <state line="32" column="60" selection-start="1637" selection-end="1637" vertical-scroll-proportion="0.3129139" vertical-offset="419" max-vertical-offset="1558">
           <folding />
         </state>
       </provider>
@@ -745,7 +743,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/filedata/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="83" selection-start="2707" selection-end="2707" vertical-scroll-proportion="0.572327" vertical-offset="787" max-vertical-offset="3097">
+        <state line="12" column="0" selection-start="334" selection-end="334" vertical-scroll-proportion="0.14797507" vertical-offset="0" max-vertical-offset="3097">
           <folding />
         </state>
       </provider>
