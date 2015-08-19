@@ -74,12 +74,7 @@ def upload_file(request):
                     except DatabaseError:
                         re['error'] = error(250,'Database error: Failed to save file!')
                         return HttpResponse(json.dumps(re), content_type = 'application/json')
-                    try:
-                        companyinfo.qrcode = f
-                        companyinfo.save()
-                    except DatabaseError:
-                        re['error'] = error(250,'Database error: Failed to save companyinfo!')
-                        return HttpResponse(json.dumps(re), content_type = 'application/json')
+
                     re['error'] = error(1, 'file upload successfully')
                     re['data'] = str(f.id)
 
