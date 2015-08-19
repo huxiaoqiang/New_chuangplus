@@ -239,34 +239,35 @@ angular.module('chuangplus.controllers', []).
         $scope.get_company_info = function(){
             $http.get(urls.api+"/account/company/detail").
                 success(function(data){
-                    $scope.companyinfo = data.data;
-                    $scope.company_id = data.data._id.$oid;
+                    if(data.error.code == 1){
+                        $scope.companyinfo = data.data;
+                        $scope.company_id = data.data._id.$oid;
+                    }
                 });
         };
         $scope.get_company_info();
 
-        $scope.change_logo = function(){
+        $scope.$watch('logo',function(logo){
+          if (!logo.$error) {
+            $scope.upload($scope.logo,'logo');
+          }
+        });
 
-        };
-//        $scope.$watch('companyinfo.logo',function(file){
-//            $scope.upload($scope.file);
-//        });
-
-        $scope.onFileSelect = function($file,file_t){
+        $scope.upload = function(file,file_t){
             var param = {
                "file_type":"logo",
-               "description":"",
-               "category":$scope.company_id +file_t
+               "description":"company logo",
+               "category":$scope.company_id + file_t
             };
             $csrf.set_csrf(param);
             Upload.upload({
                url:urls.api+'/file/upload',
                field: param,
-               file: $file
+               file: file
             }).
             progress(function(evt){
                 var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+                $scope.progress= 'progress: ' + progressPercentage + '% ' + evt.config.file.name;
             }).
             success(function(data, status, headers, config){
                 console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
