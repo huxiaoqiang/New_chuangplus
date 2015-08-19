@@ -263,7 +263,6 @@ angular.module('chuangplus.controllers', []).
                    'X-CSRFToken': $csrf.val(),
                    'Content-Type': file.type
                };
-            $csrf.set_csrf(param);
             Upload.upload({
                url:urls.api+'/file/upload',
                field: param,
@@ -275,7 +274,13 @@ angular.module('chuangplus.controllers', []).
 //                $scope.progress= 'progress: ' + progressPercentage + '% ' + evt.config.file.name;
             }).
             success(function(data, status, headers, config){
-                console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
+                if(data.error.code == 1)
+                {
+                    console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
+                }
+                else{
+                    console.log(data.error.message)
+                }
             });
         };
 //        $scope.upload = function(file){
