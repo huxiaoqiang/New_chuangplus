@@ -18,7 +18,7 @@ angular.module('chuangplus.services', []).
             }
         };
     }]).
-    service("ErrMsgService",['$cookies' ,function($cookies){
+    service("ErrorService",['$cookies' ,function($cookies){
         var error_message = {
             'code15':"文件大小超过10M",
             'code18':"没有上传文件权限",
@@ -75,21 +75,17 @@ angular.module('chuangplus.services', []).
         };
         return {
             'format_error': function (msg,error) {
-                if(msg != '' && error.code == 1)
-                {
+                if(msg != '' && error.code == 1){
                     error.message = msg;
                     error.class = "alert alert-success";
                 }
-                else
-                {
+                else{
                     error.class = "alert alert-danger";
                     error.message = msg;
-                    if(error.code != -1)
-                    {
+                    if(error.code != -1){
                         error.code_key = 'code'+error.code;
                         error.message = error_message[error.code_key];
                     }
-
                 }
                 error.show = true;
                 return error;

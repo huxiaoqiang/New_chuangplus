@@ -34,7 +34,7 @@
               <div class="file-upload">
                 <img ng-mouseover="show_logo=true" ng-mouseout="show_logo=false" src="/static/image/logo/comp_prev.jpg">
                 <span ng-show="show_logo" ng-click="change_logo(companyinfo.logo)">上传logo</span>
-                <input hidden="" ng-model="companyinfo.logo" type="file" ngf-select>
+                <input ngf-select ngf-change="onFileSelect($file,'logo')" type="file" value="上传logo">
               </div>
             </div>
           </div>
