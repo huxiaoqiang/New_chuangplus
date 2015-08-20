@@ -252,11 +252,6 @@ angular.module('chuangplus.controllers', []).
             $scope.upload($scope.logo,'logo');
           }
         });
-        $scope.$watch('CEO_avatar',function(CEO_avatar){
-          if (CEO_avatar != undefined && !CEO_avatar.$error) {
-            $scope.upload($scope.CEO_avatar,'CEOavatar');
-          }
-        });
         $scope.upload = function(file,file_t){
             var param = {
                "file_type":file_t,

@@ -35,8 +35,7 @@
             <label for="logo" class="col-sm-3 control-label">公司logo</label>
             <div class="col-sm-6">
               <div class="file-upload">
-                <img src="/api/file/logo/[[company_id]]_logo/download_special" ng-if='logo!=null'>
-                <img src="/static/image/logo/comp_prev.jpg" ng-if="logo==null">
+                <img ngf-src="logo">
                 <input ngf-select ng-model="logo" type="file" value="上传logo">
               </div>
             </div>
@@ -60,10 +59,9 @@
             <label for="avatar" class="col-sm-3 control-label">CEO头像</label>
             <div class="col-sm-6">
               <div class="file-upload">
-                <img src="/api/file/avatar/[[company_id]]_CEOavatar/download_special" ng-if='CEOavatar!=null'>
-                <img src="/static/image/logo/comp_prev.jpg" ng-if="CEOavatar==null">
-                <input ngf-select ng-model="CEO_avatar" type="file">
-              </div>
+                <img ngf-src="CEOavatar">
+                <input ng-model="CEOavatar" ngf-select="upload($file,'CEOavatar')" type="file"> 
+             </div>
             </div>
           </div>
 
