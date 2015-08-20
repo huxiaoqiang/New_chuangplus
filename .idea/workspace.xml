@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/lib/fileupload/angular-file-upload.js" afterPath="$PROJECT_DIR$/static/lib/fileupload/angular-file-upload.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/lib/fileupload/angular-file-upload.min.js" afterPath="$PROJECT_DIR$/static/lib/fileupload/angular-file-upload.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/controllers_desktop.js" afterPath="$PROJECT_DIR$/static/js/controllers_desktop.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/company/info.html" afterPath="$PROJECT_DIR$/static/partials/desktop/company/info.html" />
     </list>
@@ -25,22 +27,13 @@
     <favorites_list name="chuangplus" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5186615">
+    <splitter split-orientation="horizontal" split-proportion="0.53474903">
       <split-first>
         <leaf>
-          <file leaf-file-name="info.html" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="info.html" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/info.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="63" column="60" selection-start="3193" selection-end="3193" vertical-scroll-proportion="0.7284345" vertical-offset="741" max-vertical-offset="1615">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/account/models.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="83" column="18" selection-start="3272" selection-end="3286" vertical-scroll-proportion="0.0" vertical-offset="1577" max-vertical-offset="2147">
+                <state line="43" column="0" selection-start="2237" selection-end="2237" vertical-scroll-proportion="-10.857142" vertical-offset="513" max-vertical-offset="1615">
                   <folding />
                 </state>
               </provider>
@@ -82,6 +75,44 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="angular-file-upload.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/static/lib/fileupload/angular-file-upload.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="570" column="32" selection-start="17851" selection-end="17857" vertical-scroll-proportion="0.0" vertical-offset="10527" max-vertical-offset="22857">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="angular-file-upload.min.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/static/lib/fileupload/angular-file-upload.min.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="1" column="8146" selection-start="8159" selection-end="8159" vertical-scroll-proportion="-0.76" vertical-offset="0" max-vertical-offset="152">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="angular-file-upload-shim.min.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/static/lib/fileupload/angular-file-upload-shim.min.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="2" column="0" selection-start="7121" selection-end="7121" vertical-scroll-proportion="-1.52" vertical-offset="0" max-vertical-offset="152">
+                  <folding>
+                    <element signature="n#!!doc" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/filedata/models.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="7" column="40" selection-start="200" selection-end="200" vertical-scroll-proportion="0.2400722" vertical-offset="0" max-vertical-offset="554">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="set.html" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/partials/desktop/password/set.html">
               <provider selected="true" editor-type-id="text-editor">
@@ -98,7 +129,7 @@
           <file leaf-file-name="controllers_desktop.js" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="265" column="27" selection-start="12164" selection-end="12164" vertical-scroll-proportion="0.66056573" vertical-offset="4638" max-vertical-offset="10146">
+                <state line="254" column="21" selection-start="11713" selection-end="11719" vertical-scroll-proportion="0.31281197" vertical-offset="4638" max-vertical-offset="10051">
                   <folding />
                 </state>
               </provider>
@@ -181,21 +212,21 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/static/less/desktop/company_info_detail.less" />
-        <option value="$PROJECT_DIR$/filedata/models.py" />
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/account/urls.py" />
         <option value="$PROJECT_DIR$/account/views.py" />
         <option value="$PROJECT_DIR$/static/lib/fileupload/angular-file-upload-shim.js" />
-        <option value="$PROJECT_DIR$/static/lib/fileupload/angular-file-upload.min.js" />
         <option value="$PROJECT_DIR$/static/lib/fileupload/angular-file-upload-shim.min.js" />
         <option value="$PROJECT_DIR$/static/js/services.js" />
         <option value="C:/Python27/Lib/site-packages/django/contrib/auth/__init__.py" />
-        <option value="$PROJECT_DIR$/static/lib/fileupload/angular-file-upload.js" />
         <option value="$PROJECT_DIR$/filedata/urls.py" />
         <option value="$PROJECT_DIR$/filedata/views.py" />
         <option value="$PROJECT_DIR$/static/js/app.js" />
         <option value="$PROJECT_DIR$/static/js/controllers_desktop.js" />
         <option value="$PROJECT_DIR$/static/partials/desktop/company/info.html" />
+        <option value="$PROJECT_DIR$/static/lib/fileupload/angular-file-upload.js" />
+        <option value="$PROJECT_DIR$/static/lib/fileupload/angular-file-upload.min.js" />
+        <option value="$PROJECT_DIR$/filedata/models.py" />
       </list>
     </option>
   </component>
@@ -259,43 +290,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chuangplus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chuangplus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="partials" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chuangplus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chuangplus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="filedata" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -564,7 +559,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20913771" sideWeight="0.547486" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20913771" sideWeight="0.547486" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29748604" sideWeight="0.5823681" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5083799" sideWeight="0.41763192" order="7" side_tool="true" content_ui="tabs" />
@@ -620,38 +615,10 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Python27/Lib/site-packages/django/contrib/auth/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="70" selection-start="3896" selection-end="3896" vertical-scroll-proportion="0.1590164" vertical-offset="1784" max-vertical-offset="3895" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/partials/desktop/password/set.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="526" selection-end="803" vertical-scroll-proportion="0.0" vertical-offset="57" max-vertical-offset="1045">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/less/desktop/company_info_detail.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="21" selection-start="106" selection-end="106" vertical-scroll-proportion="0.0" vertical-offset="76" max-vertical-offset="4389">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/common_api.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="0" selection-start="192" selection-end="192" vertical-scroll-proportion="0.0" vertical-offset="209" max-vertical-offset="1026">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/lib/fileupload/angular-file-upload.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="4194" selection-start="4206" selection-end="4207" vertical-scroll-proportion="0.032478634" vertical-offset="0" max-vertical-offset="585">
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -681,13 +648,6 @@
     <entry file="file://$PROJECT_DIR$/filedata/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="200" column="0" selection-start="8982" selection-end="8982" vertical-scroll-proportion="1.184765" vertical-offset="2936" max-vertical-offset="3781">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/lib/fileupload/angular-file-upload.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="717" selection-end="717" vertical-scroll-proportion="0.5437202" vertical-offset="57" max-vertical-offset="22857">
           <folding />
         </state>
       </provider>
@@ -722,14 +682,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="265" column="27" selection-start="12164" selection-end="12164" vertical-scroll-proportion="0.66056573" vertical-offset="4638" max-vertical-offset="10146">
+        <state line="254" column="21" selection-start="11713" selection-end="11719" vertical-scroll-proportion="0.31281197" vertical-offset="4638" max-vertical-offset="10051">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/info.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="60" selection-start="3193" selection-end="3193" vertical-scroll-proportion="0.7284345" vertical-offset="741" max-vertical-offset="1615">
+        <state line="43" column="0" selection-start="2237" selection-end="2237" vertical-scroll-proportion="-10.857142" vertical-offset="513" max-vertical-offset="1615">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/lib/fileupload/angular-file-upload.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="570" column="32" selection-start="17851" selection-end="17857" vertical-scroll-proportion="0.0" vertical-offset="10527" max-vertical-offset="22857">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/lib/fileupload/angular-file-upload.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="8146" selection-start="8159" selection-end="8159" vertical-scroll-proportion="-0.76" vertical-offset="0" max-vertical-offset="152">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/lib/fileupload/angular-file-upload-shim.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="0" selection-start="7121" selection-end="7121" vertical-scroll-proportion="-1.52" vertical-offset="0" max-vertical-offset="152">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/account/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="83" column="18" selection-start="3272" selection-end="3286" vertical-scroll-proportion="0.0" vertical-offset="1577" max-vertical-offset="2147">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filedata/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="40" selection-start="200" selection-end="200" vertical-scroll-proportion="0.2400722" vertical-offset="0" max-vertical-offset="554">
           <folding />
         </state>
       </provider>

@@ -573,8 +573,8 @@ ngFileUpload.service('UploadBase', ['$http', '$q', '$timeout', function ($http, 
       restrict: 'AE',
       link: function (scope, elem, attr) {
         $timeout(function () {
-          elem.attr('src', '{{(' + attr.ngfSrc + ') | ngfDataUrl' +
-            ($parse(attr.ngfNoObjectUrl)(scope) === true ? ':true' : '') + '}}');
+          elem.attr('src', '[[(' + attr.ngfSrc + ') | ngfDataUrl' +
+            ($parse(attr.ngfNoObjectUrl)(scope) === true ? ':true' : '') + ']]');
           attr.$set('ngfSrc', null);
           $compile(elem)(scope);
         });
