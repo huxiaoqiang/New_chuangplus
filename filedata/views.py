@@ -17,7 +17,7 @@ def upload_file(request):
         data = request.POST.get('data','')
         data_dict = eval(data)
         file_type = data_dict['file_type']
-        if file_type not in ['member_avatar','qr_code','resume','logo']:
+        if file_type not in ['CEOavatar','memberavatar','qrcode','resume','logo']:
             re['error'] = error(4,'Parameter error')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         category = data_dict['category']
@@ -28,7 +28,7 @@ def upload_file(request):
             if file_obj.size > 10000000:
                 re['error'] = error(15,"File size is bigger than 10M!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
-            if file_type == "member_avatar":
+            if file_type in["memberavatar","CEOavatar"]:
                 try:
                     id = category.split('_')[0]
                     companyinfo = Companyinfo.objects.get(id=id)
@@ -51,7 +51,7 @@ def upload_file(request):
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
                 re['error'] = error(1,"file upload successfully")
                 re['data'] = str(f.id)
-            elif file_type in['qr_code','logo']:
+            elif file_type in['qrcode','logo']:
                 try:
                     id = category.split('_')[0]
                     companyinfo = Companyinfo.objects.get(id=id)
@@ -167,7 +167,7 @@ def delete_file(request,file_id):
 def download_file_special(request, file_type='', category=''):
     re = ''
     if request.method == 'GET':
-        if file_type in ['member_avatar','qr_code','resume','logo']:
+        if file_type in ['CEOavatar','memberavatar','qrcode','resume','logo']:
             files = File.objects(file_type=file_type, category=category)
             if files.count() > 1:
                 for f in files[0:-1]:
