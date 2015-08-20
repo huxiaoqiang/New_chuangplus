@@ -208,7 +208,7 @@ angular.module('chuangplus.controllers', []).
     controller('DT_InternCompanyFavorCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_InternCompanyFavorCtrl');
     }]).
-    controller('DT_InternPositionFavorCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_InternPositionFavorCtrl',['$scope','$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_InternPositionFavorCtrl');
     }]).
     controller('DT_InternResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
@@ -226,9 +226,9 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_CompanyInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','Upload','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, Upload,$errMsg){
         console.log('DT_CompanyInfoCtrl');
-//        if ($user.username() == undefined){
-//            window.location.href='/login';
-//        };
+        if ($user.username() == undefined){
+            window.location.href='/login';
+        };
         $scope.company_id = "";
         $scope.companyinfo = {};
         $scope.company_id = '';
@@ -247,11 +247,6 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.get_company_info();
 
-        $scope.$watch('logo',function(logo){
-          if (logo != undefined && !logo.$error) {
-            $scope.upload($scope.logo,'logo');
-          }
-        });
         $scope.upload = function(file,file_t){
             var param = {
                "file_type":file_t,
@@ -282,12 +277,24 @@ angular.module('chuangplus.controllers', []).
                 }
             });
         };
-
+        $scope.create_CEO = function(){
+	    $csrf.set_csrf($scope.CEO);
+	    $http.post(urls.api+'/account/member/create',$.param($scope.CEO)).
+		success(function(data){
+		    if(data.error.code == 1){
+			
+		    }
+		    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+		    }
+		});
+	};
         $scope.create_company = function(){
-            $csrf.set_csrf(companyinfo);
-            $http.post(url.api+'/company/set', $.param($scope.companyinfo)).
+            $csrf.set_csrf($scope.companyinfo);
+            $http.post(urls.api+'/account/company/'+$scope.company_id+'/set', $.param($scope.companyinfo)).
                 success(function(data){
                     if(data.error.code == 1){
+			$scope.create_CEO();
                         window.location.href='/company/'+$scope.company_id+ '/infodetail';
                     }
                     else{
@@ -300,7 +307,7 @@ angular.module('chuangplus.controllers', []).
             return ngModelController.$error[error];
         };
     }]).
-    controller('DT_CompanyInfoDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_CompanyInfoDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanyInfoDetailCtrl');
         $scope.welfare_tags = {
             "tag0":
@@ -354,13 +361,44 @@ angular.module('chuangplus.controllers', []).
                 "value" :"班车接送"
             }
         };
-        $scope.member_list=[
-        {
-            "m_name":"宁博",
-            "m_position":"CEO",
-            "m_introduction": "描述"
-        }];
+	$scope.company_id = $routeParams.company_id;
+        $scope.companyinfo = {};
+        $scope.get_company_info = function(){
+            $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.companyinfo = data.data;
+                    }
+                });
+        };
+        $scope.get_company_info();
+        $scope.get_member_list = function(){
+	    $http.get(urls.api+"/account/member/"+$scope.company_id+"/list").
+		success(function(data){
+		    if(data.error.code == 1){
+			$scope.member_list = data.data;
+		    }
+		    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+		    }
+		});
+	};
+        $scope.member_list=[];
+        $scope.get_member_list();
+        
+	$scope.get_financing_list = function(){
+	    $http.get(urls.api+"/account/financing/"+$scope.company_id+"/list").
+		success(function(data){
+		    if(data.error.code == 1){
+			$scope.financing_list = data.data;
+		    }
+		    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+		    }
+		});
+	};
         $scope.financing_list=[];
+	$scope.get_financing_list();
         $scope.financing_add = {
             "stage":"",
             "organization":"",
