@@ -185,7 +185,8 @@
                         <span class="delete" ng-click="delete_member($index)"><i class=" icon-remove"></i></span>
                         <div class="first-level">
                             <div class="col-sm-4">
-                                <img src="/static/image/logo/comp_prev.jpg"><br/>
+                                <img ng-if="$index==0" src="/api/file/CEOavatar/[[company_id]]_CEOavatar/download_special"><br/>
+                                <img ng-if="$index!=0" src="/api/file/avatar/[[company_id]]_mem[[$index]]/download_special"><br/>
                             </div>
                             <div class="col-sm-8 name-position">
                                 <span>[[member_info.m_name]]</span><br/>
