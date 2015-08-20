@@ -473,8 +473,11 @@ def get_financinginfo_list(request,company_id):
             financinginfo_list = companyinfo.financings
         except DatabaseError:
             re['error'] = error(250,'Database error: Failed to get')
-        re['data'] = json.loads(financinginfo_list.to_json())
         re['error'] = error(1,"get financinginfo_list successfully")
+        datalist = []
+        for financinginfo in financinginfo_list:
+            datalist.append(json.loads(financinginfo.to_json()))
+        re['data'] = datalist
     else:
         re['error'] = error(3,"error, need GET")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -585,7 +588,10 @@ def get_member_list(request,company_id):
              re['error'] = error(250,'Database error: Failed to Get')
              return HttpResponse(json.dumps(re), content_type = 'application/json')
         re['error'] = error(1,"get memberlist successfully")
-        re['data'] = json.loads(member_list.to_json())
+        datalist = []
+        for member in member_list:
+            datalist.append(json.loads(member.to_json()))
+        re['data'] = datalist
     else:
         re['error'] = error(3,"error,need GET")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
