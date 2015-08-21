@@ -417,27 +417,6 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.financing_list=[];
         $scope.get_financing_list();
-        $scope.financing_add = {
-            "stage":"",
-            "organization":"",
-            "amount": ""
-            };
-        $scope.financing = {
-          "stage":{
-            "seed"  :"种子轮",
-            "angel" :"天使轮",
-            "A"      :"A轮",
-            "B"      :"B轮",
-            "C"      :"C轮",
-            "D_plus":"D及D以上"
-           },
-          "amount":{
-            "ten":"十万级",
-            "hundred":"百万级",
-            "thousand":"千万级",
-            "thousand_plus":"亿级"
-          }
-        };
         $scope.old_team_description = "";
         $scope.old_company_description = "";
 
@@ -517,7 +496,6 @@ angular.module('chuangplus.controllers', []).
             success(function(data, status, headers, config){
                 if(data.error.code == 1){
                     console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
-                    $scope.avatar = null;
                 }
                 else{
                     console.log(data.error.message);
@@ -532,6 +510,7 @@ angular.module('chuangplus.controllers', []).
                     if(data.error.code == 1){
                         $scope.get_member_list();
                         $scope.member_add = null;
+                        $scope.avatar = null;
                         $('#myModal').modal('hide');
                     }
                     else{
