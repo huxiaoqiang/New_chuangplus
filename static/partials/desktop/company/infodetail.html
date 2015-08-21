@@ -161,13 +161,13 @@
             <div class="opt-header">
                 <h3>团队成员</h3>
                 <!-- Button trigger modal -->
-                <span data-toggle="modal" data-target="#myModal" ng-click="addmember_modal=true"><i class="icon-plus-sign icon-2x"></i></span>
+                <span data-toggle="modal" data-target="#myModal"><i class="icon-plus-sign icon-2x"></i></span>
             </div>
             <div class="divider-small"><span></span></div>
 
             <div ng-repeat="member_info in member_list" class="member_list">
                 <div class="member-card sub-form form-horizontal">
-                   <button ng-show="member_info.m_position == 'CEO'" type="button" class="close" aria-label="Close" data-target="#delete_member"  data-toggle="modal" ng-click="delete_index=$index" >
+                   <button ng-show="member_info.m_position == 'CEO'" type="button" class="close" aria-label="Close" data-target="#delete_member"  data-toggle="modal" ng-click="get_delete_index($index)">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <div class="first-level">
@@ -247,7 +247,7 @@
        <form class="member_add form-horizontal" name="memberAddForm" ng-submit="add_member()">
            <div class="col-md-4">
                 <div ng-model="avatar" ngf-select="upload($file,'avatar','[[member_number]]')" required>
-                    <img ngf-src="avatar">
+                    <img ngf-src="avatar || '/static/image/logo/qrcode.jpg'">
                 </div>
             </div>
             <div class="col-md-8">

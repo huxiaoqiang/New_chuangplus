@@ -122,13 +122,7 @@ angular.module('chuangplus.services', []).
                 return user.id;
             },
             'role': function(){
-                if(!('role' in user)){
-                    return 1;
-                }
                 return user.role;
-            },
-            'roles': function(){ //What's this?
-                return user.roles;
             },
             'school_manager': function(){
                 if(!('role' in user)){

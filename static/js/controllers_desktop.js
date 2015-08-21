@@ -8,6 +8,22 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_HeaderCtrl');
+        $scope.get_company_info = function(){
+            $http.get(urls.api+"/account/company/detail").
+                success(function(data){
+                    if(data.error.code == 1){
+                        if(data.data.abbreviation != null){
+                            $scope.url = '/company/infodetail';
+                        }
+                        else{
+                            $scope.url = '/company/info';
+                        }
+                    }
+                });
+        };
+        if($user.role()==1){
+            $scope.get_company_info();
+        }
         $scope.logout = function(){
             $http.get(urls.api+"/account/logout").
                 success(function(data){
@@ -522,10 +538,17 @@ angular.module('chuangplus.controllers', []).
                     }
                 });
         };
-        $scope.delete_member = function($index){
-        $http.post(urls.api+"/account/member/"+$scope.member_list[$index]._id.$oid+"/delete").
+        $scope.get_delete_index = function($index){
+            $scope.delete_index = $index;
+        };
+        $scope.delete_member = function(index){
+        var param = {
+            "csrfmiddlewaretoken" : $csrf.val()
+        };
+        $http.post(urls.api+"/account/member/"+$scope.member_list[index]._id.$oid+"/delete", $.param(param)).
             success(function(data){
                 if(data.error.code == 1){
+                    $scope.get_member_list();
                     $('#delete_member').modal('hide');
                 }
                 else{
