@@ -1,8 +1,7 @@
 <div id="container">
     <div id="company_info_detail">
-        <form class="form-horizontal"  name="companyDetailForm">
+        <form class="form-horizontal"  name="companyDetailForm" ng-submit="save_company_info()">
             <div class="basic_info">
-
                 <div class="col-md-8">
                     <div class="form-group">
                         <label for="company_name" class="col-md-4 control-label">公司简称</label>
@@ -14,7 +13,7 @@
                     <div class="form-group">
                         <label for="company_ICregist_name" class="col-md-4 control-label">公司工商注册名</label>
                         <div class="col-md-8">
-                          <input name="ICregist_name" type="text" class="form-control" ng-model="companyinfo.ICregist_name">
+                          <input name="ICregist_name" type="text" class="form-control" ng-model="companyinfo.ICregist_name" required="">
                         </div>
                     </div>
 
@@ -36,6 +35,12 @@
                         <label for="company_homepage" class="col-md-4 control-label">公司主页</label>
                         <div class="col-md-8">
                           <input name="homepage" type="text" class="form-control" ng-model="companyinfo.homepage">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="hr_cellphone" class="col-md-4 control-label">hr电话</label>
+                        <div class="col-md-8">
+                          <input name="hr_cellphone" type="number" class="form-control" ng-model="companyinfo.hr_cellphone">
                         </div>
                     </div>
 
@@ -90,21 +95,21 @@
                     <div class="form-group">
                         <label class="col-md-4"></label>
                         <div class="col-md-8">
-                            <input type="button" class="btn btn-primary" value="保存">
-                            <input type="button" class="btn upload-btn-group" value="取消">
+                            <button class="btn btn-primary">保存</button>
+                            <input type="button" class="btn upload-btn-group" value="取消"><br/>
+                            <div id="err-msg" ng-show="error.show"  ng-class="error.class">[[error.message]]</div>
                         </div>
                     </div>
                 </div>
 
-
-
                 <div class="col-md-4">
-                  <img ng-src="/api/file/logo/[[company_id]]_logo/download_special"><br/>
-                  <input type="button" class="btn btn-primary" value="更改logo">
+                  <img class="logoimg" ng-if="logo==null" ng-src="/api/file/logo/[[company_id]]_logo/download_special"><br/>
+                  <img class="logoimg" ng-if="logo!=null" ngf-src="logo"><br/>
+                  <input ng-model="logo"  ngf-select="upload($file,'logo')" type="file" value="更改logo">
                 </div>
-
             </div>
         </form>
+
         <div class="divider"></div>
 
         <div class="col-md-4 explanation">
@@ -114,6 +119,76 @@
         </div>
 
         <div class="option_info col-md-7">
+        <div class="option company_intro" ng-init="edit_company_intro=false">
+            <div class="opt-header">
+                <h3>公司介绍</h3>
+                <span ng-click="edit_company_intro=true"><i class=" icon-pencil icon-large"></i></span>
+            </div>
+            <div class="divider-small"><span></span></div>
+            <div class="add-company-intro" ng-click="edit_company_intro=true" ng-show="!edit_company_intro && (companyinfo.company_description==null ||companyinfo.company_description=='')">
+                <i class="icon-plus icon-large"></i>添加公司介绍
+            </div>
+            <p class="saved_description" ng-show="companyinfo.company_description!='' && edit_company_intro==false">[[companyinfo.company_description]]</p>
+            <textarea class="company-intro-textarea" placeholder="添加公司介绍" ng-model="companyinfo.company_description" ng-show="edit_company_intro"></textarea>
+            <div class="button">
+                <input ng-show="edit_company_intro" type="button" class="btn btn-primary" value="保存" ng-click="save_company_description()">
+                <input ng-show="edit_company_intro" type="button" class="btn upload-btn-groupr" value="取消" ng-click="company_cancel_edit()">
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="option team_intro" ng-init="edit_team_intro=false">
+            <div class="opt-header">
+                <h3>团队介绍</h3>
+                <span ng-click="edit_team_intro=true"><i class=" icon-pencil icon-large"></i></span>
+            </div>
+            <div class="divider-small"><span></span></div>
+            <div class="add-team-intro" ng-click="edit_team_intro=true" ng-show="!edit_team_intro && (companyinfo.team_description==''||companyinfo.team_description==null)">
+                <i class="icon-plus icon-large"></i>添加团队介绍
+            </div>
+            <p class="saved_description" ng-show="companyinfo.team_description!='' && edit_team_intro==false">[[companyinfo.team_description]]</p>
+            <textarea class="team-intro-textarea" placeholder="添加团队介绍" ng-model="companyinfo.team_description" ng-show="edit_team_intro"></textarea>
+            <div class="button">
+                <input ng-show="edit_team_intro" type="button" class="btn btn-primary" value="保存" ng-click="save_team_description()">
+                <input ng-show="edit_team_intro" type="button" class="btn upload-btn-groupr" value="取消" ng-click="cancel_edit()">
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="option member">
+            <div class="opt-header">
+                <h3>团队成员</h3>
+                <!-- Button trigger modal -->
+                <span data-toggle="modal" data-target="#myModal" ng-click="addmember_modal=true"><i class="icon-plus-sign icon-2x"></i></span>
+            </div>
+            <div class="divider-small"><span></span></div>
+
+            <div ng-repeat="member_info in member_list" class="member_list">
+                <div class="member-card sub-form form-horizontal">
+                   <button ng-show="member_info.m_position == 'CEO'" type="button" class="close" aria-label="Close" data-target="#delete_member"  data-toggle="modal" ng-click="delete_index=$index" >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="first-level">
+                        <div class="col-sm-4">
+                            <img ng-if="$index==0" src="/api/file/CEOavatar/[[company_id]]_CEOavatar/download_special"><br/>
+                            <img ng-if="$index!=0" src="/api/file/avatar/[[company_id]]_[[$index]]/download_special"><br/>
+                        </div>
+                        <div class="col-sm-8 name-position">
+                            <span>[[member_info.m_name]]</span><br/>
+                            <span>[[member_info.m_position]]</span><br/>
+                        </div>
+                    </div>
+                    <div class="second-level">
+                        <span>[[member_info.m_introduction]]</span>
+                    </div>
+                </div>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+        <div class="divider"></div>
+
             <div class="option financing">
                 <div class="opt-header">
                     <h3>融资经历</h3>
@@ -153,73 +228,75 @@
             </div>
             <div class="divider"></div>
 
-            <div class="option team_intro" ng-init="edit_team_intro=false">
-                <div class="opt-header">
-                    <h3>团队介绍</h3>
-                    <span ng-click="edit_team_intro=true"><i class=" icon-pencil icon-large"></i></span>
-                </div>
-                <div class="divider-small"><span></span></div>
-                <div class="add-team-intro" ng-click="edit_team_intro=true" ng-show="!edit_team_intro && team_description==''">
-                    <i class="icon-plus icon-large"></i>添加团队介绍
-                </div>
-                <p class="saved_description" ng-show="team_description!='' && edit_team_intro==false">[[team_description]]</p>
-                <textarea class="team-intro-textarea" placeholder="添加团队介绍" ng-model="team_description" ng-show="edit_team_intro"></textarea>
-                <div class="button">
-                    <input ng-show="edit_team_intro" type="button" class="btn btn-primary" value="保存" ng-click="save_team_description()">
-                    <input ng-show="edit_team_intro" type="button" class="btn upload-btn-groupr" value="取消" ng-click="cancel_edit()">
-                </div>
-                <div style="clear:both;"></div>
-            </div>
-            <div class="divider"></div>
-
-            <div class="option member">
-                <div class="opt-header">
-                    <h3>团队成员</h3>
-                    <span ng-click="add_member()"><i class="icon-plus-sign icon-2x"></i></span>
-                </div>
-                <div class="divider-small"><span></span></div>
-
-
-                <div ng-repeat="member_info in member_list" class="member_list">
-                    <div class="member-card sub-form form-horizontal">
-                        <span class="delete" ng-click="delete_member($index)"><i class=" icon-remove"></i></span>
-                        <div class="first-level">
-                            <div class="col-sm-4">
-                                <img ng-if="$index==0" src="/api/file/CEOavatar/[[company_id]]_CEOavatar/download_special"><br/>
-                                <img ng-if="$index!=0" src="/api/file/avatar/[[company_id]]_mem[[$index]]/download_special"><br/>
-                            </div>
-                            <div class="col-sm-8 name-position">
-                                <span>[[member_info.m_name]]</span><br/>
-                                <span>[[member_info.m_position]]</span><br/>
-                            </div>
-                        </div>
-                        <div class="second-level">
-                            <span>[[member_info.m_introduction]]</span>
-                        </div>
-                    </div>
-                </div>
-                <div style="clear:both;"></div>
-            </div>
-            <div class="divider"></div>
-
-            <div class="option company_intro" ng-init="edit_company_intro=false">
-                <div class="opt-header">
-                    <h3>公司介绍</h3>
-                    <span ng-click="edit_company_intro=true"><i class=" icon-pencil icon-large"></i></span>
-                </div>
-                <div class="divider-small"><span></span></div>
-                <div class="add-company-intro" ng-click="edit_company_intro=true" ng-show="!edit_company_intro && company_description==''">
-                    <i class="icon-plus icon-large"></i>添加公司介绍
-                </div>
-                <p class="saved_description" ng-show="company_description!='' && edit_company_intro==false">[[company_description]]</p>
-                <textarea class="company-intro-textarea" placeholder="添加公司介绍" ng-model="company_description" ng-show="edit_company_intro"></textarea>
-                <div class="button">
-                    <input ng-show="edit_company_intro" type="button" class="btn btn-primary" value="保存" ng-click="save_team_description()">
-                    <input ng-show="edit_company_intro" type="button" class="btn upload-btn-groupr" value="取消" ng-click="company_cancel_edit()">
-                </div>
-                <div style="clear:both;"></div>
-            </div>
-            <div class="divider"></div>
         </div>
     </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">添加成员</h4>
+      </div>
+      <div class="modal-body">
+       <form class="member_add form-horizontal" name="memberAddForm" ng-submit="add_member()">
+           <div class="col-md-4">
+                <div ng-model="avatar" ngf-select="upload($file,'avatar','[[member_number]]')" required>
+                    <img ngf-src="avatar">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <input type="text" ng-model="member_add.m_name" class="form-control" required  placeholder="成员姓名">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <input type="text" ng-model="member_add.m_position" class="form-control" required placeholder="成员职位">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <textarea ng-model="member_add.m_introduction" class="form-control" required placeholder="成员介绍"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+      </div>
+      <div style="clear:both;"></div>
+      <div class="modal-footer">
+        <input type="button" class="btn btn-default" data-dismiss="modal" value="取消">
+        <button type="button" ng-disabled="!memberAddForm.$valid" class="btn btn-primary" ng-click="add_member()">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="delete_member" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">删除成员:[[member_list[delete_index].m_name]]</h4>
+      </div>
+      <div class="modal-body">
+          确定删除成员[[member_list[delete_index].m_name]]？
+      </div>
+      <div style="clear:both;"></div>
+      <div class="modal-footer">
+        <input type="button" class="btn btn-default" data-dismiss="modal" value="取消">
+        <button type="button"class="btn btn-primary" ng-click="delete_member(delete_index)">确定</button>
+      </div>
+    </div>
+  </div>
 </div>
