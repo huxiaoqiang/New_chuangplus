@@ -1,4 +1,4 @@
-<div id="container">
+<div id="container" xmlns="http://www.w3.org/1999/html">
     <div id="company_info_detail">
         <form class="form-horizontal"  name="companyDetailForm" ng-submit="save_company_info()">
             <div class="basic_info">
@@ -167,7 +167,7 @@
 
             <div ng-repeat="member_info in member_list" class="member_list">
                 <div class="member-card sub-form form-horizontal">
-                   <button ng-show="member_info.m_position == 'CEO'" type="button" class="close" aria-label="Close" data-target="#delete_member"  data-toggle="modal" ng-click="get_delete_index($index)">
+                   <button type="button" class="close" aria-label="Close" data-target="#delete_member"  data-toggle="modal" ng-click="get_delete_index($index)">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <div class="first-level">
@@ -192,46 +192,26 @@
             <div class="option financing">
                 <div class="opt-header">
                     <h3>融资经历</h3>
-                    <span ng-click="add_financing()"><i class="icon-plus-sign icon-2x"></i></span>
+                    <span  data-toggle="modal" data-target="#add_financing"><i class="icon-plus-sign icon-2x"></i></span>
                 </div>
                 <div class="divider-small">
                     <span></span>
                 </div>
-                <div class="financing_list" ng-repeat="financing_add in financing_list">
-                    <select ng-model="financing_add.stage">
-                        <option value="" ng-selectd="financing_add.stage==''">选择轮数</option>
-                        <option value="seed" ng-selectd="financing_add.stage=='seed'">种子轮</option>
-                        <option value="angel" ng-selectd="financing_add.stage='angel'">天使轮</option>
-                        <option value="A" ng-selectd="financing_add.stage=='A'">A轮</option>
-                        <option value="B" ng-selectd="financing_add.stage=='B'">B轮</option>
-                        <option value="C" ng-selectd="financing_add.stage=='C'">C轮</option>
-                        <option value="D_plus" ng-selectd="financing_add.stage=='D'">D及D以上</option>
-                    </select>
-                    <input type="text" placeholder="请输入投资机构名称">
-                    <select ng-model="financing_add.amount">
-                        <option value="" ng-selectd="financing_add.amount==''">选择融资金额</option>
-                        <option value="ten" ng-selectd="financing_add.amount=='ten'">十万级</option>
-                        <option value="hundred" ng-selectd="financing_add.amount='hundred'">百万级</option>
-                        <option value="thousand" ng-selectd="financing_add.amount=='thousand'">千万级</option>
-                        <option value="thousand_plus" ng-selectd="financing_add.amount=='thousand_plus'">亿级</option>
-                    </select>
-                    <input type="button" class="btn btn-primary" value="保存">
-                    <input type="button" class="btn btn-danger" value="删除" ng-click="financing_add.show_warn=true">
-                    <span><i class="icon-ok-circle icon-large saved"></i></span>
-
-                    <div class="alert alert-block alert-danger" ng-show="financing_add.show_warn">
-                        <strong>确认删除？</strong>
-                        <input type="button" class="btn btn-danger" value="删除" ng-click="delete_financing($index)">
-                        <input type="button" class="btn upload-btn-groupr" value="取消" ng-click="financing_add.show_warn=false">
+                <div class="financing_list" ng-repeat="financing in financing_list">
+                    <div class="stage col-sm-3">[[financing.stage]]</div>
+                    <div class="organization col-sm-4">[[financing.organization]]</div>
+                    <div class="amount col-sm-3">[[financing.amount]]</div>
+                    <div class="col-sm-2">
+                        <button type="button" class="close" aria-label="Close" data-target="#delete_member"  data-toggle="modal" ng-click="get_delete_index($index)">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                 </div>
             </div>
             <div class="divider"></div>
-
         </div>
     </div>
 </div>
-
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
@@ -246,7 +226,7 @@
       <div class="modal-body">
        <form class="member_add form-horizontal" name="memberAddForm" ng-submit="add_member()">
            <div class="col-md-4">
-                <div ng-model="avatar" ngf-select="upload($file,'avatar','[[member_number]]')" required>
+                <div ng-model="avatar" ngf-select="upload($file,'memberavatar','[[member_number]]')" required>
                     <img ngf-src="avatar || '/static/image/logo/qrcode.jpg'">
                 </div>
             </div>
@@ -279,7 +259,7 @@
 </div>
 
 
-<!-- Modal -->
+<!-- delete_member Modal -->
 <div class="modal fade" id="delete_member" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -296,6 +276,77 @@
       <div class="modal-footer">
         <input type="button" class="btn btn-default" data-dismiss="modal" value="取消">
         <button type="button"class="btn btn-primary" ng-click="delete_member(delete_index)">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="add_financing" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">添加融资经历</h4>
+      </div>
+      <div class="modal-body">
+       <form class="financing_add form-horizontal" name="financingAddForm" ng-submit="add_financing()">
+           <div class="col-sm-12">
+             <span>融资轮数</span>
+             <select ng-model="financing_add.stage" required>
+                <option value="" ng-selectd="financing_add.stage==''">选择轮数</option>
+                <option value="seed" ng-selectd="financing_add.stage=='seed'">种子轮</option>
+                <option value="angel" ng-selectd="financing_add.stage='angel'">天使轮</option>
+                <option value="A" ng-selectd="financing_add.stage=='A'">A轮</option>
+                <option value="B" ng-selectd="financing_add.stage=='B'">B轮</option>
+                <option value="C" ng-selectd="financing_add.stage=='C'">C轮</option>
+                <option value="D_plus" ng-selectd="financing_add.stage=='D'">D及D以上</option>
+             </select>
+             <span>融资金额</span>
+               <select ng-model="financing_add.amount" required>
+                <option value="" ng-selectd="financing_add.amount==''">选择融资金额</option>
+                <option value="ten" ng-selectd="financing_add.amount=='ten'">十万级</option>
+                <option value="hundred" ng-selectd="financing_add.amount='hundred'">百万级</option>
+                <option value="thousand" ng-selectd="financing_add.amount=='thousand'">千万级</option>
+                <option value="thousand_plus" ng-selectd="financing_add.amount=='thousand_plus'">亿级</option>
+              </select>
+           </div>
+            <div class="col-sm-12">
+                <span>投资机构</span>
+                <input type="text" ng-model="financing_add.organization" placeholder="请输入投资机构名称" required>
+           </div>
+        </form>
+      </div>
+      <div style="clear:both;"></div>
+      <div class="modal-footer">
+        <input type="button" class="btn btn-default" data-dismiss="modal" value="取消" ng-click="financing_add=null">
+        <button type="button" ng-disabled="!financingAddForm.$valid" class="btn btn-primary" ng-click="add_financing()">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- delete_financing Modal -->
+<div class="modal fade" id="delete_financing" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="get_delete_index()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">删除融资经历</h4>
+      </div>
+      <div class="modal-body">
+          确定删除融资经历：</br>
+          [[financing_list[delete_index].organization]]对贵公司的[[financing_list[delete_index].stage]]投资？
+      </div>
+      <div style="clear:both;"></div>
+      <div class="modal-footer">
+        <input type="button" class="btn btn-default" data-dismiss="modal" value="取消">
+        <button type="button"class="btn btn-primary" ng-click="delete_financing(delete_index)">确定</button>
       </div>
     </div>
   </div>

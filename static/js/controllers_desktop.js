@@ -13,7 +13,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         if(data.data.abbreviation != null){
-                            $scope.url = '/company/infodetail';
+                            $scope.url = '/company/'+data.data._id.$oid+'/infodetail';
                         }
                         else{
                             $scope.url = '/company/info';
@@ -517,6 +517,7 @@ angular.module('chuangplus.controllers', []).
             success(function(data, status, headers, config){
                 if(data.error.code == 1){
                     console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
+                    $scope.avatar = null;
                 }
                 else{
                     console.log(data.error.message);
@@ -557,12 +558,34 @@ angular.module('chuangplus.controllers', []).
             });
         };
         $scope.add_financing = function(){
-            $scope.financing_list.push({});
+            $csrf.set_csrf($scope.financing_add);
+            $http.post(urls.api+'/account/financing/create',$.param($scope.financing_add)).
+            success(function(data){
+                if(data.error.code == 1){
+                    $scope.get_financing_list();
+                    $scope.financing_add = null;
+                    $('#add_financing').modal('hide');
+                }
+                else{
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
         };
         $scope.delete_financing = function(index){
-            $scope.financing_list.splice(index,1);
+            var param = {
+                "csrfmiddlewaretoken" : $csrf.val()
+            };
+            $http.post(urls.api+"/account/financing/"+$scope.financing_list[index]._id.$oid+"/delete", $.param(param)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.get_financing_list();
+                        $('#delete_financing').modal('hide');
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                    }
+                });
         };
-
     }]).
     controller('DT_PositionDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_PositionDetailCtrl');
