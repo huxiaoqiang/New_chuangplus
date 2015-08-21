@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/desktop/base.css" afterPath="$PROJECT_DIR$/static/css/desktop/base.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/company_info_detail.less" afterPath="$PROJECT_DIR$/static/less/desktop/company_info_detail.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/controllers_desktop.js" afterPath="$PROJECT_DIR$/static/js/controllers_desktop.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/company/infodetail.html" afterPath="$PROJECT_DIR$/static/partials/desktop/company/infodetail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="chuangplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,22 +28,19 @@
     <favorites_list name="chuangplus" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5083655">
+    <splitter split-orientation="horizontal" split-proportion="0.4967825">
       <split-first>
         <leaf>
-          <file leaf-file-name="infodetail.html" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="infodetail.html" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/infodetail.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="350" column="14" selection-start="19342" selection-end="19342" vertical-scroll-proportion="0.48154092" vertical-offset="4355" max-vertical-offset="5092">
+                <state line="118" column="40" selection-start="7049" selection-end="7049" vertical-scroll-proportion="0.7255217" vertical-offset="1790" max-vertical-offset="7049">
                   <folding>
-                    <element signature="n#style#0;n#div#4;n#div#0;n#div#3;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#4;n#div#2;n#div#3;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#3;n#div#4;n#div#3;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="tag#div#1" expanded="false" />
+                    <element signature="n#style#0;n#div#4;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#4;n#div#2;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#3;n#div#4;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                    <element signature="tag#div#2" expanded="false" />
                     <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-                    <element signature="tag#div#3" expanded="false" />
                     <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#3;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />
                   </folding>
@@ -88,10 +88,10 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="controllers_desktop.js" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="controllers_desktop.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="418" column="36" selection-start="17376" selection-end="17376" vertical-scroll-proportion="0.54689986" vertical-offset="6629" max-vertical-offset="11761">
+                <state line="413" column="0" selection-start="17392" selection-end="17392" vertical-scroll-proportion="-12.92" vertical-offset="6555" max-vertical-offset="11913">
                   <folding>
                     <element signature="e#14729#15868#0" expanded="false" />
                   </folding>
@@ -171,10 +171,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="company_info_detail.less" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="company_info_detail.less" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/static/less/desktop/company_info_detail.less">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="252" column="20" selection-start="5166" selection-end="5166" vertical-scroll-proportion="-8.301887" vertical-offset="4348" max-vertical-offset="4940">
+                <state line="53" column="25" selection-start="1042" selection-end="1042" vertical-scroll-proportion="0.59083194" vertical-offset="659" max-vertical-offset="4997">
                   <folding />
                 </state>
               </provider>
@@ -213,9 +213,9 @@
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/static/js/services.js" />
         <option value="$PROJECT_DIR$/templates/header.html" />
+        <option value="$PROJECT_DIR$/static/js/controllers_desktop.js" />
         <option value="$PROJECT_DIR$/static/less/desktop/company_info_detail.less" />
         <option value="$PROJECT_DIR$/static/partials/desktop/company/infodetail.html" />
-        <option value="$PROJECT_DIR$/static/js/controllers_desktop.js" />
       </list>
     </option>
   </component>
@@ -660,13 +660,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/less/desktop/company_info_detail.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="252" column="20" selection-start="5166" selection-end="5166" vertical-scroll-proportion="-8.301887" vertical-offset="4348" max-vertical-offset="4940">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/account/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="422" column="25" selection-start="17372" selection-end="17393" vertical-scroll-proportion="-6.08" vertical-offset="7695" max-vertical-offset="14212">
@@ -695,29 +688,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/infodetail.html">
+    <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="350" column="14" selection-start="19342" selection-end="19342" vertical-scroll-proportion="0.48154092" vertical-offset="4355" max-vertical-offset="5092">
+        <state line="413" column="0" selection-start="17392" selection-end="17392" vertical-scroll-proportion="-12.92" vertical-offset="6555" max-vertical-offset="11913">
           <folding>
-            <element signature="n#style#0;n#div#4;n#div#0;n#div#3;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#4;n#div#2;n#div#3;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#div#4;n#div#3;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="tag#div#1" expanded="false" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="tag#div#2" expanded="false" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="tag#div#3" expanded="false" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#3;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />
+            <element signature="e#14729#15868#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
+    <entry file="file://$PROJECT_DIR$/static/less/desktop/company_info_detail.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="418" column="36" selection-start="17376" selection-end="17376" vertical-scroll-proportion="0.54689986" vertical-offset="6629" max-vertical-offset="11761">
+        <state line="53" column="25" selection-start="1042" selection-end="1042" vertical-scroll-proportion="0.59083194" vertical-offset="659" max-vertical-offset="4997">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/infodetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="118" column="40" selection-start="7049" selection-end="7049" vertical-scroll-proportion="0.7255217" vertical-offset="1790" max-vertical-offset="7049">
           <folding>
-            <element signature="e#14729#15868#0" expanded="false" />
+            <element signature="n#style#0;n#div#4;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#div#2;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#4;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#3;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#4;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
