@@ -13,7 +13,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         if(data.data.abbreviation != null){
-                            $scope.url = '/company/infodetail';
+                            $scope.url = '/company/'+data.data._id.$oid+'/infodetail';
                         }
                         else{
                             $scope.url = '/company/info';
