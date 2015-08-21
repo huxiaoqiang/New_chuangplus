@@ -115,10 +115,8 @@
         <div class="col-md-4 explanation">
 
         </div>
-        <div class="col-md-1 v-divider">
-        </div>
 
-        <div class="option_info col-md-7">
+        <div class="option_info col-md-8">
         <div class="option company_intro" ng-init="edit_company_intro=false">
             <div class="opt-header">
                 <h3>公司介绍</h3>
@@ -173,7 +171,7 @@
                     <div class="first-level">
                         <div class="col-sm-4">
                             <img ng-if="$index==0" src="/api/file/CEOavatar/[[company_id]]_CEOavatar/download_special"><br/>
-                            <img ng-if="$index!=0" src="/api/file/avatar/[[company_id]]_[[$index]]/download_special"><br/>
+                            <img ng-if="$index!=0" src="/api/file/memberavatar/[[company_id]]_[[$index]]/download_special"><br/>
                         </div>
                         <div class="col-sm-8 name-position">
                             <span>[[member_info.m_name]]</span><br/>
@@ -198,18 +196,18 @@
                     <span></span>
                 </div>
                 <div class="financing_list" ng-repeat="financing in financing_list">
-                    <div class="stage col-sm-3"ng-if="financing.stage=='seed'">种子轮</div>
-                    <div class="stage col-sm-3" ng-if="financing.stage=='angel'">天使轮</div>
-                    <div class="stage col-sm-3" ng-if="financing.stage=='A'">A轮</div>
-                    <div class="stage col-sm-3" ng-if="financing.stage=='B'">B轮</div>
-                    <div class="stage col-sm-3" ng-if="financing.stage=='C'">C轮</div>
-                    <div class="stage col-sm-3" ng-if="financing.stage=='D_plus'">D轮及D轮以上</div>
-                    <div class="organization col-sm-4">[[financing.organization]]</div>
-                    <div class="amount col-sm-3" ng-if="financing.amount=='ten'">十万级</div>
-                    <div class="amount col-sm-3" ng-if="financing.amount=='hundred'">百万级</div>
-                    <div class="amount col-sm-3" ng-if="financing.amount=='thousand'">千万级</div>
-                    <div class="amount col-sm-3" ng-if="financing.amount=='thousand_plus'">亿级</div>
-                    <div class="col-sm-2">
+                    <div class="stage col-sm-2"ng-if="financing.stage=='seed'">种子轮</div>
+                    <div class="stage col-sm-2" ng-if="financing.stage=='angel'">天使轮</div>
+                    <div class="stage col-sm-2" ng-if="financing.stage=='A'">A轮</div>
+                    <div class="stage col-sm-2" ng-if="financing.stage=='B'">B轮</div>
+                    <div class="stage col-sm-2" ng-if="financing.stage=='C'">C轮</div>
+                    <div class="stage col-sm-2" ng-if="financing.stage=='D_plus'">D轮及D轮以上</div>
+                    <div class="organization col-sm-7">[[financing.organization]]</div>
+                    <div class="amount col-sm-2" ng-if="financing.amount=='ten'">十万级</div>
+                    <div class="amount col-sm-2" ng-if="financing.amount=='hundred'">百万级</div>
+                    <div class="amount col-sm-2" ng-if="financing.amount=='thousand'">千万级</div>
+                    <div class="amount col-sm-2" ng-if="financing.amount=='thousand_plus'">亿级</div>
+                    <div class="col-sm-1">
                         <button type="button" class="close" aria-label="Close" data-target="#delete_financing"  data-toggle="modal" ng-click="get_delete_index($index)">
                             <span aria-hidden="true">&times;</span>
                         </button>

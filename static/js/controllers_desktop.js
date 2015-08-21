@@ -384,6 +384,14 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.companyinfo = data.data;
+                        if(data.data.company_description == undefined)
+                            $scope.old_company_description = "";
+                        else
+                            $scope.old_company_description = data.data.company_description;
+                        if(data.data.member_description == undefined)
+                            $scope.old_member_description = "";
+                        else
+                            $scope.old_member_description = data.data.member_description;
                     }
                 });
             };
