@@ -556,6 +556,7 @@ def create_company_member(request):
             new_member.m_name = request.POST.get('m_name','')
             new_member.m_position = request.POST.get('m_position','')
             new_member.m_introduction = request.POST.get('m_introduction','')
+            new_member.m_avatar_id = request.POST.get('m_avatar_id','')
             new_member.company = companyinfo
             try:
                 new_member.save()
