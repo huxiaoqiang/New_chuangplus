@@ -146,9 +146,21 @@ def delete_file(request,file_id = ''):
             except:
                 re['error'] = error(31,'File does not exist, fail to delete the file')
             else:
-
                 f.value.delete()
                 f.delete()
+                #if f.file_type == 'memberavatar':
+                #    [company_id,index] = f.category.split("_")
+                #    index = int(index) + 1
+                #    while 1:
+                #        try:
+                #            category = company_id + "_" + str(index)
+                #            file = File.objects.get(file_type='memberavatar',category=category)
+                #            c_index = int(file.category.split("_")[1])-1
+                #            file.category = company_id + "_" + str(c_index)
+                #            file.save()
+                #            index = index + 1
+                #        except DoesNotExist:
+                #            break
                 re['error'] = error(1,'delete file successfully!')
         else:
             re['error'] = error(30,'No permission to delete the file!')
