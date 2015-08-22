@@ -82,7 +82,7 @@ class Member(Document):
     m_name= StringField(max_length=30,required=True)
     m_position = StringField(max_length=30,required=True)
     m_introduction = StringField(max_length=1000)
-    m_avatar = ReferenceField(File)
+    m_avatar_id = StringField(max_length=30)
 
     def __str__(self):
         return self.m_name
