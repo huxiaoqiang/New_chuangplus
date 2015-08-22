@@ -116,11 +116,10 @@ def upload_file(request):
         re['error'] = error(2,"error, need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-def download_file(request):
+def download_file(request,file_id=''):
     re = dict()
     if request.method == "GET":
         try:
-            file_id = request.GET.get('file_id')
             file = File.objects.get(id = file_id)
         except:
             re['error'] = error(20,'File does not exist,fail to download file')

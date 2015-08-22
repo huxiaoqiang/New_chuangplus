@@ -286,6 +286,7 @@ angular.module('chuangplus.controllers', []).
             success(function(data, status, headers, config){
                 if(data.error.code == 1){
                     console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
+                    $scope.CEO.m_avatar_id = data.data
                 }
                 else{
                     console.log(data.error.message);
