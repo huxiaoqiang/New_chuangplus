@@ -116,7 +116,7 @@ def upload_file(request):
         re['error'] = error(2,"error, need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-def download_file(request,file_id=''):
+def download_file(request,file_id=""):
     re = dict()
     if request.method == "GET":
         try:
