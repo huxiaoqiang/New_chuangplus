@@ -534,11 +534,21 @@ angular.module('chuangplus.controllers', []).
         var param = {
             "csrfmiddlewaretoken" : $csrf.val()
         };
+
         $http.post(urls.api+"/account/member/"+$scope.member_list[index]._id.$oid+"/delete", $.param(param)).
             success(function(data){
                 if(data.error.code == 1){
-                    $scope.get_member_list();
-                    $('#delete_member').modal('hide');
+
+                    $http.post(urls.api+"/file/delete/" + $scope.member_list[index].m_avatar_id,$.param(param)).
+                        success(function(data){
+                            if(data.error.code == 1){
+                                $scope.get_member_list();
+                                $('#delete_member').modal('hide');
+                            }
+                            else{
+                                $scope.error = $errMsg.format_error('',data.error);
+                            }
+                        });
                 }
                 else{
                     $scope.error = $errMsg.format_error('',data.error);

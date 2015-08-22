@@ -6,5 +6,5 @@ urlpatterns = [
     url(r'^upload', views.upload_file, name='upload_file'),
     url(r'^download/(?P<file_id>.*?)',views.download_file,name='download_file'),
     url(r'^(?P<file_type>.*?)/(?P<category>.*?)/download_special',views.download_file_special,name='download_file_special'),
-    url(r'^delete',views.delete_file,name='delete_file'),
+    url(r'^delete/(?P<file_id>.*?)',views.delete_file,name='delete_file'),
 ]
