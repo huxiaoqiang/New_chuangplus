@@ -10,3 +10,5 @@ node_modules/*
 media/*
 *.old
 .css
+
+requirements.txt
