@@ -640,6 +640,9 @@ angular.module('chuangplus.controllers', []).
         $scope.position = {};
         $scope.create_position = function(){
             $csrf.set_csrf($scope.position);
+            if($scope.position.end_time != ''){
+                $scope.position.end_time = $filter('date')( $scope.position.end_time, 'yyyy-MM-dd HH:mm:ss');
+            }
             $http.post(urls.api+"/position/create", $.param($scope.position)).
                 success(function(data){
                     if(data.error.code == 1){
