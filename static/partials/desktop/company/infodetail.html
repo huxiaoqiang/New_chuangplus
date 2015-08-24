@@ -103,7 +103,7 @@
                 </div>
 
                 <div class="col-md-4">
-                  <img class="logoimg" ng-if="logo==null" ng-src="/api/file/logo/[[company_id]]_logo/download_special"><br/>
+                  <img class="logoimg" ng-if="logo==null" ng-src="/api/file/[[companyinfo.logo_id]]/download"><br/>
                   <img class="logoimg" ng-if="logo!=null" ngf-src="logo"><br/>
                   <input ng-model="logo"  ngf-select="upload($file,'logo')" type="file" value="更改logo">
                 </div>
