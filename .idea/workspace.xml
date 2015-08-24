@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/controllers_desktop.js" afterPath="$PROJECT_DIR$/static/js/controllers_desktop.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/company/position/edit.html" afterPath="$PROJECT_DIR$/static/partials/desktop/company/position/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="chuangplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,7 +24,7 @@
     <favorites_list name="chuangplus" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6248391">
+    <splitter split-orientation="horizontal" split-proportion="0.7921493">
       <split-first>
         <leaf>
           <file leaf-file-name="infodetail.html" pinned="false" current="false" current-in-tab="false">
@@ -41,7 +39,7 @@
           <file leaf-file-name="edit.html" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/position/edit.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="127" column="8" selection-start="7412" selection-end="7412" vertical-scroll-proportion="3.7237654" vertical-offset="0" max-vertical-offset="2565">
+                <state line="95" column="18" selection-start="5891" selection-end="5891" vertical-scroll-proportion="0.41049382" vertical-offset="1539" max-vertical-offset="2565">
                   <folding />
                 </state>
               </provider>
@@ -106,10 +104,10 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="controllers_desktop.js" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="controllers_desktop.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="649" column="75" selection-start="28197" selection-end="28197" vertical-scroll-proportion="0.6260297" vertical-offset="11951" max-vertical-offset="13756">
+                <state line="649" column="75" selection-start="28197" selection-end="28197" vertical-scroll-proportion="-15.2" vertical-offset="11951" max-vertical-offset="13756">
                   <folding />
                 </state>
               </provider>
@@ -124,10 +122,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/position/views.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="83" column="51" selection-start="3062" selection-end="3063" vertical-scroll-proportion="11.4" vertical-offset="1577" max-vertical-offset="16454">
+                <state line="135" column="51" selection-start="5168" selection-end="5168" vertical-scroll-proportion="0.29149798" vertical-offset="2136" max-vertical-offset="16454">
                   <folding />
                 </state>
               </provider>
@@ -726,16 +724,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/position/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="51" selection-start="3062" selection-end="3063" vertical-scroll-proportion="11.4" vertical-offset="1577" max-vertical-offset="16454">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="649" column="75" selection-start="28197" selection-end="28197" vertical-scroll-proportion="0.6260297" vertical-offset="11951" max-vertical-offset="13756">
+        <state line="649" column="75" selection-start="28197" selection-end="28197" vertical-scroll-proportion="-15.2" vertical-offset="11951" max-vertical-offset="13756">
           <folding />
         </state>
       </provider>
@@ -747,9 +738,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/position/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="135" column="51" selection-start="5168" selection-end="5168" vertical-scroll-proportion="0.29149798" vertical-offset="2136" max-vertical-offset="16454">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/position/edit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="127" column="8" selection-start="7412" selection-end="7412" vertical-scroll-proportion="3.7237654" vertical-offset="0" max-vertical-offset="2565">
+        <state line="95" column="18" selection-start="5891" selection-end="5891" vertical-scroll-proportion="0.41049382" vertical-offset="1539" max-vertical-offset="2565">
           <folding />
         </state>
       </provider>
