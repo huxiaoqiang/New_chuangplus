@@ -80,14 +80,14 @@
                         <label for="company_welfare_tags" class="col-md-4 control-label">福利标签</label>
                         <div class="col-md-8">
                           <label for="company_welfare_tags" class="control-label">可自定义，不多于5个，四字以内</label><br/>
-                          <label class="checkbox-label" ng-repeat="tag in welfare_tags"><input type="checkbox" ng-model="tag.chosed">[[tag.value]]</label>
+                          <label class="checkbox-label" ng-repeat="tag in tags"><input type="checkbox" ng-model="tag.chosed">[[tag.value]]</label>
                           <br/>
                               <input name="addtag" type="text" class="form-control tags_input" placeholder="自定义标签" ng-maxlength="4" ng-model="tag_added">
                               <input type="button" class="btn btn-primary" value="添加" ng-click="add_tag()" ng-disabled="canAdd(companyDetailForm.addtag)">
                           <br/>
                             <span class="err-msg" ng-show="tag_long_error(companyDetailForm.addtag)"><i class=" icon-warning-sign"></i>福利标签不能超过4个字</span>
                           <div class="welfare_tags">
-                            <span class="tag"  ng-repeat="tag in welfare_tags" ng-if="tag.chosed"><i class="icon-tag"></i> [[tag.value]]</span>
+                            <span class="tag"  ng-repeat="tag in tags" ng-if="tag.chosed"><i class="icon-tag"></i> [[tag.value]]</span>
                           </div>
                         </div>
                     </div>
