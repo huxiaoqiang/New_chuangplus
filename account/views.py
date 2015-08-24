@@ -328,6 +328,7 @@ def set_companyinfo(request,company_id):
         c.email_resume = request.POST.get('email_resume', c.email_resume)
         c.qrcode_id = request.POST.get('qrcode_id', c.qrcode_id)
         c.logo_id = request.POST.get('logo_id',c.logo_id)
+        c.hr_cellphone = request.POST.get('hr_cellphone',c.hr_cellphone)
         welfare_tags = request.POST.get('welfare_tags', '')
         if welfare_tags != '':
             c.welfare_tags = welfare_tags.split(',') 
