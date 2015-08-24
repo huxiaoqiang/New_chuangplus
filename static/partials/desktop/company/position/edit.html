@@ -1,6 +1,7 @@
 <div id="container">
     <div id="edit_position">
         <form name="positionInfoForm" class="form-horizontal" ng-submit="create_position()">
+          <h2>发布新职位</h2>
           <div class="form-group">
             <label for="position_name" class="col-sm-3 control-label">职位名称</label>
             <div class="col-sm-6">
@@ -72,8 +73,15 @@
           <div class="form-group">
             <label class="col-sm-3 control-label">薪资</label>
             <div class="col-sm-6">
-              <input name="salary_min" type="text" class="form-control" ng-model="position.salary_min" required placeholder="薪资下限">
-              <input name="salary_max" type="text" class="form-control" ng-model="position.salary_max" required placeholder="薪资上限">
+                <div class="input-group">
+                  <input name="salary_min" type="text" class="form-control salary" ng-model="position.salary_min" required placeholder="薪资下限">
+                  <span class="input-group-addon">K</span>
+                </div>
+                <div class="input-group">
+              <input name="salary_max" type="text" class="form-control salary" ng-model="position.salary_max" required placeholder="薪资上限">
+                  <span class="input-group-addon">K</span>
+                </div>
+
             </div>
            <div class="col-sm-3">
                 <span class="err-msg" ng-show="showError(companyInfoForm.abbreviation,'required')"><i class="icon-warning-sign"></i>公司简称不能为空</span>
@@ -84,7 +92,7 @@
           <div class="form-group">
             <label for="end_time" class="col-sm-3 control-label">截止时间</label>
             <div class="col-sm-6">
-              <input name="end_time" type="text" class="form-control" ng-model="position.end_time" required placeholder="岗位招聘截止时间">
+              <input name="end_time" type="date" class="form-control" ng-model="position.end_time" min-date="2015-09-01" limit="1 day" required placeholder="岗位招聘截止时间">
             </div>
            <div class="col-sm-3">
                 <span class="err-msg" ng-show="showError(companyInfoForm.abbreviation,'required')"><i class="icon-warning-sign"></i>公司简称不能为空</span>
@@ -105,7 +113,15 @@
               <textarea name="position_request"  class="form-control" ng-model="position.position_request" required placeholder="工作要求"></textarea>
             </div>
           </div>
+
+        <div class="form-group">
+             <label class="col-sm-3 control-label"></label>
+            <div class="col-sm-6">
+                <input type="button" value="预览" class="btn btn-primary">
+                <button class="btn btn-primary">发布</button>
+            </div>
+          </div>
         </form>
-        
+
     </div>
 </div>
