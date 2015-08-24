@@ -165,14 +165,6 @@ def delete_file(request,file_id = ''):
         re['error'] = error(2,'error, need POST')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-
-
-
-@user_permission('login')
-def delete_file(request,file_id):
-    pass
-
-
 def download_file_special(request, file_type='', category=''):
     re = ''
     if request.method == 'GET':
