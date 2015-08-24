@@ -326,8 +326,8 @@ def set_companyinfo(request,company_id):
         c.homepage = request.POST.get('homepage', c.homepage)
         c.wechat = request.POST.get('wechat', c.wechat)
         c.email_resume = request.POST.get('email_resume', c.email_resume)
-        c.qrcode = request.POST.get('qrcode', c.qrcode)
-
+        c.qrcode_id = request.POST.get('qrcode_id', c.qrcode_id)
+        c.logo_id = request.POST.get('logo_id',c.logo_id)
         welfare_tags = request.POST.get('welfare_tags', '')
         if welfare_tags != '':
             c.welfare_tags = welfare_tags.split(',') 
