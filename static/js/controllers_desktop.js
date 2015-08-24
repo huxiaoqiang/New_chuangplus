@@ -286,7 +286,12 @@ angular.module('chuangplus.controllers', []).
             success(function(data, status, headers, config){
                 if(data.error.code == 1){
                     console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
-                    $scope.CEO.m_avatar_id = data.data
+                    if(file_t == 'logo'){
+                        $scope.companyinfo.logo_id = data.data
+                    }
+                    else{
+                        $scope.CEO.m_avatar_id = data.data
+                    }
                 }
                 else{
                     console.log(data.error.message);
@@ -540,7 +545,7 @@ angular.module('chuangplus.controllers', []).
             success(function(data){
                 if(data.error.code == 1){
 
-                    $http.post(urls.api+"/file/delete/" + $scope.member_list[index].m_avatar_id,$.param(param)).
+                    $http.post(urls.api+"/file/" + $scope.member_list[index].m_avatar_id + "/delete", $.param(param)).
                         success(function(data){
                             if(data.error.code == 1){
                                 $scope.get_member_list();
