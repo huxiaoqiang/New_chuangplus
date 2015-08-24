@@ -584,6 +584,9 @@ body > #wrap {
   margin-top: 8px;
   padding-top: 4px;
 }
+#container .option_info .financing .financing_list div {
+  text-align: center;
+}
 #container .option_info .financing .financing_list input.btn {
   padding: 1px 10px;
 }

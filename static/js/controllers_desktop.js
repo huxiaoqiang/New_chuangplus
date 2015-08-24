@@ -394,10 +394,10 @@ angular.module('chuangplus.controllers', []).
                             $scope.old_company_description = "";
                         else
                             $scope.old_company_description = data.data.company_description;
-                        if(data.data.member_description == undefined)
-                            $scope.old_member_description = "";
+                        if(data.data.team_description == undefined)
+                            $scope.old_team_description = "";
                         else
-                            $scope.old_member_description = data.data.member_description;
+                            $scope.old_team_description = data.data.team_description;
                     }
                 });
             };
@@ -584,6 +584,18 @@ angular.module('chuangplus.controllers', []).
                     if(data.error.code == 1){
                         $scope.get_financing_list();
                         $('#delete_financing').modal('hide');
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                    }
+                });
+        };
+        $scope.save_company_info = function(){
+            $csrf.set_csrf($scope.companyinfo);
+            $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.error = $errMsg.format_error("保存公司信息成功",data.error);
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
