@@ -635,14 +635,20 @@ angular.module('chuangplus.controllers', []).
     controller('DT_CompanyPositionManageCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyPositionManageCtrl');
     }]).
-    controller('DT_CompanyPositionEditCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_CompanyPositionEditCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanyPositionEditCtrl');
         $scope.position = {};
         $scope.create_position = function(){
             $csrf.set_csrf($scope.position);
             $http.post(urls.api+"/position/create", $.param($scope.position)).
                 success(function(data){
-
+                    if(data.error.code == 1){
+                        $scope.error = $errMsg.format_error('发布职位成功',data.error);
+                        setTimeout(function(){window.location.href='/'},2000);
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                    }
                 })
         };
 
