@@ -92,7 +92,7 @@
           <div class="form-group">
             <label for="end_time" class="col-sm-3 control-label">截止时间</label>
             <div class="col-sm-6">
-              <input name="end_time" type="date" class="form-control" ng-model="position.end_time" min-date="2015-09-01" limit="1 day" required placeholder="岗位招聘截止时间">
+              <input name="end_time" type="text" class="form-control" ng-model="position.end_time" datepicker-popup="yyyy-MM-dd HH:mm:ss" required placeholder="岗位招聘截止时间（无限制请留空）">
             </div>
            <div class="col-sm-3">
                 <span class="err-msg" ng-show="showError(companyInfoForm.abbreviation,'required')"><i class="icon-warning-sign"></i>公司简称不能为空</span>
@@ -125,6 +125,6 @@
         </form>
     </div>
     <div class="preview">
-        
+
     </div>
 </div>
