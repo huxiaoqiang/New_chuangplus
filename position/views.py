@@ -132,8 +132,7 @@ def create_position(request):
         return HttpResponse(json.dumps(re),content_type = 'application/json')
 
     try:
-        etint = int(et)
-        end_time = datetime.utcfromtimestamp(etint)
+        end_time = datetime.strptime(et,'%Y-%m-%d %H:%M:%S')
         assert end_time > release_time
     except (ValueError):
         re['error'] = error(217,'Invaild end time format!')
