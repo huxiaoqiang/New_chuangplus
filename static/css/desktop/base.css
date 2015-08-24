@@ -684,6 +684,19 @@ form.financing_add input {
   margin-bottom: 10px;
   margin-top: 10px;
 }
+
+#container #edit_position h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+#container #edit_position .form-group .input-group {
+  width: 40%;
+  float: left;
+  margin-right: 20px;
+}
+#container #edit_position .form-group textarea {
+  min-height: 100px;
+}
 body {
   background-color: #eeeeee;
 }
