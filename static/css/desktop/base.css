@@ -739,6 +739,37 @@ form.financing_add input {
   color: white;
   font-size: 1.2em;
 }
+#container {
+  margin: 0 auto;
+  display: block;
+}
+#container #userresume {
+  font-family: "微软雅黑";
+  padding-top: 5%;
+}
+#container #userresume .row .col-sm-9 {
+  margin: 0 auto;
+}
+#container #userresume .row .col-sm-9 .col-sm-8 .form-control {
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  height: 40px;
+}
+#container #userresume .row .col-sm-9 .col-sm-8 .resume-radio {
+  margin-right: 3%;
+}
+#container #userresume .row .col-sm-9 .resume-textarea {
+  width: 100%;
+  height: 200px;
+}
+#container #userresume .row .col-sm-9 .btn.btn-primary {
+  width: 100%;
+  height: 40px;
+  border-radius: 0.3em;
+  background-color: #8c5d90;
+  color: white;
+  font-size: 1.2em;
+}
 body {
   background-color: #eeeeee;
 }
