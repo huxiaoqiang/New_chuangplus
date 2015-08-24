@@ -638,6 +638,13 @@ angular.module('chuangplus.controllers', []).
     controller('DT_CompanyPositionEditCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyPositionEditCtrl');
         $scope.position = {};
+        $scope.create_position = function(){
+            $csrf.set_csrf($scope.position);
+            $http.post(urls.api+"/position/create", $.param($scope.position)).
+                success(function(data){
+
+                })
+        };
 
     }]).
     controller('DT_CompanyListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
