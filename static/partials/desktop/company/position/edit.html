@@ -1,0 +1,111 @@
+<div id="container">
+    <div id="edit_position">
+        <form name="positionInfoForm" class="form-horizontal" ng-submit="create_position()">
+          <div class="form-group">
+            <label for="position_name" class="col-sm-3 control-label">职位名称</label>
+            <div class="col-sm-6">
+              <input name="name" type="text" class="form-control" ng-model="position.name" required placeholder="职位名称" ng-maxlength=8>
+            </div>
+           <div class="col-sm-3">
+                <span class="err-msg" ng-show="showError(companyInfoForm.abbreviation,'required')"><i class="icon-warning-sign"></i>公司简称不能为空</span>
+                <span class="err-msg" ng-show="showError(companyInfoForm.abbreviation,'ng-maxlength')"><i class="icon-warning-sign"></i>公司简称不能超过8个字</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="position_type" class="col-md-3 control-label">职位分类</label>
+            <div class="col-md-6">
+              <label><input type="radio" ng-model="position.position_type" value="technology">技术</label>
+              <label><input type="radio" ng-model="position.position_type" value="product">产品</label>
+              <label><input type="radio" ng-model="position.position_type" value="design">设计</label>
+              <label><input type="radio" ng-model="position.position_type" value="operate">运营</label>
+              <label><input type="radio" ng-model="position.position_type" value="marketing">市场</label>
+              <label><input type="radio" ng-model="position.position_type" value="functions">职能</label>
+              <label><input type="radio" ng-model="position.position_type" value="others">其他</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="work_city" class="col-sm-3 control-label">工作城市</label>
+            <div class="col-sm-6">
+              <input name="work_city" type="text" class="form-control" ng-model="position.work_city" required placeholder="工作城市">
+            </div>
+           <div class="col-sm-3">
+                <span class="err-msg" ng-show="showError(companyInfoForm.abbreviation,'required')"><i class="icon-warning-sign"></i>公司简称不能为空</span>
+                <span class="err-msg" ng-show="showError(companyInfoForm.abbreviation,'ng-maxlength')"><i class="icon-warning-sign"></i>公司简称不能超过8个字</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="work_address" class="col-sm-3 control-label">办公地址</label>
+            <div class="col-sm-6">
+              <input name="work_address" type="text" class="form-control" ng-model="position.work_address" required placeholder="办公地址">
+            </div>
+           <div class="col-sm-3">
+                <span class="err-msg" ng-show="showError(companyInfoForm.abbreviation,'required')"><i class="icon-warning-sign"></i>公司简称不能为空</span>
+                <span class="err-msg" ng-show="showError(companyInfoForm.abbreviation,'ng-maxlength')"><i class="icon-warning-sign"></i>公司简称不能超过8个字</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="internship_time" class="col-sm-3 control-label">实习工作时间</label>
+            <div class="col-sm-6">
+              <input name="internship_time" type="text" class="form-control" ng-model="position.internship_time" required placeholder="实习时间">
+            </div>
+           <div class="col-sm-3">
+                <span class="err-msg" ng-show="showError(companyInfoForm.abbreviation,'required')"><i class="icon-warning-sign"></i>公司简称不能为空</span>
+                <span class="err-msg" ng-show="showError(companyInfoForm.abbreviation,'ng-maxlength')"><i class="icon-warning-sign"></i>公司简称不能超过8个字</span>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label for="days_per_week" class="col-sm-3 control-label">每周工作时间</label>
+            <div class="col-sm-6">
+              <input name="days_per_week" type="text" class="form-control" ng-model="position.days_per_week" required placeholder="每周工作时间">
+            </div>
+           <div class="col-sm-3">
+                <span class="err-msg" ng-show="showError(companyInfoForm.abbreviation,'required')"><i class="icon-warning-sign"></i>公司简称不能为空</span>
+                <span class="err-msg" ng-show="showError(companyInfoForm.abbreviation,'ng-maxlength')"><i class="icon-warning-sign"></i>公司简称不能超过8个字</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">薪资</label>
+            <div class="col-sm-6">
+              <input name="salary_min" type="text" class="form-control" ng-model="position.salary_min" required placeholder="薪资下限">
+              <input name="salary_max" type="text" class="form-control" ng-model="position.salary_max" required placeholder="薪资上限">
+            </div>
+           <div class="col-sm-3">
+                <span class="err-msg" ng-show="showError(companyInfoForm.abbreviation,'required')"><i class="icon-warning-sign"></i>公司简称不能为空</span>
+                <span class="err-msg" ng-show="showError(companyInfoForm.abbreviation,'ng-maxlength')"><i class="icon-warning-sign"></i>公司简称不能超过8个字</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="end_time" class="col-sm-3 control-label">截止时间</label>
+            <div class="col-sm-6">
+              <input name="end_time" type="text" class="form-control" ng-model="position.end_time" required placeholder="岗位招聘截止时间">
+            </div>
+           <div class="col-sm-3">
+                <span class="err-msg" ng-show="showError(companyInfoForm.abbreviation,'required')"><i class="icon-warning-sign"></i>公司简称不能为空</span>
+                <span class="err-msg" ng-show="showError(companyInfoForm.abbreviation,'ng-maxlength')"><i class="icon-warning-sign"></i>公司简称不能超过8个字</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="position_description" class="col-sm-3 control-label">工作内容</label>
+            <div class="col-sm-6">
+              <textarea name="position_description"  class="form-control" ng-model="position.position_description" required placeholder="工作内容"></textarea>
+            </div>
+          </div>
+
+         <div class="form-group">
+            <label for="position_request" class="col-sm-3 control-label">工作内容</label>
+            <div class="col-sm-6">
+              <textarea name="position_request"  class="form-control" ng-model="position.position_request" required placeholder="工作要求"></textarea>
+            </div>
+          </div>
+        </form>
+        
+    </div>
+</div>

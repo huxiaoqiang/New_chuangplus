@@ -637,6 +637,8 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_CompanyPositionEditCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyPositionEditCtrl');
+        $scope.position = {};
+
     }]).
     controller('DT_CompanyListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyListCtrl');
