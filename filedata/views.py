@@ -166,10 +166,6 @@ def delete_file(request,file_id):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 
-
-
-
-
 def download_file_special(request, file_type='', category=''):
     re = ''
     if request.method == 'GET':
