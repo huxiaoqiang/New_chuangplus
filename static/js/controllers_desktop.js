@@ -286,7 +286,12 @@ angular.module('chuangplus.controllers', []).
             success(function(data, status, headers, config){
                 if(data.error.code == 1){
                     console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
-                    $scope.CEO.m_avatar_id = data.data
+                    if(file_t == 'logo'){
+                        $scope.companyinfo.logo_id = data.data
+                    }
+                    else{
+                        $scope.CEO.m_avatar_id = data.data
+                    }
                 }
                 else{
                     console.log(data.error.message);
@@ -326,73 +331,69 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_CompanyInfoDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_CompanyInfoDetailCtrl');
-        $scope.welfare_tags = {
-            "tag0":
+        $scope.tag_list = ["技能培训","扁平管理","可转正","弹性工作","定期出游","地铁周边","股票期权","水果零食","正餐补助","班车接送"];
+        $scope.tags = [
             {
                 "chosed":false,
                 "value" :"技能培训"
             },
-            "tag1":
             {
                 "chosed":false,
                 "value" :"扁平管理"
             },
-            "tag2":
             {
                 "chosed":false,
                 "value" :"可转正"
             },
-            "tag3":
             {
                 "chosed":false,
                 "value" :"弹性工作"
             },
-            "tag4":
             {
                 "chosed":false,
                 "value" :"定期出游"
             },
-            "tag5":
             {
                 "chosed":false,
                 "value" :"地铁周边"
             },
-            "tag6":
             {
                 "chosed":false,
                 "value" :"股票期权"
             },
-            "tag7":
             {
                 "chosed":false,
                 "value" :"水果零食"
             },
-            "tag8":
             {
                 "chosed":false,
                 "value" :"正餐补助"
             },
-            "tag9":
             {
                 "chosed":false,
                 "value" :"班车接送"
             }
-        };
+        ];
         $scope.company_id = $routeParams.company_id;
         $scope.delete_index = 0;
         $scope.get_company_info = function(){
             $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
                 success(function(data){
                     if(data.error.code == 1){
+//                        var welfare_tags = $scope.companyinfo.welfare_tags.split(',');
+//                        for(i=0; i<welfare_tags.length; i++){
+//
+//                        }
+
                         $scope.companyinfo = data.data;
                         if(data.data.company_description == undefined)
                             $scope.old_company_description = "";
                         else
                             $scope.old_company_description = data.data.company_description;
-                        if(data.data.member_description == undefined)
-                            $scope.old_member_description = "";
+                        if(data.data.team_description == undefined)
+                            $scope.old_team_description = "";
                         else
-                            $scope.old_member_description = data.data.member_description;
+                            $scope.old_team_description = data.data.team_description;
                     }
                 });
             };
@@ -430,11 +431,10 @@ angular.module('chuangplus.controllers', []).
         $scope.old_company_description = "";
 
         $scope.add_tag = function(){
-            $scope.new_tag_name = "tag"+$scope.tag_added;
-            $scope.welfare_tags[$scope.new_tag_name] = {
+            $scope.welfare_tags.append({
                 "chosed":false,
                 "value" :$scope.tag_added
-            };
+            });
         };
         $scope.canAdd = function(ngModelController){
             return (ngModelController.$invalid && ngModelController.$dirty) ||  ngModelController.$pristine;
@@ -540,7 +540,7 @@ angular.module('chuangplus.controllers', []).
             success(function(data){
                 if(data.error.code == 1){
 
-                    $http.post(urls.api+"/file/delete/" + $scope.member_list[index].m_avatar_id,$.param(param)).
+                    $http.post(urls.api+"/file/" + $scope.member_list[index].m_avatar_id + "/delete", $.param(param)).
                         success(function(data){
                             if(data.error.code == 1){
                                 $scope.get_member_list();
@@ -585,6 +585,25 @@ angular.module('chuangplus.controllers', []).
                     }
                 });
         };
+        $scope.save_company_info = function(){
+            $scope.companyinfo.welfare_tags = '';
+            for(i=0; i<$scope.tags.length; i++){
+                if(tags[i].chosed == true)
+                    $scope.companyinfo.welfare_tags += tags[i].value;
+                    $scope.companyinfo.welfare_tags += ',';
+            }
+            $scope.companyinfo.welfare_tags = $scope.companyinfo.welfare_tags.substring(0,$scope.companyinfo.welfare_tags-1);
+            $csrf.set_csrf($scope.companyinfo);
+            $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.error = $errMsg.format_error("保存公司信息成功",data.error);
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                    }
+                });
+        };
     }]).
     controller('DT_PositionDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_PositionDetailCtrl');
@@ -618,6 +637,8 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_CompanyPositionEditCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyPositionEditCtrl');
+        $scope.position = {};
+
     }]).
     controller('DT_CompanyListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyListCtrl');

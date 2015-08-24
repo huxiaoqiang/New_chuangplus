@@ -53,8 +53,8 @@ class Companyinfo(Document):
     homepage = URLField()
     wechat = StringField(max_length=40)
     email_resume=EmailField()  #email for receiving resume
-    qrcode = ReferenceField(File)
-    logo = ReferenceField(File)
+    qrcode_id = StringField(max_length=30)
+    logo_id = StringField(max_length=30)
     welfare_tags = ListField(StringField(max_length=18))
     product_link = URLField()
     brief_introduction = StringField(max_length=100)

@@ -556,7 +556,7 @@ body > #wrap {
 #container .option_info .member .member_list .member-card img {
   width: 45px;
   height: 45px;
-  margin-top: 8px;
+  margin-top: 26px;
 }
 #container .option_info .member .member_list .member-card .remove {
   color: #98769E;
@@ -583,6 +583,9 @@ body > #wrap {
   height: 30px;
   margin-top: 8px;
   padding-top: 4px;
+}
+#container .option_info .financing .financing_list div {
+  text-align: center;
 }
 #container .option_info .financing .financing_list input.btn {
   padding: 1px 10px;

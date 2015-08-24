@@ -136,7 +136,7 @@ def get_filelist(request):
     re = dict()
 
 @user_permission('login')
-def delete_file(request,file_id = ''):
+def delete_file(request,file_id):
     re = dict()
     if request.method ==  'POST':
         #only the superuser can delete file
@@ -164,13 +164,6 @@ def delete_file(request,file_id = ''):
     else:
         re['error'] = error(2,'error, need POST')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
-
-
-
-
-@user_permission('login')
-def delete_file(request,file_id):
-    pass
 
 
 def download_file_special(request, file_type='', category=''):

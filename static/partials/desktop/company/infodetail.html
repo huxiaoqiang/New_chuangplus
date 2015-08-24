@@ -13,7 +13,7 @@
                     <div class="form-group">
                         <label for="company_ICregist_name" class="col-md-4 control-label">公司工商注册名</label>
                         <div class="col-md-8">
-                          <input name="ICregist_name" type="text" class="form-control" ng-model="companyinfo.ICregist_name" required="">
+                          <input name="ICregist_name" type="text" class="form-control" ng-model="companyinfo.ICregist_name" required>
                         </div>
                     </div>
 
@@ -27,20 +27,20 @@
                     <div class="form-group">
                         <label for="company_wechat" class="col-md-4 control-label">公司微信公众号</label>
                         <div class="col-md-8">
-                          <input name="qrcode" type="text" class="form-control" ng-model="companyinfo.qrcode">
+                          <input name="qrcode" type="text" class="form-control" ng-model="companyinfo.wechat" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="company_homepage" class="col-md-4 control-label">公司主页</label>
                         <div class="col-md-8">
-                          <input name="homepage" type="text" class="form-control" ng-model="companyinfo.homepage">
+                          <input name="homepage" type="text" class="form-control" ng-model="companyinfo.homepage" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="hr_cellphone" class="col-md-4 control-label">hr电话</label>
                         <div class="col-md-8">
-                          <input name="hr_cellphone" type="number" class="form-control" ng-model="companyinfo.hr_cellphone">
+                          <input name="hr_cellphone" type="number" class="form-control" ng-model="companyinfo.hr_cellphone" required>
                         </div>
                     </div>
 
@@ -80,14 +80,14 @@
                         <label for="company_welfare_tags" class="col-md-4 control-label">福利标签</label>
                         <div class="col-md-8">
                           <label for="company_welfare_tags" class="control-label">可自定义，不多于5个，四字以内</label><br/>
-                          <label class="checkbox-label" ng-repeat="tag in welfare_tags"><input type="checkbox" ng-model="tag.chosed">[[tag.value]]</label>
+                          <label class="checkbox-label" ng-repeat="tag in tags"><input type="checkbox" ng-model="tag.chosed">[[tag.value]]</label>
                           <br/>
                               <input name="addtag" type="text" class="form-control tags_input" placeholder="自定义标签" ng-maxlength="4" ng-model="tag_added">
                               <input type="button" class="btn btn-primary" value="添加" ng-click="add_tag()" ng-disabled="canAdd(companyDetailForm.addtag)">
                           <br/>
                             <span class="err-msg" ng-show="tag_long_error(companyDetailForm.addtag)"><i class=" icon-warning-sign"></i>福利标签不能超过4个字</span>
                           <div class="welfare_tags">
-                            <span class="tag"  ng-repeat="tag in welfare_tags" ng-if="tag.chosed"><i class="icon-tag"></i> [[tag.value]]</span>
+                            <span class="tag"  ng-repeat="tag in tags" ng-if="tag.chosed"><i class="icon-tag"></i> [[tag.value]]</span>
                           </div>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                 </div>
 
                 <div class="col-md-4">
-                  <img class="logoimg" ng-if="logo==null" ng-src="/api/file/logo/[[company_id]]_logo/download_special"><br/>
+                  <img class="logoimg" ng-if="logo==null" ng-src="/api/file/[[companyinfo.logo_id]]/download"><br/>
                   <img class="logoimg" ng-if="logo!=null" ngf-src="logo"><br/>
                   <input ng-model="logo"  ngf-select="upload($file,'logo')" type="file" value="更改logo">
                 </div>
