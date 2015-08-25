@@ -636,10 +636,7 @@ angular.module('chuangplus.controllers', []).
         console.log('DT_CompanyPositionManageCtrl');
         $scope.position_list = {};
         $scope.get_position_list = function(){
-            var param = {
-                "csrfmiddlewaretoken" : $csrf.val()
-            };
-            $http.post(urls.api+"/position/company/list", $.param(param)).
+            $http.get(urls.api+"/position/company/list").
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.position_list = data.data;
