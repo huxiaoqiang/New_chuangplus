@@ -796,7 +796,7 @@ form.financing_add input {
   padding: 2px;
   border-radius: 4px;
 }
-#container #position_manage .position_list .end_time {
+#container #position_manage .position_list .time {
   float: right;
   color: #a6aaa9;
 }
