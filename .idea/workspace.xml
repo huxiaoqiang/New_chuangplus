@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/companyinfo.bat" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/position.bat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/desktop/base.css" afterPath="$PROJECT_DIR$/static/css/desktop/base.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/controllers_desktop.js" afterPath="$PROJECT_DIR$/static/js/controllers_desktop.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/company/position/manage.html" afterPath="$PROJECT_DIR$/static/partials/desktop/company/position/manage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/manage_position.less" afterPath="$PROJECT_DIR$/static/less/desktop/manage_position.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/position/views.py" afterPath="$PROJECT_DIR$/position/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="chuangplus.iws" />
     <ignored path=".idea/workspace.xml" />

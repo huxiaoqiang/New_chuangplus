@@ -915,7 +915,7 @@ def user_unlike_position(request,position_id):
         try:
             up.delete()
             position.attention_num = position.attention_num - 1
-            position.save(  )
+            position.save()
             re['error'] = error(1,'detele UP_Relationship successfully')
         except DatabaseError:
             re['error'] = error(252,"Database error: Failed to delete!")
