@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/controllers_desktop.js" afterPath="$PROJECT_DIR$/static/js/controllers_desktop.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/header.html" afterPath="$PROJECT_DIR$/templates/header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/company/list.html" afterPath="$PROJECT_DIR$/static/partials/desktop/company/list.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/company/position/manage.html" afterPath="$PROJECT_DIR$/static/partials/desktop/company/position/manage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/manage_position.less" afterPath="$PROJECT_DIR$/static/less/desktop/manage_position.less" />
     </list>
     <ignored path="chuangplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,7 +31,7 @@
           <file leaf-file-name="manage.html" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/position/manage.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="30" column="69" selection-start="1371" selection-end="1371" vertical-scroll-proportion="0.8920188" vertical-offset="0" max-vertical-offset="798">
+                <state line="25" column="69" selection-start="1247" selection-end="1247" vertical-scroll-proportion="0.6134585" vertical-offset="83" max-vertical-offset="722">
                   <folding />
                 </state>
               </provider>
@@ -70,13 +67,11 @@
           <file leaf-file-name="manage_position.less" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/less/desktop/manage_position.less">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="23" column="1" selection-start="432" selection-end="432" vertical-scroll-proportion="0.0" vertical-offset="437" max-vertical-offset="551">
+                <state line="35" column="0" selection-start="627" selection-end="627" vertical-scroll-proportion="0.0" vertical-offset="665" max-vertical-offset="779">
                   <folding>
-                    <marker date="1440488940096" expanded="true" signature="30:430" placeholder="{...}" />
-                    <marker date="1440488940096" expanded="true" signature="50:426" placeholder="{...}" />
-                    <marker date="1440488940096" expanded="true" signature="158:217" placeholder="{...}" />
-                    <marker date="1440488940096" expanded="true" signature="229:353" placeholder="{...}" />
-                    <marker date="1440488940096" expanded="true" signature="243:345" placeholder="{...}" />
+                    <marker date="1440508972054" expanded="true" signature="30:225" placeholder="{...}" />
+                    <marker date="1440508972054" expanded="true" signature="50:225" placeholder="{...}" />
+                    <marker date="1440508972054" expanded="true" signature="158:217" placeholder="{...}" />
                   </folding>
                 </state>
               </provider>
@@ -869,7 +864,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/position/manage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="69" selection-start="1371" selection-end="1371" vertical-scroll-proportion="0.8920188" vertical-offset="0" max-vertical-offset="798">
+        <state line="25" column="69" selection-start="1247" selection-end="1247" vertical-scroll-proportion="0.6134585" vertical-offset="83" max-vertical-offset="722">
           <folding />
         </state>
       </provider>
