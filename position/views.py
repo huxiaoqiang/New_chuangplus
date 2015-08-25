@@ -248,6 +248,28 @@ def create_position(request):
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
 @user_permission('login')
+def get_company_position_list(request):
+    re=dict()
+    try:
+        assert request.method == "GET"
+    except:
+        re['error'] = error(3,'error, need get!')
+        return HttpResponse(json.dumps(re), content_type = 'application/json')
+    try:
+        company = Companyinfo.objects.get(user = request.user)
+        position_list = Position.objects.get(company = company)
+    except ObjectDoesNotExist:
+        re['error'] = error(249,"Object does not exist")
+        return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+    datalist = []
+    for position in position_list:
+        datalist.append(json.loads(position.to_json()))
+    re['data'] = datalist
+    re['error'] = error(1,'get company position list successfully!')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+@user_permission('login')
 def delete_position(request,position_id):
     re = dict()
     try:
@@ -255,7 +277,7 @@ def delete_position(request,position_id):
     except:
         re['error'] = error(2, 'error, need post!')
         return HttpResponse(json.dumps(re), content_type = 'application/json')
-    
+
     try:
         posi = Position.objects.get(id = position_id)
     except (ObjectDoesNotExist):
