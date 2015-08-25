@@ -5,21 +5,30 @@
         </div>
         <div ng-if="position_list != null">
             <div ng-repeat="position in position_list" class="position_list">
-                <p class="position_name">[[position.position_type]]|[[position.name]]</p>
-                <div class="edit">
+                <div class="col-sm-10">
+                    <p class="position_name">[[position.position_type]]|[[position.name]]</p>
+                    <div class="edit">
 
-                </div>
-                <div class="tags">
-                    <span>[[position.days_per_week]]天/周</span>
-                    <span>工作[[position.internship_time]]月</span>
-                    <span>[[position.salary_min]]k~[[position.salary_max]]k</span>
-                </div>
+                    </div>
+                    <div class="tags">
+                        <span>[[position.days_per_week]]天/周</span>
+                        <span>工作[[position.internship_time]]月</span>
+                        <span>[[position.salary_min]]k~[[position.salary_max]]k</span>
+                    </div>
+                    <div class="number">
+                        <span>[[position.attention_num]]关注</span>
+                        <span>[[position.submit_num]]投递简历</span>
+                    </div>
 
-                <div class="time">发布时间:
-                    [[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]
+                    <div class="time">截止时间:
+                        [[position.end_time.$date |date :'yyyy-MM-dd HH:mm:ss']]
+                    </div>
+                    <div class="time">发布时间:
+                        [[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]
+                    </div>
                 </div>
-                <div class="time">截止时间:
-                    [[position.end_time.$date |date :'yyyy-MM-dd HH:mm:ss']]
+                <div class="col-sm-2">
+                    <img src="/static/image/icon/arrow_progress.png">
                 </div>
             </div>
 
