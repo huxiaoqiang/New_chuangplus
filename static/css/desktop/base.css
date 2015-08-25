@@ -782,6 +782,24 @@ form.financing_add input {
   color: white;
   font-size: 1.2em;
 }
+#container #position_manage .position_list {
+  border: solid 2px #eeeeee;
+  padding: 20px;
+  margin: 1px 1px 15px 1px;
+}
+#container #position_manage .position_list .position_name {
+  color: #98769E;
+  font-size: 1.5em;
+}
+#container #position_manage .position_list .tags span {
+  border: solid 1px #98769e;
+  padding: 2px;
+  border-radius: 4px;
+}
+#container #position_manage .position_list .end_time {
+  float: right;
+  color: #a6aaa9;
+}
 body {
   background-color: #eeeeee;
 }
