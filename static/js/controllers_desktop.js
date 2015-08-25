@@ -634,6 +634,15 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_CompanyPositionManageCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyPositionManageCtrl');
+        $scope.position_type = {
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+        };
         $scope.position_list = {};
         $scope.get_position_list = function(){
             $http.get(urls.api+"/position/company/list").
@@ -641,12 +650,7 @@ angular.module('chuangplus.controllers', []).
                     if(data.error.code == 1){
                         $scope.position_list = data.data;
                         for(i=0; i<$scope.position_list.length;i++){
-                            if($scope.position_list[i].end_time == null){
-                                $scope.position_list[i].end_time = '无截止时间';
-                            }
-                            else{
-                                $scope.position_list[i].end_time = $filter('date')($scope.position_list[i].end_time.$date,'yyyy-MM-dd HH:mm:ss');
-                            }
+                            $scope.position_list[i].position_type = $scope.position_type[$scope.position_list[i].position_type];
                         }
                     }
                 });
