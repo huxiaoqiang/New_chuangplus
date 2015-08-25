@@ -257,7 +257,7 @@ def get_company_position_list(request):
         return HttpResponse(json.dumps(re), content_type = 'application/json')
     try:
         company = Companyinfo.objects.get(user = request.user)
-        position_list = Position.objects.get(company = company)
+        position_list = company.positions
     except ObjectDoesNotExist:
         re['error'] = error(249,"Object does not exist")
         return HttpResponse(json.dumps(re), content_type = 'application/json')
