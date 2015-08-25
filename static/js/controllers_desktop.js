@@ -640,6 +640,14 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.position_list = data.data;
+                        for(i=0; i<$scope.position_list.length;i++){
+                            if($scope.position_list[i].end_time == null){
+                                $scope.position_list[i].end_time = '无截止时间';
+                            }
+                            else{
+                                $scope.position_list[i].end_time = $filter('date')($scope.position_list[i].end_time.$date,'yyyy-MM-dd HH:mm:ss');
+                            }
+                        }
                     }
                 });
         };
