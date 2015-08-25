@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^(?P<position_id>.*?)/like$', views.user_like_position, name='user_like_position'),
     url(r'^(?P<position_id>.*?)/submit$', views.submit_resume, name='submit_resume'),
     url(r'^search$', views.search_position, name='search_position'),
+    url(r'^company/list$',views.get_company_position_list,name='get_company_position_list'),
     url(r'^init$',tests.init_account),
     url(r'^submit',views.submit_resume,name='submit_resume'),
     url(r'^emailresume',views.email_resume,name='email_resume'),
