@@ -53,8 +53,8 @@ stage              |StringFiled |默认为'none' |融资阶段（STAGE见表下�
 homepage           |URLField    |             |公司主页
 wechat             |StringField |             |公司公众号
 email_resume       |EmailField  |             |收简历邮箱
-qrcode             |ReferenceField|File       |微信二维码
-logo               |ReferenceField|File       |公司logo
+qrcode_id          |ReferenceField|File       |微信二维码id
+logo_id            |ReferenceField|File       |公司logo id
 welfare_tags       |ListField(StringField) |  |福利标签
 product_link       |URLField    |             |产品链接
 brief_introduction |StringField |             |公司一句话简介

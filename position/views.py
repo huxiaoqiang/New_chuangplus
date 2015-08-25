@@ -828,6 +828,8 @@ def submit_resume(request,position_id):
             return HttpResponse(json.dumps(re), content_type = 'application/json')
 
         submit_date = datetime.now()
+        position.submit_num = position.submit_num+1
+        position.save()
         UP = UserPosition(submit_date = submit_date, resume_submitted = resume, position = position, user = request.user)
         UP.save()
         re['error'] = error(1, 'Success!')
@@ -889,8 +891,35 @@ def user_like_position(request,position_id):
         
         up = UP_Relationship(position = position, user = request.user)
         up.save()
+        position.attention_num = position.attention_num + 1
+        position.save()
         re['error'] = error(1, "success!")
     else:
         re['error'] = error(2, 'error, need POST!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+@user_permission('login')
+def user_unlike_position(request,position_id):
+    re = dict()
+    if request.method == 'POST':
+        try:
+            position = Position.objects.get(id = position_id)
+        except:
+            re['error'] = error(260, 'Position does not exist')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        try:
+            up = UP_Relationship.objects.get(position = position, user = request.user)
+        except DoesNotExist:
+            re['error'] = error(261,'UP_Relationship does not exist')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        try:
+            up.delete()
+            position.attention_num = position.attention_num - 1
+            position.save()
+            re['error'] = error(1,'detele UP_Relationship successfully')
+        except DatabaseError:
+            re['error'] = error(252,"Database error: Failed to delete!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+    else:
+        re['error'] = error(2,'error, need post!')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')

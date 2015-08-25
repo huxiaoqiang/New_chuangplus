@@ -656,6 +656,12 @@ angular.module('chuangplus.controllers', []).
                 });
         };
         $scope.get_position_list();
+        $scope.get_user_position = function(){
+
+        };
+        $scope.get_UP_Relationship = function(){
+
+        };
 
 
     }]).
