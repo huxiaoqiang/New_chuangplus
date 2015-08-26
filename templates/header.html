@@ -12,7 +12,7 @@
         <nav class="navbar navbar-default" role="navigation">
            <div ng-controller="DT_HeaderCtrl">
               <ul class="nav navbar-nav" ng-init="company=true">
-                 <li ng-class="{'active':company}" ng-click="company_active()"><a href="#">公司列表</a></li>
+                 <li ng-class="{'active':company}" ng-click="company_active()"><a href="/">公司列表</a></li>
                  <li ng-class = "{'active':position}" ng-click="position_active()"><a href="/position/list">职位列表</a></li>
               {% if user.is_authenticated %}
 
@@ -29,7 +29,7 @@
                     <ul class="dropdown-menu">
                        <li><a ng-href=[[url]]>公司信息</a></li>
                        <li><a href="/company/position/edit">发布职位</a></li>
-                       <li><a href="/company/position/manage">管理职位</a></li>
+                       <li><a href="/company/[[company_id]]/position/manage">管理职位</a></li>
                        <li class="divider"></li>
                        <li><a ng-click="logout()">退出登录</a></li>
                     </ul>

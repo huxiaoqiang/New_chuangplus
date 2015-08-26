@@ -72,6 +72,7 @@ angular.module('chuangplus.services', []).
             'code251':'搜索失败',
             'code252':'删除失败',
             'code260':'职位不存在',
+            'code261':'关注关系不存在，不能取消关注',
             'code299':'未知错误'
         };
         return {

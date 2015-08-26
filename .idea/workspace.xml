@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/less/desktop/edit_position.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/desktop/base.css" afterPath="$PROJECT_DIR$/static/css/desktop/base.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/base.less" afterPath="$PROJECT_DIR$/static/less/desktop/base.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/controllers_desktop.js" afterPath="$PROJECT_DIR$/static/js/controllers_desktop.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/company/position/edit.html" afterPath="$PROJECT_DIR$/static/partials/desktop/company/position/edit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/company/position/manage.html" afterPath="$PROJECT_DIR$/static/partials/desktop/company/position/manage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/manage_position.less" afterPath="$PROJECT_DIR$/static/less/desktop/manage_position.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/position/views.py" afterPath="$PROJECT_DIR$/position/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="chuangplus.iws" />
@@ -29,22 +29,69 @@
     <favorites_list name="chuangplus" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5025754">
+    <splitter split-orientation="horizontal" split-proportion="0.5894466">
       <split-first>
         <leaf>
           <file leaf-file-name="infodetail.html" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/infodetail.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="69" column="0" selection-start="4146" selection-end="4739" vertical-scroll-proportion="-4.6603775" vertical-offset="1064" max-vertical-offset="7049">
+                <state line="134" column="0" selection-start="8293" selection-end="8336" vertical-scroll-proportion="-6.357143" vertical-offset="2368" max-vertical-offset="7049">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="edit.html" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/position/edit.html">
+          <file leaf-file-name="manage.html" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/position/manage.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="7" column="84" selection-start="397" selection-end="405" vertical-scroll-proportion="0.21246007" vertical-offset="0" max-vertical-offset="2508">
+                <state line="18" column="34" selection-start="979" selection-end="979" vertical-scroll-proportion="0.53521127" vertical-offset="0" max-vertical-offset="779">
+                  <folding>
+                    <element signature="n#style#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="detail.html" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/position/detail.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="3" column="0" selection-start="66" selection-end="66" vertical-scroll-proportion="-2.0357144" vertical-offset="0" max-vertical-offset="228">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="detail.html" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/detail.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="114">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="info.html" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/info.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="16" column="36" selection-start="938" selection-end="940" vertical-scroll-proportion="-6.357143" vertical-offset="126" max-vertical-offset="1577">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="list.html" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/list.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="2" column="0" selection-start="49" selection-end="49" vertical-scroll-proportion="-1.3571428" vertical-offset="0" max-vertical-offset="190">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/static/js/app.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="55" column="111" selection-start="3495" selection-end="3495" vertical-scroll-proportion="0.0" vertical-offset="774" max-vertical-offset="2356">
                   <folding />
                 </state>
               </provider>
@@ -53,7 +100,7 @@
           <file leaf-file-name="edit_position.less" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/less/desktop/edit_position.less">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="13" column="23" selection-start="250" selection-end="250" vertical-scroll-proportion="-4.6603775" vertical-offset="0" max-vertical-offset="437">
+                <state line="2" column="7" selection-start="37" selection-end="37" vertical-scroll-proportion="0.0" vertical-offset="38" max-vertical-offset="437">
                   <folding />
                 </state>
               </provider>
@@ -62,44 +109,7 @@
           <file leaf-file-name="list.html" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/partials/desktop/position/list.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="18" selection-start="9" selection-end="18" vertical-scroll-proportion="6.25" vertical-offset="175" max-vertical-offset="1691">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="set.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/static/partials/desktop/password/set.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="49" column="6" selection-start="2122" selection-end="2122" vertical-scroll-proportion="-19.535715" vertical-offset="384" max-vertical-offset="1045">
-                  <folding>
-                    <marker date="1439000008918" expanded="true" signature="46:2121" placeholder="..." />
-                    <marker date="1439000008918" expanded="true" signature="69:2114" placeholder="..." />
-                    <marker date="1439000008918" expanded="true" signature="103:144" placeholder="..." />
-                    <marker date="1439000008918" expanded="true" signature="179:2103" placeholder="..." />
-                    <marker date="1439000008918" expanded="true" signature="211:407" placeholder="..." />
-                    <marker date="1439000008918" expanded="true" signature="232:388" placeholder="..." />
-                    <marker date="1439000008918" expanded="true" signature="437:2088" placeholder="..." />
-                    <marker date="1439000008918" expanded="true" signature="524:2069" placeholder="..." />
-                    <marker date="1439000008918" expanded="true" signature="567:802" placeholder="..." />
-                    <marker date="1439000008918" expanded="true" signature="681:777" placeholder="..." />
-                    <marker date="1439000008918" expanded="true" signature="845:1132" placeholder="..." />
-                    <marker date="1439000008918" expanded="true" signature="982:1107" placeholder="..." />
-                    <marker date="1439000008918" expanded="true" signature="1175:1450" placeholder="..." />
-                    <marker date="1439000008918" expanded="true" signature="1303:1425" placeholder="..." />
-                    <marker date="1439000008918" expanded="true" signature="1493:1771" placeholder="..." />
-                    <marker date="1439000008918" expanded="true" signature="1622:1746" placeholder="..." />
-                    <marker date="1439000008918" expanded="true" signature="1814:2045" placeholder="..." />
-                    <marker date="1439000008918" expanded="true" signature="1910:2020" placeholder="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/chuangplus/settings.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="106" column="0" selection-start="2659" selection-end="2659" vertical-scroll-proportion="0.0" vertical-offset="1596" max-vertical-offset="3002">
+                <state line="3" column="19" selection-start="98" selection-end="100" vertical-scroll-proportion="0.0" vertical-offset="57" max-vertical-offset="1691">
                   <folding />
                 </state>
               </provider>
@@ -112,7 +122,7 @@
           <file leaf-file-name="controllers_desktop.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="644" column="0" selection-start="27844" selection-end="27844" vertical-scroll-proportion="-19.0" vertical-offset="11761" max-vertical-offset="13642">
+                <state line="659" column="50" selection-start="28369" selection-end="28369" vertical-scroll-proportion="-6.84" vertical-offset="12350" max-vertical-offset="14364">
                   <folding />
                 </state>
               </provider>
@@ -121,7 +131,7 @@
           <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/position/urls.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="4" column="38" selection-start="114" selection-end="114" vertical-scroll-proportion="-3.04" vertical-offset="0" max-vertical-offset="418">
+                <state line="11" column="65" selection-start="716" selection-end="716" vertical-scroll-proportion="-8.36" vertical-offset="0" max-vertical-offset="437">
                   <folding>
                     <element signature="e#0#32#0" expanded="true" />
                   </folding>
@@ -129,57 +139,19 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/position/views.py">
+          <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/position/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="83" column="51" selection-start="3062" selection-end="3063" vertical-scroll-proportion="0.7215816" vertical-offset="854" max-vertical-offset="16454">
+                <state line="28" column="21" selection-start="1046" selection-end="1063" vertical-scroll-proportion="-14.4" vertical-offset="77" max-vertical-offset="969">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/chuangplus/urls.py">
+          <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/account/views.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="16" column="23" selection-start="526" selection-end="534" vertical-scroll-proportion="-12.16" vertical-offset="0" max-vertical-offset="608">
-                  <folding>
-                    <element signature="e#0#51#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/static/js/app.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="52" column="79" selection-start="2952" selection-end="2972" vertical-scroll-proportion="0.0" vertical-offset="798" max-vertical-offset="2356">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/account/urls.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="32" column="18" selection-start="1879" selection-end="1886" vertical-scroll-proportion="-14.28" vertical-offset="213" max-vertical-offset="855">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/filedata/urls.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="10" column="0" selection-start="414" selection-end="414" vertical-scroll-proportion="-6.08" vertical-offset="0" max-vertical-offset="266">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="company_info_detail.less" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/static/less/desktop/company_info_detail.less">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="148" column="24" selection-start="3187" selection-end="3187" vertical-scroll-proportion="-3.4871795" vertical-offset="2540" max-vertical-offset="5035">
+                <state line="648" column="61" selection-start="27081" selection-end="27107" vertical-scroll-proportion="6.84" vertical-offset="12312" max-vertical-offset="14250">
                   <folding />
                 </state>
               </provider>
@@ -188,7 +160,7 @@
           <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/filedata/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="6" column="13" selection-start="121" selection-end="130" vertical-scroll-proportion="-4.56" vertical-offset="0" max-vertical-offset="323">
+                <state line="7" column="42" selection-start="202" selection-end="202" vertical-scroll-proportion="-5.32" vertical-offset="0" max-vertical-offset="323">
                   <folding />
                 </state>
               </provider>
@@ -197,7 +169,25 @@
           <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/account/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="24" column="44" selection-start="764" selection-end="764" vertical-scroll-proportion="-14.44" vertical-offset="0" max-vertical-offset="2052">
+                <state line="71" column="8" selection-start="2854" selection-end="2858" vertical-scroll-proportion="3.8" vertical-offset="1349" max-vertical-offset="2052">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/position/views.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="253" column="0" selection-start="9968" selection-end="9968" vertical-scroll-proportion="-5.32" vertical-offset="4389" max-vertical-offset="17385">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="manage_position.less" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/static/less/desktop/manage_position.less">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="12" column="24" selection-start="274" selection-end="274" vertical-scroll-proportion="0.38513514" vertical-offset="0" max-vertical-offset="912">
                   <folding />
                 </state>
               </provider>
@@ -223,22 +213,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/static/partials/desktop/company/info.html" />
-        <option value="$PROJECT_DIR$/templates/index.html" />
-        <option value="$PROJECT_DIR$/templates/header.html" />
-        <option value="$PROJECT_DIR$/account/models.py" />
-        <option value="$PROJECT_DIR$/filedata/urls.py" />
-        <option value="$PROJECT_DIR$/account/urls.py" />
-        <option value="$PROJECT_DIR$/filedata/views.py" />
-        <option value="$PROJECT_DIR$/static/js/services.js" />
-        <option value="$PROJECT_DIR$/static/less/desktop/company_info_detail.less" />
-        <option value="$PROJECT_DIR$/account/views.py" />
         <option value="$PROJECT_DIR$/static/partials/desktop/company/infodetail.html" />
-        <option value="$PROJECT_DIR$/static/less/desktop/base.less" />
         <option value="$PROJECT_DIR$/static/less/desktop/edit_position.less" />
         <option value="$PROJECT_DIR$/static/partials/desktop/company/position/edit.html" />
+        <option value="$PROJECT_DIR$/static/less/desktop/base.less" />
+        <option value="$PROJECT_DIR$/static/partials/desktop/company/list.html" />
+        <option value="$PROJECT_DIR$/static/partials/desktop/company/position/detail.html" />
+        <option value="$PROJECT_DIR$/static/partials/desktop/position/list.html" />
+        <option value="$PROJECT_DIR$/position/models.py" />
+        <option value="$PROJECT_DIR$/static/js/services.js" />
+        <option value="$PROJECT_DIR$/templates/header.html" />
+        <option value="$PROJECT_DIR$/position/urls.py" />
+        <option value="$PROJECT_DIR$/static/js/app.js" />
         <option value="$PROJECT_DIR$/static/js/controllers_desktop.js" />
         <option value="$PROJECT_DIR$/position/views.py" />
+        <option value="$PROJECT_DIR$/static/partials/desktop/company/position/manage.html" />
+        <option value="$PROJECT_DIR$/static/less/desktop/manage_position.less" />
       </list>
     </option>
   </component>
@@ -303,7 +293,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="position" />
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -317,7 +307,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
               <option name="myItemId" value="chuangplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chuangplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="less" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -426,27 +434,7 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="chuangplus" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <option name="port" value="8000" />
-      <option name="host" value="" />
-      <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="" />
-      <option name="runTestServer" value="false" />
-      <option name="runNoReload" value="false" />
-      <option name="useCustomRunCommand" value="false" />
-      <option name="customRunCommand" value="" />
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
@@ -472,7 +460,27 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="chuangplus" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -585,8 +593,8 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12548262" sideWeight="0.6117318" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38826814" sideWeight="0.5823681" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1949807" sideWeight="0.6801676" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3198324" sideWeight="0.5823681" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5083799" sideWeight="0.41763192" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -607,14 +615,14 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38826814" sideWeight="0.5823681" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3198324" sideWeight="0.5823681" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5083799" sideWeight="0.41763192" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18146718" sideWeight="0.6117318" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1949807" sideWeight="0.6801676" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39944133" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -630,142 +638,123 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="67" />
+      <option name="time" value="69" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/less/desktop/company_info.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="35" selection-start="344" selection-end="344" vertical-scroll-proportion="-4.6603775" vertical-offset="57" max-vertical-offset="817">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="16" selection-start="867" selection-end="867" vertical-scroll-proportion="-0.8801917" vertical-offset="798" max-vertical-offset="1577">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/infodetail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="0" selection-start="4146" selection-end="4739" vertical-scroll-proportion="-4.6603775" vertical-offset="1064" max-vertical-offset="7049">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python27/Lib/site-packages/mongoengine/connection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="125" column="0" selection-start="4530" selection-end="4530" vertical-scroll-proportion="0.0" vertical-offset="2258" max-vertical-offset="3306">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/account/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="331" column="53" selection-start="13878" selection-end="13890" vertical-scroll-proportion="0.6661342" vertical-offset="5701" max-vertical-offset="14250">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/account/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="44" selection-start="764" selection-end="764" vertical-scroll-proportion="-14.44" vertical-offset="0" max-vertical-offset="2052">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/less/desktop/base.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="22" selection-start="257" selection-end="257" vertical-scroll-proportion="0.36666667" vertical-offset="0" max-vertical-offset="836">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/less/desktop/edit_position.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="23" selection-start="250" selection-end="250" vertical-scroll-proportion="-4.6603775" vertical-offset="0" max-vertical-offset="437">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/partials/desktop/position/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="18" selection-start="9" selection-end="18" vertical-scroll-proportion="6.25" vertical-offset="175" max-vertical-offset="1691">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/partials/desktop/password/set.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="6" selection-start="2122" selection-end="2122" vertical-scroll-proportion="-19.535715" vertical-offset="384" max-vertical-offset="1045">
-          <folding>
-            <marker date="1439000008918" expanded="true" signature="46:2121" placeholder="..." />
-            <marker date="1439000008918" expanded="true" signature="69:2114" placeholder="..." />
-            <marker date="1439000008918" expanded="true" signature="103:144" placeholder="..." />
-            <marker date="1439000008918" expanded="true" signature="179:2103" placeholder="..." />
-            <marker date="1439000008918" expanded="true" signature="211:407" placeholder="..." />
-            <marker date="1439000008918" expanded="true" signature="232:388" placeholder="..." />
-            <marker date="1439000008918" expanded="true" signature="437:2088" placeholder="..." />
-            <marker date="1439000008918" expanded="true" signature="524:2069" placeholder="..." />
-            <marker date="1439000008918" expanded="true" signature="567:802" placeholder="..." />
-            <marker date="1439000008918" expanded="true" signature="681:777" placeholder="..." />
-            <marker date="1439000008918" expanded="true" signature="845:1132" placeholder="..." />
-            <marker date="1439000008918" expanded="true" signature="982:1107" placeholder="..." />
-            <marker date="1439000008918" expanded="true" signature="1175:1450" placeholder="..." />
-            <marker date="1439000008918" expanded="true" signature="1303:1425" placeholder="..." />
-            <marker date="1439000008918" expanded="true" signature="1493:1771" placeholder="..." />
-            <marker date="1439000008918" expanded="true" signature="1622:1746" placeholder="..." />
-            <marker date="1439000008918" expanded="true" signature="1814:2045" placeholder="..." />
-            <marker date="1439000008918" expanded="true" signature="1910:2020" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/position/edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="84" selection-start="397" selection-end="405" vertical-scroll-proportion="0.21246007" vertical-offset="0" max-vertical-offset="2508">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/position/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="22" selection-start="1060" selection-end="1060" vertical-scroll-proportion="0.68068534" vertical-offset="0" max-vertical-offset="912">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chuangplus/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="23" selection-start="526" selection-end="534" vertical-scroll-proportion="-12.16" vertical-offset="0" max-vertical-offset="608">
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="644" column="0" selection-start="27844" selection-end="27844" vertical-scroll-proportion="-19.0" vertical-offset="11761" max-vertical-offset="13642">
+        <state line="648" column="61" selection-start="27081" selection-end="27107" vertical-scroll-proportion="6.84" vertical-offset="12312" max-vertical-offset="14250">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/position/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="38" selection-start="114" selection-end="114" vertical-scroll-proportion="-3.04" vertical-offset="0" max-vertical-offset="418">
+        <state line="11" column="65" selection-start="716" selection-end="716" vertical-scroll-proportion="-8.36" vertical-offset="0" max-vertical-offset="437">
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="659" column="50" selection-start="28369" selection-end="28369" vertical-scroll-proportion="-6.84" vertical-offset="12350" max-vertical-offset="14364">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="111" selection-start="3495" selection-end="3495" vertical-scroll-proportion="0.0" vertical-offset="774" max-vertical-offset="2356">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="90" selection-start="1635" selection-end="1635" vertical-scroll-proportion="0.5976821" vertical-offset="228" max-vertical-offset="1444">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="0" selection-start="49" selection-end="49" vertical-scroll-proportion="-1.3571428" vertical-offset="0" max-vertical-offset="190">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/position/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="51" selection-start="3062" selection-end="3063" vertical-scroll-proportion="0.7215816" vertical-offset="854" max-vertical-offset="16454">
+        <state line="253" column="0" selection-start="9968" selection-end="9968" vertical-scroll-proportion="-5.32" vertical-offset="4389" max-vertical-offset="17385">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/position/detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="0" selection-start="66" selection-end="66" vertical-scroll-proportion="-2.0357144" vertical-offset="0" max-vertical-offset="228">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="617">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/infodetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="134" column="0" selection-start="8293" selection-end="8336" vertical-scroll-proportion="-6.357143" vertical-offset="2368" max-vertical-offset="7049">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/less/desktop/base.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="26" selection-start="320" selection-end="320" vertical-scroll-proportion="0.43322477" vertical-offset="0" max-vertical-offset="893">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/less/desktop/company_info_detail.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="148" column="24" selection-start="3187" selection-end="3187" vertical-scroll-proportion="-5.1320753" vertical-offset="2540" max-vertical-offset="5035">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="65" selection-start="2008" selection-end="2008" vertical-scroll-proportion="0.5054773" vertical-offset="285" max-vertical-offset="1102">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/desktop/base.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="99" column="22" selection-start="1949" selection-end="1949" vertical-scroll-proportion="-16.209227" vertical-offset="11720" max-vertical-offset="16093">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/less/desktop/manage_position.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="24" selection-start="274" selection-end="274" vertical-scroll-proportion="0.38513514" vertical-offset="0" max-vertical-offset="912">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/position/manage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="34" selection-start="979" selection-end="979" vertical-scroll-proportion="0.53521127" vertical-offset="0" max-vertical-offset="779">
+          <folding>
+            <element signature="n#style#0;n#div#4;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

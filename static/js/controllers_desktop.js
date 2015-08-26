@@ -8,10 +8,12 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_HeaderCtrl');
+        $scope.company_id = '';
         $scope.get_company_info = function(){
             $http.get(urls.api+"/account/company/detail").
                 success(function(data){
                     if(data.error.code == 1){
+                        $scope.company_id = data.data._id.$oid;
                         if(data.data.abbreviation != null){
                             $scope.url = '/company/'+data.data._id.$oid+'/infodetail';
                         }
@@ -634,15 +636,51 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_CompanyPositionManageCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyPositionManageCtrl');
+        $scope.position_type = {
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+        };
+        $scope.company_id = $routeParams.company_id;
+        $scope.position_list = {};
+        $scope.get_position_list = function(){
+            $http.get(urls.api+"/position/company/"+$scope.company_id+"/list").
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.position_list = data.data;
+                        for(i=0; i<$scope.position_list.length;i++){
+                            $scope.position_list[i].position_type = $scope.position_type[$scope.position_list[i].position_type];
+                        }
+                    }
+                    else{
+                        alert(data.error.message);
+                    }
+                });
+        };
+        $scope.get_position_list();
+        
     }]).
-    controller('DT_CompanyPositionEditCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_CompanyPositionEditCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanyPositionEditCtrl');
         $scope.position = {};
         $scope.create_position = function(){
             $csrf.set_csrf($scope.position);
+            if($scope.position.end_time != ''){
+                $scope.position.end_time = $filter('date')( $scope.position.end_time, 'yyyy-MM-dd HH:mm:ss');
+            }
             $http.post(urls.api+"/position/create", $.param($scope.position)).
                 success(function(data){
-
+                    if(data.error.code == 1){
+                        $scope.error = $errMsg.format_error('发布职位成功',data.error);
+                        setTimeout(function(){window.location.href='/'},2000);
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                    }
                 })
         };
 

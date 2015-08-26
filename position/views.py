@@ -132,8 +132,7 @@ def create_position(request):
         return HttpResponse(json.dumps(re),content_type = 'application/json')
 
     try:
-        etint = int(et)
-        end_time = datetime.utcfromtimestamp(etint)
+        end_time = datetime.strptime(et,'%Y-%m-%d %H:%M:%S')
         assert end_time > release_time
     except (ValueError):
         re['error'] = error(217,'Invaild end time format!')
@@ -248,6 +247,28 @@ def create_position(request):
 
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
+#@user_permission('login')
+def get_company_position_list(request,company_id):
+    re=dict()
+    try:
+        assert request.method == "GET"
+    except:
+        re['error'] = error(3,'error, need get!')
+        return HttpResponse(json.dumps(re), content_type = 'application/json')
+    try:
+        company = Companyinfo.objects.get(id=company_id)
+        position_list = company.positions
+    except ObjectDoesNotExist:
+        re['error'] = error(249,"Object does not exist")
+        return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+    datalist = []
+    for position in position_list:
+        datalist.append(json.loads(position.to_json()))
+    re['data'] = datalist
+    re['error'] = error(1,'get company position list successfully!')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
 @user_permission('login')
 def delete_position(request,position_id):
     re = dict()
@@ -256,7 +277,7 @@ def delete_position(request,position_id):
     except:
         re['error'] = error(2, 'error, need post!')
         return HttpResponse(json.dumps(re), content_type = 'application/json')
-    
+
     try:
         posi = Position.objects.get(id = position_id)
     except (ObjectDoesNotExist):
@@ -807,6 +828,8 @@ def submit_resume(request,position_id):
             return HttpResponse(json.dumps(re), content_type = 'application/json')
 
         submit_date = datetime.now()
+        position.submit_num = position.submit_num+1
+        position.save()
         UP = UserPosition(submit_date = submit_date, resume_submitted = resume, position = position, user = request.user)
         UP.save()
         re['error'] = error(1, 'Success!')
@@ -868,8 +891,35 @@ def user_like_position(request,position_id):
         
         up = UP_Relationship(position = position, user = request.user)
         up.save()
+        position.attention_num = position.attention_num + 1
+        position.save()
         re['error'] = error(1, "success!")
     else:
         re['error'] = error(2, 'error, need POST!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+@user_permission('login')
+def user_unlike_position(request,position_id):
+    re = dict()
+    if request.method == 'POST':
+        try:
+            position = Position.objects.get(id = position_id)
+        except:
+            re['error'] = error(260, 'Position does not exist')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        try:
+            up = UP_Relationship.objects.get(position = position, user = request.user)
+        except DoesNotExist:
+            re['error'] = error(261,'UP_Relationship does not exist')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        try:
+            up.delete()
+            position.attention_num = position.attention_num - 1
+            position.save()
+            re['error'] = error(1,'detele UP_Relationship successfully')
+        except DatabaseError:
+            re['error'] = error(252,"Database error: Failed to delete!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+    else:
+        re['error'] = error(2,'error, need post!')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
