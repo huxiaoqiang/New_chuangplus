@@ -548,10 +548,15 @@ def search_position(request):
 @user_permission("login")
 def get_position(request,position_id):
     re = dict()
-    p = Position.objects.get(id = position_id)
-    re['position'] = json.loads(p.to_json())
-
-    re["error"] = error(1,"Get succeed!")
+    if request.method == "GET":
+        try:
+            position = Position.objects.get(id = position_id)
+            re['data'] = json.loads(position.to_json())
+            re["error"] = error(1,"Get position succeed!")
+        except DoesNotExist:
+            re['error'] = error(260,'Position does not exist')
+    else:
+        re['error'] = error(2,'error, need get!')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
 @user_permission("login")
