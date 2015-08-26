@@ -247,7 +247,7 @@ def create_position(request):
 
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
-@user_permission('login')
+#@user_permission('login')
 def get_company_position_list(request,company_id):
     re=dict()
     try:

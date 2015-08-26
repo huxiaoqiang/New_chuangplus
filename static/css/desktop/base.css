@@ -787,14 +787,32 @@ form.financing_add input {
   padding: 20px;
   margin: 1px 1px 15px 1px;
 }
+#container #position_manage .position_list .dropdown {
+  float: right;
+}
+#container #position_manage .position_list .dropdown a {
+  color: #98769E;
+}
+#container #position_manage .position_list .dropdown ul.dropdown-menu {
+  min-width: 100px;
+}
 #container #position_manage .position_list .position_name {
   color: #98769E;
   font-size: 1.5em;
+}
+#container #position_manage .position_list .edit {
+  float: right;
+  margin-top: -30px;
+  color: #98769e;
+  cursor: pointer;
 }
 #container #position_manage .position_list .tags span {
   border: solid 1px #98769e;
   padding: 2px;
   border-radius: 4px;
+}
+#container #position_manage .position_list .number {
+  margin-top: 10px;
 }
 #container #position_manage .position_list .time {
   float: right;
