@@ -545,7 +545,7 @@ def search_position(request):
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
 
-@user_permission("login")
+#@user_permission("login")
 def get_position(request,position_id):
     re = dict()
     if request.method == "GET":
@@ -559,7 +559,7 @@ def get_position(request,position_id):
         re['error'] = error(2,'error, need get!')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
-@user_permission("login")
+#@user_permission("login")
 def update_position(request,position_id):
     re = dict()
     try:
@@ -656,8 +656,7 @@ def update_position(request,position_id):
         return HttpResponse(json.dumps(re),content_type = 'application/json')
 
     try:
-        etint = int(et)
-        end_time = datetime.utcfromtimestamp(etint)
+        end_time = datetime.strptime(et,'%Y-%m-%d %H:%M:%S')
         assert end_time > datetime.now()
     except (ValueError):
         re['error'] = error(217,'Invaild end time format!')
