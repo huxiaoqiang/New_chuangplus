@@ -248,7 +248,7 @@ def create_position(request):
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
 @user_permission('login')
-def get_company_position_list(request):
+def get_company_position_list(request,company_id):
     re=dict()
     try:
         assert request.method == "GET"
@@ -256,7 +256,7 @@ def get_company_position_list(request):
         re['error'] = error(3,'error, need get!')
         return HttpResponse(json.dumps(re), content_type = 'application/json')
     try:
-        company = Companyinfo.objects.get(user = request.user)
+        company = Companyinfo.objects.get(id=company_id)
         position_list = company.positions
     except ObjectDoesNotExist:
         re['error'] = error(249,"Object does not exist")

@@ -26,6 +26,7 @@ class Position(Document):
     salary_max = IntField(default=0)
     submit_num = IntField(default=0)
     attention_num = IntField(default=0)
+    part_or_full_time = IntField(default=0)
     status = StringField(max_length=15,choices=STATUS,default='hidden')
 
     def __str__(self):
