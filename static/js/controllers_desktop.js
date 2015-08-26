@@ -676,10 +676,11 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.error = $errMsg.format_error('发布职位成功',data.error);
-                        setTimeout(function(){window.location.href='/'},2000);
+                        setTimeout(function(){window.location.href='/company/'+$scope.position.company.$oid+'/position/manage'},2000);
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
+                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
                 })
         };
@@ -692,10 +693,11 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.error = $errMsg.format_error('修改职位成功',data.error);
-                        setTimeout(function(){window.location.href='/company/'+$scope.position_id+'/position/manage'},1500);
+                        setTimeout(function(){window.location.href='/company/'+$scope.position.company.$oid+'/position/manage'},1500);
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
+                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
                 })
         };
@@ -708,16 +710,19 @@ angular.module('chuangplus.controllers', []).
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
+                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
                 });
         };
         if($scope.position_id == 'new'){
             $scope.position = {};
             $scope.submit = $scope.create_position;
+            $scope.title = "发布新职位";
         }
         else{
             $scope.get_position_detail();
             $scope.submit = $scope.set_position;
+            $scope.title = "编辑职位";
         }
     }]).
     controller('DT_CompanyListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
