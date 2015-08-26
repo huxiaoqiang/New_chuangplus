@@ -666,7 +666,7 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_CompanyPositionEditCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanyPositionEditCtrl');
-        $scope.position = {};
+        $scope.position_id = $routeParams.position_id;
         $scope.create_position = function(){
             $csrf.set_csrf($scope.position);
             if($scope.position.end_time != ''){
@@ -683,6 +683,23 @@ angular.module('chuangplus.controllers', []).
                     }
                 })
         };
+        $scope.get_position_detail = function(){
+            $http.get(urls.api+"/position/"+$scope.position_id+"/get").
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.position = data.data;
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                    }
+                });
+        };
+        if($scope.position_id == 'new'){
+            $scope.position = {};
+        }
+        else{
+            $scope.get_position_detail();
+        }
 
     }]).
     controller('DT_CompanyListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
