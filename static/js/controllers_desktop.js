@@ -8,10 +8,12 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_HeaderCtrl');
+        $scope.company_id = '';
         $scope.get_company_info = function(){
             $http.get(urls.api+"/account/company/detail").
                 success(function(data){
                     if(data.error.code == 1){
+                        $scope.company_id = data.data._id.$oid;
                         if(data.data.abbreviation != null){
                             $scope.url = '/company/'+data.data._id.$oid+'/infodetail';
                         }
@@ -643,9 +645,10 @@ angular.module('chuangplus.controllers', []).
             'functions':"职能",
             'others':"其他"
         };
+        $scope.company_id = $routeParams.company_id;
         $scope.position_list = {};
         $scope.get_position_list = function(){
-            $http.get(urls.api+"/position/company/list").
+            $http.get(urls.api+"/position/company/"+$scope.company_id+"/list").
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.position_list = data.data;
