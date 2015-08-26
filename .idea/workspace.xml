@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/controllers_desktop.js" afterPath="$PROJECT_DIR$/static/js/controllers_desktop.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/company/position/edit.html" afterPath="$PROJECT_DIR$/static/partials/desktop/company/position/edit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/position/views.py" afterPath="$PROJECT_DIR$/position/views.py" />
     </list>
     <ignored path="chuangplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -122,10 +121,10 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="controllers_desktop.js" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="controllers_desktop.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="715" column="51" selection-start="31078" selection-end="31078" vertical-scroll-proportion="1.0" vertical-offset="12931" max-vertical-offset="15029">
+                <state line="715" column="51" selection-start="31078" selection-end="31078" vertical-scroll-proportion="0.0" vertical-offset="12931" max-vertical-offset="15029">
                   <folding />
                 </state>
               </provider>
@@ -143,7 +142,7 @@
           <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/position/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="28" column="21" selection-start="1046" selection-end="1063" vertical-scroll-proportion="-5.4" vertical-offset="302" max-vertical-offset="969">
+                <state line="15" column="17" selection-start="467" selection-end="480" vertical-scroll-proportion="-6.92" vertical-offset="17" max-vertical-offset="969">
                   <folding />
                 </state>
               </provider>
@@ -176,10 +175,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/position/views.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="56" column="29" selection-start="2001" selection-end="2001" vertical-scroll-proportion="68.94" vertical-offset="4226" max-vertical-offset="17480">
+                <state line="602" column="51" selection-start="25843" selection-end="25843" vertical-scroll-proportion="-0.8625828" vertical-offset="11674" max-vertical-offset="17480">
                   <folding />
                 </state>
               </provider>
@@ -224,12 +223,12 @@
         <option value="$PROJECT_DIR$/static/js/services.js" />
         <option value="$PROJECT_DIR$/position/urls.py" />
         <option value="$PROJECT_DIR$/static/less/desktop/manage_position.less" />
-        <option value="$PROJECT_DIR$/position/views.py" />
         <option value="$PROJECT_DIR$/templates/header.html" />
         <option value="$PROJECT_DIR$/static/js/app.js" />
         <option value="$PROJECT_DIR$/static/partials/desktop/company/position/manage.html" />
         <option value="$PROJECT_DIR$/static/partials/desktop/company/position/edit.html" />
         <option value="$PROJECT_DIR$/static/js/controllers_desktop.js" />
+        <option value="$PROJECT_DIR$/position/views.py" />
       </list>
     </option>
   </component>
@@ -775,13 +774,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/position/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="21" selection-start="1046" selection-end="1063" vertical-scroll-proportion="-5.4" vertical-offset="302" max-vertical-offset="969">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/account/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="700" column="17" selection-start="29215" selection-end="29220" vertical-scroll-proportion="-4.02" vertical-offset="12928" max-vertical-offset="14250">
@@ -810,23 +802,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/position/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="29" selection-start="2001" selection-end="2001" vertical-scroll-proportion="68.94" vertical-offset="4226" max-vertical-offset="17480">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/position/edit.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="79" selection-start="123" selection-end="129" vertical-scroll-proportion="-1.3571428" vertical-offset="0" max-vertical-offset="2508">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/position/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="36" selection-start="266" selection-end="270" vertical-scroll-proportion="-3.8" vertical-offset="0" max-vertical-offset="418">
           <folding />
         </state>
       </provider>
@@ -840,7 +818,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="715" column="51" selection-start="31078" selection-end="31078" vertical-scroll-proportion="1.0" vertical-offset="12931" max-vertical-offset="15029">
+        <state line="715" column="51" selection-start="31078" selection-end="31078" vertical-scroll-proportion="0.0" vertical-offset="12931" max-vertical-offset="15029">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/position/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="17" selection-start="467" selection-end="480" vertical-scroll-proportion="-6.92" vertical-offset="17" max-vertical-offset="969">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/position/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="36" selection-start="266" selection-end="270" vertical-scroll-proportion="-3.8" vertical-offset="0" max-vertical-offset="418">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/position/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="602" column="51" selection-start="25843" selection-end="25843" vertical-scroll-proportion="-0.8625828" vertical-offset="11674" max-vertical-offset="17480">
           <folding />
         </state>
       </provider>

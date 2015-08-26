@@ -600,7 +600,7 @@ def update_position(request,position_id):
         re['error'] = error(100,"Permission denied!")
     
     name = request.POST.get('name','')
-    position_type = request.POST.get('type','')
+    position_type = request.POST.get('position_type','')
     work_city = request.POST.get('work_city','')
     work_address = request.POST.get('work_address','')
     et = request.POST.get('end_time','')
