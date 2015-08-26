@@ -656,6 +656,9 @@ angular.module('chuangplus.controllers', []).
                             $scope.position_list[i].position_type = $scope.position_type[$scope.position_list[i].position_type];
                         }
                     }
+                    else{
+                        alert(data.error.message);
+                    }
                 });
         };
         $scope.get_position_list();
