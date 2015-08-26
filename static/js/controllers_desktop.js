@@ -683,12 +683,28 @@ angular.module('chuangplus.controllers', []).
                     }
                 })
         };
+        $scope.set_position = function(){
+            $csrf.set_csrf($scope.position);
+            if($scope.position.end_time != ''){
+                $scope.position.end_time = $filter('date')($scope.position.end_time, 'yyyy-MM-dd HH:mm:ss');
+            }
+            $http.post(urls.api+"/position/"+$scope.position_id+"/set", $.param($scope.position)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.error = $errMsg.format_error('修改职位成功',data.error);
+                        setTimeout(function(){window.location.href='/company/'+$scope.position_id+'/position/manage'},1500);
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                    }
+                })
+        };
         $scope.get_position_detail = function(){
             $http.get(urls.api+"/position/"+$scope.position_id+"/get").
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.position = data.data;
-                        $scope.position.end_time = $filter('date')($scope.position.end_time, 'yyyy-MM-dd HH:mm:ss');
+                        $scope.position.end_time = $filter('date')($scope.position.end_time.$date, 'yyyy-MM-dd HH:mm:ss');
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
@@ -697,11 +713,12 @@ angular.module('chuangplus.controllers', []).
         };
         if($scope.position_id == 'new'){
             $scope.position = {};
+            $scope.submit = $scope.create_position;
         }
         else{
             $scope.get_position_detail();
+            $scope.submit = $scope.set_position;
         }
-
     }]).
     controller('DT_CompanyListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyListCtrl');
