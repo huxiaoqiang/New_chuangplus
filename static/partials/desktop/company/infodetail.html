@@ -40,7 +40,7 @@
                     <div class="form-group">
                         <label for="hr_cellphone" class="col-md-4 control-label">hr电话</label>
                         <div class="col-md-8">
-                          <input name="hr_cellphone" type="number" class="form-control" ng-model="companyinfo.hr_cellphone" required>
+                          <input name="hr_cellphone" type="text" class="form-control" ng-model="companyinfo.hr_cellphone" required>
                         </div>
                     </div>
 
@@ -104,8 +104,8 @@
 
                 <div class="col-md-4">
                   <img class="logoimg" ng-if="logo==null" ng-src="/api/file/[[companyinfo.logo_id]]/download"><br/>
-                  <img class="logoimg" ng-if="logo!=null" ngf-src="logo"><br/>
-                  <input ng-model="logo"  ngf-select="upload($file,'logo')" type="file" value="更改logo">
+                  <img  class="logoimg" ng-if="logo!=null" ngf-src="logo"><br/>
+                  <div class="change_logo_tab" ng-model="logo"  ngf-select="upload($file,'logo')">更改logo</div>
                 </div>
             </div>
         </form>
@@ -231,8 +231,9 @@
       <div class="modal-body">
        <form class="member_add form-horizontal" name="memberAddForm" ng-submit="add_member()">
            <div class="col-md-4">
-                <div ng-model="avatar" ngf-select="upload($file,'memberavatar','[[member_number]]')" required>
+                <div>
                     <img ngf-src="avatar || '/static/image/logo/qrcode.jpg'">
+                    <div class="avatar" ng-model="avatar" ngf-select="upload($file,'memberavatar','[[member_number]]')">上传头像</div>
                 </div>
             </div>
             <div class="col-md-8">

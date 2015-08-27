@@ -473,6 +473,14 @@ body > #wrap {
   width: 100px;
   height: 100px;
 }
+#container #company_info_detail form.form-horizontal .change_logo_tab {
+  background-color: #eeeeee;
+  width: 100px;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+  height: 25px;
+}
 #container .divider {
   height: 18px;
   background-color: #eeeeee;
@@ -667,6 +675,15 @@ body > #wrap {
   margin: 0 auto;
   display: block;
   margin-top: 20%;
+  cursor: pointer;
+}
+.member_add .avatar {
+  background-color: #eeeeee;
+  width: 80px;
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+  top: -4px;
   cursor: pointer;
 }
 form.financing_add {
