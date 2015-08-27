@@ -41,6 +41,7 @@ angular.module('chuangplus.services', []).
             'code113':'您是hr，请到hr页面登录',
             'code114':'您是实习生，请到实习生页面登录',
             'code115':'邮箱已经被注册',
+            'code116':'邮箱格式不正确',
             'code120':'简历不存在',
             'code210':'职位名太长或者太短',
             'code211':'职位名中包含非法字符',
@@ -73,6 +74,7 @@ angular.module('chuangplus.services', []).
             'code252':'删除失败',
             'code260':'职位不存在',
             'code261':'关注关系不存在，不能取消关注',
+            'code262':'职位只能是兼职或全职',
             'code299':'未知错误'
         };
         return {

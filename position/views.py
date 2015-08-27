@@ -82,6 +82,7 @@ def create_position(request):
     intime = request.POST.get('internship_time','0')
     samin = request.POST.get('salary_min','0')
     samax = request.POST.get('salary_max','1000000')
+    poft = request.POST.get('part_or_full_time','0')
     status = request.POST.get("status","hidden")
     
     print "ok"
@@ -218,7 +219,14 @@ def create_position(request):
     except:
         re['error'] = error(227,'Max salary should be more than min salary')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
-    
+
+    try:
+        part_or_full_time = int(poft)
+        assert part_or_full_time in range(0,2)
+    except (AssertionError):
+        re['error'] = error(263,'Position can only be part time or full time')
+        return HttpResponse(json.dumps(re),content_type = 'application/json')
+
     try:
         assert status in STATUS
     except (AssertionError):
@@ -228,7 +236,7 @@ def create_position(request):
     posi = Position(name = name,position_type = position_type,work_city = work_city,work_address = work_address,
                     end_time = end_time,position_description = position_description,
                     position_request = position_request,days_per_week = days_per_week,
-                    internship_time = internship_time,salary_min = salary_min,salary_max = salary_max,status = status, company = cpn)
+                    internship_time = internship_time,salary_min = salary_min,salary_max = salary_max,part_or_full_time=part_or_full_time,status = status, company = cpn)
     
     print "done3"
     
@@ -507,6 +515,22 @@ def search_position(request):
                 re['error'] = error(299,'Unknown Error!')
                 return HttpResponse(json.dumps(re),content_type = 'application/json')
 
+    if "part_or_full_time" in request.GET.keys():
+        if request.GET["part_or_full_time"] != '0' or request.GET["part_or_full_time"] != '1':
+            re['error'] = error(262,'Position can only be part time or full time')
+            return HttpResponse(json.dumps(re),content_type = 'application/json')
+        else:
+            try:
+                poft = request.GET["part_or_full_time"]
+                part_or_full_time = int(poft)
+                qs = qs.filter(part_or_full_time = part_or_full_time)
+            except (DatabaseError):
+                re['error'] = error(251,"Database error: Failed to search!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            except:
+                re['error'] = error(299,'Unknown Error!')
+                return HttpResponse(json.dumps(re),content_type = 'application/json')
+
     if "status" in request.GET.keys():
         if len(request.GET["status"]) > 0:
             try:
@@ -610,6 +634,7 @@ def update_position(request,position_id):
     intime = request.POST.get('internship_time','0')
     samin = request.POST.get('salary_min','0')
     samax = request.POST.get('salary_max','1000000')
+    part_or_full_time = request.POST.get('part_or_full_time','0')
     status = request.POST.get("status","hidden")
     
     try:
@@ -738,7 +763,13 @@ def update_position(request,position_id):
     except:
         re['error'] = error(227,'Max salary should be more than min salary')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
-    
+
+    try:
+        assert int(part_or_full_time) in range(0,2)
+    except (AssertionError):
+        re['error'] = error(262,'Position can only be part time or full time')
+        return HttpResponse(json.dumps(re),content_type = 'application/json')
+
     try:
         assert status in STATUS
     except (AssertionError):
@@ -756,6 +787,7 @@ def update_position(request,position_id):
     posi.internship_time = internship_time
     posi.salary_min = salary_min
     posi.salary_max = salary_max
+    posi.part_or_full_time = int(part_or_full_time)
     posi.status = status
     
     try:
