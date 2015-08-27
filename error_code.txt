@@ -66,6 +66,7 @@
 251: Database error: Failed to search
 252: Database error: Failed to delete
 260: Position does not exist
-
+261: UP-relationship is not exist
+262: Position can only be part time or full time
 299: Unknown error
 
