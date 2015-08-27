@@ -592,7 +592,7 @@ angular.module('chuangplus.controllers', []).
             var tag_number = 0;
             for(i=0; i<$scope.tags.length; i++){
                 if($scope.tags[i].chosed == true)
-                    $scope.companyinfo.welfare_tags += tags[i].value;
+                    $scope.companyinfo.welfare_tags += $scope.tags[i].value;
                     $scope.companyinfo.welfare_tags += ',';
                     tag_number++;
             }
