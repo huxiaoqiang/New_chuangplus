@@ -15,7 +15,7 @@
                 <div class="tab-pane" ng-show="view_tab == 'tab1'">
                     <form class="form-horizontal" id="findpwd-form" ng-submit="update_info()">
                       <div class="form-group">
-                        <label class="col-sm-4 control-label">用户名</label>
+                        <label class="col-sm-4 control-label" ng-model="username">{{username}}</label>
                         <div class="col-sm-8">
                           <label class="control-label"></label>
                         </div>

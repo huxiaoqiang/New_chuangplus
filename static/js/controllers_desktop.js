@@ -776,6 +776,7 @@ angular.module('chuangplus.controllers', []).
         $scope.changeTab = function(tab){
             $scope.view_tab = tab;
         }
+	$scope.username = UserService.username;
     }]).
     controller('DT_InternEnterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_InternEnterCtrl');
