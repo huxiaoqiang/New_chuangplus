@@ -589,10 +589,22 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.save_company_info = function(){
             $scope.companyinfo.welfare_tags = '';
+            var tag_number = 0;
             for(i=0; i<$scope.tags.length; i++){
-                if(tags[i].chosed == true)
+                if($scope.tags[i].chosed == true)
                     $scope.companyinfo.welfare_tags += tags[i].value;
                     $scope.companyinfo.welfare_tags += ',';
+                    tag_number++;
+            }
+            if(tag_number == 0){
+                $scope.error = $errMsg.format_error("至少选择一个福利标签",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(tag_number > 5){
+                $scope.error = $errMsg.format_error("福利标签数不能超过5个",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
             }
             $scope.companyinfo.welfare_tags = $scope.companyinfo.welfare_tags.substring(0,$scope.companyinfo.welfare_tags-1);
             $csrf.set_csrf($scope.companyinfo);

@@ -480,6 +480,7 @@ body > #wrap {
   text-align: center;
   cursor: pointer;
   height: 25px;
+  top: -25px;
 }
 #container .divider {
   height: 18px;
