@@ -13,6 +13,8 @@ import traceback
 # Create your views here.
 from .models import *
 from position.models import *
+from app.common_api import check_email
+
 
 def register(request):
     re=dict()
@@ -40,6 +42,9 @@ def register(request):
 
         #check the email
         try:
+            if check_email(email) != True:
+                re['error'] = error(116,'email is not legal')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
             find_user_email = User.objects.get(email=email)
             if find_user_email is not None:
                 re['error'] = error(115,"Email has been registed")
@@ -111,7 +116,7 @@ def check_username(request):
         re['error'] = error(2,"error, need POST!")
     return  HttpResponse(json.dumps(re), content_type = 'application/json')
 
-def check_email(request):
+def check_email_exist(request):
     re = dict()
     if request.method == "POST":
         email = request.POST.get('email','')
@@ -322,7 +327,6 @@ def set_companyinfo(request,company_id):
         c.abbreviation = request.POST.get('abbreviation', c.abbreviation)
         c.city = request.POST.get('city', c.city)
         c.field = request.POST.get('field', c.field)
-
         c.homepage = request.POST.get('homepage', c.homepage)
         c.wechat = request.POST.get('wechat', c.wechat)
         c.email_resume = request.POST.get('email_resume', c.email_resume)
@@ -352,7 +356,7 @@ def set_companyinfo(request,company_id):
 def check_companyinfo_complete(request,company_id):
     re = dict()
     if request.method == "GET":
-        c = Companyinfo.objects.get(username=request.user.username)
+        c = Companyinfo.objects.get(id = company_id)
         if c.city and c.field and c.email_resume and c.welfare_tags\
         and c.ICregist_name and c.company_description:
             c.info_complete = True
