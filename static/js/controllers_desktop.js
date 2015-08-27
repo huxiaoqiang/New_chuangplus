@@ -607,7 +607,7 @@ angular.module('chuangplus.controllers', []).
                 setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                 return;
             }
-            $scope.companyinfo.welfare_tags = $scope.companyinfo.welfare_tags.substring(0,$scope.companyinfo.welfare_tags-1);
+            $scope.companyinfo.welfare_tags = $scope.companyinfo.welfare_tags.substring(0,$scope.companyinfo.welfare_tags.length-1);
             $csrf.set_csrf($scope.companyinfo);
             $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
                 success(function(data){
