@@ -12,7 +12,7 @@
                         <div class="input-group-addon">
                             <i class="icon-user icon-large"></i>
                         </div>
-                        <input pattern="[a-z0-9A-Z_]{6,20}" name="username" type="text" class="form-control" placeholder="用户名" ng-blur="check_username()" ng-model-options="{ updateOn: 'blur'}" ng-model="reg_info.username" required>
+                        <input ng-pattern="/[a-z0-9A-Z_]{6,20}/" name="username" type="text" class="form-control" placeholder="用户名" ng-blur="check_username()" ng-model-options="{ updateOn: 'blur'}" ng-model="reg_info.username" required>
                     </div>
                     <span ng-show="showError(registerForm.username,'pattern')" class="err-msg">
                         <i class="icon-warning-sign"></i>用户名长度在6~20，不能包含特殊字符
@@ -37,13 +37,25 @@
                     </span>
                 </div>
 
+                <div class="form-group" ng-if="reg_info.role==1">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="icon-phone icon-large"></i>
+                        </div>
+                        <input name="hr_cellphone" type="text" class="form-control" placeholder="hr手机" ng-model="reg_info.hr_cellphone" ng-pattern="/\d{11}/" required >
+                    </div>
+                    <span ng-show="showError(registerForm.hr_cellphone,'pattern')" class="err-msg">
+                        <i class="icon-warning-sign"></i>请输入正确格式的11位手机号码
+                    </span>
+                </div>
+
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon"><i class="icon-key icon-large"></i></div>
                          <input name="password" type="password" class="form-control" placeholder="密码" ng-model="reg_info.password" ng-minlength="6" required>
                     </div>
-                    <span ng-show="reg_info.password.length<6" class="err-msg">
-                        <i class="icon-warning-sign"></i>密码最少为6位
+                    <span ng-show="showError(registerForm.password,'minlength')" class="err-msg">
+                        <i class="icon-warning-sign"></i>为保证安全，密码最少为6位
                     </span>
                 </div>
 
