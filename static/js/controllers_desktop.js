@@ -591,10 +591,11 @@ angular.module('chuangplus.controllers', []).
             $scope.companyinfo.welfare_tags = '';
             var tag_number = 0;
             for(i=0; i<$scope.tags.length; i++){
-                if($scope.tags[i].chosed == true)
+                if($scope.tags[i].chosed == true){
                     $scope.companyinfo.welfare_tags += $scope.tags[i].value;
                     $scope.companyinfo.welfare_tags += ',';
                     tag_number++;
+                }
             }
             if(tag_number == 0){
                 $scope.error = $errMsg.format_error("至少选择一个福利标签",{code:"-1"});

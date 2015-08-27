@@ -123,7 +123,7 @@
           <file leaf-file-name="controllers_desktop.js" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="594" column="62" selection-start="25040" selection-end="25040" vertical-scroll-proportion="0.2607313" vertical-offset="11122" max-vertical-offset="15352">
+                <state line="597" column="17" selection-start="25167" selection-end="25167" vertical-scroll-proportion="0.4117647" vertical-offset="11084" max-vertical-offset="15371">
                   <folding />
                 </state>
               </provider>
@@ -815,7 +815,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="594" column="62" selection-start="25040" selection-end="25040" vertical-scroll-proportion="0.2607313" vertical-offset="11122" max-vertical-offset="15352">
+        <state line="597" column="17" selection-start="25167" selection-end="25167" vertical-scroll-proportion="0.4117647" vertical-offset="11084" max-vertical-offset="15371">
           <folding />
         </state>
       </provider>
