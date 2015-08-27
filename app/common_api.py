@@ -2,6 +2,7 @@
 from django.http import HttpResponse
 import json
 import sys
+import re
 reload(sys)
 sys.setdefaultencoding('utf8')
 
@@ -46,3 +47,9 @@ def if_legal(str,enter = False):
             continue;
         raise ValueError,c
     return True
+
+def check_email(email):
+    if len(email) > 6:
+        if re.match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", email) != None:
+            return True
+    return False
