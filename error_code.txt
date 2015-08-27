@@ -28,6 +28,7 @@
 113: Role error,turn hr tab to login
 114: Role error,turn intern tab to login
 115: Email has been registed~
+116: Email is not legal
 120: Resume does not exist
 200: illegal request # A request without necessary keys
 210~228: Creating / Updating position failures (Invaild keys)
