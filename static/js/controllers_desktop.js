@@ -785,12 +785,59 @@ angular.module('chuangplus.controllers', []).
         };
     }]).
 
-    controller('DT_UserInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_UserInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', 'ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $errMsg){
         console.log('DT_UserInfoCtrl');
-        $scope.view_tab = 'tab1';
+	$scope.info = {};
+	$scope.user_info = {};
+	$scope.user_pwd = {};
+	$scope.error = {};
+        $scope.info.username = $user.username();
+	$scope.e_check = {};
+
+	$http.get(urls.api+"/account/userinfo/get").
+	    success(function(data){
+		if(data.error.code == 1){
+		    $scope.user_info = data.data;
+		}
+	    });
+
+        $scope.view_tab = 'tab1';        
         $scope.changeTab = function(tab){
             $scope.view_tab = tab;
-        }
+        };
+
+	$scope.showError = function(ngModelController,error){
+	    return ngModelController.$error[error];
+	};
+
+	$scope.update_info = function(){
+	    if($scope.view_tab == 'tab1'){
+	   	 $csrf.set_csrf($scope.user_info);
+		 $http.post(urls.api+"/account/userinfo/set", $.param($scope.user_info))
+		    .success(function(data){
+			if(data.error.code == 1){
+			    $scope.error = $errMsg.format_error("修改成功",data.error);
+			}
+			else{
+			    $scope.error = $errMsg.format_error("",data.error);
+			}
+		    });
+	    }   
+	    else if($scope.view_tab == 'tab2'){
+	   	$csrf.set_csrf($scope.user_pwd);
+		$http.post(urls.api+"/account/password/set", $.param($scope.user_pwd))
+		    .success(function(data){
+			console.log(data);
+			if(data.error.code == 1){
+			    $scope.error = $errMsg.format_error("修改成功",data.error);
+			}
+			else{
+			    $scope.error = $errMsg.format_error('',data.error);
+			}
+		    });
+	    } 
+	}	
+
     }]).
     controller('DT_InternEnterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_InternEnterCtrl');
