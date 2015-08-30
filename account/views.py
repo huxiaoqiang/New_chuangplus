@@ -276,7 +276,7 @@ def check_userinfo_complete(request):
         and u.cellphone and u.university\
         and u.major and u.grade\
         and u.gender and u.work_days and u.description\
-        and u.resume and u.real_name:
+        and u.resume_id and u.real_name:
             u.info_complete = True
             re["complete"] = 'True' 
         else:

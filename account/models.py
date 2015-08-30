@@ -29,7 +29,7 @@ class Userinfo(Document):
     gender = IntField()  #0 is woman 1 is man
     work_days = IntField()
     position_type = ListField(StringField(max_length=30,choices=TYPE))
-    resume = ReferenceField(File)
+    resume_id = StringField(max_length=30)
     date_joined = DateTimeField()
     update_time = DateTimeField()
     info_complete = BooleanField(default=False)
