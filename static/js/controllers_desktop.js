@@ -497,7 +497,7 @@ angular.module('chuangplus.controllers', []).
             var headers = {
                    'X-CSRFToken': $csrf.val(),
                    'Content-Type': file.type
-               };
+            };
             Upload.upload({
                url:urls.api+'/file/upload',
                data: param,
@@ -613,9 +613,11 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.error = $errMsg.format_error("保存公司信息成功",data.error);
+                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
+                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
                 });
         };

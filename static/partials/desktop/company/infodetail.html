@@ -126,6 +126,7 @@
             <div class="add-company-intro" ng-click="edit_company_intro=true" ng-show="!edit_company_intro && (companyinfo.company_description==null ||companyinfo.company_description=='')">
                 <i class="icon-plus icon-large"></i>添加公司介绍
             </div>
+            <my-text text="companyinfo.company_description"></my-text>
             <p class="saved_description" ng-show="companyinfo.company_description!='' && edit_company_intro==false">[[companyinfo.company_description]]</p>
             <textarea class="company-intro-textarea" placeholder="添加公司介绍" ng-model="companyinfo.company_description" ng-show="edit_company_intro"></textarea>
             <div class="button">
