@@ -234,7 +234,7 @@ angular.module('chuangplus.controllers', []).
         $scope.intern_info = {};
         $scope.save_intern_info = function(){
             $csrf.set_csrf($scope.intern_info);
-            $http.post(urls.api+"/account/userinfo/set", $.param($scope.save_intern_info)).
+            $http.post(urls.api+"/account/userinfo/set", $.param($scope.intern_info)).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.error = $errMsg.format_error("修改成功",data.error);
