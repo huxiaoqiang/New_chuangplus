@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^(?P<position_id>.*?)/delete', views.delete_position, name='delete_position'),
     url(r'^(?P<position_id>.*?)/set$', views.update_position, name='update_position'),
     url(r'^(?P<position_id>.*?)/get$', views.get_position, name='get_position'),
+    url(r'^(?P<position_id>.*?)/get_with_companny$', views.get_position_with_company, name='get_position_with_company'),
     url(r'^(?P<position_id>.*?)/like$', views.user_like_position, name='user_like_position'),
     url(r'^(?P<position_id>.*?)/submit$', views.submit_resume, name='submit_resume'),
     url(r'^search$', views.search_position, name='search_position'),
