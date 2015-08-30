@@ -563,8 +563,16 @@ def search_position(request):
     orderValue = "id"            
     qs.order_by(orderValue)
     qs = qs[(page - 1) * POSITIONS_PER_PAGE: page * POSITIONS_PER_PAGE]
-    
-    re["positions"] = json.loads(qs.to_json())
+    positions = json.loads(qs.to_json())
+
+    for position in positions:
+        try:
+            company = Companyinfo.objects.get(id=position.company["$oid"])
+            position['company'] =  json.loads(company.to_json())
+        except DoesNotExist:
+            re['error'] = error(105,'Companyinfo does not exist!')
+            return HttpResponse(json.dumps(re),content_type = 'application/json')
+    re['positions'] = positions
     re["error"] = error(1,"Search succeed!")
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
@@ -582,7 +590,6 @@ def get_position_with_company(request,position_id):
             re['error'] = error(260,'Position does not exist')
             return HttpResponse(json.dumps(re),content_type = 'application/json')
         try:
-            print position.company.id
             company = Companyinfo.objects.get(id=position.company.id)
             re['company'] = json.loads(company.to_json())
         except:
