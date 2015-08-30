@@ -255,7 +255,7 @@ def create_position(request):
 
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
-#@user_permission('login')
+@user_permission('login')
 def get_company_position_list(request,company_id):
     re=dict()
     try:
@@ -577,13 +577,17 @@ def get_position_with_company(request,position_id):
             position = Position.objects.get(id = position_id)
             re['data'] = json.loads(position.to_json())
             re["error"] = error(1,"Get position succeed!")
+            
         except DoesNotExist:
             re['error'] = error(260,'Position does not exist')
+            return HttpResponse(json.dumps(re),content_type = 'application/json')
         try:
-            company = Companyinfo.objects.get(id=position.company)
+            print position.company.id
+            company = Companyinfo.objects.get(id=position.company.id)
             re['company'] = json.loads(company.to_json())
         except:
             re['error'] = error(105,'Companyinfo does not exist!')
+            return HttpResponse(json.dumps(re),content_type = 'application/json')
     else:
         re['error'] = error(2,'error, need get!')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
