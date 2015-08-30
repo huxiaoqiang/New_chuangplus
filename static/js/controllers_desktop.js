@@ -232,6 +232,21 @@ angular.module('chuangplus.controllers', []).
     controller('DT_InternResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_InternResumeCtrl');
         $scope.intern_info = {};
+        $scope.get_intern_info = function(){
+            var param = {
+                "csrfmiddlewaretoken" : $csrf.val()
+            };
+            $http.get(urls.api+"/account/userinfo/get", $.param(param)).
+              success(function(data){
+                if(data.error.code == 1){
+                    $scope.intern_info = data.data;
+                }
+                else{
+                    $scope.error = $errMsg.format_error("",data.error);
+                }
+              });
+        };
+        $scope.get_intern_info();
         $scope.save_intern_info = function(){
             $csrf.set_csrf($scope.intern_info);
             $http.post(urls.api+"/account/userinfo/set", $.param($scope.intern_info)).
