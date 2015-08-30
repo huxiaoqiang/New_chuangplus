@@ -1211,6 +1211,89 @@ form.financing_add input {
   float: right;
   color: #a6aaa9;
 }
+#container #position-detail .position-info {
+  border: solid #98769E;
+  border-width: 1px 1px 1px 10px;
+  padding: 10px;
+  margin: 10px;
+}
+#container #position-detail .position-info .position {
+  font-family: "微软雅黑";
+  color: #98769E;
+  font-size: 1.5em;
+}
+#container #position-detail .position-info .submit-num {
+  float: right;
+  margin-top: -30px;
+  color: #98769E;
+}
+#container #position-detail .position-info .item-label {
+  float: left;
+}
+#container #position-detail .position-info .item-label .label {
+  color: #98769E;
+  border: solid 1px;
+  border-radius: 4px;
+}
+#container #position-detail .position-info .submit-time {
+  float: right;
+  color: #8E8E8E;
+}
+#container #position-detail .company-info {
+  border: solid #98769E;
+  border-width: 1px 1px 1px 10px;
+  padding: 10px;
+  margin: 10px;
+}
+#container #position-detail .company-info .company-logo {
+  float: left;
+}
+#container #position-detail .company-info .company-logo img {
+  height: 120px;
+  width: 120px;
+}
+#container #position-detail .company-info .item-info .name {
+  padding-left: 140px;
+  font-size: 1.5em;
+  font-family: "微软雅黑";
+}
+#container #position-detail .company-info .item-info .brief_introduction {
+  padding-left: 140px;
+  color: #8E8E8E;
+  margin-top: -10px;
+  font-family: "微软雅黑";
+}
+#container #position-detail .company-info .item-info .company-detail {
+  margin-left: 20px;
+  padding: 5px;
+  font-size: 1.5em;
+  color: white;
+  background-color: #98769E;
+  cursor: pointer;
+}
+#container #position-detail .company-info .welfare_tags {
+  float: right;
+  color: #8E8E8E;
+}
+#container #position-detail .submit_favor {
+  float: right;
+}
+#container #position-detail .submit_favor .item {
+  font-size: 1.5em;
+  background-color: #98769E;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 40px;
+  margin-right: 8px;
+}
+#container #position-detail .description p {
+  font-weight: bolder;
+  font-size: 1.5em;
+}
+#container #position-detail .description .line {
+  border: solid 1px #EEEEFB;
+}
 body {
   background-color: #eeeeee;
 }

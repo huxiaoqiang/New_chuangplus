@@ -625,15 +625,26 @@ angular.module('chuangplus.controllers', []).
     controller('DT_PositionDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_PositionDetailCtrl');
         $scope.position_id = $routeParams.position_id;
-        $http.get(urls.api+"/position/"+ $scope.position_id +"/get_with_company$").
+        $scope.position_type = {
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+        };
+        $http.get(urls.api+"/position/"+ $scope.position_id +"/get_with_company").
             success(function(data){
                 if(data.error.code == 1){
-                     $scope.position = data.data;
+                    $scope.position = data.data;
+                    $scope.position.position_type_value = $scope.position_type[$scope.position.position_type];
                 }
                 else{
                     console.log(data.error.message)
                 }
             });
+
     }]).
     controller('DT_FeedbackCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_FeedbackCtrl');
