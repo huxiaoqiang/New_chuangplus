@@ -584,15 +584,14 @@ def get_position_with_company(request,position_id):
     if request.method == "GET":
         try:
             position = Position.objects.get(id = position_id)
-            re['data'] = json.loads(position.to_json())
-            re["error"] = error(1,"Get position succeed!")
-            
         except DoesNotExist:
             re['error'] = error(260,'Position does not exist')
             return HttpResponse(json.dumps(re),content_type = 'application/json')
         try:
             company = Companyinfo.objects.get(id=position.company.id)
-            re['company'] = json.loads(company.to_json())
+            re['data'] = json.loads(position.to_json())
+            re['data']['company'] = json.loads(company.to_json())
+            re["error"] = error(1,"Get position succeed!")
         except:
             re['error'] = error(105,'Companyinfo does not exist!')
             return HttpResponse(json.dumps(re),content_type = 'application/json')
