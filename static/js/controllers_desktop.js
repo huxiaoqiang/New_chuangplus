@@ -229,11 +229,52 @@ angular.module('chuangplus.controllers', []).
     controller('DT_InternPositionFavorCtrl',['$scope','$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_InternPositionFavorCtrl');
     }]).
-    controller('DT_InternResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_InternResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_InternResumeCtrl');
-    }]).
-    controller('DT_InternResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
-        console.log('DT_InternResumeCtrl');
+        $scope.intern_info = {};
+        $scope.save_intern_info = function(){
+            $csrf.set_csrf($scope.intern_info);
+            $http.post(urls.api+"/account/userinfo/set", $.param($scope.save_intern_info)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.error = $errMsg.format_error("修改成功",data.error);
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error("",data.error);
+                    }
+                });
+        };
+        $scope.upload = function(file,file_t){
+            var param = {
+               "file_type": file_t,
+               "description": UserService.username(),
+               "category": UserService.username() + '_'+file_t
+            };
+            var headers = {
+                   'X-CSRFToken': $csrf.val(),
+                   'Content-Type': file.type
+               };
+            Upload.upload({
+               url:urls.api+'/file/upload',
+               data: param,
+               headers:headers,
+               file: file
+            }).
+            progress(function(evt){
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                $scope.progress= 'progress: ' + progressPercentage + '% ' + evt.config.file.name;
+            }).
+            success(function(data, status, headers, config){
+                if(data.error.code == 1){
+                    console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
+                    $scope.intern_info.resume_id = data.data;
+                }
+                else{
+                    console.log(data.error.message);
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
     }]).
     //company controllers
     controller('DT_RegEnterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
