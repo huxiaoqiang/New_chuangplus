@@ -567,8 +567,9 @@ def search_position(request):
 
     for position in positions:
         try:
-            company = Companyinfo.objects.get(id=position.company["$oid"])
-            position['company'] =  json.loads(company.to_json())
+            print position["company"]["$oid"]
+            company = Companyinfo.objects.get(id=position["company"]["$oid"])
+            position["company"] = json.loads(company.to_json())
         except DoesNotExist:
             re['error'] = error(105,'Companyinfo does not exist!')
             return HttpResponse(json.dumps(re),content_type = 'application/json')
