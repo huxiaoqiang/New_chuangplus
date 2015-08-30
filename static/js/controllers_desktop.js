@@ -784,7 +784,7 @@ angular.module('chuangplus.controllers', []).
             $http.get(urls.api+"/position/search").
                 success(function(data){
                     if(data.error.code == 1){
-                        $scope.positions = data.data;
+                        $scope.positions = data.positions;
                     }
                     else{
                         console.log(data.error.message);
