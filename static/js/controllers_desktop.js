@@ -854,8 +854,5 @@ angular.module('chuangplus.controllers', []).
         $scope.Enter_Xiniu = function(){
             window.location.href = '/';
         }
-    }]).
-    controller('DT_PositionListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
-        console.log('DT_PositionListCtrl');
     }]);
 
