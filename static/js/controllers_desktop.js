@@ -759,7 +759,7 @@ angular.module('chuangplus.controllers', []).
             },
             "field":{
                 'social':true,
-                'e-commerce':true,
+                'e_commerce':true,
                 'education':true,
                 'health_medical':true,
                 'culture_creativity':true,
