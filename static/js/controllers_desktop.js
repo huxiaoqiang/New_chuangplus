@@ -233,10 +233,7 @@ angular.module('chuangplus.controllers', []).
         console.log('DT_InternResumeCtrl');
         $scope.intern_info = {};
         $scope.get_intern_info = function(){
-            var param = {
-                "csrfmiddlewaretoken" : $csrf.val()
-            };
-            $http.get(urls.api+"/account/userinfo/get", $.param(param)).
+            $http.get(urls.api+"/account/userinfo/get").
               success(function(data){
                 if(data.error.code == 1){
                     $scope.intern_info = data.data;
