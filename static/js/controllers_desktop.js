@@ -814,8 +814,22 @@ angular.module('chuangplus.controllers', []).
             $scope.title = "编辑职位";
         }
     }]).
-    controller('DT_CompanyListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_CompanyListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanyListCtrl');
+        $scope.company_list = {};
+        $scope.get_company_list = function(){
+            $http.get(urls.api+"/account/company/list").
+                success(function(data){
+                if(data.error.code == 1){
+                    $scope.company_list = data.data;
+
+                }
+                else{
+                     $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
+        $scope.get_company_list();
     }]).
     controller('DT_CompanyDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyDetailCtrl');

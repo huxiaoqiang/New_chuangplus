@@ -1,5 +1,28 @@
 <div id="container">
     <div id="company_list">
-
+        <div class="col-md-4"></div>
+        <div class="col-md-8">
+            <ul ng-repeat="company in company_list">
+                <a href="/company/[[company._id.$oid]]/detail">
+                <li>
+                    <div class="company-info">
+                        <div class="item-pic">
+                            <img src="/api/file/[[company.logo_id]]/download" class="company-pic" alt="图片">
+                        </div>
+                        <div class="item-info">
+                            <p class="abbreviation">[[company.abbreviation]]</p>
+                            <p class="brief_introduction">[[company.brief_introduction]]</p>
+                            <div class="item-label">
+                                <p class="">在招岗位：</p>
+                            </div>
+                            <div class="welfare_tags">
+                                <span ng-repeat="tag in company.welfare_tags">[[tag]]&nbsp;&nbsp;</span>&nbsp;&nbsp;
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                </a>
+            </ul>
+        </div>
     </div>
 </div>
