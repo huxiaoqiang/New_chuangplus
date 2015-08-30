@@ -668,7 +668,7 @@ angular.module('chuangplus.controllers', []).
                     if(data.error.code == 1){
                         $scope.position_list = data.data;
                         for(i=0; i<$scope.position_list.length;i++){
-                            $scope.position_list[i].position_type = $scope.position_type[$scope.position_list[i].position_type];
+                            $scope.position_list[i].position_type_value = $scope.position_type[$scope.position_list[i].position_type];
                         }
                     }
                     else{
@@ -779,12 +779,33 @@ angular.module('chuangplus.controllers', []).
             },
             "salary": ''
         };
+        $scope.position_type = {
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+        };
         $scope.positions = {};
         $scope.get_positions = function(){
             $http.get(urls.api+"/position/search").
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.positions = data.positions;
+                        for(i=0; i<$scope.positions.length;i++){
+                            $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
+                            if($scope.positions[i].company.scale == 0){
+                                $scope.positions[i].company.scale_value = "初创";
+                            }
+                            else if($scope.positions[i].company.scale == 1){
+                                $scope.positions[i].company.scale_value = "快速发展";
+                            }
+                            else{
+                                $scope.positions[i].company.scale_value = "成熟";
+                            }
+                        }
                     }
                     else{
                         console.log(data.error.message);

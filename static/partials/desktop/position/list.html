@@ -85,14 +85,13 @@
                             <img src="/api/file/[[position.company.logo_id]]/download" class="company-pic" alt="图片"></img>
                         </div>
                         <div class="item-info">
-                            <p class="position">[[position.position_type]]|[[position.name]]</p>
+                            <p class="position">[[position.position_type_value]]|[[position.name]]</p>
                             <p class="company">[[position.company.abbreviation]]</p>
                             <p class="company-discrpt">[[position.company.brief_introduction]]</p>
                             <div class="item-label">
                                 <p class="label">[[position.days_per_week]]天/周</p>
                                 <p class="label">[[position.salary_min]]k-[[position.salary_max]]k</p>
-                                <p class="label">[[position.company.scale]]</p>
-                                <p class="label">初创</p>
+                                <p class="label">[[position.company.scale_value]]</p>
                                 <p class="label">北京</p>
                             </div>
                             <p class="submit-time">发布时间：[[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]</p>
