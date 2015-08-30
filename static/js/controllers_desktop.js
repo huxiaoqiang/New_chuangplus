@@ -247,8 +247,8 @@ angular.module('chuangplus.controllers', []).
         $scope.upload = function(file,file_t){
             var param = {
                "file_type": file_t,
-               "description": UserService.username(),
-               "category": UserService.username() + '_'+file_t
+               "description": $user.username(),
+               "category": $user.username() + '_'+file_t
             };
             var headers = {
                    'X-CSRFToken': $csrf.val(),
