@@ -781,8 +781,17 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.positions = {};
         $scope.get_positions = function(){
-
+            $http.get(urls.api+"/position/search").
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.positions = data.data;
+                    }
+                    else{
+                        console.log(data.error.message);
+                    }
+                });
         };
+        $scope.get_positions();
     }]).
 
     controller('DT_UserInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', 'ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $errMsg){

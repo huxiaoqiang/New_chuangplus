@@ -416,6 +416,80 @@ body > #wrap {
 #container #pisition-list .panel.panel-info .panel-body table td {
   width: 10%;
 }
+#container #pisition-list .col-md-8 {
+  margin-top: 10px;
+}
+#container #pisition-list .col-md-8 ul li {
+  list-style-type: none;
+}
+#container #pisition-list .col-md-8 ul li .favor-list-item {
+  margin-top: 10px;
+  border: 1px solid#8E8E8E;
+  width: 100%;
+  height: 140px;
+  padding: 10px 10px 10px 10px;
+}
+#container #pisition-list .col-md-8 ul li .favor-list-item .item-pic {
+  float: left;
+  width: 120px;
+  height: 120px;
+}
+#container #pisition-list .col-md-8 ul li .favor-list-item .item-pic .company-pic {
+  width: 100%;
+  height: 100%;
+}
+#container #pisition-list .col-md-8 ul li .favor-list-item .item-info {
+  float: left;
+  margin-left: 10px;
+  height: 140px;
+}
+#container #pisition-list .col-md-8 ul li .favor-list-item .item-info .position {
+  font-size: 1.2em;
+  border-bottom: 1px solid#8E8E8E;
+  width: 300px;
+  color: #8c5d90;
+}
+#container #pisition-list .col-md-8 ul li .favor-list-item .item-info .company {
+  font-size: 1.3em;
+}
+#container #pisition-list .col-md-8 ul li .favor-list-item .item-info .company-discrpt {
+  font-size: 16px;
+  color: #8E8E8E;
+}
+#container #pisition-list .col-md-8 ul li .favor-list-item .item-info .item-label {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 30px;
+}
+#container #pisition-list .col-md-8 ul li .favor-list-item .item-info .item-label .label {
+  width: 80px;
+  height: 30px;
+  float: left;
+  border: 1px solid#8E8E8E;
+  background-color: #F0F0F0;
+  font-size: 12px;
+  border-radius: 0.3em;
+  margin-right: 10px;
+  color: black;
+  text-align: center;
+  line-height: 30px;
+  padding: 1px 0 5px 0;
+}
+#container #pisition-list .col-md-8 ul li .favor-list-item .item-info .submit-time {
+  font-size: 12px;
+  color: #8E8E8E;
+}
+#container #pisition-list .col-md-8 ul li .favor-list-item .item-info .item-button {
+  text-align: right;
+}
+#container #pisition-list .col-md-8 ul li .favor-list-item .item-info .item-button .btn.btn-submit {
+  width: 100px;
+  height: 30px;
+  border-radius: 0.3em;
+  background-color: #8c5d90;
+  color: white;
+  font-size: 1.0em;
+}
 #container #company_info h2 {
   text-align: center;
   margin-bottom: 25px;
@@ -753,10 +827,10 @@ form.financing_add input {
   padding: 2em;
   float: right;
 }
-#container #userinfo .row .col-sm-9 #findpwd-form {
+#container #userinfo .row .col-sm-9 .form-horizontal {
   width: 40%;
 }
-#container #userinfo .row .col-sm-9 #findpwd-form input {
+#container #userinfo .row .col-sm-9 .form-horizontal input {
   border-top-right-radius: 0.5em;
   border-bottom-right-radius: 0.5em;
   height: 40px;
