@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/controllers_desktop.js" afterPath="$PROJECT_DIR$/static/js/controllers_desktop.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/intern/resume.html" afterPath="$PROJECT_DIR$/static/partials/desktop/intern/resume.html" />
     </list>
     <ignored path="chuangplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,7 +27,7 @@
     <favorites_list name="chuangplus" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.28655282">
+    <splitter split-orientation="horizontal" split-proportion="0.19530416">
       <split-first>
         <splitter split-orientation="vertical" split-proportion="0.6707589">
           <split-first>
@@ -45,7 +44,7 @@
               <file leaf-file-name="info.html" pinned="false" current="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/info.html">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="64" column="18" selection-start="3082" selection-end="3082" vertical-scroll-proportion="0.40772533" vertical-offset="1026" max-vertical-offset="1577">
+                    <state line="64" column="18" selection-start="3082" selection-end="3082" vertical-scroll-proportion="0.475" vertical-offset="1026" max-vertical-offset="1577">
                       <folding />
                     </state>
                   </provider>
@@ -138,7 +137,7 @@
           <file leaf-file-name="controllers_desktop.js" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="250" column="56" selection-start="11310" selection-end="11310" vertical-scroll-proportion="0.659411" vertical-offset="4235" max-vertical-offset="17993">
+                <state line="231" column="226" selection-start="10504" selection-end="10504" vertical-scroll-proportion="0.33034572" vertical-offset="4131" max-vertical-offset="17993">
                   <folding />
                 </state>
               </provider>
@@ -879,14 +878,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/info.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="18" selection-start="3082" selection-end="3082" vertical-scroll-proportion="0.40772533" vertical-offset="1026" max-vertical-offset="1577">
+        <state line="64" column="18" selection-start="3082" selection-end="3082" vertical-scroll-proportion="0.475" vertical-offset="1026" max-vertical-offset="1577">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="250" column="56" selection-start="11310" selection-end="11310" vertical-scroll-proportion="0.659411" vertical-offset="4235" max-vertical-offset="17993">
+        <state line="231" column="226" selection-start="10504" selection-end="10504" vertical-scroll-proportion="0.33034572" vertical-offset="4131" max-vertical-offset="17993">
           <folding />
         </state>
       </provider>
