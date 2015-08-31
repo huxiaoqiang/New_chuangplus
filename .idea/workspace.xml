@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/controllers_desktop.js" afterPath="$PROJECT_DIR$/static/js/controllers_desktop.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/company/list.html" afterPath="$PROJECT_DIR$/static/partials/desktop/company/list.html" />
     </list>
     <ignored path="chuangplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,7 +39,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="detail.html" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="detail.html" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/detail.html">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="16" column="18" selection-start="801" selection-end="801" vertical-scroll-proportion="0.3877551" vertical-offset="0" max-vertical-offset="784">
@@ -129,10 +128,10 @@
         <splitter split-orientation="vertical" split-proportion="0.6964286">
           <split-first>
             <leaf>
-              <file leaf-file-name="controllers_desktop.js" pinned="false" current="false" current-in-tab="true">
+              <file leaf-file-name="controllers_desktop.js" pinned="false" current="true" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="866" column="71" selection-start="37276" selection-end="37276" vertical-scroll-proportion="0.6604478" vertical-offset="16100" max-vertical-offset="19171">
+                    <state line="860" column="76" selection-start="37088" selection-end="37088" vertical-scroll-proportion="0.4477612" vertical-offset="16100" max-vertical-offset="19171">
                       <folding />
                     </state>
                   </provider>
@@ -141,7 +140,7 @@
               <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/account/urls.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="30" column="18" selection-start="1667" selection-end="1674" vertical-scroll-proportion="0.0" vertical-offset="570" max-vertical-offset="893">
+                    <state line="30" column="45" selection-start="1695" selection-end="1701" vertical-scroll-proportion="-10.04" vertical-offset="281" max-vertical-offset="855">
                       <folding />
                     </state>
                   </provider>
@@ -771,23 +770,9 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/less/desktop/base.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="23" selection-start="483" selection-end="483" vertical-scroll-proportion="0.5603217" vertical-offset="171" max-vertical-offset="1007">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/less/desktop/company_list.less">
       <provider selected="true" editor-type-id="text-editor">
         <state line="50" column="17" selection-start="1091" selection-end="1091" vertical-scroll-proportion="0.7362356" vertical-offset="375" max-vertical-offset="1216">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/position/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="22" selection-start="1072" selection-end="1072" vertical-scroll-proportion="-11.4" vertical-offset="0" max-vertical-offset="437">
           <folding />
         </state>
       </provider>
@@ -869,19 +854,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="866" column="71" selection-start="37276" selection-end="37276" vertical-scroll-proportion="0.6604478" vertical-offset="16100" max-vertical-offset="19171">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="18" selection-start="801" selection-end="801" vertical-scroll-proportion="0.3877551" vertical-offset="0" max-vertical-offset="784">
           <folding>
             <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/account/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="45" selection-start="1695" selection-end="1701" vertical-scroll-proportion="-10.04" vertical-offset="281" max-vertical-offset="855">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/position/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="22" selection-start="1072" selection-end="1072" vertical-scroll-proportion="-11.4" vertical-offset="0" max-vertical-offset="437">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="860" column="76" selection-start="37088" selection-end="37088" vertical-scroll-proportion="0.4477612" vertical-offset="16100" max-vertical-offset="19171">
+          <folding />
         </state>
       </provider>
     </entry>
