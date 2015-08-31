@@ -869,6 +869,7 @@ angular.module('chuangplus.controllers', []).
                 });
         };
         $scope.get_company();
+
     }]).
     controller('DT_PositionListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_PositionListCtrl');
