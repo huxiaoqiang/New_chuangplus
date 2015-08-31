@@ -857,11 +857,34 @@ angular.module('chuangplus.controllers', []).
         console.log('DT_CompanyDetailCtrl');
         $scope.company_id = $routeParams.company_id;
         $scope.company = {};
+        $scope.tab1 = true;
+        $scope.tab2 = false;
+        $scope.position_type = {
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+        };
+        $scope.tab1_click = function(){
+            $scope.tab1 = true;
+            $scope.tab2 = false;
+        };
+        $scope.tab2_click = function(){
+            $scope.tab1 = false;
+            $scope.tab2 = true;
+        };
         $scope.get_company = function(){
             $http.get(urls.api+"/account/company/" + $scope.company_id + "/detail").
               success(function(data){
                 if(data.error.code == 1){
                     $scope.company = data.data;
+                    $scope.company.position_number = $scope.company.positions.length;
+                    for(i=0;i<$scope.company.position_number;i++){
+                        $scope.company.position_list[i].position_type_value = $scope.position_type[$scope.company.position_list[i].position_type];
+                    }
                 }
                 else{
                     $scope.error = $errMsg.format_error("",data.error);

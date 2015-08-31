@@ -306,11 +306,21 @@ def get_companyinfo_detail(request,company_id):
     re=dict()
     if request.method == "GET":
         try:
-            companyinfo=Companyinfo.objects.get(id=company_id)
+            companyinfo = Companyinfo.objects.get(id=company_id)
         except:
             re["error"] = error(105,"company does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
+        position_list = []
+        for position in companyinfo.positions:
+            try:
+                position_info = Position.objects.get(id=position.id)
+            except DoesNotExist:
+                re['error'] = error(260,'Position does not exist')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            position_list.append(json.loads(position_info.to_json()))
+
         re['data'] = json.loads(companyinfo.to_json())
+        re['data']['position_list'] = position_list
         re['error'] = error(1, 'get succeed')
     else:
         re["error"] = error(3,"error,need GET!")
