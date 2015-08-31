@@ -519,7 +519,7 @@ body > #wrap {
   width: 50%;
 }
 #container #company_info_detail form.form-horizontal {
-  min-height: 800px;
+  min-height: 840px;
   margin-top: 40px;
 }
 #container #company_info_detail form.form-horizontal .form-group table td {
@@ -1342,11 +1342,17 @@ form.financing_add input {
   margin-right: 8px;
 }
 #container #position-detail .description p {
-  font-weight: bolder;
   font-size: 1.5em;
+  font-family: "微软雅黑";
+  font-weight: bolder;
+  cursor: pointer;
+  color: #98769E;
 }
 #container #position-detail .description .line {
   border: solid 1px #EEEEFB;
+}
+#container #position-detail .description .value {
+  min-height: 100px;
 }
 #container #company_list ul li {
   list-style-type: none;
@@ -1444,6 +1450,7 @@ form.financing_add input {
   cursor: pointer;
   float: right;
   margin-top: -45px;
+  margin-right: 18px;
 }
 #container #company-detail .company-info .welfare_tags {
   float: right;
@@ -1490,6 +1497,7 @@ form.financing_add input {
 #container #company-detail .detail .position .position_list {
   border: solid 2px #98769E;
   border-width: 1px 1px 1px 10px;
+  cursor: pointer;
   padding: 10px;
   margin: 1px 1px 15px 1px;
 }

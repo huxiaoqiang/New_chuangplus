@@ -876,6 +876,9 @@ angular.module('chuangplus.controllers', []).
             $scope.tab1 = false;
             $scope.tab2 = true;
         };
+        $scope.position_detail = function($index){
+            window.location.href = "/position/"+$scope.company.positions[$index].$oid+"/detail";
+        };
         $scope.get_company = function(){
             $http.get(urls.api+"/account/company/" + $scope.company_id + "/detail").
               success(function(data){

@@ -37,10 +37,13 @@
                         </div>
 
                     </div>
-                    <div class="CEO"></div>
+                    <div class="team-member">
+                        <h3>团队成员</h3>
+                        <p class="line"></p>
+                    </div>
                 </div>
                 <div ng-if="tab2==true" class="position">
-                    <div ng-repeat="position in company.position_list" class="position_list" ng-href="/company/position/[[position._id.$oid]]/detail">
+                    <div ng-repeat="position in company.position_list" class="position_list" ng-href="/company/position/[[position._id.$oid]]/detail" ng-click="position_detail($index)">
                         <p class="position_name">[[position.position_type_value]]|[[position.name]]</p>
                         <div class="tags">
                             <span>[[position.days_per_week]]天/周</span>
