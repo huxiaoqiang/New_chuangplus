@@ -692,6 +692,8 @@ angular.module('chuangplus.controllers', []).
             'functions':"职能",
             'others':"其他"
         };
+
+	$scope.post_value = "先收藏";
         $http.get(urls.api+"/position/"+ $scope.position_id +"/get_with_company").
             success(function(data){
                 if(data.error.code == 1){
@@ -702,6 +704,19 @@ angular.module('chuangplus.controllers', []).
                     console.log(data.error.message)
                 }
             });
+	console.log($scope.position_id);
+	$scope.post = function(){
+	    $scope.submit = {};
+	    $scope.submit.position_id = $scope.position_id;
+	    $csrf.set_csrf($scope.submit);
+	    $http.post(urls.api + "/position/userlikeposition", $.param($scope.submit)).
+		success(function(data){
+		    $scope.post_value = "取消收藏";
+		});
+	}
+	    
+
+	
 
     }]).
     controller('DT_FeedbackCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){

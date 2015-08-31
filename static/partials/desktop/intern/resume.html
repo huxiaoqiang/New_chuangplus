@@ -1,5 +1,8 @@
 <div id="container">
     <div id="userresume">
+        <div class="title">
+            <h1>编辑简历信息</h1>
+        </div>
         <div class="row">
             <form class="form-horizontal" id="info-form" ng-submit="save_intern_info()">
                 <div class="col-sm-9">
@@ -54,7 +57,11 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label">简历附件</label>
 
-                        <input ng-model="intern_info.resume_id" ngf-select="upload($file,'resume')" type="file">
+                        </br>
+                        <a href="javascript:;" class="a-upload">
+                            <input ng-model="intern_info.resume_id" ngf-select="upload($file,'resume')" type="file">点击这里上传文件
+                        </a>
+
                     </div>
                 </div>
 
