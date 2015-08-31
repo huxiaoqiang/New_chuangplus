@@ -853,20 +853,24 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.get_company_list();
     }]).
-    controller('DT_CompanyDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_CompanyDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyDetailCtrl');
         $scope.company_id = $routeParams.company_id;
+        $scope.company = {};
         $scope.get_company = function(){
             $http.get().
               success(function(data){
                 if(data.error.code == 1){
-
+                    $scope.company = data.data;
+                }
+                else{
+                    $scope.error = $errMsg.format_error("",data.error);
                 }
                 });
         };
         $scope.get_company();
     }]).
-    controller('DT_PositionListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_PositionListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_PositionListCtrl');
         $scope.filter = {
             "workdays":{
