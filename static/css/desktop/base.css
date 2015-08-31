@@ -1343,6 +1343,12 @@ form.financing_add input {
   padding: 2px;
   color: #98769E;
 }
+#container #company_list ul li .company-info .auth {
+  float: right;
+  margin-right: 10px;
+  color: black;
+  font-family: "微软雅黑";
+}
 body {
   background-color: #eeeeee;
 }
