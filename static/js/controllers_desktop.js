@@ -858,7 +858,7 @@ angular.module('chuangplus.controllers', []).
         $scope.company_id = $routeParams.company_id;
         $scope.company = {};
         $scope.get_company = function(){
-            $http.get(urls.api+"/company/" + $scope.company_id + "/detail").
+            $http.get(urls.api+"/account/company/" + $scope.company_id + "/detail").
               success(function(data){
                 if(data.error.code == 1){
                     $scope.company = data.data;
