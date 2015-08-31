@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/desktop/base.css" afterPath="$PROJECT_DIR$/static/css/desktop/base.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/company_detail.less" afterPath="$PROJECT_DIR$/static/less/desktop/company_detail.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/company_info_detail.less" afterPath="$PROJECT_DIR$/static/less/desktop/company_info_detail.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/controllers_desktop.js" afterPath="$PROJECT_DIR$/static/js/controllers_desktop.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/company/detail.html" afterPath="$PROJECT_DIR$/static/partials/desktop/company/detail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/position/detail.html" afterPath="$PROJECT_DIR$/static/partials/desktop/position/detail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/position_detail.less" afterPath="$PROJECT_DIR$/static/less/desktop/position_detail.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="chuangplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -87,10 +81,10 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="detail.html" pinned="false" current="false" current-in-tab="false">
+              <file leaf-file-name="detail.html" pinned="false" current="true" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/static/partials/desktop/position/detail.html">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="37" column="33" selection-start="1936" selection-end="1941" vertical-scroll-proportion="-8.142858" vertical-offset="475" max-vertical-offset="1178">
+                    <state line="42" column="29" selection-start="2116" selection-end="2116" vertical-scroll-proportion="0.60714287" vertical-offset="475" max-vertical-offset="1178">
                       <folding />
                     </state>
                   </provider>
@@ -114,10 +108,10 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="position_detail.less" pinned="false" current="true" current-in-tab="true">
+              <file leaf-file-name="position_detail.less" pinned="false" current="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/static/less/desktop/position_detail.less">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="86" column="24" selection-start="1866" selection-end="1866" vertical-scroll-proportion="0.5705394" vertical-offset="1359" max-vertical-offset="1957">
+                    <state line="81" column="9" selection-start="1729" selection-end="1729" vertical-scroll-proportion="-2.3076923" vertical-offset="1359" max-vertical-offset="1957">
                       <folding />
                     </state>
                   </provider>
@@ -292,8 +286,8 @@
         <option value="$PROJECT_DIR$/static/less/desktop/company_detail.less" />
         <option value="$PROJECT_DIR$/static/partials/desktop/company/detail.html" />
         <option value="$PROJECT_DIR$/static/js/controllers_desktop.js" />
-        <option value="$PROJECT_DIR$/static/partials/desktop/position/detail.html" />
         <option value="$PROJECT_DIR$/static/less/desktop/position_detail.less" />
+        <option value="$PROJECT_DIR$/static/partials/desktop/position/detail.html" />
       </list>
     </option>
   </component>
@@ -863,16 +857,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/partials/desktop/position/detail.html">
+    <entry file="file://$PROJECT_DIR$/static/less/desktop/position_detail.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="33" selection-start="1936" selection-end="1941" vertical-scroll-proportion="-8.142858" vertical-offset="475" max-vertical-offset="1178">
+        <state line="81" column="9" selection-start="1729" selection-end="1729" vertical-scroll-proportion="-2.3076923" vertical-offset="1359" max-vertical-offset="1957">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/less/desktop/position_detail.less">
+    <entry file="file://$PROJECT_DIR$/static/partials/desktop/position/detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="24" selection-start="1866" selection-end="1866" vertical-scroll-proportion="0.5705394" vertical-offset="1359" max-vertical-offset="1957">
+        <state line="42" column="29" selection-start="2116" selection-end="2116" vertical-scroll-proportion="0.60714287" vertical-offset="475" max-vertical-offset="1178">
           <folding />
         </state>
       </provider>

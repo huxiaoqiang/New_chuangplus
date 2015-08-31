@@ -1341,7 +1341,7 @@ form.financing_add input {
   padding: 5px 40px;
   margin-right: 8px;
 }
-#container #position-detail .description p {
+#container #position-detail .description h3 {
   font-size: 1.5em;
   font-family: "微软雅黑";
   font-weight: bolder;
