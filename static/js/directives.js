@@ -47,4 +47,16 @@ angular.module('chuangplus.directives', []).
           });
         }
       };
+    }).
+    directive('myText', function() {
+        return{
+            restrict : 'E',
+            scope : {text : '='},
+            replace : true,
+            template : "<p>[[text]]</p>",
+            link : function(scope,elm,attr){
+                console.log(elm[0]);
+                elm[0].innerHTML.replace(/\ /g,"&nbsp;").replace(/\r\n/g,"<br/>");
+            }
+        }
     });

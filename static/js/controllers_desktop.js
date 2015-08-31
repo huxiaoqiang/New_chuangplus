@@ -229,11 +229,64 @@ angular.module('chuangplus.controllers', []).
     controller('DT_InternPositionFavorCtrl',['$scope','$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_InternPositionFavorCtrl');
     }]).
-    controller('DT_InternResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_InternResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_InternResumeCtrl');
-    }]).
-    controller('DT_InternResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
-        console.log('DT_InternResumeCtrl');
+        $scope.intern_info = {};
+        $scope.get_intern_info = function(){
+            $http.get(urls.api+"/account/userinfo/get").
+              success(function(data){
+                if(data.error.code == 1){
+                    $scope.intern_info = data.data;
+                }
+                else{
+                    $scope.error = $errMsg.format_error("",data.error);
+                }
+              });
+        };
+        $scope.get_intern_info();
+        $scope.save_intern_info = function(){
+            $csrf.set_csrf($scope.intern_info);
+            $http.post(urls.api+"/account/userinfo/set", $.param($scope.intern_info)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.error = $errMsg.format_error("修改成功",data.error);
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error("",data.error);
+                    }
+                });
+        };
+        $scope.upload = function(file,file_t){
+            var param = {
+               "file_type": file_t,
+               "description": $user.username(),
+               "category": $user.username() + '_'+file_t
+            };
+            var headers = {
+                   'X-CSRFToken': $csrf.val(),
+                   'Content-Type': file.type
+               };
+            Upload.upload({
+               url:urls.api+'/file/upload',
+               data: param,
+               headers:headers,
+               file: file
+            }).
+            progress(function(evt){
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                $scope.progress= 'progress: ' + progressPercentage + '% ' + evt.config.file.name;
+            }).
+            success(function(data, status, headers, config){
+                if(data.error.code == 1){
+                    console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
+                    $scope.intern_info.resume_id = data.data;
+                }
+                else{
+                    console.log(data.error.message);
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
     }]).
     //company controllers
     controller('DT_RegEnterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
@@ -497,7 +550,7 @@ angular.module('chuangplus.controllers', []).
             var headers = {
                    'X-CSRFToken': $csrf.val(),
                    'Content-Type': file.type
-               };
+            };
             Upload.upload({
                url:urls.api+'/file/upload',
                data: param,
@@ -507,7 +560,12 @@ angular.module('chuangplus.controllers', []).
             success(function(data, status, headers, config){
                 if(data.error.code == 1){
                     console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
-                    $scope.member_add.m_avatar_id = data.data;
+                    if(file_t == 'memberavatar'){
+                        $scope.member_add.m_avatar_id = data.data;
+                    }
+                    else if(file_t == 'logo'){
+                        $scope.companyinfo.logo_id = data.data;
+                    }
                 }
                 else{
                     console.log(data.error.message);
@@ -613,15 +671,38 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.error = $errMsg.format_error("保存公司信息成功",data.error);
+                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
+                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
                 });
         };
     }]).
     controller('DT_PositionDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_PositionDetailCtrl');
+        $scope.position_id = $routeParams.position_id;
+        $scope.position_type = {
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+        };
+        $http.get(urls.api+"/position/"+ $scope.position_id +"/get_with_company").
+            success(function(data){
+                if(data.error.code == 1){
+                    $scope.position = data.data;
+                    $scope.position.position_type_value = $scope.position_type[$scope.position.position_type];
+                }
+                else{
+                    console.log(data.error.message)
+                }
+            });
+
     }]).
     controller('DT_FeedbackCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_FeedbackCtrl');
@@ -666,7 +747,7 @@ angular.module('chuangplus.controllers', []).
                     if(data.error.code == 1){
                         $scope.position_list = data.data;
                         for(i=0; i<$scope.position_list.length;i++){
-                            $scope.position_list[i].position_type = $scope.position_type[$scope.position_list[i].position_type];
+                            $scope.position_list[i].position_type_value = $scope.position_type[$scope.position_list[i].position_type];
                         }
                     }
                     else{
@@ -738,8 +819,24 @@ angular.module('chuangplus.controllers', []).
             $scope.title = "编辑职位";
         }
     }]).
-    controller('DT_CompanyListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_CompanyListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanyListCtrl');
+        $scope.company_list = {};
+        $scope.get_company_list = function(){
+            $http.get(urls.api+"/account/company/list").
+                success(function(data){
+                if(data.error.code == 1){
+                    $scope.company_list = data.data;
+                    for(i=0;i<$scope.company_list.length;i++){
+                        $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
+                    }
+                }
+                else{
+                     $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
+        $scope.get_company_list();
     }]).
     controller('DT_CompanyDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyDetailCtrl');
@@ -757,7 +854,7 @@ angular.module('chuangplus.controllers', []).
             },
             "field":{
                 'social':true,
-                'e-commerce':true,
+                'e_commerce':true,
                 'education':true,
                 'health_medical':true,
                 'culture_creativity':true,
@@ -777,10 +874,40 @@ angular.module('chuangplus.controllers', []).
             },
             "salary": ''
         };
+        $scope.position_type = {
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+        };
         $scope.positions = {};
         $scope.get_positions = function(){
-
+            $http.get(urls.api+"/position/search").
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.positions = data.positions;
+                        for(i=0; i<$scope.positions.length;i++){
+                            $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
+                            if($scope.positions[i].company.scale == 0){
+                                $scope.positions[i].company.scale_value = "初创";
+                            }
+                            else if($scope.positions[i].company.scale == 1){
+                                $scope.positions[i].company.scale_value = "快速发展";
+                            }
+                            else{
+                                $scope.positions[i].company.scale_value = "成熟";
+                            }
+                        }
+                    }
+                    else{
+                        console.log(data.error.message);
+                    }
+                });
         };
+        $scope.get_positions();
     }]).
 
     controller('DT_UserInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', 'ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $errMsg){
@@ -843,8 +970,5 @@ angular.module('chuangplus.controllers', []).
         $scope.Enter_Xiniu = function(){
             window.location.href = '/';
         }
-    }]).
-    controller('DT_PositionListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
-        console.log('DT_PositionListCtrl');
     }]);
 

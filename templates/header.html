@@ -12,7 +12,7 @@
         <nav class="navbar navbar-default" role="navigation">
            <div ng-controller="DT_HeaderCtrl">
               <ul class="nav navbar-nav" ng-init="company=true">
-                 <li ng-class="{'active':company}" ng-click="company_active()"><a href="/">公司列表</a></li>
+                 <li ng-class="{'active':company}" ng-click="company_active()"><a href="/company/list">公司列表</a></li>
                  <li ng-class = "{'active':position}" ng-click="position_active()"><a href="/position/list">职位列表</a></li>
               {% if user.is_authenticated %}
 

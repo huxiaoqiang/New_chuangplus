@@ -255,7 +255,7 @@ def create_position(request):
 
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
-#@user_permission('login')
+@user_permission('login')
 def get_company_position_list(request,company_id):
     re=dict()
     try:
@@ -563,13 +563,43 @@ def search_position(request):
     orderValue = "id"            
     qs.order_by(orderValue)
     qs = qs[(page - 1) * POSITIONS_PER_PAGE: page * POSITIONS_PER_PAGE]
-    
-    re["positions"] = json.loads(qs.to_json())
+    positions = json.loads(qs.to_json())
+
+    for position in positions:
+        try:
+            print position["company"]["$oid"]
+            company = Companyinfo.objects.get(id=position["company"]["$oid"])
+            position["company"] = json.loads(company.to_json())
+        except DoesNotExist:
+            re['error'] = error(105,'Companyinfo does not exist!')
+            return HttpResponse(json.dumps(re),content_type = 'application/json')
+    re['positions'] = positions
     re["error"] = error(1,"Search succeed!")
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
 
 #@user_permission("login")
+def get_position_with_company(request,position_id):
+    re = dict()
+    if request.method == "GET":
+        try:
+            position = Position.objects.get(id = position_id)
+        except DoesNotExist:
+            re['error'] = error(260,'Position does not exist')
+            return HttpResponse(json.dumps(re),content_type = 'application/json')
+        try:
+            company = Companyinfo.objects.get(id=position.company.id)
+            re['data'] = json.loads(position.to_json())
+            re['data']['company'] = json.loads(company.to_json())
+            re["error"] = error(1,"Get position succeed!")
+        except:
+            re['error'] = error(105,'Companyinfo does not exist!')
+            return HttpResponse(json.dumps(re),content_type = 'application/json')
+    else:
+        re['error'] = error(2,'error, need get!')
+    return HttpResponse(json.dumps(re),content_type = 'application/json')
+
+@user_permission("login")
 def get_position(request,position_id):
     re = dict()
     if request.method == "GET":
@@ -583,7 +613,8 @@ def get_position(request,position_id):
         re['error'] = error(2,'error, need get!')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
-#@user_permission("login")
+
+@user_permission("login")
 def update_position(request,position_id):
     re = dict()
     try:
