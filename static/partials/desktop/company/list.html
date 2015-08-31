@@ -11,13 +11,15 @@
                         </div>
                         <div class="item-info">
                             <p class="abbreviation">[[company.abbreviation]]</p>
-                            <p class="brief_introduction">[[company.brief_introduction]]</p>
-                            <div class="item-label">
-                                <p class="">在招岗位：</p>
-                            </div>
+                            <p class="brief_introduction">[[company.brief_introduction]]公司一句话简介</p>
+                            <p class="line"></p>
+                            <p class="position_number">在招岗位数：[[company.position_number]]</p>
                             <div class="welfare_tags">
-                                <span ng-repeat="tag in company.welfare_tags">[[tag]]&nbsp;&nbsp;</span>&nbsp;&nbsp;
+                                <span ng-repeat="tag in company.welfare_tags">[[tag]]</span>
                             </div>
+                        </div>
+                        <div class="auth">
+                            <p>机构认证</p>
                         </div>
                     </div>
                 </li>

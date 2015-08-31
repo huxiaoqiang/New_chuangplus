@@ -112,7 +112,7 @@
                 <div class="col-md-4">
                   <img class="logoimg" ng-if="logo==null" ng-src="/api/file/[[companyinfo.logo_id]]/download"><br/>
                   <img  class="logoimg" ng-if="logo!=null" ngf-src="logo"><br/>
-                  <div class="change_logo_tab" ng-model="logo"  ngf-select="upload($file,'logo')">更改logo</div>
+                  <div class="change_logo_tab" ng-model="logo"  ngf-select="upload($file,'logo','logo')">更改logo</div>
                 </div>
             </div>
         </form>
