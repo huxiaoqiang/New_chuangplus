@@ -560,7 +560,12 @@ angular.module('chuangplus.controllers', []).
             success(function(data, status, headers, config){
                 if(data.error.code == 1){
                     console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
-                    $scope.member_add.m_avatar_id = data.data;
+                    if(file_t == 'memberavatar'){
+                        $scope.member_add.m_avatar_id = data.data;
+                    }
+                    else if(file_t == 'logo'){
+                        $scope.companyinfo.logo_id = data.data;
+                    }
                 }
                 else{
                     console.log(data.error.message);
@@ -822,7 +827,9 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                 if(data.error.code == 1){
                     $scope.company_list = data.data;
-
+                    for(i=0;i<$scope.company_list.length;i++){
+                        $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
+                    }
                 }
                 else{
                      $scope.error = $errMsg.format_error('',data.error);
