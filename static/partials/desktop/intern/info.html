@@ -14,50 +14,53 @@
             <div class="col-sm-9">
                 <div class="tab-pane" ng-show="view_tab == 'tab1'">
                     <form class="form-horizontal" name="userinfoForm" ng-submit="update_info()">
-                      <div class="form-group">
-                        <label class="col-sm-4 control-label" ng-model="info.username">[[info.username]]</label>
-                        <div class="col-sm-8">
-                          <label class="control-label"></label>
-                        </div>
-                      </div>
+                        
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" ng-model="info.username">[[info.username]]</label>
+                                <div class="col-sm-8">
+                                    <label class="control-label"></label>
+                                </div>
+                            </div>
 
-                      <div class="form-group">
-                        <label class="col-sm-4 control-label">邮箱</label>
-                        <div class="col-sm-8">
-                          <input name="email" type="email" class="form-control" ng-model="user_info.email" required>
-                        </div>
-			<span ng-show="showError(userinfoForm.email,'email')" class="err-msg">
-			  <i class="icon-warning-sign"></i>请输入正确的邮箱格式，如hxq@xiniu.com
-			</span>
-                      </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">邮箱</label>
+                                <div class="col-sm-8">
+                                    <input name="email" type="email" class="form-control" ng-model="user_info.email" required>
+                                </div>
+                                <span ng-show="showError(userinfoForm.email,'email')" class="err-msg">
+                                    <i class="icon-warning-sign"></i>请输入正确的邮箱格式，如hxq@xiniu.com
+                                </span>
+                            </div>
 
-                      <div class="form-group">
-                        <label class="col-sm-4 control-label">学校</label>
-                        <div class="col-sm-8">
-                          <input type="text" class="form-control" ng-model="user_info.university" required>
-                        </div>
-                      </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">学校</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" ng-model="user_info.university" required>
+                                </div>
+                            </div>
 
-                      <div class="form-group">
-                        <label class="col-sm-4 control-label">专业</label>
-                        <div class="col-sm-8">
-                          <input type="text" class="form-control" ng-model="user_info.major" required>
-                        </div>
-                      </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">专业</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" ng-model="user_info.major" required>
+                                </div>
+                            </div>
+                      
 
-                      <div class="form-group">
-                        <label class="col-sm-4"></label>
-                        <div class="col-sm-8">
-                            <button type="submit" class="btn btn-primary">保存</button>
-                        </div>
-                      </div>
+                            <div class="form-group">
+                                <label class="col-sm-4"></label>
+                                <div class="col-sm-8">
+                                    <button type="submit" class="btn btn-primary">保存</button>
+                                </div>
+                            </div>
 			
-		      <div id="err-msg" ng-show="error.show" ng-class="error.class">[[error.message]]</div>
-                    </form>
-                </div>
+                            <div id="err-msg" ng-show="error.show" ng-class="error.class">[[error.message]]</div>
+                </form>
+            </div>
 
                 <div class="tab-pane" ng-show="view_tab == 'tab2'">
                     <form class="form-horizontal" id="findpwd-form" ng-submit="update_info()">
+                       
                         <div class="form-group">
                             <label class="col-sm-4 control-label" ng-model="info.username">[[info.username]]</label>
                             <div class="col-sm-8">
@@ -69,10 +72,10 @@
                             <label class="col-sm-4 control-label">旧密码</label>
                             <div class="col-sm-8">
                                 <input name="old_password" type="password" class="form-control" ng-model="user_pwd.password"  required>
-			    </div>
-			    <span ng-show="user_pwd.password.length<6" class="err-msg">
-				<i class="icon-warning-sign"></i>密码最少为6位
-			    </span> 
+                            </div>
+                            <span ng-show="user_pwd.password.length<6" class="err-msg">
+                                <i class="icon-warning-sign"></i>密码最少为6位
+                            </span>
                        </div>
 
                         <div class="form-group">
@@ -80,9 +83,9 @@
                             <div class="col-sm-8">
                                 <input name="new_password" type="password" class="form-control" ng-model="user_pwd.new_password" required>
                             </div>
-			    <span ng-show="user_pwd.new_password.length<6" class="err-msg">
-				<i class="icon-warning-sign"></i>密码最少为6位
-        		    </span>
+                            <span ng-show="user_pwd.new_password.length<6" class="err-msg">
+                                <i class="icon-warning-sign"></i>密码最少为6位
+                            </span>
                         </div>
 
                         <div class="form-group">
@@ -90,9 +93,9 @@
                             <div class="col-sm-8">
                                 <input type="password" class="form-control" ng-model="repeat_password" required>
                             </div>
-			    <span ng-show="user_pwd.new_password != repeat_password" class="err-msg">
-			   	<i class="icon-warning-sign"></i>两次输入密码需一致
-			    </span>
+                            <span ng-show="user_pwd.new_password != repeat_password" class="err-msg">
+                                <i class="icon-warning-sign"></i>两次输入密码需一致
+                            </span>
                         </div>
 
                         <div class="form-group">
@@ -102,10 +105,10 @@
                             </div>
                         </div>
 
-			<div id="err-msg" ng-show="error.show" ng-class="error.class">[[error.message]]</div>
+                        <div id="err-msg" ng-show="error.show" ng-class="error.class">[[error.message]]</div>
                     </form>
 
-                </div>
+
              </div>
         </div>
     </div>
