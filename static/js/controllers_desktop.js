@@ -697,6 +697,18 @@ angular.module('chuangplus.controllers', []).
                     console.log(data.error.message)
                 }
             });
+	console.log($scope.position_id);
+	$scope.post = function(){
+	    $scope.submit = {};
+	    $scope.submit.position_id = $scope.position_id;
+	    $csrf.set_csrf($scope.submit);
+	    $http.post(urls.api + "/position/userlikeposition", $.param($scope.submit)).
+		success(function(data){
+		});
+	}
+	    
+
+	
 
     }]).
     controller('DT_FeedbackCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
