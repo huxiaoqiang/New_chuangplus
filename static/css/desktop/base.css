@@ -1349,6 +1349,42 @@ form.financing_add input {
   color: black;
   font-family: "微软雅黑";
 }
+#container #company-detail .company-info {
+  border: solid #98769E;
+  border-width: 1px 1px 1px 10px;
+  padding: 10px;
+  margin: 10px;
+}
+#container #company-detail .company-info .company-logo {
+  float: left;
+}
+#container #company-detail .company-info .company-logo img {
+  height: 120px;
+  width: 120px;
+}
+#container #company-detail .company-info .item-info .name {
+  padding-left: 140px;
+  font-size: 1.5em;
+  font-family: "微软雅黑";
+}
+#container #company-detail .company-info .item-info .brief_introduction {
+  padding-left: 140px;
+  color: #8E8E8E;
+  margin-top: -10px;
+  font-family: "微软雅黑";
+}
+#container #company-detail .company-info .item-info .company-detail {
+  margin-left: 20px;
+  padding: 5px;
+  font-size: 1.5em;
+  color: white;
+  background-color: #98769E;
+  cursor: pointer;
+}
+#container #company-detail .company-info .welfare_tags {
+  float: right;
+  color: #8E8E8E;
+}
 body {
   background-color: #eeeeee;
 }

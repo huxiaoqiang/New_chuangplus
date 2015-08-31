@@ -840,6 +840,16 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_CompanyDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyDetailCtrl');
+        $scope.company_id = $routeParams.company_id;
+        $scope.get_company = function(){
+            $http.get().
+              success(function(data){
+                if(data.error.code == 1){
+
+                }
+                });
+        };
+        $scope.get_company();
     }]).
     controller('DT_PositionListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_PositionListCtrl');

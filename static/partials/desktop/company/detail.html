@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="company-detail">
+        <div class="col-md-8">
+            <div class="company-info">
+                <div class="company-logo">
+                    <img src="/api/file/[[company.logo_id]]/download" alt="图片">
+                </div>
+                <div class="item-info">
+                    <p class="name">[[company.abbreviation]]</p>
+                    <p class="brief_introduction">高校创业服务机构[[company.brief_introduction]]</p>
+                    <a><span class="company-detail">查看公司详情</span></a>
+                </div>
+                <div class="welfare_tags">
+                    <span ng-repeat="tag in company.welfare_tags">[[tag]]&nbsp;&nbsp;</span>&nbsp;&nbsp;
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+
+        </div>
+    </div>
+</div>
