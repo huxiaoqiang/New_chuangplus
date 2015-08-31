@@ -692,6 +692,8 @@ angular.module('chuangplus.controllers', []).
             'functions':"职能",
             'others':"其他"
         };
+
+	$scope.post_value = "先收藏";
         $http.get(urls.api+"/position/"+ $scope.position_id +"/get_with_company").
             success(function(data){
                 if(data.error.code == 1){
@@ -709,6 +711,7 @@ angular.module('chuangplus.controllers', []).
 	    $csrf.set_csrf($scope.submit);
 	    $http.post(urls.api + "/position/userlikeposition", $.param($scope.submit)).
 		success(function(data){
+		    $scope.post_value = "取消收藏";
 		});
 	}
 	    
