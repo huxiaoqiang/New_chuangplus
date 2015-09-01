@@ -228,6 +228,42 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_InternPositionFavorCtrl',['$scope','$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_InternPositionFavorCtrl');
+	$scope.positions = {};
+	$scope.position_type = {
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+        };
+
+        $scope.get_positions = function(){
+        $http.get(urls.api+"/account/userinfo/position/favor/list").
+            success(function(data){
+                if(data.error.code == 1){
+                    $scope.positions = data.data;
+                    for(i = 0; i < $scope.positions.length; i ++){
+                        $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
+                        if($scope.positions[i].company.scale == 0){
+                            $scope.positions[i].company.scale_value = "初创";
+                        }
+                        else if($scope.positions[i].company.scale == 1){
+                            $scope.positions[i].company.scale_value = "快速发展";
+                        }
+                        else{
+                            $scope.positions[i].company.scale_value = "成熟";
+                        }
+                    }
+                }
+                else{
+                    console.log(data.error.message);
+                }
+        });
+    };
+    $scope.get_positions();
+
     }]).
     controller('DT_InternResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_InternResumeCtrl');
@@ -1078,4 +1114,3 @@ angular.module('chuangplus.controllers', []).
             window.location.href = '/';
         }
     }]);
-
