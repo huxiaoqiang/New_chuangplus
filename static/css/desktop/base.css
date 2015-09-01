@@ -451,13 +451,14 @@ body > #wrap {
 }
 #container #pisition-list .col-md-8 ul li .favor-list-item .item-info .company {
   font-size: 1.3em;
+  float: left;
+  color: #000000;
 }
 #container #pisition-list .col-md-8 ul li .favor-list-item .item-info .company-discrpt {
-  font-size: 16px;
+  font-size: 1.3em;
   color: #8E8E8E;
 }
 #container #pisition-list .col-md-8 ul li .favor-list-item .item-info .item-label {
-  margin-top: 10px;
   margin-bottom: 10px;
   height: 30px;
 }
