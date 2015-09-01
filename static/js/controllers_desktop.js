@@ -225,8 +225,8 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_InternCompanyFavorCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_InternCompanyFavorCtrl');
-	$scope.company_list = {};
-	$scope.position_type = {
+	    $scope.company_list = {};
+	    $scope.position_type = {
             "technology":"技术",
             'product':"产品",
             'design':"设计",
@@ -235,55 +235,54 @@ angular.module('chuangplus.controllers', []).
             'functions':"职能",
             'others':"其他"
         };
-	$scope.position_index = {
-	    "technology":0,
-	    "product":1,
-	    "design":2,
-	    "operate":3,
-	    "marketing":4,
-	    "functions":5,
- 	    "others":6
-	};
-	$scope.scale = {
-	    0:"初创",
-	    1:"快速发展",
-	    2:"成熟"
-	};
-	$scope.get_company_list = function(){
-	    $http.get(urls.api+"/account/userinfo/company/favor/list").
-		success(function(data){
-		    if(data.error.code == 1){
-			$scope.company_list = data.data;
-			for(i = 0; i < $scope.company_list.length; i ++){
-			    $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
-			    $scope.company_list[i].position_types = {};
-			    $scope.company_list[i].scale_value = $scope.scale[$scope.company_list[i].scale];
-			    for(j = 0; j < $scope.company_list[i].positions.length; j ++)
-			    {
-				$scope.company_list[i].position_types[$scope.position_index[$scope.company_list[i].positions[j].position_type]] = $scope.position_type[$scope.company_list[i].positions[j].position_type];
-			    }				
-			}
-			
-		    }
-		    else{
-			$scope.error = $errMsg.format_error('',data.error);
-		    }
-		});
-	};
-	$scope.get_company_list();
+	    $scope.position_index = {
+            "technology":0,
+            "product":1,
+            "design":2,
+            "operate":3,
+            "marketing":4,
+            "functions":5,
+            "others":6
+        };
+        $scope.scale = {
+            0:"初创",
+            1:"快速发展",
+            2:"成熟"
+        };
+        $scope.get_company_list = function(){
+            $http.get(urls.api+"/account/userinfo/company/favor/list").
+            success(function(data){
+                if(data.error.code == 1){
+                $scope.company_list = data.data;
+                for(i = 0; i < $scope.company_list.length; i ++){
+                    $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
+                    $scope.company_list[i].position_types = {};
+                    $scope.company_list[i].scale_value = $scope.scale[$scope.company_list[i].scale];
+                    for(j = 0; j < $scope.company_list[i].positions.length; j ++)
+                    {
+                        $scope.company_list[i].position_types[$scope.position_index[$scope.company_list[i].positions[j].position_type]] = $scope.position_type[$scope.company_list[i].positions[j].position_type];
+                    }
+                }
+                }
+                else{
+                $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
+	    $scope.get_company_list();
     }]).
     controller('DT_InternPositionFavorCtrl',['$scope','$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_InternPositionFavorCtrl');
-	$scope.positions = {};
-	$scope.position_type = {
-            "technology":"技术",
-            'product':"产品",
-            'design':"设计",
-            'operate':"运营",
-            'marketing':"市场",
-            'functions':"职能",
-            'others':"其他"
-        };
+        $scope.positions = {};
+        $scope.position_type = {
+                "technology":"技术",
+                'product':"产品",
+                'design':"设计",
+                'operate':"运营",
+                'marketing':"市场",
+                'functions':"职能",
+                'others':"其他"
+            };
 
         $scope.get_positions = function(){
         $http.get(urls.api+"/account/userinfo/position/favor/list").
@@ -309,7 +308,6 @@ angular.module('chuangplus.controllers', []).
         });
     };
     $scope.get_positions();
-
     }]).
     controller('DT_InternResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_InternResumeCtrl');
@@ -517,11 +515,6 @@ angular.module('chuangplus.controllers', []).
             $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
                 success(function(data){
                     if(data.error.code == 1){
-//                        var welfare_tags = $scope.companyinfo.welfare_tags.split(',');
-//                        for(i=0; i<welfare_tags.length; i++){
-//
-//                        }
-
                         $scope.companyinfo = data.data;
                         if(data.data.company_description == undefined)
                             $scope.old_company_description = "";
