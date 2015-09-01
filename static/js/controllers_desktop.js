@@ -566,6 +566,9 @@ angular.module('chuangplus.controllers', []).
                     else if(file_t == 'logo'){
                         $scope.companyinfo.logo_id = data.data;
                     }
+                    else if(file_t == 'qrcode'){
+                         $scope.companyinfo.qrcode_id = data.data;
+                    }
                 }
                 else{
                     console.log(data.error.message);
