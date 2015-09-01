@@ -14,6 +14,9 @@ urlpatterns = [
     url(r'^userinfo/set$',views.set_userinfo, name='set_userinfo'),
     url(r'^userinfo/check$',views.check_userinfo_complete, name='check_userinfo_complete'),
     url(r'^userinfo/position/favor/list$',views.get_position_favor,name='get_position_favor'),
+    url(r'^userinfo/company/favor/list$',views.get_company_favor,name='get_company_favor'),
+    url(r'^userinfo/(?P<position_id>.*?)/check_favor_position$',views.check_favor_position,name='check_favor_position'),
+    url(r'^userinfo/(?P<company_id>.*?)/check_favor_company$',views.check_favor_company,name='check_favor_company'),
 
     url(r'^sendemail$', views.send_email, name='send_email'),
     url(r'^verifycode$', views.verify_code, name='verify_code'),
