@@ -709,7 +709,7 @@ angular.module('chuangplus.controllers', []).
 	    $scope.submit = {};
 	    $scope.submit.position_id = $scope.position_id;
 	    $csrf.set_csrf($scope.submit);
-	    $http.post(urls.api + "/position/userlikeposition", $.param($scope.submit)).
+	    $http.post(urls.api + "/position/"+$scope.position_id+"/userlikeposition", $.param($scope.submit)).
 		success(function(data){
 		    $scope.post_value = "取消收藏";
 		});
