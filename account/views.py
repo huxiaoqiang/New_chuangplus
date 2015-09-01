@@ -407,7 +407,7 @@ def get_position_favor(request):
                 re['error'] = error(105,"Companyinfo does not exist!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             position_re['company'] = json.loads(company.to_json())
-            position_favor_list.append(json.loads(position_re.to_json()))
+            position_favor_list.append(position_re)
 
         re['data'] = position_favor_list
         re['error'] = error(1,"Get favor position list successfully")
