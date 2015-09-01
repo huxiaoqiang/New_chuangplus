@@ -867,3 +867,23 @@ def user_like_company(request,company_id):
     else:
         re['error'] = error(2, 'error, need POST!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+@user_permission('login')
+def user_unlike_company(request,company_id):
+    re=dict()
+    if request.method == 'POST':
+        try:
+            company = Companyinfo.objects.get(id = company_id)
+        except:
+            re["error"] = error(105,"company does not exist!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        try:
+            uc = UC_Relationship.objects.get(company = company, user = request.user)
+        except DoesNotExist:
+            re['error'] = error(263,' UC-relationship is not exist')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        uc.delete()
+        re['error'] = error(1, "success!")
+    else:
+        re['error'] = error(2, 'error, need POST!')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
