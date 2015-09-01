@@ -385,15 +385,19 @@ def get_position_favor(request):
     re = dict()
     if request.method == "GET":
         try:
-            up = UP_Relationship.objects.get(user=request.user)
+            up = UP_Relationship.objects(user=request.user)
+        except DoesNotExist:
+            re['error'] = error(261,"Position does not exist")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
         except DatabaseError:
             re['error'] = error(250,"Database error: Failed to get UP_Relationship")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
+
         position_favor_list = []
-        for position in up.position:
+        for position in up:
             try:
                 posi = Position.objects.get(position.id)
-            except:
+            except DoesNotExist:
                 re['error'] = error(260,"Position does not exist")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             position_favor_list.append(json.loads(posi.to_json()))
@@ -401,6 +405,25 @@ def get_position_favor(request):
         re['error'] = error(1,"Get favor position list successfully")
     else:
         re['error'] = error(3,"Error, need GET")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+
+
+@user_permission('login')
+def check_favor_position(request,position_id):
+    re = dict()
+    if request.method == 'GET':
+        try:
+            position = Position.objects.get(id=position_id)
+        except DoesNotExist:
+            re['error'] = error(260,'Position does not exist')
+        try:
+            up = UP_Relationship.objects.get(user=request.user,position=position)
+            re['data'] = {'exist':True}
+        except DoesNotExist:
+            re['data'] = {'exist':False}
+    else:
+        re['error'] = error(3,'Error,need Get')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 #admin api: for modifying the companyinfo.status, is_auth, auth_organization
