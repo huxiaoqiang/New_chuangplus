@@ -348,7 +348,7 @@ def set_companyinfo(request,company_id):
             c.welfare_tags = welfare_tags.split(',') 
 
         c.product_link = request.POST.get('product_link', c.product_link)
-        c.brief_introduction = request.POst.get('brief_introduction',c.brief_introduction)
+        c.brief_introduction = request.POST.get('brief_introduction',c.brief_introduction)
         c.ICregist_name = request.POST.get('ICregist_name', c.ICregist_name)
         c.company_description = request.POST.get('company_description', c.company_description)
         c.product_description = request.POST.get('product_description', c.product_description)
