@@ -385,17 +385,19 @@ def get_position_favor(request):
     re = dict()
     if request.method == "GET":
         try:
-            up = UP_Relationship.objects.get(user=request.user)
+            up = UP_Relationship.objects(user=request.user)
         except DatabaseError:
             re['error'] = error(250,"Database error: Failed to get UP_Relationship")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         position_favor_list = []
-        for position in up.position:
+        for item in up:
             try:
-                posi = Position.objects.get(position.id)
+                print item.position.id
+                posi = Position.objects.get(id=item.position.id)
             except:
                 re['error'] = error(260,"Position does not exist")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
+
             position_favor_list.append(json.loads(posi.to_json()))
         re['data'] = position_favor_list
         re['error'] = error(1,"Get favor position list successfully")
