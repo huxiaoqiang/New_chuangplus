@@ -584,7 +584,6 @@ angular.module('chuangplus.controllers', []).
                success(function(data){
                if(data.error.code == 1){
                     $scope.error = $errMsg.format_error("保存成功",data.error);
-
                }
                else{
                    $scope.error = $errMsg.format_error('',data.error);
@@ -973,20 +972,7 @@ angular.module('chuangplus.controllers', []).
         $scope.member_list = {};
         $scope.tab1 = true;
         $scope.tab2 = false;
-	$http.get(urls.api+"/account/userinfo/"+$scope.company_id+"/check_favor_company").
-	    success(function(data){
-		if(data.error.code == 1){
-		    if(data.data.exist == true){
-			$scope.post_value = "取消收藏";
-		    }
-		    else{
-			$scope.post_value = "收藏公司";
-		    }
-		}
-		else{
-		    $scope.error = $errorMsg.format_error('',data.error);
-		}
-	});
+        $scope.favored = false;
         $scope.position_type = {
             "technology":"技术",
             'product':"产品",
@@ -1006,6 +992,22 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.position_detail = function($index){
             window.location.href = "/position/"+$scope.company.positions[$index].$oid+"/detail";
+        };
+        $scope.check_favor_company = function(){
+            $http.get(urls.api+"/account/userinfo/"+$scope.company_id+"/check_favor_company").
+                success(function(data){
+                if(data.error.code == 1){
+                    if(data.data.exist == true){
+                        $scope.favored = true;
+                    }
+                    else{
+                        $scope.favored = false;
+                    }
+                }
+                else{
+                    $scope.error = $errorMsg.format_error('',data.error);
+                }
+            });
         };
         $scope.get_company = function(){
             $http.get(urls.api+"/account/company/" + $scope.company_id + "/detail").
@@ -1036,20 +1038,35 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.get_member_list();
         $scope.get_company();
-	$scope.post = function(){
-	    $scope.submit = {};
-	    $scope.submit.company_id = $scope.company_id;
-	    $csrf.set_csrf($scope.submit);
-	    $http.post(urls.api + "/account/company/"+$scope.company_id+"/like", $.param($scope.submit)).
-		success(function(data){
-		    if(data.error.code == 1){
-			$scope.post_value = "取消收藏";
-		    }
-		    else{
-			$scope.error = $errMsg.format_error('',data.error);
-		    }
-		});
-	};
+        $scope.check_favor_company();
+	    $scope.favor = function(){
+            $scope.param = {
+                "csrfmiddlewaretoken" : $csrf.val()
+            };
+            $http.post(urls.api + "/account/company/"+$scope.company_id+"/like", $.param($scope.param)).
+            success(function(data){
+                if(data.error.code == 1){
+                    $scope.favored = true;
+                }
+                else{
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+	    };
+        $scope.unfavor = function(){
+            $scope.param = {
+                "csrfmiddlewaretoken" : $csrf.val()
+            };
+            $http.post(urls.api + "/account/company/"+$scope.company_id+"/unlike", $.param($scope.param)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.favored = false;
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                    }
+                });
+        };
     }]).
     controller('DT_PositionListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_PositionListCtrl');
