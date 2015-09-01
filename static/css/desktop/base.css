@@ -1490,6 +1490,13 @@ form.financing_add input {
 #container #company-detail .detail .company .description {
   min-height: 100px;
 }
+#container #company-detail .detail .company .team-member .member .avatar {
+  float: left;
+}
+#container #company-detail .detail .company .team-member .member .avatar img {
+  width: 60px;
+  height: 60px;
+}
 #container #company-detail .detail .position {
   margin-top: 24px;
   margin-left: 10px;
