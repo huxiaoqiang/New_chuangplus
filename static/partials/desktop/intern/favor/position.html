@@ -1,4 +1,4 @@
-<div id="container" ng-controller="DT_FavorPositionCtrl">
+<div id="container">
     <div id="favor-position-list">
         <div class="col-sm-4">
             <div class="col-md-9">
@@ -31,7 +31,7 @@
                                     <p class="label">[[position.company.scale_value]]</p>
                                     <p class="label">[[position.company.city]]</p>
                                 </div>
-                                <p class="submit-time">发布时间:[[position.release_time.$date |data :'yyyy-MM-dd HH:mm:ss']]</p>
+                                <p class="submit-time">发布时间:[[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]</p>
                                 <div class="item-button">
                                     <input type="button" class="btn btn-submit" value="投递该职位">
                                 </div>
