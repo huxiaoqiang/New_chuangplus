@@ -68,5 +68,6 @@
 260: Position does not exist
 261: UP-relationship is not exist
 262: Position can only be part time or full time
+263: UC-relationship is not exist
 299: Unknown error
 
