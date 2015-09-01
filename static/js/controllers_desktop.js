@@ -695,7 +695,7 @@ angular.module('chuangplus.controllers', []).
             'functions':"职能",
             'others':"其他"
         };
-
+	$scope.submit_value = "投简历";
 	$scope.post_value = "先收藏";
         $http.get(urls.api+"/position/"+ $scope.position_id +"/get_with_company").
             success(function(data){
@@ -712,13 +712,33 @@ angular.module('chuangplus.controllers', []).
 	    $scope.submit = {};
 	    $scope.submit.position_id = $scope.position_id;
 	    $csrf.set_csrf($scope.submit);
-	    $http.post(urls.api + "/position/userlikeposition", $.param($scope.submit)).
+	    $http.post(urls.api + "/position/"+$scope.position_id+"/userlikeposition", $.param($scope.submit)).
 		success(function(data){
 		    $scope.post_value = "取消收藏";
 		});
 	}
 	    
-
+	$scope.submit = function(){
+	    $scope.userinfo = {};
+	    $http.get(urls.api + "/account/userinfo/get").
+		success(function(data){
+		    if(data.error.code == 1){
+			$scope.userinfo = data.data;
+		    	$scope.submit = {};
+			$scope.submit.position_id = $scope.position_id;
+			if($scope.userinfo.resume != null)
+			{
+			    $scope.submit.resume_choice = 1;
+			}
+			else{
+			    $scope.submit.resume_choice = 2;
+			}
+		     }
+		    else{
+			console.log(data.error.message);
+		    }
+		});	
+	}
 	
 
     }]).
@@ -863,6 +883,7 @@ angular.module('chuangplus.controllers', []).
         $scope.member_list = {};
         $scope.tab1 = true;
         $scope.tab2 = false;
+	$scope.post_value = "收藏公司";
         $scope.position_type = {
             "technology":"技术",
             'product':"产品",
@@ -912,7 +933,20 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.get_member_list();
         $scope.get_company();
-
+	$scope.post = function(){
+	    $scope.submit = {};
+	    $scope.submit.company_id = $scope.company_id;
+	    $csrf.set_csrf($scope.submit);
+	    $http.post(urls.api + "/account/company/"+$scope.company_id+"/like", $.param($scope.submit)).
+		success(function(data){
+		    if(data.error.code == 1){
+			$scope.post_value = "取消收藏";
+		    }
+		    else{
+			$scope.error = $errMsg.format_error('',data.error);
+		    }
+		});
+	};
     }]).
     controller('DT_PositionListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_PositionListCtrl');
