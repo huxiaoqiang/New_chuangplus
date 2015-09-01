@@ -415,6 +415,7 @@ def check_favor_position(request,position_id):
             position = Position.objects.get(id=position_id)
         except DoesNotExist:
             re['error'] = error(260,'Position does not exist')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
         try:
             up = UP_Relationship.objects.get(user=request.user,position=position)
             re['data'] = {'exist':True}

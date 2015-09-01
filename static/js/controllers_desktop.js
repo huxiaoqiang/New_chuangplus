@@ -225,6 +225,21 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_InternCompanyFavorCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_InternCompanyFavorCtrl');
+	$scope.company_list = {};
+	$scope.get_company_list = function(){
+	    $http.get(urls.api+"/account/userinfo/company/favor/list").
+		success(function(data){
+		    if(data.error.code == 1){
+			$scope.company_list = data.data;
+			for(i = 0; i < $scope.company_lit.length; i ++){
+			    $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
+			}
+		    else{
+			$scope.error = $errMsg.format_error('',data.error);
+		    }
+		});
+	};
+	$scope.get_company_list();
     }]).
     controller('DT_InternPositionFavorCtrl',['$scope','$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_InternPositionFavorCtrl');
@@ -732,7 +747,22 @@ angular.module('chuangplus.controllers', []).
             'others':"其他"
         };
 	$scope.submit_value = "投简历";
-	$scope.post_value = "先收藏";
+	$http.get(urls.api+"/account/userinfo/"+$scope.position_id+"/check_favor_position").
+	    success(function(data){
+		if(data.error.code == 1){
+		    $scope.favor_exist = data.data.exist;
+		    if($scope.favor_exist == true){
+			$scope.post_value = "取消收藏";
+		    }
+		    else{
+			$scope.post_value = "先收藏";
+		    }
+		}
+		else{
+		    console.log(data.error.message);
+		}
+	});
+	
         $http.get(urls.api+"/position/"+ $scope.position_id +"/get_with_company").
             success(function(data){
                 if(data.error.code == 1){
