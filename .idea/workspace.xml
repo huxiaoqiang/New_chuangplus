@@ -7,6 +7,7 @@
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/desktop/base.css" afterPath="$PROJECT_DIR$/static/css/desktop/base.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/company_detail.less" afterPath="$PROJECT_DIR$/static/less/desktop/company_detail.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/company/detail.html" afterPath="$PROJECT_DIR$/static/partials/desktop/company/detail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="chuangplus.iws" />
@@ -46,7 +47,7 @@
               <file leaf-file-name="detail.html" pinned="false" current="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/detail.html">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="45" column="34" selection-start="2230" selection-end="2230" vertical-scroll-proportion="0.66433567" vertical-offset="570" max-vertical-offset="1615">
+                    <state line="48" column="56" selection-start="2435" selection-end="2449" vertical-scroll-proportion="0.7972028" vertical-offset="570" max-vertical-offset="1615">
                       <folding />
                     </state>
                   </provider>
@@ -122,7 +123,7 @@
               <file leaf-file-name="company_detail.less" pinned="false" current="true" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/static/less/desktop/company_detail.less">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="93" column="28" selection-start="2083" selection-end="2083" vertical-scroll-proportion="0.60553634" vertical-offset="1592" max-vertical-offset="2755">
+                    <state line="96" column="18" selection-start="2193" selection-end="2193" vertical-scroll-proportion="0.26297578" vertical-offset="1748" max-vertical-offset="3002">
                       <folding />
                     </state>
                   </provider>
@@ -854,14 +855,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="34" selection-start="2230" selection-end="2230" vertical-scroll-proportion="0.66433567" vertical-offset="570" max-vertical-offset="1615">
+        <state line="48" column="56" selection-start="2435" selection-end="2449" vertical-scroll-proportion="0.7972028" vertical-offset="570" max-vertical-offset="1615">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/less/desktop/company_detail.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="28" selection-start="2083" selection-end="2083" vertical-scroll-proportion="0.60553634" vertical-offset="1592" max-vertical-offset="2755">
+        <state line="96" column="18" selection-start="2193" selection-end="2193" vertical-scroll-proportion="0.26297578" vertical-offset="1748" max-vertical-offset="3002">
           <folding />
         </state>
       </provider>
