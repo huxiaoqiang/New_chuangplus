@@ -379,7 +379,30 @@ def check_companyinfo_complete(request,company_id):
     else:
         re["error"] = error(3,"error,need GET!")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
-    
+
+@user_permission('login')
+def get_position_favor(request):
+    re = dict()
+    if request.method == "GET":
+        try:
+            up = UP_Relationship.objects.get(user=request.user)
+        except DatabaseError:
+            re['error'] = error(250,"Database error: Failed to get UP_Relationship")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        position_favor_list = []
+        for position in up.position:
+            try:
+                posi = Position.objects.get(position.id)
+            except:
+                re['error'] = error(260,"Position does not exist")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            position_favor_list.append(json.loads(posi.to_json()))
+        re['data'] = position_favor_list
+        re['error'] = error(1,"Get favor position list successfully")
+    else:
+        re['error'] = error(3,"Error, need GET")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
 #admin api: for modifying the companyinfo.status, is_auth, auth_organization
 @user_permission("login")
 def auth_company(request,company_id):
