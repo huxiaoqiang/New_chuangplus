@@ -226,14 +226,45 @@ angular.module('chuangplus.controllers', []).
     controller('DT_InternCompanyFavorCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_InternCompanyFavorCtrl');
 	$scope.company_list = {};
+	$scope.position_type = {
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+        };
+	$scope.position_index = {
+	    "technology":0,
+	    "product":1,
+	    "design":2,
+	    "operate":3,
+	    "marketing":4,
+	    "functions":5,
+ 	    "others":6
+	};
+	$scope.scale = {
+	    0:"初创",
+	    1:"快速发展",
+	    2:"成熟"
+	};
 	$scope.get_company_list = function(){
 	    $http.get(urls.api+"/account/userinfo/company/favor/list").
 		success(function(data){
 		    if(data.error.code == 1){
 			$scope.company_list = data.data;
-			for(i = 0; i < $scope.company_lit.length; i ++){
+			for(i = 0; i < $scope.company_list.length; i ++){
 			    $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
+			    $scope.company_list[i].position_types = {};
+			    $scope.company_list[i].scale_value = $scope.scale[$scope.company_list[i].scale];
+			    for(j = 0; j < $scope.company_list[i].positions.length; j ++)
+			    {
+				$scope.company_list[i].position_types[$scope.position_index[$scope.company_list[i].positions[j].position_type]] = $scope.position_type[$scope.company_list[i].positions[j].position_type];
+			    }				
 			}
+			
+		    }
 		    else{
 			$scope.error = $errMsg.format_error('',data.error);
 		    }
@@ -949,7 +980,20 @@ angular.module('chuangplus.controllers', []).
         $scope.member_list = {};
         $scope.tab1 = true;
         $scope.tab2 = false;
-	$scope.post_value = "收藏公司";
+	$http.get(urls.api+"/account/userinfo/"+$scope.company_id+"/check_favor_company").
+	    success(function(data){
+		if(data.error.code == 1){
+		    if(data.data.exist == true){
+			$scope.post_value = "取消收藏";
+		    }
+		    else{
+			$scope.post_value = "收藏公司";
+		    }
+		}
+		else{
+		    $scope.error = $errorMsg.format_error('',data.error);
+		}
+	});
         $scope.position_type = {
             "technology":"技术",
             'product':"产品",
