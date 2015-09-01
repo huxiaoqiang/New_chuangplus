@@ -955,11 +955,13 @@ def user_like_position(request,position_id):
         except:
             re['error'] = error(260, 'Position does not exist') 
             return HttpResponse(json.dumps(re), content_type = 'application/json')
-        
-        up = UP_Relationship(position = position, user = request.user)
+        try:
+            up = UP_Relationship.objects.get(user=request.user,position = position)
+        except DoesNotExist:
+            up = UP_Relationship(position = position, user = request.user)
+            position.attention_num = position.attention_num + 1
+            position.save()
         up.save()
-        position.attention_num = position.attention_num + 1
-        position.save()
         re['error'] = error(1, "success!")
     else:
         re['error'] = error(2, 'error, need POST!')
