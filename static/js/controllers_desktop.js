@@ -857,6 +857,7 @@ angular.module('chuangplus.controllers', []).
         console.log('DT_CompanyDetailCtrl');
         $scope.company_id = $routeParams.company_id;
         $scope.company = {};
+        $scope.member_list = {};
         $scope.tab1 = true;
         $scope.tab2 = false;
         $scope.position_type = {
@@ -894,6 +895,19 @@ angular.module('chuangplus.controllers', []).
                 }
                 });
         };
+        $scope.get_member_list = function(){
+        $http.get(urls.api+"/account/member/"+$scope.company_id+"/list").
+            success(function(data){
+                if(data.error.code == 1){
+                    $scope.member_list = data.data;
+                    $scope.member_number = data.data.length;
+                }
+                else{
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
+        $scope.get_member_list();
         $scope.get_company();
 
     }]).

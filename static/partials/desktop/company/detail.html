@@ -40,6 +40,15 @@
                     <div class="team-member">
                         <h3>团队成员</h3>
                         <p class="line"></p>
+                        <div ng-repeat="member in member_list" class="member">
+                            <div class="avatar">
+                                <img src="/api/file/[[member.m_avatar_id]]/download" alt="成员头像">
+                            </div>
+                            <div>
+                                <p>[[member.m_name]]|[[member.m_position]]</p>
+                                <p>[[member.m_introduction]]</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div ng-if="tab2==true" class="position">
