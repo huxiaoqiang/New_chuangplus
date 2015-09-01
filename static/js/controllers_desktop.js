@@ -225,21 +225,22 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_InternCompanyFavorCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_InternCompanyFavorCtrl');
-	$scope.company_list = {};
-	$scope.get_company_list = function(){
-	    $http.get(urls.api+"/account/userinfo/company/favor/list").
-		success(function(data){
-		    if(data.error.code == 1){
-			$scope.company_list = data.data;
-			for(i = 0; i < $scope.company_lit.length; i ++){
-			    $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
-			}
-		    else{
-			$scope.error = $errMsg.format_error('',data.error);
-		    }
-		});
-	};
-	$scope.get_company_list();
+        $scope.company_list = {};
+        $scope.get_company_list = function(){
+            $http.get(urls.api+"/account/userinfo/company/favor/list").
+            success(function(data){
+                if(data.error.code == 1){
+                    $scope.company_list = data.data;
+                    for(i = 0; i < $scope.company_lit.length; i++){
+                        $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
+                    }
+                }
+                else{
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
+	    $scope.get_company_list();
     }]).
     controller('DT_InternPositionFavorCtrl',['$scope','$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_InternPositionFavorCtrl');
