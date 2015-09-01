@@ -74,7 +74,10 @@
 
         </div>
         <div class="col-md-4">
-            <img src="/api/file/[[company.qrcode_id]]/download" alt="微信二维码">
+            <img class="qrcode" src="/api/file/[[company.qrcode_id]]/download" alt="微信二维码">
+            <p>公司名称：[[company.ICregist_name]]</p>
+            <p>公司主页：[[company.homepage]]</p>
+            <p ng-repeat="financing in financing_list">[[financing.stage]]&nbp;&nbp;[[financing.organization]]&nbp;&nbp;[[financing.amount]]</p>
         </div>
     </div>
 </div>

@@ -1036,6 +1036,18 @@ angular.module('chuangplus.controllers', []).
                 }
             });
         };
+        $scope.get_financing_list = function(){
+            $http.get(urls.api+"/account/financing/"+$scope.company_id+"/list").
+                success(function(data){
+                if(data.error.code == 1){
+                    $scope.financing_list = data.data;
+                }
+                else{
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
+        $scope.get_financing_list();
         $scope.get_member_list();
         $scope.get_company();
         $scope.check_favor_company();
