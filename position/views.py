@@ -904,6 +904,25 @@ def submit_resume(request,position_id):
         re['error'] = error(2, 'Error, need post!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+@user_permission('login')
+def check_submit(request,position_id):
+    re = dict()
+    if request.method == 'GET':
+        try:
+            position = Position.objects.get(id=position_id)
+        except DoesNotExist:
+            re['error'] = error(260,'Position does not exist')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        try:
+            up = UserPosition.objects.get(user = request.user,position = position)
+            re['exist'] = True
+        except DoesNotExist:
+            re['exist'] = False
+        re['error'] = error(1,'Response succeed!')
+    else:
+        re['error'] = error(3,'Error,need GET')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
 @user_permission("login")
 def email_resume(request):
     re = dict()
