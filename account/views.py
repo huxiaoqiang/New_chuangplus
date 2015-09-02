@@ -253,6 +253,7 @@ def set_userinfo(request):
         u.gender = request.POST.get('gender', u.gender)
         u.work_days = request.POST.get('work_days', u.work_days)
         u.description = request.POST.get('description', u.description)
+        u.resume_id = request.POST.get('resume_id',u.resume_id)
         u.update_time = datetime_now()
 
         try:

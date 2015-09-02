@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^search$', views.search_position, name='search_position'),
     url(r'^company/(?P<company_id>.*?)/list$',views.get_company_position_list,name='get_company_position_list'),
     url(r'^init$',tests.init_account),
-    url(r'^submit',views.submit_resume,name='submit_resume'),
+    url(r'^(?P<position_id>.*?)/submit',views.submit_resume,name='submit_resume'),
     url(r'^emailresume',views.email_resume,name='email_resume'),
     url(r'^(?P<position_id>.*?)/userlikeposition',views.user_like_position,name='user_like_position'),
     url(r'^(?P<position_id>.*?)/userunlikeposition',views.user_unlike_position,name='user_like_position'),
