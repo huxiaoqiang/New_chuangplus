@@ -1,5 +1,6 @@
 #coding=utf-8
 from .models import *
+from filedata.models import *
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
@@ -870,8 +871,13 @@ def submit_resume(request,position_id):
         
         # use the long-term resume
         if resume_choice == '1': 
-            if userinfo.resume: 
-                resume = userinfo.resume.value
+            if userinfo.resume_id:
+                try:
+                    r = File.objects.get(id=userinfo.resume_id) 
+                    resume = r.value
+                except:
+                    re['error'] = error(120, 'Resume does not exist')
+                    return HttpResponse(json.dumps(re), content_type = 'application/json')
             else:
                 re['error'] = error(120, 'Resume does not exist')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
