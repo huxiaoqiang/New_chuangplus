@@ -1411,38 +1411,42 @@ form.financing_add input {
 #container #company-detail {
   min-height: 600px;
 }
-#container #company-detail .company-info {
+#container #company-detail .col-md-8 {
+  border: solid #eeeeee;
+  border-width: 0px 30px 0px 0px;
+}
+#container #company-detail .col-md-8 .company-info {
   border: solid #98769E;
   border-width: 1px 1px 1px 10px;
   padding: 10px;
   margin: 10px;
 }
-#container #company-detail .company-info .company-logo {
+#container #company-detail .col-md-8 .company-info .company-logo {
   float: left;
 }
-#container #company-detail .company-info .company-logo img {
+#container #company-detail .col-md-8 .company-info .company-logo img {
   height: 120px;
   width: 120px;
 }
-#container #company-detail .company-info .item-info .name {
+#container #company-detail .col-md-8 .company-info .item-info .name {
   padding-left: 140px;
   font-size: 1.5em;
   font-family: "微软雅黑";
 }
-#container #company-detail .company-info .item-info .brief_introduction {
+#container #company-detail .col-md-8 .company-info .item-info .brief_introduction {
   padding-left: 140px;
   color: #8E8E8E;
   margin-top: -10px;
   font-family: "微软雅黑";
 }
-#container #company-detail .company-info .item-info .position_number {
+#container #company-detail .col-md-8 .company-info .item-info .position_number {
   margin-left: 140px;
   color: #98769E;
   font-family: "微软雅黑";
   font-weight: bolder;
   font-size: 1.5em;
 }
-#container #company-detail .company-info .item-info .favor {
+#container #company-detail .col-md-8 .company-info .item-info .favor {
   margin-left: 20px;
   padding: 5px;
   font-size: 1.5em;
@@ -1453,94 +1457,94 @@ form.financing_add input {
   margin-top: -45px;
   margin-right: 18px;
 }
-#container #company-detail .company-info .welfare_tags {
+#container #company-detail .col-md-8 .company-info .welfare_tags {
   float: right;
   color: #8E8E8E;
 }
-#container #company-detail .detail .header {
+#container #company-detail .col-md-8 .detail .header {
   margin-left: 10px;
   font-size: 1.5em;
   font-family: "微软雅黑";
   font-weight: bolder;
   cursor: pointer;
 }
-#container #company-detail .detail .header .tab {
+#container #company-detail .col-md-8 .detail .header .tab {
   border: solid;
   border-width: 0px 0px 5px 0px;
   color: #DCDEE0;
 }
-#container #company-detail .detail .header .tab-active {
+#container #company-detail .col-md-8 .detail .header .tab-active {
   border-color: #98769E;
   color: #98769E;
 }
-#container #company-detail .detail .company {
+#container #company-detail .col-md-8 .detail .company {
   margin-top: 24px;
   margin-left: 10px;
 }
-#container #company-detail .detail .company h3 {
+#container #company-detail .col-md-8 .detail .company h3 {
   font-size: 1.5em;
   font-family: "微软雅黑";
   font-weight: bolder;
   cursor: pointer;
   color: #98769E;
 }
-#container #company-detail .detail .company .line {
+#container #company-detail .col-md-8 .detail .company .line {
   border: solid 1px #dddddd;
   width: 99%;
 }
-#container #company-detail .detail .company .description {
+#container #company-detail .col-md-8 .detail .company .description {
   min-height: 100px;
 }
-#container #company-detail .detail .company .team-member .member {
+#container #company-detail .col-md-8 .detail .company .team-member .member {
   border: solid #98769E;
   border-width: 1px 1px 1px 10px;
   padding: 10px;
   margin-bottom: 10px;
 }
-#container #company-detail .detail .company .team-member .member .avatar {
+#container #company-detail .col-md-8 .detail .company .team-member .member .avatar {
   float: left;
 }
-#container #company-detail .detail .company .team-member .member .avatar img {
+#container #company-detail .col-md-8 .detail .company .team-member .member .avatar img {
   width: 60px;
   height: 60px;
 }
-#container #company-detail .detail .company .team-member .member .member-description .name-position {
+#container #company-detail .col-md-8 .detail .company .team-member .member .member-description .name-position {
   margin-left: 70px;
   color: #98769E;
 }
-#container #company-detail .detail .company .team-member .member .member-description .m_introduction {
+#container #company-detail .col-md-8 .detail .company .team-member .member .member-description .m_introduction {
   margin-left: 70px;
 }
-#container #company-detail .detail .position {
+#container #company-detail .col-md-8 .detail .position {
   margin-top: 24px;
   margin-left: 10px;
 }
-#container #company-detail .detail .position .position_list {
+#container #company-detail .col-md-8 .detail .position .position_list {
   border: solid 2px #98769E;
   border-width: 1px 1px 1px 10px;
   cursor: pointer;
   padding: 10px;
   margin: 1px 1px 15px 1px;
 }
-#container #company-detail .detail .position .position_list .position_name {
+#container #company-detail .col-md-8 .detail .position .position_list .position_name {
   color: #98769E;
   font-size: 1.5em;
 }
-#container #company-detail .detail .position .position_list .edit {
+#container #company-detail .col-md-8 .detail .position .position_list .edit {
   float: right;
   margin-top: -30px;
   color: #98769e;
   cursor: pointer;
 }
-#container #company-detail .detail .position .position_list .tags span {
+#container #company-detail .col-md-8 .detail .position .position_list .tags span {
   border: solid 1px #98769e;
   padding: 2px;
   border-radius: 4px;
 }
-#container #company-detail .detail .position .position_list .number {
+#container #company-detail .col-md-8 .detail .position .position_list .number {
   margin-top: 10px;
 }
-#container #company-detail .detail .position .position_list .time {
+#container #company-detail .col-md-8 .detail .position .position_list .time {
   float: right;
   color: #a6aaa9;
   margin-top: -20px;
@@ -1548,6 +1552,8 @@ form.financing_add input {
 #container #company-detail .qrcode {
   width: 250px;
   height: 250px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 body {
   background-color: #eeeeee;
