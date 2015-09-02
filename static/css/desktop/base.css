@@ -1473,6 +1473,9 @@ form.financing_add input {
   border-width: 0px 0px 5px 0px;
   color: #DCDEE0;
 }
+#container #company-detail .col-md-8 .detail .header .tab:hover {
+  border-color: #98679E ;
+}
 #container #company-detail .col-md-8 .detail .header .tab-active {
   border-color: #98769E;
   color: #98769E;
@@ -1548,6 +1551,9 @@ form.financing_add input {
   float: right;
   color: #a6aaa9;
   margin-top: -20px;
+}
+#container #company-detail .col-md-8 .detail .position .position_list:hover {
+  background-color: #FAFAFA;
 }
 #container #company-detail .qrcode {
   width: 250px;
