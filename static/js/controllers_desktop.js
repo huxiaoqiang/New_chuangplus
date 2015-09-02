@@ -834,7 +834,12 @@ angular.module('chuangplus.controllers', []).
 			    $csrf.set_csrf($scope.submitResume);
 			    $http.post(urls.api + "/position/"+$scope.position_id+"/submit", $.param($scope.submitResume)).
 				success(function(data){
-				    $scope.submit_value = "已投递";
+				    if(data.error.code == 1){
+				   	 $scope.submit_value = "已投递";
+				    }
+				    else{
+					console.log(data.error.message);
+				    }
 			    });
 			}
 			else{
