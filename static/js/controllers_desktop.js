@@ -1000,6 +1000,20 @@ angular.module('chuangplus.controllers', []).
             'functions':"职能",
             'others':"其他"
         };
+        $scope.stage = {
+            "seed" :"种子轮",
+            "angel":"天使轮",
+            "A":"A轮",
+            "B":"B轮",
+            "C":"C轮",
+            "D_plus":"D及以上轮"
+        };
+        $scope.amount = {
+            "ten":"十万级",
+            "hundred":"百万级",
+            "thousand":"千万级",
+            "thousand_plus":"亿级"
+        };
         $scope.tab1_click = function(){
             $scope.tab1 = true;
             $scope.tab2 = false;
@@ -1059,6 +1073,10 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                 if(data.error.code == 1){
                     $scope.financing_list = data.data;
+                    for(i=0;$scope.financing_list.length;i++){
+                        $scope.financing_list[i].stage_value = $scope.stage[$scope.financing_list[i].stage];
+                        $scope.financing_list[i].amount_value = $scope.amount[$scope.financing_list[i].amount];
+                    }
                 }
                 else{
                     $scope.error = $errMsg.format_error('',data.error);
