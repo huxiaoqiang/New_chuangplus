@@ -317,6 +317,14 @@ angular.module('chuangplus.controllers', []).
               success(function(data){
                 if(data.error.code == 1){
                     $scope.intern_info = data.data;
+		    if($scope.intern_info.resume_id != undefined && $scope.intern_info.resume_id != null){
+			$http.get(urls.api+"/file/"+$scope.intern_info.resume_id+"/download").
+			    success(function(data){
+				$scope.file = data;
+				console.log(data.data);
+				$scope.filename = $scope.file.name;
+			});
+		    }
                 }
                 else{
                     $scope.error = $errMsg.format_error("",data.error);
@@ -358,8 +366,11 @@ angular.module('chuangplus.controllers', []).
             }).
             success(function(data, status, headers, config){
                 if(data.error.code == 1){
-                    console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
-                    $scope.intern_info.resume_id = data.data;
+                    $scope.filename = config.file.name;
+		    console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
+                   
+		    $scope.intern_info.resume_id = data.data;
+		    
                 }
                 else{
                     console.log(data.error.message);
@@ -798,14 +809,14 @@ angular.module('chuangplus.controllers', []).
             });
 	console.log($scope.position_id);
 	$scope.post = function(){
-	    $scope.submit = {};
-	    $scope.submit.position_id = $scope.position_id;
-	    $csrf.set_csrf($scope.submit);
-	    $http.post(urls.api + "/position/"+$scope.position_id+"/userlikeposition", $.param($scope.submit)).
+	    $scope.submitFavor = {};
+	    $scope.submitFavor.position_id = $scope.position_id;
+	    $csrf.set_csrf($scope.submitFavor);
+	    $http.post(urls.api + "/position/"+$scope.position_id+"/userlikeposition", $.param($scope.submitFavor)).
 		success(function(data){
 		    $scope.post_value = "取消收藏";
 		});
-	}
+	};
 	    
 	$scope.submit = function(){
 	    $scope.userinfo = {};
@@ -813,21 +824,28 @@ angular.module('chuangplus.controllers', []).
 		success(function(data){
 		    if(data.error.code == 1){
 			$scope.userinfo = data.data;
-		    	$scope.submit = {};
-			$scope.submit.position_id = $scope.position_id;
-			if($scope.userinfo.resume != null)
+		    	$scope.submitResume = {};
+			$scope.submitResume.position_id = $scope.position_id;
+			console.log($scope.userinfo.resume_id);
+			if($scope.userinfo.resume_id != undefined && $scope.userinfo.resume_id != null)
 			{
-			    $scope.submit.resume_choice = 1;
+			    $scope.submitResume.resume_choice = 1;
+			    console.log("here");
+			    $csrf.set_csrf($scope.submitResume);
+			    $http.post(urls.api + "/position/"+$scope.position_id+"/submit", $.param($scope.submitResume)).
+				success(function(data){
+				    $scope.submit_value = "已投递";
+			    });
 			}
 			else{
-			    $scope.submit.resume_choice = 2;
+			    $scope.submitResume.resume_choice = 2;
 			}
 		     }
 		    else{
 			console.log(data.error.message);
 		    }
 		});	
-	}
+	};
 	
 
     }]).
