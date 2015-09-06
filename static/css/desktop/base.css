@@ -1,47 +1,62 @@
 header {
   font-family: "微软雅黑";
 }
-header #header .navbar.first-bar {
-  margin-bottom: 0px;
-  background-color: #98679E;
+header #header .header-head {
+  background-color: #9f4e96;
+  height: 5px;
 }
-header #header .navbar.first-bar .navbar-header {
+header #header .navbar {
+  margin-bottom: 0px;
+  background-color: #E1E0E2;
+}
+header #header .navbar .navbar-header {
   margin-left: 20%;
 }
-header #header .navbar.first-bar .navbar-header #head-logo img {
+header #header .navbar .navbar-header #head-logo img {
   width: 19%;
   padding-top: 3%;
   padding-bottom: 3%;
 }
-header #header .navbar.first-bar .navbar-header #head-logo .brand {
+header #header .navbar .navbar-header #head-logo .brand {
   color: white;
   padding: 15px 15px;
   font-size: 18px;
   line-height: 20px;
   text-decoration: none;
 }
-header #header .navbar.navbar-default {
-  border-radius: 0px;
+header #header .navbar .navbar-item li a {
+  color: #707070;
+  padding-top: 16px;
+  padding-bottom: 21px;
+  font-size: 1.2em;
 }
-header #header .navbar.navbar-default .nav.navbar-nav {
-  float: left;
-  margin-left: 20%;
+header #header .navbar .navbar-item li a:hover {
+  border: solid #8f4e96;
+  border-width: 0px 0px 5px 0px;
 }
-header #header .navbar.navbar-default .nav.navbar-nav.search {
+header #header .navbar .navbar-item li.active {
+  border: solid #8f4e96;
+  border-width: 0px 0px 5px 0px;
+}
+header #header .navbar .navbar-item li.active a:hover {
+  border-width: 0px 0px 0px 0px;
+}
+header #header .navbar ul.reg-login {
+  list-style-type: none;
   float: right;
-  margin-right: 10%;
-  margin-left: 0%;
+  margin-right: 25%;
+  margin-top: 15px;
+  background-color: #8f4e96;
+  border-radius: 25px;
+  color: white;
+  padding: 4px;
 }
-header #header .navbar.navbar-default .nav.navbar-nav.search #search {
-  padding-top: 0.6em;
+header #header .navbar ul.reg-login a {
+  color: white;
+  font-size: 1em;
 }
-header #header .navbar.navbar-default .nav.navbar-nav.search #search input {
-  border-radius: 0px;
-}
-header #header .navbar.navbar-default .nav.navbar-nav.search #search_btn button {
-  height: 34px;
-  margin-top: 0.6em;
-  border-radius: 0px;
+header #header .navbar ul.reg-login a:hover {
+  border-width: 0px 0px 0px 0px;
 }
 * {
   margin: 0;
