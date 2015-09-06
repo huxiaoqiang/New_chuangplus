@@ -7,28 +7,28 @@ header #header .header-head {
 }
 header #header .navbar {
   margin-bottom: 0px;
-  background-color: #E1E0E2;
+  background-color: rgba(225, 224, 226, 0.2);
 }
 header #header .navbar .navbar-header {
-  margin-left: 20%;
+  margin-left: 10%;
+}
+header #header .navbar .navbar-header #head-logo {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  width: 300px;
+  float: left;
 }
 header #header .navbar .navbar-header #head-logo img {
-  width: 19%;
-  padding-top: 3%;
-  padding-bottom: 3%;
+  width: 100%;
 }
-header #header .navbar .navbar-header #head-logo .brand {
-  color: white;
-  padding: 15px 15px;
-  font-size: 18px;
-  line-height: 20px;
-  text-decoration: none;
+header #header .navbar .navbar-item {
+  margin-left: 15px;
 }
 header #header .navbar .navbar-item li a {
   color: #707070;
-  padding-top: 16px;
-  padding-bottom: 21px;
-  font-size: 1.2em;
+  padding-top: 32px;
+  padding-bottom: 25px;
+  font-size: 1.5em;
 }
 header #header .navbar .navbar-item li a:hover {
   border: solid #8f4e96;
@@ -43,13 +43,16 @@ header #header .navbar .navbar-item li.active a:hover {
 }
 header #header .navbar ul.reg-login {
   list-style-type: none;
-  float: right;
-  margin-right: 25%;
-  margin-top: 15px;
+  float: left;
+  margin-top: 30px;
   background-color: #8f4e96;
   border-radius: 25px;
   color: white;
   padding: 4px;
+  position: absolute;
+  right: 10%;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 header #header .navbar ul.reg-login a {
   color: white;
@@ -1575,12 +1578,6 @@ form.financing_add input {
   height: 250px;
   margin-top: 10px;
   margin-bottom: 10px;
-}
-body {
-  background-color: #eeeeee;
-}
-body #main-container {
-  background-color: #ffffff;
 }
 .input-group-addon {
   border-top-left-radius: 0.5em;
