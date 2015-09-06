@@ -30,6 +30,7 @@ class Userinfo(Document):
     work_days = IntField()
     position_type = ListField(StringField(max_length=30,choices=TYPE))
     resume_id = StringField(max_length=30)
+    resume_name = StringField(max_length=100)
     date_joined = DateTimeField()
     update_time = DateTimeField()
     info_complete = BooleanField(default=False)

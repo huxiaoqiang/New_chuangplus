@@ -127,6 +127,7 @@ def download_file(request,file_id=""):
         resp = HttpResponse(file.value.read(), content_type = file.value.content_type)
         from urllib import quote_plus
         resp['Content-Disposition'] = 'attachment; filename="' + quote_plus(unicode(file.name).encode('utf8')) + '"'
+        resp['filename'] = quote_plus(unicode(file.name).encode('utf8'))
         return resp
     else:
         re['error'] = error(3,"error, need GET")

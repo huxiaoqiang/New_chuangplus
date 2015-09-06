@@ -71,5 +71,8 @@
 263: UC-relationship is not exist
 264: User does not submit the position
 265: User does not submit any position
+266: Already submit the position~
+267: Nobody submit the position
+268: No Userposition relation to process
 299: Unknown error
 

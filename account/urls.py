@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^userinfo/set$',views.set_userinfo, name='set_userinfo'),
     url(r'^userinfo/check$',views.check_userinfo_complete, name='check_userinfo_complete'),
     url(r'^userinfo/position/favor/list$',views.get_position_favor,name='get_position_favor'),
+    url(r'^userinfo/position/submit/list$',views.get_position_submit,name='get_position_submit'),
     url(r'^userinfo/company/favor/list$',views.get_company_favor,name='get_company_favor'),
     url(r'^userinfo/(?P<position_id>.*?)/check_favor_position$',views.check_favor_position,name='check_favor_position'),
     url(r'^userinfo/(?P<company_id>.*?)/check_favor_company$',views.check_favor_company,name='check_favor_company'),
@@ -40,6 +41,11 @@ urlpatterns = [
 
     url(r'^company/(?P<company_id>.*?)/like', views.user_like_company, name='user_like_company'),
     url(r'^company/(?P<company_id>.*?)/unlike', views.user_unlike_company, name='user_unlike_company'),
+    url(r'^company/(?P<position_id>.*?)/process', views.process_position, name='process_position'),
+    url(r'^company/(?P<position_id>.*?)/(?P<username>.*?)/process', views.process_single, name='process_single'),
+    url(r'^company/(?P<position_id>.*?)/submit/list', views.get_submit_list, name='get_submit_list'),
+    #url(r'^company/(?P<position_id>.*?)/(?P<>.*?)/process', views.process_position, name='process_position'),
+
 
 ]
 

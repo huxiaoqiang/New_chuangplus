@@ -899,12 +899,16 @@ def submit_resume(request,position_id):
         except:
             re['error'] = error(260, 'Position does not exist') 
             return HttpResponse(json.dumps(re), content_type = 'application/json')
-
-        submit_date = datetime.now()
-        position.submit_num = position.submit_num+1
-        position.save()
-        UP = UserPosition(submit_date = submit_date, resume_submitted = resume, position = position, user = request.user)
-        UP.save()
+        try:
+            UP = UserPosition.objects.get(position = position, user = request.user)
+            re['error'] = error(266,'Already submit the position');
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        except DoesNotExist:
+            submit_date = datetime.now()
+            position.submit_num = position.submit_num+1
+            position.save()
+            UP = UserPosition(submit_date = submit_date, resume_submitted = resume, position = position, user = request.user)
+            UP.save()
         re['error'] = error(1, 'Success!')
     else:
         re['error'] = error(2, 'Error, need post!')

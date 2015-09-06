@@ -254,6 +254,7 @@ def set_userinfo(request):
         u.work_days = request.POST.get('work_days', u.work_days)
         u.description = request.POST.get('description', u.description)
         u.resume_id = request.POST.get('resume_id',u.resume_id)
+        u.resume_name = request.POST.get('resume_name',u.resume_name)
         u.update_time = datetime_now()
 
         try:
@@ -277,7 +278,7 @@ def check_userinfo_complete(request):
         and u.cellphone and u.university\
         and u.major and u.grade\
         and u.gender and u.work_days and u.description\
-        and u.resume_id and u.real_name:
+        and u.resume_id and u.real_name and u.resume_name:
             u.info_complete = True
             re["complete"] = 'True' 
         else:
@@ -413,6 +414,37 @@ def get_position_favor(request):
 
         re['data'] = position_favor_list
         re['error'] = error(1,"Get favor position list successfully")
+    else:
+        re['error'] = error(3,"Error, need GET")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+@user_permission('login')
+def get_position_submit(request):
+    re = dict()
+    if request.method == "GET":
+        try:
+            up = UserPosition.objects(user=request.user)
+        except DoesNotExist:
+            re['error'] = error(265,'User does not submit any position')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+        position_submit_list = []
+        for item in up:
+            try:
+                posi = Position.objects.get(id=item.position.id)
+            except:
+                re['error'] = error(260,"Position does not exist")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            position_re = json.loads(posi.to_json())
+            try:
+                company = Companyinfo.objects.get(id=posi.company.id)
+            except DoesNotExist:
+                re['error'] = error(105,"Companyinfo does not exist!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            position_re['company'] = json.loads(company.to_json())
+            position_submit_list.append(position_re)
+        re['data'] = position_submit_list
+        re['error'] = error(1,"Get submitted position list successfully")
     else:
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -871,7 +903,7 @@ def user_like_company(request,company_id):
 
 @user_permission('login')
 def user_unlike_company(request,company_id):
-    re=dict()
+    re = dict()
     if request.method == 'POST':
         try:
             company = Companyinfo.objects.get(id = company_id)
@@ -887,4 +919,77 @@ def user_unlike_company(request,company_id):
         re['error'] = error(1, "success!")
     else:
         re['error'] = error(2, 'error, need POST!')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+@user_permission('login')
+def process_position(request,position_id):
+    re = dict()
+    if request.method == 'POST':
+        try:
+            position = Position.objects.get(id=position_id)
+        except DoesNotExist:
+            re['error'] = error(260,'Position does not exist!')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        try:
+            up = UserPosition.objects(position=position,processed=False)
+        except DoesNotExist:
+            re['error'] = error(267,'Nobody submit the position')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        for item in up:
+            item.processed = True
+            item.save()
+        re['error'] = error(1,'succeeed!')
+    else:
+        re['error'] = error(2,'Error, need POST')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+@user_permission('login')
+def process_single(request,position_id,username):
+    re = dict()
+    if request.method == 'POST':
+        try:
+            position = Position.objects.get(id=position_id)
+        except DoesNotExist:
+            re['error'] = error(260,'Position does not exist!')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        try:
+            user = User.objects.get(username=username)
+        except DoesNotExist:
+            re['error'] = error(103,'User dose not exist')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        try:
+            up = UserPosition.objects(position=position,user=user,processed=False)
+        except DoesNotExist:
+            re['error'] = error(268,'No Userposition relation to process')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        up.processed = True
+        up.save()
+        re['error'] = error(1,'succeed!')
+    else:
+        re['error'] = error(2,'Error, need POST')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+@user_permission('login')
+def get_submit_list(request,position_id):
+    re = dict()
+    if request.method == 'GET':
+        try:
+            position = Position.objects.get(id=position_id)
+        except DoesNotExist:
+            re['error'] = error(260,'Position does not exist')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        try:
+            up = UserPosition.objects(position = position)
+        except DoesNotExist:
+            re['error'] = error(267,'Nobody submit the position')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        user_list = []
+        for item in up:
+            u = Userinfo.objects.get(user = item.user)
+            userinfo = json.loads(u.to_json())
+            user_list.append(userinfo)
+        re['error'] = error(1,'succeed ')
+        re['data'] = user_list
+    else:
+        re['error'] = error(3,'Error, need GET')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
