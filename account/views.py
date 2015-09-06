@@ -418,6 +418,38 @@ def get_position_favor(request):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission('login')
+def get_position_submit(request):
+    re = dict()
+    if request.method == "GET":
+        try:
+            up = UserPosition.objects(user=request.user)
+        except DoesNotExist:
+            re['error'] = error(265,'User does not submit any position')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+        position_submit_list = []
+        for item in up:
+            try:
+                posi = Position.objects.get(id=item.position.id)
+            except:
+                re['error'] = error(260,"Position does not exist")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            position_re = json.loads(posi.to_json())
+            try:
+                company = Companyinfo.objects.get(id=posi.company.id)
+            except DoesNotExist:
+                re['error'] = error(105,"Companyinfo does not exist!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            position_re['company'] = json.loads(company.to_json())
+            position_submit_list.append(position_re)
+        re['data'] = position_submit_list
+        re['error'] = error(1,"Get submitted position list successfully")
+    else:
+        re['error'] = error(3,"Error, need GET")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+
+@user_permission('login')
 def check_favor_position(request,position_id):
     re = dict()
     if request.method == 'GET':

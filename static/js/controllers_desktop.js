@@ -36,25 +36,29 @@ angular.module('chuangplus.controllers', []).
                 });
         };
         //tab active control
+        $scope.homepage_active = function(){
+            $scope.homepage = true;
+            $scope.position = $scope.company = $scope.login = $scope.resume = $scope.register = false;
+        };
         $scope.company_active = function(){
             $scope.company = true;
-            $scope.position = $scope.resume = $scope.login = $scope.register = false;
+            $scope.position = $scope.resume = $scope.login = $scope.register = $scope.homepage = false;
         };
         $scope.position_active = function(){
             $scope.position = true;
-            $scope.company = $scope.resume = $scope.login = $scope.register = false;
+            $scope.company = $scope.resume = $scope.login = $scope.register = $scope.homepage = false;
         };
         $scope.resume_active = function(){
             $scope.resume = true;
-            $scope.position = $scope.company = $scope.login = $scope.register = false;
+            $scope.position = $scope.company = $scope.login = $scope.register = $scope.homepage = false;
         };
         $scope.login_active = function(){
             $scope.login = true;
-            $scope.position = $scope.company = $scope.resume = $scope.register = false;
+            $scope.position = $scope.company = $scope.resume = $scope.register = $scope.homepage = false;
         };
         $scope.register_active = function(){
             $scope.register = true;
-            $scope.position = $scope.company = $scope.login = $scope.resume = false;
+            $scope.position = $scope.company = $scope.login = $scope.resume = $scope.homepage = false;
         };
     }]).
     controller('DT_LoginCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
@@ -1152,7 +1156,8 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.get_company = function(){
             $http.get(urls.api+"/account/company/" + $scope.company_id + "/detail").
-              success(function(data){
+              success(function(data,status,headers,config){
+                console.log(headers('Content-Type'));
                 if(data.error.code == 1){
                     $scope.company = data.data;
                     $scope.company.position_number = $scope.company.positions.length;

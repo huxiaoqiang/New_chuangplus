@@ -1,9 +1,13 @@
 header{
   font-family: "微软雅黑";
   #header{
-    .navbar.first-bar{
+    .header-head{
+        background-color: #9f4e96;
+        height: 5px;
+    }
+    .navbar{
       margin-bottom: 0px;
-      background-color: #98679E;
+      background-color: #E1E0E2;
       .navbar-header{
         margin-left: 20%;
         #head-logo{
@@ -20,32 +24,46 @@ header{
             text-decoration: none;
           }
         }
+
       }
+      .navbar-item{
+        li{
+         a{
+          color: #707070;
+          padding-top: 16px;
+          padding-bottom: 21px;
+          font-size: 1.2em;
+         }
+         a:hover{
+           border: solid #8f4e96;
+           border-width: 0px 0px 5px 0px;
+         }
+        }
+        li.active{
+           border: solid #8f4e96;
+           border-width: 0px 0px 5px 0px;
+           a:hover{
+             border-width: 0px 0px 0px 0px;
+           }
+         }
     }
-    .navbar.navbar-default{
-      border-radius: 0px;
-      .nav.navbar-nav{
-        float: left;
-        margin-left: 20%;
+    ul.reg-login{
+      list-style-type: none;
+      float: right;
+      margin-right: 25%;
+      margin-top: 15px;
+      background-color: #8f4e96;
+      border-radius: 25px;
+      color: white;
+      padding: 4px;
+      a{
+        color: white;
+        font-size: 1em;
       }
-      .nav.navbar-nav.search{
-        float: right;
-        margin-right: 10%;
-        margin-left: 0%;
-        #search{
-          padding-top: 0.6em;
-          input{
-            border-radius: 0px;
-          }
-        }
-        #search_btn{
-          button{
-            height: 34px;
-            margin-top: 0.6em;
-            border-radius: 0px;
-          }
-        }
-      }
+       a:hover{
+         border-width: 0px 0px 0px 0px;
+       }
+    }
     }
   }
 }
