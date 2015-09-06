@@ -937,7 +937,34 @@ def process_position(request,position_id):
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         for item in up:
             item.processed = True
+            item.save()
         re['error'] = error(1,'succeeed!')
+    else:
+        re['error'] = error(2,'Error, need POST')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+@user_permission('login')
+def process_single(request,position_id,username):
+    re = dict()
+    if request.method == 'POST':
+        try:
+            position = Position.objects.get(id=position_id)
+        except DoesNotExist:
+            re['error'] = error(260,'Position does not exist!')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        try:
+            user = User.objects.get(username=username)
+        except DoesNotExist:
+            re['error'] = error(103,'User dose not exist')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        try:
+            up = UserPosition.objects(position=position,user=user,processed=False)
+        except DoesNotExist:
+            re['error'] = error(268,'No Userposition relation to process')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        up.processed = True
+        up.save()
+        re['error'] = error(1,'succeed!')
     else:
         re['error'] = error(2,'Error, need POST')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -965,3 +992,4 @@ def get_submit_list(request,position_id):
         re['data'] = user_list
     else:
         re['error'] = error(3,'Error, need GET')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
