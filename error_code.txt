@@ -70,5 +70,6 @@
 262: Position can only be part time or full time
 263: UC-relationship is not exist
 264: User does not submit the position
+265: User does not submit any position
 299: Unknown error
 
