@@ -62,7 +62,8 @@
                        <!-- <a href="javascript:;" class="a-upload">-->
                             <div ng-model="resume" ngf-select="upload($file,'resume')" type="file">点击这里上传文件</div>
                        <!-- </a>-->
-			    <span ng-model="filename">[[filename]]</span>
+			    <a ng-href="/api/file/[[intern_info.resume_id]]/download" target="_self" ng-model="filename">[[filename]]</a>
+              
 			</div>
                     </div>
                 </div>

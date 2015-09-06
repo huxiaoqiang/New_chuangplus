@@ -9,8 +9,8 @@
                     <p class="name">[[company.abbreviation]]</p>
                     <p class="brief_introduction">[[company.brief_introduction]]</p>
                     <p class="position_number">在招职位数：[[company.position_number]]</p>
-                    <span class="favor" ng-if="!favored" ng-click="favor()" ng-model="post_value">关注公司</span>
-                    <span class="favor" ng-if="favored" ng-click="unfavor()" ng-model="post_value">取消关注</span>
+                    <span class="favor" ng-if="!favored" ng-click="favor()" ng-model="post_value">收藏公司</span>
+                    <span class="favor" ng-if="favored" ng-click="unfavor()" ng-model="post_value">取消收藏</span>
                 </div>
                 <div class="welfare_tags">
                     <span ng-repeat="tag in company.welfare_tags">[[tag]]&nbsp;&nbsp;</span>&nbsp;&nbsp;

@@ -358,7 +358,25 @@ angular.module('chuangplus.controllers', []).
                         else{
                             $scope.positions[i].company.scale_value = "成熟";
                         }
-			$scope.positions[i].submit_value = "投递简历";
+			$scope.check_submit(i);
+                    }
+                }
+                else{
+                    console.log(data.error.message);
+                }
+        });
+    };
+    $scope.check_submit = function(index){
+	$http.get(urls.api+"/position/"+$scope.positions[index]._id.$oid+"/check_submit").
+            success(function(data){
+                if(data.error.code == 1){
+                    if(data.exist == true){
+                        $scope.positions[index].submit_value = "已投递";
+                        $scope.positions[index].resume_submitted = true;
+                    }
+                    else{
+                        $scope.positions[index].submit_value = "投递简历";
+		        $scope.positions[index].resume_submitted = false;
                     }
                 }
                 else{

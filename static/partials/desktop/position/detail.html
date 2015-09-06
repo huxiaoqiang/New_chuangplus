@@ -29,7 +29,7 @@
             </div>
             <div class="submit_favor">
                 <span class="item" ng-show="resume_submitted"ng-click="submit()" ng-model="submit_value">[[submit_value]]</span>
-                <span class="item" ng-show="resume_submitted" data-toggle="modal" data-target="#myModal">[[submit_value]]</span>
+                <span class="item" ng-show="!resume_submitted" data-toggle="modal" data-target="#myModal">[[submit_value]]</span>
 	        <span class="item" ng-click="post()" ng-model="post_value">[[post_value]]</span>
             </div>
             <div style="clear:both;"></div>
