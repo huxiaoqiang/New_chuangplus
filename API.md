@@ -31,7 +31,8 @@ grade         |IntField    |默认：1   |年级
 gender        |IntField    |默认：0   |0代表女性，1代表男性
 work_days     |IntField    |默认：3   |每周工作天数
 position_type |StringField |          |工作类别
-resume        |ReferenceField(File)|  |简历附件
+resume_id     |StringField |          |简历附件id
+resume_name   |StringField |          |简历附件名字
 date_joined   |DateTimeField|默认now  |创建时间
 update_time   |DateTimeField|默认now  |更新时间
 info_complete |BooleanField|默认：0   |信息是否完整
