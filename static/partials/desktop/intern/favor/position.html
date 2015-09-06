@@ -5,7 +5,7 @@
                 <table>
                     <tr>
                         <td>
-                            <input type="button" class="btn btn-primary" value="一键全部投递">
+                            <input type="button" class="btn btn-primary" ng-click="submit_all()" value="一键全部投递">
                                 </td>
                         <td>
                             <input type="button" class="btn btn-primary" value="清除失效岗位">
@@ -15,7 +15,6 @@
             </div>
             <div class="col-md-8">
                 <ul ng-repeat="position in positions">
-		    <a href=" /position/[[position._id.$oid]]/detail">
                     <li>
                         <div class="favor-list-item">
                             <div class="item-pic">
@@ -33,7 +32,9 @@
                                 </div>
                                 <p class="submit-time">发布时间:[[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]</p>
                                 <div class="item-button">
-                                    <input type="button" class="btn btn-submit" value="投递该职位">
+                                    <button type="button" ng-show="resume_submitted" ng-click="submit($index) " class="btn btn-submit" >[[position.submit_value]]</button>
+				    <button type="button" ng-show="resume_submitted" data-toggle="modal" data-target="#myModal" class="btn btn-submit">[[position.submit_value]]</button>
+				    <a class="btn btn-submit" href="/position/[[position._id.$oid]]/detail">查看详情</a>
                                 </div>
                             </div>
                         </div>
@@ -42,4 +43,25 @@
             </div>
         </div>
     </div>
+      <!--Modal-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>您还没有提交简历，是否现在提交？</h4>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="取消">
+                    <input type="button"  class="btn btn-primary" value="确定" ng-click="complete_resume()">
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

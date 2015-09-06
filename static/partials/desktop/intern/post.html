@@ -2,28 +2,28 @@
     <div id="intern-post-list">
         <div class="col-sm-4">
             <div class="col-md-8">
-                <ul>
+                <ul ng-repeat="position in positions">
                     <li>
                         <div class="post-list-item">
                             <div class="item-pic">
-                                <img class="company-pic" alt="图片"></img>
+                                <img class="company-pic" src="/api/file/[[position.company.logo_id]]/download"  alt="图片"></img>
                             </div>
                             <div class="item-info">
                                 <div class="position-info">
-                                    <p class="position">职位</p>
+                                    <p class="position">[[position.position_type_value]]|[[position.name]]</p>
                                     <p class="hire">职位在招</p>
                                     <p class="check">HR待处理</p>
                                 </div>
-                                <p class="company">公司</p>
-                                <p class="company-discrpt">公司描述</p>
+                                <p class="company">[[position.company.abbreviation]]</p>
+                                <p class="company-discrpt">[[position.company.brief_introduction]]</p>
                                 <div class="item-label">
-                                    <p class="label">5天/周</p>
-                                    <p class="label">5k-8k</p>
+                                    <p class="label">[[position.days_per_week]]天/周</p>
+                                    <p class="label">[[position.salary_min]]k-[[position.salary_max]]k</p>
                                     <p class="label">创业服务</p>
-                                    <p class="label">初创</p>
-                                    <p class="label">北京</p>
+                                    <p class="label">[[position.company.scale_value]]</p>
+                                    <p class="label">[[position.company.city]]</p>
                                 </div>
-                                <p class="submit-time">发布时间</p>
+                                <p class="submit-time">发布时间:[[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]</p>
                             </div>
                         </div>
                     </li>
