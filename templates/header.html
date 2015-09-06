@@ -7,7 +7,7 @@
                    <a href="/"><img src="/static/image/logo/headerlogo-01.png"></a>
                </div>
               <ul class="nav navbar-nav navbar-item" ng-init="homepage=true">
-                 <li ng-class="{'active':homepage}" ng-click="homepage_active()"><a href="/company/list">首页</a></li>
+                 <li ng-class="{'active':homepage}" ng-click="homepage_active()"><a href="/">首页</a></li>
                  <li ng-class="{'active':company}" ng-click="company_active()"><a href="/company/list">公司列表</a></li>
                  <li ng-class = "{'active':position}" ng-click="position_active()"><a href="/position/list">职位列表</a></li>
               {% if user.is_authenticated %}
