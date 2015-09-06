@@ -43,8 +43,15 @@ header{
          }
         li.dropdown{
           .dropdown-menu{
+            min-width: 100px;
             a{
               font-size: 1em;
+              padding-bottom: 3px;
+              padding-top: 3px;
+            }
+            a:hover{
+              border: solid #8f4e96;
+              border-width: 0px 0px 0px 5px;
             }
           }
         }
@@ -68,6 +75,15 @@ header{
        a:hover{
          border-width: 0px 0px 0px 0px;
        }
+    }
+    .search{
+      margin-top: 25px;
+      margin-left: 30px;
+      li{
+        .search_btn{
+          margin-top: -8px;
+        }
+      }
     }
     }
   }

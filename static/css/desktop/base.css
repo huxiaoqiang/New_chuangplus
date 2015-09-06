@@ -41,8 +41,17 @@ header #header .navbar .navbar-item li.active {
 header #header .navbar .navbar-item li.active a:hover {
   border-width: 0px 0px 0px 0px;
 }
+header #header .navbar .navbar-item li.dropdown .dropdown-menu {
+  min-width: 100px;
+}
 header #header .navbar .navbar-item li.dropdown .dropdown-menu a {
   font-size: 1em;
+  padding-bottom: 3px;
+  padding-top: 3px;
+}
+header #header .navbar .navbar-item li.dropdown .dropdown-menu a:hover {
+  border: solid #8f4e96;
+  border-width: 0px 0px 0px 5px;
 }
 header #header .navbar ul.reg-login {
   list-style-type: none;
@@ -63,6 +72,13 @@ header #header .navbar ul.reg-login a {
 }
 header #header .navbar ul.reg-login a:hover {
   border-width: 0px 0px 0px 0px;
+}
+header #header .navbar .search {
+  margin-top: 25px;
+  margin-left: 30px;
+}
+header #header .navbar .search li .search_btn {
+  margin-top: -8px;
 }
 * {
   margin: 0;
