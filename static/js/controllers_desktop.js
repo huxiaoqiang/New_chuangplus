@@ -218,7 +218,7 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_InternPostCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_InternPostCtrl');
-	$scope.positions = {};
+	    $scope.positions = {};
         $scope.position_type = {
                 "technology":"技术",
                 'product':"产品",
@@ -228,10 +228,7 @@ angular.module('chuangplus.controllers', []).
                 'functions':"职能",
                 'others':"其他"
             };
-
-
-
-	$scope.get_positions = function(){
+	    $scope.get_positions = function(){
             $http.get(urls.api+"/account/userinfo/position/submit/list").
             	success(function(data){
                     if(data.error.code == 1){
@@ -256,7 +253,7 @@ angular.module('chuangplus.controllers', []).
         	});
         };
 
-	$scope.get_positions();
+	    $scope.get_positions();
     }]).
     controller('DT_InternCompanyFavorCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_InternCompanyFavorCtrl');
@@ -415,26 +412,26 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_InternResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_InternResumeCtrl');
-	$scope.filename = "无简历附件";
+	    $scope.filename = "无简历附件";
         $scope.intern_info = {};
         $scope.get_intern_info = function(){
             $http.get(urls.api+"/account/userinfo/get").
               success(function(data){
                 if(data.error.code == 1){
                     $scope.intern_info = data.data;
-		    if($scope.intern_info.resume_id != undefined && $scope.intern_info.resume_id != null){
-			$http.get(urls.api+"/file/"+$scope.intern_info.resume_id+"/download").
-			    success(function(data,status,header){
-                                console.log(header('filename'));
-				if(data.error ==  undefined){
-					$scope.file = data;
-					$scope.filename = header('filename');
-				}
-				else{
-				    console.log(data.error.message);
-				}
-			});
-		    }
+		            if($scope.intern_info.resume_id != undefined && $scope.intern_info.resume_id != null){
+			        $http.get(urls.api+"/file/"+$scope.intern_info.resume_id+"/download").
+			            success(function(data,status,header){
+                            console.log(header('filename'));
+				            if(data.error ==  undefined){
+                                $scope.file = data;
+					            $scope.filename = header('filename');
+				            }
+				            else{
+				                 console.log(data.error.message);
+				            }
+			            });
+		            }
                 }
                 else{
                     $scope.error = $errMsg.format_error("",data.error);
@@ -476,11 +473,9 @@ angular.module('chuangplus.controllers', []).
             }).
             success(function(data, status, headers, config){
                 if(data.error.code == 1){
-                    $scope.filename = config.file.name;
-		    console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
-                   
-		    $scope.intern_info.resume_id = data.data;
-		    
+                    $scope.intern_info.resume_name = config.file.name;
+		            console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
+		            $scope.intern_info.resume_id = data.data;
                 }
                 else{
                     console.log(data.error.message);

@@ -254,6 +254,7 @@ def set_userinfo(request):
         u.work_days = request.POST.get('work_days', u.work_days)
         u.description = request.POST.get('description', u.description)
         u.resume_id = request.POST.get('resume_id',u.resume_id)
+        u.resume_name = request.POST.get('resume_name',u.resume_name)
         u.update_time = datetime_now()
 
         try:
@@ -277,7 +278,7 @@ def check_userinfo_complete(request):
         and u.cellphone and u.university\
         and u.major and u.grade\
         and u.gender and u.work_days and u.description\
-        and u.resume_id and u.real_name:
+        and u.resume_id and u.real_name and u.resume_name:
             u.info_complete = True
             re["complete"] = 'True' 
         else:
@@ -447,7 +448,6 @@ def get_position_submit(request):
     else:
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
-
 
 @user_permission('login')
 def check_favor_position(request,position_id):
