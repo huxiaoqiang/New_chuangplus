@@ -880,7 +880,7 @@ angular.module('chuangplus.controllers', []).
             'functions':"职能",
             'others':"其他"
         };
-	$scope.submit_value = "投简历";
+
 	$http.get(urls.api+"/account/userinfo/"+$scope.position_id+"/check_favor_position").
 	    success(function(data){
 		if(data.error.code == 1){
@@ -928,6 +928,22 @@ angular.module('chuangplus.controllers', []).
 		}
 		else{
 		    console.log(data.error).message;
+		}
+	});
+	
+	$http.get(urls.api+"/position/"+$scope.position_id+"/check_submit").
+            success(function(data){
+                if(data.error.code == 1){
+                    if(data.exist == true){
+                        $scope.submit_value = "已投递";
+                        $scope.resume_submitted = true;
+		    }
+		    else{
+			$scope.submit_value = "投递简历";
+		    }
+		}
+		else{
+		    console.log(data.error.message);
 		}
 	});
 
