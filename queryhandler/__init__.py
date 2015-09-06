@@ -8,6 +8,7 @@ from django.http import HttpResponse
 #todo add a wechat query handler entry
 #wechat request handler entry
 def request_handler(request):
+    print request.BODY
     if request.method == "GET":
         signature=request.GET.get('signature','')
         timestamp=request.GET.get('timestamp','')
@@ -27,7 +28,8 @@ def request_handler(request):
         if not auth(signature, timestamp, nonce):
             print '!!!!! Check weixin signature failed !!!!!'
             return HttpResponse('')
-    print request.POST
+        print request.POST
+        print request
     return HttpResponse('')
 
 #turn xml to python dict
