@@ -41,6 +41,9 @@ header #header .navbar .navbar-item li.active {
 header #header .navbar .navbar-item li.active a:hover {
   border-width: 0px 0px 0px 0px;
 }
+header #header .navbar .navbar-item li.dropdown .dropdown-menu a {
+  font-size: 1em;
+}
 header #header .navbar ul.reg-login {
   list-style-type: none;
   float: left;

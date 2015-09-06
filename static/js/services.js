@@ -78,6 +78,7 @@ angular.module('chuangplus.services', []).
             'code263':'关注公司关系不存在',
             'code264':'用户未投递该职位',
             'code265':'用户未投递任何职位',
+            'code266':"已经投递了该职位",
             'code299':'未知错误'
         };
         return {

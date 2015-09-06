@@ -38,27 +38,19 @@ angular.module('chuangplus.controllers', []).
         //tab active control
         $scope.homepage_active = function(){
             $scope.homepage = true;
-            $scope.position = $scope.company = $scope.login = $scope.resume = $scope.register = false;
+            $scope.position = $scope.company = $scope.resume = false;
         };
         $scope.company_active = function(){
             $scope.company = true;
-            $scope.position = $scope.resume = $scope.login = $scope.register = $scope.homepage = false;
+            $scope.position = $scope.resume = $scope.homepage = false;
         };
         $scope.position_active = function(){
             $scope.position = true;
-            $scope.company = $scope.resume = $scope.login = $scope.register = $scope.homepage = false;
+            $scope.company = $scope.resume = $scope.homepage = false;
         };
         $scope.resume_active = function(){
             $scope.resume = true;
-            $scope.position = $scope.company = $scope.login = $scope.register = $scope.homepage = false;
-        };
-        $scope.login_active = function(){
-            $scope.login = true;
-            $scope.position = $scope.company = $scope.resume = $scope.register = $scope.homepage = false;
-        };
-        $scope.register_active = function(){
-            $scope.register = true;
-            $scope.position = $scope.company = $scope.login = $scope.resume = $scope.homepage = false;
+            $scope.position = $scope.company = $scope.homepage = false;
         };
     }]).
     controller('DT_LoginCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
