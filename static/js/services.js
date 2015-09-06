@@ -80,6 +80,7 @@ angular.module('chuangplus.services', []).
             'code265':'用户未投递任何职位',
             'code266':"已经投递了该职位",
             'code267':'没有实习生投递该职位',
+            'code268':'没有岗位消息要处理',
             'code299':'未知错误'
         };
         return {
