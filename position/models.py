@@ -8,7 +8,7 @@ import re
 # Create your models here
 
 TYPE = ('technology','product','design','operate','marketing','functions','others')
-STATUS = ('open','hidden','closed')
+STATUS = ('open','closed')
 
 class Position(Document):
     company = ReferenceField(Companyinfo,required=True)
@@ -27,7 +27,7 @@ class Position(Document):
     submit_num = IntField(default=0)
     attention_num = IntField(default=0)
     part_or_full_time = IntField(default=0)
-    status = StringField(max_length=15,choices=STATUS,default='hidden')
+    status = StringField(max_length=15,choices=STATUS,default='open')
 
     def __str__(self):
         return self.name

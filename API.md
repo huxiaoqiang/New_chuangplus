@@ -124,7 +124,7 @@ salary_max          |IntField       |default=0     |薪水上限
 delivery_number     |IntField       |default=0     |职位已经投递的人数
 status              |Stringfield    |choices=STATUS|职位状态(STATUS见表下)
 TYPE = ('technology','product','design','operate','marketing','functions','others')<br/>
-STATUS = ('employing','hide','delete')
+STATUS = ('open','closed')
 
 ####实习生和职位收藏关系表UP_Relationship
 字段   |域

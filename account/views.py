@@ -903,7 +903,7 @@ def user_like_company(request,company_id):
 
 @user_permission('login')
 def user_unlike_company(request,company_id):
-    re=dict()
+    re = dict()
     if request.method == 'POST':
         try:
             company = Companyinfo.objects.get(id = company_id)
@@ -920,3 +920,27 @@ def user_unlike_company(request,company_id):
     else:
         re['error'] = error(2, 'error, need POST!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+@user_permission('login')
+def get_submit_list(request,position_id):
+    re = dict()
+    if request.method == 'GET':
+        try:
+            position = Position.objects.get(id=position_id)
+        except DoesNotExist:
+            re['error'] = error(260,'Position does not exist')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        try:
+            up = UserPosition.objects(position = position)
+        except DoesNotExist:
+            re['error'] = error(267,'Nobody submit the position')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        user_list = []
+        for item in up:
+            u = Userinfo.objects.get(user = item.user)
+            userinfo = json.loads(u.to_json())
+            user_list.append(userinfo)
+        re['error'] = error(1,'succeed ')
+        re['data'] = user_list
+    else:
+        re['error'] = error(3,'Error, need GET')

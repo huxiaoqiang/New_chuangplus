@@ -41,6 +41,10 @@ urlpatterns = [
 
     url(r'^company/(?P<company_id>.*?)/like', views.user_like_company, name='user_like_company'),
     url(r'^company/(?P<company_id>.*?)/unlike', views.user_unlike_company, name='user_unlike_company'),
+    url(r'^company/(?P<position_id>.*?)/process', views.process_position, name='process_position'),
+    url(r'^company/(?P<position_id>.*?)/submit/list', views.get_submit_list, name='get_submit_list'),
+    #url(r'^company/(?P<position_id>.*?)/(?P<>.*?)/process', views.process_position, name='process_position'),
+
 
 ]
 
