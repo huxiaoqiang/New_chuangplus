@@ -4,7 +4,7 @@
         <nav class="navbar">
             <div class="navbar-header">
                <div id="head-logo">
-                   <img src="/static/image/logo/headerlogo-01.png">
+                   <a href="/"><img src="/static/image/logo/headerlogo-01.png"></a>
                </div>
               <ul class="nav navbar-nav navbar-item" ng-init="homepage=true">
                  <li ng-class="{'active':homepage}" ng-click="homepage_active()"><a href="/company/list">首页</a></li>
@@ -49,18 +49,18 @@
                  </li>
               </ul>
               {% if not user.is_authenticated %}
-                   <ul class="reg-login">
-                       <li><a href="/login">登录</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="/register">注册</a></li>
-                   </ul>
-              {% endif %}
-           </div>
-        </nav>
-
-              <ul class="nav navbar-nav search">
+               <ul class="reg-login">
+                   <li><a href="/login">登录</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="/register">注册</a></li>
+               </ul>
+              {% else %}
+                <ul class="nav navbar-nav search">
                  <li id="search">
                      <input type="text" class="form-control" placeholder="搜索公司或职位">
                  </li>
                  <li id="search_btn"><button type="button" class="btn btn-default navbar-btn"><i class="icon-search"></i></button></li>
-              </ul>
+                </ul>
+              {% endif %}
+           </div>
+        </nav>
     </div>
 </header>
