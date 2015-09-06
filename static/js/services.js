@@ -76,6 +76,8 @@ angular.module('chuangplus.services', []).
             'code261':'关注关系不存在，不能取消关注',
             'code262':'职位只能是兼职或全职',
             'code263':'关注公司关系不存在',
+            'code264':'用户未投递该职位',
+            'code265':'用户未投递任何职位',
             'code299':'未知错误'
         };
         return {
