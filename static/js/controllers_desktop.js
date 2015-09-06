@@ -419,19 +419,9 @@ angular.module('chuangplus.controllers', []).
               success(function(data){
                 if(data.error.code == 1){
                     $scope.intern_info = data.data;
-		            if($scope.intern_info.resume_id != undefined && $scope.intern_info.resume_id != null){
-			        $http.get(urls.api+"/file/"+$scope.intern_info.resume_id+"/download").
-			            success(function(data,status,header){
-                            console.log(header('filename'));
-				            if(data.error ==  undefined){
-                                $scope.file = data;
-					            $scope.filename = header('filename');
-				            }
-				            else{
-				                 console.log(data.error.message);
-				            }
-			            });
-		            }
+                    if($scope.intern_info.resume_name != undefined && $scope.intern_info.resume_id != undefined){
+                        $scope.filename = $scope.intern_info.resume_name;
+                    }
                 }
                 else{
                     $scope.error = $errMsg.format_error("",data.error);
