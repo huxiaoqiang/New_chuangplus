@@ -922,6 +922,27 @@ def user_unlike_company(request,company_id):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission('login')
+def process_position(request,position_id):
+    re = dict()
+    if request.method == 'POST':
+        try:
+            position = Position.objects.get(id=position_id)
+        except DoesNotExist:
+            re['error'] = error(260,'Position does not exist!')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        try:
+            up = UserPosition.objects(position=position,processed=False)
+        except DoesNotExist:
+            re['error'] = error(267,'Nobody submit the position')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        for item in up:
+            item.processed = True
+        re['error'] = error(1,'succeeed!')
+    else:
+        re['error'] = error(2,'Error, need POST')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+@user_permission('login')
 def get_submit_list(request,position_id):
     re = dict()
     if request.method == 'GET':
