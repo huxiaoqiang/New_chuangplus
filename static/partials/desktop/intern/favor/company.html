@@ -1,7 +1,10 @@
 <div id="container">
     <div id="favor-company-list">
         <div class="col-sm-4">
-            <div class="col-md-8">
+	    <div class="tips" ng-show="company_list.length == 0">
+		<h1>您还没有收藏任何公司，快去<a href="/company/list">公司列表</a>看看吧^_^</h1>
+            </div>
+	    <div class="col-md-8" ng-show="company_list.length > 0">
                 <ul ng-repeat="company in company_list">
 		    <a href="/company/[[company._id.$oid]]/detail">
                     <li>
