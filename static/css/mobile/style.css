@@ -281,7 +281,7 @@ a:hover {
 }
 .comp-listbox {
   display: block;
-  height: 114px;
+  min-height: 114px;
   margin-bottom: 3px;
   background-color: white;
   overflow: hidden;
