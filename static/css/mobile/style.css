@@ -281,7 +281,7 @@ a:hover {
 }
 .comp-listbox {
   display: block;
-  height: 114px;
+  min-height: 114px;
   margin-bottom: 3px;
   background-color: white;
   overflow: hidden;
@@ -512,6 +512,11 @@ a:hover {
 }
 .detail-desc .desc-block {
   margin-bottom: 25px;
+  overflow: auto;
+}
+.detail-desc .desc-block .member-block {
+  margin-top: 20px;
+  overflow: auto;
 }
 .detail-desc .desc-block .desc-title {
   color: #966497;
@@ -750,6 +755,7 @@ a:hover {
 }
 .padding-header {
   padding-top: 50px;
+  padding-bottom: 50px;
 }
 .white-background {
   background-color: white;
