@@ -36,6 +36,15 @@ angular.module('chuangplus_mobile.controllers', []).
             'functions':'职能',
             'others':'其它'
         };
+        $scope.position_type = {
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+        };
         $scope.get_company_list = function(){
             $http.get(urls.api+"/account/company/list").
                 success(function(data){
@@ -47,7 +56,11 @@ angular.module('chuangplus_mobile.controllers', []).
                         $scope.company_list[i].field_value = $scope.pfield[$scope.company_list[i].field];
                         $scope.company_list[i].type_value = $scope.ptype[$scope.company_list[i].type];
                         $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
+                        $scope.company_list[i].position_type_value = {};
 
+                        for(var j=0;j<$scope.company_list[i].position_type.length;j++)
+                            $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
+                        
 
                     }
 
@@ -194,6 +207,15 @@ angular.module('chuangplus_mobile.controllers', []).
                 'O2O':'教育',
                 'others':'其它'
         };
+        $scope.position_types = {
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+        };
         $scope.stage = {
             "seed" :"种子轮",
             "angel":"天使轮",
@@ -210,17 +232,20 @@ angular.module('chuangplus_mobile.controllers', []).
         };
 
         $scope.get_company = function(){
-            $http.get(urls.api+"/account/company/" + $scope.company_id + "/detail").
+            $http.get(urls.api+"/account/company/" + $scope.company_id + "/detail_with_positions").
               success(function(data){
                 if(data.error.code == 1){
                     $scope.company = data.data;
-                    console.log($scope.company.positions.length);
-                        $scope.company.field_value = $scope.cfield[$scope.company.field];
-                        $scope.company.scale_value = $scope.latest_scale[$scope.company.scale];
+                    console.log($scope.company.position_type);
+                    $scope.company.field_value = $scope.cfield[$scope.company.field];
+                    $scope.company.scale_value = $scope.latest_scale[$scope.company.scale];
+                    $scope.company.position_type_value = {};
+                    for(var i=0;i<$scope.company.position_type.length;i++)
+                        $scope.company.position_type_value[i] = $scope.position_types[$scope.company.position_type[i]];
+                        
 
                     $http.get(urls.api+"/account/financing/" + $scope.company_id + "/list").
                         success(function(fdata){
-                            console.log(fdata);
                             if(data.error.code == 1){
                                 $scope.company.financing_data = fdata.data;
                                 $scope.company.financing_number = fdata.data.length;
@@ -230,7 +255,6 @@ angular.module('chuangplus_mobile.controllers', []).
                                 $scope.company.financing_data[i].stage_value = $scope.stage[$scope.company.financing_data[i].stage];
                                 $scope.company.financing_data[i].amount_value = $scope.amount[$scope.company.financing_data[i].amount];
                             }
-                            
                     }
                     });
 /*
@@ -284,7 +308,7 @@ angular.module('chuangplus_mobile.controllers', []).
                 'O2O':'教育',
                 'others':'其它'
         };
-        $scope.position_type = {
+        $scope.position_types = {
             "technology":"技术",
             'product':"产品",
             'design':"设计",
@@ -302,7 +326,7 @@ angular.module('chuangplus_mobile.controllers', []).
                         $scope.positions = data.positions;
                         console.log($scope.positions.length);
                         for(var i=0; i<$scope.positions.length;i++){
-                            $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
+                            $scope.positions[i].position_type_value = $scope.position_types[$scope.positions[i].position_type];
                             $scope.positions[i].field_value = $scope.cfield[$scope.positions[i].company.field];
                             console.log($scope.positions[i].field_value);
                             if($scope.positions[i].company.scale == 0){
@@ -344,7 +368,7 @@ angular.module('chuangplus_mobile.controllers', []).
                 'O2O':'教育',
                 'others':'其它'
         };
-        $scope.position_type = {
+        $scope.position_types = {
             "technology":"技术",
             'product':"产品",
             'design':"设计",
@@ -361,7 +385,7 @@ angular.module('chuangplus_mobile.controllers', []).
                 $scope.position = data.data;
                 $scope.position.scale_value = $scope.latest_scale[$scope.position.company.scale];
                 $scope.position.field_value = $scope.cfield[$scope.position.company.field];
-                $scope.position.position_type_value = $scope.position_type[$scope.position.position_type];
+                $scope.position.position_type_value = $scope.position_types[$scope.position.position_type];
                 $scope.position.position_number = $scope.position.company.positions.length;
                 console.log($scope.position.position_number);
 
@@ -369,7 +393,9 @@ angular.module('chuangplus_mobile.controllers', []).
                     success(function(data){
                         console.log(data);
                         if(data.error.code == 1){
-                            $scope.position_list = data.data.position_list;
+                            $scope.position.company.position_type_value = {};
+                            for(var i=0;i<data.data.position_type.length;i++)
+                                $scope.position.company.position_type_value[i] = $scope.position_types[data.data.position_type[i]];
                         }
                         else{
                             console.log(data.error.message)

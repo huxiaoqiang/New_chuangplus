@@ -2,7 +2,7 @@
 <div class="main-content scrollable" >
 <div class="scrollable-content">
     <div class="header-bar">
-        <div class="header">公司详情</div>
+        <div class="header">公司岗位</div>
     </div>    
 
     <div class="comp-detail">
@@ -15,7 +15,7 @@
             <div ng-if="company.is_auth" class="comp-auth">[[company.auth_organization]]认证</div>
             <div class="comp-req-list">
                 <span class="comp-req-title">[[company.positions.length]]岗位在招</span>
-                <span class="comp-req-tag" ng-repeat="tag in company.position_list">[[tag.name]]</span>
+                <span class="comp-req-tag" ng-repeat="tag in company.position_list">[[tag.position_type_value]]</span>
             </div>
             <div class="comp-desc-list">
                 <span class="comp-desc-tag">
