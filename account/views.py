@@ -312,17 +312,22 @@ def get_companyinfo_detail_with_positions(request,company_id):
         except:
             re["error"] = error(105,"company does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+        companyinfo_re = json.loads(companyinfo.to_json())
         position_list = []
-        for position in companyinfo.positions:
+        position_type = []
+        for position in companyinfo_re['positions']:
             try:
-                position_info = Position.objects.get(id=position.id)
+                position_info = Position.objects.get(id=position['$oid'])
             except DoesNotExist:
                 re['error'] = error(260,'Position does not exist')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             position_list.append(json.loads(position_info.to_json()))
-
-        re['data'] = json.loads(companyinfo.to_json())
+            if position_info.position_type not in position_type:
+                position_type.append(position_info.position_type)
+        re['data'] = companyinfo_re
         re['data']['position_list'] = position_list
+        re['data']['position_type'] = position_type
         re['error'] = error(1, 'get succeed')
     else:
         re["error"] = error(3,"error,need GET!")
@@ -889,9 +894,20 @@ def get_company_list(request):
             companies = companies.filter(scale = int(scale))
         if status != '':
             companies = companies.filter(status = bool(status))
-            
+        companies_re = json.loads(companies.to_json())
+        for cpn in companies_re:
+            position_type = []
+            for p in cpn['positions']:
+                try:
+                    position = Position.objects.get(id=p['$oid'])
+                except DoesNotExist:
+                    re['error'] = error(260,'Position does not exist')
+                    return HttpResponse(json.dumps(re), content_type = 'application/json')
+                if position.position_type not in position_type:
+                    position_type.append(position.position_type)
+            cpn['position_type'] = position_type
         re['error'] = error(1, "get company list successfully")
-        re['data'] = json.loads(companies.to_json())
+        re['data'] = companies_re
     else:
         re['error'] = error(2, 'error, need POST!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')

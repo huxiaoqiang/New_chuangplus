@@ -220,13 +220,13 @@ angular.module('chuangplus.controllers', []).
         console.log('DT_InternPostCtrl');
         $scope.positions = {};
         $scope.position_type = {
-                "technology":"技术",
-                'product':"产品",
-                'design':"设计",
-                'operate':"运营",
-                'marketing':"市场",
-                'functions':"职能",
-                'others':"其他"
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
             };
         $scope.get_positions = function(){
             $http.get(urls.api+"/account/userinfo/position/submit/list").
@@ -252,7 +252,6 @@ angular.module('chuangplus.controllers', []).
                     }
             });
         };
-
         $scope.get_positions();
     }]).
     controller('DT_InternCompanyFavorCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
@@ -308,16 +307,16 @@ angular.module('chuangplus.controllers', []).
         console.log('DT_InternPositionFavorCtrl');
         $scope.positions = {};
         $scope.position_type = {
-                "technology":"技术",
-                'product':"产品",
-                'design':"设计",
-                'operate':"运营",
-                'marketing':"市场",
-                'functions':"职能",
-                'others':"其他"
-            };
-    $scope.get_userInfo = function(){
-        $scope.userinfo = {};
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+        };
+        $scope.get_userInfo = function(){
+            $scope.userinfo = {};
             $http.get(urls.api + "/account/userinfo/get").
                 success(function(data){
                     if(data.error.code == 1){
@@ -339,7 +338,7 @@ angular.module('chuangplus.controllers', []).
                         console.log(data.error).message;
                     }
             });
-    };
+       };
         $scope.get_positions = function(){
         $http.get(urls.api+"/account/userinfo/position/favor/list").
             success(function(data){
@@ -385,9 +384,14 @@ angular.module('chuangplus.controllers', []).
     $scope.get_userInfo();
     $scope.get_positions();
     $scope.submit = function(index) {
-    console.log($scope.positions[index]);
-        $scope.submitResume.resume_choice = 1;
-        console.log("here");
+    	console.log($scope.positions[index]);
+	if($scope.resume_submitted == true){
+            $scope.submitResume.resume_choice = 1;
+        }
+	else{
+	    $scope.submitResume.resume_choice = 3;
+	}
+	console.log("here");
         $csrf.set_csrf($scope.submitResume);
         $http.post(urls.api + "/position/"+$scope.positions[index]._id.$oid+"/submit", $.param($scope.submitResume)).
             success(function(data){
@@ -410,6 +414,11 @@ angular.module('chuangplus.controllers', []).
         $scope.submit(i);
     }
     };
+  
+    $scope.param = function(index){
+	$scope.index = index;
+    };
+
     }]).
     controller('DT_InternResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_InternResumeCtrl');
@@ -467,6 +476,7 @@ angular.module('chuangplus.controllers', []).
                     $scope.intern_info.resume_name = config.file.name;
                     console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
                     $scope.intern_info.resume_id = data.data;
+		    $scope.filename = config.file.name;
                 }
                 else{
                     console.log(data.error.message);
@@ -968,17 +978,22 @@ angular.module('chuangplus.controllers', []).
 	};
 	    
 	$scope.submit = function(){
-	    $scope.submitResume.resume_choice = 1;
+	    if($scope.resume_submitted == true){
+	    	$scope.submitResume.resume_choice = 1;
+	    }
+	    else{
+		$scope.submitResume.resume_choice = 3;
+	    }
 	    console.log("here");
             $csrf.set_csrf($scope.submitResume);
-        $http.post(urls.api + "/position/"+$scope.position_id+"/submit", $.param($scope.submitResume)).
-        success(function(data){
-            if(data.error.code == 1){
-            $scope.submit_value = "已投递";
-            }
-                else{
-            console.log(data.error.message);
-            }
+            $http.post(urls.api + "/position/"+$scope.position_id+"/submit", $.param($scope.submitResume)).
+            	success(function(data){
+           	    if(data.error.code == 1){
+               		$scope.submit_value = "已投递";
+            	    }
+                    else{
+               		console.log(data.error.message);
+           	    }
         }); 
     };
     

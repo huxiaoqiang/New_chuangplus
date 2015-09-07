@@ -893,7 +893,9 @@ def submit_resume(request,position_id):
             else:
                 re['error'] = error(19, 'File is empty')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
-        
+        elif resume_choice == '3':
+            resume = None 
+
         try:
             position = Position.objects.get(id = position_id)    
         except:
