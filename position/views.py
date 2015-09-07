@@ -1023,3 +1023,38 @@ def user_unlike_position(request,position_id):
     else:
         re['error'] = error(2,'error, need post!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+@user_permission('login')
+def close_position(request,position_id):
+    re = dict()
+    if request.method == 'POST':
+        try:
+            position = Position.objects.get(id=position_id)
+        except DoesNotExist:
+            re['error'] = error(260,'Position does not exist!')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        position.status = 'closed'
+        position.save()
+        re['error'] = error(1,'succeed!')
+    else:
+        re['error'] = error(2,'Error, need POST')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+@user_permission('login')
+def open_position(request,position_id):
+    re = dict()
+    if request.method == 'POST':
+        try:
+            position = Position.objects.get(id=position_id)
+        except DoesNotExist:
+            re['error'] = error(260,'Position does not exist!')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        position.status = 'open'
+        position.save()
+        re['error'] = error(1,'succeed!')
+    else:
+        re['error'] = error(2,'Error, need POST')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+#def check_position_status(request):
+
