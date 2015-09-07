@@ -889,9 +889,20 @@ def get_company_list(request):
             companies = companies.filter(scale = int(scale))
         if status != '':
             companies = companies.filter(status = bool(status))
-            
+        companies_re = json.loads(companies.to_json())
+        for cpn in companies_re:
+            position_type = []
+            for p in cpn['positions']:
+                try:
+                    position = Position.objects.get(id=p['$oid'])
+                except DoesNotExist:
+                    re['error'] = error(260,'Position does not exist')
+                    return HttpResponse(json.dumps(re), content_type = 'application/json')
+                if position.position_type not in position_type:
+                    position_type.append(position.position_type)
+            cpn['position_type'] = position_type
         re['error'] = error(1, "get company list successfully")
-        re['data'] = json.loads(companies.to_json())
+        re['data'] = companies_re
     else:
         re['error'] = error(2, 'error, need POST!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
