@@ -135,6 +135,7 @@ angular.module('chuangplus_mobile.controllers', []).
 
                     $http.get(urls.api+"/account/financing/" + $scope.company_id + "/list").
                         success(function(fdata){
+                            console.log(fdata);
                             if(data.error.code == 1){
                                 $scope.company.financing_data = fdata.data;
                                 $scope.company.financing_number = fdata.data.length;
@@ -255,6 +256,40 @@ angular.module('chuangplus_mobile.controllers', []).
             'others':"其他"
         };
 
+    
+    $http.get(urls.api+"/position/"+ $scope.position_id +"/get_with_company").
+        success(function(data){
+            if(data.error.code == 1){
+                $scope.position = data.data;
+                console.log("fffxx");
+                $scope.position.scale_value = $scope.latest_scale[$scope.position.company.scale];
+                $scope.position.field_value = $scope.cfield[$scope.position.company.field];
+                $scope.position.position_type_value = $scope.position_type[$scope.position.position_type];
+                $scope.position.position_number = $scope.position.company.positions.length;
+                console.log($scope.position.position_number);
+
+                console.log($scope.position.company._id.$oid+' xxx');
+                $http.get(urls.api+"/account/company/"+ $scope.position.company._id.$oid +"/detail_with_positions").
+                    success(function(data){
+                        console.log(data);
+                        if(data.error.code == 1){
+                            $scope.position_list = data.data;
+                        }
+                        else{
+                            console.log(data.error.message)
+                        }
+                    });
+                console.log("xdx");
+
+            }
+            else{
+                console.log(data.error.message)
+            }
+        });
+
+    console.log($scope.position_id);
+    /*
+
     $http.get(urls.api+"/account/userinfo/"+$scope.position_id+"/check_favor_position").
         success(function(data){
         if(data.error.code == 1){
@@ -270,35 +305,8 @@ angular.module('chuangplus_mobile.controllers', []).
             console.log(data.error.message);
         }
     });
-    
-    $http.get(urls.api+"/position/"+ $scope.position_id +"/get_with_company").
-        success(function(data){
-            if(data.error.code == 1){
-                $scope.position = data.data;
-                console.log($scope.position.company.positions[0].name);
-                console.log("fff");
-                $scope.position.scale_value = $scope.latest_scale[$scope.position.company.scale];
-                $scope.position.field_value = $scope.cfield[$scope.position.company.field];
-                $scope.position.position_type_value = $scope.position_type[$scope.position.position_type];
-            }
-            else{
-                console.log(data.error.message)
-            }
-        });
-/*
-    $http.get(urls.api+"/company/"+ $scope.position.company._id.$oid +"/detail_with_positions").
-        success(function(data){
-            if(data.error.code == 1){
-                $scope.position_list = data.data;
-            }
-            else{
-                console.log(data.error.message)
-            }
-        });
 
-        /api/account/company/company_id/detail_with_positions*/
-    console.log($scope.position_id);
-    $scope.userinfo = {};
+        $scope.userinfo = {};
         $http.get(urls.api + "/account/userinfo/get").
             success(function(data){
                 if(data.error.code == 1){
@@ -366,7 +374,7 @@ angular.module('chuangplus_mobile.controllers', []).
          setTimeout(function(){window.location.href='/intern/resume'},2000);
          $('#myModal').modal('hide');       
 
-    };
+    };*/
     }])
 
     .controller('MB_InfoCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
