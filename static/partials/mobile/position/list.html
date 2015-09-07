@@ -1,4 +1,4 @@
-<div class="main-content scrollable">
+<div class="main-content scrollable" ng-controller="MB_PositionListCtrl">
 <div class="scrollable-content">
     <div class="header-bar">
         <div ng-include="'/static/partials/mobile/partials/header-logo.html'" ></div>
@@ -20,38 +20,38 @@
     </div>
 
     <div class="comp-list">
-        <div class="comp-listbox" onclick="location='/mobile/position/detail'">
-            <img class="comp-prev-img" src="/static/pic/comp_prev.jpg">
-            <div class="comp-auth">红杉资本认证</div>
-            <div class="comp-name">产品经理</div>
+        <a class="comp-listbox" href="/mobile/position/detail/[[position._id.$oid]]" ng-repeat="position in positions">
+            <img class="comp-prev-img" src="/api/file/[[position.company.logo_id]]/download">
+            <div ng-if="position.company.is_auth" class="comp-auth">[[position.company.auth_organization]]认证</div>
+            <div class="comp-name">[[position.position_type_value]] | [[position.name]]</div>
 
             <div class="comp-req-list">
-                <span class="comp-req-title">清华创+</span>
+                <span class="comp-req-title">[[position.company.abbreviation]]</span>
             </div>
-            <div class="comp-desc">高校创业服务机构</div>
+            <div class="comp-desc">[[position.company.brief_introduction]]</div>
 
             <div class="comp-desc-list">
                 <span class="comp-desc-tag">
-                    5天/周
+                    [[position.days_per_week]]天/周
                 </span>
                 <span class="comp-desc-tag">
-                    5K-8K
+                    [[position.salary_min]]K-[[position.salary_max]]K
                 </span>
                 <span class="comp-desc-tag">
-                    创业服务
+                    [[position.field_value]]
                 </span>
                 <span class="comp-desc-tag">
-                    初创期
+                    [[position.company.scale_value]]
                 </span>
                 <span class="comp-desc-tag">
-                    北京
+                    [[position.company.city]]
                 </span>
             </div>
 
             <div class="post-time">
-                发布时间：2015年7月21日
+                发布时间：[[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]
             </div>
-        </div>
+        </a>
     </div>
 </div>
 </div>
