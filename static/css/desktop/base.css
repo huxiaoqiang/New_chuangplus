@@ -29,6 +29,7 @@ header #header .navbar .navbar-item li a {
   padding-top: 32px;
   padding-bottom: 25px;
   font-size: 1.3em;
+  cursor: pointer;
 }
 header #header .navbar .navbar-item li a:hover {
   border: solid #8f4e96;
@@ -77,7 +78,7 @@ header #header .navbar .search {
   margin-top: 25px;
   margin-left: 30px;
 }
-header #header .navbar .search li .search_btn {
+header #header .navbar .search li.search_btn {
   margin-top: -8px;
 }
 * {

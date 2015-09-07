@@ -1181,7 +1181,7 @@ angular.module('chuangplus.controllers', []).
             });
         };
         $scope.get_company = function(){
-            $http.get(urls.api+"/account/company/" + $scope.company_id + "/detail").
+            $http.get(urls.api+"/account/company/" + $scope.company_id + "/detail_with_positions").
               success(function(data,status,headers,config){
                 console.log(headers('Content-Type'));
                 if(data.error.code == 1){

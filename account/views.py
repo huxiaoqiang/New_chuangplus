@@ -304,7 +304,7 @@ def get_companyinfo_detail_by_username(request):
         re["error"] = error(3,"error,need GET!")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-def get_companyinfo_detail(request,company_id):
+def get_companyinfo_detail_with_positions(request,company_id):
     re=dict()
     if request.method == "GET":
         try:
@@ -323,6 +323,20 @@ def get_companyinfo_detail(request,company_id):
 
         re['data'] = json.loads(companyinfo.to_json())
         re['data']['position_list'] = position_list
+        re['error'] = error(1, 'get succeed')
+    else:
+        re["error"] = error(3,"error,need GET!")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+def get_companyinfo_detail(request,company_id):
+    re=dict()
+    if request.method == "GET":
+        try:
+            companyinfo = Companyinfo.objects.get(id=company_id)
+        except:
+            re["error"] = error(105,"company does not exist!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        re['data'] = json.loads(companyinfo.to_json())
         re['error'] = error(1, 'get succeed')
     else:
         re["error"] = error(3,"error,need GET!")
