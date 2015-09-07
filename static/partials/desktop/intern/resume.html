@@ -59,7 +59,8 @@
                         </br>
                         <div class="col-sm-8">
                             <div ng-model="resume" ngf-select="upload($file,'resume')" type="file">点击这里上传文件</div>
-			                <a ng-href="/api/file/[[intern_info.resume_id]]/download" target="_self">[[filename]]</a>
+					<span ng-show="intern_info.resume_id == null">无简历附件</span>
+			                <a ng-show="intern_info.resume_id != null" ng-href="/api/file/[[intern_info.resume_id]]/download" target="_self">[[filename]]</a>
                         </div>
                     </div>
                 </div>
