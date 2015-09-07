@@ -8,11 +8,13 @@ body {
   font-weight: normal;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   overflow-x: hidden;
-  -webkit-user-select: none;
 }
 #main-container {
   height: 100%;
   display: block;
+}
+.scrollable-content {
+  padding-bottom: 10px;
 }
 .absolute-center {
   margin: auto;
@@ -24,7 +26,7 @@ body {
 }
 .main-content {
   display: block;
-  padding-bottom: 59px;
+  padding-bottom: 54px;
   height: 100%;
   background-color: white;
 }
@@ -286,12 +288,19 @@ a:hover {
   background-color: white;
   overflow: hidden;
   position: relative;
-  padding: 10px 0 10px 10px;
+  padding: 10px 0 9px 10px;
 }
 .comp-list a {
   display: block;
   text-decoration: none;
   color: black;
+}
+.comp-title-img {
+  position: absolute;
+  float: left;
+  width: 94px;
+  height: 94px;
+  margin-right: 10px;
 }
 .comp-prev-img {
   position: relative;
@@ -334,6 +343,7 @@ a:hover {
   font-size: 10px;
   margin-right: 3px;
   text-align: center;
+  white-space: nowrap;
 }
 .comp-desc-list {
   line-height: 20px;
@@ -348,6 +358,7 @@ a:hover {
   font-size: 10px;
   margin-right: 3px;
   text-align: center;
+  white-space: nowrap;
 }
 .comp-benefit-list {
   line-height: 18px;

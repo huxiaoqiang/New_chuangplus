@@ -41,12 +41,14 @@ angular.module('chuangplus_mobile.controllers', []).
                 success(function(data){
                 if(data.error.code == 1){
                     $scope.company_list = data.data;
-
+                    console.log(data);
                     for(var i=0;i<$scope.company_list.length;i++){
                         $scope.company_list[i].stage_value = $scope.stage[$scope.company_list[i].scale];
                         $scope.company_list[i].field_value = $scope.pfield[$scope.company_list[i].field];
                         $scope.company_list[i].type_value = $scope.ptype[$scope.company_list[i].type];
                         $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
+
+
                     }
 
                 }
@@ -60,14 +62,13 @@ angular.module('chuangplus_mobile.controllers', []).
     .controller('MB_PositionListCtrl', ['$scope', '$http', 'urls',
      function($scope, $http, urls) {
         console.log('MB_PositionListCtrl');
-
         $scope.positions = {};
         $scope.get_positions = function(){
             $http.get(urls.api+"/position/search").
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.positions = data.positions;
-                        for(i=0; i<$scope.positions.length;i++){
+                        for(var i=0; i<$scope.positions.length;i++){
                             $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
                             if($scope.positions[i].company.scale == 0){
                                 $scope.positions[i].company.scale_value = "初创";
@@ -87,6 +88,90 @@ angular.module('chuangplus_mobile.controllers', []).
         };
         $scope.get_positions();
 
+    }])
+    .controller('MB_PositionFilterCtrl', ['$scope', '$http', 'urls', '$routeParams',
+         function($scope, $http, urls, $routeParams) {
+    $scope.filter = {
+            "workdays":{
+                "day0": false,
+                "day3": false,
+                "day4": false,
+                "day5": false,
+                "day6": false,
+                "day7": false
+            },
+            "field":{
+                'social':false,
+                'e_commerce':false,
+                'education':false,
+                'health_medical':false,
+                'culture_creativity':false,
+                'living_consumption':false,
+                'hardware':false,
+                'O2O':false,
+                'others':false
+            },
+            "type":{
+                'technology':false,
+                'product':false,
+                'design':false,
+                'operate':false,
+                'marketing':false,
+                'functions':false,
+                'others':false
+            },
+            "salary": ''
+        };
+    }])
+    .controller('MB_CompanyPositionCtrl', ['$scope', '$http', 'urls', '$routeParams',
+     function($scope, $http, urls, $routeParams) {
+        $scope.get_company = function(){
+        $scope.company_id = $routeParams.company_id;
+        console.log($scope.company_id);
+        $scope.position_type = {
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+        };
+        $scope.latest_scale = {
+            "0":"初创",
+            "1":"快速发展",
+            "2":"成熟"
+        };
+        $scope.cfield = {
+                'social':'社交',
+                'e_commerce':'电子商务',
+                'education':'健康医疗',
+                'health_medical':'文化创意',
+                'culture_creativity':'硬件',
+                'living_consumption':'O2O',
+                'hardware':'生活消费',
+                'O2O':'教育',
+                'others':'其它'
+        };
+        $scope.company_id = $routeParams.company_id;
+        $http.get(urls.api+"/account/company/" + $scope.company_id + "/detail_with_positions").
+          success(function(data,status,headers,config){
+            console.log(data);   
+            if(data.error.code == 1){
+                $scope.company = data.data;
+                $scope.company.field_value = $scope.cfield[$scope.company.field];
+                $scope.company.scale_value = $scope.latest_scale[$scope.company.scale];
+                $scope.company.position_number = $scope.company.positions.length;
+                for(var i=0;i<$scope.company.position_number;i++){
+                    $scope.company.position_list[i].position_type_value = $scope.position_type[$scope.company.position_list[i].position_type];
+                }
+            }
+            else{
+                $scope.error = $errMsg.format_error("",data.error);
+            }
+            });
+        };
+        $scope.get_company();
     }])
     .controller('MB_CompanyDetailCtrl', ['$scope', '$http', 'urls', '$routeParams',
      function($scope, $http, urls, $routeParams) {
@@ -129,7 +214,7 @@ angular.module('chuangplus_mobile.controllers', []).
               success(function(data){
                 if(data.error.code == 1){
                     $scope.company = data.data;
-                    $scope.company.position_number = $scope.company.positions.length;
+                    console.log($scope.company.positions.length);
                         $scope.company.field_value = $scope.cfield[$scope.company.field];
                         $scope.company.scale_value = $scope.latest_scale[$scope.company.scale];
 
@@ -148,7 +233,20 @@ angular.module('chuangplus_mobile.controllers', []).
                             
                     }
                     });
+/*
 
+                    $http.get(urls.api+"/account/company/"+ $scope.company._id.$oid +"/detail_with_positions").
+                        success(function(data){
+                            console.log(data);
+                            if(data.error.code == 1){
+                                $scope.company.position_list = data.data.position_list;
+                                console.log($scope.company.position_list);
+                            }
+                            else{
+                                console.log(data.error.message)
+                            }
+                    });
+*/
                     $http.get(urls.api+"/account/member/"+$scope.company_id+"/list").
                         success(function(data){
                             if(data.error.code == 1){
@@ -261,25 +359,22 @@ angular.module('chuangplus_mobile.controllers', []).
         success(function(data){
             if(data.error.code == 1){
                 $scope.position = data.data;
-                console.log("fffxx");
                 $scope.position.scale_value = $scope.latest_scale[$scope.position.company.scale];
                 $scope.position.field_value = $scope.cfield[$scope.position.company.field];
                 $scope.position.position_type_value = $scope.position_type[$scope.position.position_type];
                 $scope.position.position_number = $scope.position.company.positions.length;
                 console.log($scope.position.position_number);
 
-                console.log($scope.position.company._id.$oid+' xxx');
                 $http.get(urls.api+"/account/company/"+ $scope.position.company._id.$oid +"/detail_with_positions").
                     success(function(data){
                         console.log(data);
                         if(data.error.code == 1){
-                            $scope.position_list = data.data;
+                            $scope.position_list = data.data.position_list;
                         }
                         else{
                             console.log(data.error.message)
                         }
                     });
-                console.log("xdx");
 
             }
             else{

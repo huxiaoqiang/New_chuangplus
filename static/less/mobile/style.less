@@ -89,7 +89,6 @@ body
     font-weight: normal;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     overflow-x: hidden;
-    -webkit-user-select: none;
 }
 
 #main-container
@@ -97,7 +96,10 @@ body
     height: 100%;
     display: block;
 }
-
+.scrollable-content
+{
+    padding-bottom: 10px;
+}
 .absolute-center
 {
 
@@ -110,7 +112,7 @@ body
 .main-content
 {
     display: block;
-    padding-bottom: @cl-nav-hgt + 5px;
+    padding-bottom: @cl-nav-hgt;
     height: 100%;
     background-color: white;
 
@@ -449,7 +451,7 @@ a:hover
     position: relative;
     padding: (@cl-listbox-hgt - @cl-comp-img-size)/2 
              0
-            (@cl-listbox-hgt - @cl-comp-img-size)/2
+            (@cl-listbox-hgt - @cl-comp-img-size - 2px)/2
             (@cl-listbox-hgt - @cl-comp-img-size)/2;
 }
 .comp-list a
@@ -457,6 +459,14 @@ a:hover
     display: block;
     text-decoration: none;
     color: black;
+}
+.comp-title-img
+{
+    position: absolute;
+    float: left;
+    width: @cl-comp-img-size;
+    height: @cl-comp-img-size;
+    margin-right: (@cl-listbox-hgt - @cl-comp-img-size)/2 ;
 }
 .comp-prev-img
 {
@@ -506,6 +516,7 @@ a:hover
     font-size: @cl-comp-reqt-fsize;
     margin-right: @cl-comp-tag-mag;
     text-align: center;
+    white-space:nowrap;
 }
 
 .comp-desc-list{
@@ -523,6 +534,7 @@ a:hover
     font-size: @cl-comp-desct-fsize;
     margin-right: @cl-comp-tag-mag;
     text-align: center;
+    white-space:nowrap;
 }
 
 .comp-benefit-list{

@@ -42,7 +42,7 @@ var app = angular.module('chuangplus_mobile', [
 
         $routeProvider.when('/mobile/company/filter', {templateUrl: urls.part_mobile + '/company/filter.html',title:'公司筛选'});
         $routeProvider.when('/mobile/company/detail/:company_id', {templateUrl: urls.part_mobile + '/company/detail.html',title:'公司详情'});
-        $routeProvider.when('/mobile/company/posi/', {templateUrl: urls.part_mobile + '/company/posi.html',title:'公司所有职位'});
+        $routeProvider.when('/mobile/company/posi/:company_id', {templateUrl: urls.part_mobile + '/company/posi.html',title:'公司所有职位'});
         //$routeProvider.when('/mobile/company/list', {templateUrl: urls.part_mobile + '/company/list.html',controller:'MB_CompanyListCtrl', title:'公司列表'});
         $routeProvider.when('/mobile/company/collect', {templateUrl: urls.part_mobile + '/company/collect.html',title:'公司收藏列表'});
 
