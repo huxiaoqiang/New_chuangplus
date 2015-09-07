@@ -220,13 +220,13 @@ angular.module('chuangplus.controllers', []).
         console.log('DT_InternPostCtrl');
         $scope.positions = {};
         $scope.position_type = {
-                "technology":"技术",
-                'product':"产品",
-                'design':"设计",
-                'operate':"运营",
-                'marketing':"市场",
-                'functions':"职能",
-                'others':"其他"
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
             };
         $scope.get_positions = function(){
             $http.get(urls.api+"/account/userinfo/position/submit/list").
@@ -252,7 +252,6 @@ angular.module('chuangplus.controllers', []).
                     }
             });
         };
-
         $scope.get_positions();
     }]).
     controller('DT_InternCompanyFavorCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
@@ -308,16 +307,16 @@ angular.module('chuangplus.controllers', []).
         console.log('DT_InternPositionFavorCtrl');
         $scope.positions = {};
         $scope.position_type = {
-                "technology":"技术",
-                'product':"产品",
-                'design':"设计",
-                'operate':"运营",
-                'marketing':"市场",
-                'functions':"职能",
-                'others':"其他"
-            };
-    $scope.get_userInfo = function(){
-        $scope.userinfo = {};
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+        };
+        $scope.get_userInfo = function(){
+            $scope.userinfo = {};
             $http.get(urls.api + "/account/userinfo/get").
                 success(function(data){
                     if(data.error.code == 1){
@@ -339,7 +338,7 @@ angular.module('chuangplus.controllers', []).
                         console.log(data.error).message;
                     }
             });
-    };
+       };
         $scope.get_positions = function(){
         $http.get(urls.api+"/account/userinfo/position/favor/list").
             success(function(data){
