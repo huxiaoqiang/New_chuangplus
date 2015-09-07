@@ -84,7 +84,7 @@ def create_position(request):
     samin = request.POST.get('salary_min','0')
     samax = request.POST.get('salary_max','1000000')
     poft = request.POST.get('part_or_full_time','0')
-    status = request.POST.get("status","hidden")
+    status = request.POST.get("status","open")
     
     print "ok"
     
