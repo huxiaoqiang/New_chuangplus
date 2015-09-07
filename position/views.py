@@ -19,7 +19,7 @@ from app.common_api import error,user_permission,if_legal
 
 TYPE = ('technology','product','design','operate','marketing','functions','others')
 FIELD = ('social','e-commerce','education','health_medical','culture_creativity','living_consumption','hardware','O2O','others')
-STATUS = ('open','hidden','closed')
+STATUS = ('open','closed')
 POSITIONS_PER_PAGE = 10
 
 '''
@@ -84,7 +84,7 @@ def create_position(request):
     samin = request.POST.get('salary_min','0')
     samax = request.POST.get('salary_max','1000000')
     poft = request.POST.get('part_or_full_time','0')
-    status = request.POST.get("status","hidden")
+    status = request.POST.get("status","open")
     
     print "ok"
     
@@ -667,7 +667,7 @@ def update_position(request,position_id):
     samin = request.POST.get('salary_min','0')
     samax = request.POST.get('salary_max','1000000')
     part_or_full_time = request.POST.get('part_or_full_time','0')
-    status = request.POST.get("status","hidden")
+    status = request.POST.get("status","open")
     
     try:
         assert len(name) in range(1,30)

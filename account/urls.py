@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^financing/(?P<company_id>.*?)/list', views.get_financinginfo_list, name='get_financinginfo_list'),
 
     url(r'^company/list', views.get_company_list, name='get_company_list'),
+    url(r'^company/(?P<company_id>.*?)/detail_with_positions', views.get_companyinfo_detail_with_positions, name='get_companyinfo_detail_with_positions'),
     url(r'^company/(?P<company_id>.*?)/detail', views.get_companyinfo_detail, name='get_companyinfo_detail'),
     url(r'^company/detail', views.get_companyinfo_detail_by_username, name='get_companyinfo_detail_by_username'),
     url(r'^company/(?P<company_id>.*?)/set', views.set_companyinfo, name='set_companyinfo'),
@@ -45,7 +46,6 @@ urlpatterns = [
     url(r'^company/(?P<position_id>.*?)/(?P<username>.*?)/process', views.process_single, name='process_single'),
     url(r'^company/(?P<position_id>.*?)/submit/list', views.get_submit_list, name='get_submit_list'),
     #url(r'^company/(?P<position_id>.*?)/(?P<>.*?)/process', views.process_position, name='process_position'),
-
 
 ]
 

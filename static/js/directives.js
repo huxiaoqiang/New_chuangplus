@@ -55,6 +55,7 @@ angular.module('chuangplus.directives', []).
             replace : true,
             template : "<p>[[text]]</p>",
             link : function(scope,elm,attr){
+                scope.$watch('text');
                 console.log(elm[0]);
                 elm[0].innerHTML.replace(/\ /g,"&nbsp;").replace(/\r\n/g,"<br/>");
             }

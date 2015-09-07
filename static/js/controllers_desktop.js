@@ -286,6 +286,7 @@ angular.module('chuangplus.controllers', []).
             success(function(data){
                 if(data.error.code == 1){
                 $scope.company_list = data.data;
+		$scope.company_num = $scope.company_list.length;
                 for(i = 0; i < $scope.company_list.length; i ++){
                     $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
                     $scope.company_list[i].position_types = {};
@@ -942,19 +943,33 @@ angular.module('chuangplus.controllers', []).
         }
     });
 
-    $scope.post = function(){
-        $scope.submitFavor = {};
-        $scope.submitFavor.position_id = $scope.position_id;
-        $csrf.set_csrf($scope.submitFavor);
-        $http.post(urls.api + "/position/"+$scope.position_id+"/userlikeposition", $.param($scope.submitFavor)).
-        success(function(data){
-            $scope.post_value = "取消收藏";
-        });
-    };
-        
-    $scope.submit = function(){
-        $scope.submitResume.resume_choice = 1;
-        console.log("here");
+	$scope.post = function(){
+	    if($scope.favor_exist == false){
+		$scope.submitFavor = {};
+           	$scope.submitFavor.position_id = $scope.position_id;
+            	$csrf.set_csrf($scope.submitFavor);
+	    	$http.post(urls.api + "/position/"+$scope.position_id+"/userlikeposition", $.param($scope.submitFavor)).
+		    success(function(data){
+		    	$scope.post_value = "取消收藏";
+			$scope.favor_exist = true;
+		});
+	    }
+	    else{
+		$scope.submitUnFavor = {};
+		$scope.submitUnFavor.position_id = $scope.position_id;
+		$csrf.set_csrf($scope.submitUnFavor);
+		$http.post(urls.api+"/position/"+$scope.position_id+"/userunlikeposition", $.param($scope.submitUnFavor)).
+		    success(function(data){
+			$scope.post_value = "收藏职位";
+			$scope.favor_exist = false;
+		    });
+	    }
+		
+	};
+	    
+	$scope.submit = function(){
+	    $scope.submitResume.resume_choice = 1;
+	    console.log("here");
             $csrf.set_csrf($scope.submitResume);
         $http.post(urls.api + "/position/"+$scope.position_id+"/submit", $.param($scope.submitResume)).
         success(function(data){
@@ -1166,7 +1181,7 @@ angular.module('chuangplus.controllers', []).
             });
         };
         $scope.get_company = function(){
-            $http.get(urls.api+"/account/company/" + $scope.company_id + "/detail").
+            $http.get(urls.api+"/account/company/" + $scope.company_id + "/detail_with_positions").
               success(function(data,status,headers,config){
                 console.log(headers('Content-Type'));
                 if(data.error.code == 1){

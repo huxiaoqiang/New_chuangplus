@@ -1,11 +1,16 @@
 <div id="container">
     <div id="favor-position-list">
-        <div class="col-sm-4">
+	<div>[[positions.length]]</div>
+	<div ng-show="positions.length <= 0 || positions == null" class="col-sm-4">
+	    <p>您还没有收藏任何职位，快去<a href="/position/list">职位列表</a>看看吧^_^</p>
+	</div>
+        <div class="col-sm-4" ng-show="positions.length > 0">
             <div class="col-md-9">
                 <table>
                     <tr>
                         <td>
-                            <input type="button" class="btn btn-primary" ng-click="submit_all()" value="一键全部投递">
+                            <input type="button" class="btn btn-primary" ng-show="resume_submitted" ng-click="submit_all()" value="一键全部投递">
+			    <input type="button" class="btn btn-primary" ng-show="!resume_submitted" data-toggle="modal" data-target="#myModal" value="一键全部投递"> 
                                 </td>
                         <td>
                             <input type="button" class="btn btn-primary" value="清除失效岗位">
