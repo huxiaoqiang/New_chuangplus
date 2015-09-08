@@ -32,6 +32,7 @@ header #header .navbar .navbar-item li a {
   padding-bottom: 24px;
   font-size: 1.3em;
   cursor: pointer;
+  font-family: "华文细黑";
 }
 header #header .navbar .navbar-item li a:hover {
   border: solid #8f4e96;
@@ -77,8 +78,9 @@ header #header .navbar ul.reg-login a:hover {
   border-width: 0px 0px 0px 0px;
 }
 header #header .navbar .search {
-  margin-top: 25px;
-  margin-left: 30px;
+  margin-top: 18px;
+  position: absolute;
+  right: 0;
 }
 header #header .navbar .search li#search_btn {
   margin-top: -8px;
