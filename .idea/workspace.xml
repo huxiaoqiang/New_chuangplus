@@ -6,7 +6,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/desktop/base.css" afterPath="$PROJECT_DIR$/static/css/desktop/base.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/footer.html" afterPath="$PROJECT_DIR$/templates/footer.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/footer.less" afterPath="$PROJECT_DIR$/static/less/desktop/footer.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/intern/resume.html" afterPath="$PROJECT_DIR$/static/partials/desktop/intern/resume.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/resume.less" afterPath="$PROJECT_DIR$/static/less/desktop/resume.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/mobile/style.css" afterPath="$PROJECT_DIR$/static/css/mobile/style.css" />
     </list>
     <ignored path="chuangplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,26 +36,6 @@
     <splitter split-orientation="horizontal" split-proportion="0.49261993">
       <split-first>
         <leaf>
-          <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/account/views.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="132" column="9" selection-start="5662" selection-end="5662" vertical-scroll-proportion="-2.28" vertical-offset="2223" max-vertical-offset="19437">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Captcha/views.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="18" column="95" selection-start="558" selection-end="558" vertical-scroll-proportion="-13.68" vertical-offset="0" max-vertical-offset="475">
-                  <folding>
-                    <element signature="e#0#35#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/chuangplus/settings.py">
               <provider selected="true" editor-type-id="text-editor">
@@ -115,10 +100,19 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="resume.html" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="resume.html" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/partials/desktop/intern/resume.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="57" column="8" selection-start="2780" selection-end="2780" vertical-scroll-proportion="0.8297055" vertical-offset="435" max-vertical-offset="1254">
+                <state line="57" column="85" selection-start="2866" selection-end="2866" vertical-scroll-proportion="-11.509434" vertical-offset="473" max-vertical-offset="1254">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="footer.html" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/templates/footer.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="27" column="96" selection-start="991" selection-end="991" vertical-scroll-proportion="0.6364764" vertical-offset="0" max-vertical-offset="806">
                   <folding />
                 </state>
               </provider>
@@ -193,10 +187,19 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="resume.less" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="resume.less" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/less/desktop/resume.less">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="77" column="18" selection-start="1928" selection-end="1928" vertical-scroll-proportion="0.33289987" vertical-offset="1207" max-vertical-offset="2318">
+                <state line="72" column="51" selection-start="1869" selection-end="1869" vertical-scroll-proportion="-6.448718" vertical-offset="865" max-vertical-offset="2337">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="footer.less" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/static/less/desktop/footer.less">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="30" column="45" selection-start="548" selection-end="548" vertical-scroll-proportion="0.37783375" vertical-offset="270" max-vertical-offset="1140">
                   <folding />
                 </state>
               </provider>
@@ -222,8 +225,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/account/urls.py" />
-        <option value="$PROJECT_DIR$/position/views.py" />
         <option value="$PROJECT_DIR$/position/management/commands/send_email.py" />
         <option value="$PROJECT_DIR$/account/views.py" />
         <option value="$PROJECT_DIR$/position/urls.py" />
@@ -236,8 +237,10 @@
         <option value="$PROJECT_DIR$/static/partials/desktop/login.html" />
         <option value="$PROJECT_DIR$/static/less/desktop/login.less" />
         <option value="$PROJECT_DIR$/static/js/controllers_desktop.js" />
-        <option value="$PROJECT_DIR$/static/less/desktop/resume.less" />
         <option value="$PROJECT_DIR$/static/partials/desktop/intern/resume.html" />
+        <option value="$PROJECT_DIR$/static/less/desktop/resume.less" />
+        <option value="$PROJECT_DIR$/static/less/desktop/footer.less" />
+        <option value="$PROJECT_DIR$/templates/footer.html" />
       </list>
     </option>
   </component>
@@ -316,7 +319,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="chuangplus" />
+              <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -330,7 +333,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="account" />
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="less" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chuangplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chuangplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="less" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="desktop" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -647,20 +676,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/less/desktop/base.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="34" selection-start="666" selection-end="666" vertical-scroll-proportion="-6.3773584" vertical-offset="232" max-vertical-offset="1026">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/less/desktop/homepage.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="0" selection-start="655" selection-end="655" vertical-scroll-proportion="-3.9433963" vertical-offset="361" max-vertical-offset="1368">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/filedata/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="50" selection-start="909" selection-end="909" vertical-scroll-proportion="-12.92" vertical-offset="0" max-vertical-offset="3838">
@@ -709,13 +724,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chuangplus/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="100" column="41" selection-start="2416" selection-end="2416" vertical-scroll-proportion="-9.88" vertical-offset="1653" max-vertical-offset="3002">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/js/mobile/services_mobile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="47" column="29" selection-start="1552" selection-end="1552" vertical-scroll-proportion="0.0" vertical-offset="361" max-vertical-offset="3895">
@@ -752,13 +760,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/less/desktop/resume.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="18" selection-start="1928" selection-end="1928" vertical-scroll-proportion="0.33289987" vertical-offset="1207" max-vertical-offset="2318">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/account/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="15" selection-start="809" selection-end="820" vertical-scroll-proportion="-4.56" vertical-offset="285" max-vertical-offset="2071">
@@ -766,9 +767,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/static/less/desktop/resume.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="51" selection-start="1869" selection-end="1869" vertical-scroll-proportion="-6.448718" vertical-offset="865" max-vertical-offset="2337">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/static/partials/desktop/intern/resume.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="8" selection-start="2780" selection-end="2780" vertical-scroll-proportion="0.8297055" vertical-offset="435" max-vertical-offset="1254">
+        <state line="57" column="85" selection-start="2866" selection-end="2866" vertical-scroll-proportion="-11.509434" vertical-offset="473" max-vertical-offset="1254">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chuangplus/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="100" column="41" selection-start="2416" selection-end="2416" vertical-scroll-proportion="-9.88" vertical-offset="1653" max-vertical-offset="3002">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/less/desktop/footer.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="45" selection-start="548" selection-end="548" vertical-scroll-proportion="0.37783375" vertical-offset="270" max-vertical-offset="1140">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/footer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="96" selection-start="991" selection-end="991" vertical-scroll-proportion="0.6364764" vertical-offset="0" max-vertical-offset="806">
           <folding />
         </state>
       </provider>
