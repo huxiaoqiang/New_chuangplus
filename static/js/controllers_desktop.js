@@ -6,7 +6,12 @@ angular.module('chuangplus.controllers', []).
     controller('DT_HomepageCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('HomepageCtrl');
         $scope.myInterval = 3000;
-        $scope.slides = [
+        $scope.slides1 = [
+            {image:"/static/image/logo/banner-1.jpg"},
+            {image:"/static/image/logo/banner-2.jpg"},
+            {image:"/static/image/logo/banner-3.jpg"}
+        ];
+        $scope.slides2 = [
             {image:"/static/image/logo/banner-1.jpg"},
             {image:"/static/image/logo/banner-2.jpg"},
             {image:"/static/image/logo/banner-3.jpg"}

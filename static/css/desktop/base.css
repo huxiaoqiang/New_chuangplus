@@ -162,26 +162,11 @@ body > #wrap {
 #container #login .ui.segment.form {
   padding: 0em;
 }
-#container #login .ui.segment.form .nav-tabs {
-  border-bottom: 0px;
-}
-#container #login .ui.segment.form .nav-tabs li {
-  width: 50%;
-  text-align: center;
-  background-color: #d8d8d8;
-}
-#container #login .ui.segment.form .nav-tabs li .active {
-  background-color: #FFFFFF;
-}
-#container #login .ui.segment.form .nav-tabs li a {
-  font-size: 18px;
-  color: #000000;
-}
-#container #login .ui.segment.form .nav-tabs li a:hover {
-  background-color: white;
-}
 #container #login .ui.segment.form #login_form {
   padding: 2em;
+}
+#container #login .ui.segment.form #login_form .form-control {
+  border: 1px solid #8F4E96;
 }
 #container #login .ui.segment.form #login_form #captcha_form {
   width: 40%;
@@ -210,24 +195,6 @@ body > #wrap {
 #container #login .ui.segment.form #login_form #options .regbtn {
   float: right;
   color: #61c2f2;
-}
-#container .right-word {
-  padding-left: 15%;
-  margin: 0 auto;
-  margin-top: 5%;
-}
-#container .right-word h2 {
-  margin-top: 0;
-  font-family: "微软雅黑";
-  color: #8c5d90;
-}
-#container .right-word img {
-  margin: 0 auto;
-}
-#container .right-word p {
-  padding-left: 8%;
-  color: gray;
-  margin-top: -2%;
 }
 #container #register {
   font-family: "微软雅黑";
@@ -1455,28 +1422,62 @@ form.financing_add input {
   display: block;
 }
 #container #homepage {
+  font-family: "微软雅黑";
   margin-top: 20px;
 }
+#container #homepage .right-block {
+  position: fixed;
+  right: 20px;
+  top: 168px;
+  height: 100%;
+  width: 120px;
+  margin: 0 auto;
+}
+#container #homepage .right-block .txt {
+  font-size: 1.0em;
+  color: #707070;
+  text-align: center;
+  width: 100%;
+}
+#container #homepage .right-block .img-1 {
+  height: 120px;
+  width: 120px;
+}
 #container #homepage .slide-block {
-  height: 450px;
-  border: 1px solid #b2b2b2;
-  margin-bottom: 10px;
+  height: 420px;
+  margin-bottom: 15px;
 }
 #container #homepage .info-block-1 {
   height: 300px;
   border: 1px solid #b2b2b2;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 #container #homepage .info-block-2 {
-  height: 450px;
+  height: 420px;
   border: 1px solid #b2b2b2;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 #container #homepage .img-block {
   height: 90px;
-  width: 1025px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
+#container #homepage .img-block .img-2 {
+  height: 100%;
+  width: 184px;
+  margin-right: 10px;
+  float: left;
+}
+#container #homepage .img-block .img-3 {
+  height: 100%;
+  width: 184px;
+  float: left;
+}
+/*body{
+  background-color: #eeeeee;
+  #main-container{
+    background-color: #ffffff;;
+  }
+}*/
 .input-group-addon {
   border-top-left-radius: 0.5em;
   border-bottom-left-radius: 0.5em;
