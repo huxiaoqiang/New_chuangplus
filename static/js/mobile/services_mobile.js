@@ -26,6 +26,16 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
             }
         };
     }])
+    .service('NoticeService', function($cookies){
+        console.log("new notice");
+        return {
+            'show': function(data) {
+                $(".notice-bar").html(data);
+                $(".notice-bar").slideDown("fast");
+                setTimeout(function(){$(".notice-bar").slideUp("fast");},1800);
+            }
+        };
+    })
     .service("ErrorService",['$cookies' ,function($cookies){
         var error_message = {
             'code15':"文件大小超过10M",

@@ -496,80 +496,44 @@ angular.module('chuangplus_mobile.controllers', [])
     };*/
     }])
 
-    .controller('MB_LoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams',
-    function($scope, $http, urls, $csrf, $routeParams) {
+    .controller('MB_LoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams','$cookies',
+    function($scope, $http, urls, $csrf, $routeParams,$cookies) {
         console.log("MB_LoginCtrl");
         $scope.error = {};
-        $scope.reg_info = {};
         $scope.captcha_url = urls.api+"/captcha/image/";
-        $scope.check = {};
-        $scope.e_check = {};
         $scope.refresh_captcha = function(){
             $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
         };
 
-        $scope.register = function(){
-            if ($scope.reg_info.password != $scope.repeate_password)
-            {
-                $scope.error.code = -1;
-                $scope.error = $errMsg.format_error("两次输入的密码不一致",$scope.error);
-                return;
-            }
-            $csrf.set_csrf($scope.reg_info);
-            $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
+        $scope.login_user = function(){
+            $csrf.set_csrf($scope.login_info);
+            $http.post(urls.api+"/account/login", $.param($scope.login_info)).
                 success(function(data){
                     if(data.error.code == 1){
-                        $scope.error = $errMsg.format_error("注册成功",data.error);
-                        setTimeout(function(){window.location.href='/'},1500);
-                    }
-                    else{
-                        $scope.error = $errMsg.format_error("",data.error);
-                    }
-                });
-        };
-        $scope.check_username = function(){
-            $scope.check.username = $scope.reg_info.username;
-            $csrf.set_csrf($scope.check);
-            $http.post(urls.api+"/account/checkusername", $.param($scope.check)).
-                success(function(data){
-                    if(data.error.code == 1){
-                        $scope.check.exist = data.username.exist;
-                    }
-                });
-        };
-        $scope.check_email = function(){
-            $scope.e_check.email = $scope.reg_info.email;
-            $csrf.set_csrf($scope.e_check);
-            $http.post(urls.api+"/account/checkemail", $.param($scope.e_check)).
-                success(function(data){
-                    if(data.error.code == 1){
-                        $scope.e_check.exist = data.email.exist;
+                        console.log("登陆成功")
+                        setTimeout(function(){window.location.href='/mobile'},1000);
                     }
                 });
         };
         $scope.refresh_captcha();
     }
     ])
-    .controller('MB_RegisterCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams',
-    function($scope, $http, urls, $csrf, $routeParams) {
+    .controller('MB_RegisterCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', '$cookies', 'NoticeService',
+    function($scope, $http, urls, $csrf, $routeParams, $cookies, $notice) {
         console.log("MB_RegisterCtrl");
 
         $scope.error = {};
         $scope.reg_info = {};
+        $scope.capcha_info = {};
         $scope.captcha_url = urls.api+"/captcha/image/";
+        //capcha    : xxxx
+        //token     : 
         $scope.check = {};
         $scope.e_check = {};
         $scope.refresh_captcha = function(){
             $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
         };
-
         $scope.register = function(){
-            if ($scope.reg_info.password != $scope.repeate_password)
-            {
-                $scope.error.code = -1;
-                $scope.error = $errMsg.format_error("两次输入的密码不一致",$scope.error);
-                return;
-            }
             $csrf.set_csrf($scope.reg_info);
             $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
                 success(function(data){
@@ -582,42 +546,97 @@ angular.module('chuangplus_mobile.controllers', [])
                     }
                 });
         };
+
+        $scope.check_captcha = function(){
+            $csrf.set_csrf($scope.capcha_info);
+            $scope.capcha_info.captcha = $scope.reg_info.captcha;
+            console.log( $scope.reg_info.captcha);
+            $http.post(urls.api+"/captcha/check/", $.param($scope.capcha_info)).
+                success(function(data){
+                    if(data != 'yes')
+                    {
+                        $notice.show('验证码错误');
+                        $('#captcha-pass').hide();
+                    }
+                    else
+                        $('#captcha-pass').show();
+
+                });
+            
+        }
+
         $scope.check_username = function(){
             $scope.check.username = $scope.reg_info.username;
             $csrf.set_csrf($scope.check);
-            console.log($.param($scope.check));
 
-            var req = {
-                method: 'POST',
-                url: urls.api+"/account/checkusername",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': $csrf.val()
-                },
-                data: $.param($scope.check)
-             }
-             $http(req).success(function(data){
-                console.log(data);});
-//            $http.post(urls.api+"/account/checkusername", $.param($scope.check)).
-//                success(function(data){
-//                        console.log(data);
-//                    if(data.error.code == 1){
-//                        $scope.check.exist = data.username.exist;
-//                    }
-//                });
+            if($scope.check.username.length > 5)
+                $http.post(urls.api+"/account/checkusername", $.param($scope.check)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        console.log(data);
+                        if(data.username.exist != 'false')
+                        {
+                            $notice.show('用户名已存在');
+                            $('#username-pass').hide();
+                            return false;
+                        }
+                        else
+                            $('#username-pass').show();
+                    }
+                });
+            else
+            {
+                $notice.show('用户名长度最短6位');
+                return false;
+            }
+            return true;
         };
         $scope.check_email = function(){
             $scope.e_check.email = $scope.reg_info.email;
             $csrf.set_csrf($scope.e_check);
 
-
-
-            $http.post(urls.api+"/account/checkemail", req).
+            console.log($scope.reg_info.email);
+            if($scope.reg_info.email != undefined)
+                $http.post(urls.api+"/account/checkemail", $.param($scope.e_check)).
                 success(function(data){
                     if(data.error.code == 1){
-                        $scope.e_check.exist = data.email.exist;
+                        console.log(data);
+                        if(data.email.exist != 'false')
+                        {
+                            $notice.show('该邮箱已使用');
+                            $('#email-pass').hide();
+                            return false;
+                        }
                     }
                 });
+            else
+            {
+                $notice.show('请输入合法的邮箱地址');
+                $('#email-pass').hide();
+                return false;
+            }
+            $('#email-pass').show();
+            return true;
+        };
+        $scope.check_pass_len = function(){
+            if($scope.reg_info.password == undefined)
+            {
+                $notice.show('为保证安全，密码最少为6位');
+                $('#pass1-pass').hide();
+                return false;
+            }
+            $('#pass1-pass').show();
+            return true;
+        };
+        $scope.check_pass_same = function(){
+            if($scope.reg_info.password != $scope.repeate_password)
+            {
+                $notice.show('两次输入密码需一致');
+                $('#pass2-pass').hide();
+                return false;
+            }
+            $('#pass2-pass').show();
+            return true;
         };
         $scope.refresh_captcha();
     }
