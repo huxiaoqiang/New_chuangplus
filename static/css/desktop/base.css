@@ -1013,6 +1013,11 @@ form.financing_add input {
   top: -40px;
   left: 90px;
 }
+#container #userresume .resume .resume-name {
+  position: relative;
+  top: -40px;
+  left: 90px;
+}
 #container #userresume .save-resume-btn {
   float: right;
   background-color: #8f4e96;

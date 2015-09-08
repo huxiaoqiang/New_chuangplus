@@ -50,7 +50,7 @@
         <div class="resume">
             <img src="/static/image/logo/fujian-01.png">
             <div class="no-resume" ng-show="intern_info.resume_id == null">无简历附件</div>
-            <div><a ng-show="intern_info.resume_id != null" ng-href="/api/file/[[intern_info.resume_id]]/download" target="_self">[[filename]]</a></div>
+            <div class="resume-name"><a ng-show="intern_info.resume_id != null" ng-href="/api/file/[[intern_info.resume_id]]/download" target="_self">[[filename]]</a></div>
             <div class="upload-resume" ng-model="resume" ngf-select="upload($file,'resume')" type="file">上传/更新附件</div>
         </div>
         <button class="save-resume-btn">保存修改</button>
