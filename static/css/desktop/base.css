@@ -188,16 +188,22 @@ body > #wrap {
 }
 #container #login .ui.segment.form #login_form #captcha_form input {
   height: 40px;
-  width: 200px;
+  width: 208px;
 }
 #container #login .ui.segment.form #login_form #captcha_img {
-  margin-left: 3%;
+  margin-left: 13px;
   height: 40px;
 }
-#container #login .ui.segment.form #login_form .fresh-btn {
-  width: 15px;
-  height: 15px;
-  margin-left: 3%;
+#container #login .ui.segment.form #login_form .fresh {
+  cursor: pointer;
+  color: #cccccc;
+  text-decoration: none;
+}
+#container #login .ui.segment.form #login_form .fresh .icon-repeat.icon-large {
+  margin-left: 7px;
+}
+#container #login .ui.segment.form #login_form a.fresh:hover {
+  color: #98769E;
 }
 #container #login .ui.segment.form #login_form #login_button {
   width: 100%;
@@ -925,9 +931,12 @@ form.financing_add input {
 }
 #container #userresume .title div.line {
   width: 96px;
-  background-color: #98769E;
+  background-color: #8f4e96;
   margin-top: 4px;
   height: 7px;
+}
+#container #userresume .resume-title {
+  margin-top: 35px;
 }
 #container #userresume .basic_info {
   height: 134px;
@@ -935,11 +944,21 @@ form.financing_add input {
   margin-top: 10px;
   padding: 30px;
   padding-left: 60px;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
 }
 #container #userresume .basic_info label {
   color: #707070;
   font-weight: 500;
+}
+#container #userresume .basic_info label.gender {
+  margin-left: 55px;
+}
+#container #userresume .basic_info select {
+  margin-left: 15px;
+  margin-top: 10px;
+  border-radius: 3px;
+  width: 240px;
+  border-color: rgba(240, 240, 240, 0.3);
 }
 #container #userresume .basic_info input {
   margin-left: 15px;
@@ -950,7 +969,9 @@ form.financing_add input {
 }
 #container #userresume .bref-info p {
   padding: 20px;
+  padding-top: 10px;
   color: #707070;
+  padding-bottom: 0px;
 }
 #container #userresume .bref-info .text-value {
   background-color: rgba(240, 240, 240, 0.5);
@@ -966,59 +987,43 @@ form.financing_add input {
   border-radius: 3px;
   border-color: rgba(240, 240, 240, 0.3);
 }
-#container #userresume .row {
-  margin-top: 50px;
-}
-#container #userresume .row .col-sm-9 .col-sm-8 .form-control {
-  border-top-right-radius: 0.5em;
-  border-bottom-right-radius: 0.5em;
-  height: 40px;
-}
-#container #userresume .row .col-sm-9 .col-sm-8 .resume-radio {
+#container #userresume .resume {
+  height: 100px;
+  width: 40%;
+  background-color: rgba(240, 240, 240, 0.5);
   margin-top: 10px;
-  margin-right: 3%;
 }
-#container #userresume .row .col-sm-9 .resume-textarea {
-  width: 100%;
-  height: 200px;
+#container #userresume .resume img {
+  height: 60px;
+  margin-top: 20px;
+  margin-left: 25px;
 }
-#container #userresume .row .col-sm-9 .a-upload {
-  margin-left: 15px;
-  padding: 0 4px 0 4px;
+#container #userresume .resume .upload-resume {
+  float: right;
+  margin-top: -33px;
+  margin-right: 30px;
+  background-color: #8f4e96;
+  color: white;
+  padding: 2px 10px 2px 10px;
+  cursor: pointer;
+}
+#container #userresume .resume .upload-resume:hover {
+  background-color: #98769E;
+}
+#container #userresume .resume .no-resume {
   position: relative;
-  height: 30px;
-  line-height: 30px;
-  cursor: pointer;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  display: inline-block;
-  *display: inline;
-  *zoom: 1;
-  color: black;
-  border-color: #d8d8d8;
+  top: -40px;
+  left: 90px;
 }
-#container #userresume .row .col-sm-9 .a-upload input {
-  position: absolute;
-  font-size: 100px;
-  right: 0;
-  top: 0;
-  opacity: 0;
-  filter: alpha(opacity=0);
-  cursor: pointer;
-}
-#container #userresume .row .col-sm-9 .a-upload:hover {
+#container #userresume .save-resume-btn {
+  float: right;
+  background-color: #8f4e96;
   color: white;
-  background: #8c5d90;
-  border-color: #ccc;
-  text-decoration: none;
+  padding: 7px 15px;
+  border-color: rgba(0, 0, 0, 0);
 }
-#container #userresume .row .col-sm-9 .btn.btn-primary {
-  width: 100%;
-  height: 40px;
-  border-radius: 0.3em;
-  background-color: #8c5d90;
-  color: white;
-  font-size: 1.2em;
+#container #userresume .save-resume-btn:hover {
+  background-color: #98769E;
 }
 #container {
   margin: 0 auto;

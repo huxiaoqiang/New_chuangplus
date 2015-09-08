@@ -488,7 +488,7 @@ angular.module('chuangplus.controllers', []).
                     $scope.intern_info.resume_name = config.file.name;
                     console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
                     $scope.intern_info.resume_id = data.data;
-		    $scope.filename = config.file.name;
+		            $scope.filename = config.file.name;
                 }
                 else{
                     console.log(data.error.message);
