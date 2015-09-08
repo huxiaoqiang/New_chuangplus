@@ -1,5 +1,5 @@
 <div id="container" controller="DT_RegisterCtrl">
-    <div id="register" class="col-md-5">
+    <div id="register">
 
         <form class="ui form segment" ng-submit="register()" name="registerForm">
             <ul class="nav nav-tabs" ng-init="tab1=true">
@@ -9,9 +9,6 @@
             <div id="reg_form">
                <div class="form-group">
                     <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="icon-user icon-large"></i>
-                        </div>
                         <input ng-pattern="/[a-z0-9A-Z_]{6,20}/" name="username" type="text" class="form-control" placeholder="用户名" ng-blur="check_username()" ng-model-options="{ updateOn: 'blur'}" ng-model="reg_info.username" required>
                     </div>
                     <span ng-show="showError(registerForm.username,'pattern')" class="err-msg">
@@ -24,9 +21,6 @@
 
                 <div class="form-group">
                     <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="icon-envelope icon-large"></i>
-                        </div>
                         <input name="email" type="email" class="form-control" placeholder="邮箱" ng-model="reg_info.email" ng-blur="check_email()" required>
                     </div>
                     <span ng-show="showError(registerForm.email,'email')" class="err-msg">
@@ -39,9 +33,6 @@
 
                 <div class="form-group" ng-if="reg_info.role==1">
                     <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="icon-phone icon-large"></i>
-                        </div>
                         <input name="hr_cellphone" type="text" class="form-control" placeholder="hr手机" ng-model="reg_info.hr_cellphone" ng-pattern="/\d{11}/" required >
                     </div>
                     <span ng-show="showError(registerForm.hr_cellphone,'pattern')" class="err-msg">
@@ -51,7 +42,6 @@
 
                 <div class="form-group">
                     <div class="input-group">
-                        <div class="input-group-addon"><i class="icon-key icon-large"></i></div>
                          <input name="password" type="password" class="form-control" placeholder="密码" ng-model="reg_info.password" ng-minlength="6" required>
                     </div>
                     <span ng-show="showError(registerForm.password,'minlength')" class="err-msg">
@@ -61,7 +51,6 @@
 
                 <div class="form-group">
                     <div class="input-group">
-                        <div class="input-group-addon"><i class="icon-key icon-large"></i></div>
                          <input type="password" class="form-control" placeholder="密码确认" ng-model="repeate_password" ng-minlength="6" required>
                     </div>
                     <span ng-show="reg_info.password != repeate_password" class="err-msg">
@@ -71,11 +60,10 @@
 
                 <div class="form-group">
                     <div class="input-group"  id = "captcha_form">
-                        <div class="input-group-addon"><i class="icon-picture icon-large"></i></div>
                         <input type="text" class="form-control" placeholder="验证码" ng-model="reg_info.captcha" required>
                     </div>
                     <img ng-src='[[captcha_url]]' id="captcha_img" alt="验证码">
-                    <a ng-click="refresh()" class="btn btn-link">换一张</a>
+                    <img ng-click="refresh()" class="fresh-btn" src="/static/image/logo/refresh-01.png">
 
                 </div>
                 <button id="regist_button">注册</button>
@@ -90,9 +78,5 @@
 
         </form>
     </div>
-    <div class="col-md-7  right-word">
-        <h2>找实习，就找犀牛！</h2>
-        <img src="/static/image/logo/qrcode.jpg">
-        <p>扫码关注微信公众号：犀牛实习</p>
-    </div>
+
 </div>
