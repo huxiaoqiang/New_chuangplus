@@ -6,7 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/controllers_desktop.js" afterPath="$PROJECT_DIR$/static/js/controllers_desktop.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/intern/resume.html" afterPath="$PROJECT_DIR$/static/partials/desktop/intern/resume.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/resume.less" afterPath="$PROJECT_DIR$/static/less/desktop/resume.less" />
     </list>
     <ignored path="chuangplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,7 +29,7 @@
     <favorites_list name="chuangplus" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.30258304">
+    <splitter split-orientation="horizontal" split-proportion="0.49261993">
       <split-first>
         <leaf>
           <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
@@ -118,7 +119,7 @@
           <file leaf-file-name="resume.html" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/static/partials/desktop/intern/resume.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="52" column="135" selection-start="2507" selection-end="2515" vertical-scroll-proportion="0.8018996" vertical-offset="397" max-vertical-offset="1235">
+                <state line="52" column="146" selection-start="2526" selection-end="2526" vertical-scroll-proportion="0.75672215" vertical-offset="397" max-vertical-offset="1235">
                   <folding />
                 </state>
               </provider>
@@ -157,10 +158,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="controllers_desktop.js" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="controllers_desktop.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="6" column="36" selection-start="303" selection-end="303" vertical-scroll-proportion="0.13718411" vertical-offset="0" max-vertical-offset="26999">
+                <state line="6" column="36" selection-start="303" selection-end="303" vertical-scroll-proportion="-4.56" vertical-offset="0" max-vertical-offset="26999">
                   <folding />
                 </state>
               </provider>
@@ -193,10 +194,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="resume.less" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="resume.less" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/static/less/desktop/resume.less">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="42" column="30" selection-start="1063" selection-end="1063" vertical-scroll-proportion="-15.056603" vertical-offset="0" max-vertical-offset="2318">
+                <state line="77" column="18" selection-start="1928" selection-end="1928" vertical-scroll-proportion="0.33289987" vertical-offset="1207" max-vertical-offset="2318">
                   <folding />
                 </state>
               </provider>
@@ -235,9 +236,9 @@
         <option value="$PROJECT_DIR$/static/less/desktop/header.less" />
         <option value="$PROJECT_DIR$/static/partials/desktop/login.html" />
         <option value="$PROJECT_DIR$/static/less/desktop/login.less" />
+        <option value="$PROJECT_DIR$/static/js/controllers_desktop.js" />
         <option value="$PROJECT_DIR$/static/partials/desktop/intern/resume.html" />
         <option value="$PROJECT_DIR$/static/less/desktop/resume.less" />
-        <option value="$PROJECT_DIR$/static/js/controllers_desktop.js" />
       </list>
     </option>
   </component>
@@ -752,23 +753,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="36" selection-start="303" selection-end="303" vertical-scroll-proportion="-4.56" vertical-offset="0" max-vertical-offset="26999">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/static/partials/desktop/intern/resume.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="135" selection-start="2507" selection-end="2515" vertical-scroll-proportion="0.8018996" vertical-offset="397" max-vertical-offset="1235">
+        <state line="52" column="146" selection-start="2526" selection-end="2526" vertical-scroll-proportion="0.75672215" vertical-offset="397" max-vertical-offset="1235">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/less/desktop/resume.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="30" selection-start="1063" selection-end="1063" vertical-scroll-proportion="-15.056603" vertical-offset="0" max-vertical-offset="2318">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="36" selection-start="303" selection-end="303" vertical-scroll-proportion="0.13718411" vertical-offset="0" max-vertical-offset="26999">
+        <state line="77" column="18" selection-start="1928" selection-end="1928" vertical-scroll-proportion="0.33289987" vertical-offset="1207" max-vertical-offset="2318">
           <folding />
         </state>
       </provider>
