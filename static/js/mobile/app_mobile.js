@@ -6,14 +6,17 @@
 var app = angular.module('chuangplus_mobile', [
     "ngRoute",
     "ngTouch",
+    'ngCookies',
+    'ngFileUpload',
     "mobile-angular-ui",
     'mobile-angular-ui.gestures',
     'chuangplus_mobile.filters',
     'chuangplus_mobile.services',
     'chuangplus_mobile.directives',
     "chuangplus_mobile.controllers"
-]).
+    ]).
     constant('urls', {'part_mobile': '/static/partials/mobile','part_desktop': '/static/partials/desktop','part_admin': '/static/partials/admin', 'api': '/api'}).
+    constant('urlss', {'part_mobile': '/static/pfffffartials/mobile','part_desktop': '/static/partials/desktop','part_admin': '/static/partials/admin', 'api': '/api'}).
     config(['$interpolateProvider', function($interpolateProvider){
         $interpolateProvider.startSymbol('[[');
         $interpolateProvider.endSymbol(']]');

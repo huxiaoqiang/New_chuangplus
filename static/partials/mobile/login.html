@@ -1,3 +1,4 @@
+<div ng-controller="MB_LoginCtrl">
 <div ng-include="'/static/partials/mobile/partials/sidebar-left.html'" ></div>
 <div ng-swipe-right='Ui.turnOn("uiSidebarLeft")'  ui-swipe-left='Ui.turnOff("uiSidebarLeft")'>
 <div class="navbar navbar-app navbar-absolute-top selected" >
@@ -40,8 +41,8 @@
 
         <span class="panel-group-bot purple-border">
           <div class="panel-elem elem-width-4 panel-title">验证码</div>
-          <input class="panel-elem elem-width-2" type="text">
-          <span class="panel-elem elem-width-4 panel-title">图</span>
+          <input class="panel-elem elem-width-3" type="text" placeholder="验证码" ng-model="reg_info.captcha" required>
+          <span class="panel-elem elem-width-4 panel-title"><img ng-click="refresh_captcha()" ng-src='[[captcha_url]]' id="captcha_img" alt="验证码"></span>
         </span>
       </div>
     </form>
@@ -53,5 +54,6 @@
     </div>
     </div>
 
+</div>
 </div>
 </div>
