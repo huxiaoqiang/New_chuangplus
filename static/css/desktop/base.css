@@ -157,7 +157,7 @@ body > #wrap {
 }
 #container #login {
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 50px;
   font-family: "微软雅黑";
   padding: 20px 30px 20px 30px;
   width: 480px;
@@ -217,7 +217,7 @@ body > #wrap {
 #container #register {
   font-family: "微软雅黑";
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 50px;
   padding: 10px 25px 10px 25px;
   width: 480px;
   background-color: #EFEFEF;
