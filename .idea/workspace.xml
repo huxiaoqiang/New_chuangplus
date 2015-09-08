@@ -6,13 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/desktop/base.css" afterPath="$PROJECT_DIR$/static/css/desktop/base.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/controllers_desktop.js" afterPath="$PROJECT_DIR$/static/js/controllers_desktop.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/login.html" afterPath="$PROJECT_DIR$/static/partials/desktop/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/login.less" afterPath="$PROJECT_DIR$/static/less/desktop/login.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/intern/resume.html" afterPath="$PROJECT_DIR$/static/partials/desktop/intern/resume.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/resume.less" afterPath="$PROJECT_DIR$/static/less/desktop/resume.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="chuangplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,7 +28,7 @@
     <favorites_list name="chuangplus" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5270603">
+    <splitter split-orientation="horizontal" split-proportion="0.30258304">
       <split-first>
         <leaf>
           <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
@@ -69,15 +63,15 @@
           <file leaf-file-name="services_mobile.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/js/mobile/services_mobile.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="36" column="29" selection-start="1174" selection-end="1174" vertical-scroll-proportion="0.0" vertical-offset="152" max-vertical-offset="3705">
+                <state line="47" column="29" selection-start="1552" selection-end="1552" vertical-scroll-proportion="0.0" vertical-offset="361" max-vertical-offset="3895">
                   <folding>
-                    <marker date="1441696328290" expanded="true" signature="469:851" placeholder="[...]" />
-                    <marker date="1441696328290" expanded="true" signature="500:850" placeholder="{...}" />
-                    <marker date="1441696328290" expanded="true" signature="942:3089" placeholder="{&quot;code15&quot;: &quot;文件大小超过10M&quot;...}" />
-                    <marker date="1441696328290" expanded="true" signature="3124:3869" placeholder="{...}" />
-                    <marker date="1441696328290" expanded="true" signature="3169:3764" placeholder="{...}" />
-                    <marker date="1441696328290" expanded="true" signature="3352:3685" placeholder="{...}" />
-                    <marker date="1441696328290" expanded="true" signature="3452:3596" placeholder="{...}" />
+                    <marker date="1441717650298" expanded="true" signature="469:851" placeholder="[...]" />
+                    <marker date="1441717650298" expanded="true" signature="500:850" placeholder="{...}" />
+                    <marker date="1441717650298" expanded="true" signature="1290:3437" placeholder="{&quot;code15&quot;: &quot;文件大小超过10M&quot;...}" />
+                    <marker date="1441717650298" expanded="true" signature="3472:4217" placeholder="{...}" />
+                    <marker date="1441717650298" expanded="true" signature="3517:4112" placeholder="{...}" />
+                    <marker date="1441717650298" expanded="true" signature="3700:4033" placeholder="{...}" />
+                    <marker date="1441717650298" expanded="true" signature="3800:3944" placeholder="{...}" />
                   </folding>
                 </state>
               </provider>
@@ -124,7 +118,7 @@
           <file leaf-file-name="resume.html" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/static/partials/desktop/intern/resume.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="52" column="135" selection-start="2507" selection-end="2515" vertical-scroll-proportion="0.75672215" vertical-offset="397" max-vertical-offset="1235">
+                <state line="52" column="135" selection-start="2507" selection-end="2515" vertical-scroll-proportion="0.8018996" vertical-offset="397" max-vertical-offset="1235">
                   <folding />
                 </state>
               </provider>
@@ -163,10 +157,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="controllers_desktop.js" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="controllers_desktop.js" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="490" column="20" selection-start="20732" selection-end="20732" vertical-scroll-proportion="-20.64" vertical-offset="8794" max-vertical-offset="26999">
+                <state line="6" column="36" selection-start="303" selection-end="303" vertical-scroll-proportion="0.13718411" vertical-offset="0" max-vertical-offset="26999">
                   <folding />
                 </state>
               </provider>
@@ -199,10 +193,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="resume.less" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="resume.less" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/less/desktop/resume.less">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="42" column="30" selection-start="1063" selection-end="1063" vertical-scroll-proportion="0.7607053" vertical-offset="194" max-vertical-offset="2318">
+                <state line="42" column="30" selection-start="1063" selection-end="1063" vertical-scroll-proportion="-15.056603" vertical-offset="0" max-vertical-offset="2318">
                   <folding />
                 </state>
               </provider>
@@ -242,8 +236,8 @@
         <option value="$PROJECT_DIR$/static/partials/desktop/login.html" />
         <option value="$PROJECT_DIR$/static/less/desktop/login.less" />
         <option value="$PROJECT_DIR$/static/partials/desktop/intern/resume.html" />
-        <option value="$PROJECT_DIR$/static/js/controllers_desktop.js" />
         <option value="$PROJECT_DIR$/static/less/desktop/resume.less" />
+        <option value="$PROJECT_DIR$/static/js/controllers_desktop.js" />
       </list>
     </option>
   </component>
@@ -724,15 +718,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/mobile/services_mobile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="29" selection-start="1174" selection-end="1174" vertical-scroll-proportion="0.0" vertical-offset="152" max-vertical-offset="3705">
+        <state line="47" column="29" selection-start="1552" selection-end="1552" vertical-scroll-proportion="0.0" vertical-offset="361" max-vertical-offset="3895">
           <folding>
-            <marker date="1441696328290" expanded="true" signature="469:851" placeholder="[...]" />
-            <marker date="1441696328290" expanded="true" signature="500:850" placeholder="{...}" />
-            <marker date="1441696328290" expanded="true" signature="942:3089" placeholder="{&quot;code15&quot;: &quot;文件大小超过10M&quot;...}" />
-            <marker date="1441696328290" expanded="true" signature="3124:3869" placeholder="{...}" />
-            <marker date="1441696328290" expanded="true" signature="3169:3764" placeholder="{...}" />
-            <marker date="1441696328290" expanded="true" signature="3352:3685" placeholder="{...}" />
-            <marker date="1441696328290" expanded="true" signature="3452:3596" placeholder="{...}" />
+            <marker date="1441717650298" expanded="true" signature="469:851" placeholder="[...]" />
+            <marker date="1441717650298" expanded="true" signature="500:850" placeholder="{...}" />
+            <marker date="1441717650298" expanded="true" signature="1290:3437" placeholder="{&quot;code15&quot;: &quot;文件大小超过10M&quot;...}" />
+            <marker date="1441717650298" expanded="true" signature="3472:4217" placeholder="{...}" />
+            <marker date="1441717650298" expanded="true" signature="3517:4112" placeholder="{...}" />
+            <marker date="1441717650298" expanded="true" signature="3700:4033" placeholder="{...}" />
+            <marker date="1441717650298" expanded="true" signature="3800:3944" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -760,21 +754,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/partials/desktop/intern/resume.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="135" selection-start="2507" selection-end="2515" vertical-scroll-proportion="0.75672215" vertical-offset="397" max-vertical-offset="1235">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="490" column="20" selection-start="20732" selection-end="20732" vertical-scroll-proportion="-20.64" vertical-offset="8794" max-vertical-offset="26999">
+        <state line="52" column="135" selection-start="2507" selection-end="2515" vertical-scroll-proportion="0.8018996" vertical-offset="397" max-vertical-offset="1235">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/less/desktop/resume.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="30" selection-start="1063" selection-end="1063" vertical-scroll-proportion="0.7607053" vertical-offset="194" max-vertical-offset="2318">
+        <state line="42" column="30" selection-start="1063" selection-end="1063" vertical-scroll-proportion="-15.056603" vertical-offset="0" max-vertical-offset="2318">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="36" selection-start="303" selection-end="303" vertical-scroll-proportion="0.13718411" vertical-offset="0" max-vertical-offset="26999">
           <folding />
         </state>
       </provider>
