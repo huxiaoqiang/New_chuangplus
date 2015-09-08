@@ -959,6 +959,7 @@ form.financing_add input {
   border-radius: 3px;
   width: 240px;
   border-color: rgba(240, 240, 240, 0.3);
+  padding-left: 5px;
 }
 #container #userresume .basic_info input {
   margin-left: 15px;
@@ -966,6 +967,7 @@ form.financing_add input {
   border-radius: 3px;
   width: 240px;
   border-color: rgba(240, 240, 240, 0.3);
+  padding-left: 5px;
 }
 #container #userresume .bref-info p {
   padding: 20px;
@@ -989,7 +991,7 @@ form.financing_add input {
 }
 #container #userresume .resume {
   height: 100px;
-  width: 40%;
+  width: 50%;
   background-color: rgba(240, 240, 240, 0.5);
   margin-top: 10px;
 }
@@ -1011,6 +1013,11 @@ form.financing_add input {
   background-color: #98769E;
 }
 #container #userresume .resume .no-resume {
+  position: relative;
+  top: -40px;
+  left: 90px;
+}
+#container #userresume .resume .resume-name {
   position: relative;
   top: -40px;
   left: 90px;
