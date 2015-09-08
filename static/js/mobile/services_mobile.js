@@ -3,9 +3,17 @@
 
 // Demonstrate how to register services
 // In this case it is a simple value service.
-angular.module('chuangplus_mobile.services', []).
-    value('version', '0.1').
-    service('CsrfService', ['$cookies' ,function($cookies){
+angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
+    value('version', '0.1')
+    .service('myService', function () { 
+        return{
+            'test' : function(){
+                console.log("tets");
+            }
+        }
+     })
+    .service('CsrfService', ['$cookies' ,function($cookies){
+        console.log("fffxxx");
         return {
             'val': function() {
                 return $cookies.csrftoken;
@@ -17,8 +25,8 @@ angular.module('chuangplus_mobile.services', []).
                 data.push({'csrfmiddlewaretoken': $cookies.csrftoken});
             }
         };
-    }]).
-    service("ErrMsgService",['$cookies' ,function($cookies){
+    }])
+    .service("ErrorService",['$cookies' ,function($cookies){
         var error_message = {
             'code15':"文件大小超过10M",
             'code18':"没有上传文件权限",
@@ -37,9 +45,11 @@ angular.module('chuangplus_mobile.services', []).
             'code108':'用户名或密码错误',
             'code109':'新旧密码一样',
             'code110':'没有修改权限',
+            'code112':'公司成员不存在',
             'code113':'您是hr，请到hr页面登录',
             'code114':'您是实习生，请到实习生页面登录',
             'code115':'邮箱已经被注册',
+            'code116':'邮箱格式不正确',
             'code120':'简历不存在',
             'code210':'职位名太长或者太短',
             'code211':'职位名中包含非法字符',
@@ -49,7 +59,7 @@ angular.module('chuangplus_mobile.services', []).
             'code215':'工作地址字数长度过长或过短',
             'code216':'工作地址中包含非法字符',
             'code217':'非法的时间形式',
-            'code218':'介绍时间不能早于发布时间',
+            'code218':'截止时间不能早于发布时间',
             'code219':'职位描述长度超出限度',
             'code220':'职位描述总包含非法字符',
             'code221':'职位要求长度超出限度 ',
@@ -71,25 +81,29 @@ angular.module('chuangplus_mobile.services', []).
             'code251':'搜索失败',
             'code252':'删除失败',
             'code260':'职位不存在',
+            'code261':'关注关系不存在，不能取消关注',
+            'code262':'职位只能是兼职或全职',
+            'code263':'关注公司关系不存在',
+            'code264':'用户未投递该职位',
+            'code265':'用户未投递任何职位',
+            'code266':"已经投递了该职位",
+            'code267':'没有实习生投递该职位',
+            'code268':'没有岗位消息要处理',
             'code299':'未知错误'
         };
         return {
             'format_error': function (msg,error) {
-                if(msg != '' && error.code == 1)
-                {
+                if(msg != '' && error.code == 1){
                     error.message = msg;
                     error.class = "alert alert-success";
                 }
-                else
-                {
+                else{
                     error.class = "alert alert-danger";
                     error.message = msg;
-                    if(error.code != -1)
-                    {
+                    if(error.code != -1){
                         error.code_key = 'code'+error.code;
                         error.message = error_message[error.code_key];
                     }
-
                 }
                 error.show = true;
                 return error;
@@ -126,13 +140,7 @@ angular.module('chuangplus_mobile.services', []).
                 return user.id;
             },
             'role': function(){
-                if(!('role' in user)){
-                    return 1;
-                }
                 return user.role;
-            },
-            'roles': function(){ //What's this?
-                return user.roles;
             },
             'school_manager': function(){
                 if(!('role' in user)){
@@ -178,3 +186,4 @@ angular.module('chuangplus_mobile.services', []).
         }
     }
     });
+

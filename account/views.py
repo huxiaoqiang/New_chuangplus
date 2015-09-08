@@ -390,7 +390,9 @@ def check_companyinfo_complete(request,company_id):
     if request.method == "GET":
         c = Companyinfo.objects.get(id = company_id)
         if c.city and c.field and c.email_resume and c.welfare_tags\
-        and c.ICregist_name and c.company_description:
+        and c.ICregist_name and c.company_description and c.homepage\
+        and c.wechat and c.qrcode_id and c.hr_cellphone and c.abbreviation\
+        and c.logo_id and c.brief_introduction and c.team_description:
             c.info_complete = True
             re['complete'] = 'True'
         else:

@@ -2,10 +2,7 @@
 
 /* Controllers */
 
-angular.module('chuangplus_mobile.controllers', []).
-    controller('MB_LoginCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
-        console.log('MB_LoginCtrl');
-    }])
+angular.module('chuangplus_mobile.controllers', [])
     .controller('MB_CompanyListCtrl', ['$scope', '$http', 'urls',
      function($scope, $http, urls) {
        $scope.name = "Arii";
@@ -498,6 +495,137 @@ angular.module('chuangplus_mobile.controllers', []).
 
     };*/
     }])
+
+    .controller('MB_LoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams',
+    function($scope, $http, urls, $csrf, $routeParams) {
+        console.log("MB_LoginCtrl");
+        $scope.error = {};
+        $scope.reg_info = {};
+        $scope.captcha_url = urls.api+"/captcha/image/";
+        $scope.check = {};
+        $scope.e_check = {};
+        $scope.refresh_captcha = function(){
+            $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
+        };
+
+        $scope.register = function(){
+            if ($scope.reg_info.password != $scope.repeate_password)
+            {
+                $scope.error.code = -1;
+                $scope.error = $errMsg.format_error("两次输入的密码不一致",$scope.error);
+                return;
+            }
+            $csrf.set_csrf($scope.reg_info);
+            $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.error = $errMsg.format_error("注册成功",data.error);
+                        setTimeout(function(){window.location.href='/'},1500);
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error("",data.error);
+                    }
+                });
+        };
+        $scope.check_username = function(){
+            $scope.check.username = $scope.reg_info.username;
+            $csrf.set_csrf($scope.check);
+            $http.post(urls.api+"/account/checkusername", $.param($scope.check)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.check.exist = data.username.exist;
+                    }
+                });
+        };
+        $scope.check_email = function(){
+            $scope.e_check.email = $scope.reg_info.email;
+            $csrf.set_csrf($scope.e_check);
+            $http.post(urls.api+"/account/checkemail", $.param($scope.e_check)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.e_check.exist = data.email.exist;
+                    }
+                });
+        };
+        $scope.refresh_captcha();
+    }
+    ])
+    .controller('MB_RegisterCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams',
+    function($scope, $http, urls, $csrf, $routeParams) {
+        console.log("MB_RegisterCtrl");
+
+        $scope.error = {};
+        $scope.reg_info = {};
+        $scope.captcha_url = urls.api+"/captcha/image/";
+        $scope.check = {};
+        $scope.e_check = {};
+        $scope.refresh_captcha = function(){
+            $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
+        };
+
+        $scope.register = function(){
+            if ($scope.reg_info.password != $scope.repeate_password)
+            {
+                $scope.error.code = -1;
+                $scope.error = $errMsg.format_error("两次输入的密码不一致",$scope.error);
+                return;
+            }
+            $csrf.set_csrf($scope.reg_info);
+            $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.error = $errMsg.format_error("注册成功",data.error);
+                        setTimeout(function(){window.location.href='/'},1500);
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error("",data.error);
+                    }
+                });
+        };
+        $scope.check_username = function(){
+            $scope.check.username = $scope.reg_info.username;
+            $csrf.set_csrf($scope.check);
+            console.log($scope.check );
+
+            var req = {
+                        method: 'POST',
+                        url: urls.api+"/account/checkusername",
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': $csrf.val()
+                        },
+                        data: JSON.stringify($scope.check)
+                     }
+                     $http(req);
+
+                     $http(req).success(function(data){
+                        console.log(data);});
+
+
+            $http.post(urls.api+"/account/checkusername", $scope.check).
+                success(function(data){
+                        console.log(data);
+                    if(data.error.code == 1){
+                        $scope.check.exist = data.username.exist;
+                    }
+                });
+        };
+        $scope.check_email = function(){
+            $scope.e_check.email = $scope.reg_info.email;
+            $csrf.set_csrf($scope.e_check);
+
+
+
+            $http.post(urls.api+"/account/checkemail", req).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.e_check.exist = data.email.exist;
+                    }
+                });
+        };
+        $scope.refresh_captcha();
+    }
+    ])
 
     .controller('MB_InfoCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('MB_InfoCtrl');

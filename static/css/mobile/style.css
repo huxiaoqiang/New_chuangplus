@@ -150,6 +150,9 @@ a:hover {
 .elem-width-4 {
   width: 25%;
 }
+.elem-width-3 {
+  width: 33%;
+}
 .elem-width-43 {
   width: 75% !important;
 }
@@ -158,6 +161,10 @@ a:hover {
 }
 .elem-width-full {
   width: 100%;
+}
+#captcha_img {
+  margin-left: 30%;
+  margin-bottom: 7px;
 }
 .panel-title {
   color: #966497;
