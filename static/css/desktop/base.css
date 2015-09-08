@@ -828,7 +828,6 @@ form.financing_add input {
   padding: 2em;
   float: right;
 }
-
 #container #userinfo .row .col-sm-9 .tab-pane {
   width: 500px;
   border: 1px solid #d8d8d8;
@@ -1403,6 +1402,33 @@ form.financing_add input {
   margin-right: 10px;
   color: black;
   font-family: "微软雅黑";
+}
+#container {
+  margin: 0 auto;
+  display: block;
+}
+#container #homepage .slide-block {
+  height: 450px;
+  width: 1025px;
+  border: 1px solid #b2b2b2;
+  margin-bottom: 10px;
+}
+#container #homepage .info-block-1 {
+  height: 300px;
+  width: 1025px;
+  border: 1px solid #b2b2b2;
+  margin-bottom: 10px;
+}
+#container #homepage .info-block-2 {
+  height: 450px;
+  width: 1025px;
+  border: 1px solid #b2b2b2;
+  margin-bottom: 10px;
+}
+#container #homepage .img-block {
+  height: 90px;
+  width: 1025px;
+  margin-bottom: 10px;
 }
 body {
   background-color: #eeeeee;
