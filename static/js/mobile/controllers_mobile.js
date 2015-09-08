@@ -585,30 +585,26 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.check_username = function(){
             $scope.check.username = $scope.reg_info.username;
             $csrf.set_csrf($scope.check);
-            console.log($scope.check );
+            console.log($.param($scope.check));
 
             var req = {
-                        method: 'POST',
-                        url: urls.api+"/account/checkusername",
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRFToken': $csrf.val()
-                        },
-                        data: JSON.stringify($scope.check)
-                     }
-                     $http(req);
-
-                     $http(req).success(function(data){
-                        console.log(data);});
-
-
-            $http.post(urls.api+"/account/checkusername", $scope.check).
-                success(function(data){
-                        console.log(data);
-                    if(data.error.code == 1){
-                        $scope.check.exist = data.username.exist;
-                    }
-                });
+                method: 'POST',
+                url: urls.api+"/account/checkusername",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': $csrf.val()
+                },
+                data: $.param($scope.check)
+             }
+             $http(req).success(function(data){
+                console.log(data);});
+//            $http.post(urls.api+"/account/checkusername", $.param($scope.check)).
+//                success(function(data){
+//                        console.log(data);
+//                    if(data.error.code == 1){
+//                        $scope.check.exist = data.username.exist;
+//                    }
+//                });
         };
         $scope.check_email = function(){
             $scope.e_check.email = $scope.reg_info.email;
