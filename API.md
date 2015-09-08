@@ -423,15 +423,17 @@ position_id，hr处理username用户对该职位的投递，将状态改为hr已
   }
 ```
 ###/api/position/(?P<position_id>.*?)/delete
-参数是position_id，删除position_id这个职位
+参数是position_id，删除position_id这个职位 (method : post)
 ###/api/position/(?P<position_id>.*?)/set
-参数是position_id，修改position_id这个职位信息
+参数是position_id，修改position_id这个职位信息 (method : post)
 ###/api/position/(?P<position_id>.*?)/get
-参数是position_id，获取position_id这个职位信息
-###/api/position/(?P<position_id>.*?)/like
-参数是position_id，收藏position_id这个职位信息
+参数是position_id，获取position_id这个职位信息 (mothod : get)
+###/api/position/(?P<position_id>.*?)/get_with_company$
+参数是position_id，获取position_id这个职位信息，其中职位信息中包含了该职位所在的公司的信息， 在company这个字段中(mothod : get)
+
 ###/api/position/(?P<position_id>.*?)/submit
 参数是position_id，投递position_id这个职位信息
+
 ###/api/position/search
 搜索职位，可以通过如下几个字段去过滤
 ```javascript
@@ -449,8 +451,12 @@ position_id，hr处理username用户对该职位的投递，将状态改为hr已
   }
 ```
 
-###/api/position/submit
-投递简历，post的字段信息如下
+###/api/position/company/(?P<company_id>.*?)/list
+获取公司的所有的职位信息(method : get)
+
+###/api/position/(?P<position_id>.*?)/submit
+投递简历(method : post)
+参数: position_id，post的字段信息如下
 ```javascript
   {
   "resume_choice" : "1" or "2", //1表示用上传保存的简历来投递，2表示新上传一个简历马上投递
@@ -458,10 +464,25 @@ position_id，hr处理username用户对该职位的投递，将状态改为hr已
   "position_id"   : "position_id"
   }
 ```
-###/api/position/userlikeposition
-收藏职位
+###/api/position/(?P<position_id>.*?)/check_submit
+验证用户是否投递了position_id该职位(method : get)
+返回如下：
 ```javascript
   {
-  "position_id" : "position_id"
+    "error" : {},
+    'data'  : {'exist' : true}, (或者{'exist' : false} )
   }
+  
 ```
+
+###/api/position/(?P<position_id>.*?)/userlikeposition
+用户收藏该职位(method : post)
+
+###/api/position/(?P<position_id>.*?)/userunlikeposition
+用户取消收藏该职位(method : post)
+
+###/api/position/(?P<position_id>.*?)/close
+hr关闭职位(method : post)
+
+###/api/position/(?P<position_id>.*?)/open
+hr开放职位(method : post)
