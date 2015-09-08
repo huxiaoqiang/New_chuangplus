@@ -7,7 +7,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/desktop/base.css" afterPath="$PROJECT_DIR$/static/css/desktop/base.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/footer.html" afterPath="$PROJECT_DIR$/templates/footer.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/footer.less" afterPath="$PROJECT_DIR$/static/less/desktop/footer.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -202,7 +201,7 @@
           <file leaf-file-name="footer.less" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/static/less/desktop/footer.less">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="4" column="21" selection-start="112" selection-end="112" vertical-scroll-proportion="0.095717885" vertical-offset="0" max-vertical-offset="1197">
+                <state line="53" column="19" selection-start="958" selection-end="958" vertical-scroll-proportion="0.7657431" vertical-offset="399" max-vertical-offset="1197">
                   <folding />
                 </state>
               </provider>
@@ -805,7 +804,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/less/desktop/footer.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="21" selection-start="112" selection-end="112" vertical-scroll-proportion="0.095717885" vertical-offset="0" max-vertical-offset="1197">
+        <state line="53" column="19" selection-start="958" selection-end="958" vertical-scroll-proportion="0.7657431" vertical-offset="399" max-vertical-offset="1197">
           <folding />
         </state>
       </provider>

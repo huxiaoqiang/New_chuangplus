@@ -96,7 +96,7 @@ body,
 }
 body > #wrap {
   height: auto;
-  min-height: 91.5%;
+  min-height: 94%;
 }
 #main-container {
   width: 960px;
@@ -127,10 +127,10 @@ body > #wrap {
 #footer .navbar-footer {
   width: 960px;
   margin: 0 auto;
-  height: 80px;
+  height: 56px;
 }
 #footer .navbar-footer ul#footer-nav {
-  padding-top: 30px;
+  padding-top: 20px;
   float: left;
 }
 #footer .navbar-footer ul#footer-nav li {
@@ -146,7 +146,7 @@ body > #wrap {
   color: #98769E;
 }
 #footer #footer-brand {
-  padding-top: 30px;
+  padding-top: 20px;
   float: right;
 }
 #container {
