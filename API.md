@@ -54,8 +54,8 @@ stage              |StringFiled |默认为'none' |融资阶段（STAGE见表下�
 homepage           |URLField    |             |公司主页
 wechat             |StringField |             |公司公众号
 email_resume       |EmailField  |             |收简历邮箱
-qrcode_id          |ReferenceField|File       |微信二维码id
-logo_id            |ReferenceField|File       |公司logo id
+qrcode_id          |StringField|File          |微信二维码id
+logo_id            |StringField|File          |公司logo id
 welfare_tags       |ListField(StringField) |  |福利标签
 product_link       |URLField    |             |产品链接
 brief_introduction |StringField |             |公司一句话简介
@@ -118,7 +118,7 @@ release_time        |DateTimeField  |=now          |发布时间
 end_time            |DateTimeField  |              |职位截止时间
 position_description|StringField    |              |职位描述
 position_request    |StringField    |              |职位要求
-daysperweek         |IntField       |default=3     |每周工作天数
+days_per_week       |IntField       |default=3     |每周工作天数
 internship_time     |IntField       |default=1     |实习时间（月）
 salary_min          |IntField       |default=0     |薪水下限
 salary_max          |IntField       |default=0     |薪水上限
@@ -159,11 +159,13 @@ value       |FileField  |           |文件
 ```javascript
 set_csrf(data)
 ```
+##请求返回错误码，见error_code.txt
+每个post请求都会有错误码返回，当错误码为1时，表明请求处理成功，如果错误码不为1，则表明后台处理前台请求时出现了相应的错误，需要根据错误码来排查错误
 ###/api/captcha/image/
-获取验证码
+获取验证码（method:get）
 ###/api/account/register/
-新用户注册
-向url post一个json格式的请求，需要post的内容如下
+新用户注册 (method: post)
+需要post的表单字段如下
 ```javascript
   {
     "username" : "someone",           //用户名
@@ -173,13 +175,32 @@ set_csrf(data)
     "role"     : "0"                  //角色，0代表求职者，1代表企业
   }
 ```
-###/api/account/checkusername/
-验证用户名是否存在，在注册页面，可以通过Ajax来测试用户名是否可用。向该 url 发送一个 json 来检测。发送内容只有一个键 "username"，内容是需要检测的用户名。返回的 json 也只有一个键 "exist"，即用户是否存在。
+###/api/account/checkusername/ 
+验证用户名是否存在(method:post)
+在注册页面，可以通过Ajax来测试用户名是否可用。post的字段只有一个键 "username"，内容是需要检测的用户名。
+```javascript
+  {
+    "username" : "someuser"
+  }
+```
+返回的 json 也只有一个键 "exist"，即用户是否存在。
+```
+  {
+    "error": {"code":1,"message":"some message"},
+    "data" : {"exist":true} (或者{"exist":false})
+  }
+```
 ###/api/account/checkemail/
-同上，验证邮箱是否已经被注册
-
+验证邮箱是否已经被注册(method:post)
+```javascript
+  {
+    "email" : "someone@email.com"
+  }
+```
+返回同上
 ###/api/account/login
-用户登录，向url post用户名和密码
+用户登录 （method : post）
+向url post用户名和密码
 ```javascript
   {
     "username" : "someone",
@@ -188,21 +209,23 @@ set_csrf(data)
   }
 ```
 ###/api/account/logout
-用户注销
+用户注销 
 ###/api/account/password/set
-修改密码，向url post密码和新密码（在用户已经登录的条件下）
+修改密码(method : post)
+向url post密码和新密码（在用户已经登录的条件下）
 ```javascript
   {
     "password" : "*******",
     "new_password" : "********"
   }
 ```
-
 ###/api/account/userinfo/get
-获取实习生用户信息，返回实习生用户信息的json对象和错误码
+获取实习生用户信息(method : get)
+返回实习生用户信息的json对象和错误码
 
 ###/api/account/userinfo/set
-修改实习生用户信息，post userinfo信息，返回错误码和post的用户信息json对象
+修改实习生用户信息(method : post)
+post userinfo信息，返回错误码和post的用户信息json对象
 其中必须要写的字段是：
 ```javascript
   {
@@ -221,7 +244,8 @@ set_csrf(data)
 ```
 
 ###/api/account/userinfo/check
-判断实习生用户的信息是否填写完全,返回如下
+判断实习生用户的信息是否填写完全(method : get)
+返回如下
 ```javascript
   {
   "error":{}
@@ -229,9 +253,35 @@ set_csrf(data)
   }
 ```
 
+###/api/account/userinfo/position/favor/list
+获取用户收藏的职位列表(method : get)
+在用户已经登录的状态下，请求处理成功时，返回一个list,list中每一个对象是一个职位
+
+###/api/account/userinfo/position/submit/list
+获取用户投递的职位列表(method : get)
+在用户已经登录的状态下，请求处理成功时，返回一个list,list中每一个对象是一个职位
+
+###/api/account/userinfo/company/favor/list
+获取用户收藏的公司列表(method : get)
+在用户已经登录的状态下，请求处理成功时，返回一个list,list中每一个对象是一个公司信息
+
+###/api/account/userinfo/(?P<position_id>.*?)/check_favor_position
+判断用户是否关注了position_id这个职位(method : get)
+返回结果为
+```javascript
+  {
+    'data'  : {'exist' : true}, (或者{'exist' : false} )
+    'error' : {}
+  }
+```
+
+###/api/account/userinfo/(?P<company_id>.*?)/check_favor_company
+判断用户是否关注了company_id这个公司(method : get)
+返回结果同上
+
 ###/api/account/sendemail
-“找回密码”时，向用户邮箱发送验证码
-向url post用户邮箱：
+“找回密码”时，向用户邮箱发送验证码 (method : post)
+向url post用户邮箱,其中邮箱是用户注册时填写的邮箱
 ```javascript
   {
     "email"    : "someone@where.com", //邮箱
@@ -252,9 +302,11 @@ set_csrf(data)
     "pass_verify"    : True or False, //True表示验证通过，False表示验证不通过
   }
 ```
+
 ##member 相关
 ###/api/account/member/create
-创建一个成员，需要post的字段必须包含：
+创建一个成员(method : post)
+表单字段必须包含：
 ```javascript
   {
     "m_name"         : "m_name",
@@ -263,15 +315,18 @@ set_csrf(data)
   }
 ```
 ###/api/account/member/(?P<company_id>.*?)/list
-参数为company_id，获取company_id公司的所有成员
+参数:company_id，获取company_id公司的所有成员(method : get)
+返回一个list,list中的每一个对象是一个成员
 ###/api/account/member/(?P<mem_id>.*?)/set
-参数为mem_id，修改成员mem_id的信息
+参数:mem_id，修改成员mem_id的信息(method : post)
 ###/api/account/member/(?P<mem_id>.*?)/delete
 参数为mem_id，删除成员mem_id
 
+
 ##financing相关
 ###/api/account/financing/create
-创建一个融资轮，必须post的字段有：
+创建一个融资轮(method : post)
+必须post的字段有：
 ```javascript
   {
     "username"       : "username"    //如果是企业用户，可为空；如果是超级用户，需要post对应公司的username
@@ -281,11 +336,11 @@ set_csrf(data)
   }
 ```
 ###/api/account/financing/(?P<company_id>.*?)/list
-参数为company_id，获取company_id公司的所有融资信息
+参数:company_id，获取company_id公司的所有融资信息(method:get)
 ###/api/account/financing/(?P<fin_id>.*?)/set
-参数为fin_id，修改fin_id的融资信息
+参数:fin_id，修改fin_id的融资信息(method:post)
 ###/api/account/financing/(?P<fin_id>.*?)/delete
-参数为fin_id，删除fin_id的融资信息
+参数:fin_id，删除fin_id的融资信息(method : post)
 
 ##公司相关Company
 ###/api/account/company/list
@@ -300,9 +355,21 @@ set_csrf(data)
   }
 ```
 ###/api/account/company/(?P<company_id>.*?)/detail
-参数为company_id，获取company_id公司的详细信息
+参数为company_id，获取company_id公司的详细信息 (method : get)
+此接口返回的公司信息不包含公司的职位信息，在不需要公司职位信息时用。
+
+
+###/api/account/company/(?P<company_id>.*?)/detail_with_positions
+参数为company_id，获取company_id公司的详细信息 (method : get)
+此接口返回的公司信息包含公司的职位信息，职位详情信息在position_list字段中，职位在招信息(在招的职位类别)在position_type这个字段中。
+
+###/api/account/company/detail
+无参数，通过用户的username获取公司的详细信息 (method : get)
+此接口返回的公司信息不包含公司的职位信息，在不需要公司职位信息时用。
+
 ###/api/account/company/(?P<company_id>.*?)/set
-参数为company_id，修改company_id公司的信息
+参数为company_id，修改company_id公司的信息 (method : set)
+
 ###/api/account/company/(?P<company_id>.*?)/auth
 参数为company_id，认证company_id这个公司，提交表单如下
 ```javascript
@@ -311,8 +378,9 @@ set_csrf(data)
   "auth_organization" : "" or "auth_organization"  //空表示没有投资机构认证，有表示投资机构认证
   }
 ```
+
 ###/api/account/company/(?P<company_id>.*?)/check
-参数为company_id，检查公司信息是否填写完全(完全表示：city、field、email_resume、welfare_tags、ICregist_name、company_description不为空),返回如下：
+参数为company_id，检查公司信息是否填写完全,返回如下：
 ```javascript
   {
   "error":{}
@@ -321,7 +389,20 @@ set_csrf(data)
 ```
 
 ###/api/account/company/(?P<company_id>.*?)/like
-参数为company_id，收藏公司company_id
+参数为company_id，收藏公司company_id(method : post)
+
+###/api/account/company/(?P<company_id>.*?)/unlike
+参数为company_id，取消对公司company_id的收藏 (method : post)
+
+###/api/account/company/(?P<position_id>.*?)/process
+position_id，hr批量处理该职位的投递者，将所有投递该职位的投递设为已处理(method : post)
+
+###/api/account/company/(?P<position_id>.*?)/(?P<username>.*?)/process
+position_id，hr处理username用户对该职位的投递，将状态改为hr已经处理(method : post)
+
+###/api/account/company/(?P<position_id>.*?)/submit/list
+参数为position_id，获取公司发布的position_id这个职位的所有投递者信息(method : get)
+
 
 ##职位相关position
 ###/api/position/create
