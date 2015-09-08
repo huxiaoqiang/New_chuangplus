@@ -32,6 +32,7 @@ header #header .navbar .navbar-item li a {
   padding-bottom: 24px;
   font-size: 1.3em;
   cursor: pointer;
+  font-family: "华文细黑";
 }
 header #header .navbar .navbar-item li a:hover {
   border: solid #8f4e96;
@@ -77,8 +78,9 @@ header #header .navbar ul.reg-login a:hover {
   border-width: 0px 0px 0px 0px;
 }
 header #header .navbar .search {
-  margin-top: 25px;
-  margin-left: 30px;
+  margin-top: 18px;
+  position: absolute;
+  right: 0;
 }
 header #header .navbar .search li#search_btn {
   margin-top: -8px;
@@ -154,53 +156,56 @@ body > #wrap {
   display: block;
 }
 #container #login {
+  margin: 0 auto;
+  margin-top: 50px;
   font-family: "微软雅黑";
-  padding-top: 5%;
+  padding: 20px 30px 20px 30px;
+  width: 480px;
+  height: 320px;
+  background-color: #EFEFEF;
+  filter: alpha(opacity=80);
+  opicaty: 50;
 }
 #container #login .ui.segment.form {
+  border-radius: 0;
+  margin-top: 0px;
   padding: 0em;
-}
-#container #login .ui.segment.form .nav-tabs {
-  border-bottom: 0px;
-}
-#container #login .ui.segment.form .nav-tabs li {
-  width: 50%;
-  text-align: center;
-  background-color: #d8d8d8;
-}
-#container #login .ui.segment.form .nav-tabs li .active {
   background-color: #FFFFFF;
-}
-#container #login .ui.segment.form .nav-tabs li a {
-  font-size: 18px;
-  color: #000000;
-}
-#container #login .ui.segment.form .nav-tabs li a:hover {
-  background-color: white;
+  width: 420px;
+  height: 280px;
 }
 #container #login .ui.segment.form #login_form {
   padding: 2em;
+}
+#container #login .ui.segment.form #login_form .form-input {
+  border: 1px solid #8F4E96;
+  border-radius: 0;
+  width: 360px;
 }
 #container #login .ui.segment.form #login_form #captcha_form {
   width: 40%;
   float: left;
 }
 #container #login .ui.segment.form #login_form #captcha_form input {
-  border-top-right-radius: 0.5em;
-  border-bottom-right-radius: 0.5em;
   height: 40px;
+  width: 200px;
 }
 #container #login .ui.segment.form #login_form #captcha_img {
   margin-left: 3%;
   height: 40px;
 }
+#container #login .ui.segment.form #login_form .fresh-btn {
+  width: 15px;
+  height: 15px;
+  margin-left: 3%;
+}
 #container #login .ui.segment.form #login_form #login_button {
   width: 100%;
   height: 40px;
-  border-radius: 0.3em;
-  background-color: #8c5d90;
+  background-color: #8F4E96;
   color: white;
   font-size: 1.2em;
+  border: 0;
 }
 #container #login .ui.segment.form #login_form #options .findpwd {
   color: #000000;
@@ -209,44 +214,41 @@ body > #wrap {
   float: right;
   color: #61c2f2;
 }
-#container .right-word {
-  padding-left: 15%;
-  margin: 0 auto;
-  margin-top: 5%;
-}
-#container .right-word h2 {
-  margin-top: 0;
-  font-family: "微软雅黑";
-  color: #8c5d90;
-}
-#container .right-word img {
-  margin: 0 auto;
-}
-#container .right-word p {
-  padding-left: 8%;
-  color: gray;
-  margin-top: -2%;
-}
 #container #register {
   font-family: "微软雅黑";
-  padding-top: 5%;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 10px 25px 10px 25px;
+  width: 480px;
+  background-color: #EFEFEF;
+  filter: alpha(opacity=80);
+  opicaty: 50;
 }
 #container #register .ui.segment.form {
   padding: 0em;
+  background-color: #FFFFFF;
+  border-radius: 0;
 }
 #container #register .ui.segment.form .nav-tabs {
-  border-bottom: 0px;
+  border: 0;
+  padding: 5px 5px 0 5px;
 }
 #container #register .ui.segment.form .nav-tabs li {
   width: 50%;
   text-align: center;
-  background-color: #d8d8d8;
+  border-radius: 0;
+  background-color: #EFEFEF;
+  filter: alpha(opacity=80);
+  opicaty: 50;
 }
 #container #register .ui.segment.form .nav-tabs li .active {
   background-color: #FFFFFF;
 }
 #container #register .ui.segment.form .nav-tabs li a {
-  font-size: 18px;
+  border-radius: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 1em;
   color: #000000;
 }
 #container #register .ui.segment.form .nav-tabs li a:hover {
@@ -259,24 +261,34 @@ body > #wrap {
   color: #a94442;
   margin-left: 30px;
 }
+#container #register .ui.segment.form #reg_form .form-control {
+  border: 1px solid #8F4E96;
+  border-radius: 0;
+  width: 360px;
+}
 #container #register .ui.segment.form #reg_form #captcha_form {
   width: 40%;
   float: left;
 }
 #container #register .ui.segment.form #reg_form #captcha_form input {
-  border-top-right-radius: 0.5em;
-  border-bottom-right-radius: 0.5em;
-  height: 40px;
+  border: 1px solid #8F4E96;
+  border-radius: 0;
+  width: 200px;
 }
 #container #register .ui.segment.form #reg_form #captcha_img {
   margin-left: 3%;
   height: 40px;
 }
+#container #register .ui.segment.form #reg_form .fresh-btn {
+  width: 15px;
+  height: 15px;
+  margin-left: 3%;
+}
 #container #register .ui.segment.form #reg_form #regist_button {
   width: 100%;
   height: 40px;
-  border-radius: 0.3em;
-  background-color: #8c5d90;
+  border: 0;
+  background-color: #8F4E96;
   color: white;
   font-size: 1.2em;
 }
@@ -906,11 +918,54 @@ form.financing_add input {
   font-family: "微软雅黑";
   padding-top: 5%;
 }
-#container #userresume .title {
-  text-align: center;
+#container #userresume .title span {
+  color: #707070;
+  font-size: 1.2em;
+  font-family: "华文细黑";
 }
-#container #userresume .title h1 {
-  color: #8c5d90;
+#container #userresume .title div.line {
+  width: 96px;
+  background-color: #98769E;
+  margin-top: 4px;
+  height: 7px;
+}
+#container #userresume .basic_info {
+  height: 134px;
+  background-color: rgba(240, 240, 240, 0.5);
+  margin-top: 10px;
+  padding: 30px;
+  padding-left: 60px;
+  margin-bottom: 20px;
+}
+#container #userresume .basic_info label {
+  color: #707070;
+  font-weight: 500;
+}
+#container #userresume .basic_info input {
+  margin-left: 15px;
+  margin-top: 10px;
+  border-radius: 3px;
+  width: 240px;
+  border-color: rgba(240, 240, 240, 0.3);
+}
+#container #userresume .bref-info p {
+  padding: 20px;
+  color: #707070;
+  padding-bottom: 0px;
+}
+#container #userresume .bref-info .text-value {
+  background-color: rgba(240, 240, 240, 0.5);
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+#container #userresume .bref-info .text-value textarea {
+  min-height: 110px;
+  width: 95%;
+  margin: 0 auto;
+  display: block;
+  padding: 10px;
+  border-radius: 3px;
+  border-color: rgba(240, 240, 240, 0.3);
 }
 #container #userresume .row {
   margin-top: 50px;
@@ -1448,33 +1503,220 @@ form.financing_add input {
   color: black;
   font-family: "微软雅黑";
 }
+#container #company-detail {
+  min-height: 600px;
+}
+#container #company-detail .col-md-8 {
+  border: solid #eeeeee;
+  border-width: 0px 30px 0px 0px;
+}
+#container #company-detail .col-md-8 .company-info {
+  border: solid #98769E;
+  border-width: 1px 1px 1px 10px;
+  padding: 10px;
+  margin: 10px;
+}
+#container #company-detail .col-md-8 .company-info .company-logo {
+  float: left;
+}
+#container #company-detail .col-md-8 .company-info .company-logo img {
+  height: 120px;
+  width: 120px;
+}
+#container #company-detail .col-md-8 .company-info .item-info .name {
+  padding-left: 140px;
+  font-size: 1.5em;
+  font-family: "微软雅黑";
+}
+#container #company-detail .col-md-8 .company-info .item-info .brief_introduction {
+  padding-left: 140px;
+  color: #8E8E8E;
+  margin-top: -10px;
+  font-family: "微软雅黑";
+}
+#container #company-detail .col-md-8 .company-info .item-info .position_number {
+  margin-left: 140px;
+  color: #98769E;
+  font-family: "微软雅黑";
+  font-weight: bolder;
+  font-size: 1.5em;
+}
+#container #company-detail .col-md-8 .company-info .item-info .favor {
+  margin-left: 20px;
+  padding: 5px;
+  font-size: 1.5em;
+  color: white;
+  background-color: #98769E;
+  cursor: pointer;
+  float: right;
+  margin-top: -45px;
+  margin-right: 18px;
+}
+#container #company-detail .col-md-8 .company-info .welfare_tags {
+  float: right;
+  color: #8E8E8E;
+}
+#container #company-detail .col-md-8 .detail .header {
+  margin-left: 10px;
+  font-size: 1.5em;
+  font-family: "微软雅黑";
+  font-weight: bolder;
+  cursor: pointer;
+}
+#container #company-detail .col-md-8 .detail .header .tab {
+  border: solid;
+  border-width: 0px 0px 5px 0px;
+  color: #DCDEE0;
+}
+#container #company-detail .col-md-8 .detail .header .tab:hover {
+  border-color: #98679E ;
+}
+#container #company-detail .col-md-8 .detail .header .tab-active {
+  border-color: #98769E;
+  color: #98769E;
+}
+#container #company-detail .col-md-8 .detail .company {
+  margin-top: 24px;
+  margin-left: 10px;
+}
+#container #company-detail .col-md-8 .detail .company h3 {
+  font-size: 1.5em;
+  font-family: "微软雅黑";
+  font-weight: bolder;
+  cursor: pointer;
+  color: #98769E;
+}
+#container #company-detail .col-md-8 .detail .company .line {
+  border: solid 1px #dddddd;
+  width: 99%;
+}
+#container #company-detail .col-md-8 .detail .company .description {
+  min-height: 100px;
+}
+#container #company-detail .col-md-8 .detail .company .team-member .member {
+  border: solid #98769E;
+  border-width: 1px 1px 1px 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+#container #company-detail .col-md-8 .detail .company .team-member .member .avatar {
+  float: left;
+}
+#container #company-detail .col-md-8 .detail .company .team-member .member .avatar img {
+  width: 60px;
+  height: 60px;
+}
+#container #company-detail .col-md-8 .detail .company .team-member .member .member-description .name-position {
+  margin-left: 70px;
+  color: #98769E;
+}
+#container #company-detail .col-md-8 .detail .company .team-member .member .member-description .m_introduction {
+  margin-left: 70px;
+}
+#container #company-detail .col-md-8 .detail .position {
+  margin-top: 24px;
+  margin-left: 10px;
+}
+#container #company-detail .col-md-8 .detail .position .position_list {
+  border: solid 2px #98769E;
+  border-width: 1px 1px 1px 10px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 1px 1px 15px 1px;
+}
+#container #company-detail .col-md-8 .detail .position .position_list .position_name {
+  color: #98769E;
+  font-size: 1.5em;
+}
+#container #company-detail .col-md-8 .detail .position .position_list .edit {
+  float: right;
+  margin-top: -30px;
+  color: #98769e;
+  cursor: pointer;
+}
+#container #company-detail .col-md-8 .detail .position .position_list .tags span {
+  border: solid 1px #98769e;
+  padding: 2px;
+  border-radius: 4px;
+}
+#container #company-detail .col-md-8 .detail .position .position_list .number {
+  margin-top: 10px;
+}
+#container #company-detail .col-md-8 .detail .position .position_list .time {
+  float: right;
+  color: #a6aaa9;
+  margin-top: -20px;
+}
+#container #company-detail .col-md-8 .detail .position .position_list:hover {
+  background-color: #FAFAFA;
+}
+#container #company-detail .qrcode {
+  width: 250px;
+  height: 250px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 #container {
   margin: 0 auto;
   display: block;
 }
 #container #homepage {
+  font-family: "微软雅黑";
   margin-top: 20px;
 }
+#container #homepage .right-block {
+  position: fixed;
+  right: 20px;
+  top: 168px;
+  height: 100%;
+  width: 120px;
+  margin: 0 auto;
+}
+#container #homepage .right-block .txt {
+  font-size: 1.0em;
+  color: #707070;
+  text-align: center;
+  width: 100%;
+}
+#container #homepage .right-block .img-1 {
+  height: 120px;
+  width: 120px;
+}
 #container #homepage .slide-block {
-  height: 450px;
-  border: 1px solid #b2b2b2;
-  margin-bottom: 10px;
+  height: 420px;
+  margin-bottom: 15px;
 }
 #container #homepage .info-block-1 {
   height: 300px;
   border: 1px solid #b2b2b2;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 #container #homepage .info-block-2 {
-  height: 450px;
+  height: 420px;
   border: 1px solid #b2b2b2;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 #container #homepage .img-block {
   height: 90px;
-  width: 1025px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
+#container #homepage .img-block .img-2 {
+  height: 100%;
+  width: 184px;
+  margin-right: 10px;
+  float: left;
+}
+#container #homepage .img-block .img-3 {
+  height: 100%;
+  width: 184px;
+  float: left;
+}
+/*body{
+  background-color: #eeeeee;
+  #main-container{
+    background-color: #ffffff;;
+  }
+}*/
 .input-group-addon {
   border-top-left-radius: 0.5em;
   border-bottom-left-radius: 0.5em;

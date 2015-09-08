@@ -1,34 +1,44 @@
 <div id="container" controller="DT_HomepageCtrl">
     <div id ="homepage">
+        <div class="right-block">
+            <div class="txt">关注我们</div>
+            <img class="img-1" src="/static/image/logo/erweima-01.png">
+        </div>
+    
         <div class="slide-block">
             <carousel interval="myInterval">
-                <slide ng-repeat="slide in slides" active="slide.active">
-                    <img ng-src="[[slide.image]]">
+                <slide ng-repeat="slide1 in slides1" active="slide.active">
+                    <img ng-src="[[slide1.image]]">
                 </slide>
             </carousel>
         </div>
         
         <div class="info-block-1">
-        </div>
-<!--        
+        </div>        
         <div class="slide-block">
             <carousel interval="myInterval">
-                <slide ng-repeat="slide in slides" active="slide.active">
-                    <img ng-src="[[slide.image]]">
-                    <div class="carousel-caption">
-                        <img ng-src="[[slide.image]]">
-                    </div>
+                <slide ng-repeat="slide2 in slides2" active="slide.active">
+                    <img ng-src="[[slide2.image]]">
                 </slide>
             </carousel>
         </div>
-        -->
         <div class="info-block-2">
         </div>
         
         <div class="img-block">
+            <img class="img-2">
+            <img class="img-2">
+            <img class="img-2">
+            <img class="img-2">
+            <img class="img-3">
         </div>
         
         <div class="img-block">
+            <img class="img-2">
+            <img class="img-2">
+            <img class="img-2">
+            <img class="img-2">
+            <img class="img-3">
         </div>
     </div>
 </div>

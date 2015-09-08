@@ -1,8 +1,43 @@
 <div id="container">
     <div id="userresume">
+        <form class="form-horizontal" id="info-form" ng-submit="save_intern_info()">
         <div class="title">
-            <h1>编辑简历信息</h1>
+            <span>&nbsp;&nbsp;&nbsp;基本信息&nbsp;&nbsp;&nbsp;</span><br/>
+            <div class="line"></div>
         </div>
+        <div class="basic_info">
+            <div class="col-sm-6">
+                <label>姓名</label>
+                <input type="text" ng-model="intern_info.real_name" required><br/>
+                <label>电话</label>
+                <input type="text" ng-model="intern_info.cellphone" required>
+            </div>
+            <div class="col-sm-6">
+                <label>性别</label>
+                <input type="text" ng-model="intern_info.real_name" required><br/>
+                <label>每周工作时长</label>
+                <input type="text" ng-model="intern_info.cellphone" required>
+            </div>
+        </div>
+
+        <div class="title">
+            <span>&nbsp;&nbsp;&nbsp;百字简介&nbsp;&nbsp;&nbsp;</span><br/>
+            <div class="line"></div>
+        </div>
+        <div class="bref-info">
+            <p>在未上传简历前，HR只能通过百字简介判断是否邀请面试，请认真填写,建议格式：基本信息＋教育经历＋工作／项目经历＋学生工作经历＋技能＋性格特点</p>
+            <div class="text-value">
+                <textarea></textarea>
+            </div>
+
+        </div>
+
+        <div class="title">
+            <span>&nbsp;&nbsp;&nbsp;简历附件&nbsp;&nbsp;&nbsp;</span><br/>
+            <div class="line"></div>
+        </div>
+
+        </form>
         <div class="row">
             <form class="form-horizontal" id="info-form" ng-submit="save_intern_info()">
                 <div class="col-sm-9">

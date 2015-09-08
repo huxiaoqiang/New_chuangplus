@@ -2,50 +2,56 @@
   margin: 0 auto;
   display: block;
   #login{
+        margin: 0 auto;
+        margin-top: 50px;
         font-family: "微软雅黑";
-        padding-top: 5%;
+        padding: 20px 30px 20px 30px;
+        width: 480px;
+        height: 320px;
+        background-color: #EFEFEF;
+        filter:alpha(opacity=80);
+        opicaty:50;
+
+
         .ui.segment.form{
+
+           border-radius: 0;
+          margin-top: 0px;
           padding: 0em;
-          .nav-tabs{
-            border-bottom: 0px;
-            li{
-              width: 50%;
-              text-align: center;
-              background-color: rgb(216, 216, 216);
-              .active{
-                  background-color: #FFFFFF;
-              }
-              a{
-                font-size: 18px;
-                color: #000000;
-              }
-              a:hover{
-                background-color: white;
-              }
-            }
-          }
+          background-color: #FFFFFF;
+          width: 420px;
+          height: 280px;
           #login_form{
             padding: 2em;
+            .form-input{
+                border: 1px solid #8F4E96;
+                border-radius: 0;
+                width: 360px;
+            }
             #captcha_form{
               width: 40%;
               float: left;
               input{
-                border-top-right-radius: 0.5em;
-                border-bottom-right-radius: 0.5em;
                 height: 40px;
+                width: 200px;
                }
             }
             #captcha_img{
                 margin-left: 3%;
                 height: 40px;
               }
+            .fresh-btn{
+                width: 15px;
+                height: 15px;
+                margin-left: 3%;
+            }
             #login_button{
               width: 100%;
               height: 40px;
-              border-radius: 0.3em;
-              background-color: rgb(140,93,144);
+              background-color: #8F4E96;
               color: white;
               font-size: 1.2em;
+              border: 0;
             }
             #options{
               .findpwd{
@@ -61,23 +67,5 @@
           }
       }
 
-  }
-  .right-word{
-    padding-left: 15%;
-    margin: 0 auto;
-    margin-top: 5%;
-    h2{
-      margin-top: 0;
-      font-family:"微软雅黑";
-      color: rgb(140,93,144);
-    }
-    img{
-      margin: 0 auto;
-    }
-    p{
-      padding-left: 8%;
-      color: gray;
-      margin-top: -2%;
-    }
   }
 }
