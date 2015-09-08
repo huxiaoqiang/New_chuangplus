@@ -1446,70 +1446,35 @@ form.financing_add input {
   color: black;
   font-family: "微软雅黑";
 }
-#container #company-detail {
-  min-height: 600px;
+#container {
+  margin: 0 auto;
+  display: block;
 }
-#container #company-detail .col-md-8 {
-  border: solid #eeeeee;
-  border-width: 0px 30px 0px 0px;
+#container #homepage .slide-block {
+  height: 450px;
+  width: 1025px;
+  border: 1px solid #b2b2b2;
+  margin-bottom: 10px;
 }
-#container #company-detail .col-md-8 .company-info {
-  border: solid #98769E;
-  border-width: 1px 1px 1px 10px;
-  padding: 10px;
-  margin: 10px;
+#container #homepage .info-block-1 {
+  height: 300px;
+  width: 1025px;
+  border: 1px solid #b2b2b2;
+  margin-bottom: 10px;
 }
-#container #company-detail .col-md-8 .company-info .company-logo {
-  float: left;
+#container #homepage .info-block-2 {
+  height: 450px;
+  width: 1025px;
+  border: 1px solid #b2b2b2;
+  margin-bottom: 10px;
 }
-#container #company-detail .col-md-8 .company-info .company-logo img {
-  height: 120px;
-  width: 120px;
+#container #homepage .img-block {
+  height: 90px;
+  width: 1025px;
+  margin-bottom: 10px;
 }
-#container #company-detail .col-md-8 .company-info .item-info .name {
-  padding-left: 140px;
-  font-size: 1.5em;
-  font-family: "微软雅黑";
-}
-#container #company-detail .col-md-8 .company-info .item-info .brief_introduction {
-  padding-left: 140px;
-  color: #8E8E8E;
-  margin-top: -10px;
-  font-family: "微软雅黑";
-}
-#container #company-detail .col-md-8 .company-info .item-info .position_number {
-  margin-left: 140px;
-  color: #98769E;
-  font-family: "微软雅黑";
-  font-weight: bolder;
-  font-size: 1.5em;
-}
-#container #company-detail .col-md-8 .company-info .item-info .favor {
-  margin-left: 20px;
-  padding: 5px;
-  font-size: 1.5em;
-  color: white;
-  background-color: #98769E;
-  cursor: pointer;
-  float: right;
-  margin-top: -45px;
-  margin-right: 18px;
-}
-#container #company-detail .col-md-8 .company-info .welfare_tags {
-  float: right;
-  color: #8E8E8E;
-}
-#container #company-detail .col-md-8 .detail .header {
-  margin-left: 10px;
-  font-size: 1.5em;
-  font-family: "微软雅黑";
-  font-weight: bolder;
-  cursor: pointer;
-}
-#container #company-detail .col-md-8 .detail .header .tab {
-  border: solid;
-  border-width: 0px 0px 5px 0px;
-  color: #DCDEE0;
+body {
+  background-color: #eeeeee;
 }
 #container #company-detail .col-md-8 .detail .header .tab:hover {
   border-color: #98679E ;
