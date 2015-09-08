@@ -9,6 +9,9 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   overflow-x: hidden;
 }
+.no-margin {
+  margin: 0 0 0 0 !important;
+}
 #main-container {
   height: 100%;
   display: block;
@@ -313,16 +316,16 @@ a:hover {
   float: right;
   margin-top: 10px;
   margin-right: 20px;
-  font-size: 10px;
+  font-size: 11px;
 }
 .comp-listbox .comp-name {
   line-height: 18px;
-  font-size: 16px;
+  font-size: 17px;
   overflow: hidden;
 }
 .comp-listbox .comp-desc {
   line-height: 18px;
-  font-size: 10px;
+  font-size: 11px;
   color: #b5b5b5;
   overflow: hidden;
 }
@@ -340,7 +343,7 @@ a:hover {
   background-color: #966497;
   border: 1px solid #966497;
   color: white;
-  font-size: 10px;
+  font-size: 11px;
   margin-right: 3px;
   text-align: center;
   white-space: nowrap;
@@ -355,7 +358,7 @@ a:hover {
   background-color: white;
   color: #966497;
   border: 1px solid #966497;
-  font-size: 10px;
+  font-size: 11px;
   margin-right: 3px;
   text-align: center;
   white-space: nowrap;
@@ -366,14 +369,14 @@ a:hover {
 }
 .comp-benefit-tag {
   color: #b5b5b5;
-  font-size: 10px;
+  font-size: 11px;
   float: left;
   margin-right: 3px;
 }
 .post-time {
   line-height: 18px;
   color: #b5b5b5;
-  font-size: 10px;
+  font-size: 11px;
 }
 .nav-bar {
   margin: 0;
@@ -515,6 +518,23 @@ a:hover {
   margin-top: 2px;
   color: #707070;
   font-size: 18px;
+  position: relative;
+}
+.comp-map .icon {
+  float: left;
+  height: 26px;
+  line-height: 100%;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 20px;
+}
+.comp-map .icon i {
+  font-size: 26px;
+}
+.comp-map .addr {
+  margin-left: 22px;
 }
 .detail-desc {
   padding-top: 15px;

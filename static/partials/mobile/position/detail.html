@@ -3,17 +3,6 @@
     <div class="header-bar">
         <div class="header">职位详情</div>
     </div>    
-<a class="comp-listbox" href="/mobile/position/detail/[[position._id.$oid]]" ng-repeat="position in positions">
-            <div ng-if="position.company.is_auth" class="comp-auth">[[position.company.auth_organization]]认证</div>
-            <div class="comp-name">[[position.position_type_value]] | [[position.name]]</div>
-
-            <div class="comp-req-list">
-                <span class="comp-req-title">[[position.company.abbreviation]]</span>
-            </div>
-            <div class="comp-desc">[[position.company.brief_introduction]]</div>
-
-
-        </a>
     <div class="comp-detail">
             <div class="posi-detail padding">
 
@@ -41,7 +30,7 @@
                         [[position.field_value]]
                     </span>
                     <span class="comp-desc-tag">
-                        [[position.scale_value]]
+                        [[position.scale_value]]期
                     </span>
                     <span class="comp-desc-tag">
                         [[position.company.city]]
@@ -62,13 +51,17 @@
                 </div>
             </div>
             <div class="comp-map padding">
-                北京市海淀区清华科技园启迪科技大厦D座B103
+                <div class="icon">
+                <i class="fa fa-map-marker"></i>
+                </div>
+                <div class="addr"> [[position.work_address]] </div>
+                
             </div>
     </div>
 
     <div class="comp-detail">
 
-        <a class="comp-listbox" href="/mobile/company/detail/[[position.company._id.$oid]]">
+        <a class="comp-listbox no-margin" href="/mobile/company/detail/[[position.company._id.$oid]]">
             <img class="comp-prev-img" src="/static/pic/comp_prev.jpg">
             <div ng-if="company.is_auth" class="comp-auth">[[company.auth_organization]]认证</div>
             <div class="comp-name">[[position.company.abbreviation]]</div>
@@ -77,7 +70,7 @@
 
             <div class="comp-req-list">
                 <span class="comp-req-title">[[position.position_number]]岗位在招</span>
-                <span class="comp-req-tag" ng-repeat="tag in position_list">[[tag.name]]</span>
+                <span class="comp-req-tag" ng-repeat="tag in position.company.position_type_value">[[tag]]</span>
             </div>
             <div class="comp-desc-list">
                 <span class="comp-desc-tag">

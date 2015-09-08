@@ -53,14 +53,14 @@
 
 @cl-listbox-hgt:    114px;
 @cl-comp-img-size:  94px;
-@cl-comp-name-fsize:    16px;
-@cl-comp-desc-fsize:    10px;
+@cl-comp-name-fsize:    17px;
+@cl-comp-desc-fsize:    11px;
 @cl-comp-req-fsize:    12px;
 @cl-comp-tag-radius:    2px;
 @cl-comp-tag-mag:    3px;
-@cl-comp-reqt-fsize:    10px;
-@cl-comp-desct-fsize:    10px;
-@cl-comp-bent-fsize:    10px;
+@cl-comp-reqt-fsize:    11px;
+@cl-comp-desct-fsize:    11px;
+@cl-comp-bent-fsize:    11px;
 @cl-come-lineh: 18px;
 
 //compfilter.html
@@ -90,7 +90,10 @@ body
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     overflow-x: hidden;
 }
-
+.no-margin
+{
+    margin: 0 0 0 0 !important;
+}
 #main-container
 {
     height: 100%;
@@ -737,6 +740,26 @@ a:hover
     margin-top: 2px;
     color: @dark-gray;
     font-size: 18px;
+    position: relative;
+}
+.comp-map .icon
+{
+    float: left;
+    height: 26px;
+    line-height: 100%;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 20px;
+}
+.comp-map .icon i
+{
+    font-size: 26px;
+}
+.comp-map .addr
+{
+    margin-left: 22px;
 }
 
 .detail-desc
