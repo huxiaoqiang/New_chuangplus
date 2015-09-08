@@ -1,5 +1,5 @@
 <div ng-include="'/static/partials/mobile/partials/sidebar-left.html'" ></div>
-<div ng-swipe-right='Ui.turnOn("uiSidebarLeft")'>
+<div ng-swipe-right='Ui.turnOn("uiSidebarLeft")'  ui-swipe-left='Ui.turnOff("uiSidebarLeft")'>
 <div class="navbar navbar-app navbar-absolute-top selected" >
     <div class="navbar-brand navbar-brand-center" style="font-size: 20px;" >
        <div ui-yield-to="title">
