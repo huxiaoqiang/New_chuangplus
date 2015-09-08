@@ -30,7 +30,7 @@
                         [[position.field_value]]
                     </span>
                     <span class="comp-desc-tag">
-                        [[position.scale_value]]
+                        [[position.scale_value]]期
                     </span>
                     <span class="comp-desc-tag">
                         [[position.company.city]]
@@ -51,13 +51,17 @@
                 </div>
             </div>
             <div class="comp-map padding">
-                北京市海淀区清华科技园启迪科技大厦D座B103
+                <div class="icon">
+                <i class="fa fa-map-marker"></i>
+                </div>
+                <div class="addr"> [[position.work_address]] </div>
+                
             </div>
     </div>
 
     <div class="comp-detail">
 
-        <a class="comp-listbox" href="/mobile/company/detail/[[position.company._id.$oid]]">
+        <a class="comp-listbox no-margin" href="/mobile/company/detail/[[position.company._id.$oid]]">
             <img class="comp-prev-img" src="/static/pic/comp_prev.jpg">
             <div ng-if="company.is_auth" class="comp-auth">[[company.auth_organization]]认证</div>
             <div class="comp-name">[[position.company.abbreviation]]</div>
