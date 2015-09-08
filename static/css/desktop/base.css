@@ -96,7 +96,7 @@ body,
 }
 body > #wrap {
   height: auto;
-  min-height: 81%;
+  min-height: 91.5%;
 }
 #main-container {
   width: 960px;
@@ -141,6 +141,9 @@ body > #wrap {
 #footer .navbar-footer ul#footer-nav li a {
   color: #707070;
   text-decoration: none;
+}
+#footer .navbar-footer ul#footer-nav li a:hover {
+  color: #98769E;
 }
 #footer #footer-brand {
   padding-top: 30px;
