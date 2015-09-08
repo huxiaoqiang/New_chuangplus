@@ -1,31 +1,35 @@
 <div id="container">
     <div id="favor-company-list">
         <div class="col-sm-4">
-            <div class="col-md-8">
-                <ul>
+	    <div class="tips" ng-show="company_list.length == 0">
+		<p>您还没有收藏任何公司，快去<a href="/company/list">公司列表</a>看看吧^_^</p>
+            </div>
+	    <div class="col-md-8" ng-show="company_list.length > 0">
+                <ul ng-repeat="company in company_list">
+		    <a href="/company/[[company._id.$oid]]/detail">
                     <li>
                         <div class="favor-list-item">
                             <div class="item-pic">
-                                <img class="company-pic" alt="图片"></img>
+                                <img class="company-pic" alt="图片" src="/api/file/[[company.logo_id]]/download"></img>
                             </div>
                             <div class="item-info">
-                                <p class="company">公司</p>
-                                <p class="company-discrpt">公司描述</p>
+                                <p class="company">[[company.abbreviation]]</p>
+                                <p class="company-discrpt">[[company.brief_introduction]]</p>
                                 <div class="position-label">
-                                    <p class="position-num">在招岗位：4</p>
-                                    <p class="label">运营</p>
-                                    <p class="label">技术</p>
-                                    <p class="label">设计</p>
+                                    <p class="position-num">在招岗位：[[company.position_number]]</p>
+				    <div ng-repeat="position_type in company.position_types">
+                                   	 <p class="label">[[position_type]]</p>
+				    </div>
                                 </div>
                                 <div class="company-label">
                                     <p class="label">创业服务</p>
-                                    <p class="label">初创期</p>
-                                    <p class="label">北京</p>
+                                    <p class="label">[[company.scale_value]]</p>
+                                    <p class="label">[[company.city]]</p>
                                 </div>
                                 <div class="wellfare-label">
-                                    <p class="label">五险一金</p>
-                                    <p class="label">班车接送</p>
-                                    <p class="label">午餐补助</p>
+				    <div ng-repeat="tag in company.welfare_tags">
+                                   	 <p class="label">[[tag]]</p>
+				    </div>
                                 </div>
                             </div>
                         </div>

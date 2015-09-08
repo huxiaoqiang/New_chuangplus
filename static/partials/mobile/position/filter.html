@@ -1,4 +1,4 @@
-<div class="main-content scrollable">
+<div class="main-content scrollable" ng-controller="MB_PositionFilterCtrl">
     <div class="scrollable-content">
         <div class="header-bar">
             <div class="header"> 编辑条件</div>
@@ -9,30 +9,23 @@
                 <div class="filter-title">
                     每周至多工作几天
                 </div>
-
                 <div class="filter-elem">
-                    <label><input type="radio" name="work-time" value="0" >弹性时间</label> 
+                    <label><input type="radio" name="work-time"  ng-model="filter.workdays.day0" >弹性时间</label> 
                 </div>
                 <div class="filter-elem">
-                    <label><input type="radio" name="work-time" value="1"/>1天</label> 
+                    <label><input type="radio" name="work-time"  ng-model="filter.workdays.day3"/>3天</label> 
                 </div>
                 <div class="filter-elem">
-                    <label><input type="radio" name="work-time" value="2"/>2天</label> 
+                    <label><input type="radio" name="work-time"  ng-model="filter.workdays.day4"/>4天</label> 
                 </div>
                 <div class="filter-elem">
-                    <label><input type="radio" name="work-time" value="3"/>3天</label> 
+                    <label><input type="radio" name="work-time"  ng-model="filter.workdays.day5"/>5天</label> 
                 </div>
                 <div class="filter-elem">
-                    <label><input type="radio" name="work-time" value="4"/>4天</label> 
+                    <label><input type="radio" name="work-time"  ng-model="filter.workdays.day6"/>6天</label> 
                 </div>
                 <div class="filter-elem">
-                    <label><input type="radio" name="work-time" value="5"/>5天</label> 
-                </div>
-                <div class="filter-elem">
-                    <label><input type="radio" name="work-time" value="6"/>6天</label> 
-                </div>
-                <div class="filter-elem">
-                    <label><input type="radio" name="work-time" value="7"/>7天</label> 
+                    <label><input type="radio" name="work-time"  ng-model="filter.workdays.day7"/>7天</label> 
                 </div>
 
             </div>
@@ -63,31 +56,31 @@
                     <label><input type="checkbox" value="1" />没有要求</label> 
                 </div>
                 <div class="filter-elem">
-                    <label><input type="checkbox" value="2" />社交</label> 
+                    <label><input type="checkbox" ng-model="filter.field.social" />社交</label> 
                 </div>
                 <div class="filter-elem">
-                    <label><input type="checkbox" value="3" />电子商务</label> 
+                    <label><input type="checkbox"  ng-model="filter.field.e_commerce" />电子商务</label> 
                 </div>
                 <div class="filter-elem">
-                    <label><input type="checkbox" value="4" />教育</label> 
+                    <label><input type="checkbox"  ng-model="filter.field.education" />教育</label> 
                 </div>
                 <div class="filter-elem">
-                    <label><input type="checkbox" value="5" />健康医疗</label> 
+                    <label><input type="checkbox"  ng-model="filter.field.health_medical" />健康医疗</label> 
                 </div>
                 <div class="filter-elem">
-                    <label><input type="checkbox" value="6" />文化创意</label> 
+                    <label><input type="checkbox"  ng-model="filter.field.culture_creativity" />文化创意</label> 
                 </div>
                 <div class="filter-elem">
-                    <label><input type="checkbox" value="7" />生活消费</label> 
+                    <label><input type="checkbox"  ng-model="filter.field.living_consumption" />生活消费</label> 
                 </div>
                 <div class="filter-elem">
-                    <label><input type="checkbox" value="8" />硬件</label> 
+                    <label><input type="checkbox"  ng-model="filter.field.hardware" />硬件</label> 
                 </div>
                 <div class="filter-elem">
-                    <label><input type="checkbox" value="9" />O2O</label> 
+                    <label><input type="checkbox"  ng-model="filter.field.O2O" />O2O</label> 
                 </div>
                 <div class="filter-elem">
-                    <label><input type="checkbox" value="10" />其它</label> 
+                    <label><input type="checkbox"  ng-model="filter.field.others" />其它</label> 
                 </div>
 
             </div>
@@ -101,22 +94,22 @@
                     <label><input type="checkbox" value="1" />没有要求</label> 
                 </div>
                 <div class="filter-elem">
-                    <label><input type="checkbox" value="2" />技术</label> 
+                    <label><input type="checkbox" ng-model="filter.type.technology" />技术</label> 
                 </div>
                 <div class="filter-elem">
-                    <label><input type="checkbox" value="3" />运营</label> 
+                    <label><input type="checkbox" ng-model="filter.type.operate" />运营</label> 
                 </div>
                 <div class="filter-elem">
-                    <label><input type="checkbox" value="4" />产品</label> 
+                    <label><input type="checkbox" ng-model="filter.type.product" />产品</label> 
                 </div>
                 <div class="filter-elem">
-                    <label><input type="checkbox" value="5" />设计</label> 
+                    <label><input type="checkbox" ng-model="filter.type.design" />设计</label> 
                 </div>
                 <div class="filter-elem">
-                    <label><input type="checkbox" value="6" />市场销售</label> 
+                    <label><input type="checkbox" ng-model="filter.type.marketing" />市场</label> 
                 </div>
                 <div class="filter-elem">
-                    <label><input type="checkbox" value="7" />职能</label> 
+                    <label><input type="checkbox" ng-model="filter.type.functions" />职能</label> 
                 </div>
 
             </div>

@@ -1,47 +1,85 @@
 header {
   font-family: "微软雅黑";
 }
-header #header .navbar.first-bar {
+header #header .header-head {
+  background-color: #9f4e96;
+  height: 5px;
+}
+header #header .navbar {
   margin-bottom: 0px;
-  background-color: #98679E;
+  background-color: rgba(225, 224, 226, 0.2);
 }
-header #header .navbar.first-bar .navbar-header {
-  margin-left: 20%;
+header #header .navbar .navbar-header {
+  margin-left: 10%;
 }
-header #header .navbar.first-bar .navbar-header #head-logo img {
-  width: 19%;
-  padding-top: 3%;
-  padding-bottom: 3%;
-}
-header #header .navbar.first-bar .navbar-header #head-logo .brand {
-  color: white;
-  padding: 15px 15px;
-  font-size: 18px;
-  line-height: 20px;
-  text-decoration: none;
-}
-header #header .navbar.navbar-default {
-  border-radius: 0px;
-}
-header #header .navbar.navbar-default .nav.navbar-nav {
+header #header .navbar .navbar-header #head-logo {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  width: 300px;
   float: left;
-  margin-left: 20%;
 }
-header #header .navbar.navbar-default .nav.navbar-nav.search {
-  float: right;
-  margin-right: 10%;
-  margin-left: 0%;
+header #header .navbar .navbar-header #head-logo img {
+  width: 100%;
 }
-header #header .navbar.navbar-default .nav.navbar-nav.search #search {
-  padding-top: 0.6em;
+header #header .navbar .navbar-item {
+  margin-left: 15px;
 }
-header #header .navbar.navbar-default .nav.navbar-nav.search #search input {
-  border-radius: 0px;
+header #header .navbar .navbar-item li a {
+  color: #707070;
+  padding-top: 32px;
+  padding-bottom: 25px;
+  font-size: 1.3em;
+  cursor: pointer;
 }
-header #header .navbar.navbar-default .nav.navbar-nav.search #search_btn button {
-  height: 34px;
-  margin-top: 0.6em;
-  border-radius: 0px;
+header #header .navbar .navbar-item li a:hover {
+  border: solid #8f4e96;
+  border-width: 0px 0px 5px 0px;
+}
+header #header .navbar .navbar-item li.active {
+  border: solid #8f4e96;
+  border-width: 0px 0px 5px 0px;
+}
+header #header .navbar .navbar-item li.active a:hover {
+  border-width: 0px 0px 0px 0px;
+}
+header #header .navbar .navbar-item li.dropdown .dropdown-menu {
+  min-width: 100px;
+}
+header #header .navbar .navbar-item li.dropdown .dropdown-menu a {
+  font-size: 1em;
+  padding-bottom: 3px;
+  padding-top: 3px;
+}
+header #header .navbar .navbar-item li.dropdown .dropdown-menu a:hover {
+  border: solid #8f4e96;
+  border-width: 0px 0px 0px 5px;
+}
+header #header .navbar ul.reg-login {
+  list-style-type: none;
+  float: left;
+  margin-top: 30px;
+  background-color: #8f4e96;
+  border-radius: 25px;
+  color: white;
+  padding: 4px;
+  position: absolute;
+  right: 10%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+header #header .navbar ul.reg-login a {
+  color: white;
+  font-size: 1em;
+}
+header #header .navbar ul.reg-login a:hover {
+  border-width: 0px 0px 0px 0px;
+}
+header #header .navbar .search {
+  margin-top: 25px;
+  margin-left: 30px;
+}
+header #header .navbar .search li.search_btn {
+  margin-top: -8px;
 }
 * {
   margin: 0;
@@ -451,13 +489,14 @@ body > #wrap {
 }
 #container #pisition-list .col-md-8 ul li .favor-list-item .item-info .company {
   font-size: 1.3em;
+  float: left;
+  color: #000000;
 }
 #container #pisition-list .col-md-8 ul li .favor-list-item .item-info .company-discrpt {
-  font-size: 16px;
+  font-size: 1.3em;
   color: #8E8E8E;
 }
 #container #pisition-list .col-md-8 ul li .favor-list-item .item-info .item-label {
-  margin-top: 10px;
   margin-bottom: 10px;
   height: 30px;
 }
@@ -519,7 +558,7 @@ body > #wrap {
   width: 50%;
 }
 #container #company_info_detail form.form-horizontal {
-  min-height: 800px;
+  min-height: 840px;
   margin-top: 40px;
 }
 #container #company_info_detail form.form-horizontal .form-group table td {
@@ -543,11 +582,11 @@ body > #wrap {
   border-radius: 6px;
   margin-right: 3px;
 }
-#container #company_info_detail form.form-horizontal .logoimg {
+#container #company_info_detail form.form-horizontal .logo-qrcode img {
   width: 100px;
   height: 100px;
 }
-#container #company_info_detail form.form-horizontal .change_logo_tab {
+#container #company_info_detail form.form-horizontal .logo-qrcode .change_tab {
   background-color: #eeeeee;
   width: 100px;
   position: relative;
@@ -1341,12 +1380,18 @@ form.financing_add input {
   padding: 5px 40px;
   margin-right: 8px;
 }
-#container #position-detail .description p {
-  font-weight: bolder;
+#container #position-detail .description h3 {
   font-size: 1.5em;
+  font-family: "微软雅黑";
+  font-weight: bolder;
+  cursor: pointer;
+  color: #98769E;
 }
 #container #position-detail .description .line {
   border: solid 1px #EEEEFB;
+}
+#container #position-detail .description .value {
+  min-height: 100px;
 }
 #container #company_list ul li {
   list-style-type: none;
@@ -1388,14 +1433,12 @@ form.financing_add input {
 #container #company_list ul li .company-info .item-info .position_number {
   color: #98769E;
 }
-#container #company_list ul li .company-info .item-info .welfare_tags {
-  margin-left: -10px;
-}
 #container #company_list ul li .company-info .item-info .welfare_tags .tags {
   border: solid 1px #98769E;
   border-radius: 4px;
   padding: 2px;
   color: #98769E;
+  margin-right: 10px;
 }
 #container #company_list ul li .company-info .auth {
   float: right;
@@ -1433,8 +1476,93 @@ form.financing_add input {
 body {
   background-color: #eeeeee;
 }
-body #main-container {
-  background-color: #ffffff;
+#container #company-detail .col-md-8 .detail .header .tab:hover {
+  border-color: #98679E ;
+}
+#container #company-detail .col-md-8 .detail .header .tab-active {
+  border-color: #98769E;
+  color: #98769E;
+}
+#container #company-detail .col-md-8 .detail .company {
+  margin-top: 24px;
+  margin-left: 10px;
+}
+#container #company-detail .col-md-8 .detail .company h3 {
+  font-size: 1.5em;
+  font-family: "微软雅黑";
+  font-weight: bolder;
+  cursor: pointer;
+  color: #98769E;
+}
+#container #company-detail .col-md-8 .detail .company .line {
+  border: solid 1px #dddddd;
+  width: 99%;
+}
+#container #company-detail .col-md-8 .detail .company .description {
+  min-height: 100px;
+}
+#container #company-detail .col-md-8 .detail .company .team-member .member {
+  border: solid #98769E;
+  border-width: 1px 1px 1px 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+#container #company-detail .col-md-8 .detail .company .team-member .member .avatar {
+  float: left;
+}
+#container #company-detail .col-md-8 .detail .company .team-member .member .avatar img {
+  width: 60px;
+  height: 60px;
+}
+#container #company-detail .col-md-8 .detail .company .team-member .member .member-description .name-position {
+  margin-left: 70px;
+  color: #98769E;
+}
+#container #company-detail .col-md-8 .detail .company .team-member .member .member-description .m_introduction {
+  margin-left: 70px;
+}
+#container #company-detail .col-md-8 .detail .position {
+  margin-top: 24px;
+  margin-left: 10px;
+}
+#container #company-detail .col-md-8 .detail .position .position_list {
+  border: solid 2px #98769E;
+  border-width: 1px 1px 1px 10px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 1px 1px 15px 1px;
+}
+#container #company-detail .col-md-8 .detail .position .position_list .position_name {
+  color: #98769E;
+  font-size: 1.5em;
+}
+#container #company-detail .col-md-8 .detail .position .position_list .edit {
+  float: right;
+  margin-top: -30px;
+  color: #98769e;
+  cursor: pointer;
+}
+#container #company-detail .col-md-8 .detail .position .position_list .tags span {
+  border: solid 1px #98769e;
+  padding: 2px;
+  border-radius: 4px;
+}
+#container #company-detail .col-md-8 .detail .position .position_list .number {
+  margin-top: 10px;
+}
+#container #company-detail .col-md-8 .detail .position .position_list .time {
+  float: right;
+  color: #a6aaa9;
+  margin-top: -20px;
+}
+#container #company-detail .col-md-8 .detail .position .position_list:hover {
+  background-color: #FAFAFA;
+}
+#container #company-detail .qrcode {
+  width: 250px;
+  height: 250px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .input-group-addon {
   border-top-left-radius: 0.5em;

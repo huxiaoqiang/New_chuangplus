@@ -56,12 +56,12 @@
                 <div class="col-sm-9">
                     <div class="form-group">
                         <label class="col-sm-4 control-label">简历附件</label>
-
                         </br>
-                        <a href="javascript:;" class="a-upload">
-                            <input ng-model="intern_info.resume_id" ngf-select="upload($file,'resume')" type="file">点击这里上传文件
-                        </a>
-
+                        <div class="col-sm-8">
+                            <div ng-model="resume" ngf-select="upload($file,'resume')" type="file">点击这里上传文件</div>
+					<span ng-show="intern_info.resume_id == null">无简历附件</span>
+			                <a ng-show="intern_info.resume_id != null" ng-href="/api/file/[[intern_info.resume_id]]/download" target="_self">[[filename]]</a>
+                        </div>
                     </div>
                 </div>
 
@@ -77,7 +77,7 @@
                     <div class="form-group">
                         <label class="col-sm-4"></label>
                         <div class="col-sm-8">
-                            <div id="err-msg" ng-show="error.show"  ng-class="error.class">[[error.message]]</div>
+                            <div id="err-msg" ng-show="error.show"  class="error.class">[[error.message]]</div>
                         </div>
                     </div>
                 </div>

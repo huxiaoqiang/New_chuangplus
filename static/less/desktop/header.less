@@ -1,51 +1,89 @@
 header{
   font-family: "微软雅黑";
   #header{
-    .navbar.first-bar{
+    .header-head{
+        background-color: #9f4e96;
+        height: 5px;
+    }
+    .navbar{
       margin-bottom: 0px;
-      background-color: #98679E;
+      background-color: rgba(225, 224, 226, 0.2);
       .navbar-header{
-        margin-left: 20%;
+        margin-left: 10%;
         #head-logo{
+          margin-top: 8px;
+          margin-bottom: 8px;
+          width: 300px;
+          float: left;
           img{
-            width: 19%;
-            padding-top: 3%;
-            padding-bottom: 3%;
-          }
-          .brand{
-            color: white;
-            padding: 15px 15px;
-            font-size: 18px;
-            line-height: 20px;
-            text-decoration: none;
+            width: 100%;
           }
         }
+      }
+      .navbar-item{
+        margin-left: 15px;
+        li{
+         a{
+          color: #707070;
+          padding-top: 32px;
+          padding-bottom: 25px;
+          font-size: 1.3em;
+          cursor: pointer;
+         }
+         a:hover{
+           border: solid #8f4e96;
+           border-width: 0px 0px 5px 0px;
+         }
+        }
+        li.active{
+           border: solid #8f4e96;
+           border-width: 0px 0px 5px 0px;
+           a:hover{
+             border-width: 0px 0px 0px 0px;
+           }
+         }
+        li.dropdown{
+          .dropdown-menu{
+            min-width: 100px;
+            a{
+              font-size: 1em;
+              padding-bottom: 3px;
+              padding-top: 3px;
+            }
+            a:hover{
+              border: solid #8f4e96;
+              border-width: 0px 0px 0px 5px;
+            }
+          }
+        }
+    }
+    ul.reg-login{
+      list-style-type: none;
+      float: left;
+      margin-top: 30px;
+      background-color: #8f4e96;
+      border-radius: 25px;
+      color: white;
+      padding: 4px;
+      position: absolute;
+      right: 10%;
+      padding-left: 15px;
+      padding-right: 15px;
+      a{
+        color: white;
+        font-size: 1em;
+      }
+       a:hover{
+         border-width: 0px 0px 0px 0px;
+       }
+    }
+    .search{
+      margin-top: 25px;
+      margin-left: 30px;
+      li.search_btn{
+        margin-top: -8px;
       }
     }
-    .navbar.navbar-default{
-      border-radius: 0px;
-      .nav.navbar-nav{
-        float: left;
-        margin-left: 20%;
-      }
-      .nav.navbar-nav.search{
-        float: right;
-        margin-right: 10%;
-        margin-left: 0%;
-        #search{
-          padding-top: 0.6em;
-          input{
-            border-radius: 0px;
-          }
-        }
-        #search_btn{
-          button{
-            height: 34px;
-            margin-top: 0.6em;
-            border-radius: 0px;
-          }
-        }
-      }
     }
   }
 }

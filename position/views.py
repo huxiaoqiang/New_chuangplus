@@ -1,5 +1,6 @@
 #coding=utf-8
 from .models import *
+from filedata.models import *
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
@@ -18,7 +19,7 @@ from app.common_api import error,user_permission,if_legal
 
 TYPE = ('technology','product','design','operate','marketing','functions','others')
 FIELD = ('social','e-commerce','education','health_medical','culture_creativity','living_consumption','hardware','O2O','others')
-STATUS = ('open','hidden','closed')
+STATUS = ('open','closed')
 POSITIONS_PER_PAGE = 10
 
 '''
@@ -83,7 +84,7 @@ def create_position(request):
     samin = request.POST.get('salary_min','0')
     samax = request.POST.get('salary_max','1000000')
     poft = request.POST.get('part_or_full_time','0')
-    status = request.POST.get("status","hidden")
+    status = request.POST.get("status","open")
     
     print "ok"
     
@@ -666,7 +667,7 @@ def update_position(request,position_id):
     samin = request.POST.get('salary_min','0')
     samax = request.POST.get('salary_max','1000000')
     part_or_full_time = request.POST.get('part_or_full_time','0')
-    status = request.POST.get("status","hidden")
+    status = request.POST.get("status","open")
     
     try:
         assert len(name) in range(1,30)
@@ -870,8 +871,13 @@ def submit_resume(request,position_id):
         
         # use the long-term resume
         if resume_choice == '1': 
-            if userinfo.resume: 
-                resume = userinfo.resume.value
+            if userinfo.resume_id:
+                try:
+                    r = File.objects.get(id=userinfo.resume_id) 
+                    resume = r.value
+                except:
+                    re['error'] = error(120, 'Resume does not exist')
+                    return HttpResponse(json.dumps(re), content_type = 'application/json')
             else:
                 re['error'] = error(120, 'Resume does not exist')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -887,21 +893,46 @@ def submit_resume(request,position_id):
             else:
                 re['error'] = error(19, 'File is empty')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
-        
+        elif resume_choice == '3':
+            resume = None 
+
         try:
             position = Position.objects.get(id = position_id)    
         except:
             re['error'] = error(260, 'Position does not exist') 
             return HttpResponse(json.dumps(re), content_type = 'application/json')
-
-        submit_date = datetime.now()
-        position.submit_num = position.submit_num+1
-        position.save()
-        UP = UserPosition(submit_date = submit_date, resume_submitted = resume, position = position, user = request.user)
-        UP.save()
+        try:
+            UP = UserPosition.objects.get(position = position, user = request.user)
+            re['error'] = error(266,'Already submit the position');
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        except DoesNotExist:
+            submit_date = datetime.now()
+            position.submit_num = position.submit_num+1
+            position.save()
+            UP = UserPosition(submit_date = submit_date, resume_submitted = resume, position = position, user = request.user)
+            UP.save()
         re['error'] = error(1, 'Success!')
     else:
         re['error'] = error(2, 'Error, need post!')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+@user_permission('login')
+def check_submit(request,position_id):
+    re = dict()
+    if request.method == 'GET':
+        try:
+            position = Position.objects.get(id=position_id)
+        except DoesNotExist:
+            re['error'] = error(260,'Position does not exist')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        try:
+            up = UserPosition.objects.get(user = request.user,position = position)
+            re['exist'] = True
+        except DoesNotExist:
+            re['exist'] = False
+        re['error'] = error(1,'Response succeed!')
+    else:
+        re['error'] = error(3,'Error,need GET')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission("login")
@@ -955,11 +986,13 @@ def user_like_position(request,position_id):
         except:
             re['error'] = error(260, 'Position does not exist') 
             return HttpResponse(json.dumps(re), content_type = 'application/json')
-        
-        up = UP_Relationship(position = position, user = request.user)
+        try:
+            up = UP_Relationship.objects.get(user=request.user,position = position)
+        except DoesNotExist:
+            up = UP_Relationship(position = position, user = request.user)
+            position.attention_num = position.attention_num + 1
+            position.save()
         up.save()
-        position.attention_num = position.attention_num + 1
-        position.save()
         re['error'] = error(1, "success!")
     else:
         re['error'] = error(2, 'error, need POST!')
@@ -990,3 +1023,38 @@ def user_unlike_position(request,position_id):
     else:
         re['error'] = error(2,'error, need post!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+@user_permission('login')
+def close_position(request,position_id):
+    re = dict()
+    if request.method == 'POST':
+        try:
+            position = Position.objects.get(id=position_id)
+        except DoesNotExist:
+            re['error'] = error(260,'Position does not exist!')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        position.status = 'closed'
+        position.save()
+        re['error'] = error(1,'succeed!')
+    else:
+        re['error'] = error(2,'Error, need POST')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+@user_permission('login')
+def open_position(request,position_id):
+    re = dict()
+    if request.method == 'POST':
+        try:
+            position = Position.objects.get(id=position_id)
+        except DoesNotExist:
+            re['error'] = error(260,'Position does not exist!')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        position.status = 'open'
+        position.save()
+        re['error'] = error(1,'succeed!')
+    else:
+        re['error'] = error(2,'Error, need POST')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+#def check_position_status(request):
+

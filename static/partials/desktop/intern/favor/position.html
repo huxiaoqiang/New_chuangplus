@@ -1,11 +1,15 @@
 <div id="container">
     <div id="favor-position-list">
-        <div class="col-sm-4">
+	<div ng-show="positions.length <= 0 || positions == null" class="col-sm-4">
+	    <p>您还没有收藏任何职位，快去<a href="/position/list">职位列表</a>看看吧^_^</p>
+	</div>
+        <div class="col-sm-4" ng-show="positions.length > 0">
             <div class="col-md-9">
                 <table>
                     <tr>
                         <td>
-                            <input type="button" class="btn btn-primary" value="一键全部投递">
+                            <input type="button" class="btn btn-primary" ng-show="resume_submitted" ng-click="submit_all()" value="一键全部投递">
+			    <input type="button" class="btn btn-primary" ng-show="!resume_submitted" data-toggle="modal" data-target="#myModal1" value="一键全部投递"> 
                                 </td>
                         <td>
                             <input type="button" class="btn btn-primary" value="清除失效岗位">
@@ -14,26 +18,28 @@
                 </table>
             </div>
             <div class="col-md-8">
-                <ul>
+                <ul ng-repeat="position in positions">
                     <li>
                         <div class="favor-list-item">
                             <div class="item-pic">
-                                <img class="company-pic" alt="图片"></img>
+                                <img class="company-pic" src="/api/file/[[position.company.logo_id]]/download" alt="图片"></img>
                             </div>
                             <div class="item-info">
-                                <p class="position">职位</p>
-                                <p class="company">公司</p>
-                                <p class="company-discrpt">公司描述</p>
+                                <p class="position">[[position.position_type_value]]|[[position.name]]</p>
+                                <p class="company">[[position.company.abbreviation]]</p>
+                                <p class="company-discrpt">[[position.company.brief_introduction]]</p>
                                 <div class="item-label">
-                                    <p class="label">5天/周</p>
-                                    <p class="label">5k-8k</p>
-                                    <p class="label">创业服务</p>
-                                    <p class="label">初创</p>
-                                    <p class="label">北京</p>
+                                    <p class="label">[[position.days_per_week]]天/周</p>
+                                    <p class="label">[[position.salary_min]]k-[[position.salary_max]]k</p>
+                                    <p class="label">[[position.company.scale_value]]</p>
+                                    <p class="label">[[position.company.city]]</p>
                                 </div>
-                                <p class="submit-time">发布时间</p>
+                                <p class="submit-time">发布时间:[[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]</p>
                                 <div class="item-button">
-                                    <input type="button" class="btn btn-submit" value="投递该职位">
+				
+                                    <button type="button" ng-show="position.resume_submitted || (!position.resume_submitted && resume_submitted)" ng-click="submit($index) " class="btn btn-submit" >[[position.submit_value]]</button>
+				    <button type="button" ng-click="param($index)"ng-show="!(position.resume_submitted || (!position.resume_submiited && resume_submitted))" data-toggle="modal" data-target="#myModal2" class="btn btn-submit">[[position.submit_value]]</button>
+				    <a class="btn btn-submit" href="/position/[[position._id.$oid]]/detail">查看详情</a>
                                 </div>
                             </div>
                         </div>
@@ -42,4 +48,48 @@
             </div>
         </div>
     </div>
+  <!--Modal-->
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>您还没有提交简历，是否现在提交？</h4>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" ng-click="submit_all()" data-dismiss="modal" value="取消，继续投递">
+                    <input type="button"  class="btn btn-primary" value="确定" ng-click="complete_resume()">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+      <!--Modal-->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>您还没有提交简历，是否现在提交？</h4>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" ng-click="submit(index)" data-dismiss="modal" value="取消，继续投递">
+                    <input type="button"  class="btn btn-primary" value="确定" ng-click="complete_resume()">
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

@@ -1,21 +1,16 @@
-<header>
+<header ng-controller="DT_HeaderCtrl">
     <div id="header">
-        <nav class="navbar first-bar">
+        <div class="header-head"></div>
+        <nav class="navbar">
             <div class="navbar-header">
                <div id="head-logo">
-                   <img src="/static/image/logo/100px/logo_white.png">
-                   <img src="/static/image/logo/50px/name_black.png">
-                   <a class="brand" href="/">犀牛|创业实训</a>
+                   <a href="/"><img src="/static/image/logo/headerlogo-01.png"></a>
                </div>
-            </div>
-        </nav>
-        <nav class="navbar navbar-default" role="navigation">
-           <div ng-controller="DT_HeaderCtrl">
-              <ul class="nav navbar-nav" ng-init="company=true">
+              <ul class="nav navbar-nav navbar-item" ng-init="homepage=true">
+                 <li ng-class="{'active':homepage}" ng-click="homepage_active()"><a href="/">首页</a></li>
                  <li ng-class="{'active':company}" ng-click="company_active()"><a href="/company/list">公司列表</a></li>
                  <li ng-class = "{'active':position}" ng-click="position_active()"><a href="/position/list">职位列表</a></li>
               {% if user.is_authenticated %}
-
                  {% if role == 1 %}
                  <li ng-class = "{'active':resume}" ng-click="resume_active()"><a href="/company/resume">处理简历</a></li>
                  {% else %}
@@ -37,8 +32,8 @@
                     <ul class="dropdown-menu">
                        <li><a href="/intern/info">个人主页</a></li>
                        <li><a href="/intern/post">我的投递</a></li>
-                       <li><a href="/intern/favor/company">收藏的公司</a></li>
                        <li class="divider"></li>
+                       <li><a href="/intern/favor/company">收藏的公司</a></li>
                        <li><a href="/intern/favor/position">收藏的岗位</a></li>
                        <li class="divider"></li>
                        <li><a ng-click="logout()">退出登录</a></li>
@@ -50,20 +45,21 @@
                            <li><a ng-click="logout()">退出登录</a></li>
                         </ul>
                     {% endif %}
-
-                    {% else %}
-                    <li ng-class = "{'active':login}" ng-click="login_active()"><a  href="/login">登录</a></li>
-                    <li ng-class = "{'active':register}" ng-click="register_active()"><a href="/register">注册</a></li>
                     {% endif %}
                  </li>
               </ul>
-              <ul class="nav navbar-nav search">
+              {% if not user.is_authenticated %}
+               <ul class="reg-login">
+                   <li><a href="/login">登录</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="/register">注册</a></li>
+               </ul>
+              {% else %}
+                <ul class="nav navbar-nav search">
                  <li id="search">
                      <input type="text" class="form-control" placeholder="搜索公司或职位">
                  </li>
                  <li id="search_btn"><button type="button" class="btn btn-default navbar-btn"><i class="icon-search"></i></button></li>
-              </ul>
-
+                </ul>
+              {% endif %}
            </div>
         </nav>
     </div>

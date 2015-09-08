@@ -110,9 +110,16 @@
                 </div>
 
                 <div class="col-md-4">
-                  <img class="logoimg" ng-if="logo==null" ng-src="/api/file/[[companyinfo.logo_id]]/download"><br/>
-                  <img  class="logoimg" ng-if="logo!=null" ngf-src="logo"><br/>
-                  <div class="change_logo_tab" ng-model="logo"  ngf-select="upload($file,'logo','logo')">更改logo</div>
+                    <div class="logo-qrcode">
+                      <img  ng-if="logo==null" ng-src="/api/file/[[companyinfo.logo_id]]/download"><br/>
+                      <img  ng-if="logo!=null" ngf-src="logo"><br/>
+                      <div class="change_tab" ng-model="logo"  ngf-select="upload($file,'logo','logo')">更改logo</div>
+                    </div>
+                    <div class="logo-qrcode">
+                      <img ng-if="qrcode==null" src="/static/image/logo/qrcode.jpg"><br/>
+                      <img ng-if="qrcode!=null" ngf-src="qrcode"><br/>
+                      <div class="change_tab" ng-model="qrcode"  ngf-select="upload($file,'qrcode','qrcode')">上传二维码</div>
+                    </div>
                 </div>
             </div>
         </form>
