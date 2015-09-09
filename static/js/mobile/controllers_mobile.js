@@ -373,7 +373,6 @@ angular.module('chuangplus_mobile.controllers', [])
         $http.get(urls.api+"/position/"+ $scope.position_id +"/get_with_company").
             success(function(data){
             if(data.error.code == 1){
-                console.log(data);
                 $scope.position = data.data;
                 $scope.position.scale_value = $scope.latest_scale[$scope.position.company.scale];
                 $scope.position.field_value = $scope.cfield[$scope.position.company.field];
@@ -409,7 +408,6 @@ angular.module('chuangplus_mobile.controllers', [])
                 if($scope.favor_exist == true)
                 {
                     $scope.post_value = "取消收藏";
-                    console.log("exist " + $scope.post_value);
                 }
                 else
                     $scope.post_value = "加入收藏";
