@@ -1,0 +1,33 @@
+<div id="container">
+    <div id="userresume_edit">
+        <div class="title">
+            <span>&nbsp;&nbsp;&nbsp;简历预览&nbsp;&nbsp;&nbsp;</span><br/>
+            <div class="line"></div>
+        </div>
+        <div class="view">
+            <div class="first-line">
+                <span class="name">[[intern_info.real_name]]</span>
+                <span class="gender" nf-if="intern_info.gender='1'">男</span>
+                <span class="gender" nf-if="intern_info.gender='0'">女</span>
+            </div>
+            <div class="second-line">
+                <span class="university">[[intern_info.university]]</span>
+                <span class="department">[[intern_info.major]]</span>
+                <span class="grade">[[intern_info.grade]]</span>
+            </div>
+            <p class="work_days">每周可工作时长：[[intern_info.work_days]]天/周</p>
+            <p class="cellphone">TEL：[[intern_info.cellphone]]</p>
+            <p class="description">[[intern_info.description]]</p>
+        </div>
+        <div class="title">
+            <span>&nbsp;&nbsp;&nbsp;简历附件&nbsp;&nbsp;&nbsp;</span><br/>
+            <div class="line"></div>
+        </div>
+        <div class="resume">
+            <img src="/static/image/logo/fujian-01.png">
+            <div class="no-resume" ng-show="intern_info.resume_id == null">无简历附件</div>
+            <div class="resume-name"><a ng-show="intern_info.resume_id != null" ng-href="/api/file/[[intern_info.resume_id]]/download" target="_self">[[filename]]</a></div>
+        </div>
+        <button class="edit-resume-btn" ng-click="edit_resume()">编辑简历</button>
+    </div>
+</div>

@@ -1031,6 +1031,70 @@ form.financing_add input {
 #container #userresume .save-resume-btn:hover {
   background-color: #98769E;
 }
+#container #userresume_edit .title {
+  margin-top: 20px;
+}
+#container #userresume_edit .title span {
+  color: #707070;
+  font-size: 1.2em;
+  font-family: "华文细黑";
+}
+#container #userresume_edit .title div.line {
+  width: 96px;
+  background-color: #8f4e96;
+  margin-top: 4px;
+  height: 7px;
+}
+#container #userresume_edit .view {
+  font-family: "微软雅黑";
+  min-height: 300px;
+  margin-top: 20px;
+  padding-left: 30px;
+  background-color: rgba(240, 240, 240, 0.5);
+}
+#container #userresume_edit .view .first-line {
+  padding-top: 30px;
+}
+#container #userresume_edit .view .first-line .name {
+  font-size: 1.5em;
+}
+#container #userresume_edit .view .first-line .gender {
+  margin-left: 10px;
+}
+#container #userresume_edit .view .second-line {
+  padding-top: 10px;
+}
+#container #userresume_edit .resume {
+  height: 100px;
+  width: 50%;
+  background-color: rgba(240, 240, 240, 0.5);
+  margin-top: 10px;
+}
+#container #userresume_edit .resume img {
+  height: 60px;
+  margin-top: 20px;
+  margin-left: 25px;
+}
+#container #userresume_edit .resume .no-resume {
+  position: relative;
+  top: -40px;
+  left: 90px;
+}
+#container #userresume_edit .resume .resume-name {
+  position: relative;
+  top: -40px;
+  left: 90px;
+}
+#container #userresume_edit .edit-resume-btn {
+  float: right;
+  background-color: #8f4e96;
+  color: white;
+  padding: 7px 15px;
+  border-color: rgba(0, 0, 0, 0);
+}
+#container #userresume_edit .edit-resume-btn:hover {
+  background-color: #98769E;
+}
 #container {
   margin: 0 auto;
   display: block;
@@ -1697,17 +1761,50 @@ form.financing_add input {
   margin-bottom: 15px;
 }
 #container #homepage .company-block {
-  height: 200px;
+  height: 70px;
   margin-bottom: 15px;
-  float: left;
+  width: 100%;
+  border: 1px solid #b2b2b2;
 }
-#container #homepage .company-block a span {
+#container #homepage .company-block .company-item {
+  float: left;
+  width: 230px;
+  margin-top: 23px;
+  font-size: 1.2em;
+  text-align: center;
+}
+#container #homepage .company-block .company-item a {
+  text-decoration: none;
   color: #9f4e96;
+  cursor: pointer;
+}
+#container #homepage .company-block .company-item a:hover {
+  text-decoration: none;
+  color: #98769E;
+  cursor: pointer;
 }
 #container #homepage .intern-block {
-  height: 200px;
+  height: 70px;
   margin-bottom: 15px;
+  width: 100%;
+  border: 1px solid #b2b2b2;
+}
+#container #homepage .intern-block .intern-item {
   float: left;
+  width: 230px;
+  margin-top: 23px;
+  font-size: 1.2em;
+  text-align: center;
+}
+#container #homepage .intern-block .intern-item a {
+  text-decoration: none;
+  color: #9f4e96;
+  cursor: pointer;
+}
+#container #homepage .intern-block .intern-item a:hover {
+  text-decoration: none;
+  color: #98769E;
+  cursor: pointer;
 }
 #container #homepage .info-block-1 {
   height: 300px;
