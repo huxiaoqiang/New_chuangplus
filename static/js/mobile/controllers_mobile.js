@@ -527,18 +527,24 @@ angular.module('chuangplus_mobile.controllers', [])
             $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
         };
         $scope.register = function(){
-            console.log($scope.info_check);
-            $csrf.set_csrf($scope.reg_info);
-            console.log($scope.reg_info);
-            $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
-                success(function(data){
-                    if(data.error.code == 1){
-                        setTimeout(function(){window.location.href='/'},1500);
-                    }
-                    else{
+            var checked_info = 0;
+            for (var i = $scope.info_check.length - 1; i >= 0; i--) {
+                checked_info += $scope.info_check[i];
+            };
+            if(checked_info == 4)
+            {
+                console.log($scope.reg_info);
+                $csrf.set_csrf($scope.reg_info);
+                $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
+                    success(function(data){
+                        if(data.error.code == 1){
+                            setTimeout(function(){window.location.href='/mobile'},1500);
+                        }
+                        else{
 
-                    }
-                });
+                        }
+                    });
+            }
         };
 
         $scope.check_captcha = function(){
@@ -556,7 +562,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     else
                     {
                         $('#captcha-pass').show();
-                        $scope.info_check[3] = 0;
+                        $scope.info_check[3] = 1;
                     }
 
                 });
