@@ -48,7 +48,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     $scope.company_list = data.data;
                     console.log(data);
                     for(var i=0;i<$scope.company_list.length;i++){
-                        $scope.company_list[i].stage_value = $scope.stage[$scope.company_list[i].scale];
+                        $scope.company_list[i].scale_value = $scope.stage[$scope.company_list[i].scale];
                         $scope.company_list[i].field_value = $scope.pfield[$scope.company_list[i].field];
                         $scope.company_list[i].type_value = $scope.ptype[$scope.company_list[i].type];
                         $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
@@ -244,7 +244,7 @@ angular.module('chuangplus_mobile.controllers', [])
                             
                             for(var i=0; i<$scope.company.financing_number; i++){
                                 $scope.company.financing_data[i].organization = $scope.company.financing_data[i].organization;
-                                $scope.company.financing_data[i].stage_value = $scope.stage[$scope.company.financing_data[i].stage];
+                                $scope.company.financing_data[i].scale_value = $scope.stage[$scope.company.financing_data[i].stage];
                                 $scope.company.financing_data[i].amount_value = $scope.amount[$scope.company.financing_data[i].amount];
                             }
                     }
@@ -956,7 +956,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 if(data.error.code == 1){
                 $scope.company_list = data.data;
                 $scope.company_num = $scope.company_list.length;
-                for(i = 0; i < $scope.company_list.length; i ++){
+                for(var i = 0; i < $scope.company_list.length; i ++){
                     $scope.company_list[i].field_value = $scope.cfield[$scope.company_list[i].field];
                     $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
                     $scope.company_list[i].position_types = {};
