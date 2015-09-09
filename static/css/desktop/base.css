@@ -1031,6 +1031,9 @@ form.financing_add input {
 #container #userresume .save-resume-btn:hover {
   background-color: #98769E;
 }
+#container #userresume_edit {
+  margin-top: 5%;
+}
 #container #userresume_edit .title {
   margin-top: 20px;
 }
