@@ -1,5 +1,8 @@
 <div ng-controller="MB_LoginCtrl">
 <div ng-include="'/static/partials/mobile/partials/sidebar-left.html'" ></div>
+<div class="notice-bar">
+  notice
+</div>
 <div ng-swipe-right='Ui.turnOn("uiSidebarLeft")'  ui-swipe-left='Ui.turnOff("uiSidebarLeft")'>
 <div class="navbar navbar-app navbar-absolute-top selected" >
     <div class="navbar-brand navbar-brand-center" style="font-size: 20px;" >
@@ -27,29 +30,30 @@
 
     </div>
     <div class="login-input">
-    <form name="login" id="login" role="form" ng-submit='login()'>
+    <div name="login" id="login" >
       <div class="panel-list">
         <span class="panel-group-top purple-border">
           <div class="panel-elem elem-width-4 panel-title">邮箱</div>
-          <input class="panel-elem elem-width-43" type="email" placeholder="请输入邮箱">
+          <input class="panel-elem elem-width-43" type="email" name="email" ng-model="login_info.email" placeholder="请输入邮箱" required>
         </span>
 
         <span class="panel-group-mid purple-border">
           <div class="panel-elem elem-width-4 panel-title">密码</div>
-          <input class="panel-elem elem-width-43" type="password" placeholder="请输入密码">
+          <input class="panel-elem elem-width-43" type="password" ng-model="login_info.password" placeholder="请输入密码" required> 
         </span>
 
         <span class="panel-group-bot purple-border">
           <div class="panel-elem elem-width-4 panel-title">验证码</div>
-          <input class="panel-elem elem-width-3" type="text" placeholder="验证码" ng-model="reg_info.captcha" required>
+          <input class="panel-elem elem-width-3" type="text" ng-blur="check_captcha()" placeholder="验证码" ng-model="login_info.captcha" required>
           <span class="panel-elem elem-width-4 panel-title"><img ng-click="refresh_captcha()" ng-src='[[captcha_url]]' id="captcha_img" alt="验证码"></span>
+          <i class="fa fa-check-circle input-notice" id="captcha-pass"></i>
         </span>
       </div>
-    </form>
+    </div>
     </div>
 
     <div class="panel-list">
-        <button class="panel-radius form-control info-input">登录</button>
+        <button class="panel-radius form-control info-input" ng-click="login_user()">登录</button>
         <a class="panel-radius form-control" href="/mobile/register">注册</a>
     </div>
     </div>

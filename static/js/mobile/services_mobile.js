@@ -13,7 +13,6 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
         }
      })
     .service('CsrfService', ['$cookies' ,function($cookies){
-        console.log("fffxxx");
         return {
             'val': function() {
                 return $cookies.csrftoken;
