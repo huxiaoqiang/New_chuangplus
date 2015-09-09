@@ -533,7 +533,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     success(function(data){
                         console.log(data);
                         if(data.error.code == 1){
-                            console.log("登陆成功")
+                            console.log("登陆成功");
                             setTimeout(function(){$location.url('/mobile');},500);
                         }
                         else
@@ -730,7 +730,7 @@ angular.module('chuangplus_mobile.controllers', [])
             success(function(data){
                 if(data.error.code == 1){
                     $scope.positions = data.data;
-                    for(i = 0; i < $scope.positions.length; i ++){
+                    for(var i = 0; i < $scope.positions.length; i ++){
                         $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
                         if($scope.positions[i].company.scale == 0){
                             $scope.positions[i].company.scale_value = "初创";
@@ -796,7 +796,7 @@ angular.module('chuangplus_mobile.controllers', [])
         };
 
         $scope.submit_all = function(){
-        for(i = 0; i < $scope.positions.length; i ++){
+        for(var i = 0; i < $scope.positions.length; i ++){
             $scope.submit(i);
         }
         };
