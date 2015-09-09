@@ -1,4 +1,4 @@
-<div ng-controller="MB_EditResumeCtrl">
+<form ng-controller="MB_EditResumeCtrl" id="info-form">
   <div class="scrollable">
   <div class="scrollable-content">
   <div class="header-bar">
@@ -66,21 +66,21 @@
 
             <div class="resume-block-att" ng-if="intern_info.resume_id == null">无简历附件</div>
 
-            <div class="panel-radius login-btn form-control btn-b-pur" ng-model="resume" ngf-select="upload($file,'resume')" type="file">上传/更新附件</div>
+            <div class="panel-radius login-btn form-control btn-b-pur" ng-model="resume" ngf-select="upload($file,'resume')" type="file">上传/更新附件</div>`
 
-            <div class="panel-radius login-btn form-control btn-b-pur" ng-click="save_intern_info()">更新简历</div>
+            <div class="panel-radius login-btn form-control btn-b-pur" ng-submit="save_intern_info()">更新简历</div>
             
           <!--
             <a class="panel-radius login-btn form-control btn-b-pur" href="/mobile/home/uploadresume">上传/更新简历附件</a>
           -->
-          <a class="panel-radius form-control lit-p-bg">暂不上传，直接投递</a>
+          <a class="panel-radius form-control lit-p-bg" ng-submit="save_intern_info()">暂不上传，直接投递</a>
         </div>
       </div>
     </form>
   </div>
   </div>
   </div>
-</div>
+</form>
 
 
 

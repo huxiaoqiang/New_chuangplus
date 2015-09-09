@@ -1040,6 +1040,48 @@ angular.module('chuangplus_mobile.controllers', [])
             });
         };
     }])
+
+    .controller('MB_UserInfoUpdateCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
+    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
+        console.log('MB_UserInfoUpdateCtrl');
+        $scope.info = {};
+        $scope.user_info = {};
+        $scope.user_pwd = {};
+        $scope.info.username = $user.username();
+        $scope.e_check = {};
+
+        $http.get(urls.api+"/account/userinfo/get").
+            success(function(data){
+            if(data.error.code == 1){
+                $scope.user_info = data.data;
+            }
+        });
+
+        $scope.update_info = function(){
+             $csrf.set_csrf($scope.user_info);
+             $http.post(urls.api+"/account/userinfo/set", $.param($scope.user_info))
+                .success(function(data){
+                if(data.error.code == 1){
+                    $notice.show("修改成功");
+                }
+                else{
+                    $notice.show($errMsg.format_error("",data.error));
+                }
+                });
+
+            $csrf.set_csrf($scope.user_pwd);
+            $http.post(urls.api+"/account/password/set", $.param($scope.user_pwd))
+                .success(function(data){
+                console.log(data);
+                if(data.error.code == 1){
+                    $notice.show("修改成功");
+                }
+                else{
+                    $notice.show($errMsg.format_error("",data.error));
+                }
+                });
+        }  
+    }])
     .controller('MB_InfoCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('MB_InfoCtrl');
     }]);
