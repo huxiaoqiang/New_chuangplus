@@ -48,7 +48,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     $scope.company_list = data.data;
                     console.log(data);
                     for(var i=0;i<$scope.company_list.length;i++){
-                        $scope.company_list[i].stage_value = $scope.stage[$scope.company_list[i].scale];
+                        $scope.company_list[i].scale_value = $scope.stage[$scope.company_list[i].scale];
                         $scope.company_list[i].field_value = $scope.pfield[$scope.company_list[i].field];
                         $scope.company_list[i].type_value = $scope.ptype[$scope.company_list[i].type];
                         $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
@@ -222,6 +222,7 @@ angular.module('chuangplus_mobile.controllers', [])
             "thousand_plus":"亿级"
         };
 
+        //获取公司相关信息
         $scope.get_company = function(){
             $http.get(urls.api+"/account/company/" + $scope.company_id + "/detail_with_positions").
               success(function(data){
@@ -243,7 +244,7 @@ angular.module('chuangplus_mobile.controllers', [])
                             
                             for(var i=0; i<$scope.company.financing_number; i++){
                                 $scope.company.financing_data[i].organization = $scope.company.financing_data[i].organization;
-                                $scope.company.financing_data[i].stage_value = $scope.stage[$scope.company.financing_data[i].stage];
+                                $scope.company.financing_data[i].scale_value = $scope.stage[$scope.company.financing_data[i].stage];
                                 $scope.company.financing_data[i].amount_value = $scope.amount[$scope.company.financing_data[i].amount];
                             }
                     }
@@ -280,6 +281,63 @@ angular.module('chuangplus_mobile.controllers', [])
                 });
         };
         $scope.get_company();
+
+                
+
+        //获取关注信息
+        $scope.check_favor_company = function(){
+            $http.get(urls.api+"/account/userinfo/"+$scope.company_id+"/check_favor_company").
+                success(function(data){
+                if(data.error.code == 1){
+                    $scope.favor_exist = data.data.exist;
+                    if($scope.favor_exist == true)
+                    {
+                        $scope.post_value = "取消收藏";
+                    }
+                    else
+                        $scope.post_value = "收藏职位";
+                }
+                else{
+                    $scope.error = $errorMsg.format_error('',data.error);
+                }
+            });
+        };
+        $scope.check_favor_company();
+
+
+        //进行收藏和取消 
+        $scope.post = function(){
+            if($scope.favor_exist == false){
+                $scope.param = {
+                    "csrfmiddlewaretoken" : $csrf.val()
+                };
+                $http.post(urls.api + "/account/company/"+$scope.company_id+"/like", $.param($scope.param)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.post_value = "取消收藏";
+                        $scope.favor_exist = true;
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                    }
+                });
+            }
+            else{
+                $scope.param = {
+                    "csrfmiddlewaretoken" : $csrf.val()
+                };
+                $http.post(urls.api + "/account/company/"+$scope.company_id+"/unlike", $.param($scope.param)).
+                    success(function(data){
+                        if(data.error.code == 1){
+                            $scope.post_value = "收藏职位";
+                            $scope.favor_exist = false;
+                        }
+                        else{
+                            $scope.error = $errMsg.format_error('',data.error);
+                        }
+                });
+            }
+        };
     }])
     .controller('MB_PositionListCtrl', ['$scope', '$http', 'urls', '$routeParams',
     function($scope, $http, urls, $routeParams) {
@@ -410,7 +468,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     $scope.post_value = "取消收藏";
                 }
                 else
-                    $scope.post_value = "加入收藏";
+                    $scope.post_value = "收藏公司";
             }
             else{
                 console.log(data.error.message);
@@ -435,13 +493,11 @@ angular.module('chuangplus_mobile.controllers', [])
                 $csrf.set_csrf($scope.submitUnFavor);
                 $http.post(urls.api+"/position/"+$scope.position_id+"/userunlikeposition", $.param($scope.submitUnFavor)).
                 success(function(data){
-                    $scope.post_value = "收藏职位";
+                    $scope.post_value = "收藏公司";
                     $scope.favor_exist = false;
                 });
             }
         };
-
-    console.log($scope.position_id);
     /*
 
     $http.get(urls.api+"/account/userinfo/"+$scope.position_id+"/check_favor_position").
@@ -714,7 +770,7 @@ angular.module('chuangplus_mobile.controllers', [])
             return true;
         };
         $scope.check_pass_same = function(){
-            if($scope.reg_info.password != $scope.repeate_password)
+            if($scope.reg_info.password != $scope.repeate_password && $scope.reg_info.password != undefined)
             {
                 $notice.show('两次输入密码需一致');
                 $('#pass2-pass').hide();
@@ -856,6 +912,205 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.param = function(index){
             $scope.index = index;
         };
+    }])
+    .controller('MB_CompanyFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService',
+    function($scope, $http, urls, $csrf, $routeParams, $user) {
+        $scope.company_list = {};
+        $scope.position_type = {
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+        };
+        $scope.position_index = {
+            "technology":0,
+            "product":1,
+            "design":2,
+            "operate":3,
+            "marketing":4,
+            "functions":5,
+            "others":6
+        };
+        $scope.scale = {
+            0:"初创",
+            1:"快速发展",
+            2:"成熟"
+        };
+        $scope.cfield = {
+                'social':'社交',
+                'e_commerce':'电子商务',
+                'education':'健康医疗',
+                'health_medical':'文化创意',
+                'culture_creativity':'硬件',
+                'living_consumption':'O2O',
+                'hardware':'生活消费',
+                'O2O':'教育',
+                'others':'其它'
+        };
+        $scope.get_company_list = function(){
+            $http.get(urls.api+"/account/userinfo/company/favor/list").
+            success(function(data){
+                if(data.error.code == 1){
+                $scope.company_list = data.data;
+                $scope.company_num = $scope.company_list.length;
+                for(var i = 0; i < $scope.company_list.length; i ++){
+                    $scope.company_list[i].field_value = $scope.cfield[$scope.company_list[i].field];
+                    $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
+                    $scope.company_list[i].position_types = {};
+                    $scope.company_list[i].scale_value = $scope.scale[$scope.company_list[i].scale];
+                    for(j = 0; j < $scope.company_list[i].positions.length; j ++)
+                    {
+                        $scope.company_list[i].position_types[$scope.position_index[$scope.company_list[i].positions[j].position_type]] = $scope.position_type[$scope.company_list[i].positions[j].position_type];
+                    }
+                }
+                }
+                else{
+                $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
+        $scope.get_company_list();
+    }])
+    .controller('MB_EditResumeCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','Upload',
+    function($scope, $http, urls, $csrf, $routeParams, $user ,Upload) {
+    console.log('MB_EditResumeCtrl');
+        $scope.filename = "无简历附件";
+        $scope.intern_info = {};
+        $scope.get_intern_info = function(){
+            $http.get(urls.api+"/account/userinfo/get").
+              success(function(data){
+                if(data.error.code == 1){
+                    $scope.intern_info = data.data;
+                    if($scope.intern_info.resume_name != undefined && $scope.intern_info.resume_id != undefined){
+                        $scope.filename = $scope.intern_info.resume_name;
+                    }
+                }
+                else{
+                    $scope.error = $errMsg.format_error("",data.error);
+                }
+              });
+        };
+        $scope.get_intern_info();
+        $scope.save_intern_info = function(){
+            $csrf.set_csrf($scope.intern_info);
+            $http.post(urls.api+"/account/userinfo/set", $.param($scope.intern_info)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.error = $errMsg.format_error("修改成功",data.error);
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error("",data.error);
+                    }
+                });
+        };
+        $scope.upload = function(file,file_t){
+            var param = {
+               "file_type": file_t,
+               "description": $user.username(),
+               "category": $user.username() + '_'+file_t
+            };
+            var headers = {
+                   'X-CSRFToken': $csrf.val(),
+                   'Content-Type': file.type
+               };
+            Upload.upload({
+               url:urls.api+'/file/upload',
+               data: param,
+               headers:headers,
+               file: file
+            }).
+            progress(function(evt){
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                $scope.progress= 'progress: ' + progressPercentage + '% ' + evt.config.file.name;
+            }).
+            success(function(data, status, headers, config){
+                if(data.error.code == 1){
+                    $scope.intern_info.resume_name = config.file.name;
+                    console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
+                    $scope.intern_info.resume_id = data.data;
+                    $scope.filename = config.file.name;
+                }
+                else{
+                    console.log(data.error.message);
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
+    }])
+
+    .controller('MB_UserInfoUpdateCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
+    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
+        console.log('MB_UserInfoUpdateCtrl');
+        $scope.info = {};
+        $scope.user_info = {};
+        $scope.user_pwd = {};
+        $scope.info.username = $user.username();
+        $scope.e_check = {};
+
+        $http.get(urls.api+"/account/userinfo/get").
+            success(function(data){
+            if(data.error.code == 1){
+                $scope.user_info = data.data;
+            }
+        });
+
+
+        $scope.check_pass_len = function(){
+            if($scope.user_pwd.new_password == undefined)
+            {
+                $notice.show('为保证安全，密码最少为6位');
+                $('#pass1-pass').hide();
+                $scope.info_check = 0;
+                return false;
+            }
+            $('#pass1-pass').show();
+            $scope.info_check = 1;
+            return true;
+        };
+        $scope.check_pass_same = function(){
+            if($scope.user_pwd.new_password != $scope.repeate_password && $scope.user_pwd.new_password != undefined)
+            {
+                $notice.show('两次输入密码需一致');
+                $('#pass2-pass').hide();
+                $scope.info_check = 0;
+                return false;
+            }
+            $('#pass2-pass').show();
+            $scope.info_check = 1;
+            return true;
+        };
+
+        $scope.update_info = function(){
+             $csrf.set_csrf($scope.user_info);
+             $http.post(urls.api+"/account/userinfo/set", $.param($scope.user_info))
+                .success(function(data){
+                if(data.error.code == 1){
+                    $notice.show("修改信息成功");
+                }
+                else{
+                    $notice.show($errMsg.format_error("",data.error));
+                }
+            });
+
+            if($scope.info_check == 1)
+            {
+                $csrf.set_csrf($scope.user_pwd);
+                $http.post(urls.api+"/account/password/set", $.param($scope.user_pwd))
+                    .success(function(data){
+                    console.log(data);
+                    if(data.error.code == 1){
+                        $notice.show("修改密码成功");
+                    }
+                    else{
+                        $errMsg.format_error("",data.error);
+                        $notice.show(data.error.msg);
+                    }
+                });
+            }
+        }  
     }])
     .controller('MB_InfoCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('MB_InfoCtrl');

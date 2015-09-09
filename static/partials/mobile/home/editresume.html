@@ -1,74 +1,86 @@
-<div class="scrollable">
-<div class="scrollable-content">
-<div class="header-bar">
-    <div class="header">我的简历</div>
-</div>    
+<form ng-controller="MB_EditResumeCtrl" id="info-form">
+  <div class="scrollable">
+  <div class="scrollable-content">
+  <div class="header-bar">
+      <div class="header">我的简历</div>
+  </div>    
 
-<div class="edit-resume">
-  <form name="editresume" id="editresume" role="form" ng-submit='edit_resume()'>
-    <div class="info-block">
-      <div class="panel-list">
-        <div class="resume-block-title">基本信息</div>
-        <span class="panel-group-top lit-gray-border">
-          <div class="panel-elem elem-width-4 panel-title font-color-g">姓名</div>
-          <input class="panel-elem elem-width-43" type="email" placeholder="">
-        </span>
+  <div class="edit-resume">
+    <form name="editresume" id="editresume" role="form" ng-submit='edit_resume()'>
+      <div class="info-block">
+        <div class="panel-list">
+          <div class="resume-block-title">基本信息</div>
+          <span class="panel-group-top lit-gray-border">
+            <div class="panel-elem elem-width-4 panel-title font-color-g">姓名</div>
+            <input class="panel-elem elem-width-43" type="text" ng-model="intern_info.real_name">
+          </span>
 
-        <span class="panel-group-mid lit-gray-border">
-          <div class="panel-elem elem-width-4 panel-title font-color-g">性别</div>
-          <div class="panel-width-43 panel-select">
-                <select>
-                  <option value ="1">男</option>
-                  <option value="2">女</option>
-                </select>
-              </div>
-        </span>
-        <span class="panel-group-mid lit-gray-border">
-          <div class="panel-elem elem-width-4 panel-title font-color-g">每周工作</div>
-          <div class="panel-width-43 panel-select">
-                <select>
-                  <option value="2">弹性工作时间</option>
-                  <option value ="3">3天</option>
-                  <option value="4">4天</option>
-                  <option value ="5">5天</option>
-                  <option value="6">6天</option>
-                  <option value ="7">7天</option>
-                </select>
-              </div>
-        </span>
+          <span class="panel-group-mid lit-gray-border">
+            <label class="panel-elem elem-width-4 panel-title font-color-g">性别</label>
+            <div class="panel-width-43 panel-select">
+                  <select ng-model="intern_info.gender">
+                    <option value="1" ng-select="intern_info.gender='1'">男</option>
+                    <option value="0" ng-select="intern_info.gender='0'">女</option>
+                  </select>
+                </div>
+          </span>
+          <span class="panel-group-mid lit-gray-border">
+            <div class="panel-elem elem-width-4 panel-title font-color-g">每周工作</div>
+            <div class="panel-width-43 panel-select">
+                  <select ng-model="intern_info.work_days" required>
+                    <option value="0" ng-select="intern_info.work_days='0'">弹性工作时间</option>
+                    <option value="3" ng-select="intern_info.work_days='3'">3天</option>
+                    <option value="4" ng-select="intern_info.work_days='4'">4天</option>
+                    <option value="5" ng-select="intern_info.work_days='5'">5天</option>
+                    <option value="6" ng-select="intern_info.work_days='6'">6天</option>
+                    <option value="7" ng-select="intern_info.work_days='7'">7天</option>
+                  </select>
+                </div>
+          </span>
 
-        <span class="panel-group-bot lit-gray-border">
-          <div class="panel-elem elem-width-4 panel-title font-color-g">手机</div>
-          <input class="panel-elem elem-width-43" type="text">
-        </span>
+          <span class="panel-group-bot lit-gray-border">
+            <div class="panel-elem elem-width-4 panel-title font-color-g">手机</div>
+            <input class="panel-elem elem-width-43" ng-model="intern_info.cellphone" type="tel">
+          </span>
+        </div>
       </div>
-    </div>
 
-    <div class="info-block">
-      <div class="panel-list">
-          <div class="resume-block-title">百字简介</div>
-          <div class="info-block-tip">
+      <div class="info-block">
+        <div class="panel-list">
+            <div class="resume-block-title">百字简介</div>
+            <div class="info-block-tip">
+                未上传简历前，HR只能通过百字简介判断是否邀请面试，请认真填写。建议格式：基本信息+教育经历+工作/项目经历+学生工作经历+技能+性格特点
+            </div>
+            <textarea ng-model="intern_info.description" class="info-block-textarea">
               未上传简历前，HR只能通过百字简介判断是否邀请面试，请认真填写。建议格式：基本信息+教育经历+工作/项目经历+学生工作经历+技能+性格特点
-          </div>
-          <textarea class="info-block-textarea">
-            未上传简历前，HR只能通过百字简介判断是否邀请面试，请认真填写。建议格式：基本信息+教育经历+工作/项目经历+学生工作经历+技能+性格特点
-          </textarea>
+            </textarea>
+        </div>
       </div>
-    </div>
 
 
-    <div class="info-block-last">
-      <div class="panel-list">
-          <div class="resume-block-title">简历附件</div>
-          <a class="resume-block-att">小犀牛2015.pdf</a>
-        <a class="panel-radius login-btn form-control btn-b-pur" href="/mobile/home/uploadresume">上传/更新简历附件</a>
-        <a class="panel-radius form-control lit-p-bg">暂不上传，直接投递</a>
+      <div class="info-block-last">
+        <div class="panel-list">
+            <div class="resume-block-title">简历附件</div>
+
+            <a ng-if="intern_info.resume_id != null" class="resume-block-att" ng-href="/api/file/[[intern_info.resume_id]]/download" target="_self">[[filename]]</a>
+
+            <div class="resume-block-att" ng-if="intern_info.resume_id == null">无简历附件</div>
+
+            <div class="panel-radius login-btn form-control btn-b-pur" ng-model="resume" ngf-select="upload($file,'resume')" type="file">上传/更新附件</div>`
+
+            <div class="panel-radius login-btn form-control btn-b-pur" ng-submit="save_intern_info()">更新简历</div>
+            
+          <!--
+            <a class="panel-radius login-btn form-control btn-b-pur" href="/mobile/home/uploadresume">上传/更新简历附件</a>
+          -->
+          <a class="panel-radius form-control lit-p-bg" ng-submit="save_intern_info()">暂不上传，直接投递</a>
+        </div>
       </div>
-    </div>
-  </form>
-</div>
-</div>
-</div>
+    </form>
+  </div>
+  </div>
+  </div>
+</form>
 
 
 

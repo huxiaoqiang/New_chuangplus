@@ -90,6 +90,15 @@ body
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     overflow-x: hidden;
 }
+.no-bar-top
+{
+    top: 0 !important;
+}
+.sidebar-toggle
+{
+    color: white !important; 
+    font-size: 17px !important;
+}
 .no-margin
 {
     margin: 0 0 0 0 !important;
@@ -300,23 +309,24 @@ a:hover
 }
 .notice-bar
 {
-    height: 40px;
+    height: 42px;
     width: 100%;
     background-color: red;
     z-index: 10000000;
     position: fixed;
     top: 50px;
     color: white;
-    font-size: 20px;
+    font-size: 19px;
     line-height: 40px;
     text-align: center;
     display: none;
 }
 #captcha_img
-{
-    margin-left: 45%;
-    margin-bottom: 7px;
+{    
     height: 38px;
+    position: absolute;
+    right: 37px;
+    bottom: 9px;
 }
 #captcha-pass
 {
@@ -971,6 +981,7 @@ a:hover
     line-height: 17px;
     position: absolute;
     right: 0; top: 0;
+    z-index: 100;
     background-color: #e66665;
 }
 

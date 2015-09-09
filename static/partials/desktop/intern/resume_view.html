@@ -3,8 +3,8 @@
         <div class="view">
             <div class="first-line">
                 <span class="name">[[intern_info.real_name]]</span>
-                <span class="gender" nf-if="intern_info.gender='1'">男</span>
-                <span class="gender" nf-if="intern_info.gender='0'">女</span>
+                <span class="gender" ng-if="intern_info.gender==1">男</span>
+                <span class="gender" ng-if="intern_info.gender==0">女</span>
             </div>
             <div class="second-line">
                 <span class="university">[[intern_info.university]]</span>
@@ -26,3 +26,4 @@
 
     </div>
 </div>
+
