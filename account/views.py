@@ -196,7 +196,7 @@ def set_password(request):
                 user.save()
                 re['error'] = error(1, 'settings OK')
             else:
-                re['error'] = error(101, 'password error')
+                re['error'] = error(117, 'password error')
     else:
         re['error'] = error(2, 'error,need get')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
