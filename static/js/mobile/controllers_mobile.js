@@ -289,13 +289,14 @@ angular.module('chuangplus_mobile.controllers', [])
             $http.get(urls.api+"/account/userinfo/"+$scope.company_id+"/check_favor_company").
                 success(function(data){
                 if(data.error.code == 1){
+                    console.log(data);
                     $scope.favor_exist = data.data.exist;
                     if($scope.favor_exist == true)
                     {
                         $scope.post_value = "取消收藏";
                     }
                     else
-                        $scope.post_value = "收藏职位";
+                        $scope.post_value = "收藏公司";
                 }
                 else{
                     $scope.error = $errorMsg.format_error('',data.error);
@@ -329,7 +330,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 $http.post(urls.api + "/account/company/"+$scope.company_id+"/unlike", $.param($scope.param)).
                     success(function(data){
                         if(data.error.code == 1){
-                            $scope.post_value = "收藏职位";
+                            $scope.post_value = "收藏公司";
                             $scope.favor_exist = false;
                         }
                         else{
