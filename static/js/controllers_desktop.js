@@ -425,7 +425,29 @@ angular.module('chuangplus.controllers', []).
     };
 
     }]).
-    controller('DT_InternResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
+    controller('DT_InternResumeViewCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
+        $scope.filename = "无简历附件";
+        $scope.intern_info = {};
+        $scope.edit_resume = function(){
+            window.location.href = "/intern/resume/edit";
+        };
+        $scope.get_intern_info = function(){
+            $http.get(urls.api+"/account/userinfo/get").
+              success(function(data){
+                if(data.error.code == 1){
+                    $scope.intern_info = data.data;
+                    if($scope.intern_info.resume_name != undefined && $scope.intern_info.resume_id != undefined){
+                        $scope.filename = $scope.intern_info.resume_name;
+                    }
+                }
+                else{
+                    $scope.error = $errMsg.format_error("",data.error);
+                }
+              });
+        };
+        $scope.get_intern_info();
+    }]).
+    controller('DT_InternResumeEditCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_InternResumeCtrl');
         $scope.filename = "无简历附件";
         $scope.intern_info = {};

@@ -54,7 +54,8 @@ angular.module('chuangplus', [
         $routeProvider.when('/intern/post', {templateUrl: urls.part_desktop + '/intern/post.html', controller: 'DT_InternPostCtrl', title: 'InternPostPage'});
         $routeProvider.when('/intern/favor/company', {templateUrl: urls.part_desktop + '/intern/favor/company.html', controller: 'DT_InternCompanyFavorCtrl', title: 'InternCompanyFavorPage'});
         $routeProvider.when('/intern/favor/position', {templateUrl: urls.part_desktop + '/intern/favor/position.html', controller: 'DT_InternPositionFavorCtrl', title: 'InternPositionFavorPage'});
-        $routeProvider.when('/intern/resume', {templateUrl: urls.part_desktop + '/intern/resume.html', controller: 'DT_InternResumeCtrl', title: 'InternResumePage'});
+        $routeProvider.when('/intern/resume/view', {templateUrl: urls.part_desktop + '/intern/resume_view.html', controller: 'DT_InternResumeViewCtrl', title: '查看简历'});
+        $routeProvider.when('/intern/resume/edit', {templateUrl: urls.part_desktop + '/intern/resume_edit.html', controller: 'DT_InternResumeEditCtrl', title: '查看简历'});
 
         //company user
         $routeProvider.when('/company/regenter', {templateUrl: urls.part_desktop + '/company/regenter.html', controller: 'DT_RegEnterCtrl', title: 'RegEnterPage'});
