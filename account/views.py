@@ -51,7 +51,6 @@ def register(request):
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
         except DoesNotExist:
             reguser = User()
-            #todo validate the email
             try:
                 reguser = User.create_user(username=username, password=password, email=email)
             except Exception as e:
@@ -153,18 +152,11 @@ def login(request):
 
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
-        role = request.POST.get('role','0')
         if username == '' or password == "":
             re['error'] = error(111,"username or password is empty")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         user = auth.authenticate(username=username, password=password)
         if user is not None and user.is_active:
-            if user.is_staff == True and role == '0':
-                re['error'] = error(113,'Role error,turn hr tab to login')
-                return HttpResponse(json.dumps(re), content_type = 'application/json')
-            elif user.is_staff == False and role == '1':
-                re['error'] = error(114,'Role error,turn intern tab to login')
-                return HttpResponse(json.dumps(re), content_type = 'application/json')
             re['username'] = username
             auth.login(request, user)
             user = User.objects.get(username=username)

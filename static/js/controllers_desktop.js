@@ -5,8 +5,6 @@
 angular.module('chuangplus.controllers', []).
     controller('DT_HomepageCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('HomepageCtrl');
-<<<<<<< HEAD
-=======
         $scope.myInterval = 3000;
         $scope.slides1 = [
             {image:"/static/image/logo/banner-1.jpg"},
@@ -18,8 +16,7 @@ angular.module('chuangplus.controllers', []).
             {image:"/static/image/logo/banner-2.jpg"},
             {image:"/static/image/logo/banner-3.jpg"}
         ];
-                                   
->>>>>>> 23bc20529b62a3e325115c9b1009e659ccf81872
+
     }]).
     controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_HeaderCtrl');
@@ -114,16 +111,6 @@ angular.module('chuangplus.controllers', []).
 
         $scope.refresh = function(){
             $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
-        };
-         $scope.student = function(){
-            $scope.tab1 = true;
-            $scope.tab2 = false;
-            $scope.reg_info.role = 0;
-        };
-        $scope.hr = function(){
-            $scope.tab1 = false;
-            $scope.tab2 = true;
-            $scope.reg_info.role = 1;
         };
         $scope.register = function(){
             if ($scope.reg_info.password != $scope.repeate_password)
@@ -491,7 +478,7 @@ angular.module('chuangplus.controllers', []).
                     $scope.intern_info.resume_name = config.file.name;
                     console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
                     $scope.intern_info.resume_id = data.data;
-		    $scope.filename = config.file.name;
+		            $scope.filename = config.file.name;
                 }
                 else{
                     console.log(data.error.message);
