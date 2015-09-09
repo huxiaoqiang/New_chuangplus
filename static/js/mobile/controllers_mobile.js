@@ -489,7 +489,6 @@ angular.module('chuangplus_mobile.controllers', [])
 
     };*/
     }])
-
     .controller('MB_LoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams','NoticeService','$location',
     function($scope, $http, urls, $csrf, $routeParams, $notice, $location) {
         console.log("MB_LoginCtrl");
@@ -534,7 +533,7 @@ angular.module('chuangplus_mobile.controllers', [])
                         console.log(data);
                         if(data.error.code == 1){
                             console.log("登陆成功");
-                            setTimeout(function(){$location.url('/mobile');},500);
+                            setTimeout(function(){$location.url('/mobile');},5);
                         }
                         else
                         {
@@ -571,7 +570,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
                     success(function(data){
                         if(data.error.code == 1){
-                            setTimeout(function(){$location.url('/mobile');},1500);
+                            setTimeout(function(){$location.url('/mobile');},1);
                         }
                         else{
 
@@ -705,6 +704,7 @@ angular.module('chuangplus_mobile.controllers', [])
             $scope.userinfo = {};
             $http.get(urls.api + "/account/userinfo/get").
                 success(function(data){
+                    console.log(data);
                     if(data.error.code == 1){
                         $scope.userinfo = data.data;
                         $scope.submitResume = {};
@@ -728,6 +728,7 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.get_positions = function(){
         $http.get(urls.api+"/account/userinfo/position/favor/list").
             success(function(data){
+                console.log(data);
                 if(data.error.code == 1){
                     $scope.positions = data.data;
                     for(var i = 0; i < $scope.positions.length; i ++){
@@ -771,13 +772,10 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.get_positions();
         $scope.submit = function(index) {
             console.log($scope.positions[index]);
-        if($scope.resume_submitted == true){
-                $scope.submitResume.resume_choice = 1;
-            }
-        else{
-            $scope.submitResume.resume_choice = 3;
-        }
-        console.log("here");
+            if($scope.resume_submitted == true)
+                    $scope.submitResume.resume_choice = 1;
+            else
+                $scope.submitResume.resume_choice = 3;
             $csrf.set_csrf($scope.submitResume);
             $http.post(urls.api + "/position/"+$scope.positions[index]._id.$oid+"/submit", $.param($scope.submitResume)).
                 success(function(data){
@@ -790,9 +788,10 @@ angular.module('chuangplus_mobile.controllers', [])
                 });
             };
         $scope.complete_resume = function(){
-            setTimeout(function(){window.location.href='/intern/resume'},2000);
+            setTimeout(function(){$location.url('/mobile');
+                //wind ow.location.href='/intern/resume'
+                },2000);
             $('#myModal').modal('hide');
-
         };
 
         $scope.submit_all = function(){
@@ -802,7 +801,7 @@ angular.module('chuangplus_mobile.controllers', [])
         };
       
         $scope.param = function(index){
-        $scope.index = index;
+            $scope.index = index;
         };
     }])
     .controller('MB_InfoCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
