@@ -369,9 +369,9 @@ angular.module('chuangplus_mobile.controllers', [])
             'others':"其他"
         };
 
-    
-    $http.get(urls.api+"/position/"+ $scope.position_id +"/get_with_company").
-        success(function(data){
+        //取得该职位信息
+        $http.get(urls.api+"/position/"+ $scope.position_id +"/get_with_company").
+            success(function(data){
             if(data.error.code == 1){
                 console.log(data);
                 $scope.position = data.data;
@@ -399,6 +399,46 @@ angular.module('chuangplus_mobile.controllers', [])
                 console.log(data.error.message)
             }
         });
+
+        //获取该职位和登录用户相关信息
+        $http.get(urls.api+"/account/userinfo/"+$scope.position_id+"/check_favor_position").
+            success(function(data){
+            console.log(data);
+            if(data.error.code == 1){
+                $scope.favor_exist = data.data.exist;
+                if($scope.favor_exist == true)
+                    $scope.post_value = "取消收藏";
+                else
+                    $scope.post_value = "加入收藏";
+            }
+            else{
+                console.log(data.error.message);
+            }
+        });
+
+        //进行收藏和取消 
+        $scope.post = function(){
+            if($scope.favor_exist == false){
+                $scope.submitFavor = {};
+                $scope.submitFavor.position_id = $scope.position_id;
+                $csrf.set_csrf($scope.submitFavor);
+                $http.post(urls.api + "/position/"+$scope.position_id+"/userlikeposition", $.param($scope.submitFavor)).
+                success(function(data){
+                    $scope.post_value = "取消收藏";
+                    $scope.favor_exist = true;
+                });
+            }
+            else{
+                $scope.submitUnFavor = {};
+                $scope.submitUnFavor.position_id = $scope.position_id;
+                $csrf.set_csrf($scope.submitUnFavor);
+                $http.post(urls.api+"/position/"+$scope.position_id+"/userunlikeposition", $.param($scope.submitUnFavor)).
+                success(function(data){
+                    $scope.post_value = "收藏职位";
+                    $scope.favor_exist = false;
+                });
+            }
+        };
 
     console.log($scope.position_id);
     /*

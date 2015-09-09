@@ -26,7 +26,6 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
         };
     }])
     .service('NoticeService', function($cookies){
-        console.log("new notice");
         return {
             'show': function(data) {
                 $(".notice-bar").html(data);
