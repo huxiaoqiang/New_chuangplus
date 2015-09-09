@@ -1696,6 +1696,19 @@ form.financing_add input {
   height: 420px;
   margin-bottom: 15px;
 }
+#container #homepage .company-block {
+  height: 200px;
+  margin-bottom: 15px;
+  float: left;
+}
+#container #homepage .company-block a span {
+  color: #9f4e96;
+}
+#container #homepage .intern-block {
+  height: 200px;
+  margin-bottom: 15px;
+  float: left;
+}
 #container #homepage .info-block-1 {
   height: 300px;
   border: 1px solid #b2b2b2;
