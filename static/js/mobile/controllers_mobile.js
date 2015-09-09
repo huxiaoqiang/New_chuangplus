@@ -5,8 +5,7 @@
 angular.module('chuangplus_mobile.controllers', [])
     .controller('MB_CompanyListCtrl', ['$scope', '$http', 'urls',
      function($scope, $http, urls) {
-       $scope.name = "Arii";
-        console.log('MB_CompanyListCtrl'+urls.api);
+        console.log('MB_CompanyListCtrl');
         $scope.company_list = {};
         $scope.stage = {
             "0":"初创",
@@ -491,8 +490,8 @@ angular.module('chuangplus_mobile.controllers', [])
     };*/
     }])
 
-    .controller('MB_LoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams','NoticeService',
-    function($scope, $http, urls, $csrf, $routeParams, $notice) {
+    .controller('MB_LoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams','NoticeService','$location',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $location) {
         console.log("MB_LoginCtrl");
         $scope.captcha_url = urls.api+"/captcha/image/";
         $scope.login_info = {};
@@ -524,6 +523,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 });
             
         }
+
         $scope.login_user = function(){
             if($scope.is_captcha_ok == 1)
             {
@@ -534,7 +534,7 @@ angular.module('chuangplus_mobile.controllers', [])
                         console.log(data);
                         if(data.error.code == 1){
                             console.log("登陆成功")
-                            setTimeout(function(){window.location.href='/mobile'},500);
+                            setTimeout(function(){$location.url('/mobile');},500);
                         }
                         else
                         {
@@ -571,7 +571,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
                     success(function(data){
                         if(data.error.code == 1){
-                            setTimeout(function(){window.location.href='/mobile'},1500);
+                            setTimeout(function(){$location.url('/mobile');},1500);
                         }
                         else{
 
@@ -688,7 +688,123 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.refresh_captcha();
     }
     ])
+    .controller('MB_PositionFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user) {
+        console.log('MB_PositionFavorCtrl');
+        $scope.positions = {};
+        $scope.position_type = {
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+        };
+        $scope.get_userInfo = function(){
+            $scope.userinfo = {};
+            $http.get(urls.api + "/account/userinfo/get").
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.userinfo = data.data;
+                        $scope.submitResume = {};
+                        $scope.submitResume.position_id = $scope.position_id;
+                        console.log($scope.userinfo.resume_id);
+                        if($scope.userinfo.resume_id != undefined && $scope.userinfo.resume_id != null)
+                        {
+                            $scope.submitResume.resume_choice = 1;
+                            $scope.resume_submitted = true;
+                            console.log("here");
+                        }
+                        else{
+                            $scope.resume_submitted = false;
+                        }
+                    }
+                    else{
+                        console.log(data.error).message;
+                    }
+            });
+       };
+        $scope.get_positions = function(){
+        $http.get(urls.api+"/account/userinfo/position/favor/list").
+            success(function(data){
+                if(data.error.code == 1){
+                    $scope.positions = data.data;
+                    for(i = 0; i < $scope.positions.length; i ++){
+                        $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
+                        if($scope.positions[i].company.scale == 0){
+                            $scope.positions[i].company.scale_value = "初创";
+                        }
+                        else if($scope.positions[i].company.scale == 1){
+                            $scope.positions[i].company.scale_value = "快速发展";
+                        }
+                        else{
+                            $scope.positions[i].company.scale_value = "成熟";
+                        }
+            $scope.check_submit(i);
+                    }
+                }
+                else{
+                    console.log(data.error.message);
+                }
+            });
+        };
+        $scope.check_submit = function(index){
+        $http.get(urls.api+"/position/"+$scope.positions[index]._id.$oid+"/check_submit").
+                success(function(data){
+                    if(data.error.code == 1){
+                        if(data.exist == true){
+                            $scope.positions[index].submit_value = "已投递";
+                            $scope.positions[index].resume_submitted = true;
+                        }
+                        else{
+                            $scope.positions[index].submit_value = "投递简历";
+                    $scope.positions[index].resume_submitted = false;
+                        }
+                    }
+                    else{
+                        console.log(data.error.message);
+                    }
+            });
+        };
+        $scope.get_userInfo();
+        $scope.get_positions();
+        $scope.submit = function(index) {
+            console.log($scope.positions[index]);
+        if($scope.resume_submitted == true){
+                $scope.submitResume.resume_choice = 1;
+            }
+        else{
+            $scope.submitResume.resume_choice = 3;
+        }
+        console.log("here");
+            $csrf.set_csrf($scope.submitResume);
+            $http.post(urls.api + "/position/"+$scope.positions[index]._id.$oid+"/submit", $.param($scope.submitResume)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.positions[index].submit_value = "已投递";
+                    }
+                    else{
+                        console.log(data.error.message);
+                    }
+                });
+            };
+        $scope.complete_resume = function(){
+            setTimeout(function(){window.location.href='/intern/resume'},2000);
+            $('#myModal').modal('hide');
 
+        };
+
+        $scope.submit_all = function(){
+        for(i = 0; i < $scope.positions.length; i ++){
+            $scope.submit(i);
+        }
+        };
+      
+        $scope.param = function(index){
+        $scope.index = index;
+        };
+    }])
     .controller('MB_InfoCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('MB_InfoCtrl');
     }]);
