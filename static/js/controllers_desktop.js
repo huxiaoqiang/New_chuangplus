@@ -70,7 +70,6 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_LoginCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_LoginCtrl');
-        $(".")
         $scope.login_info = {};
         $scope.login_info.role = 0;
         $scope.captcha_url = urls.api+"/captcha/image/";
