@@ -974,6 +974,72 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $scope.get_company_list();
     }])
+    .controller('MB_EditResumeCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','Upload',
+    function($scope, $http, urls, $csrf, $routeParams, $user ,Upload) {
+    console.log('MB_EditResumeCtrl');
+        $scope.filename = "无简历附件";
+        $scope.intern_info = {};
+        $scope.get_intern_info = function(){
+            $http.get(urls.api+"/account/userinfo/get").
+              success(function(data){
+                if(data.error.code == 1){
+                    $scope.intern_info = data.data;
+                    if($scope.intern_info.resume_name != undefined && $scope.intern_info.resume_id != undefined){
+                        $scope.filename = $scope.intern_info.resume_name;
+                    }
+                }
+                else{
+                    $scope.error = $errMsg.format_error("",data.error);
+                }
+              });
+        };
+        $scope.get_intern_info();
+        $scope.save_intern_info = function(){
+            $csrf.set_csrf($scope.intern_info);
+            $http.post(urls.api+"/account/userinfo/set", $.param($scope.intern_info)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.error = $errMsg.format_error("修改成功",data.error);
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error("",data.error);
+                    }
+                });
+        };
+        $scope.upload = function(file,file_t){
+            var param = {
+               "file_type": file_t,
+               "description": $user.username(),
+               "category": $user.username() + '_'+file_t
+            };
+            var headers = {
+                   'X-CSRFToken': $csrf.val(),
+                   'Content-Type': file.type
+               };
+            Upload.upload({
+               url:urls.api+'/file/upload',
+               data: param,
+               headers:headers,
+               file: file
+            }).
+            progress(function(evt){
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                $scope.progress= 'progress: ' + progressPercentage + '% ' + evt.config.file.name;
+            }).
+            success(function(data, status, headers, config){
+                if(data.error.code == 1){
+                    $scope.intern_info.resume_name = config.file.name;
+                    console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
+                    $scope.intern_info.resume_id = data.data;
+                    $scope.filename = config.file.name;
+                }
+                else{
+                    console.log(data.error.message);
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
+    }])
     .controller('MB_InfoCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('MB_InfoCtrl');
     }]);
