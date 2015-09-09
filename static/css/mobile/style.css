@@ -718,6 +718,7 @@ a:hover {
   position: absolute;
   right: 0;
   top: 0;
+  z-index: 100;
   background-color: #e66665;
 }
 .info-update {
