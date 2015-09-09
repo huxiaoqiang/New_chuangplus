@@ -1045,6 +1045,7 @@ angular.module('chuangplus_mobile.controllers', [])
     function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
         console.log('MB_UserInfoUpdateCtrl');
         $scope.info = {};
+        $scope.tab_now = 2;
         $scope.user_info = {};
         $scope.user_pwd = {};
         $scope.info.username = $user.username();
@@ -1083,6 +1084,7 @@ angular.module('chuangplus_mobile.controllers', [])
             return true;
         };
 
+
         $scope.update_info = function(){
              $csrf.set_csrf($scope.user_info);
              $http.post(urls.api+"/account/userinfo/set", $.param($scope.user_info))
@@ -1091,7 +1093,8 @@ angular.module('chuangplus_mobile.controllers', [])
                     $notice.show("修改信息成功");
                 }
                 else{
-                    $notice.show($errMsg.format_error("",data.error));
+                        $errMsg.format_error("",data.error);
+                        $notice.show(data.error.msg);
                 }
             });
 

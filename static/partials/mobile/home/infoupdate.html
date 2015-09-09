@@ -4,14 +4,16 @@
   </div>
   <div class="scrollable">
   <div class="scrollable-content">
+
   <div class="info-update">
-    <form name="infoupdate" id="infoupdate" role="form" ng-submit='updateinfo()'>
+      
+      <div ng-show="tab_now == 1">
       <div class="info-block">
         <div class="panel-list">
           <div class="info-block-title">账户信息</div>
 
           <span class="panel-group-top lit-gray-b-border">
-            <input class="panel-elem full-width-input" type="email" ng-model="user_info.email" placeholder="请输入邮箱">
+            <input class="panel-elem full-width-input" name="password" ng-model="user_pwd.password" type="password" placeholder="请输入旧密码">
           </span>
 
           <span class="panel-group-mid lit-gray-t-border">
@@ -26,31 +28,48 @@
         </div>
       </div>
 
+
+      <div class="info-block">
+        <div class="panel-list">
+          <button class="panel-radius login-btn form-control lit-p-bg" ng-click="update_info()">更新</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div ng-show="tab_now == 2">
       <div class="info-block">
         <div class="panel-list">
             <div class="info-block-title">基本信息</div>
+
+            <span class="panel-radius form-control info-input">
+            <input class="panel-elem full-width-input" type="email" ng-model="user_info.email" placeholder="请输入邮箱">
+            </span>
+
             <span class="panel-radius form-control info-input">
               <input class="panel-elem elem-width-full" type="text" ng-model="user_info.university" placeholder="学校">
             </span>
+
             <span class="panel-radius form-control info-input">
               <input class="panel-elem elem-width-full" type="text" ng-model="user_info.major" placeholder="专业">
             </span>
-              <div class="panel-radius form-control info-input">
-                <select class="panel-elem-full">
-                  <option value ="">年级</option>
-                  <option value ="11">本科1年级</option>
-                  <option value="12">本科2年级</option>
-                  <option value="13">本科3年级</option>
-                  <option value="14">本科4年级</option>
-                  <option value="15">本科5年级</option>
-                  <option value="21">硕士1年级</option>
-                  <option value="22">硕士3年级</option>
-                  <option value="23">硕士2年级</option>
-                  <option value="31">博士1年级</option>
-                  <option value="32">博士2年级</option>
-                  <option value="33">博士高年级</option>
-                </select>
-              </div>
+
+            <div class="panel-radius form-control info-input">
+              <select class="panel-elem-full">
+                <option value="">年级</option>
+                <option value="11">本科1年级</option>
+                <option value="12">本科2年级</option>
+                <option value="13">本科3年级</option>
+                <option value="14">本科4年级</option>
+                <option value="15">本科5年级</option>
+                <option value="21">硕士1年级</option>
+                <option value="22">硕士3年级</option>
+                <option value="23">硕士2年级</option>
+                <option value="31">博士1年级</option>
+                <option value="32">博士2年级</option>
+                <option value="33">博士高年级</option>
+              </select>
+            </div>
         </div>
       </div>
 
@@ -60,8 +79,15 @@
           <button class="panel-radius login-btn form-control lit-p-bg" ng-click="update_info()">更新</button>
         </div>
       </div>
-    </form>
+    </div>
+
   </div>
   </div>
+  </div>
+  <div ui-content-for="footer">
+      <div class="navbar navbar-app navbar-absolute-bottom">
+          <div ng-class="{1: 'nav-bar-2 selected', 2: 'nav-bar-2'}[tab_now]" ng-click="tab_now = 1">修改密码</div>
+          <div ng-class="{1: 'nav-bar-2 selected', 2: 'nav-bar-2'}[tab_now]" ng-click="tab_now = 2">修改信息</div>
+      </div>
   </div>
 </div>
