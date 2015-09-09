@@ -302,10 +302,16 @@ body > #wrap {
   margin-left: 3%;
   height: 40px;
 }
-#container #register .ui.segment.form #reg_form .fresh-btn {
-  width: 15px;
-  height: 15px;
-  margin-left: 3%;
+#container #register .ui.segment.form #reg_form .fresh {
+  cursor: pointer;
+  color: #cccccc;
+  text-decoration: none;
+}
+#container #register .ui.segment.form #reg_form .fresh .icon-repeat.icon-large {
+  margin-left: 7px;
+}
+#container #register .ui.segment.form #reg_form a.fresh:hover {
+  color: #98769E;
 }
 #container #register .ui.segment.form #reg_form #regist_button {
   width: 100%;

@@ -63,7 +63,7 @@
                         <input type="text" class="form-control" placeholder="验证码" ng-model="reg_info.captcha" required>
                     </div>
                     <img ng-src='[[captcha_url]]' id="captcha_img" alt="验证码">
-                    <img ng-click="refresh()" class="fresh-btn" src="/static/image/logo/refresh-01.png">
+                    <a ng-click="refresh()" class="fresh"><i class="icon-repeat icon-large"></i></a>
 
                 </div>
                 <button id="regist_button">注册</button>

@@ -13,16 +13,16 @@
             </carousel>
         </div>
         <div ng-if="role == 1 && username != undefined" class="company-block">
-            <div class="company-item"><a>编辑公司信息</a></div>
-            <div class="company-item"><a>发布新职位</a></div>
-            <div class="company-item"><a>处理简历</a></div>
-            <div class="company-item"><a>管理职位</a></div>
+            <div class="company-item"><a href="/company/position/new/edit">编辑公司信息</a></div>
+            <div class="company-item"><a href="/company/position/new/edit">发布新职位</a></div>
+            <div class="company-item"><a href="/company/resume">处理简历</a></div>
+            <div class="company-item"><a href="/company/[[company_id]]/position/manage">管理职位</a></div>
         </div>
         <div ng-if="role == 0 && username != undefined" class="intern-block">
-            <div class="intern-item"><a>我的投递</a></div>
-            <div class="intern-item"><a>我的简历</a></div>
-            <div class="intern-item"><a>我收藏的职位</a></div>
-            <div class="intern-item"><a>我收藏的公司</a></div>
+            <div class="intern-item"><a href="/intern/post">我的投递</a></div>
+            <div class="intern-item"><a href="/intern/resume/view">我的简历</a></div>
+            <div class="intern-item"><a href="/intern/favor/position">我收藏的职位</a></div>
+            <div class="intern-item"><a href="/intern/favor/company">我收藏的公司</a></div>
         </div>
 
         <div class="info-block-1">
