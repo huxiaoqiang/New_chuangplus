@@ -319,7 +319,7 @@ angular.module('chuangplus_mobile.controllers', [])
                         for(var i=0; i<$scope.positions.length;i++){
                             $scope.positions[i].position_type_value = $scope.position_types[$scope.positions[i].position_type];
                             $scope.positions[i].field_value = $scope.cfield[$scope.positions[i].company.field];
-                            console.log($scope.positions[i].field_value);
+                            
                             if($scope.positions[i].company.scale == 0){
                                 $scope.positions[i].company.scale_value = "初创";
                             }
@@ -741,6 +741,17 @@ angular.module('chuangplus_mobile.controllers', [])
             'functions':"职能",
             'others':"其他"
         };
+        $scope.cfield = {
+                'social':'社交',
+                'e_commerce':'电子商务',
+                'education':'健康医疗',
+                'health_medical':'文化创意',
+                'culture_creativity':'硬件',
+                'living_consumption':'O2O',
+                'hardware':'生活消费',
+                'O2O':'教育',
+                'others':'其它'
+        };
         $scope.get_userInfo = function(){
             $scope.userinfo = {};
             $http.get(urls.api + "/account/userinfo/get").
@@ -774,6 +785,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     $scope.positions = data.data;
                     for(var i = 0; i < $scope.positions.length; i ++){
                         $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
+                        $scope.positions[i].field_value = $scope.cfield[$scope.positions[i].company.field];
                         if($scope.positions[i].company.scale == 0){
                             $scope.positions[i].company.scale_value = "初创";
                         }
