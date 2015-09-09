@@ -177,8 +177,8 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $scope.get_company();
     }])
-    .controller('MB_CompanyDetailCtrl', ['$scope', '$http', 'urls', '$routeParams',
-     function($scope, $http, urls, $routeParams) {
+    .controller('MB_CompanyDetailCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService',
+    function($scope, $http, urls, $csrf, $routeParams, $notice) {
         $scope.company_id = $routeParams.company_id;
         console.log('MB_CompanyDetailCtrl ' + $scope.company_id);
         $scope.company = {};
@@ -339,8 +339,8 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.get_positions();
     }])
 
-    .controller('MB_PositionDetailCtrl', ['$scope', '$http', 'urls', '$routeParams',
-    function($scope, $http, urls, $routeParams) {
+    .controller('MB_PositionDetailCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService',
+    function($scope, $http, urls, $csrf, $routeParams, $notice) {
         $scope.position_id = $routeParams.position_id;
         console.log($scope.position_id);
         $scope.latest_scale = {
