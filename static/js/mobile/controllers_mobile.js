@@ -1097,19 +1097,20 @@ angular.module('chuangplus_mobile.controllers', [])
                         $notice.show(data.error.msg);
                 }
             });
-
+        };
+        $scope.update_password = function(){
             if($scope.info_check == 1)
             {
                 $csrf.set_csrf($scope.user_pwd);
                 $http.post(urls.api+"/account/password/set", $.param($scope.user_pwd))
                     .success(function(data){
-                    console.log(data);
+                    console.log(data.message);
                     if(data.error.code == 1){
                         $notice.show("修改密码成功");
                     }
                     else{
                         $errMsg.format_error("",data.error);
-                        $notice.show(data.error.msg);
+                        $notice.show(data.message);
                     }
                 });
             }
