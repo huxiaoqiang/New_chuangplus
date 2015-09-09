@@ -295,7 +295,7 @@ angular.module('chuangplus_mobile.controllers', [])
                         $scope.post_value = "取消收藏";
                     }
                     else
-                        $scope.post_value = "加入收藏";
+                        $scope.post_value = "收藏职位";
                 }
                 else{
                     $scope.error = $errorMsg.format_error('',data.error);
@@ -468,7 +468,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     $scope.post_value = "取消收藏";
                 }
                 else
-                    $scope.post_value = "加入收藏";
+                    $scope.post_value = "收藏公司";
             }
             else{
                 console.log(data.error.message);
@@ -493,7 +493,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 $csrf.set_csrf($scope.submitUnFavor);
                 $http.post(urls.api+"/position/"+$scope.position_id+"/userunlikeposition", $.param($scope.submitUnFavor)).
                 success(function(data){
-                    $scope.post_value = "收藏职位";
+                    $scope.post_value = "收藏公司";
                     $scope.favor_exist = false;
                 });
             }
