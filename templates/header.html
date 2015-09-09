@@ -14,7 +14,7 @@
                  {% if role == 1 %}
                  <li ng-class = "{'active':resume}" ng-click="resume_active()"><a href="/company/resume">处理简历</a></li>
                  {% else %}
-                 <li ng-class = "{'active':resume}" ng-click="resume_active()"><a href="/intern/resume">查看简历</a></li>
+                 <li ng-class = "{'active':resume}" ng-click="resume_active()"><a href="/intern/resume/view">查看简历</a></li>
                  {% endif %}
 
                  <li class="dropdown">
@@ -62,5 +62,9 @@
               {% endif %}
            </div>
         </nav>
+        <div class="right-block">
+            <div class="txt">关注我们</div>
+            <img class="img-1" src="/static/image/logo/erweima-01.png">
+        </div>
     </div>
 </header>
