@@ -1697,17 +1697,39 @@ form.financing_add input {
   margin-bottom: 15px;
 }
 #container #homepage .company-block {
-  height: 200px;
+  height: 70px;
   margin-bottom: 15px;
-  float: left;
+  width: 100%;
+  border: 1px solid #b2b2b2;
 }
-#container #homepage .company-block a span {
+#container #homepage .company-block .intern-item {
   color: #9f4e96;
 }
+#container #homepage .company-block .intern-item a {
+  text-decoration: none;
+}
 #container #homepage .intern-block {
-  height: 200px;
+  height: 70px;
   margin-bottom: 15px;
+  width: 100%;
+  border: 1px solid #b2b2b2;
+}
+#container #homepage .intern-block .intern-item {
   float: left;
+  width: 230px;
+  margin-top: 23px;
+  font-size: 1.2em;
+  text-align: center;
+}
+#container #homepage .intern-block .intern-item a {
+  text-decoration: none;
+  color: #9f4e96;
+  cursor: pointer;
+}
+#container #homepage .intern-block .intern-item a:hover {
+  text-decoration: none;
+  color: #98769E;
+  cursor: pointer;
 }
 #container #homepage .info-block-1 {
   height: 300px;
