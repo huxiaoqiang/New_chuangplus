@@ -57,13 +57,8 @@ angular.module('chuangplus_mobile.controllers', [])
 
                         for(var j=0;j<$scope.company_list[i].position_type.length;j++)
                             $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
-                        
-
+                    
                     }
-
-                }
-                else{
-                     $scope.error = $errMsg.format_error('',data.error);
                 }
             });
         };
@@ -177,7 +172,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 }
             }
             else{
-                $scope.error = $errMsg.format_error("",data.error);
+
             }
             });
         };
@@ -275,13 +270,13 @@ angular.module('chuangplus_mobile.controllers', [])
                                 $scope.member_number = data.data.length;
                             }
                             else{
-                                $scope.error = $errMsg.format_error('',data.error);
+
                             }
                         }); 
 
                 }
                 else{
-                    $scope.error = $errMsg.format_error("",data.error);
+
                 }
                 });
         };
@@ -522,27 +517,26 @@ angular.module('chuangplus_mobile.controllers', [])
     function($scope, $http, urls, $csrf, $routeParams, $cookies, $notice) {
         console.log("MB_RegisterCtrl");
 
-        $scope.error = {};
+        $scope.info_check = [0, 0, 0, 0];
         $scope.reg_info = {};
         $scope.capcha_info = {};
         $scope.captcha_url = urls.api+"/captcha/image/";
-        //capcha    : xxxx
-        //token     : 
-        $scope.check = {};
+        $scope.check_username = {};
         $scope.e_check = {};
         $scope.refresh_captcha = function(){
             $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
         };
         $scope.register = function(){
+            console.log($scope.info_check);
             $csrf.set_csrf($scope.reg_info);
+            console.log($scope.reg_info);
             $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
                 success(function(data){
                     if(data.error.code == 1){
-                        $scope.error = $errMsg.format_error("注册成功",data.error);
                         setTimeout(function(){window.location.href='/'},1500);
                     }
                     else{
-                        $scope.error = $errMsg.format_error("",data.error);
+
                     }
                 });
         };
@@ -557,20 +551,24 @@ angular.module('chuangplus_mobile.controllers', [])
                     {
                         $notice.show('验证码错误');
                         $('#captcha-pass').hide();
+                        $scope.info_check[3] = 0;
                     }
                     else
+                    {
                         $('#captcha-pass').show();
+                        $scope.info_check[3] = 0;
+                    }
 
                 });
             
         }
 
         $scope.check_username = function(){
-            $scope.check.username = $scope.reg_info.username;
-            $csrf.set_csrf($scope.check);
+            $scope.check_username.username = $scope.reg_info.username;
+            $csrf.set_csrf($scope.check_username);
 
-            if($scope.check.username.length > 5)
-                $http.post(urls.api+"/account/checkusername", $.param($scope.check)).
+            if($scope.check_username.username.length > 5)
+                $http.post(urls.api+"/account/checkusername", $.param($scope.check_username)).
                 success(function(data){
                     if(data.error.code == 1){
                         console.log(data);
@@ -578,6 +576,7 @@ angular.module('chuangplus_mobile.controllers', [])
                         {
                             $notice.show('用户名已存在');
                             $('#username-pass').hide();
+                            $scope.info_check[0] = 0;
                             return false;
                         }
                         else
@@ -587,8 +586,10 @@ angular.module('chuangplus_mobile.controllers', [])
             else
             {
                 $notice.show('用户名长度最短6位');
+                $scope.info_check[0] = 0;
                 return false;
             }
+            $scope.info_check[0] = 1;
             return true;
         };
         $scope.check_email = function(){
@@ -605,6 +606,7 @@ angular.module('chuangplus_mobile.controllers', [])
                         {
                             $notice.show('该邮箱已使用');
                             $('#email-pass').hide();
+                            $scope.info_check[1] = 0;
                             return false;
                         }
                     }
@@ -613,9 +615,11 @@ angular.module('chuangplus_mobile.controllers', [])
             {
                 $notice.show('请输入合法的邮箱地址');
                 $('#email-pass').hide();
+                $scope.info_check[1] = 0;
                 return false;
             }
             $('#email-pass').show();
+            $scope.info_check[1] = 1;
             return true;
         };
         $scope.check_pass_len = function(){
@@ -623,9 +627,11 @@ angular.module('chuangplus_mobile.controllers', [])
             {
                 $notice.show('为保证安全，密码最少为6位');
                 $('#pass1-pass').hide();
+                $scope.info_check[2] = 0;
                 return false;
             }
             $('#pass1-pass').show();
+            $scope.info_check[2] = 1;
             return true;
         };
         $scope.check_pass_same = function(){
@@ -633,9 +639,11 @@ angular.module('chuangplus_mobile.controllers', [])
             {
                 $notice.show('两次输入密码需一致');
                 $('#pass2-pass').hide();
+                $scope.info_check[2] = 0;
                 return false;
             }
             $('#pass2-pass').show();
+            $scope.info_check[2] = 1;
             return true;
         };
         $scope.refresh_captcha();
