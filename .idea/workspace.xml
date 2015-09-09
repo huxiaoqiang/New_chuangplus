@@ -9,7 +9,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/desktop/base.css" afterPath="$PROJECT_DIR$/static/css/desktop/base.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/homepage.html" afterPath="$PROJECT_DIR$/static/partials/desktop/homepage.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/homepage.less" afterPath="$PROJECT_DIR$/static/less/desktop/homepage.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="chuangplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,7 +32,7 @@
   <component name="FileEditorManager">
     <splitter split-orientation="horizontal" split-proportion="0.46798292">
       <split-first>
-        <splitter split-orientation="vertical" split-proportion="0.4921875">
+        <splitter split-orientation="vertical" split-proportion="0.43526787">
           <split-first>
             <leaf>
               <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
@@ -107,7 +106,7 @@
               <file leaf-file-name="homepage.html" pinned="false" current="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/static/partials/desktop/homepage.html">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="20" column="29" selection-start="786" selection-end="786" vertical-scroll-proportion="0.5014663" vertical-offset="209" max-vertical-offset="1178">
+                    <state line="18" column="31" selection-start="793" selection-end="793" vertical-scroll-proportion="0.7241379" vertical-offset="132" max-vertical-offset="1178">
                       <folding />
                     </state>
                   </provider>
@@ -140,7 +139,7 @@
               <file leaf-file-name="homepage.less" pinned="false" current="true" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/static/less/desktop/homepage.less">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="61" column="13" selection-start="1503" selection-end="1503" vertical-scroll-proportion="0.7418478" vertical-offset="886" max-vertical-offset="1995">
+                    <state line="48" column="30" selection-start="1214" selection-end="1214" vertical-scroll-proportion="0.8162291" vertical-offset="570" max-vertical-offset="2204">
                       <folding />
                     </state>
                   </provider>
@@ -272,8 +271,8 @@
         <option value="$PROJECT_DIR$/account/views.py" />
         <option value="$PROJECT_DIR$/static/js/services.js" />
         <option value="$PROJECT_DIR$/static/js/controllers_desktop.js" />
-        <option value="$PROJECT_DIR$/static/less/desktop/homepage.less" />
         <option value="$PROJECT_DIR$/static/partials/desktop/homepage.html" />
+        <option value="$PROJECT_DIR$/static/less/desktop/homepage.less" />
       </list>
     </option>
   </component>
@@ -773,13 +772,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="47" column="29" selection-start="1552" selection-end="1552" vertical-scroll-proportion="0.9981238" vertical-offset="361" max-vertical-offset="3895">
           <folding>
-            <marker date="1441717650298" expanded="true" signature="-1:-1" placeholder="[...]" />
-            <marker date="1441717650298" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1441717650298" expanded="true" signature="-1:-1" placeholder="{&quot;code15&quot;: &quot;文件大小超过10M&quot;...}" />
-            <marker date="1441717650298" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1441717650298" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1441717650298" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1441717650298" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1441771428369" expanded="true" signature="-1:-1" placeholder="[...]" />
+            <marker date="1441771428369" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1441771428369" expanded="true" signature="-1:-1" placeholder="{&quot;code15&quot;: &quot;文件大小超过10M&quot;...}" />
+            <marker date="1441771428369" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1441771428369" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1441771428369" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1441771428369" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -807,14 +806,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/partials/desktop/homepage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="29" selection-start="786" selection-end="786" vertical-scroll-proportion="0.5014663" vertical-offset="209" max-vertical-offset="1178">
+        <state line="18" column="31" selection-start="793" selection-end="793" vertical-scroll-proportion="0.7241379" vertical-offset="132" max-vertical-offset="1178">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/less/desktop/homepage.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="13" selection-start="1503" selection-end="1503" vertical-scroll-proportion="0.7418478" vertical-offset="886" max-vertical-offset="1995">
+        <state line="48" column="30" selection-start="1214" selection-end="1214" vertical-scroll-proportion="0.8162291" vertical-offset="570" max-vertical-offset="2204">
           <folding />
         </state>
       </provider>

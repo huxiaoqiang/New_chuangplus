@@ -13,12 +13,12 @@
             </carousel>
         </div>
         <div ng-if="role == 1 && username != undefined" class="company-block">
-            <a><span>编辑公司信息</span></a>
-            <a><span>发布新职位</span></a>
-            <a><span>处理简历</span></a>
-            <a><span>管理职位</span></a>
+            <div class="company-item"><a>编辑公司信息</a></div>
+            <div class="company-item"><a>发布新职位</a></div>
+            <div class="company-item"><a>处理简历</a></div>
+            <div class="company-item"><a>管理职位</a></div>
         </div>
-        <div ng-if="role == 0 && username != undefined"  class="intern-block">
+        <div ng-if="role == 0 && username != undefined" class="intern-block">
             <div class="intern-item"><a>我的投递</a></div>
             <div class="intern-item"><a>我的简历</a></div>
             <div class="intern-item"><a>我收藏的职位</a></div>
