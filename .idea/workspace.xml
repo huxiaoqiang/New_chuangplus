@@ -7,7 +7,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/controllers_desktop.js" afterPath="$PROJECT_DIR$/static/js/controllers_desktop.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/homepage.html" afterPath="$PROJECT_DIR$/static/partials/desktop/homepage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/services.js" afterPath="$PROJECT_DIR$/static/js/services.js" />
     </list>
     <ignored path="chuangplus.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,10 +43,10 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="services.js" pinned="false" current="false" current-in-tab="false">
+              <file leaf-file-name="services.js" pinned="false" current="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/static/js/services.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="118" column="26" selection-start="4055" selection-end="4055" vertical-scroll-proportion="0.0" vertical-offset="2109" max-vertical-offset="3534">
+                    <state line="149" column="44" selection-start="5069" selection-end="5069" vertical-scroll-proportion="0.5207207" vertical-offset="2542" max-vertical-offset="3401">
                       <folding />
                     </state>
                   </provider>
@@ -102,10 +102,10 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="homepage.html" pinned="false" current="false" current-in-tab="true">
+              <file leaf-file-name="homepage.html" pinned="false" current="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/static/partials/desktop/homepage.html">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state line="17" column="73" selection-start="707" selection-end="707" vertical-scroll-proportion="0.42222223" vertical-offset="95" max-vertical-offset="1121">
+                    <state line="17" column="73" selection-start="707" selection-end="707" vertical-scroll-proportion="-4.071429" vertical-offset="209" max-vertical-offset="1121">
                       <folding />
                     </state>
                   </provider>
@@ -171,7 +171,7 @@
           <file leaf-file-name="controllers_desktop.js" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="8" column="43" selection-start="383" selection-end="383" vertical-scroll-proportion="0.18788628" vertical-offset="0" max-vertical-offset="26847">
+                <state line="47" column="39" selection-start="2010" selection-end="2010" vertical-scroll-proportion="0.46971568" vertical-offset="513" max-vertical-offset="26866">
                   <folding />
                 </state>
               </provider>
@@ -256,7 +256,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/position/management/commands/send_email.py" />
         <option value="$PROJECT_DIR$/position/urls.py" />
         <option value="$PROJECT_DIR$/chuangplus/settings.py" />
         <option value="$PROJECT_DIR$/static/less/desktop/base.less" />
@@ -271,6 +270,7 @@
         <option value="$PROJECT_DIR$/account/views.py" />
         <option value="$PROJECT_DIR$/static/less/desktop/homepage.less" />
         <option value="$PROJECT_DIR$/static/partials/desktop/homepage.html" />
+        <option value="$PROJECT_DIR$/static/js/services.js" />
         <option value="$PROJECT_DIR$/static/js/controllers_desktop.js" />
       </list>
     </option>
@@ -796,23 +796,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/services.js">
+    <entry file="file://$PROJECT_DIR$/static/partials/desktop/homepage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="26" selection-start="4055" selection-end="4055" vertical-scroll-proportion="0.0" vertical-offset="2109" max-vertical-offset="3534">
+        <state line="17" column="73" selection-start="707" selection-end="707" vertical-scroll-proportion="-4.071429" vertical-offset="209" max-vertical-offset="1121">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/partials/desktop/homepage.html">
+    <entry file="file://$PROJECT_DIR$/static/js/services.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="73" selection-start="707" selection-end="707" vertical-scroll-proportion="0.42222223" vertical-offset="95" max-vertical-offset="1121">
+        <state line="149" column="44" selection-start="5069" selection-end="5069" vertical-scroll-proportion="0.5207207" vertical-offset="2542" max-vertical-offset="3401">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="43" selection-start="383" selection-end="383" vertical-scroll-proportion="0.18788628" vertical-offset="0" max-vertical-offset="26847">
+        <state line="47" column="39" selection-start="2010" selection-end="2010" vertical-scroll-proportion="0.46971568" vertical-offset="513" max-vertical-offset="26866">
           <folding />
         </state>
       </provider>
