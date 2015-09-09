@@ -407,7 +407,10 @@ angular.module('chuangplus_mobile.controllers', [])
             if(data.error.code == 1){
                 $scope.favor_exist = data.data.exist;
                 if($scope.favor_exist == true)
+                {
                     $scope.post_value = "取消收藏";
+                    console.log("exist " + post_value);
+                }
                 else
                     $scope.post_value = "加入收藏";
             }
