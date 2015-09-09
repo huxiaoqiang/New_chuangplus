@@ -913,6 +913,67 @@ angular.module('chuangplus_mobile.controllers', [])
             $scope.index = index;
         };
     }])
+    .controller('MB_CompanyFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService',
+    function($scope, $http, urls, $csrf, $routeParams, $user) {
+        $scope.company_list = {};
+        $scope.position_type = {
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+        };
+        $scope.position_index = {
+            "technology":0,
+            "product":1,
+            "design":2,
+            "operate":3,
+            "marketing":4,
+            "functions":5,
+            "others":6
+        };
+        $scope.scale = {
+            0:"初创",
+            1:"快速发展",
+            2:"成熟"
+        };
+        $scope.cfield = {
+                'social':'社交',
+                'e_commerce':'电子商务',
+                'education':'健康医疗',
+                'health_medical':'文化创意',
+                'culture_creativity':'硬件',
+                'living_consumption':'O2O',
+                'hardware':'生活消费',
+                'O2O':'教育',
+                'others':'其它'
+        };
+        $scope.get_company_list = function(){
+            $http.get(urls.api+"/account/userinfo/company/favor/list").
+            success(function(data){
+                if(data.error.code == 1){
+                $scope.company_list = data.data;
+                $scope.company_num = $scope.company_list.length;
+                for(i = 0; i < $scope.company_list.length; i ++){
+                    $scope.company_list[i].field_value = $scope.cfield[$scope.company_list[i].field];
+                    $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
+                    $scope.company_list[i].position_types = {};
+                    $scope.company_list[i].scale_value = $scope.scale[$scope.company_list[i].scale];
+                    for(j = 0; j < $scope.company_list[i].positions.length; j ++)
+                    {
+                        $scope.company_list[i].position_types[$scope.position_index[$scope.company_list[i].positions[j].position_type]] = $scope.position_type[$scope.company_list[i].positions[j].position_type];
+                    }
+                }
+                }
+                else{
+                $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
+        $scope.get_company_list();
+    }])
     .controller('MB_InfoCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('MB_InfoCtrl');
     }]);
