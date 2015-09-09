@@ -85,6 +85,25 @@ header #header .navbar .search {
 header #header .navbar .search li#search_btn {
   margin-top: -8px;
 }
+header #header .right-block {
+  position: fixed;
+  right: 20px;
+  top: 168px;
+  height: 100%;
+  width: 120px;
+  margin: 0 auto;
+  z-index: 1;
+}
+header #header .right-block .txt {
+  font-size: 1.0em;
+  color: #707070;
+  text-align: center;
+  width: 100%;
+}
+header #header .right-block .img-1 {
+  height: 120px;
+  width: 120px;
+}
 * {
   margin: 0;
   padding: 0;
@@ -1031,23 +1050,6 @@ form.financing_add input {
 #container #userresume .save-resume-btn:hover {
   background-color: #98769E;
 }
-#container #userresume_edit {
-  margin-top: 5%;
-}
-#container #userresume_edit .title {
-  margin-top: 20px;
-}
-#container #userresume_edit .title span {
-  color: #707070;
-  font-size: 1.2em;
-  font-family: "华文细黑";
-}
-#container #userresume_edit .title div.line {
-  width: 96px;
-  background-color: #8f4e96;
-  margin-top: 4px;
-  height: 7px;
-}
 #container #userresume_edit .view {
   font-family: "微软雅黑";
   min-height: 300px;
@@ -1066,6 +1068,9 @@ form.financing_add input {
 }
 #container #userresume_edit .view .second-line {
   padding-top: 10px;
+}
+#container #userresume_edit .view .description {
+  margin-right: 30px;
 }
 #container #userresume_edit .resume {
   height: 100px;
@@ -1748,6 +1753,7 @@ form.financing_add input {
   height: 100%;
   width: 120px;
   margin: 0 auto;
+  z-index: 1;
 }
 #container #homepage .right-block .txt {
   font-size: 1.0em;
