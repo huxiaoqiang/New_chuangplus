@@ -1094,7 +1094,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 }
                 else{
                         $errMsg.format_error("",data.error);
-                        $notice.show(data.error.msg);
+                        $notice.show(data.message);
                 }
             });
         };
