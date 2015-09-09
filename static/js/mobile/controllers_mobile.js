@@ -1105,7 +1105,8 @@ angular.module('chuangplus_mobile.controllers', [])
                         $notice.show("修改密码成功");
                     }
                     else{
-                        $notice.show($errMsg.format_error("",data.error));
+                        $errMsg.format_error("",data.error);
+                        $notice.show(data.error.msg);
                     }
                 });
             }
