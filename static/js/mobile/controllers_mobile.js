@@ -631,7 +631,7 @@ angular.module('chuangplus_mobile.controllers', [])
                         console.log(data);
                         if(data.error.code == 1){
                             console.log("登陆成功");
-                            setTimeout(function(){$location.url('/mobile');},5);
+                            setTimeout(function(){$location.url('/mobile/');},5);
                         }
                         else
                         {
@@ -668,7 +668,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
                     success(function(data){
                         if(data.error.code == 1){
-                            setTimeout(function(){$location.url('/mobile');},1);
+                            setTimeout(function(){$location.url('/mobile/');},1);
                         }
                         else{
 
@@ -898,7 +898,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 });
             };
         $scope.complete_resume = function(){
-            setTimeout(function(){$location.url('/mobile');
+            setTimeout(function(){$location.url('/mobile/');
                 //wind ow.location.href='/intern/resume'
                 },2000);
             $('#myModal').modal('hide');
@@ -1116,6 +1116,22 @@ angular.module('chuangplus_mobile.controllers', [])
                 });
             }
         }  
+    }])
+
+    .controller('MB_LeftSidebarCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService','$location',
+    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg, $location ) {
+        console.log($user.username);
+        $scope.is_login = ($user.username != undefined);
+        $scope.logout = function(){
+            $http.get(urls.api+"/account/logout").
+                success(function(data){
+                    console.log(data);
+                    if(data.error.code == 1){
+                        $user.logout();
+                        $location.url('/mobile/');
+                    }
+                });
+        };
     }])
     .controller('MB_InfoCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('MB_InfoCtrl');
