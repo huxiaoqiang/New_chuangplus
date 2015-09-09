@@ -770,7 +770,7 @@ angular.module('chuangplus_mobile.controllers', [])
             return true;
         };
         $scope.check_pass_same = function(){
-            if($scope.reg_info.password != $scope.repeate_password)
+            if($scope.reg_info.password != $scope.repeate_password && $scope.reg_info.password != undefined)
             {
                 $notice.show('两次输入密码需一致');
                 $('#pass2-pass').hide();
@@ -1071,7 +1071,7 @@ angular.module('chuangplus_mobile.controllers', [])
             return true;
         };
         $scope.check_pass_same = function(){
-            if($scope.user_pwd.new_password != $scope.repeate_password)
+            if($scope.user_pwd.new_password != $scope.repeate_password && $scope.user_pwd.new_password != undefined)
             {
                 $notice.show('两次输入密码需一致');
                 $('#pass2-pass').hide();
