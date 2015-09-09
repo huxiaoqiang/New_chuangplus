@@ -12,20 +12,18 @@
                 </slide>
             </carousel>
         </div>
-        {% if user.is_authenticated %}
-            {% if role == 1 %}
-                <div class="company-block">
-                    <a><span></span></a>
-                </div>
-            {% elif role == 0 %}
-                <div class="intern-block">
-                    <a><span>我的投递</span></a>
-                    <a><span>我的简历</span></a>
-                    <a><span>我收藏的职位</span></a>
-                    <a><span>我收藏的公司</span></a>
-                </div>
-            {% endif %}
-        {% endif %}
+        <div ng-if="role == 1 && username != undefined" class="company-block">
+            <a><span>编辑公司信息</span></a>
+            <a><span>发布新职位</span></a>
+            <a><span>处理简历</span></a>
+            <a><span>管理职位</span></a>
+        </div>
+        <div ng-if="role == 0 && username != undefined" class="intern-block">
+            <a><span>我的投递</span></a>
+            <a><span>我的简历</span></a>
+            <a><span>我收藏的职位</span></a>
+            <a><span>我收藏的公司</span></a>
+        </div>
 
         <div class="info-block-1">
         </div>        

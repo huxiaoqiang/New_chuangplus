@@ -5,6 +5,8 @@
 angular.module('chuangplus.controllers', []).
     controller('DT_HomepageCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('HomepageCtrl');
+        $scope.role = $user.role();
+        $scope.username = $user.username();
         $scope.myInterval = 3000;
         $scope.slides1 = [
             {image:"/static/image/logo/banner-1.jpg"},
@@ -43,6 +45,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     console.log(data);
                     if(data.error.code == 1){
+                        $user.logout();
                         window.location.href = '/login';
                     }
                 });
