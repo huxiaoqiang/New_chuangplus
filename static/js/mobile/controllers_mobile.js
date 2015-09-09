@@ -1057,29 +1057,58 @@ angular.module('chuangplus_mobile.controllers', [])
             }
         });
 
+
+        $scope.check_pass_len = function(){
+            if($scope.reg_info.password == undefined)
+            {
+                $notice.show('为保证安全，密码最少为6位');
+                $('#pass1-pass').hide();
+                $scope.info_check = 0;
+                return false;
+            }
+            $('#pass1-pass').show();
+            $scope.info_check = 1;
+            return true;
+        };
+        $scope.check_pass_same = function(){
+            if($scope.reg_info.password != $scope.repeate_password)
+            {
+                $notice.show('两次输入密码需一致');
+                $('#pass2-pass').hide();
+                $scope.info_check = 0;
+                return false;
+            }
+            $('#pass2-pass').show();
+            $scope.info_check = 1;
+            return true;
+        };
+
         $scope.update_info = function(){
              $csrf.set_csrf($scope.user_info);
              $http.post(urls.api+"/account/userinfo/set", $.param($scope.user_info))
                 .success(function(data){
                 if(data.error.code == 1){
-                    $notice.show("修改成功");
+                    $notice.show("修改信息成功");
                 }
                 else{
                     $notice.show($errMsg.format_error("",data.error));
                 }
-                });
+            });
 
-            $csrf.set_csrf($scope.user_pwd);
-            $http.post(urls.api+"/account/password/set", $.param($scope.user_pwd))
-                .success(function(data){
-                console.log(data);
-                if(data.error.code == 1){
-                    $notice.show("修改成功");
-                }
-                else{
-                    $notice.show($errMsg.format_error("",data.error));
-                }
+            if($scope.info_check == 1)
+            {
+                $csrf.set_csrf($scope.user_pwd);
+                $http.post(urls.api+"/account/password/set", $.param($scope.user_pwd))
+                    .success(function(data){
+                    console.log(data);
+                    if(data.error.code == 1){
+                        $notice.show("修改密码成功");
+                    }
+                    else{
+                        $notice.show($errMsg.format_error("",data.error));
+                    }
                 });
+            }
         }  
     }])
     .controller('MB_InfoCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
