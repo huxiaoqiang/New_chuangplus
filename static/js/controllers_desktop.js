@@ -112,16 +112,6 @@ angular.module('chuangplus.controllers', []).
         $scope.refresh = function(){
             $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
         };
-         $scope.student = function(){
-            $scope.tab1 = true;
-            $scope.tab2 = false;
-            $scope.reg_info.role = 0;
-        };
-        $scope.hr = function(){
-            $scope.tab1 = false;
-            $scope.tab2 = true;
-            $scope.reg_info.role = 1;
-        };
         $scope.register = function(){
             if ($scope.reg_info.password != $scope.repeate_password)
             {
