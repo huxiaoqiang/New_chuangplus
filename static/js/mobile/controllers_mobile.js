@@ -491,30 +491,63 @@ angular.module('chuangplus_mobile.controllers', [])
     };*/
     }])
 
-    .controller('MB_LoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams','$cookies',
-    function($scope, $http, urls, $csrf, $routeParams,$cookies) {
+    .controller('MB_LoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams','NoticeService',
+    function($scope, $http, urls, $csrf, $routeParams, $notice) {
         console.log("MB_LoginCtrl");
-        $scope.error = {};
         $scope.captcha_url = urls.api+"/captcha/image/";
+        $scope.login_info = {};
+        $scope.capcha_info = {};
+
         $scope.refresh_captcha = function(){
             $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
         };
+        $scope.is_captcha_ok = 0;
 
-        $scope.login_user = function(){
-            $csrf.set_csrf($scope.login_info);
-            $http.post(urls.api+"/account/login", $.param($scope.login_info)).
+        $scope.check_captcha = function(){
+            $csrf.set_csrf($scope.capcha_info);
+            $scope.capcha_info.captcha = $scope.login_info.captcha;
+            console.log( $scope.login_info.captcha);
+            $http.post(urls.api+"/captcha/check/", $.param($scope.capcha_info)).
                 success(function(data){
-                    if(data.error.code == 1){
-                        console.log("登陆成功")
-                        setTimeout(function(){window.location.href='/mobile'},1000);
+                    if(data != 'yes')
+                    {
+                        $notice.show('验证码错误');
+                        $('#captcha-pass').hide();
+                        $scope.is_captcha_ok = 0;
                     }
+                    else
+                    {
+                        $('#captcha-pass').show();
+                        $scope.is_captcha_ok = 1;
+                    }
+
                 });
+            
+        }
+        $scope.login_user = function(){
+            if($scope.is_captcha_ok == 1)
+            {
+                $csrf.set_csrf($scope.login_info);
+                console.log($scope.login_info);
+                $http.post(urls.api+"/account/login", $.param($scope.login_info)).
+                    success(function(data){
+                        console.log(data);
+                        if(data.error.code == 1){
+                            console.log("登陆成功")
+                            setTimeout(function(){window.location.href='/mobile'},500);
+                        }
+                        else
+                        {
+                            $notice.show('用户名或密码错误');
+                        }
+                    });
+            }
         };
         $scope.refresh_captcha();
     }
     ])
-    .controller('MB_RegisterCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', '$cookies', 'NoticeService',
-    function($scope, $http, urls, $csrf, $routeParams, $cookies, $notice) {
+    .controller('MB_RegisterCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService',
+    function($scope, $http, urls, $csrf, $routeParams, $notice) {
         console.log("MB_RegisterCtrl");
 
         $scope.info_check = [0, 0, 0, 0];
