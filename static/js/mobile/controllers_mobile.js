@@ -539,6 +539,8 @@ angular.module('chuangplus_mobile.controllers', [])
                     $scope.submit_value = "已投递";
                     }
                     else{
+                    var t = $errMsg.format_error("",data.error);
+                    $notice.show(t);
                     console.log(data.error.message);
                 }
             }
@@ -970,10 +972,10 @@ angular.module('chuangplus_mobile.controllers', [])
                 $http.post(urls.api+"/account/userinfo/set", $.param($scope.intern_info)).
                     success(function(data){
                         if(data.error.code == 1){
-                            $scope.error = $errMsg.format_error("修改成功",data.error);
+                            $notice.show("修改简历成功");
                         }
                         else{
-                            $scope.error = $errMsg.format_error("",data.error);
+                            $notice.show($errMsg.format_error("",data.error));
                         }
                     }); 
             }
