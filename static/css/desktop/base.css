@@ -994,6 +994,9 @@ form.financing_add input {
   border-color: rgba(240, 240, 240, 0.3);
   padding-left: 5px;
 }
+#container #userresume .basic_info select:focus {
+  outline-color: #f0f0f0;
+}
 #container #userresume .basic_info input {
   margin-left: 15px;
   margin-top: 10px;
@@ -1001,6 +1004,9 @@ form.financing_add input {
   width: 240px;
   border-color: rgba(240, 240, 240, 0.3);
   padding-left: 5px;
+}
+#container #userresume .basic_info input {
+  outline-color: #f0f0f0;
 }
 #container #userresume .bref-info p {
   padding: 20px;
@@ -1022,6 +1028,9 @@ form.financing_add input {
   padding: 10px;
   border-radius: 3px;
   border-color: rgba(240, 240, 240, 0.3);
+}
+#container #userresume .bref-info .text-value textarea:focus {
+  outline-color: #f0f0f0;
 }
 #container #userresume .resume {
   height: 100px;
@@ -1132,8 +1141,26 @@ form.financing_add input {
   font-size: 1.5em;
   font-family: "微软雅黑";
 }
-#container .no-resume-info .go img {
+#container .no-resume-info .go-txt {
+  margin-left: -30px;
+}
+#container .no-resume-info .go {
+  text-align: center;
+  position: relative;
+  left: 40px;
+  top: -38px;
+}
+#container .no-resume-info .go a {
+  cursor: pointer;
+}
+#container .no-resume-info .go a img {
   width: 25px;
+}
+#container .no-resume-info .go a:hover {
+  cursor: pointer;
+}
+#container .no-resume-info .go a:hover img {
+  width: 30px;
 }
 #container {
   margin: 0 auto;
