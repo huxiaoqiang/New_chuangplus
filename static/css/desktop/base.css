@@ -24,12 +24,12 @@ header #header .navbar .navbar-header #head-logo img {
   width: 100%;
 }
 header #header .navbar .navbar-item.not-login {
-  margin-left: 15px;
+  margin-left: 35px;
   width: 545px;
 }
 header #header .navbar .navbar-item.not-login li {
   text-align: center;
-  width: 33%;
+  width: 29%;
 }
 header #header .navbar .navbar-item.not-login li a {
   color: #707070;
