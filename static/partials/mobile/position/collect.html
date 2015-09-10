@@ -1,4 +1,7 @@
 <div ng-controller="MB_PositionFavorCtrl">
+    <div class="notice-bar no-bar-top">
+        notice
+    </div>
     <div class="main-content scrollable">
         <div class="scrollable-content">
             <div class="header-bar">
@@ -15,11 +18,10 @@
                     </div>
                     <div class="comp-desc">[[position.company.brief_introduction]]</div>
 
-                    <div class="send-resume">
+                    <a class="send-resume" ng-click="submit_posi('[[position._id.$oid]]')">
                         <i class="fa fa-envelope send-resume-logo"></i>
                         <div class="send-resume-text">投递简历</div>
-                    </div>
-
+                    </a>
                     <div class="comp-desc-list">
                         <span class="comp-desc-tag">
                             [[position.days_per_week]]天/周

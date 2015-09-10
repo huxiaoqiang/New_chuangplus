@@ -69,6 +69,13 @@ angular.module('chuangplus', [
         $routeProvider.when('/company/:company_id/detail', {templateUrl: urls.part_desktop + '/company/detail.html', controller: 'DT_CompanyDetailCtrl', title: 'CompanyDetailPage'});
         $routeProvider.when('/company/account', {templateUrl: urls.part_desktop + '/company/account.html', controller: 'DT_CompanyAccountCtrl', title: '账户设置'});
 
+        $routeProvider.when('/company/no', {templateUrl: urls.part_desktop + '/company/create/no.html', controller: 'DT_CompanyNoCtrl', title: '尚无公司信息'});
+        $routeProvider.when('/company/create/first', {templateUrl: urls.part_desktop + '/company/create/first.html', controller: 'DT_CompanyFirstCtrl', title: '步骤一'});
+        $routeProvider.when('/company/create/second', {templateUrl: urls.part_desktop + '/company/create/second.html', controller: 'DT_CompanySecondCtrl', title: '步骤二'});
+        $routeProvider.when('/company/create/third', {templateUrl: urls.part_desktop + '/company/create/third.html', controller: 'DT_CompanyThirdCtrl', title: '步骤三'});
+        $routeProvider.when('/company/create/forth', {templateUrl: urls.part_desktop + '/company/create/forth.html', controller: 'DT_CompanyForthCtrl', title: '步骤四'});
+
+
         $routeProvider.when('/position/list', {templateUrl: urls.part_desktop + '/position/list.html', controller: 'DT_PositionListCtrl', title: '职位列表'});
         $routeProvider.when('/position/:position_id/detail', {templateUrl: urls.part_desktop + '/position/detail.html', controller: 'DT_PositionDetailCtrl', title: 'PositionDetailPage'});
 
