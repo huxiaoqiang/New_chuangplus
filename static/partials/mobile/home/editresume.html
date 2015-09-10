@@ -52,7 +52,7 @@
                 未上传简历前，HR只能通过百字简介判断是否邀请面试，请认真填写。建议格式：基本信息+教育经历+工作/项目经历+学生工作经历+技能+性格特点
             </div>
             <textarea ng-model="intern_info.description" class="info-block-textarea">
-              未上传简历前，HR只能通过百字简介判断是否邀请面试，请认真填写。建议格式：基本信息+教育经历+工作/项目经历+学生工作经历+技能+性格特点
+              
             </textarea>
         </div>
       </div>
@@ -64,11 +64,9 @@
 
             <a ng-if="intern_info.resume_id != null" class="resume-block-att" ng-href="/api/file/[[intern_info.resume_id]]/download" target="_self">[[filename]]</a>
 
-            <div class="resume-block-att" ng-if="intern_info.resume_id == null">无简历附件</div>
+            <div class="resume-block-att" ng-if="intern_info.resume_id == null">[无简历附件]</div>
 
-            <div class="panel-radius login-btn form-control btn-b-pur" ng-model="resume" ngf-select="upload($file,'resume')" type="file">上传/更新附件</div>`
-
-            <div class="panel-radius login-btn form-control btn-b-pur" ng-submit="save_intern_info()">更新简历</div>
+            <div class="panel-radius login-btn form-control btn-b-pur" ng-submit="save_intern_info()">上传/更新简历</div>
             
           <!--
             <a class="panel-radius login-btn form-control btn-b-pur" href="/mobile/home/uploadresume">上传/更新简历附件</a>

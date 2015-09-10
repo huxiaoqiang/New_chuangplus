@@ -289,13 +289,14 @@ angular.module('chuangplus_mobile.controllers', [])
             $http.get(urls.api+"/account/userinfo/"+$scope.company_id+"/check_favor_company").
                 success(function(data){
                 if(data.error.code == 1){
+                    console.log(data);
                     $scope.favor_exist = data.data.exist;
                     if($scope.favor_exist == true)
                     {
                         $scope.post_value = "取消收藏";
                     }
                     else
-                        $scope.post_value = "收藏职位";
+                        $scope.post_value = "收藏公司";
                 }
                 else{
                     $scope.error = $errorMsg.format_error('',data.error);
@@ -329,7 +330,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 $http.post(urls.api + "/account/company/"+$scope.company_id+"/unlike", $.param($scope.param)).
                     success(function(data){
                         if(data.error.code == 1){
-                            $scope.post_value = "收藏职位";
+                            $scope.post_value = "收藏公司";
                             $scope.favor_exist = false;
                         }
                         else{
@@ -630,7 +631,7 @@ angular.module('chuangplus_mobile.controllers', [])
                         console.log(data);
                         if(data.error.code == 1){
                             console.log("登陆成功");
-                            setTimeout(function(){$location.url('/mobile');},5);
+                            setTimeout(function(){$location.url('/mobile/');},5);
                         }
                         else
                         {
@@ -667,7 +668,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
                     success(function(data){
                         if(data.error.code == 1){
-                            setTimeout(function(){$location.url('/mobile');},1);
+                            setTimeout(function(){$location.url('/mobile/');},1);
                         }
                         else{
 
@@ -897,7 +898,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 });
             };
         $scope.complete_resume = function(){
-            setTimeout(function(){$location.url('/mobile');
+            setTimeout(function(){$location.url('/mobile/');
                 //wind ow.location.href='/intern/resume'
                 },2000);
             $('#myModal').modal('hide');
@@ -1045,6 +1046,7 @@ angular.module('chuangplus_mobile.controllers', [])
     function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
         console.log('MB_UserInfoUpdateCtrl');
         $scope.info = {};
+        $scope.tab_now = 2;
         $scope.user_info = {};
         $scope.user_pwd = {};
         $scope.info.username = $user.username();
@@ -1083,6 +1085,7 @@ angular.module('chuangplus_mobile.controllers', [])
             return true;
         };
 
+
         $scope.update_info = function(){
              $csrf.set_csrf($scope.user_info);
              $http.post(urls.api+"/account/userinfo/set", $.param($scope.user_info))
@@ -1091,26 +1094,47 @@ angular.module('chuangplus_mobile.controllers', [])
                     $notice.show("修改信息成功");
                 }
                 else{
-                    $notice.show($errMsg.format_error("",data.error));
+                        $errMsg.format_error("",data.error);
+                        $notice.show(data.message);
                 }
             });
-
+        };
+        $scope.update_password = function(){
             if($scope.info_check == 1)
             {
                 $csrf.set_csrf($scope.user_pwd);
                 $http.post(urls.api+"/account/password/set", $.param($scope.user_pwd))
                     .success(function(data){
-                    console.log(data);
+                    console.log(data.message);
                     if(data.error.code == 1){
                         $notice.show("修改密码成功");
                     }
                     else{
                         $errMsg.format_error("",data.error);
-                        $notice.show(data.error.msg);
+                        $notice.show(data.message);
                     }
                 });
             }
         }  
+    }])
+
+    .controller('MB_LeftSidebarCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService','$location',
+    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg, $location ) {
+
+        console.log($user.username());
+        $scope.is_login = ($user.username() != undefined);
+
+        $scope.logout = function(){
+            console.log("logout");
+            $http.get(urls.api+"/account/logout").
+                success(function(data){
+                    console.log(data);
+                    if(data.error.code == 1){
+                        $user.logout();
+                        window.location.href='/mobile/';
+                    }
+                });
+        };
     }])
     .controller('MB_InfoCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('MB_InfoCtrl');
