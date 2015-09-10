@@ -1120,8 +1120,8 @@ angular.module('chuangplus_mobile.controllers', [])
 
     .controller('MB_LeftSidebarCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService','$location',
     function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg, $location ) {
-        console.log($user.username);
-        $scope.is_login = ($user.username != undefined);
+        console.log($user.username());
+        $scope.is_login = ($user.username() != undefined);
         $scope.logout = function(){
             $http.get(urls.api+"/account/logout").
                 success(function(data){
