@@ -31,7 +31,7 @@
 
       <div class="info-block">
         <div class="panel-list">
-          <button class="panel-radius login-btn form-control lit-p-bg" ng-click="update_password()">更新</button>
+          <button class="panel-radius login-btn form-control lit-p-bg" ng-click="update_password()">更新密码</button>
         </div>
       </div>
 
@@ -43,15 +43,15 @@
             <div class="info-block-title">基本信息</div>
 
             <span class="panel-radius form-control info-input">
-            <input class="panel-elem full-width-input" type="email" ng-model="user_info.email" placeholder="请输入邮箱">
+            <input class="panel-elem full-width-input" type="email" ng-model="user_info.email" placeholder="请输入邮箱" required>
             </span>
 
             <span class="panel-radius form-control info-input">
-              <input class="panel-elem elem-width-full" type="text" ng-model="user_info.university" placeholder="学校">
+              <input class="panel-elem elem-width-full" type="text" ng-model="user_info.university" placeholder="学校" required>
             </span>
 
             <span class="panel-radius form-control info-input">
-              <input class="panel-elem elem-width-full" type="text" ng-model="user_info.major" placeholder="专业">
+              <input class="panel-elem elem-width-full" type="text" ng-model="user_info.major" placeholder="专业" required>
             </span>
 
             <div class="panel-radius form-control info-input">
@@ -76,7 +76,7 @@
 
       <div class="info-block">
         <div class="panel-list">
-          <button class="panel-radius login-btn form-control lit-p-bg" ng-click="update_info()">更新</button>
+          <button class="panel-radius login-btn form-control lit-p-bg" ng-click="update_info()">更新信息</button>
         </div>
       </div>
     </div>

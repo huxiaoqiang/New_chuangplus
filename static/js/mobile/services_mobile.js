@@ -5,13 +5,6 @@
 // In this case it is a simple value service.
 angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
     value('version', '0.1')
-    .service('myService', function () { 
-        return{
-            'test' : function(){
-                console.log("tets");
-            }
-        }
-     })
     .service('CsrfService', ['$cookies' ,function($cookies){
         return {
             'val': function() {
@@ -26,6 +19,7 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
         };
     }])
     .service('NoticeService', function($cookies){
+        $(".notice-bar").html("欢迎来到犀牛");
         return {
             'show': function(data) {
                 $(".notice-bar").html(data);

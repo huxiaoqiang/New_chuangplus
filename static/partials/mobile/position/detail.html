@@ -1,4 +1,7 @@
 <div ng-controller="MB_PositionDetailCtrl">
+    <div class="notice-bar">
+        notice
+    </div>
     <div class="main-content scrollable">
         <div class="scrollable-content">
             <div class="header-bar">
@@ -115,8 +118,12 @@
     </div>
     <div ui-content-for="footer">
         <div class="navbar navbar-app navbar-absolute-bottom">
-            <div class="nav-bar-2 selected">投简历</div>
+            <div ng-if="!resume_compelete" class="nav-bar-2 selected" ui-turn-on="addresume">投简历</div>
+            <div ng-if="resume_compelete" class="nav-bar-2 selected" ng-click="submit_posi()">投简历</div>
             <div ng-click="post()" class="nav-bar-2 ">[[post_value]]</div>
         </div>
+    </div>
+    <div ui-content-for="overlays">
+        <div ng-include="'/static/partials/mobile/partials/overlay_addresume.html'"></div>
     </div>
 </div>

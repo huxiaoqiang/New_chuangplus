@@ -1,4 +1,7 @@
 <form ng-controller="MB_EditResumeCtrl" id="info-form">
+  <div class="notice-bar no-bar-top">
+    notice
+  </div>
   <div class="scrollable">
   <div class="scrollable-content">
   <div class="header-bar">
@@ -12,13 +15,13 @@
           <div class="resume-block-title">基本信息</div>
           <span class="panel-group-top lit-gray-border">
             <div class="panel-elem elem-width-4 panel-title font-color-g">姓名</div>
-            <input class="panel-elem elem-width-43" type="text" ng-model="intern_info.real_name">
+            <input class="panel-elem elem-width-43" type="text" ng-model="intern_info.real_name" required>
           </span>
 
           <span class="panel-group-mid lit-gray-border">
             <label class="panel-elem elem-width-4 panel-title font-color-g">性别</label>
             <div class="panel-width-43 panel-select">
-                  <select ng-model="intern_info.gender">
+                  <select ng-model="intern_info.gender" required>
                     <option value="1" ng-select="intern_info.gender='1'">男</option>
                     <option value="0" ng-select="intern_info.gender='0'">女</option>
                   </select>
@@ -40,7 +43,7 @@
 
           <span class="panel-group-bot lit-gray-border">
             <div class="panel-elem elem-width-4 panel-title font-color-g">手机</div>
-            <input class="panel-elem elem-width-43" ng-model="intern_info.cellphone" type="tel">
+            <input class="panel-elem elem-width-43" ng-model="intern_info.cellphone" type="tel" required>
           </span>
         </div>
       </div>
@@ -51,7 +54,7 @@
             <div class="info-block-tip">
                 未上传简历前，HR只能通过百字简介判断是否邀请面试，请认真填写。建议格式：基本信息+教育经历+工作/项目经历+学生工作经历+技能+性格特点
             </div>
-            <textarea ng-model="intern_info.description" class="info-block-textarea">
+            <textarea ng-model="intern_info.description" class="info-block-textarea" style="padding: 10px 8px 10px 8px" required>
               
             </textarea>
         </div>
@@ -66,12 +69,12 @@
 
             <div class="resume-block-att" ng-if="intern_info.resume_id == null">[无简历附件]</div>
 
-            <div class="panel-radius login-btn form-control btn-b-pur" ng-submit="save_intern_info()">上传/更新简历</div>
+            <a class="panel-radius login-btn form-control btn-b-pur" href="/mobile/home/uploadresume">上传/更新简历</a>
             
           <!--
             <a class="panel-radius login-btn form-control btn-b-pur" href="/mobile/home/uploadresume">上传/更新简历附件</a>
           -->
-          <a class="panel-radius form-control lit-p-bg" ng-submit="save_intern_info()">暂不上传，直接投递</a>
+          <a class="panel-radius form-control lit-p-bg" ng-click="save_intern_info()">暂不上传，直接投递</a>
         </div>
       </div>
     </form>
