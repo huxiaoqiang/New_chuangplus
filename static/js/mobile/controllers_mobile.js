@@ -1123,7 +1123,7 @@ angular.module('chuangplus_mobile.controllers', [])
 
         console.log($user.username());
 
-        $scope.is_login = ($user.username() != undefined && $user.username() != 'null');
+        $scope.is_login = ($user.username() != undefined && $user.username() != '');
 
         $scope.logout = function(){
             console.log("logout");
