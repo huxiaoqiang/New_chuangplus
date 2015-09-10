@@ -509,14 +509,16 @@ angular.module('chuangplus_mobile.controllers', [])
                     $scope.submitResume = {};
                     $scope.submitResume.position_id = $scope.position_id;
                     console.log($scope.userinfo.resume_id);
+
+                    if($scope.userinfo.real_name != undefined && $scope.userinfo.real_name != null)
+                        $scope.resume_compelete = true;
+                    else
+                        $scope.resume_compelete = false;
+
                     if($scope.userinfo.resume_id != undefined && $scope.userinfo.resume_id != null)
-                    {
-                        $scope.submitResume.resume_choice = 1;
                         $scope.resume_submitted = true;
-                    }
-                    else{
+                    else
                         $scope.resume_submitted = false;
-                    }
                 }
                 else{
                     console.log(data.error).message;
