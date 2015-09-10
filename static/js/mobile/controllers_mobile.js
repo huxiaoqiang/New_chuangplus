@@ -510,7 +510,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     $scope.submitResume.position_id = $scope.position_id;
                     console.log($scope.userinfo.resume_id);
 
-                    if($scope.userinfo.real_name != undefined && $scope.userinfo.real_name != null)
+                    if($scope.userinfo.real_name != undefined && $scope.userinfo.real_name != null && $scope.userinfo.real_name != '')
                         $scope.resume_compelete = true;
                     else
                         $scope.resume_compelete = false;
@@ -532,18 +532,22 @@ angular.module('chuangplus_mobile.controllers', [])
             $scope.submitResume.resume_choice = 1;
         else
             $scope.submitResume.resume_choice = 3;
-        $csrf.set_csrf($scope.submitResume);
-        $http.post(urls.api + "/position/"+$scope.position_id+"/submit", $.param($scope.submitResume)).
-            success(function(data){
-                if(data.error.code == 1){
-                    $scope.submit_value = "已投递";
-                    $notice.show("已投递");
+        if($scope.resume_compelete)
+        {
+            $csrf.set_csrf($scope.submitResume);
+            $http.post(urls.api + "/position/"+$scope.position_id+"/submit", $.param($scope.submitResume)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.submit_value = "已投递";
+                        $notice.show("已投递");
+                    }
+                        else{
+                        $notice.show($errMsg.format_error("",data.error).message);
+                    }
                 }
-                    else{
-                    $notice.show($errMsg.format_error("",data.error).message);
-                }
-            }
-        ); 
+            ); 
+        }
+
     };
         
         //提醒完善简历
@@ -634,10 +638,10 @@ angular.module('chuangplus_mobile.controllers', [])
                 $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
                     success(function(data){
                         if(data.error.code == 1){
-                            setTimeout(function(){$location.url('/mobile/');},1);
+                            window.location.href='/mobile/info';
                         }
                         else{
-
+                            $notice.show($errMsg.format_error("",data.error).message);
                         }
                     });
             }
@@ -751,8 +755,8 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.refresh_captcha();
     }
     ])
-    .controller('MB_PositionFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService',
-    function($scope, $http, urls, $csrf, $routeParams, $notice, $user) {
+    .controller('MB_PositionFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg) {
         console.log('MB_PositionFavorCtrl');
         $scope.positions = {};
         $scope.position_type = {
@@ -785,6 +789,12 @@ angular.module('chuangplus_mobile.controllers', [])
                         $scope.submitResume = {};
                         $scope.submitResume.position_id = $scope.position_id;
                         console.log($scope.userinfo.resume_id);
+
+                        if($scope.userinfo.real_name != undefined && $scope.userinfo.real_name != null && $scope.userinfo.real_name != '')
+                            $scope.resume_compelete = true;
+                        else
+                            $scope.resume_compelete = false;
+
                         if($scope.userinfo.resume_id != undefined && $scope.userinfo.resume_id != null)
                         {
                             $scope.submitResume.resume_choice = 1;
@@ -846,23 +856,30 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $scope.get_userInfo();
         $scope.get_positions();
-        $scope.submit = function(index) {
-            console.log($scope.positions[index]);
+
+        $scope.submit_posi = function(submit_id){
             if($scope.resume_submitted == true)
-                    $scope.submitResume.resume_choice = 1;
+                $scope.submitResume.resume_choice = 1;
             else
                 $scope.submitResume.resume_choice = 3;
-            $csrf.set_csrf($scope.submitResume);
-            $http.post(urls.api + "/position/"+$scope.positions[index]._id.$oid+"/submit", $.param($scope.submitResume)).
-                success(function(data){
-                    if(data.error.code == 1){
-                        $scope.positions[index].submit_value = "已投递";
+            if($scope.resume_compelete)
+            {
+                $csrf.set_csrf($scope.submitResume);
+                $http.post(urls.api + "/position/"+submit_id+"/submit", $.param($scope.submitResume)).
+                    success(function(data){
+                        if(data.error.code == 1){
+                            $scope.submit_value = "已投递";
+                            $notice.show("已投递");
+                        }
+                            else{
+                            $notice.show($errMsg.format_error("",data.error).message);
+                        }
                     }
-                    else{
-                        console.log(data.error.message);
-                    }
-                });
-            };
+                ); 
+            }
+
+        };
+
         $scope.complete_resume = function(){
             setTimeout(function(){$location.url('/mobile/');
                 //wind ow.location.href='/intern/resume'
@@ -935,7 +952,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 }
                 }
                 else{
-                $scope.error = $errMsg.format_error('',data.error);
+                    $scope.error = $errMsg.format_error('',data.error);
                 }
             });
         };
@@ -965,7 +982,8 @@ angular.module('chuangplus_mobile.controllers', [])
             if( $scope.intern_info.real_name    != undefined &&
                 $scope.intern_info.description  != undefined &&
                 $scope.intern_info.gender       != undefined &&
-                $scope.intern_info.work_days     != undefined)
+                $scope.intern_info.cellphone    != undefined &&
+                $scope.intern_info.work_days    != undefined)
             {
                 $csrf.set_csrf($scope.intern_info);
                 $http.post(urls.api+"/account/userinfo/set", $.param($scope.intern_info)).
@@ -974,7 +992,7 @@ angular.module('chuangplus_mobile.controllers', [])
                             $notice.show("修改简历成功");
                         }
                         else{
-                            $notice.show($errMsg.format_error("",data.error));
+                            $notice.show($errMsg.format_error("",data.error).message);
                         }
                     }); 
             }
@@ -1074,8 +1092,7 @@ angular.module('chuangplus_mobile.controllers', [])
                         $notice.show("修改信息成功");
                     }
                     else{
-                            $errMsg.format_error("",data.error);
-                            $notice.show(data.message);
+                        $notice.show($errMsg.format_error("",data.error).message);
                     }
                 });
             }
@@ -1093,8 +1110,7 @@ angular.module('chuangplus_mobile.controllers', [])
                         $notice.show("修改密码成功");
                     }
                     else{
-                        $errMsg.format_error("",data.error);
-                        $notice.show(data.message);
+                        $notice.show($errMsg.format_error("",data.error).message);
                     }
                 });
             }
@@ -1118,6 +1134,40 @@ angular.module('chuangplus_mobile.controllers', [])
                         window.location.href='/mobile/';
                     }
                 });
+        };
+    }])
+
+    .controller('MB_UserInfoEditCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
+    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
+        console.log('MB_UserInfoEditCtrl');
+        $scope.info = {};
+        $scope.user_info = {};
+        $scope.info.username = $user.username();
+
+        $http.get(urls.api+"/account/userinfo/get").
+            success(function(data){
+            if(data.error.code == 1){
+                $scope.user_info = data.data;
+            }
+        });
+
+        $scope.update_info = function(){
+            if( $scope.user_info.major != undefined &&
+                $scope.user_info.university != undefined)
+            {
+                $csrf.set_csrf($scope.user_info);
+                $http.post(urls.api+"/account/userinfo/set", $.param($scope.user_info))
+                    .success(function(data){
+                    if(data.error.code == 1){
+                        window.location.href='/mobile/';
+                    }
+                    else{
+                        $notice.show($errMsg.format_error("",data.error).message);
+                    }
+                });
+            }
+            else
+                $notice.show("请填写合法的信息");
         };
     }])
     .controller('MB_InfoCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){

@@ -34,11 +34,12 @@ var app = angular.module('chuangplus_mobile', [
         $routeProvider.when('/mobile/test', {templateUrl: urls.part_mobile + '/test.html',title:'公司列表'});
         //mobile configure
         $routeProvider.when('/mobile/', {templateUrl: urls.part_mobile + '/company/list.html',title:'公司列表'});
+        $routeProvider.when('/mobile', {templateUrl: urls.part_mobile + '/company/list.html',title:'公司列表'});
         $routeProvider.when('/mobile/test', {templateUrl: urls.part_mobile + '/test.html',title:'公司列表'});
 
         $routeProvider.when('/mobile/register', {templateUrl: urls.part_mobile + '/register.html', title:'注册'});
         $routeProvider.when('/mobile/login', {templateUrl: urls.part_mobile + '/login.html', title:'登录'});
-        $routeProvider.when('/mobile/info', {templateUrl: urls.part_mobile + '/info.html',title:'基本信息'});
+        $routeProvider.when('/mobile/info', {templateUrl: urls.part_mobile + '/info.html',title:'基本信息填写'});
 
         $routeProvider.when('/mobile/position/filter', {templateUrl: urls.part_mobile + '/position/filter.html',title:'筛选'});
         $routeProvider.when('/mobile/position/list', {templateUrl: urls.part_mobile + '/position/list.html',title:'职位列表'});
