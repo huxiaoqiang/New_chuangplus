@@ -592,8 +592,6 @@ angular.module('chuangplus_mobile.controllers', [])
         }
 
         $scope.user_info = {};
-        $scope.info.username = $user.username();
-
         $http.get(urls.api+"/account/userinfo/get").
             success(function(data){
             if(data.error.code == 1){
