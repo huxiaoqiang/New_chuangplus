@@ -469,7 +469,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     $scope.post_value = "取消收藏";
                 }
                 else
-                    $scope.post_value = "收藏公司";
+                    $scope.post_value = "收藏职位";
             }
             else{
                 console.log(data.error.message);
@@ -494,29 +494,13 @@ angular.module('chuangplus_mobile.controllers', [])
                 $csrf.set_csrf($scope.submitUnFavor);
                 $http.post(urls.api+"/position/"+$scope.position_id+"/userunlikeposition", $.param($scope.submitUnFavor)).
                 success(function(data){
-                    $scope.post_value = "收藏公司";
+                    $scope.post_value = "收藏职位";
                     $scope.favor_exist = false;
                 });
             }
         };
-    /*
 
-    $http.get(urls.api+"/account/userinfo/"+$scope.position_id+"/check_favor_position").
-        success(function(data){
-        if(data.error.code == 1){
-            $scope.favor_exist = data.data.exist;
-            if($scope.favor_exist == true){
-            $scope.post_value = "取消收藏";
-            }
-            else{
-            $scope.post_value = "先收藏";
-            }
-        }
-        else{
-            console.log(data.error.message);
-        }
-    });
-
+        //检查简历是否完善
         $scope.userinfo = {};
         $http.get(urls.api + "/account/userinfo/get").
             success(function(data){
@@ -528,64 +512,43 @@ angular.module('chuangplus_mobile.controllers', [])
                     if($scope.userinfo.resume_id != undefined && $scope.userinfo.resume_id != null)
                     {
                         $scope.submitResume.resume_choice = 1;
-                $scope.resume_submitted = true;
-                        console.log("here");
-            }
-            else{
-            $scope.resume_submitted = false;
-            }
-        }
-        else{
-            console.log(data.error).message;
-        }
-    });
-    
-    $http.get(urls.api+"/position/"+$scope.position_id+"/check_submit").
+                        $scope.resume_submitted = true;
+                    }
+                    else{
+                        $scope.resume_submitted = false;
+                    }
+                }
+                else{
+                    console.log(data.error).message;
+                }
+            });
+        
+        //投递职位
+        
+    $scope.submit_posi = function(){
+        if($scope.resume_submitted == true)
+            $scope.submitResume.resume_choice = 1;
+        else
+            $scope.submitResume.resume_choice = 3;
+        $csrf.set_csrf($scope.submitResume);
+        $http.post(urls.api + "/position/"+$scope.position_id+"/submit", $.param($scope.submitResume)).
             success(function(data){
                 if(data.error.code == 1){
-                    if(data.exist == true){
-                        $scope.submit_value = "已投递";
-                        $scope.resume_submitted = true;
+                    $scope.submit_value = "已投递";
+                    }
+                    else{
+                    console.log(data.error.message);
+                }
             }
-            else{
-            $scope.submit_value = "投递简历";
-            }
-        }
-        else{
-            console.log(data.error.message);
-        }
-    });
-
-    $scope.post = function(){
-        $scope.submitFavor = {};
-        $scope.submitFavor.position_id = $scope.position_id;
-        $csrf.set_csrf($scope.submitFavor);
-        $http.post(urls.api + "/position/"+$scope.position_id+"/userlikeposition", $.param($scope.submitFavor)).
-        success(function(data){
-            $scope.post_value = "取消收藏";
-        });
+        ); 
     };
         
-    $scope.submit = function(){
-        $scope.submitResume.resume_choice = 1;
-        console.log("here");
-            $csrf.set_csrf($scope.submitResume);
-        $http.post(urls.api + "/position/"+$scope.position_id+"/submit", $.param($scope.submitResume)).
-        success(function(data){
-            if(data.error.code == 1){
-            $scope.submit_value = "已投递";
-            }
-                else{
-            console.log(data.error.message);
-            }
-        }); 
-    };
-    
-    $scope.complete_resume = function(){
-         setTimeout(function(){window.location.href='/intern/resume'},2000);
-         $('#myModal').modal('hide');       
+        //提醒完善简历
+        $scope.complete_resume = function(){
+             setTimeout(function(){window.location.href='/intern/resume'},2000);
+             $('#myModal').modal('hide');       
 
-    };*/
+        };
     }])
     .controller('MB_LoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams','NoticeService','$location',
     function($scope, $http, urls, $csrf, $routeParams, $notice, $location) {

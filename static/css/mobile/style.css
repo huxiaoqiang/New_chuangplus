@@ -23,9 +23,6 @@ body {
   height: 100%;
   display: block;
 }
-.scrollable-content {
-  padding-bottom: 10px;
-}
 .absolute-center {
   margin: auto;
   position: absolute;
