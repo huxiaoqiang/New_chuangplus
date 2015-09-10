@@ -631,7 +631,7 @@ angular.module('chuangplus_mobile.controllers', [])
                         console.log(data);
                         if(data.error.code == 1){
                             console.log("登陆成功");
-                            setTimeout(function(){$location.url('/mobile/');},5);
+                            setTimeout(function(){window.location.href='/mobile/';});
                         }
                         else
                         {
@@ -1122,7 +1122,8 @@ angular.module('chuangplus_mobile.controllers', [])
     function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg, $location ) {
 
         console.log($user.username());
-        $scope.is_login = ($user.username() != undefined);
+
+        $scope.is_login = ($user.username() != undefined && $user.username() != '');
 
         $scope.logout = function(){
             console.log("logout");

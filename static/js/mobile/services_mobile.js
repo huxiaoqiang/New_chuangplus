@@ -164,9 +164,9 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
             },
             'logout': function(){
                 //delete $cookies['username'];
-                $.cookie('username',null,{path:"/"});
+                $.cookie('username','',{path:"/"});
                 //delete $cookies['role'];
-                $.cookie('role', null,{path:"/"}); 
+                $.cookie('role', '',{path:"/"}); 
             }
         };
     }]).
