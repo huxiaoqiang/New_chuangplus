@@ -591,6 +591,16 @@ angular.module('chuangplus_mobile.controllers', [])
             
         }
 
+        $scope.user_info = {};
+        $scope.info.username = $user.username();
+
+        $http.get(urls.api+"/account/userinfo/get").
+            success(function(data){
+            if(data.error.code == 1){
+                $scope.user_info = data.data;
+            }
+        });
+
         $scope.login_user = function(){
             if($scope.is_captcha_ok == 1)
             {
@@ -605,8 +615,8 @@ angular.module('chuangplus_mobile.controllers', [])
                             $http.get(urls.api+"/account/userinfo/get").
                                 success(function(udata){
                                 if(udata.error.code == 1){
-                                    if( udata.data.user_info.major != undefined &&
-                                        udata.data.user_info.university != undefined)
+                                    if( udata.data.major != undefined &&
+                                        udata.data.university != undefined)
                                         window.location.href='/mobile/';
                                     else
                                     {
