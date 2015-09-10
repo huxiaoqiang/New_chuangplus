@@ -638,7 +638,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
                     success(function(data){
                         if(data.error.code == 1){
-                            setTimeout(function(){$location.url('/mobile/');},1);
+                            window.location.href='/mobile/login';
                         }
                         else{
                             $notice.show($errMsg.format_error("",data.error).message);
