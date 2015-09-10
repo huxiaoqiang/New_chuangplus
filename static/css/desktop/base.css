@@ -230,12 +230,22 @@ body > #wrap {
   font-size: 1.2em;
   border: 0;
 }
+#container #login .ui.segment.form #login_form #options {
+  margin-top: 5px;
+}
 #container #login .ui.segment.form #login_form #options .findpwd {
   color: #000000;
+  text-decoration: none;
 }
 #container #login .ui.segment.form #login_form #options .regbtn {
-  float: right;
-  color: #61c2f2;
+  color: #792222;
+  text-decoration: none;
+}
+#container #login .ui.segment.form #login_form #options .findpwd:hover {
+  color: #999999;
+}
+#container #login .ui.segment.form #login_form #options .regbtn:hover {
+  color: #B16464;
 }
 #container #register {
   font-family: "微软雅黑";
@@ -1109,6 +1119,22 @@ form.financing_add input {
 #container #userresume_edit .edit-resume-btn:hover {
   background-color: #98769E;
 }
+#container .no-resume-info {
+  width: 80%;
+  background-color: rgba(225, 224, 226, 0.4);
+  height: 300px;
+  margin: 0 auto;
+  margin-top: 15%;
+  padding-top: 125px;
+}
+#container .no-resume-info p {
+  text-align: center;
+  font-size: 1.5em;
+  font-family: "微软雅黑";
+}
+#container .no-resume-info .go img {
+  width: 25px;
+}
 #container {
   margin: 0 auto;
   display: block;
@@ -1869,4 +1895,18 @@ input.form-control.ng-valid.ng-dirty {
 }
 input.form-control.ng-invalid.ng-dirty {
   border: solid #a94442 1px;
+}
+.alert {
+  padding: 10px;
+  border: 1px solid transparent;
+  top: 79px;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0;
+  width: 200px;
 }
