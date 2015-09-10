@@ -601,11 +601,26 @@ angular.module('chuangplus_mobile.controllers', [])
                         console.log(data);
                         if(data.error.code == 1){
                             console.log("登陆成功");
-                            setTimeout(function(){window.location.href='/mobile/';});
+                            $scope.user_info = {};
+                            $http.get(urls.api+"/account/userinfo/get").
+                                success(function(udata){
+                                if(udata.error.code == 1){
+                                    if( udata.data.user_info.major != undefined &&
+                                        udata.data.user_info.university != undefined)
+                                        window.location.href='/mobile/';
+                                    else
+                                    {
+                                        console.log('需要填写信息');
+                                        window.location.href='/mobile/info';
+                                    }
+                                }
+                                else
+                                    $notice.show($errMsg.format_error("",udata.error).message);
+                            });
                         }
                         else
                         {
-                            $notice.show('用户名或密码错误');
+                            $notice.show($errMsg.format_error("",data.error).message);
                         }
                     });
             }
