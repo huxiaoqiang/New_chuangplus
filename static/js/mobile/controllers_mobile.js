@@ -547,7 +547,6 @@ angular.module('chuangplus_mobile.controllers', [])
                 }
             ); 
         }
-        else
 
     };
         

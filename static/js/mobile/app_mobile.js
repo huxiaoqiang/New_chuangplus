@@ -34,6 +34,7 @@ var app = angular.module('chuangplus_mobile', [
         $routeProvider.when('/mobile/test', {templateUrl: urls.part_mobile + '/test.html',title:'公司列表'});
         //mobile configure
         $routeProvider.when('/mobile/', {templateUrl: urls.part_mobile + '/company/list.html',title:'公司列表'});
+        $routeProvider.when('/mobile', {templateUrl: urls.part_mobile + '/company/list.html',title:'公司列表'});
         $routeProvider.when('/mobile/test', {templateUrl: urls.part_mobile + '/test.html',title:'公司列表'});
 
         $routeProvider.when('/mobile/register', {templateUrl: urls.part_mobile + '/register.html', title:'注册'});
