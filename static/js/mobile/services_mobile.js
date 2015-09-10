@@ -5,15 +5,7 @@
 // In this case it is a simple value service.
 angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
     value('version', '0.1')
-    .service('myService', function () { 
-        return{
-            'test' : function(){
-                console.log("tets");
-            }
-        }
-     })
     .service('CsrfService', ['$cookies' ,function($cookies){
-        console.log("fffxxx");
         return {
             'val': function() {
                 return $cookies.csrftoken;
@@ -26,6 +18,16 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
             }
         };
     }])
+    .service('NoticeService', function($cookies){
+        $(".notice-bar").html("欢迎来到犀牛");
+        return {
+            'show': function(data) {
+                $(".notice-bar").html(data);
+                $(".notice-bar").slideDown("fast");
+                setTimeout(function(){$(".notice-bar").slideUp("fast");},1800);
+            }
+        };
+    })
     .service("ErrorService",['$cookies' ,function($cookies){
         var error_message = {
             'code15':"文件大小超过10M",
@@ -155,15 +157,10 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
                 return parseInt(user.role) == 0 || parseInt(user.role) == 3;
             },
             'logout': function(){
-                $http.get(urls.api + '/user/logout').success(function(data){
-                    delete $cookies['username'];
-                    delete $cookies['role'];
-                    delete $cookies['id'];
-                    console.log(data);
-                    if(data.error.code == 1){
-                        window.location.href = '/';
-                    }
-                });
+                //delete $cookies['username'];
+                $.cookie('username','',{path:"/"});
+                //delete $cookies['role'];
+                $.cookie('role', '',{path:"/"}); 
             }
         };
     }]).

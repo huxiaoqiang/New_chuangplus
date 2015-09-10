@@ -16,6 +16,7 @@
 
     <script src="/static/lib/angular-1.2.6/angular.min.js"></script>
     <script src="/static/lib/jquery-1.11.0.min.js"></script>
+    <script src="/static/js/mobile/jquery_cookie.js"></script>
     <script src="/static/lib/angular-1.2.6/angular-route.min.js"></script>
     <script src="/static/lib/angular-1.2.6/angular-cookies.min.js"></script>
     <script src="/static/lib/angular-1.2.6/angular-touch.min.js"></script>
@@ -42,7 +43,9 @@
           <ng-view></ng-view>
       </div>
       <div ui-yield-to="footer"></div>
-    </div><!-- ~ .app -->
+    </div>
+    <!-- ~ .app -->
+    <div ui-yield-to="overlays"></div>
 
     <script src="/static/js/mobile/app_mobile.js"></script>
     <script src="/static/js/mobile/services_mobile.js"></script>

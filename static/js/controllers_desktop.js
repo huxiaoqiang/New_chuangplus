@@ -5,6 +5,8 @@
 angular.module('chuangplus.controllers', []).
     controller('DT_HomepageCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('HomepageCtrl');
+        $scope.role = $user.role();
+        $scope.username = $user.username();
         $scope.myInterval = 3000;
         $scope.slides1 = [
             {image:"/static/image/logo/banner-1.jpg"},
@@ -16,7 +18,7 @@ angular.module('chuangplus.controllers', []).
             {image:"/static/image/logo/banner-2.jpg"},
             {image:"/static/image/logo/banner-3.jpg"}
         ];
-                                   
+
     }]).
     controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_HeaderCtrl');
@@ -30,7 +32,7 @@ angular.module('chuangplus.controllers', []).
                             $scope.url = '/company/'+data.data._id.$oid+'/infodetail';
                         }
                         else{
-                            $scope.url = '/company/info';
+                            $scope.url = '/company/no/info';
                         }
                     }
                 });
@@ -43,6 +45,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     console.log(data);
                     if(data.error.code == 1){
+                        $user.logout();
                         window.location.href = '/login';
                     }
                 });
@@ -66,22 +69,10 @@ angular.module('chuangplus.controllers', []).
         };
     }]).
     controller('DT_LoginCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
-        console.log('DT_LoginCtrl');
-
+                               console.log('DT_LoginCtrl');
         $scope.login_info = {};
-        $scope.login_info.role = 0;
+        $scope.login_info.role = 1;
         $scope.captcha_url = urls.api+"/captcha/image/";
-
-        $scope.student = function(){
-            $scope.tab1 = true;
-            $scope.tab2 = false;
-            $scope.login_info.role = 0;
-        };
-        $scope.hr = function(){
-            $scope.tab1 = false;
-            $scope.tab2 = true;
-            $scope.login_info.role = 1;
-        };
         $scope.refresh = function(){
             $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
         };
@@ -95,6 +86,9 @@ angular.module('chuangplus.controllers', []).
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
+                        setTimeout(function(){
+                            $errMsg.remove_error($scope.error);
+                        },2000);
                     }
                 });
         };
@@ -108,19 +102,18 @@ angular.module('chuangplus.controllers', []).
         $scope.captcha_url = urls.api+"/captcha/image/";
         $scope.check = {};
         $scope.e_check = {};
-
-        $scope.refresh = function(){
-            $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
-        };
-         $scope.student = function(){
+        $scope.student = function(){
             $scope.tab1 = true;
             $scope.tab2 = false;
-            $scope.reg_info.role = 0;
+            $scope.login_info.role = 0;
         };
         $scope.hr = function(){
             $scope.tab1 = false;
             $scope.tab2 = true;
-            $scope.reg_info.role = 1;
+            $scope.login_info.role = 1;
+        };
+        $scope.refresh = function(){
+            $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
         };
         $scope.register = function(){
             if ($scope.reg_info.password != $scope.repeate_password)
@@ -432,7 +425,33 @@ angular.module('chuangplus.controllers', []).
     };
 
     }]).
-    controller('DT_InternResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
+    controller('DT_InternResumeViewCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
+        $scope.filename = "无简历附件";
+        $scope.have_resume_info = false;
+        $scope.intern_info = {};
+        $scope.edit_resume = function(){
+            window.location.href = "/intern/resume/edit";
+        };
+        $scope.get_intern_info = function(){
+            $http.get(urls.api+"/account/userinfo/get").
+              success(function(data){
+                if(data.error.code == 1){
+                    $scope.intern_info = data.data;
+                    if($scope.intern_info.real_name != undefined){
+                        $scope.have_resume_info = true;
+                    }
+                    if($scope.intern_info.resume_name != undefined && $scope.intern_info.resume_id != undefined){
+                        $scope.filename = $scope.intern_info.resume_name;
+                    }
+                }
+                else{
+                    $scope.error = $errMsg.format_error("",data.error);
+                }
+              });
+        };
+        $scope.get_intern_info();
+    }]).
+    controller('DT_InternResumeEditCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_InternResumeCtrl');
         $scope.filename = "无简历附件";
         $scope.intern_info = {};
@@ -488,7 +507,7 @@ angular.module('chuangplus.controllers', []).
                     $scope.intern_info.resume_name = config.file.name;
                     console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
                     $scope.intern_info.resume_id = data.data;
-		    $scope.filename = config.file.name;
+		            $scope.filename = config.file.name;
                 }
                 else{
                     console.log(data.error.message);
@@ -1412,4 +1431,66 @@ angular.module('chuangplus.controllers', []).
         $scope.Enter_Xiniu = function(){
             window.location.href = '/';
         }
+    }]).
+    controller('DT_CompanyAccountCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', 'ErrorService',function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $errMsg){
+        console.log('DT_CompanyAccountCtrl');
+        $scope.info = {};
+        $scope.user_info = {};
+        $scope.user_pwd = {};
+        $scope.error = {};
+        $scope.e_check = {};
+        $scope.company_id = '';
+                                        
+        $http.get(urls.api+"/account/company/detail").
+        success(function(data){
+            if(data.error.code == 1){
+                $scope.user_info = data.data;
+                $scope.company_id = data.data._id.$oid;
+                
+            }
+                else{
+                console.log(data.error.message);
+                }
+        });
+                                        
+
+        $scope.view_tab = 'tab1';
+        $scope.changeTab = function(tab){
+            $scope.view_tab = tab;
+        };
+                                        
+        $scope.showError = function(ngModelController,error){
+            return ngModelController.$error[error];
+        };
+
+        $scope.update_info = function(){
+            if($scope.view_tab == 'tab1'){
+                $csrf.set_csrf($scope.user_info);
+                $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.user_info))
+                .success(function(data){
+                    if(data.error.code == 1){
+                        $scope.error = $errMsg.format_error("修改成功",data.error);
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error("",data.error);
+                    }
+                });
+            }
+            else if($scope.view_tab == 'tab2'){
+                $csrf.set_csrf($scope.user_pwd);
+                                        console.log($scope.user_pwd);
+                $http.post(urls.api+"/account/password/set", $.param($scope.user_pwd))
+                .success(function(data){
+                    console.log(data);
+                    if(data.error.code == 1){
+                        $scope.error = $errMsg.format_error("修改成功",data.error);
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                    }
+                });
+            }
+        }
+
+    
     }]);

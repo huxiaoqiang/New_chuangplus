@@ -42,6 +42,7 @@ angular.module('chuangplus.services', []).
             'code114':'您是实习生，请到实习生页面登录',
             'code115':'邮箱已经被注册',
             'code116':'邮箱格式不正确',
+            'code117':'密码错误',
             'code120':'简历不存在',
             'code210':'职位名太长或者太短',
             'code211':'职位名中包含非法字符',
@@ -147,15 +148,8 @@ angular.module('chuangplus.services', []).
                 return parseInt(user.role) == 0 || parseInt(user.role) == 3;
             },
             'logout': function(){
-                $http.get(urls.api + '/user/logout').success(function(data){
-                    delete $cookies['username'];
-                    delete $cookies['role'];
-                    delete $cookies['id'];
-                    console.log(data);
-                    if(data.error.code == 1){
-                        window.location.href = '/';
-                    }
-                });
+                delete $cookies['username'];
+                delete $cookies['role'];
             }
         };
     }]).

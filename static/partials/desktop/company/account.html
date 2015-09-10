@@ -1,0 +1,79 @@
+<div id="container">
+    <div id="account">
+        <div class="ui form segment">
+            <ul class="nav nav-tabs" ng-init="tab1=true">
+                <li ng-class="{'active': view_tab == 'tab1'}">
+                    <a ng-click="changeTab('tab1')" href="#">公司联系人信息</a>
+                </li>
+                <li ng-class="{'active': view_tab == 'tab2'}">
+                    <a ng-click="changeTab('tab2')" href="#">修改密码</a>
+                </li>
+            </ul>
+            <div class="tab-pane" ng-show="view_tab == 'tab1'">
+                <form class="form-horizontal" name="userinfoForm" ng-submit="update_info()">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input name="hr_cellphone" type="text" class="form-control" placeholder="手机" ng-model="user_info.hr_cellphone" ng-pattern="/\d{11}/" required>
+                            <span ng-show="showError(userinfoForm.hr_cellphone,'pattern')" class="err-msg">
+                                    <i class="icon-warning-sign"></i>请输入正确格式的11位手机号码
+                            </span>
+
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input name="email" type="email" class="form-control" placeholder="邮箱"ng-model="user_info.email_resume" required>
+                                </div>
+                        <span ng-show="showError(userinfoForm.email,'email')" class="err-msg">
+                            <i class="icon-warning-sign"></i>请输入正确的邮箱格式，如hxq@xiniu.com
+                        </span>
+                    </div>
+                    
+                    
+                    <button type="submit" class="btn btn-primary">保存</button>
+                    
+                    
+                    <div id="err-msg" ng-show="error.show" ng-class="error.class">[[error.message]]</div>
+                </form>
+            </div>
+            
+            <div class="tab-pane" ng-show="view_tab == 'tab2'">
+                <form class="form-horizontal" id="findpwd-form" ng-submit="update_info()">
+                    
+                    
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input name="old_password" type="password" placeholder="旧密码" class="form-control" ng-model="user_pwd.password"  required>
+                                </div>
+                        <span ng-show="user_pwd.password.length<6" class="err-msg">
+                            <i class="icon-warning-sign"></i>密码最少为6位
+                        </span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input name="new_password" type="password" placeholder="新密码" class="form-control" ng-model="user_pwd.new_password" required>
+                                </div>
+                        <span ng-show="user_pwd.new_password.length<6" class="err-msg">
+                            <i class="icon-warning-sign"></i>密码最少为6位
+                        </span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="password" class="form-control" placeholder="再输入一次" ng-model="repeat_password" required>
+                                </div>
+                        <span ng-show="user_pwd.new_password != repeat_password" class="err-msg">
+                            <i class="icon-warning-sign"></i>两次输入密码需一致
+                        </span>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">保存</button>
+                    
+                    <div id="err-msg" ng-show="error.show" ng-class="error.class">[[error.message]]</div>
+                </form>
+                
+            </div>
+        </div>
+    </div>

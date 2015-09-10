@@ -2,7 +2,7 @@
 html, body, #wrap { height: 100%; }
 body >#wrap{
     height: auto;
-    min-height: 81%;
+    min-height: 94%;
 }
 #main-container{
     width: 960px;
@@ -28,38 +28,30 @@ body >#wrap{
 }
 #footer{
   font-family: "微软雅黑";
-  background-color: #8e8e8e;
-  .container{
-    .navbar-footer{
-      #footer-navbar-logo{
-        padding-top: 35px;
-        padding-bottom: 35px;
-        float: left;
-      }
-    }
-    #footer-nav{
-      float: left;
-
+  background-color: rgba(225, 224, 226, 0.4);
+  .navbar-footer{
+    width: 960px;
+    margin: 0 auto;
+    height: 56px;
+    ul#footer-nav{
+    padding-top: 20px;
+    float: left;
       li{
-        height: 137px;
-        float: left;
         list-style-type: none;
-        padding-top: 23%;
+        float: left;
+        margin-right: 20px;
         a{
-          padding-top: 56.5px;
-          padding-right: 4px;
-          padding-bottom: 56.5px;
-          padding-left: 4px;
-          text-align: center;
-          color: white;
+          color: #707070;
+          text-decoration:none;
+        }
+        a:hover{
+          color: #98769E;
         }
       }
     }
-
-    #footer-brand{
-      float: right;
-      color: white;
-      padding-top: 4%;
-    }
+  }
+  #footer-brand{
+    padding-top: 20px;
+    float: right;
   }
 }

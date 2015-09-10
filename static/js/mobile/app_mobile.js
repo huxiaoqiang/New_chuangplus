@@ -21,6 +21,9 @@ var app = angular.module('chuangplus_mobile', [
         $interpolateProvider.startSymbol('[[');
         $interpolateProvider.endSymbol(']]');
     }]).
+    config(['$httpProvider', function($httpProvider){
+        $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+    }]).
     config(['$routeProvider', '$locationProvider', 'urls', function($routeProvider, $locationProvider, urls) {
         //Route configure
         $locationProvider.html5Mode(true);
@@ -54,7 +57,8 @@ var app = angular.module('chuangplus_mobile', [
         $routeProvider.when('/mobile/home/uploadresume', {templateUrl: urls.part_mobile + '/home/uploadresume.html',title:'上传简历'});
         $routeProvider.when('/mobile/home', {templateUrl: urls.part_mobile + '/home/pcenter.html',title:'个人中心'});
         $routeProvider.when('/mobile/home/mypost', {templateUrl: urls.part_mobile + '/home/mypost.html',title:'我的投递'});
-
+        $routeProvider.otherwise({redirectTo: '/'});
+        
 }]);
     app.run(['$location', '$rootScope', function($location, $rootScope){
         //Configure header title of the page

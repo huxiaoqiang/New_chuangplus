@@ -1,53 +1,53 @@
-<div class="main-content scrollable">
-<div class="scrollable-content">
-    <div class="header-bar">
-        <div class="header">我的收藏</div>
-    </div>    
+<div ng-controller="MB_PositionFavorCtrl">
+    <div class="main-content scrollable">
+        <div class="scrollable-content">
+            <div class="header-bar">
+                <div class="header">我的收藏</div>
+            </div>    
+            <div class="comp-list">
+                <a class="comp-listbox" href="/mobile/position/detail/[[position._id.$oid]]" ng-repeat="position in positions">
+                    <img class="comp-prev-img" src="/api/file/[[position.company.logo_id]]/download">
+                    <div ng-if="position.company.is_auth" class="comp-auth">[[position.company.auth_organization]]认证</div>
+                    <div class="comp-name">[[position.position_type_value]] | [[position.name]]</div>
 
-    <div class="comp-list">
-        <a class="comp-listbox" href="/mobile/position/detail">
-            <img class="comp-prev-img" src="/static/pic/comp_prev.jpg">
-            <div class="comp-auth">红杉资本认证</div>
-            <div class="comp-name">产品经理</div>
+                    <div class="comp-req-list">
+                        <span class="comp-req-title">[[position.company.abbreviation]]</span>
+                    </div>
+                    <div class="comp-desc">[[position.company.brief_introduction]]</div>
 
-            <div class="comp-req-list">
-                <span class="comp-req-title">清华创+</span>
+                    <div class="send-resume">
+                        <i class="fa fa-envelope send-resume-logo"></i>
+                        <div class="send-resume-text">投递简历</div>
+                    </div>
+
+                    <div class="comp-desc-list">
+                        <span class="comp-desc-tag">
+                            [[position.days_per_week]]天/周
+                        </span>
+                        <span class="comp-desc-tag">
+                            [[position.salary_min]]K-[[position.salary_max]]K
+                        </span>
+                        <span class="comp-desc-tag">
+                            [[position.field_value]]
+                        </span>
+                        <span class="comp-desc-tag">
+                            [[position.company.scale_value]]期
+                        </span>
+                        <span class="comp-desc-tag">
+                            [[position.company.city]]
+                        </span>
+                    </div>
+                    <div class="post-time">
+                        发布时间：[[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]
+                    </div>
+                </a>
             </div>
-            <div class="comp-desc">高校创业服务机构</div>
-
-            <div class="send-resume">
-                <img class="send-resume-logo" src="/static/pic/logo.jpg">
-                <div class="send-resume-text">投递简历</div>
-            </div>
-
-            <div class="comp-desc-list">
-                <span class="comp-desc-tag">
-                    5天/周
-                </span>
-                <span class="comp-desc-tag">
-                    5K-8K
-                </span>
-                <span class="comp-desc-tag">
-                    创业服务
-                </span>
-                <span class="comp-desc-tag">
-                    初创期
-                </span>
-                <span class="comp-desc-tag">
-                    北京
-                </span>
-            </div>
-
-            <div class="post-time">
-                发布时间：2015年7月21日
-            </div>
-        </a>
+        </div>
     </div>
-</div>
-</div>
-<div ui-content-for="footer">
-    <div class="navbar navbar-app navbar-absolute-bottom">
-        <div class="nav-bar-2 selected">一键全部投递</div>
-        <div class="nav-bar-2 ">清除失效岗位</div>
+    <div ui-content-for="footer">
+        <div class="navbar navbar-app navbar-absolute-bottom">
+            <div class="nav-bar-2 selected">一键全部投递</div>
+            <div class="nav-bar-2 ">清除失效岗位</div>
+        </div>
     </div>
 </div>

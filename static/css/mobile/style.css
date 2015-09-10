@@ -9,15 +9,19 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   overflow-x: hidden;
 }
+.no-bar-top {
+  top: 0 !important;
+}
+.sidebar-toggle {
+  color: white !important;
+  font-size: 17px !important;
+}
 .no-margin {
   margin: 0 0 0 0 !important;
 }
 #main-container {
   height: 100%;
   display: block;
-}
-.scrollable-content {
-  padding-bottom: 10px;
 }
 .absolute-center {
   margin: auto;
@@ -162,9 +166,37 @@ a:hover {
 .elem-width-full {
   width: 100%;
 }
+.input-notice {
+  float: right;
+  font-size: 24px;
+  line-height: inherit;
+  position: absolute;
+  right: 42px;
+  color: #966497;
+  display: none;
+  margin-top: 10px;
+}
+.notice-bar {
+  height: 42px;
+  width: 100%;
+  background-color: red;
+  z-index: 10000000;
+  position: fixed;
+  top: 50px;
+  color: white;
+  font-size: 19px;
+  line-height: 40px;
+  text-align: center;
+  display: none;
+}
 #captcha_img {
-  margin-left: 30%;
-  margin-bottom: 7px;
+  height: 38px;
+  position: absolute;
+  right: 37px;
+  bottom: 9px;
+}
+#captcha-pass {
+  right: 150px;
 }
 .panel-title {
   color: #966497;
@@ -664,12 +696,14 @@ a:hover {
 }
 .send-resume {
   position: absolute;
-  bottom: 20px;
+  bottom: 26px;
   right: 15px;
   text-align: center;
+  color: #966497;
 }
 .send-resume .send-resume-logo {
   width: 25px;
+  font-size: 25px;
   margin-bottom: 2px;
 }
 .send-resume .send-resume-text {
@@ -684,6 +718,7 @@ a:hover {
   position: absolute;
   right: 0;
   top: 0;
+  z-index: 100;
   background-color: #e66665;
 }
 .info-update {

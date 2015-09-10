@@ -14,7 +14,7 @@
                  {% if role == 1 %}
                  <li ng-class = "{'active':resume}" ng-click="resume_active()"><a href="/company/resume">处理简历</a></li>
                  {% else %}
-                 <li ng-class = "{'active':resume}" ng-click="resume_active()"><a href="/intern/resume">查看简历</a></li>
+                 <li ng-class = "{'active':resume}" ng-click="resume_active()"><a href="/intern/resume/view">查看简历</a></li>
                  {% endif %}
 
                  <li class="dropdown">
@@ -22,20 +22,22 @@
 
                     {% if role == 1 %}
                     <ul class="dropdown-menu">
-                       <li><a ng-href=[[url]]>公司信息</a></li>
-                       <li><a href="/company/position/new/edit">发布职位</a></li>
+                       <li><a ng-href=[[url]]>编辑公司信息</a></li>
+                        <li class="divider"></li>
+                       <li><a href="/company/position/new/edit">发布岗位</a></li>
                        <li><a href="/company/[[company_id]]/position/manage">管理职位</a></li>
+                       <li><a href="/company/account">账户设置</a></li>
                        <li class="divider"></li>
                        <li><a ng-click="logout()">退出登录</a></li>
                     </ul>
                     {% elif role == 0 %}
                     <ul class="dropdown-menu">
-                       <li><a href="/intern/info">个人主页</a></li>
                        <li><a href="/intern/post">我的投递</a></li>
                        <li class="divider"></li>
                        <li><a href="/intern/favor/company">收藏的公司</a></li>
                        <li><a href="/intern/favor/position">收藏的岗位</a></li>
                        <li class="divider"></li>
+                       <li><a href="/intern/info">账户设置</a></li>
                        <li><a ng-click="logout()">退出登录</a></li>
                     </ul>
                     {% elif role == -1 %}
@@ -62,5 +64,9 @@
               {% endif %}
            </div>
         </nav>
+        <div class="right-block">
+            <div class="txt">关注我们</div>
+            <img class="img-1" src="/static/image/logo/erweima-01.png">
+        </div>
     </div>
 </header>
