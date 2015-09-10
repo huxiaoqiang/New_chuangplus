@@ -964,7 +964,7 @@ angular.module('chuangplus_mobile.controllers', [])
             if( $scope.intern_info.real_name    != undefined &&
                 $scope.intern_info.description  != undefined &&
                 $scope.intern_info.gender       != undefined &&
-                $scope.intern_info.workdays     != undefined)
+                $scope.intern_info.work_days     != undefined)
             {
                 $csrf.set_csrf($scope.intern_info);
                 $http.post(urls.api+"/account/userinfo/set", $.param($scope.intern_info)).
@@ -1062,8 +1062,7 @@ angular.module('chuangplus_mobile.controllers', [])
 
 
         $scope.update_info = function(){
-            if( $scope.info_check == 1 &&
-                $scope.user_info.email != undefined &&
+            if( $scope.user_info.email != undefined &&
                 $scope.user_info.major != undefined &&
                 $scope.user_info.university != undefined)
             {
