@@ -86,6 +86,9 @@ angular.module('chuangplus.controllers', []).
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
+                        setTimeout(function(){
+                            $errMsg.remove_error($scope.error);
+                        },2000);
                     }
                 });
         };
@@ -424,6 +427,7 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_InternResumeViewCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         $scope.filename = "无简历附件";
+        $scope.have_resume_info = false;
         $scope.intern_info = {};
         $scope.edit_resume = function(){
             window.location.href = "/intern/resume/edit";
@@ -433,6 +437,9 @@ angular.module('chuangplus.controllers', []).
               success(function(data){
                 if(data.error.code == 1){
                     $scope.intern_info = data.data;
+                    if($scope.intern_info.real_name != undefined){
+                        $scope.have_resume_info = true;
+                    }
                     if($scope.intern_info.resume_name != undefined && $scope.intern_info.resume_id != undefined){
                         $scope.filename = $scope.intern_info.resume_name;
                     }
