@@ -631,7 +631,7 @@ angular.module('chuangplus_mobile.controllers', [])
                         console.log(data);
                         if(data.error.code == 1){
                             console.log("登陆成功");
-                            setTimeout(function(){window.location.href='/mobile/';};
+                            setTimeout(function(){window.location.href='/mobile/';});
                         }
                         else
                         {
