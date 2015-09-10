@@ -22,10 +22,38 @@ header{
           }
         }
       }
-      .navbar-item{
+      .navbar-item.not-login{
         margin-left: 15px;
-
+        width: 545px;
         li{
+          text-align: center;
+          width: 33%;
+         a{
+          color: #707070;
+          padding-top: 24px;
+          padding-bottom: 24px;
+          font-size: 1.3em;
+          cursor: pointer;
+          font-family: "华文细黑";
+         }
+         a:hover{
+           border: solid #8f4e96;
+           border-width: 0px 0px 5px 0px;
+         }
+        }
+        li.active{
+           border: solid #8f4e96;
+           border-width: 0px 0px 5px 0px;
+           a:hover{
+             border-width: 0px 0px 0px 0px;
+           }
+         }
+    }
+    .navbar-item.login{
+        margin-left: 15px;
+        width: 545px;
+        li{
+          width: 20%;
          a{
           color: #707070;
           padding-top: 24px;
