@@ -1120,8 +1120,10 @@ angular.module('chuangplus_mobile.controllers', [])
 
     .controller('MB_LeftSidebarCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService','$location',
     function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg, $location ) {
+
         console.log($user.username());
         $scope.is_login = ($user.username() != undefined);
+
         $scope.logout = function(){
             console.log("logout");
             $http.get(urls.api+"/account/logout").
@@ -1129,7 +1131,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     console.log(data);
                     if(data.error.code == 1){
                         $user.logout();
-                        $location.url('/mobile/');
+                        window.location.href='/mobile/';
                     }
                 });
         };
