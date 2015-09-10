@@ -879,8 +879,8 @@ angular.module('chuangplus_mobile.controllers', [])
             $scope.index = index;
         };
     }])
-    .controller('MB_CompanyFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService',
-    function($scope, $http, urls, $csrf, $routeParams, $user) {
+    .controller('MB_CompanyFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService', 'NoticeService',
+    function($scope, $http, urls, $csrf, $routeParams, $user, $notice) {
         $scope.company_list = {};
         $scope.position_type = {
             "technology":"技术",
@@ -961,16 +961,26 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $scope.get_intern_info();
         $scope.save_intern_info = function(){
-            $csrf.set_csrf($scope.intern_info);
-            $http.post(urls.api+"/account/userinfo/set", $.param($scope.intern_info)).
-                success(function(data){
-                    if(data.error.code == 1){
-                        $scope.error = $errMsg.format_error("修改成功",data.error);
-                    }
-                    else{
-                        $scope.error = $errMsg.format_error("",data.error);
-                    }
-                });
+            if( $scope.intern_info.real_name    != undefined &&
+                $scope.intern_info.description  != undefined &&
+                $scope.intern_info.gender       != undefined &&
+                $scope.intern_info.workdays     != undefined)
+            {
+                $csrf.set_csrf($scope.intern_info);
+                $http.post(urls.api+"/account/userinfo/set", $.param($scope.intern_info)).
+                    success(function(data){
+                        if(data.error.code == 1){
+                            $scope.error = $errMsg.format_error("修改成功",data.error);
+                        }
+                        else{
+                            $scope.error = $errMsg.format_error("",data.error);
+                        }
+                    }); 
+            }
+            else
+            {
+                $notice.show("请填写合法的内容");
+            }
         };
         $scope.upload = function(file,file_t){
             var param = {
@@ -1052,17 +1062,25 @@ angular.module('chuangplus_mobile.controllers', [])
 
 
         $scope.update_info = function(){
-             $csrf.set_csrf($scope.user_info);
-             $http.post(urls.api+"/account/userinfo/set", $.param($scope.user_info))
-                .success(function(data){
-                if(data.error.code == 1){
-                    $notice.show("修改信息成功");
-                }
-                else{
-                        $errMsg.format_error("",data.error);
-                        $notice.show(data.message);
-                }
-            });
+            if( $scope.info_check == 1 &&
+                $scope.user_info.email != undefined &&
+                $scope.user_info.major != undefined &&
+                $scope.user_info.university != undefined)
+            {
+                $csrf.set_csrf($scope.user_info);
+                $http.post(urls.api+"/account/userinfo/set", $.param($scope.user_info))
+                    .success(function(data){
+                    if(data.error.code == 1){
+                        $notice.show("修改信息成功");
+                    }
+                    else{
+                            $errMsg.format_error("",data.error);
+                            $notice.show(data.message);
+                    }
+                });
+            }
+            else
+                $notice.show("请填写合法的信息");
         };
         $scope.update_password = function(){
             if($scope.info_check == 1)
