@@ -1,33 +1,34 @@
+<div ng-controller="MB_UserInfoEditCtrl">
+  <div class="notice-bar no-bar-top">
+    notice
+  </div>
+  <div class="info-input-content">     
+      <div class="panel-list">
+        <span class="panel-radius form-control info-input">
+            <input class="elem-width-full" type="text" ng-model="user_info.university" placeholder="学校" required>
+        </span>
 
-<div class="info-input-content">     
-  <form name="info" id="info" role="form" ng-submit='submit_info()'>
+        <span class="panel-radius form-control info-input">
+          <input class="elem-width-full" type="text" ng-model="user_info.major" placeholder="专业" required>
+        </span>
+
+        <span class="panel-radius form-control info-input">
+          <select class="panel-elem-full">
+            <option value ="">选择年级</option>
+            <option value ="大一">大一</option>
+            <option value="大二">大二</option>
+            <option value="大三">大三</option>
+            <option value="大四">大四</option>
+            <option value="硕士">硕士</option>
+            <option value="博士">博士</option>
+          </select>
+        </span>
+      </div>
+  </div>
+
+  <div class="info-enter">
     <div class="panel-list">
-      <span class="panel-radius form-control info-input">
-        <input class="panel-elem-full" type="text" placeholder="学校">
-      </span>
-
-      <span class="panel-radius form-control info-input">
-        <input class="panel-elem-full" type="text" placeholder="专业">
-      </span>
-
-      <span class="panel-radius form-control info-input">
-        <select class="panel-elem-full">
-          <option value ="">选择年级</option>
-          <option value ="大一">大一</option>
-          <option value="大二">大二</option>
-          <option value="大三">大三</option>
-          <option value="大四">大四</option>
-          <option value="硕士">硕士</option>
-          <option value="博士">博士</option>
-        </select>
-      </span>
+      <button class="panel-radius login-btn form-control" ng-click="update_info()">进入犀牛</button>
     </div>
-  </form>
-</div>
-
-<div class="info-enter">
-  <div class="panel-list">
-    <button class="panel-radius login-btn form-control">进入犀牛</button>
   </div>
 </div>
-

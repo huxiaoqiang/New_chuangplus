@@ -638,7 +638,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
                     success(function(data){
                         if(data.error.code == 1){
-                            window.location.href='/mobile/login';
+                            window.location.href='/mobile/info';
                         }
                         else{
                             $notice.show($errMsg.format_error("",data.error).message);
@@ -1134,6 +1134,40 @@ angular.module('chuangplus_mobile.controllers', [])
                         window.location.href='/mobile/';
                     }
                 });
+        };
+    }])
+
+    .controller('MB_UserInfoEditCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
+    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
+        console.log('MB_UserInfoEditCtrl');
+        $scope.info = {};
+        $scope.user_info = {};
+        $scope.info.username = $user.username();
+
+        $http.get(urls.api+"/account/userinfo/get").
+            success(function(data){
+            if(data.error.code == 1){
+                $scope.user_info = data.data;
+            }
+        });
+
+        $scope.update_info = function(){
+            if( $scope.user_info.major != undefined &&
+                $scope.user_info.university != undefined)
+            {
+                $csrf.set_csrf($scope.user_info);
+                $http.post(urls.api+"/account/userinfo/set", $.param($scope.user_info))
+                    .success(function(data){
+                    if(data.error.code == 1){
+                        window.location.href='/mobile/';
+                    }
+                    else{
+                        $notice.show($errMsg.format_error("",data.error).message);
+                    }
+                });
+            }
+            else
+                $notice.show("请填写合法的信息");
         };
     }])
     .controller('MB_InfoCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
