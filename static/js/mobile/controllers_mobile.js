@@ -591,6 +591,14 @@ angular.module('chuangplus_mobile.controllers', [])
             
         }
 
+        $scope.user_info = {};
+        $http.get(urls.api+"/account/userinfo/get").
+            success(function(data){
+            if(data.error.code == 1){
+                $scope.user_info = data.data;
+            }
+        });
+
         $scope.login_user = function(){
             if($scope.is_captcha_ok == 1)
             {
@@ -601,11 +609,26 @@ angular.module('chuangplus_mobile.controllers', [])
                         console.log(data);
                         if(data.error.code == 1){
                             console.log("登陆成功");
-                            setTimeout(function(){window.location.href='/mobile/';});
+                            $scope.user_info = {};
+                            $http.get(urls.api+"/account/userinfo/get").
+                                success(function(udata){
+                                if(udata.error.code == 1){
+                                    if( udata.data.major != undefined &&
+                                        udata.data.university != undefined)
+                                        window.location.href='/mobile/';
+                                    else
+                                    {
+                                        console.log('需要填写信息');
+                                        window.location.href='/mobile/info';
+                                    }
+                                }
+                                else
+                                    $notice.show($errMsg.format_error("",udata.error).message);
+                            });
                         }
                         else
                         {
-                            $notice.show('用户名或密码错误');
+                            $notice.show($errMsg.format_error("",data.error).message);
                         }
                     });
             }
@@ -789,7 +812,6 @@ angular.module('chuangplus_mobile.controllers', [])
                         $scope.submitResume = {};
                         $scope.submitResume.position_id = $scope.position_id;
                         console.log($scope.userinfo.resume_id);
-
                         if($scope.userinfo.real_name != undefined && $scope.userinfo.real_name != null && $scope.userinfo.real_name != '')
                             $scope.resume_compelete = true;
                         else
@@ -1110,13 +1132,13 @@ angular.module('chuangplus_mobile.controllers', [])
                         $notice.show("修改密码成功");
                     }
                     else{
+
                         $notice.show($errMsg.format_error("",data.error).message);
                     }
                 });
             }
         }  
     }])
-
     .controller('MB_LeftSidebarCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService','$location',
     function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg, $location ) {
 
