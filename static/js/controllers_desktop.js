@@ -32,7 +32,7 @@ angular.module('chuangplus.controllers', []).
                             $scope.url = '/company/'+data.data._id.$oid+'/infodetail';
                         }
                         else{
-                            $scope.url = '/company/info';
+                            $scope.url = '/company/no/info';
                         }
                     }
                 });

@@ -67,6 +67,7 @@ angular.module('chuangplus', [
         $routeProvider.when('/company/position/:position_id/submit/list', {templateUrl: urls.part_desktop + '/company/position/submit_list.html', controller: 'DT_CompanyPositionSubmitListCtrl', title: '岗位投递情况'});
         $routeProvider.when('/company/list', {templateUrl: urls.part_desktop + '/company/list.html', controller: 'DT_CompanyListCtrl', title: 'CompanyLisPage'});
         $routeProvider.when('/company/:company_id/detail', {templateUrl: urls.part_desktop + '/company/detail.html', controller: 'DT_CompanyDetailCtrl', title: 'CompanyDetailPage'});
+        $routeProvider.when('/company/account', {templateUrl: urls.part_desktop + '/company/account.html', controller: 'DT_CompanyAccountCtrl', title: '账户设置'});
 
         $routeProvider.when('/position/list', {templateUrl: urls.part_desktop + '/position/list.html', controller: 'DT_PositionListCtrl', title: '职位列表'});
         $routeProvider.when('/position/:position_id/detail', {templateUrl: urls.part_desktop + '/position/detail.html', controller: 'DT_PositionDetailCtrl', title: 'PositionDetailPage'});
