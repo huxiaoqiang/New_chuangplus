@@ -42,6 +42,9 @@
             border-color: rgba(240,240,240,0.3);
             padding-left: 5px;
           }
+          select:focus{
+            outline-color: rgb(240,240,240);
+          }
           input{
             margin-left: 15px;
             margin-top: 10px;
@@ -49,6 +52,9 @@
             width: 240px;
             border-color: rgba(240,240,240,0.3);
             padding-left: 5px;
+          }
+          input{
+            outline-color: rgb(240,240,240);
           }
         }
       .bref-info{
@@ -71,6 +77,9 @@
             padding: 10px;
             border-radius: 3px;
             border-color: rgba(240, 240, 240, 0.3);
+          }
+          textarea:focus{
+            outline-color:rgb(240, 240, 240);
           }
         }
       }
@@ -185,9 +194,26 @@
       font-size: 1.5em;
       font-family: "微软雅黑";
     }
+    .go-txt{
+      margin-left: -30px;
+    }
     .go{
-      img{
-        width: 25px;
+      text-align: center;
+      text-align: center;
+      position: relative;
+      left: 40px;
+      top: -38px;
+      a{
+        cursor: pointer;
+        img{
+          width: 25px;
+        }
+      }
+      a:hover{
+        cursor: pointer;
+        img{
+          width: 30px;
+        }
       }
     }
   }

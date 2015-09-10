@@ -6,10 +6,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8672abd-f305-47a2-b1e4-8cf3e409d133" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/image/icon/go-01.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/base.less" afterPath="$PROJECT_DIR$/static/less/desktop/base.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/controllers_desktop.js" afterPath="$PROJECT_DIR$/static/js/controllers_desktop.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/login.less" afterPath="$PROJECT_DIR$/static/less/desktop/login.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/desktop/base.css" afterPath="$PROJECT_DIR$/static/css/desktop/base.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/header.html" afterPath="$PROJECT_DIR$/templates/header.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/less/desktop/resume.less" afterPath="$PROJECT_DIR$/static/less/desktop/resume.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/partials/desktop/intern/resume_view.html" afterPath="$PROJECT_DIR$/static/partials/desktop/intern/resume_view.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="chuangplus.iws" />
@@ -32,116 +32,115 @@
     <favorites_list name="chuangplus" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5192102">
+    <splitter split-orientation="horizontal" split-proportion="0.5832444">
       <split-first>
-        <leaf>
-          <file leaf-file-name="login.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/static/partials/desktop/login.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="10" column="83" selection-start="644" selection-end="644" vertical-scroll-proportion="-6.785714" vertical-offset="0" max-vertical-offset="798">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="app_mobile.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/static/js/mobile/app_mobile.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="35" column="36" selection-start="1644" selection-end="1645" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1368">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="mobile_index.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/templates/mobile_index.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="41" column="29" selection-start="2059" selection-end="2059" vertical-scroll-proportion="-15.892858" vertical-offset="334" max-vertical-offset="1140">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="register.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/static/partials/desktop/register.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="75" column="25" selection-start="4107" selection-end="4114" vertical-scroll-proportion="-6.642857" vertical-offset="1239" max-vertical-offset="1653">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="homepage.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/static/partials/desktop/homepage.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="16" column="90" selection-start="773" selection-end="773" vertical-scroll-proportion="-0.0" vertical-offset="304" max-vertical-offset="1178">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/account/models.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="21" column="13" selection-start="594" selection-end="603" vertical-scroll-proportion="0.0" vertical-offset="399" max-vertical-offset="2166">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/views.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="11" column="5" selection-start="322" selection-end="322" vertical-scroll-proportion="0.0" vertical-offset="209" max-vertical-offset="513">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="resume.less" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/static/less/desktop/resume.less">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="136" column="19" selection-start="3299" selection-end="3299" vertical-scroll-proportion="-1.3461539" vertical-offset="2479" max-vertical-offset="3800">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="list.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/list.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="22" column="30" selection-start="1192" selection-end="1192" vertical-scroll-proportion="-0.0" vertical-offset="418" max-vertical-offset="665">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="controllers_desktop.js" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="430" column="21" selection-start="18360" selection-end="18366" vertical-scroll-proportion="0.33250928" vertical-offset="7901" max-vertical-offset="27360">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
+        <splitter split-orientation="vertical" split-proportion="0.5">
+          <split-first>
+            <leaf>
+              <file leaf-file-name="login.html" pinned="false" current="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/static/partials/desktop/login.html">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state line="10" column="83" selection-start="644" selection-end="644" vertical-scroll-proportion="-6.785714" vertical-offset="0" max-vertical-offset="798">
+                      <folding />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="app_mobile.js" pinned="false" current="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/static/js/mobile/app_mobile.js">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state line="35" column="36" selection-start="1644" selection-end="1645" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1368">
+                      <folding />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="mobile_index.html" pinned="false" current="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/templates/mobile_index.html">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state line="43" column="12" selection-start="2135" selection-end="2135" vertical-scroll-proportion="-15.892858" vertical-offset="372" max-vertical-offset="1159">
+                      <folding />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="homepage.html" pinned="false" current="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/static/partials/desktop/homepage.html">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state line="16" column="90" selection-start="773" selection-end="773" vertical-scroll-proportion="-0.0" vertical-offset="304" max-vertical-offset="1178">
+                      <folding />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/account/models.py">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state line="43" column="28" selection-start="1509" selection-end="1509" vertical-scroll-proportion="-10.64" vertical-offset="456" max-vertical-offset="2071">
+                      <folding />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/app/views.py">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state line="11" column="5" selection-start="322" selection-end="322" vertical-scroll-proportion="-3.76" vertical-offset="58" max-vertical-offset="456">
+                      <folding />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="list.html" pinned="false" current="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/list.html">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state line="22" column="30" selection-start="1192" selection-end="1192" vertical-scroll-proportion="-0.0" vertical-offset="418" max-vertical-offset="665">
+                      <folding />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="controllers_desktop.js" pinned="false" current="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state line="430" column="21" selection-start="18360" selection-end="18366" vertical-scroll-proportion="-47.24" vertical-offset="6989" max-vertical-offset="27360">
+                      <folding />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="resume_edit.html" pinned="false" current="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/static/partials/desktop/intern/resume_edit.html">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state line="10" column="21" selection-start="406" selection-end="406" vertical-scroll-proportion="-1.2016807" vertical-offset="619" max-vertical-offset="1254">
+                      <folding />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-first>
+          <split-second>
+            <leaf>
+              <file leaf-file-name="resume.less" pinned="false" current="true" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/static/less/desktop/resume.less">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state line="191" column="6" selection-start="4457" selection-end="4457" vertical-scroll-proportion="0.2631579" vertical-offset="3534" max-vertical-offset="4294">
+                      <folding />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-second>
+        </splitter>
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="send_email.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/position/management/commands/send_email.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="6" column="27" selection-start="278" selection-end="278" vertical-scroll-proportion="0.0" vertical-offset="114" max-vertical-offset="228">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="resume_view.html" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="resume_view.html" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/static/partials/desktop/intern/resume_view.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="3" column="0" selection-start="112" selection-end="149" vertical-scroll-proportion="-2.0357144" vertical-offset="0" max-vertical-offset="741">
+                <state line="24" column="12" selection-start="1341" selection-end="1341" vertical-scroll-proportion="0.5816327" vertical-offset="0" max-vertical-offset="784">
                   <folding />
                 </state>
               </provider>
@@ -150,16 +149,27 @@
           <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/account/views.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="198" column="58" selection-start="8468" selection-end="8468" vertical-scroll-proportion="0.0" vertical-offset="3762" max-vertical-offset="19456">
+                <state line="872" column="68" selection-start="36759" selection-end="36759" vertical-scroll-proportion="16.82" vertical-offset="17238" max-vertical-offset="19285">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="services.js" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/position/urls.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="10" column="34" selection-start="642" selection-end="642" vertical-scroll-proportion="-7.6" vertical-offset="0" max-vertical-offset="513">
+                  <folding>
+                    <element signature="e#0#32#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="services.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/js/services.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="100" column="34" selection-start="3525" selection-end="3525" vertical-scroll-proportion="0.50119907" vertical-offset="1482" max-vertical-offset="3420">
+                <state line="100" column="34" selection-start="3525" selection-end="3525" vertical-scroll-proportion="0.0" vertical-offset="1482" max-vertical-offset="3420">
                   <folding />
                 </state>
               </provider>
@@ -204,7 +214,7 @@
           <file leaf-file-name="header.html" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/templates/header.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="70" column="0" selection-start="3533" selection-end="3533" vertical-scroll-proportion="0.0" vertical-offset="1330" max-vertical-offset="1444">
+                <state line="24" column="37" selection-start="1385" selection-end="1385" vertical-scroll-proportion="-6.785714" vertical-offset="266" max-vertical-offset="1444">
                   <folding />
                 </state>
               </provider>
@@ -232,7 +242,6 @@
       <list>
         <option value="$PROJECT_DIR$/static/less/desktop/footer.less" />
         <option value="$PROJECT_DIR$/static/js/app.js" />
-        <option value="$PROJECT_DIR$/templates/header.html" />
         <option value="$PROJECT_DIR$/static/less/desktop/homepage.less" />
         <option value="$PROJECT_DIR$/static/less/desktop/header.less" />
         <option value="$PROJECT_DIR$/static/partials/desktop/homepage.html" />
@@ -240,12 +249,13 @@
         <option value="$PROJECT_DIR$/static/less/desktop/register.less" />
         <option value="$PROJECT_DIR$/account/views.py" />
         <option value="$PROJECT_DIR$/static/js/services.js" />
-        <option value="$PROJECT_DIR$/static/partials/desktop/intern/resume_view.html" />
-        <option value="$PROJECT_DIR$/static/less/desktop/resume.less" />
         <option value="$PROJECT_DIR$/static/less/desktop/login.less" />
         <option value="$PROJECT_DIR$/static/less/desktop/base.less" />
         <option value="$PROJECT_DIR$/static/js/controllers_desktop.js" />
         <option value="$PROJECT_DIR$/templates/mobile_index.html" />
+        <option value="$PROJECT_DIR$/templates/header.html" />
+        <option value="$PROJECT_DIR$/static/partials/desktop/intern/resume_view.html" />
+        <option value="$PROJECT_DIR$/static/less/desktop/resume.less" />
       </list>
     </option>
   </component>
@@ -297,20 +307,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="chuangplus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chuangplus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chuangplus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -382,6 +378,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="partials" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="desktop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="intern" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chuangplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chuangplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="less" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -400,7 +422,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="less" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="desktop" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -717,83 +743,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/less/desktop/register.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="26" selection-start="1647" selection-end="1647" vertical-scroll-proportion="-11.415094" vertical-offset="421" max-vertical-offset="1843">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/less/desktop/base.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="1" selection-start="1285" selection-end="1285" vertical-scroll-proportion="1.6577181" vertical-offset="931" max-vertical-offset="1292">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/less/desktop/login.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="9" selection-start="57" selection-end="57" vertical-scroll-proportion="0.45967743" vertical-offset="0" max-vertical-offset="1729">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="11" selection-start="7029" selection-end="7029" vertical-scroll-proportion="0.0" vertical-offset="1355" max-vertical-offset="1881">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/partials/desktop/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="25" selection-start="4107" selection-end="4114" vertical-scroll-proportion="-6.642857" vertical-offset="1239" max-vertical-offset="1653">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/partials/desktop/homepage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="90" selection-start="773" selection-end="773" vertical-scroll-proportion="-0.0" vertical-offset="304" max-vertical-offset="1178">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/account/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="13" selection-start="594" selection-end="603" vertical-scroll-proportion="0.0" vertical-offset="399" max-vertical-offset="2166">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="5" selection-start="322" selection-end="322" vertical-scroll-proportion="0.0" vertical-offset="209" max-vertical-offset="513">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/less/desktop/resume.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="136" column="19" selection-start="3299" selection-end="3299" vertical-scroll-proportion="-1.3461539" vertical-offset="2479" max-vertical-offset="3800">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/partials/desktop/company/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="30" selection-start="1192" selection-end="1192" vertical-scroll-proportion="-0.0" vertical-offset="418" max-vertical-offset="665">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/partials/desktop/intern/resume_view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="112" selection-end="149" vertical-scroll-proportion="-2.0357144" vertical-offset="0" max-vertical-offset="741">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/partials/desktop/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="83" selection-start="644" selection-end="644" vertical-scroll-proportion="-6.785714" vertical-offset="0" max-vertical-offset="798">
@@ -808,23 +757,102 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/services.js">
+    <entry file="file://$PROJECT_DIR$/templates/mobile_index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="100" column="34" selection-start="3525" selection-end="3525" vertical-scroll-proportion="0.50119907" vertical-offset="1482" max-vertical-offset="3420">
+        <state line="43" column="12" selection-start="2135" selection-end="2135" vertical-scroll-proportion="-15.892858" vertical-offset="372" max-vertical-offset="1159">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/mobile_index.html">
+    <entry file="file://$PROJECT_DIR$/static/js/services.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="29" selection-start="2059" selection-end="2059" vertical-scroll-proportion="-15.892858" vertical-offset="334" max-vertical-offset="1140">
+        <state line="100" column="34" selection-start="3525" selection-end="3525" vertical-scroll-proportion="0.0" vertical-offset="1482" max-vertical-offset="3420">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="37" selection-start="1385" selection-end="1385" vertical-scroll-proportion="-6.785714" vertical-offset="266" max-vertical-offset="1444">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/account/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="872" column="68" selection-start="36759" selection-end="36759" vertical-scroll-proportion="16.82" vertical-offset="17238" max-vertical-offset="19285">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/position/management/commands/send_email.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="27" selection-start="278" selection-end="278" vertical-scroll-proportion="0.0" vertical-offset="114" max-vertical-offset="228">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/position/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="551" column="12" selection-start="24146" selection-end="24150" vertical-scroll-proportion="0.53152037" vertical-offset="9735" max-vertical-offset="19950">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/account/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="28" selection-start="1509" selection-end="1509" vertical-scroll-proportion="-10.64" vertical-offset="456" max-vertical-offset="2071">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/controllers_desktop.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="430" column="21" selection-start="18360" selection-end="18366" vertical-scroll-proportion="0.33250928" vertical-offset="7901" max-vertical-offset="27360">
+        <state line="430" column="21" selection-start="18360" selection-end="18366" vertical-scroll-proportion="-47.24" vertical-offset="6989" max-vertical-offset="27360">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/partials/desktop/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="25" selection-start="4107" selection-end="4114" vertical-scroll-proportion="-6.642857" vertical-offset="1239" max-vertical-offset="1653">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="5" selection-start="322" selection-end="322" vertical-scroll-proportion="-3.76" vertical-offset="58" max-vertical-offset="456">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/partials/desktop/intern/resume_edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="21" selection-start="406" selection-end="406" vertical-scroll-proportion="-1.2016807" vertical-offset="619" max-vertical-offset="1254">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/position/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="34" selection-start="642" selection-end="642" vertical-scroll-proportion="-7.6" vertical-offset="0" max-vertical-offset="513">
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/partials/desktop/intern/resume_view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="12" selection-start="1341" selection-end="1341" vertical-scroll-proportion="0.5816327" vertical-offset="0" max-vertical-offset="784">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/less/desktop/resume.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="191" column="6" selection-start="4457" selection-end="4457" vertical-scroll-proportion="0.2631579" vertical-offset="3534" max-vertical-offset="4294">
           <folding />
         </state>
       </provider>
