@@ -537,11 +537,10 @@ angular.module('chuangplus_mobile.controllers', [])
             success(function(data){
                 if(data.error.code == 1){
                     $scope.submit_value = "已投递";
-                    }
+                    $notice.show("已投递");
+                }
                     else{
-                    var t = $errMsg.format_error("",data.error);
-                    $notice.show(t);
-                    console.log(data.error.message);
+                    $notice.show($errMsg.format_error("",data.error).message);
                 }
             }
         ); 
