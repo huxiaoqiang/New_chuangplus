@@ -940,8 +940,8 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $scope.get_company_list();
     }])
-    .controller('MB_EditResumeCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','Upload',
-    function($scope, $http, urls, $csrf, $routeParams, $user ,Upload) {
+    .controller('MB_EditResumeCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService', 'NoticeService','ErrorService',
+    function($scope, $http, urls, $csrf, $routeParams, $user , $notice, $errMsg) {
     console.log('MB_EditResumeCtrl');
         $scope.filename = "无简历附件";
         $scope.intern_info = {};
