@@ -1899,6 +1899,40 @@ form.financing_add input {
   width: 184px;
   float: left;
 }
+#container #no-company-info {
+  width: 80%;
+  background-color: rgba(225, 224, 226, 0.4);
+  height: 300px;
+  margin: 0 auto;
+  margin-top: 15%;
+  padding-top: 125px;
+}
+#container #no-company-info p {
+  text-align: center;
+  font-size: 1.5em;
+  font-family: "微软雅黑";
+}
+#container #no-company-info .go-txt {
+  margin-left: -30px;
+}
+#container #no-company-info .go {
+  text-align: center;
+  position: relative;
+  left: 40px;
+  top: -38px;
+}
+#container #no-company-info .go a {
+  cursor: pointer;
+}
+#container #no-company-info .go a img {
+  width: 25px;
+}
+#container #no-company-info .go a:hover {
+  cursor: pointer;
+}
+#container #no-company-info .go a:hover img {
+  width: 30px;
+}
 /*body{
   background-color: #eeeeee;
   #main-container{

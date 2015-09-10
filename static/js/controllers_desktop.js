@@ -29,10 +29,10 @@ angular.module('chuangplus.controllers', []).
                     if(data.error.code == 1){
                         $scope.company_id = data.data._id.$oid;
                         if(data.data.abbreviation != null){
-                            $scope.url = '/company/'+data.data._id.$oid+'/infodetail';
+                            $scope.url = '/company/'+data.data._id.$oid+'/firststep';
                         }
                         else{
-                            $scope.url = '/company/no/info';
+                            $scope.url = '/company/no';
                         }
                     }
                 });
