@@ -105,12 +105,12 @@ angular.module('chuangplus.controllers', []).
         $scope.student = function(){
             $scope.tab1 = true;
             $scope.tab2 = false;
-            $scope.login_info.role = 0;
+            $scope.reg_info.role = 0;
         };
         $scope.hr = function(){
             $scope.tab1 = false;
             $scope.tab2 = true;
-            $scope.login_info.role = 1;
+            $scope.reg_info.role = 1;
         };
         $scope.refresh = function(){
             $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
@@ -476,6 +476,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.error = $errMsg.format_error("修改成功",data.error);
+                        window.location.href="/intern/resume/view";
                     }
                     else{
                         $scope.error = $errMsg.format_error("",data.error);
