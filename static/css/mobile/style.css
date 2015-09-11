@@ -31,6 +31,9 @@ body {
   bottom: 0;
   right: 0;
 }
+.gray-mask {
+  color: #707070 !important;
+}
 .main-content {
   display: block;
   padding-bottom: 54px;
@@ -229,7 +232,6 @@ a:hover {
 }
 .info-input {
   margin-bottom: 20px;
-  padding: 0;
 }
 .info-enter {
   margin-top: 130px;
