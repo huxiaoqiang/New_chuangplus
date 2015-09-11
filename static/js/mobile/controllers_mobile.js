@@ -579,7 +579,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 else{
                     console.log($errMsg.format_error("",data.error).message);
                 }
-            });
+        });
         
         //投递职位
         $scope.submit_posi = function(){
@@ -906,7 +906,7 @@ angular.module('chuangplus_mobile.controllers', [])
                         else{
                             $scope.positions[i].company.scale_value = "成熟";
                         }
-            $scope.check_submit(i);
+                        $scope.check_submit(i);
                     }
                 }
                 else{
@@ -919,11 +919,9 @@ angular.module('chuangplus_mobile.controllers', [])
                 success(function(data){
                     if(data.error.code == 1){
                         if(data.exist == true){
-                            $scope.positions[index].submit_value = "已投递";
                             $scope.positions[index].resume_submitted = true;
                         }
                         else{
-                            $scope.positions[index].submit_value = "投递简历";
                     $scope.positions[index].resume_submitted = false;
                         }
                     }
@@ -955,24 +953,32 @@ angular.module('chuangplus_mobile.controllers', [])
                     }
                 ); 
             }
-
-        };
-
-        $scope.complete_resume = function(){
-            setTimeout(function(){$location.url('/mobile/');
-                //wind ow.location.href='/intern/resume'
-                },2000);
-            $('#myModal').modal('hide');
         };
 
         $scope.submit_all = function(){
-        for(var i = 0; i < $scope.positions.length; i ++){
-            $scope.submit(i);
-        }
+            for(var i = 0; i < $scope.positions.length; i ++){
+                $scope.submit_posi($scope.positions[i]._id.$oid);
+            }
         };
-      
-        $scope.param = function(index){
-            $scope.index = index;
+
+        $scope.clear_invalid = function(){
+            var all_invalid = 0, clear_num = 0;
+            for(var i = 0; i < $scope.positions.length; i ++)
+            if($scope.positions[i].status == 'closed')
+            {
+                all_invalid ++;
+                $scope.submitUnFavor = {};
+                $scope.submitUnFavor.position_id = $scope.positions[i]._id.$oid;
+                $csrf.set_csrf($scope.submitUnFavor);
+                $http.post(urls.api+"/position/"+$scope.positions[i]._id.$oid+"/userunlikeposition", $.param($scope.submitUnFavor)).
+                success(function(data){
+                    clear_num ++;
+                });
+            }
+            if(all_invalid == clear_num)
+                $notice.show("已全部清除");
+            else
+                $notice.show("清除遇到问题");
         };
     }])
     .controller('MB_CompanyFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService', 'NoticeService',
