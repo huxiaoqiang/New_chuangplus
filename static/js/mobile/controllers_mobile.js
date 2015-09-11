@@ -1030,7 +1030,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
                     $scope.company_list[i].position_types = {};
                     $scope.company_list[i].scale_value = $scope.scale[$scope.company_list[i].scale];
-                    for(j = 0; j < $scope.company_list[i].positions.length; j ++)
+                    for(var j = 0; j < $scope.company_list[i].positions.length; j ++)
                     {
                         $scope.company_list[i].position_types[$scope.position_index[$scope.company_list[i].positions[j].position_type]] = $scope.position_type[$scope.company_list[i].positions[j].position_type];
                     }
