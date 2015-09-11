@@ -41,11 +41,11 @@
                                 发布时间：[[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]
                             </div>
                         </a>
-                        <div class="send-resume" ng-click="submit_posi('[[position._id.$oid]]')" ng-if="!resume_submitted">
+                        <div class="send-resume" ng-click="submit_posi('[[position._id.$oid]]')" ng-if="!position.resume_submitted">
                             <i class="fa fa-envelope send-resume-logo"></i>
                             <div class="send-resume-text">投递简历</div>
                         </div>
-                        <div class="send-resume" ng-if='resume_submitted'>
+                        <div class="send-resume" ng-if='position.resume_submitted'>
                             <i class="fa fa-check-square-o send-resume-logo"></i>
                             <div class="send-resume-text">已投递</div>
                         </div>
