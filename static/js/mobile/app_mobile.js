@@ -31,11 +31,9 @@ var app = angular.module('chuangplus_mobile', [
        // $routeProvider.when('/user/info', {templateUrl: urls.part_desktop + '/user/info.html', controller: 'DT_UserInfoCtrl', title: 'UserInfoPage'});
 
         //mobile configure
-        $routeProvider.when('/mobile/test', {templateUrl: urls.part_mobile + '/test.html',title:'公司列表'});
-        //mobile configure
-        $routeProvider.when('/mobile/', {templateUrl: urls.part_mobile + '/company/list.html',title:'公司列表'});
         $routeProvider.when('/mobile', {templateUrl: urls.part_mobile + '/company/list.html',title:'公司列表'});
         $routeProvider.when('/mobile/test', {templateUrl: urls.part_mobile + '/test.html',title:'公司列表'});
+        $routeProvider.when('/mobile/notlogin', {templateUrl: urls.part_mobile + '/notlogin.html',title:'未登录'});
 
         $routeProvider.when('/mobile/register', {templateUrl: urls.part_mobile + '/register.html', title:'注册'});
         $routeProvider.when('/mobile/login', {templateUrl: urls.part_mobile + '/login.html', title:'登录'});

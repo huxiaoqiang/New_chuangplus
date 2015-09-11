@@ -1194,7 +1194,7 @@ angular.module('chuangplus_mobile.controllers', [])
     }])
     .controller('MB_PostListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
     function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
-        console.log('DT_InternPostCtrl');
+        console.log('MB_PostListCtrl');
         $scope.positions = {};
         $scope.position_type = {
             "technology":"技术",
@@ -1210,15 +1210,19 @@ angular.module('chuangplus_mobile.controllers', [])
             'closed':"职位关闭"
             }; 
         $scope.cfield = {
-                'social':'社交',
-                'e_commerce':'电子商务',
-                'education':'健康医疗',
-                'health_medical':'文化创意',
-                'culture_creativity':'硬件',
-                'living_consumption':'O2O',
-                'hardware':'生活消费',
-                'O2O':'教育',
-                'others':'其它'
+            'social':'社交',
+            'e_commerce':'电子商务',
+            'education':'健康医疗',
+            'health_medical':'文化创意',
+            'culture_creativity':'硬件',
+            'living_consumption':'O2O',
+            'hardware':'生活消费',
+            'O2O':'教育',
+            'others':'其它'
+        };
+        $scope.is_processed = {
+            true:'HR已处理',
+            false:'HR未处理'
         };
         $scope.get_positions = function(){
             $http.get(urls.api+"/account/userinfo/position/submit/list").
@@ -1227,7 +1231,8 @@ angular.module('chuangplus_mobile.controllers', [])
                         $scope.positions = data.data;
                         for(var i = 0; i < $scope.positions.length; i ++){
                             $scope.positions[i].field_value = $scope.cfield[$scope.positions[i].company.field];
-                            $scope.positions[i].position_cond = $scope.position_condition($scope.positions[i].status);
+                            $scope.positions[i].is_processed = $scope.is_processed[$scope.positions[i].processed];
+                            $scope.positions[i].position_cond = $scope.position_condition[$scope.positions[i].status];
                             $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
                             if($scope.positions[i].company.scale == 0){
                                 $scope.positions[i].company.scale_value = "初创";
@@ -1247,6 +1252,13 @@ angular.module('chuangplus_mobile.controllers', [])
             });
         };
         $scope.get_positions();
+    }])
+    .controller('MB_NotLoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
+    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
+        console.log('MB_NotLoginCtrl');
+
+        setTimeout(function(){window.location.href='/mobile/login';},2000);
+        
     }])
     .controller('MB_InfoCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('MB_InfoCtrl');
