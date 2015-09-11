@@ -177,8 +177,8 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $scope.get_company();
     }])
-    .controller('MB_CompanyDetailCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService',
-    function($scope, $http, urls, $csrf, $routeParams, $notice) {
+    .controller('MB_CompanyDetailCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
+    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
         $scope.company_id = $routeParams.company_id;
         console.log('MB_CompanyDetailCtrl ' + $scope.company_id);
         $scope.company = {};
@@ -249,20 +249,6 @@ angular.module('chuangplus_mobile.controllers', [])
                             }
                     }
                     });
-/*
-
-                    $http.get(urls.api+"/account/company/"+ $scope.company._id.$oid +"/detail_with_positions").
-                        success(function(data){
-                            console.log(data);
-                            if(data.error.code == 1){
-                                $scope.company.position_list = data.data.position_list;
-                                console.log($scope.company.position_list);
-                            }
-                            else{
-                                console.log(data.error.message)
-                            }
-                    });
-*/
                     $http.get(urls.api+"/account/member/"+$scope.company_id+"/list").
                         success(function(data){
                             if(data.error.code == 1){
@@ -282,7 +268,7 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $scope.get_company();
 
-                
+        $scope.post_value = "收藏公司";       
 
         //获取关注信息
         $scope.check_favor_company = function(){
@@ -299,45 +285,49 @@ angular.module('chuangplus_mobile.controllers', [])
                         $scope.post_value = "收藏公司";
                 }
                 else{
-                    $scope.error = $errorMsg.format_error('',data.error);
                 }
             });
         };
-        $scope.check_favor_company();
 
 
         //进行收藏和取消 
         $scope.post = function(){
-            if($scope.favor_exist == false){
-                $scope.param = {
-                    "csrfmiddlewaretoken" : $csrf.val()
-                };
-                $http.post(urls.api + "/account/company/"+$scope.company_id+"/like", $.param($scope.param)).
-                success(function(data){
-                    if(data.error.code == 1){
-                        $scope.post_value = "取消收藏";
-                        $scope.favor_exist = true;
-                    }
-                    else{
-                        $scope.error = $errMsg.format_error('',data.error);
-                    }
-                });
-            }
-            else{
-                $scope.param = {
-                    "csrfmiddlewaretoken" : $csrf.val()
-                };
-                $http.post(urls.api + "/account/company/"+$scope.company_id+"/unlike", $.param($scope.param)).
+            if($user.is_login())
+                if($scope.favor_exist == false){
+                    $scope.param = {
+                        "csrfmiddlewaretoken" : $csrf.val()
+                    };
+                    $http.post(urls.api + "/account/company/"+$scope.company_id+"/like", $.param($scope.param)).
                     success(function(data){
                         if(data.error.code == 1){
-                            $scope.post_value = "收藏公司";
-                            $scope.favor_exist = false;
+                            $scope.post_value = "取消收藏";
+                            $scope.favor_exist = true;
+                            $notice.show("已收藏");
                         }
                         else{
-                            $scope.error = $errMsg.format_error('',data.error);
+                            $notice.show($errMsg.format_error("",udata.error).message);
                         }
-                });
-            }
+                    });
+                }
+                else{
+                    $scope.param = {
+                        "csrfmiddlewaretoken" : $csrf.val()
+                    };
+                    $http.post(urls.api + "/account/company/"+$scope.company_id+"/unlike", $.param($scope.param)).
+                        success(function(data){
+                            if(data.error.code == 1){
+                                $scope.post_value = "收藏公司";
+                                $scope.favor_exist = false;
+                                $notice.show("已取消收藏");
+                            }
+                            else{
+                                $notice.show($errMsg.format_error("",udata.error).message);
+                            }
+                    });
+                }
+            else
+                $notice.show("请先登录");
+
         };
     }])
     .controller('MB_PositionListCtrl', ['$scope', '$http', 'urls', '$routeParams',
@@ -427,6 +417,7 @@ angular.module('chuangplus_mobile.controllers', [])
             'functions':"职能",
             'others':"其他"
         };
+        $scope.post_value = "收藏职位";
 
         //取得该职位信息
         $http.get(urls.api+"/position/"+ $scope.position_id +"/get_with_company").
@@ -478,26 +469,29 @@ angular.module('chuangplus_mobile.controllers', [])
 
         //进行收藏和取消 
         $scope.post = function(){
-            if($scope.favor_exist == false){
-                $scope.submitFavor = {};
-                $scope.submitFavor.position_id = $scope.position_id;
-                $csrf.set_csrf($scope.submitFavor);
-                $http.post(urls.api + "/position/"+$scope.position_id+"/userlikeposition", $.param($scope.submitFavor)).
-                success(function(data){
-                    $scope.post_value = "取消收藏";
-                    $scope.favor_exist = true;
-                });
-            }
-            else{
-                $scope.submitUnFavor = {};
-                $scope.submitUnFavor.position_id = $scope.position_id;
-                $csrf.set_csrf($scope.submitUnFavor);
-                $http.post(urls.api+"/position/"+$scope.position_id+"/userunlikeposition", $.param($scope.submitUnFavor)).
-                success(function(data){
-                    $scope.post_value = "收藏职位";
-                    $scope.favor_exist = false;
-                });
-            }
+            if($user.is_login())
+                if($scope.favor_exist == false){
+                    $scope.submitFavor = {};
+                    $scope.submitFavor.position_id = $scope.position_id;
+                    $csrf.set_csrf($scope.submitFavor);
+                    $http.post(urls.api + "/position/"+$scope.position_id+"/userlikeposition", $.param($scope.submitFavor)).
+                    success(function(data){
+                        $scope.post_value = "取消收藏";
+                        $scope.favor_exist = true;
+                    });
+                }
+                else{
+                    $scope.submitUnFavor = {};
+                    $scope.submitUnFavor.position_id = $scope.position_id;
+                    $csrf.set_csrf($scope.submitUnFavor);
+                    $http.post(urls.api+"/position/"+$scope.position_id+"/userunlikeposition", $.param($scope.submitUnFavor)).
+                    success(function(data){
+                        $scope.post_value = "收藏职位";
+                        $scope.favor_exist = false;
+                    });
+                }
+            else
+                $notice.show("请先登录");
         };
 
         //检查简历是否完善
@@ -526,29 +520,28 @@ angular.module('chuangplus_mobile.controllers', [])
             });
         
         //投递职位
-        
-    $scope.submit_posi = function(){
-        if($scope.resume_submitted == true)
-            $scope.submitResume.resume_choice = 1;
-        else
-            $scope.submitResume.resume_choice = 3;
-        if($scope.resume_compelete)
-        {
-            $csrf.set_csrf($scope.submitResume);
-            $http.post(urls.api + "/position/"+$scope.position_id+"/submit", $.param($scope.submitResume)).
-                success(function(data){
-                    if(data.error.code == 1){
-                        $scope.submit_value = "已投递";
-                        $notice.show("已投递");
+        $scope.submit_posi = function(){
+            if($scope.resume_submitted == true)
+                $scope.submitResume.resume_choice = 1;
+            else
+                $scope.submitResume.resume_choice = 3;
+            if($scope.resume_compelete)
+            {
+                $csrf.set_csrf($scope.submitResume);
+                $http.post(urls.api + "/position/"+$scope.position_id+"/submit", $.param($scope.submitResume)).
+                    success(function(data){
+                        if(data.error.code == 1){
+                            $scope.submit_value = "已投递";
+                            $notice.show("已投递");
+                        }
+                            else{
+                            $notice.show($errMsg.format_error("",data.error).message);
+                        }
                     }
-                        else{
-                        $notice.show($errMsg.format_error("",data.error).message);
-                    }
-                }
-            ); 
-        }
+                ); 
+            }
 
-    };
+        };
         
         //提醒完善简历
         $scope.complete_resume = function(){
@@ -781,6 +774,7 @@ angular.module('chuangplus_mobile.controllers', [])
     .controller('MB_PositionFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService',
     function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg) {
         console.log('MB_PositionFavorCtrl');
+        $user.check_login();
         $scope.positions = {};
         $scope.position_type = {
             "technology":"技术",
@@ -921,6 +915,7 @@ angular.module('chuangplus_mobile.controllers', [])
     }])
     .controller('MB_CompanyFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService', 'NoticeService',
     function($scope, $http, urls, $csrf, $routeParams, $user, $notice) {
+        $user.check_login();
         $scope.company_list = {};
         $scope.position_type = {
             "technology":"技术",
@@ -982,7 +977,8 @@ angular.module('chuangplus_mobile.controllers', [])
     }])
     .controller('MB_EditResumeCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService', 'NoticeService','ErrorService',
     function($scope, $http, urls, $csrf, $routeParams, $user , $notice, $errMsg) {
-    console.log('MB_EditResumeCtrl');
+        console.log('MB_EditResumeCtrl');
+        $user.check_login();
         $scope.filename = "无简历附件";
         $scope.intern_info = {};
         $scope.get_intern_info = function(){
@@ -1061,6 +1057,7 @@ angular.module('chuangplus_mobile.controllers', [])
     .controller('MB_UserInfoUpdateCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
     function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
         console.log('MB_UserInfoUpdateCtrl');
+        $user.check_login();
         $scope.info = {};
         $scope.tab_now = 2;
         $scope.user_info = {};
@@ -1162,6 +1159,7 @@ angular.module('chuangplus_mobile.controllers', [])
     .controller('MB_UserInfoEditCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
     function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
         console.log('MB_UserInfoEditCtrl');
+        $user.check_login();
         $scope.info = {};
         $scope.user_info = {};
         $scope.info.username = $user.username();
@@ -1195,6 +1193,7 @@ angular.module('chuangplus_mobile.controllers', [])
     .controller('MB_PostListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
     function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
         console.log('MB_PostListCtrl');
+        $user.check_login();
         $scope.positions = {};
         $scope.position_type = {
             "technology":"技术",
