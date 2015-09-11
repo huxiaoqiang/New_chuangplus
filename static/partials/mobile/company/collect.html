@@ -2,7 +2,7 @@
     <div class="main-content scrollable">
         <div class="scrollable-content">
             <div class="header-bar">
-                <div class="header">我的收藏</div>
+                <div class="header">公司收藏</div>
             </div>    
 
             <div class="comp-list">
@@ -37,6 +37,9 @@
                         <span class="comp-benefit-tag" ng-repeat="tag in company.welfare_tags">[[tag]]</span>
                     </div>
                 </a>
+                <div ng-if="company_list.length == 0">
+                    <p>你还没有收藏任何公司，快到<a href="/mobile/index" style="text-decoration: underline; color: blue;">公司列表</a>看看吧</p>
+                </div>
             </div>
         </div>
     </div>

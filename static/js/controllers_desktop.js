@@ -476,6 +476,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.error = $errMsg.format_error("修改成功",data.error);
+                        window.location.href="/intern/resume/view";
                     }
                     else{
                         $scope.error = $errMsg.format_error("",data.error);

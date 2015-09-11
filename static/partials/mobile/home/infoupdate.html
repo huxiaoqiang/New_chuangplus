@@ -76,7 +76,7 @@
 
       <div class="info-block">
         <div class="panel-list">
-          <button class="panel-radius login-btn form-control lit-p-bg" ng-click="update_info()">更新信息</button>
+          <a class="panel-radius login-btn form-control lit-p-bg" ng-click="update_info()">更新信息</a>
         </div>
       </div>
     </div>
@@ -86,8 +86,8 @@
   </div>
   <div ui-content-for="footer">
       <div class="navbar navbar-app navbar-absolute-bottom">
-          <div ng-class="{1: 'nav-bar-2 ', 2: 'nav-bar-2 selected'}[tab_now]" ng-click="tab_now = 2">修改信息</div>
-          <div ng-class="{1: 'nav-bar-2 selected', 2: 'nav-bar-2'}[tab_now]" ng-click="tab_now = 1">修改密码</div>
+          <a ng-class="{1: 'nav-bar-2 ', 2: 'nav-bar-2 selected'}[tab_now]" ng-click="tab_now = 2">修改信息</a>
+          <a ng-class="{1: 'nav-bar-2 selected', 2: 'nav-bar-2'}[tab_now]" ng-click="tab_now = 1">修改密码</a>
       </div>
   </div>
 </div>
