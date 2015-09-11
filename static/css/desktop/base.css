@@ -23,44 +23,72 @@ header #header .navbar .navbar-header #head-logo {
 header #header .navbar .navbar-header #head-logo img {
   width: 100%;
 }
-header #header .navbar .navbar-item {
-  margin-left: 15px;
+header #header .navbar .navbar-item.not-login {
+  margin-left: 35px;
+  width: 545px;
 }
-header #header .navbar .navbar-item li a {
+header #header .navbar .navbar-item.not-login li {
+  text-align: center;
+  width: 29%;
+}
+header #header .navbar .navbar-item.not-login li a {
   color: #707070;
   padding-top: 24px;
   padding-bottom: 24px;
-  font-size: 1.3em;
+  font-size: 1.2em;
   cursor: pointer;
   font-family: "华文细黑";
 }
-header #header .navbar .navbar-item li a:hover {
+header #header .navbar .navbar-item.not-login li a:hover {
   border: solid #8f4e96;
   border-width: 0px 0px 5px 0px;
 }
-header #header .navbar .navbar-item li.active {
+header #header .navbar .navbar-item.not-login li.active {
   border: solid #8f4e96;
   border-width: 0px 0px 5px 0px;
 }
-header #header .navbar .navbar-item li.active a:hover {
+header #header .navbar .navbar-item.not-login li.active a:hover {
   border-width: 0px 0px 0px 0px;
 }
-header #header .navbar .navbar-item li.dropdown .dropdown-menu {
+header #header .navbar .navbar-item.login {
+  margin-left: 15px;
+  width: 545px;
+}
+header #header .navbar .navbar-item.login li a {
+  color: #707070;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  font-size: 1.2em;
+  cursor: pointer;
+  font-family: "华文细黑";
+}
+header #header .navbar .navbar-item.login li a:hover {
+  border: solid #8f4e96;
+  border-width: 0px 0px 5px 0px;
+}
+header #header .navbar .navbar-item.login li.active {
+  border: solid #8f4e96;
+  border-width: 0px 0px 5px 0px;
+}
+header #header .navbar .navbar-item.login li.active a:hover {
+  border-width: 0px 0px 0px 0px;
+}
+header #header .navbar .navbar-item.login li.dropdown .dropdown-menu {
   min-width: 100px;
 }
-header #header .navbar .navbar-item li.dropdown .dropdown-menu a {
+header #header .navbar .navbar-item.login li.dropdown .dropdown-menu a {
   font-size: 1em;
   padding-bottom: 3px;
   padding-top: 3px;
 }
-header #header .navbar .navbar-item li.dropdown .dropdown-menu a:hover {
+header #header .navbar .navbar-item.login li.dropdown .dropdown-menu a:hover {
   border: solid #8f4e96;
   border-width: 0px 0px 0px 5px;
 }
 header #header .navbar ul.reg-login {
   list-style-type: none;
   float: left;
-  margin-top: 30px;
+  margin-top: 24px;
   background-color: #8f4e96;
   border-radius: 25px;
   color: white;
@@ -257,16 +285,16 @@ body > #wrap {
   filter: alpha(opacity=80);
   opicaty: 50;
 }
-#container #register .ui.segment.form {
+#container #register .ui.form.segment {
   padding: 0em;
   background-color: #FFFFFF;
   border-radius: 0;
 }
-#container #register .ui.segment.form .nav-tabs {
+#container #register .ui.form.segment .nav-tabs {
   border: 0;
   padding: 5px 5px 0 5px;
 }
-#container #register .ui.segment.form .nav-tabs li {
+#container #register .ui.form.segment .nav-tabs li {
   width: 50%;
   text-align: center;
   border-radius: 0;
@@ -274,56 +302,56 @@ body > #wrap {
   filter: alpha(opacity=80);
   opicaty: 50;
 }
-#container #register .ui.segment.form .nav-tabs li .active {
+#container #register .ui.form.segment .nav-tabs li .active {
   background-color: #FFFFFF;
 }
-#container #register .ui.segment.form .nav-tabs li a {
+#container #register .ui.form.segment .nav-tabs li a {
   border-radius: 0;
   width: 100%;
   height: 100%;
   font-size: 1em;
   color: #000000;
 }
-#container #register .ui.segment.form .nav-tabs li a:hover {
+#container #register .ui.form.segment .nav-tabs li a:hover {
   background-color: white;
 }
-#container #register .ui.segment.form #reg_form {
+#container #register .ui.form.segment #reg_form {
   padding: 2em;
 }
-#container #register .ui.segment.form #reg_form .form-group span.err-msg {
+#container #register .ui.form.segment #reg_form .form-group span.err-msg {
   color: #a94442;
   margin-left: 30px;
 }
-#container #register .ui.segment.form #reg_form .form-control {
+#container #register .ui.form.segment #reg_form .form-control {
   border: 1px solid #8F4E96;
   border-radius: 0;
   width: 360px;
 }
-#container #register .ui.segment.form #reg_form #captcha_form {
+#container #register .ui.form.segment #reg_form #captcha_form {
   width: 40%;
   float: left;
 }
-#container #register .ui.segment.form #reg_form #captcha_form input {
+#container #register .ui.form.segment #reg_form #captcha_form input {
   border: 1px solid #8F4E96;
   border-radius: 0;
   width: 200px;
 }
-#container #register .ui.segment.form #reg_form #captcha_img {
+#container #register .ui.form.segment #reg_form #captcha_img {
   margin-left: 3%;
   height: 40px;
 }
-#container #register .ui.segment.form #reg_form .fresh {
+#container #register .ui.form.segment #reg_form .fresh {
   cursor: pointer;
   color: #cccccc;
   text-decoration: none;
 }
-#container #register .ui.segment.form #reg_form .fresh .icon-repeat.icon-large {
+#container #register .ui.form.segment #reg_form .fresh .icon-repeat.icon-large {
   margin-left: 7px;
 }
-#container #register .ui.segment.form #reg_form a.fresh:hover {
+#container #register .ui.form.segment #reg_form a.fresh:hover {
   color: #98769E;
 }
-#container #register .ui.segment.form #reg_form #regist_button {
+#container #register .ui.form.segment #reg_form #regist_button {
   width: 100%;
   height: 40px;
   border: 0;
@@ -331,7 +359,7 @@ body > #wrap {
   color: white;
   font-size: 1.2em;
 }
-#container #register .ui.segment.form #reg_form #options {
+#container #register .ui.form.segment #reg_form #options {
   float: right;
 }
 #container {
@@ -339,57 +367,44 @@ body > #wrap {
   display: block;
 }
 #container #information {
+  margin: 0 auto;
+  margin-top: 50px;
   font-family: "微软雅黑";
-  padding-top: 5%;
+  padding: 20px 30px 20px 30px;
+  width: 480px;
+  height: 320px;
+  background-color: #EFEFEF;
+  filter: alpha(opacity=80);
+  opicaty: 50;
 }
-#container #information h2 {
-  color: #8c5d90;
+#container #information .txt {
+  color: black；
+          margin: 0 auto;
   font-family: "微软雅黑";
   text-align: center;
-  padding-top: 20px;
-  margin-bottom: 0px;
+  margin-bottom: 20px;
 }
 #container #information .ui.segment.form {
-  padding: 0em;
-}
-#container #information .ui.segment.form .nav-tabs {
-  border-bottom: 0px;
-}
-#container #information .ui.segment.form .nav-tabs li {
-  width: 50%;
-  text-align: center;
-  background-color: #d8d8d8;
-}
-#container #information .ui.segment.form .nav-tabs li .active {
-  background-color: #FFFFFF;
-}
-#container #information .ui.segment.form .nav-tabs li a {
-  font-size: 18px;
-  color: #000000;
-}
-#container #information .ui.segment.form .nav-tabs li a:hover {
-  background-color: white;
-}
-#container #information .ui.segment.form #info_form {
+  border-radius: 0;
+  margin-top: 0px;
   padding: 2em;
+  background-color: #FFFFFF;
+  width: 420px;
+  height: 280px;
 }
-#container #information .ui.segment.form #info_form #captcha_form {
-  width: 40%;
-  float: left;
-}
-#container #information .ui.segment.form #info_form #captcha_form input {
-  border-top-right-radius: 0.5em;
-  border-bottom-right-radius: 0.5em;
-  height: 40px;
+#container #information .ui.segment.form #info_form input {
+  border: 1px solid #8F4E96;
+  border-radius: 0;
+  width: 360px;
 }
 #container #information .ui.segment.form #info_form #enter_button {
-  width: 100%;
-  height: 40px;
-  border-radius: 0.3em;
-  background-color: #8c5d90;
+  margin-top: 10px;
+  width: 360px;
+  background-color: #8F4E96;
   color: white;
   font-size: 1.2em;
-  margin-bottom: 20px;
+  border: 0;
+  padding: 5px 0 5px 0;
 }
 #container {
   font-family: "微软雅黑";
@@ -880,74 +895,71 @@ form.financing_add input {
 #container #edit_position .form-group textarea {
   min-height: 100px;
 }
-#container {
-  margin: 0 auto;
-  display: block;
-}
 #container #userinfo {
   font-family: "微软雅黑";
-  padding-top: 5%;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 20px 25px 20px 25px;
+  width: 480px;
+  background-color: #EFEFEF;
+  filter: alpha(opacity=80);
+  opicaty: 50;
 }
-#container #userinfo .row .col-sm-3 {
+#container #userinfo .ui.form.segment {
+  margin: 0 auto;
   padding: 0em;
-  margin-left: 3%;
-  float: left;
+  background-color: #FFFFFF;
+  border-radius: 0;
+  width: 430px;
 }
-#container #userinfo .row .col-sm-3 .nav.nav-tabs.nav-stacked.nav-pills {
-  border-bottom: 0px;
+#container #userinfo .ui.form.segment .nav.nav-tabs {
+  border: 0;
+  padding: 5px 5px 0 5px;
 }
-#container #userinfo .row .col-sm-3 .nav.nav-tabs.nav-stacked.nav-pills li {
+#container #userinfo .ui.form.segment .nav.nav-tabs li {
   width: 50%;
+  height: 35px;
   text-align: center;
-  background-color: #d8d8d8;
+  border-radius: 0;
+  background-color: #EFEFEF;
+  filter: alpha(opacity=80);
+  opicaty: 50;
 }
-#container #userinfo .row .col-sm-3 .nav.nav-tabs.nav-stacked.nav-pills li .active {
+#container #userinfo .ui.form.segment .nav.nav-tabs li .active {
   background-color: #FFFFFF;
 }
-#container #userinfo .row .col-sm-3 .nav.nav-tabs.nav-stacked.nav-pills li a {
-  font-size: 18px;
+#container #userinfo .ui.form.segment .nav.nav-tabs li a {
+  border-radius: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 1em;
+  font-weight: bold;
   color: #000000;
 }
-#container #userinfo .row .col-sm-3 .nav.nav-tabs.nav-stacked.nav-pills li a:visited {
-  background-color: #8c5d90;
-  color: white;
-}
-#container #userinfo .row .col-sm-3 .nav.nav-tabs.nav-stacked.nav-pills li a:hover {
+#container #userinfo .ui.form.segment .nav.nav-tabs li a:hover {
   background-color: white;
-  color: black;
 }
-#container #userinfo .row .col-sm-9 {
+#container #userinfo .ui.form.segment .tab-pane {
   padding: 2em;
-  float: right;
 }
-#container #userinfo .row .col-sm-9 .tab-pane {
-  width: 500px;
-  border: 1px solid #d8d8d8;
-  padding: 50px -50px 50px 50px;
-  border-radius: 0.5em;
+#container #userinfo .ui.form.segment .tab-pane .form-horizontal .form-group {
+  margin-left: 0;
+  margin-right: 0;
 }
-#container #userinfo .row .col-sm-9 .tab-pane .form-horizontal {
-  margin: 50px -50px 50px 50px;
-  width: 300px;
+#container #userinfo .ui.form.segment .tab-pane .form-horizontal .form-group input {
+  border-radius: 0;
+  width: 374px;
+  border: 1px solid #8F4E96;
+  font-size: 1em;
 }
-#container #userinfo .row .col-sm-9 .tab-pane .form-horizontal .col-sm-4.control-label {
-  color: #8c5d90;
-  text-align: right;
-  font-size: 15px;
-}
-#container #userinfo .row .col-sm-9 .tab-pane .form-horizontal input {
-  border-top-right-radius: 0.5em;
-  border-bottom-right-radius: 0.5em;
-  height: 40px;
-}
-#container #userinfo .row .col-sm-9 .tab-pane .form-horizontal .btn.btn-primary {
-  width: 100%;
-  height: 40px;
-  margin-top: 20px;
-  border-radius: 0.3em;
-  background-color: #8c5d90;
+#container #userinfo .ui.form.segment .tab-pane .form-horizontal .btn.btn-primary {
+  width: 374px;
+  margin-top: 15px;
+  border: 0;
+  border-radius: 0;
+  background-color: #8F4E96;
   color: white;
-  font-size: 1.2em;
+  font-size: 1em;
 }
 #container {
   margin: 0 auto;
@@ -1898,6 +1910,72 @@ form.financing_add input {
   height: 100%;
   width: 184px;
   float: left;
+}
+#container #account {
+  font-family: "微软雅黑";
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 20px 25px 20px 25px;
+  width: 480px;
+  background-color: #EFEFEF;
+  filter: alpha(opacity=80);
+  opicaty: 50;
+}
+#container #account .ui.form.segment {
+  margin: 0 auto;
+  padding: 0em;
+  background-color: #FFFFFF;
+  border-radius: 0;
+  width: 430px;
+}
+#container #account .ui.form.segment .nav.nav-tabs {
+  border: 0;
+  padding: 5px 5px 0 5px;
+}
+#container #account .ui.form.segment .nav.nav-tabs li {
+  width: 50%;
+  height: 35px;
+  text-align: center;
+  border-radius: 0;
+  background-color: #EFEFEF;
+  filter: alpha(opacity=80);
+  opicaty: 50;
+}
+#container #account .ui.form.segment .nav.nav-tabs li .active {
+  background-color: #FFFFFF;
+}
+#container #account .ui.form.segment .nav.nav-tabs li a {
+  border-radius: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 1em;
+  font-weight: bold;
+  color: #000000;
+}
+#container #account .ui.form.segment .nav.nav-tabs li a:hover {
+  background-color: white;
+}
+#container #account .ui.form.segment .tab-pane {
+  padding: 2em;
+}
+#container #account .ui.form.segment .tab-pane .form-horizontal .form-group {
+  margin-left: 0;
+  margin-right: 0;
+}
+#container #account .ui.form.segment .tab-pane .form-horizontal .form-group input {
+  border-radius: 0;
+  width: 374px;
+  border: 1px solid #8F4E96;
+  font-size: 1em;
+}
+#container #account .ui.form.segment .tab-pane .form-horizontal .btn.btn-primary {
+  width: 374px;
+  margin-top: 15px;
+  border: 0;
+  border-radius: 0;
+  background-color: #8F4E96;
+  color: white;
+  font-size: 1em;
 }
 #container #no-company-info {
   width: 80%;

@@ -24,3 +24,7 @@ requirements.txt
 requirements.txt
 
 API.md
+
+*.xml
+
+*.css

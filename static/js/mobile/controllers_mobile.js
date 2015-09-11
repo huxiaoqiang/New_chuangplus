@@ -812,7 +812,6 @@ angular.module('chuangplus_mobile.controllers', [])
                         $scope.submitResume = {};
                         $scope.submitResume.position_id = $scope.position_id;
                         console.log($scope.userinfo.resume_id);
-
                         if($scope.userinfo.real_name != undefined && $scope.userinfo.real_name != null && $scope.userinfo.real_name != '')
                             $scope.resume_compelete = true;
                         else
@@ -1133,13 +1132,13 @@ angular.module('chuangplus_mobile.controllers', [])
                         $notice.show("修改密码成功");
                     }
                     else{
+
                         $notice.show($errMsg.format_error("",data.error).message);
                     }
                 });
             }
         }  
     }])
-
     .controller('MB_LeftSidebarCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService','$location',
     function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg, $location ) {
 

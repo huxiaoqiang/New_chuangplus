@@ -71,7 +71,7 @@ angular.module('chuangplus.controllers', []).
     controller('DT_LoginCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_LoginCtrl');
         $scope.login_info = {};
-        $scope.login_info.role = 0;
+        $scope.login_info.role = 1;
         $scope.captcha_url = urls.api+"/captcha/image/";
         $scope.refresh = function(){
             $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
@@ -1431,4 +1431,66 @@ angular.module('chuangplus.controllers', []).
         $scope.Enter_Xiniu = function(){
             window.location.href = '/';
         }
+    }]).
+    controller('DT_CompanyAccountCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', 'ErrorService',function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $errMsg){
+        console.log('DT_CompanyAccountCtrl');
+        $scope.info = {};
+        $scope.user_info = {};
+        $scope.user_pwd = {};
+        $scope.error = {};
+        $scope.e_check = {};
+        $scope.company_id = '';
+                                        
+        $http.get(urls.api+"/account/company/detail").
+        success(function(data){
+            if(data.error.code == 1){
+                $scope.user_info = data.data;
+                $scope.company_id = data.data._id.$oid;
+                
+            }
+                else{
+                console.log(data.error.message);
+                }
+        });
+                                        
+
+        $scope.view_tab = 'tab1';
+        $scope.changeTab = function(tab){
+            $scope.view_tab = tab;
+        };
+                                        
+        $scope.showError = function(ngModelController,error){
+            return ngModelController.$error[error];
+        };
+
+        $scope.update_info = function(){
+            if($scope.view_tab == 'tab1'){
+                $csrf.set_csrf($scope.user_info);
+                $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.user_info))
+                .success(function(data){
+                    if(data.error.code == 1){
+                        $scope.error = $errMsg.format_error("修改成功",data.error);
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error("",data.error);
+                    }
+                });
+            }
+            else if($scope.view_tab == 'tab2'){
+                $csrf.set_csrf($scope.user_pwd);
+                                        console.log($scope.user_pwd);
+                $http.post(urls.api+"/account/password/set", $.param($scope.user_pwd))
+                .success(function(data){
+                    console.log(data);
+                    if(data.error.code == 1){
+                        $scope.error = $errMsg.format_error("修改成功",data.error);
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                    }
+                });
+            }
+        }
+
+    
     }]);
