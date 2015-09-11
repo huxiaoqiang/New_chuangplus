@@ -15,8 +15,7 @@ var app = angular.module('chuangplus_mobile', [
     'chuangplus_mobile.directives',
     "chuangplus_mobile.controllers"
     ]).
-    constant('urls', {'part_mobile': '/static/partials/mobile','part_desktop': '/static/partials/desktop','part_admin': '/static/partials/admin', 'api': '/api'}).
-    constant('urlss', {'part_mobile': '/static/pfffffartials/mobile','part_desktop': '/static/partials/desktop','part_admin': '/static/partials/admin', 'api': '/api'}).
+    constant('urls', {'part_mobile': '/static/partials/mobile','part_desktop': '/static/partials/desktop','part_admin': '/static/partials/admin', 'api': '/api','mobile_index':'/mobile/index'}).
     config(['$interpolateProvider', function($interpolateProvider){
         $interpolateProvider.startSymbol('[[');
         $interpolateProvider.endSymbol(']]');
@@ -31,7 +30,7 @@ var app = angular.module('chuangplus_mobile', [
        // $routeProvider.when('/user/info', {templateUrl: urls.part_desktop + '/user/info.html', controller: 'DT_UserInfoCtrl', title: 'UserInfoPage'});
 
         //mobile configure
-        $routeProvider.when('/mobile', {templateUrl: urls.part_mobile + '/company/list.html',title:'公司列表'});
+        $routeProvider.when('/mobile/index', {templateUrl: urls.part_mobile + '/company/list.html',title:'公司列表'});
         $routeProvider.when('/mobile/test', {templateUrl: urls.part_mobile + '/test.html',title:'公司列表'});
         $routeProvider.when('/mobile/notlogin', {templateUrl: urls.part_mobile + '/notlogin.html',title:'未登录'});
 
