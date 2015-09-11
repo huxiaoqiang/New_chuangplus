@@ -388,8 +388,8 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.get_positions();
     }])
 
-    .controller('MB_PositionDetailCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $notice, $errMsg) {
+    .controller('MB_PositionDetailCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
+    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
         $scope.position_id = $routeParams.position_id;
         console.log($scope.position_id);
         $scope.latest_scale = {
@@ -515,7 +515,7 @@ angular.module('chuangplus_mobile.controllers', [])
                         $scope.resume_submitted = false;
                 }
                 else{
-                    console.log(data.error).message;
+                    console.log($errMsg.format_error("",data.error).message);
                 }
             });
         
