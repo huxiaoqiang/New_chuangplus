@@ -455,6 +455,7 @@ def get_position_submit(request):
                 re['error'] = error(105,"Companyinfo does not exist!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             position_re['company'] = json.loads(company.to_json())
+            position_re['processed'] = item.processed
             position_submit_list.append(position_re)
         re['data'] = position_submit_list
         re['error'] = error(1,"Get submitted position list successfully")
