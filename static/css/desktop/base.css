@@ -1603,58 +1603,131 @@ form.financing_add input {
 #container #position-detail .description .value {
   min-height: 100px;
 }
-#container #company_list ul li {
-  list-style-type: none;
+#container {
+  margin: 0 auto;
+  display: block;
 }
-#container #company_list ul li .company-info {
-  margin-top: 10px;
-  border: 1px solid#8E8E8E;
-  height: 140px;
-  padding: 10px 10px 10px 10px;
+#container #company_list {
+  font-family: "微软雅黑";
+}
+#container #company_list .right-block {
+  position: fixed;
+  right: 20px;
+  top: 168px;
+  height: 100%;
+  width: 120px;
+  margin: 0 auto;
+  z-index: 1;
+}
+#container #company_list .right-block .txt {
+  font-size: 1.0em;
+  color: #707070;
+  text-align: center;
   width: 100%;
 }
-#container #company_list ul li .company-info .item-pic {
-  float: left;
-  width: 120px;
+#container #company_list .right-block .img-1 {
   height: 120px;
+  width: 120px;
 }
-#container #company_list ul li .company-info .item-pic .company-pic {
+#container #company_list .col-md-8 {
+  width: 750px;
+}
+#container #company_list .col-md-8 ul li {
+  list-style-type: none;
+}
+#container #company_list .col-md-8 ul li .company-info {
+  margin-top: 10px;
+  border: 1px solid#8F4E96;
+  padding: 10px 10px 10px 10px;
+  width: 100%;
+  height: 100px;
+}
+#container #company_list .col-md-8 ul li .company-info .item-pic {
+  float: left;
+  width: 80px;
+  height: 80px;
+}
+#container #company_list .col-md-8 ul li .company-info .item-pic .company-pic {
   width: 100%;
   height: 100%;
 }
-#container #company_list ul li .company-info .item-info {
+#container #company_list .col-md-8 ul li .company-info .item-info.info-1 {
+  padding: 10px 0 10px 0;
+  text-align: center;
+}
+#container #company_list .col-md-8 ul li .company-info .item-info.info-3 .vertical-center {
+  border-left: 1px solid #707070;
+}
+#container #company_list .col-md-8 ul li .company-info .vertical-center {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0 5px 0 10px;
+}
+#container #company_list .col-md-8 ul li .company-info .item-info {
   float: left;
   margin-left: 10px;
-  height: 140px;
+  height: 100%;
+  display: table;
 }
-#container #company_list ul li .company-info .item-info .abbreviation {
-  font-size: 1.5em;
-  color: #98769E;
-}
-#container #company_list ul li .company-info .item-info .brief_introduction {
-  color: #8E8E8E;
-  margin-top: -10px;
-}
-#container #company_list ul li .company-info .item-info .line {
-  border: solid 1px#eeeeee;
-  width: 200%;
-  margin-top: -10px;
-}
-#container #company_list ul li .company-info .item-info .position_number {
-  color: #98769E;
-}
-#container #company_list ul li .company-info .item-info .welfare_tags .tags {
-  border: solid 1px #98769E;
-  border-radius: 4px;
-  padding: 2px;
-  color: #98769E;
-  margin-right: 10px;
-}
-#container #company_list ul li .company-info .auth {
-  float: right;
-  margin-right: 10px;
+#container #company_list .col-md-8 ul li .company-info .item-info .abbreviation {
+  font-size: 1.3em;
   color: black;
-  font-family: "微软雅黑";
+}
+#container #company_list .col-md-8 ul li .company-info .item-info .brief_introduction {
+  color: #707070;
+  font-size: 12px;
+  margin-top: -10px;
+}
+#container #company_list .col-md-8 ul li .company-info .item-info .label-1 {
+  width: 60px;
+}
+#container #company_list .col-md-8 ul li .company-info .item-info .label-1 img {
+  width: 17px;
+  height: 17px;
+  float: left;
+  margin-right: 5px;
+}
+#container #company_list .col-md-8 ul li .company-info .item-info .label-1 p {
+  color: #707070;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+#container #company_list .col-md-8 ul li .company-info .item-info .label-1 .last-p {
+  margin-bottom: 0;
+}
+#container #company_list .col-md-8 ul li .company-info .item-info .position_number {
+  font-size: 1.1em;
+  color: black;
+  margin-bottom: 5px;
+}
+#container #company_list .col-md-8 ul li .company-info .item-info .position_tags {
+  margin-top: 0;
+  width: 100%;
+}
+#container #company_list .col-md-8 ul li .company-info .welfare_tags {
+  width: 120px;
+  float: left;
+}
+#container #company_list .col-md-8 ul li .company-info .tags {
+  border-radius: 15px;
+  padding: 2px;
+  width: 55px;
+  margin: 0 auto;
+  background-color: rgba(143, 78, 150, 0.1);
+  color: #707070;
+  font-size: 10px;
+  margin-right: 5px;
+}
+#container #company_list .col-md-8 ul li .company-info .auth {
+  float: left;
+  color: black;
+  padding-left: 10px;
+  display: table;
+  height: 100%;
+  border-left: 1px solid #707070;
+}
+#container #company_list .col-md-8 ul li .company-info .auth p {
+  margin-bottom: 0;
 }
 #container #company-detail {
   min-height: 600px;
