@@ -18,10 +18,10 @@
                     </div>
                     <div class="comp-desc">[[position.company.brief_introduction]]</div>
 
-                    <a class="send-resume" ng-click="submit_posi('[[position._id.$oid]]')">
+                    <div class="send-resume" ng-click="submit_posi('[[position._id.$oid]]')">
                         <i class="fa fa-envelope send-resume-logo"></i>
                         <div class="send-resume-text">投递简历</div>
-                    </a>
+                    </div>
 
                     <div class="comp-desc-list">
                         <span class="comp-desc-tag">
@@ -45,7 +45,7 @@
                     </div>
                 </a>
                 <div ng-if="positions.length == 0">
-                    你还没有收藏任何职位，快到<a href="/mobile/position/list">职位列表</a>看看吧
+                    <p>你还没有收藏任何职位，快到<a href="/mobile/position/list" style="text-decoration: underline; color: blue;">职位列表</a>看看吧</p>
                 </div>
             </div>
         </div>
