@@ -130,25 +130,28 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
             user.role = $cookies.role;
         }
         return {
-            'check_login' : function(){
+            'check_login' : function(is_info=false){
                 if(user.username == undefined)
                 {
                     window.location.href='/mobile/notlogin';
                     return;
                 }
-                $http.get(urls.api+"/account/userinfo/get").
-                    success(function(udata){
-                    if(udata.error.code == 1){
-                        if( udata.data.major == undefined ||
-                            udata.data.university == undefined)
-                        {
-                            console.log('需要填写信息');
-                            window.location.href='/mobile/info';
+                if(!is_info)
+                {
+                    $http.get(urls.api+"/account/userinfo/get").
+                        success(function(udata){
+                        if(udata.error.code == 1){
+                            if( udata.data.major == undefined ||
+                                udata.data.university == undefined)
+                            {
+                                console.log('需要填写信息');
+                                window.location.href='/mobile/info';
+                            }
                         }
-                    }
-                    else
-                        $notice.show($errMsg.format_error("",udata.error).message);
-                });
+                        else
+                            $notice.show($errMsg.format_error("",udata.error).message);
+                    });
+                }
             },
             'is_login' : function(){
                 return (user.username != undefined)

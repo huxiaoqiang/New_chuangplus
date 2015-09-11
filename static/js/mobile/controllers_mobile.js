@@ -1227,7 +1227,7 @@ angular.module('chuangplus_mobile.controllers', [])
     .controller('MB_UserInfoEditCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
     function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
         console.log('MB_UserInfoEditCtrl');
-        $user.check_login();
+        $user.check_login(true);
         $scope.info = {};
         $scope.user_info = {};
         $scope.info.username = $user.username();
