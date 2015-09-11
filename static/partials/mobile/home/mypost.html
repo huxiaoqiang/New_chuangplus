@@ -1,80 +1,51 @@
-<div class="main-content scrollable">
-<div class="scrollable-content">
-    <div class="header-bar">
-        <div class="header">我的投递</div>
-    </div>    
+<div ng-controller="MB_PostListCtrl">
+    <div class="main-content scrollable">
+        <div class="scrollable-content">
+            <div class="header-bar">
+                <div class="header">我的投递</div>
+            </div>    
 
-    <div class="comp-list">
+            <div class="comp-list">
+                <a class="comp-listbox" href="/mobile/position/detail/[[position._id.$oid]]" ng-repeat="position in positions">
+                    <img class="comp-prev-img" src="/api/file/[[position.company.logo_id]]/download">
+                    <div ng-if="position.company.is_auth" class="comp-auth">[[position.company.auth_organization]]认证</div>
+                    <div class="comp-name">[[position.position_type_value]] | [[position.name]]</div>
+                    <div class="posi-close">[[position.position_cond]]</div>
+                    <div class="hr-solve">HR已处理</div>
 
-        <a class="comp-listbox" href="/mobile/position/detail">
-            <img class="comp-prev-img" src="/static/pic/comp_prev.jpg">
-            <div class="comp-auth">红杉资本认证</div>
-            <div class="comp-name">产品经理</div>
+                    <div class="comp-req-list">
+                        <span class="comp-req-title">[[position.company.abbreviation]]</span>
+                    </div>
+                    <div class="comp-desc">[[position.company.brief_introduction]]</div>
 
-            <div class="comp-req-list">
-                <span class="comp-req-title">清华创+</span>
-            </div>
-            <div class="comp-desc">高校创业服务机构</div>
-            <div class="posi-close">职位关闭</div>
-            <div class="hr-solve">HR已处理</div>
+                    <div class="comp-desc-list">
+                        <span class="comp-desc-tag">
+                            [[position.days_per_week]]天/周
+                        </span>
+                        <span class="comp-desc-tag">
+                            [[position.salary_min]]K-[[position.salary_max]]K
+                        </span>
+                        <span class="comp-desc-tag">
+                            [[position.field_value]]
+                        </span>
+                        <span class="comp-desc-tag">
+                            [[position.company.scale_value]]期
+                        </span>
+                        <span class="comp-desc-tag">
+                            [[position.company.city]]
+                        </span>
+                    </div>
 
-            <div class="comp-desc-list">
-                <span class="comp-desc-tag">
-                    5天/周
-                </span>
-                <span class="comp-desc-tag">
-                    5K-8K
-                </span>
-                <span class="comp-desc-tag">
-                    创业服务
-                </span>
-                <span class="comp-desc-tag">
-                    初创期
-                </span>
-                <span class="comp-desc-tag">
-                    北京
-                </span>
-            </div>
-
-            <div class="post-time">
-                发布时间：2015年7月21日
-            </div>
-        </a>
-        <div class="comp-listbox">
-            <img class="comp-prev-img" src="/static/pic/comp_prev.jpg">
-            <div class="comp-auth">红杉资本认证</div>
-            <div class="comp-name">清华创+</div>
-            <div class="comp-desc">高校创业服务机构</div>
-            <div class="posi-close">职位关闭</div>
-            <div class="hr-solve">HR已处理</div>
-            <div class="comp-req-list">
-                <span class="comp-req-title">产品经理</span>
-            </div>
-
-            <div class="comp-desc-list">
-                <span class="comp-desc-tag">
-                    5天/周
-                </span>
-                <span class="comp-desc-tag">
-                    5K-8K
-                </span>
-                <span class="comp-desc-tag">
-                    创业服务
-                </span>
-                <span class="comp-desc-tag">
-                    北京
-                </span>
-            </div>
-
-            <div class="post-time">
-                发布时间：2015年7月21日
+                    <div class="post-time">
+                        发布时间：[[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]
+                    </div>
+                </a>
             </div>
         </div>
     </div>
-</div>
-</div>
-<div ui-content-for="footer">
-    <div class="navbar navbar-app navbar-absolute-bottom">
-        <a class="nav-bar-1 selected" href="/mobile/home">返回个人中心</a>
+    <div ui-content-for="footer">
+        <div class="navbar navbar-app navbar-absolute-bottom">
+            <a class="nav-bar-1 selected" href="/mobile/home">返回个人中心</a>
+        </div>
     </div>
 </div>
