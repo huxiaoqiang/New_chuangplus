@@ -60,20 +60,22 @@ def register(request):
             if reguser is not None and role == "1":
                 reguser.is_staff = True
                 reguser.save()
-                companyinfo = Companyinfo(username=username)
-                companyinfo.user = reguser
+                companyinfo = Companyinfo(username=username,user=reguser)
                 companyinfo.date_joined = datetime_now()
                 companyinfo.update_time = datetime_now()
                 companyinfo.hr_cellphone = request.POST.get('hr_cellphone', '')
-                companyinfo.save()
+                try:
+                    companyinfo.save(force_insert=True)
+                except:
+                    re['error'] = error(106," Register failed")
+                    reguser.delete()
+                    return HttpResponse(json.dumps(re), content_type = 'application/json')
                 re['error'] = error(1, 'company user registered!')
             elif reguser is not None and role == "0":
-                userinfo = Userinfo(username=username)
-                userinfo.email = email
+                userinfo = Userinfo(username=username,user=reguser,email=email)
                 userinfo.date_joined = datetime_now()
                 userinfo.update_time = datetime_now()
-                userinfo.user = reguser
-                userinfo.save()
+                userinfo.save(force_insert=True)
                 re['error'] = error(1, 'ordinary user registered!')
             #elif role == -1:
             #    reguser.is_superuser = True
@@ -431,6 +433,55 @@ def get_position_favor(request):
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+def check_submit(request,position):
+    try:
+        up = UserPosition(user=request.user,position=position)
+        return True
+    except DoesNotExist:
+        return False
+
+@user_permission('login')
+def submitall(request):
+    re = dict()
+    if request.method == 'POST':
+        try:
+            up = UP_Relationship(user=request.user)
+        except DoesNotExist:
+            re['error'] = error(261,'UP-relationship is not exist')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        try:
+            userinfo = Userinfo(user=request.user)
+        except DoesNotExist:
+            re['error'] = error(104,'Userinfo dose not exist')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        if userinfo.resume_id:
+            try:
+                r = File.objects.get(id=userinfo.resume_id)
+                resume = r.value
+            except:
+                re['error'] = error(120, 'Resume does not exist')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+        else:
+            resume = None
+
+        for item in up:
+            try:
+                posi = Position.objects.get(id=item.position.id)
+            except:
+                re['error'] = error(260,"Position does not exist")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+            if not check_submit(request,posi):
+                submit_date = datetime.now()
+                posi.submit_num = posi.submit_num+1
+                posi.save()
+                UP = UserPosition(submit_date = submit_date, resume_submitted = resume, position = posi, user = request.user)
+                UP.save()
+        re['error'] = error(1,'succeed')
+    else:
+        re['error'] = error(2,'Error, need POST')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
 @user_permission('login')
 def get_position_submit(request):
     re = dict()
@@ -526,6 +577,31 @@ def check_favor_company(request,company_id):
     else:
         re['error'] = error(3,'Error, need GET')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+@user_permission('login')
+def remove_closed_position(request):
+    re = dict()
+    if request.method == 'POST':
+        try:
+            up = UP_Relationship(user = request.user)
+        except DoesNotExist:
+            re['error'] = error(261,'UP-relationship is not exist')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+        for item in up:
+            try:
+                posi = Position.objects.get(id=item.position.id)
+            except:
+                re['error'] = error(260,"Position does not exist")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            if posi.status == 'closed':
+                item.delete()
+        re['error'] = error(1,'succeed!')
+    else:
+        re['error'] = error(2,'Error,need post')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+
 
 #admin api: for modifying the companyinfo.status, is_auth, auth_organization
 @user_permission("login")
