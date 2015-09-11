@@ -136,7 +136,6 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
                     window.location.href='/mobile/notlogin';
                     return;
                 }
-                $scope.user_info = {};
                 $http.get(urls.api+"/account/userinfo/get").
                     success(function(udata){
                     if(udata.error.code == 1){
