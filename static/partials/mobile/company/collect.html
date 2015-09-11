@@ -37,6 +37,9 @@
                         <span class="comp-benefit-tag" ng-repeat="tag in company.welfare_tags">[[tag]]</span>
                     </div>
                 </a>
+                <div ng-if="company_list.length == 0">
+                    你还没有收藏任何公司，快到<a href="/mobile/">公司列表</a>看看吧
+                </div>
             </div>
         </div>
     </div>

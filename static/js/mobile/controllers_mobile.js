@@ -127,8 +127,8 @@ angular.module('chuangplus_mobile.controllers', [])
             "salary": ''
         };
     }])
-    .controller('MB_CompanyPositionCtrl', ['$scope', '$http', 'urls', '$routeParams',
-     function($scope, $http, urls, $routeParams) {
+    .controller('MB_CompanyPositionCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
+    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
         $scope.get_company = function(){
         $scope.company_id = $routeParams.company_id;
         console.log($scope.company_id);
@@ -176,6 +176,69 @@ angular.module('chuangplus_mobile.controllers', [])
             });
         };
         $scope.get_company();
+
+
+        $scope.post_value = "收藏公司";       
+
+        //获取关注信息
+        $scope.check_favor_company = function(){
+            $http.get(urls.api+"/account/userinfo/"+$scope.company_id+"/check_favor_company").
+                success(function(data){
+                if(data.error.code == 1){
+                    console.log(data);
+                    $scope.favor_exist = data.data.exist;
+                    if($scope.favor_exist == true)
+                    {
+                        $scope.post_value = "取消收藏";
+                    }
+                    else
+                        $scope.post_value = "收藏公司";
+                }
+                else{
+                }
+            });
+        };
+        $scope.check_favor_company();
+
+        //进行收藏和取消 
+        $scope.post = function(){
+            if($user.is_login())
+                if($scope.favor_exist == false){
+                    $scope.param = {
+                        "csrfmiddlewaretoken" : $csrf.val()
+                    };
+                    $http.post(urls.api + "/account/company/"+$scope.company_id+"/like", $.param($scope.param)).
+                    success(function(data){
+                        if(data.error.code == 1){
+                            $scope.post_value = "取消收藏";
+                            $scope.favor_exist = true;
+                            $notice.show("已收藏");
+                        }
+                        else{
+                            $notice.show($errMsg.format_error("",udata.error).message);
+                        }
+                    });
+                }
+                else{
+                    $scope.param = {
+                        "csrfmiddlewaretoken" : $csrf.val()
+                    };
+                    $http.post(urls.api + "/account/company/"+$scope.company_id+"/unlike", $.param($scope.param)).
+                        success(function(data){
+                            if(data.error.code == 1){
+                                $scope.post_value = "收藏公司";
+                                $scope.favor_exist = false;
+                                $notice.show("已取消收藏");
+                            }
+                            else{
+                                $notice.show($errMsg.format_error("",udata.error).message);
+                            }
+                    });
+                }
+            else
+                $notice.show("请先登录");
+
+        };
     }])
     .controller('MB_CompanyDetailCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
     function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
@@ -288,7 +351,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 }
             });
         };
-
+        $scope.check_favor_company();
 
         //进行收藏和取消 
         $scope.post = function(){
@@ -327,7 +390,6 @@ angular.module('chuangplus_mobile.controllers', [])
                 }
             else
                 $notice.show("请先登录");
-
         };
     }])
     .controller('MB_PositionListCtrl', ['$scope', '$http', 'urls', '$routeParams',

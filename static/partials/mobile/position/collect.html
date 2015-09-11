@@ -8,7 +8,7 @@
                 <div class="header">我的收藏</div>
             </div>    
             <div class="comp-list">
-                <a class="comp-listbox" href="/mobile/position/detail/[[position._id.$oid]]">
+                <a class="comp-listbox" href="/mobile/position/detail/[[position._id.$oid]]" ng-repeat="position in positions">
                     <img class="comp-prev-img" src="/api/file/[[position.company.logo_id]]/download">
                     <div ng-if="position.company.is_auth" class="comp-auth">[[position.company.auth_organization]]认证</div>
                     <div class="comp-name">[[position.position_type_value]] | [[position.name]]</div>
@@ -18,10 +18,10 @@
                     </div>
                     <div class="comp-desc">[[position.company.brief_introduction]]</div>
 
-                    <div class="send-resume" ng-click="submit_posi('[[position._id.$oid]]')">
+                    <a class="send-resume" ng-click="submit_posi('[[position._id.$oid]]')">
                         <i class="fa fa-envelope send-resume-logo"></i>
                         <div class="send-resume-text">投递简历</div>
-                    </div>
+                    </a>
 
                     <div class="comp-desc-list">
                         <span class="comp-desc-tag">
@@ -44,6 +44,9 @@
                         发布时间：[[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]
                     </div>
                 </a>
+                <div ng-if="positions.length == 0">
+                    你还没有收藏任何职位，快到<a href="/mobile/position/list">职位列表</a>看看吧
+                </div>
             </div>
         </div>
     </div>
