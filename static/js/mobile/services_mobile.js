@@ -131,7 +131,7 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
         }
         return {
             'check_login' : function(){
-                if(user.username == undefined)
+                if(user.email == undefined)
                 {
                     window.location.href='/mobile/notlogin';
                     return;
