@@ -1193,6 +1193,57 @@ angular.module('chuangplus_mobile.controllers', [])
                 $notice.show("请填写合法的信息");
         };
     }])
+    .controller('MB_PostListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
+    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
+        console.log('DT_InternPostCtrl');
+        $scope.positions = {};
+        $scope.position_type = {
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+            }; 
+        $scope.cfield = {
+                'social':'社交',
+                'e_commerce':'电子商务',
+                'education':'健康医疗',
+                'health_medical':'文化创意',
+                'culture_creativity':'硬件',
+                'living_consumption':'O2O',
+                'hardware':'生活消费',
+                'O2O':'教育',
+                'others':'其它'
+        };
+        $scope.get_positions = function(){
+            $http.get(urls.api+"/account/userinfo/position/submit/list").
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.positions = data.data;
+                        for(i = 0; i < $scope.positions.length; i ++){
+                            $scope.positions[i].field_value = $scope.cfield[$scope.positions[i].company.field];
+                            $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
+                            if($scope.positions[i].company.scale == 0){
+                                $scope.positions[i].company.scale_value = "初创";
+                            }
+                            else if($scope.positions[i].company.scale == 1){
+                                $scope.positions[i].company.scale_value = "快速发展";
+                            }
+                            else{
+                                $scope.positions[i].company.scale_value = "成熟";
+                            }
+                            $scope.positions[i].submit_value = "投递简历";
+                        }
+                    }
+                    else{
+                        console.log(data.error.message);
+                    }
+            });
+        };
+        $scope.get_positions();
+    }])
     .controller('MB_InfoCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('MB_InfoCtrl');
     }]);
