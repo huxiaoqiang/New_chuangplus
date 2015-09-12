@@ -1,5 +1,9 @@
 <div id="container">
     <div id="company_list">
+        <div class="right-block">
+            <div class="txt">关注我们</div>
+            <img class="img-1" src="/static/image/logo/erweima-01.png">
+        </div>
         <div class="col-md-4"></div>
         <div class="col-md-8">
             <ul ng-repeat="company in company_list">
@@ -9,18 +13,51 @@
                         <div class="item-pic">
                             <img src="/api/file/[[company.logo_id]]/download" class="company-pic" alt="图片">
                         </div>
-                        <div class="item-info">
+                        <div class="item-info info-1">
+                            <div class="vertical-center">
                             <p class="abbreviation">[[company.abbreviation]]</p>
                             <p class="brief_introduction">[[company.brief_introduction]]</p>
-                            <p class="line"></p>
+                            </div>
+                        </div>
+                        <div class="item-info info-2">
+                            <div class="vertical-center">
+                            <div class="label-1" ng-show="company.field != null">
+                                <img src="/static/image/icon/111-01.png">
+                                <p>[[company.field]]</p>
+                            </div>
+                            <div class="label-1" ng-show="company.scale != null">
+                                <img src="/static/image/icon/222-01.png">
+                                <p>[[company.scale]]</p>
+                            </div>
+                            <div class="label-1" ng-show="company.city != null">
+                                <img src="/static/image/icon/333-01.png">
+                                <p class="last-p">[[company.city]]</p>
+                            </div>
+                            </div>
+                        </div>
+                         <div class="line"> </div>
+                        <div class="item-info info-3">
+                            <div class="vertical-center">
                             <p class="position_number">在招岗位数：[[company.position_number]]</p>
+                            <div class="position_tags" >
+                                <span class="tags" ng-repeat="position_type in company.position_type">[[position_type]]</span>
+                            </div>
+                            </div>
+                        </div>
+                         <div class="line"></div>
+                        <div class="item-info info-3">
+                            <div class="vertical-center">
                             <div class="welfare_tags">
                                 <span class="tags" ng-repeat="tag in company.welfare_tags">[[tag]]</span>
                             </div>
+                            </div>
                         </div>
-                        <div class="auth">
-                            <p>机构认证</p>
-                        </div>
+                        <div class="line"></div>
+                        <div class="auth" >
+                            <div class="vertical-center">
+                            <p>v[[company.auth_organization]]认证</p>
+                            </div>
+                            </div>
                     </div>
                 </li>
                 </a>

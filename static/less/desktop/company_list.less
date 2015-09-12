@@ -1,59 +1,141 @@
 #container{
-  #company_list{
-    ul li{
-    list-style-type:none;
-    .company-info{
-      margin-top: 10px;
-      border: 1px solid#8E8E8E;
-      height: 140px;
-      padding: 10px 10px 10px 10px;
-      width: 100%;
-      .item-pic{
-        float: left;
-        width: 120px;
-        height: 120px;
-        .company-pic{
-            width: 100%;
-            height: 100%;
-        }
-      }
-      .item-info{
-        float: left;
-        margin-left: 10px;
-        height: 140px;
-        .abbreviation{
-          font-size: 1.5em;
-          color: #98769E;
-        }
-        .brief_introduction{
-          color: #8E8E8E;
-          margin-top: -10px;
-        }
-        .line{
-          border: solid 1px#eeeeee;
-          width: 200%;
-          margin-top: -10px;
-        }
-        .position_number{
-          color: #98769E;
-        }
-        .welfare_tags{
-          .tags{
-            border: solid 1px #98769E;
-            border-radius: 4px;
-            padding: 2px;
-            color: #98769E;
-            margin-right: 10px;
-          }
-        }
-      }
-      .auth{
-        float: right;
-        margin-right: 10px;
-        color: black;
+margin:0 auto;
+display: block;
+    #company_list{
         font-family: "微软雅黑";
-      }
+
+        .right-block{
+            position: fixed;
+            right: 20px;
+            top: 168px;
+            height: 100%;
+            width: 120px;
+            margin: 0 auto;
+            z-index: 1;
+            .txt{
+                font-size: 1.0em;
+                color: #707070;
+                text-align: center;
+                width: 100%;
+            }
+            .img-1{
+                height: 120px;
+                width: 120px;
+            }
+        }
+        .col-md-8{
+
+            width: 750px;
+            ul li{
+            list-style-type:none;
+            .company-info{
+                margin-top: 10px;
+                border: 1px solid#8F4E96;
+                padding: 10px 10px 10px 10px;
+                width: 100%;
+                height: 100px;
+
+                .item-pic{
+                    float: left;
+                    width: 80px;
+                    height: 80px;
+                    .company-pic{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .item-info.info-1{
+                    padding: 10px 0 10px 0;
+                    text-align: center;
+                }
+                .item-info.info-3{
+
+
+                .vertical-center{
+                    border-left: 1px solid #707070;
+                }
+
+                }
+                .vertical-center{
+                    display: table-cell;
+                    vertical-align: middle;
+                    padding: 0 5px 0 10px;
+                }
+                .item-info{
+
+                    float: left;
+                    margin-left: 10px;
+                    height: 100%;
+                    display:table;
+                    .abbreviation{
+                        font-size: 1.3em;
+                        color: black;
+                    }
+                    .brief_introduction{
+                        color: #707070;
+                        font-size: 12px;
+                        margin-top: -10px;
+                    }
+                    .label-1{
+                        width: 60px;
+                        img{
+                            width: 17px;
+                            height: 17px;
+                            float: left;
+                            margin-right: 5px;
+                        }
+                        p{
+                            color: #707070;
+                            font-size: 12px;
+                            margin-bottom: 5px;
+                        }
+.last-p{
+margin-bottom: 0;
+}
+                    }
+                    .position_number{
+                        font-size: 1.1em;
+                        color: black;
+                        margin-bottom: 5px;
+
+                    }
+                    .position_tags{
+                        margin-top: 0;
+                    width: 100%;
+                    }
+
+                }
+                .welfare_tags{
+                    width: 120px;
+                    float: left;
+
+                }
+                .tags{
+                    border-radius: 15px;
+                    padding: 2px;
+                    width: 55px;
+                    margin: 0 auto;
+                    background-color: rgba(143,78,150,0.1);
+                    color: #707070;
+                    font-size: 10px;
+                    margin-right: 5px;
+                }
+
+
+                .auth{
+                    float: left;
+                    color: black;
+                    padding-left: 10px;
+                    display:table;
+                    height: 100%;
+                    border-left: 1px solid #707070;
+p{
+margin-bottom: 0;
+}
+                }
+
+            }
+        }
+}
     }
-  }
-  }
 }

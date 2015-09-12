@@ -670,7 +670,7 @@ angular.module('chuangplus_mobile.controllers', [])
                                 if(udata.error.code == 1){
                                     if( udata.data.major != undefined &&
                                         udata.data.university != undefined)
-                                        window.location.href=urls.moblie_index;
+                                        window.location.href=urls.mobile_index;
                                     else
                                     {
                                         console.log('需要填写信息');
@@ -1218,7 +1218,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     console.log(data);
                     if(data.error.code == 1){
                         $user.logout();
-                        window.location.href=urls.moblie_index;
+                        window.location.href=urls.mobile_index;
                     }
                 });
         };
@@ -1227,7 +1227,8 @@ angular.module('chuangplus_mobile.controllers', [])
     .controller('MB_UserInfoEditCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
     function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
         console.log('MB_UserInfoEditCtrl');
-        $user.check_login();
+        if($user.username == undefined)
+            window.location.href='/mobile/notlogin';
         $scope.info = {};
         $scope.user_info = {};
         $scope.info.username = $user.username();
@@ -1247,7 +1248,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 $http.post(urls.api+"/account/userinfo/set", $.param($scope.user_info))
                     .success(function(data){
                     if(data.error.code == 1){
-                        window.location.href=urls.moblie_index;
+                        window.location.href=urls.mobile_index;
                     }
                     else{
                         $notice.show($errMsg.format_error("",data.error).message);
