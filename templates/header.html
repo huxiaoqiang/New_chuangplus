@@ -4,7 +4,7 @@
         <nav class="navbar">
             <div class="navbar-header">
                <div id="head-logo">
-                   <a href="/"><img src="/static/image/logo/header logo-01.png"></a>
+                   <a href="/"><img src="/static/image/logo/xiuniulogo-01.png"></a>
                </div>
             {% if not user.is_authenticated %}
               <ul class="nav navbar-nav navbar-item not-login" ng-init="homepage=true">
@@ -75,7 +75,7 @@
             <div class="qrcode_img" ng-if="scan">
                 <img src="/static/image/logo/erweima-01.png">
             </div>
-            <div class="search_input" ng-if="search">
+            <div class="search_input"  on-mouseover="search=true" on-mouseout="search=false">
                 <input type="text">
             </div>
         </nav>

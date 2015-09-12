@@ -25,7 +25,7 @@ header #header .navbar .navbar-header #head-logo img {
 }
 header #header .navbar .navbar-item.not-login {
   margin-left: 35px;
-  width: 420px;
+  width: 400px;
 }
 header #header .navbar .navbar-item.not-login li {
   text-align: center;
@@ -52,7 +52,7 @@ header #header .navbar .navbar-item.not-login li.active a:hover {
 }
 header #header .navbar .navbar-item.login {
   margin-left: 15px;
-  width: 420px;
+  width: 400px;
 }
 header #header .navbar .navbar-item.login li a {
   color: #707070;
@@ -88,7 +88,7 @@ header #header .navbar .navbar-item.login li.dropdown .dropdown-menu a:hover {
 header #header .navbar .header-item {
   float: right;
   position: relative;
-  width: 220px;
+  width: 240px;
   margin-top: 22px;
 }
 header #header .navbar .header-item .item {
@@ -97,10 +97,11 @@ header #header .navbar .header-item .item {
   cursor: pointer;
 }
 header #header .navbar .header-item .item img {
-  width: 19px;
+  width: 17px;
 }
 header #header .navbar .header-item .item a {
-  color: #000000;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  color: #707070;
   font-size: 1em;
   text-decoration: none;
 }
@@ -2115,7 +2116,7 @@ body {
   background-color: #f0f0f0;
 }
 body #main-container {
-  margin-top: -40px;
+  margin-top: -60px;
 }
 .input-group-addon {
   border-top-left-radius: 0.5em;
