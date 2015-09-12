@@ -4,7 +4,7 @@
         <nav class="navbar">
             <div class="navbar-header">
                <div id="head-logo">
-                   <a href="/"><img src="/static/image/logo/headerlogo-01.png"></a>
+                   <a href="/"><img src="/static/image/logo/header logo-01.png"></a>
                </div>
             {% if not user.is_authenticated %}
               <ul class="nav navbar-nav navbar-item not-login" ng-init="homepage=true">
@@ -56,21 +56,28 @@
                  </li>
               </ul>
             {% endif %}
-
-          {% if not user.is_authenticated %}
-               <ul class="reg-login">
-                   <li><a href="/login">登录</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="/register">注册</a></li>
-               </ul>
-              {% else %}
-                <ul class="nav navbar-nav search">
-                     <li id="search">
-                         <input type="text" class="form-control" placeholder="搜索公司或职位">
-                     </li>
-                     <li id="search_btn">
-                         <button type="button" class="btn btn-default navbar-btn"><i class="icon-search"></i></button>
-                     </li>
-                </ul>
-          {% endif %}
+            <div class="header-item">
+              {% if not user.is_authenticated %}
+                   <div class="item">
+                       <img src="/static/image/icon/login-01.png">
+                       <a href="/login">登录</a>&nbsp;·&nbsp;<a href="/register">注册</a>
+                   </div>
+              {% endif %}
+               <div class="item" on-mouseover="scan=true" on-mouseout="scan=false">
+                   <img src="/static/image/icon/scan-01.png">
+                   <a>关注</a>
+               </div>
+               <div class="item search" on-mouseover="search=true" on-mouseout="search=false">
+                   <img src="/static/image/icon/search-01.png">
+                   <a>搜索</a>
+               </div>
+            </div>
+            <div class="qrcode_img" ng-if="scan">
+                <img src="/static/image/logo/erweima-01.png">
+            </div>
+            <div class="search_input" ng-if="search">
+                <input type="text">
+            </div>
         </nav>
 
         <div class="right-block">
@@ -78,4 +85,5 @@
             <img class="img-1" src="/static/image/logo/erweima-01.png">
         </div>
     </div>
+    <div class="shadow"></div>
 </header>

@@ -1,7 +1,7 @@
 header{
   font-family: "微软雅黑";
   #header{
-    background-color: rgba(225, 224, 226, 0.4);
+    background-color: #FFFFFF;
     .header-head{
         background-color: #9f4e96;
         height: 5px;
@@ -24,14 +24,14 @@ header{
       }
       .navbar-item.not-login{
         margin-left: 35px;
-        width: 545px;
+        width: 420px;
         li{
           text-align: center;
           width: 29%;
          a{
           color: #707070;
-          padding-top: 24px;
-          padding-bottom: 24px;
+          padding-top: 20px;
+          padding-bottom: 12px;
           font-size: 1.2em;
           cursor: pointer;
           font-family: "华文细黑";
@@ -51,7 +51,7 @@ header{
     }
     .navbar-item.login{
         margin-left: 15px;
-        width: 545px;
+        width: 420px;
         li{
          a{
           color: #707070;
@@ -88,34 +88,51 @@ header{
           }
         }
     }
-    ul.reg-login{
-      list-style-type: none;
-      float: left;
-      margin-top: 24px;
-      background-color: #8f4e96;
-      border-radius: 25px;
-      color: white;
-      padding: 1px;
-      position: absolute;
-      right: 0;
-      padding-left: 15px;
-      padding-right: 15px;
-      a{
-        color: white;
-        font-size: 1em;
+    .header-item{
+      float: right;
+      position: relative;
+      width: 220px;
+      margin-top: 22px;
+      .item{
+        float: right;
+        margin-left: 10px;
+        cursor: pointer;
+        img{
+          width: 19px;
+        }
+        a{
+          color: #000000;
+          font-size: 1em;
+          text-decoration: none;
+        }
+        a:hover{
+           border-width: 0px 0px 0px 0px;
+        }
       }
-       a:hover{
-         border-width: 0px 0px 0px 0px;
-       }
-    }
-    .search{
-      margin-top: 18px;
-      position: absolute;
-      right: 0;
-      li#search_btn{
-        margin-top: -8px;
+      .search{
+        margin-left: 0px;
       }
-    }
+      }
+      .qrcode_img{
+        position: absolute;
+        top: 50px;
+        right: 57px;
+        z-index: 2;
+        img{
+          width: 100px;
+        }
+      }
+      .search_input{
+        position: absolute;
+        top: 50px;
+        right: 12px;
+        z-index: 2;
+        width: 200px;
+        height: 50px;
+        border: solid 1px #eeeeee;
+        background-color: #eeeeee;
+        padding: 12px 10px 10px 20px;
+      }
     }
     .right-block{
       position: fixed;
@@ -136,5 +153,9 @@ header{
           width: 120px;
       }
     }
+  }
+  .shadow{
+    background: url(/static/image/icon/shadow-01.png) repeat-x;
+    height: 30px;
   }
 }

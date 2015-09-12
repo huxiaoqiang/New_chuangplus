@@ -18,7 +18,8 @@ angular.module('chuangplus.controllers', []).
             {image:"/static/image/logo/banner-2.jpg"},
             {image:"/static/image/logo/banner-3.jpg"}
         ];
-
+        $scope.scan = false;
+        $scope.search = false;
     }]).
     controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_HeaderCtrl');
