@@ -151,7 +151,9 @@ header .shadow {
   background: -ms-linear-gradient(top, #e1e1e1 -50%, #f0f0f0 100%);
   background-color: linear-gradient(to bottom, #e1e1e1 -50%, #f0f0f0 100%);
   height: 60px;
-  margin-top: -1px;
+  margin-top: -3px;
+  border: solid #cecece;
+  border-width: 1px 0px 0px 0px;
 }
 * {
   margin: 0;
@@ -432,7 +434,7 @@ body > #wrap {
 }
 #container #information .txt {
   color: black；
-          margin: 0 auto;
+            margin: 0 auto;
   margin-top: 10px;
   text-align: center;
 }
@@ -2111,11 +2113,13 @@ form.financing_add input {
 }
 #container #no-company-info {
   width: 80%;
-  background-color: rgba(225, 224, 226, 0.4);
-  height: 300px;
+  background-color: white;
+  height: 230px;
   margin: 0 auto;
   margin-top: 15%;
-  padding-top: 125px;
+  padding-top: 80px;
+  border: solid 1px #bfbfbf;
+  border-radius: 6px;
 }
 #container #no-company-info p {
   text-align: center;
@@ -2142,6 +2146,256 @@ form.financing_add input {
 }
 #container #no-company-info .go a:hover img {
   width: 30px;
+}
+#container .head {
+  float: left;
+  height: 60px;
+  width: 95%;
+  margin-left: 24px;
+}
+#container .head div.item {
+  height: 4px;
+  width: 24%;
+  background-color: #8f4e96;
+  float: left;
+  position: relative;
+}
+#container .head div.item span.text {
+  color: #707070;
+  position: absolute;
+  top: -30px;
+  left: 84px;
+  font-size: 1.2em;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container .head .item.alpha40 {
+  background-color: rgba(143, 78, 150, 0.4);
+}
+#container .head .item.alpha20 {
+  background-color: rgba(143, 78, 150, 0.2);
+}
+#container .head .item.alpha10 {
+  background-color: rgba(143, 78, 150, 0.1);
+}
+#container .left-info {
+  background-color: white;
+  width: 48%;
+  height: 450px;
+  float: left;
+  padding-top: 40px;
+  border: solid 1px #bfbfbf;
+  border-radius: 6px;
+}
+#container .left-info .input-group {
+  width: 100%;
+  margin-bottom: 20px;
+}
+#container .left-info .input-group input {
+  width: 90%;
+  outline: none;
+  height: 32px;
+  padding: 5px;
+  border-radius: 3px;
+}
+#container .right-info {
+  background-color: white;
+  width: 48%;
+  height: 450px;
+  float: left;
+  padding-top: 40px;
+  margin-left: 4%;
+  border: solid 1px #bfbfbf;
+  border-radius: 6px;
+}
+#container .right-info .input-group {
+  width: 100%;
+  margin-bottom: 20px;
+}
+#container #first-step {
+  margin-top: 70px;
+}
+#container #first-step .info1 {
+  height: 450px;
+  position: relative;
+}
+#container #first-step .info1 .left-info .input-group {
+  margin-bottom: 40px;
+  width: 100%;
+}
+#container #first-step .info1 .left-info .input-group .col-sm-3 {
+  text-align: right;
+}
+#container #first-step .info1 .left-info .input-group .col-sm-3 label {
+  color: #707070;
+  font-size: 16px;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #first-step .info1 .left-info .input-group .col-sm-9 input {
+  width: 90%;
+  height: 32px;
+}
+#container #first-step .info1 .left-info .input-group .col-sm-9 img {
+  height: 160px;
+  width: 160px;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-3 {
+  text-align: right;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-3 label {
+  color: #707070;
+  font-size: 16px;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-9 table {
+  width: 100%;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-9 table tbody {
+  width: 100%;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-9 table tbody tr td label {
+  color: #707070;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-9 label {
+  color: #707070;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-9 .form-control.tags_input {
+  float: left;
+  width: 70%;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-9 input.btn-primary {
+  border-radius: 0px;
+  background-color: #98769E;
+  border-color: #98769E;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-9 label.checkbox-label {
+  margin: 0px 18px 5px 5px;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-9 span.err-msg {
+  position: absolute;
+  bottom: 0px;
+}
+#container #first-step .info1 input.next-button {
+  position: absolute;
+  bottom: -60px;
+  left: 41.5%;
+  width: 150px;
+  color: white;
+  background-color: #8f4e96;
+}
+#container #second-step {
+  margin-top: 70px;
+}
+#container #second-step .info2 .left-info {
+  position: relative;
+}
+#container #second-step .info2 .left-info .input-group {
+  margin-bottom: 30px;
+}
+#container #second-step .info2 .left-info .input-group .col-sm-4 {
+  text-align: right;
+}
+#container #second-step .info2 .left-info .input-group .col-sm-4 label {
+  font-size: 16px;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #second-step .info2 .left-info .input-group .col-sm-8 input {
+  width: 90%;
+  height: 32px;
+}
+#container #second-step .info2 .left-info .input-group .col-sm-8 img {
+  cursor: pointer;
+  height: 160px;
+  width: 160px;
+}
+#container #second-step .info2 .left-info input.btn {
+  border-radius: 0px;
+}
+#container #second-step .info2 .left-info input.pre-button {
+  position: absolute;
+  bottom: -60px;
+  right: 0px;
+  width: 150px;
+  color: white;
+}
+#container #second-step .info2 .right-info {
+  position: relative;
+}
+#container #second-step .info2 .right-info input.next-button {
+  position: absolute;
+  bottom: -60px;
+  left: 0px;
+  width: 150px;
+  color: white;
+}
+#container #third-step {
+  margin-top: 70px;
+}
+#container #third-step .info3 {
+  padding: 30px;
+  width: 100%;
+  height: 500px;
+  background-color: white;
+  position: relative;
+}
+#container #third-step .info3 label {
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #707070;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #third-step .info3 textarea {
+  min-height: 150px;
+  max-width: 100%;
+  width: 100%;
+  margin-bottom: 30px;
+  padding: 10px;
+  border-radius: 5px;
+  resize: none;
+}
+#container #third-step .info3 .btn {
+  border-radius: 0px;
+}
+#container #third-step .info3 input.pre-button {
+  position: absolute;
+  bottom: -60px;
+  width: 150px;
+  color: white;
+  left: 30%;
+}
+#container #third-step .info3 input.next-button {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  width: 150px;
+  color: white;
+}
+#container #forth-step {
+  margin-top: 70px;
+}
+#container #forth-step .info4 {
+  background-color: white;
+  height: 450px;
+  padding: 30px;
+}
+#container #forth-step .info4 label {
+  color: #707070;
+  font-size: 16px;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #forth-step .info4 p {
+  color: #707070;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #forth-step .info4 textarea {
+  min-height: 150px;
+  max-width: 100%;
+  width: 100%;
+  margin-bottom: 30px;
+  padding: 10px;
+  border-radius: 5px;
+  resize: none;
 }
 #no_header #header {
   background-color: #FFFFFF;
