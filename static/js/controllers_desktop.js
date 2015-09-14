@@ -1402,7 +1402,7 @@ angular.module('chuangplus.controllers', []).
                     if(data.error.code == 1){
                         $scope.companyinfo = data.data;
                         var i=j=0;
-                        var welfare_tags = a.welfare_tags;
+                        var welfare_tags = data.data.welfare_tags;
                         for(i=0;i<welfare_tags.length;i++){
                             for(j=0;j<$scope.tags.length;j++){
                                 if(tags[j].value == welfare_tags[i]){
