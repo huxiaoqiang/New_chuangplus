@@ -151,6 +151,7 @@ header .shadow {
   background: -ms-linear-gradient(top, #e1e1e1 -50%, #f0f0f0 100%);
   background-color: linear-gradient(to bottom, #e1e1e1 -50%, #f0f0f0 100%);
   height: 60px;
+  margin-top: -1px;
 }
 * {
   margin: 0;
@@ -313,11 +314,11 @@ body > #wrap {
   background-color: #FFFFFF;
   border-radius: 6px;
 }
-#container #register .ui.form.segment .nav {
+#container #register .ui.form.segment .tabs {
   border: 0;
   padding: 5px 5px 0 5px;
 }
-#container #register .ui.form.segment .nav li {
+#container #register .ui.form.segment .tabs li {
   list-style: none;
   float: left;
   width: 50%;
@@ -327,10 +328,10 @@ body > #wrap {
   filter: alpha(opacity=80);
   opicaty: 50;
 }
-#container #register .ui.form.segment .nav li .active {
+#container #register .ui.form.segment .tabs li .active {
   background-color: #FFFFFF;
 }
-#container #register .ui.form.segment .nav li a {
+#container #register .ui.form.segment .tabs li a {
   text-decoration: none;
   border-radius: 0;
   width: 100%;
@@ -338,7 +339,7 @@ body > #wrap {
   font-size: 1em;
   color: #000000;
 }
-#container #register .ui.form.segment .nav li a:hover {
+#container #register .ui.form.segment .tabs li a:hover {
   background-color: white;
 }
 #container #register .ui.form.segment #reg_form {
