@@ -1396,6 +1396,14 @@ angular.module('chuangplus.controllers', []).
                 "value" :"班车接送"
             }
         ];
+        $scope.get_company_info = function(){
+            $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.companyinfo = data.data;
+                    }
+                });
+        };
         $scope.add_tag = function(){
             $scope.tags.push({
                 "chosed":false,
@@ -1438,14 +1446,6 @@ angular.module('chuangplus.controllers', []).
                 }
             });
         };
-        $scope.get_company_info = function(){
-            $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
-                success(function(data){
-                    if(data.error.code == 1){
-                        $scope.companyinfo = data.data;
-                    }
-                });
-            };
         $scope.next_step = function(){
             if(!$scope.companyinfo.hasOwnProperty('abbreviation')){
                 $scope.error = $errMsg.format_error("请填写公司简称",{code:"-1"});
@@ -1506,6 +1506,7 @@ angular.module('chuangplus.controllers', []).
                     }
                 });
         };
+        $scope.get_company_info();
     }]).
     controller('DT_CompanySecondCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanySecondCtrl');
