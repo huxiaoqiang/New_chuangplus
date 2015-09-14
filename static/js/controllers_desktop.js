@@ -1412,7 +1412,7 @@ angular.module('chuangplus.controllers', []).
                             }
                             if(j==$scope.tags.length){
                                 $scope.tags.push({
-                                   "value":"welfare_tags[i]",
+                                   "value":welfare_tags[i],
                                     "chosed":true
                                 });
                             }
