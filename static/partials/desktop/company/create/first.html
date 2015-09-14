@@ -1,10 +1,96 @@
-<div id="container">
+<div id="container" xmlns="http://www.w3.org/1999/html">
     <div id="first-step">
         <div class="head">
-            <span class="item"></span>
-            <span class="item"></span>
-            <span class="item"></span>
-            <span class="item"></span>
+            <div class="item"><span class="text">第一步</span></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
         </div>
+        <div style="clear:both;"></div>
+        <form name="FirstStepForm" ng-submit="first_step_submit()">
+        <div class="info1">
+            <div class="left-info">
+                <div class="input-group">
+                    <div class="col-sm-4">
+                        <label>公司简称</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" required ng-model="companyinfo.abbreviation">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="col-sm-4">
+                        <label>一句话简介</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" required ng-model="companyinfo.brief_introduction">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="col-sm-4">
+                        <label>公司logo</label>
+                    </div>
+                    <div class="col-sm-8">
+                      <div class="change_tab" ng-model="logo"  ngf-select="upload($file,'logo','logo')">
+                        <img  ng-if="logo==null" ng-src="/api/file/[[companyinfo.logo_id]]/download" alt="点击上传logo"><br/>
+                        <img  ng-if="logo!=null" ngf-src="logo"><br/>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-info">
+                <div class="input-group">
+                    <div class="col-sm-4">
+                        <label>行业领域</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <table>
+                            <tbody>
+                                <tr>
+                                  <td><label><input type="radio" ng-model="companyinfo.field" value="social">社交</label></td>
+                                  <td><label><input type="radio" ng-model="companyinfo.field" value="e-commerce">电子商务</label></td>
+                                  <td><label><input type="radio" ng-model="companyinfo.field" value="education">教育</label></td>
+                                </tr>
+                                <tr>
+                                  <td><label><input type="radio" ng-model="companyinfo.field" value="health_medical">健康医疗</label></td>
+                                  <td><label><input type="radio" ng-model="companyinfo.field" value="culture_creativity">文化创新</label></td>
+                                  <td><label><input type="radio" ng-model="companyinfo.field" value="living_consumption">生活消费</label></td>
+                                </tr>
+                                <tr>
+                                  <td><label><input type="radio" ng-model="companyinfo.field" value="hardware">硬件</label></td>
+                                  <td><label><input type="radio" ng-model="companyinfo.field" value="O2O">O2O</label></td>
+                                  <td><label><input type="radio" ng-model="companyinfo.field" value="others">其他</label></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="col-sm-4">
+                        <label>融资阶段</label>
+                    </div>
+                    <div class="col-sm-8">
+                          <label><input type="radio" ng-model="companyinfo.scale" value="0">初创（未融资/种子轮/天使轮）</label><br/>
+                          <label><input type="radio" ng-model="companyinfo.scale" value="1">成长（A轮/B轮）</label><br/>
+                          <label><input type="radio" ng-model="companyinfo.scale" value="2">成熟（C轮以上/已上市）</label>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="col-sm-4">
+                        <label>福利标签</label>
+                    </div>
+                    <div class="col-sm-8">
+                      <label class="checkbox-label" ng-repeat="tag in tags"><input type="checkbox" ng-model="tag.chosed">[[tag.value]]</label>
+                          <br/>
+                              <input name="addtag" type="text" class="form-control tags_input" placeholder="自定义标签" ng-maxlength="4" ng-model="tag_added">
+                              <input type="button" class="btn btn-primary" value="添加" ng-click="add_tag()" ng-disabled="canAdd(FirstStepForm.addtag)">
+                              <div style="clear:both;"></div>
+                          <br/>
+                          <span class="err-msg" ng-show="tag_long_error(FirstStepForm.addtag)"><i class=" icon-warning-sign"></i>福利标签不能超过4个字</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
     </div>
 </div>
