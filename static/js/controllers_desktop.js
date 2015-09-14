@@ -1408,17 +1408,17 @@ angular.module('chuangplus.controllers', []).
             return ngModelController.$invalid && ngModelController.$dirty;
         };
         $scope.next_step = function(){
-            window.location.href = '/company/create/second';
+            window.location.href = '/company/'+ $scope.company_id+'/create/second';
         };
     }]).
     controller('DT_CompanySecondCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanySecondCtrl');
         $scope.company_id = $routeParams.company_id;
         $scope.pre_step = function(){
-            window.location.href = '/company/create/first';
+            window.location.href = '/company/'+ $scope.company_id+'/create/first';
         };
         $scope.next_step = function(){
-            window.location.href = '/company/create/third';
+            window.location.href = '/company/'+ $scope.company_id+'create/third';
         };
 
     }]).
