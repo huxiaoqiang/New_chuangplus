@@ -1438,6 +1438,14 @@ angular.module('chuangplus.controllers', []).
                 }
             });
         };
+        $scope.get_company_info = function(){
+            $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.companyinfo = data.data;
+                    }
+                });
+            };
         $scope.next_step = function(){
             if(!$scope.companyinfo.hasOwnProperty('abbreviation')){
                 $scope.error = $errMsg.format_error("请填写公司简称",{code:"-1"});
