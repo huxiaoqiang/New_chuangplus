@@ -1449,7 +1449,7 @@ angular.module('chuangplus.controllers', []).
                 setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                 return;
             }
-            else if(!$scope.companyinfo.hasOwnProperty('logo')){
+            else if(!$scope.companyinfo.hasOwnProperty('logo_id')){
                 $scope.error = $errMsg.format_error("请上传公司logo",{code:"-1"});
                 setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                 return;
