@@ -1,4 +1,4 @@
-<header ng-controller="DT_HeaderCtrl">
+<header ng-controller="DT_HeaderCtrl" xmlns="http://www.w3.org/1999/html">
     <div id="header">
         <div class="header-head"></div>
         <nav class="navbar">
@@ -57,7 +57,7 @@
               {% if not user.is_authenticated %}
                    <div class="item log_register">
                        <img src="/static/image/icon/login-01.png">
-                       <a ng-click="login()">登录</a>&nbsp;·&nbsp;<a ng-click="login()">注册</a>
+                       <a ng-click="login()">登录</a>&nbsp;·&nbsp;<a ng-click="register()">注册</a>
                    </div>
               {% endif %}
                <div class="item" on-mouseover="scan=true" on-mouseout="scan=false">

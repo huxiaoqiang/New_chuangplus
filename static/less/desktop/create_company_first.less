@@ -5,18 +5,28 @@
       width: 95%;
       margin-left: 24px;
       div.item{
-        height: 10px;
+        height: 4px;
         width: 24%;
-        background-color: #98769E;
+        background-color: #8f4e96;
         float: left;
         position: relative;
         span.text{
+          color: #707070;
           position: absolute;
           top: -30px;
-          left: 94px;
+          left: 84px;
           font-size: 1.2em;
           font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
         }
+      }
+      .item.alpha40{
+        background-color: rgba(143,78,150,0.4);
+      }
+      .item.alpha20{
+        background-color: rgba(143,78,150,0.2);
+      }
+      .item.alpha10{
+        background-color: rgba(143,78,150,0.1);
       }
     }
   .left-info{
@@ -25,9 +35,18 @@
     height: 450px;
     float: left;
     padding-top: 40px;
+    border: solid 1px #bfbfbf;
+    border-radius: 6px;
     .input-group{
       width: 100%;
       margin-bottom: 20px;
+      input{
+        width: 90%;
+        outline: none;
+        height: 32px;
+        padding: 5px;
+        border-radius: 3px;
+      }
     }
   }
   .right-info{
@@ -37,6 +56,8 @@
     float: left;
     padding-top: 40px;
     margin-left: 4%;
+    border: solid 1px #bfbfbf;
+    border-radius: 6px;
     .input-group{
       width: 100%;
       margin-bottom: 20px;
@@ -46,18 +67,20 @@
     margin-top: 70px;
     .info1{
       height: 450px;
+      position: relative;
       .left-info{
         .input-group{
           margin-bottom: 40px;
           width: 100%;
-          .col-sm-4{
+          .col-sm-3{
             text-align: right;
             label{
+              color: #707070;
               font-size: 16px;
               font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
             }
           }
-          .col-sm-8{
+          .col-sm-9{
             input{
               width: 90%;
               height: 32px;
@@ -71,14 +94,15 @@
       }
       .right-info{
         .input-group{
-          .col-sm-4{
+          .col-sm-3{
             text-align: right;
             label{
+              color: #707070;
               font-size: 16px;
               font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
             }
           }
-          .col-sm-8{
+          .col-sm-9{
             table{
               width: 100%;
               tbody{
@@ -115,6 +139,14 @@
             }
           }
         }
+      }
+      input.next-button{
+        position: absolute;
+        bottom: -60px;
+        left: 41.5%;
+        width: 150px;
+        color: white;
+        background-color: #8f4e96;
       }
     }
   }
@@ -216,11 +248,22 @@
       height: 450px;
       padding: 30px;
       label{
+        color: #707070;
         font-size: 16px;
         font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
       }
       p{
+        color: #707070;
         font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+      }
+      textarea{
+        min-height: 150px;
+        max-width: 100%;
+        width: 100%;
+        margin-bottom: 30px;
+        padding: 10px;
+        border-radius: 5px;
+        resize: none;
       }
     }
   }

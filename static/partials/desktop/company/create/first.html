@@ -2,35 +2,35 @@
     <div id="first-step">
         <div class="head">
             <div class="item"><span class="text">第一步</span></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
+            <div class="item alpha40"></div>
+            <div class="item alpha20"></div>
+            <div class="item alpha10"></div>
         </div>
         <div style="clear:both;"></div>
         <form name="FirstStepForm" ng-submit="first_step_submit()">
         <div class="info1">
             <div class="left-info">
                 <div class="input-group">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <label>公司简称</label>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-9">
                         <input type="text" required ng-model="companyinfo.abbreviation">
                     </div>
                 </div>
                 <div class="input-group">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <label>一句话简介</label>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-9">
                         <input type="text" required ng-model="companyinfo.brief_introduction">
                     </div>
                 </div>
                 <div class="input-group">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <label>公司logo</label>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-9">
                       <div class="change_tab" ng-model="logo"  ngf-select="upload($file,'logo','logo')">
                         <img  ng-if="logo==null" ng-src="/api/file/[[companyinfo.logo_id]]/download" alt="点击上传logo"><br/>
                         <img  ng-if="logo!=null" ngf-src="logo"><br/>
@@ -40,10 +40,10 @@
             </div>
             <div class="right-info">
                 <div class="input-group">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <label>行业领域</label>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-9">
                         <table>
                             <tbody>
                                 <tr>
@@ -66,20 +66,20 @@
                     </div>
                 </div>
                 <div class="input-group">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <label>融资阶段</label>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-9">
                           <label><input type="radio" ng-model="companyinfo.scale" value="0">初创（未融资/种子轮/天使轮）</label><br/>
                           <label><input type="radio" ng-model="companyinfo.scale" value="1">成长（A轮/B轮）</label><br/>
                           <label><input type="radio" ng-model="companyinfo.scale" value="2">成熟（C轮以上/已上市）</label>
                     </div>
                 </div>
                 <div class="input-group">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <label>福利标签</label>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-9">
                       <label class="checkbox-label" ng-repeat="tag in tags"><input type="checkbox" ng-model="tag.chosed">[[tag.value]]</label>
                           <br/>
                               <input name="addtag" type="text" class="form-control tags_input" placeholder="自定义标签" ng-maxlength="4" ng-model="tag_added">
@@ -90,6 +90,7 @@
                     </div>
                 </div>
             </div>
+            <input type="button" class="next-button btn" value="下一步">
         </div>
         </form>
     </div>
