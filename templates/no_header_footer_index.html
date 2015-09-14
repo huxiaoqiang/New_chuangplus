@@ -36,22 +36,21 @@
   </head>
   <body style="margin: 0px;">
     <div id="no_header">
-        <div id = "header">
+        <div id = "header"  ng-controller="DT_HeaderCtrl">
             <div class="header-head"></div>
             <div class="header-div">
                 <div id="head-logo">
-                    <a href="/"><img src="/static/image/logo/finallogo-01.png"></a>
+                    <a ng-click="home()"><img src="/static/image/logo/finallogo-01.png"></a>
                 </div>
             </div>
             
         </div>
         <div class="up-shadow"></div>
     </div>
-    <div id='wrap'>
-      <div ng-view autoscroll="true" class="column clearfix" id="main-container">
-      </div>
+    <div id='wrap_no_header_footer'>
+        <div ng-view autoscroll="true" class="column clearfix" id="main-container"></div>
+        <div class="down-shadow"></div>
     </div>
-    <div class="down-shadow"></div>
     <!--  <div class="ui grid page"> -->
     <script src="/static/js/app.js"></script>
     <script src="/static/js/services.js"></script>

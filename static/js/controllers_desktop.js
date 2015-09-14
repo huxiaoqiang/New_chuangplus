@@ -44,6 +44,9 @@ angular.module('chuangplus.controllers', []).
         $scope.login  = function(){
             window.location.href='/login';
         };
+        $scope.home = function(){
+            window.location.href='/';
+        };
         if($user.role()==1){
             $scope.get_company_info();
         }
@@ -53,7 +56,7 @@ angular.module('chuangplus.controllers', []).
                     console.log(data);
                     if(data.error.code == 1){
                         $user.logout();
-                        window.location.href = '/login';
+                        window.location.href = '/';
                     }
                 });
         };
