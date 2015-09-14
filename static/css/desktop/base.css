@@ -432,7 +432,7 @@ body > #wrap {
 }
 #container #information .txt {
   color: black；
-          margin: 0 auto;
+            margin: 0 auto;
   margin-top: 10px;
   text-align: center;
 }
@@ -1668,125 +1668,128 @@ form.financing_add input {
 }
 #container #company_list {
   font-family: "微软雅黑";
-}
-#container #company_list .right-block {
-  position: fixed;
-  right: 20px;
-  top: 168px;
-  height: 100%;
-  width: 120px;
-  margin: 0 auto;
-  z-index: 1;
-}
-#container #company_list .right-block .txt {
-  font-size: 1.0em;
-  color: #707070;
-  text-align: center;
-  width: 100%;
-}
-#container #company_list .right-block .img-1 {
-  height: 120px;
-  width: 120px;
+  margin-top: 30px;
 }
 #container #company_list .col-md-8 {
   width: 750px;
 }
 #container #company_list .col-md-8 ul li {
   list-style-type: none;
+  background-color: #FFFFFF;
+  border: 1px solid#bfbfbf;
+  border-radius: 4px;
+  margin-bottom: 15px;
 }
 #container #company_list .col-md-8 ul li .company-info {
-  margin-top: 10px;
-  border: 1px solid#8F4E96;
-  padding: 10px 10px 10px 10px;
+  margin-top: 0px;
+  padding: 10px 10px 10px 15px;
   width: 100%;
-  height: 100px;
+  height: 110px;
 }
 #container #company_list .col-md-8 ul li .company-info .item-pic {
   float: left;
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
 }
 #container #company_list .col-md-8 ul li .company-info .item-pic .company-pic {
   width: 100%;
   height: 100%;
 }
-#container #company_list .col-md-8 ul li .company-info .item-info.info-1 {
-  padding: 10px 0 10px 0;
-  text-align: center;
+#container #company_list .col-md-8 ul li .company-info .right-side {
+  width: 600px;
+  float: left;
 }
-#container #company_list .col-md-8 ul li .company-info .item-info.info-3 .vertical-center {
+#container #company_list .col-md-8 ul li .company-info .right-side .auth {
+  text-align: right;
+  width: 100%;
+  height: 15px;
+}
+#container #company_list .col-md-8 ul li .company-info .right-side .auth p {
+  margin-top: -5px;
+  margin-bottom: 5px;
+  font-size: 13px;
+  color: #8f4e96;
+}
+#container #company_list .col-md-8 ul li .company-info .right-side .info {
+  width: 100%;
+  height: 70px;
+}
+#container #company_list .col-md-8 ul li .company-info .right-side .info .line {
+  width: 1px;
+  height: 100%;
+  float: left;
   border-left: 1px solid #707070;
 }
-#container #company_list .col-md-8 ul li .company-info .vertical-center {
+#container #company_list .col-md-8 ul li .company-info .right-side .info .item-info.info-1 {
+  width: 125px;
+  text-align: center;
+}
+#container #company_list .col-md-8 ul li .company-info .right-side .info .item-info.info-2 {
+  width: 105px;
+}
+#container #company_list .col-md-8 ul li .company-info .right-side .info .item-info.info-3 {
+  width: 175px;
+}
+#container #company_list .col-md-8 ul li .company-info .right-side .info .vertical-center {
   display: table-cell;
   vertical-align: middle;
-  padding: 0 5px 0 10px;
+  padding: 0 10px 0 15px;
 }
-#container #company_list .col-md-8 ul li .company-info .item-info {
+#container #company_list .col-md-8 ul li .company-info .right-side .info .item-info {
   float: left;
-  margin-left: 10px;
   height: 100%;
   display: table;
 }
-#container #company_list .col-md-8 ul li .company-info .item-info .abbreviation {
+#container #company_list .col-md-8 ul li .company-info .right-side .info .item-info .abbreviation {
   font-size: 1.3em;
   color: black;
 }
-#container #company_list .col-md-8 ul li .company-info .item-info .brief_introduction {
+#container #company_list .col-md-8 ul li .company-info .right-side .info .item-info .brief_introduction {
   color: #707070;
   font-size: 12px;
   margin-top: -10px;
 }
-#container #company_list .col-md-8 ul li .company-info .item-info .label-1 {
-  width: 60px;
-}
-#container #company_list .col-md-8 ul li .company-info .item-info .label-1 img {
-  width: 17px;
-  height: 17px;
+#container #company_list .col-md-8 ul li .company-info .right-side .info .item-info .label-1 img {
+  width: 11px;
+  height: 11px;
   float: left;
   margin-right: 5px;
+  margin-top: 2px;
 }
-#container #company_list .col-md-8 ul li .company-info .item-info .label-1 p {
+#container #company_list .col-md-8 ul li .company-info .right-side .info .item-info .label-1 p {
   color: #707070;
-  font-size: 12px;
+  font-size: 10px;
   margin-bottom: 5px;
 }
-#container #company_list .col-md-8 ul li .company-info .item-info .label-1 .last-p {
+#container #company_list .col-md-8 ul li .company-info .right-side .info .item-info .label-1 .last-p {
   margin-bottom: 0;
-}
-#container #company_list .col-md-8 ul li .company-info .item-info .position_number {
-  font-size: 1.1em;
-  color: black;
-  margin-bottom: 5px;
-}
-#container #company_list .col-md-8 ul li .company-info .item-info .position_tags {
-  margin-top: 0;
-  width: 100%;
-}
-#container #company_list .col-md-8 ul li .company-info .welfare_tags {
-  width: 120px;
   float: left;
 }
-#container #company_list .col-md-8 ul li .company-info .tags {
-  border-radius: 15px;
-  padding: 2px;
-  width: 55px;
+#container #company_list .col-md-8 ul li .company-info .right-side .info .item-info .position_number {
+  font-size: 1.1em;
+  color: black;
+  text-align: left;
+  margin-left: 23px;
+  margin-bottom: 5px;
+}
+#container #company_list .col-md-8 ul li .company-info .right-side .info .item-info .position_tags {
   margin: 0 auto;
+  margin-top: 0;
+  margin-left: 23px;
+}
+#container #company_list .col-md-8 ul li .company-info .right-side .info .welfare_tags {
+  width: 146px;
+  float: left;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+#container #company_list .col-md-8 ul li .company-info .right-side .info .tags {
+  border-radius: 10px;
+  padding: 2px 8px 2px 8px;
   background-color: rgba(143, 78, 150, 0.1);
   color: #707070;
   font-size: 10px;
   margin-right: 5px;
-}
-#container #company_list .col-md-8 ul li .company-info .auth {
-  float: left;
-  color: black;
-  padding-left: 10px;
-  display: table;
-  height: 100%;
-  border-left: 1px solid #707070;
-}
-#container #company_list .col-md-8 ul li .company-info .auth p {
-  margin-bottom: 0;
 }
 #container #company-detail {
   min-height: 600px;
@@ -2142,6 +2145,213 @@ form.financing_add input {
 }
 #container #no-company-info .go a:hover img {
   width: 30px;
+}
+#container .head {
+  float: left;
+  height: 60px;
+  width: 95%;
+  margin-left: 24px;
+}
+#container .head div.item {
+  height: 10px;
+  width: 24%;
+  background-color: #98769E;
+  float: left;
+  position: relative;
+}
+#container .head div.item span.text {
+  position: absolute;
+  top: -30px;
+  left: 94px;
+  font-size: 1.2em;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container .left-info {
+  background-color: white;
+  width: 48%;
+  height: 450px;
+  float: left;
+  padding-top: 40px;
+}
+#container .left-info .input-group {
+  width: 100%;
+  margin-bottom: 20px;
+}
+#container .right-info {
+  background-color: white;
+  width: 48%;
+  height: 450px;
+  float: left;
+  padding-top: 40px;
+  margin-left: 4%;
+}
+#container .right-info .input-group {
+  width: 100%;
+  margin-bottom: 20px;
+}
+#container #first-step {
+  margin-top: 70px;
+}
+#container #first-step .info1 {
+  height: 450px;
+}
+#container #first-step .info1 .left-info .input-group {
+  margin-bottom: 40px;
+  width: 100%;
+}
+#container #first-step .info1 .left-info .input-group .col-sm-4 {
+  text-align: right;
+}
+#container #first-step .info1 .left-info .input-group .col-sm-4 label {
+  font-size: 16px;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #first-step .info1 .left-info .input-group .col-sm-8 input {
+  width: 90%;
+  height: 32px;
+}
+#container #first-step .info1 .left-info .input-group .col-sm-8 img {
+  height: 160px;
+  width: 160px;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-4 {
+  text-align: right;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-4 label {
+  font-size: 16px;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-8 table {
+  width: 100%;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-8 table tbody {
+  width: 100%;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-8 table tbody tr td label {
+  color: #707070;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-8 label {
+  color: #707070;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-8 .form-control.tags_input {
+  float: left;
+  width: 70%;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-8 input.btn-primary {
+  border-radius: 0px;
+  background-color: #98769E;
+  border-color: #98769E;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-8 label.checkbox-label {
+  margin: 0px 18px 5px 5px;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-8 span.err-msg {
+  position: absolute;
+  bottom: 0px;
+}
+#container #second-step {
+  margin-top: 70px;
+}
+#container #second-step .info2 .left-info {
+  position: relative;
+}
+#container #second-step .info2 .left-info .input-group {
+  margin-bottom: 30px;
+}
+#container #second-step .info2 .left-info .input-group .col-sm-4 {
+  text-align: right;
+}
+#container #second-step .info2 .left-info .input-group .col-sm-4 label {
+  font-size: 16px;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #second-step .info2 .left-info .input-group .col-sm-8 input {
+  width: 90%;
+  height: 32px;
+}
+#container #second-step .info2 .left-info .input-group .col-sm-8 img {
+  cursor: pointer;
+  height: 160px;
+  width: 160px;
+}
+#container #second-step .info2 .left-info input.btn {
+  border-radius: 0px;
+}
+#container #second-step .info2 .left-info input.pre-button {
+  position: absolute;
+  bottom: -60px;
+  right: 0px;
+  width: 150px;
+  color: white;
+}
+#container #second-step .info2 .right-info {
+  position: relative;
+}
+#container #second-step .info2 .right-info input.next-button {
+  position: absolute;
+  bottom: -60px;
+  left: 0px;
+  width: 150px;
+  color: white;
+}
+#container #third-step {
+  margin-top: 70px;
+}
+#container #third-step .info3 {
+  padding: 30px;
+  width: 100%;
+  height: 500px;
+  background-color: white;
+  position: relative;
+}
+#container #third-step .info3 label {
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #707070;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #third-step .info3 textarea {
+  min-height: 150px;
+  max-width: 100%;
+  width: 100%;
+  margin-bottom: 30px;
+  padding: 10px;
+  border-radius: 5px;
+  resize: none;
+}
+#container #third-step .info3 .btn {
+  border-radius: 0px;
+}
+#container #third-step .info3 input.pre-button {
+  position: absolute;
+  bottom: -60px;
+  width: 150px;
+  color: white;
+  left: 30%;
+}
+#container #third-step .info3 input.next-button {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  width: 150px;
+  color: white;
+}
+#container #forth-step {
+  margin-top: 70px;
+}
+#container #forth-step .info4 {
+  background-color: white;
+  height: 450px;
+  padding: 30px;
+}
+#container #forth-step .info4 label {
+  font-size: 16px;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #forth-step .info4 p {
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
 #no_header #header {
   background-color: #FFFFFF;

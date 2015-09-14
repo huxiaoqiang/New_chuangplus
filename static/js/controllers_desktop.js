@@ -75,6 +75,13 @@ angular.module('chuangplus.controllers', []).
             $scope.position = $scope.company = $scope.homepage = false;
         };
     }]).
+    controller('DT_NoHeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+        console.log('DT_NoHeaderCtrl');
+        $scope.homepage_active = function(){
+            window.location.href = '/';
+        };
+                            
+    }]).
     controller('DT_LoginCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_LoginCtrl');
         $scope.login_info = {};
@@ -1162,6 +1169,31 @@ angular.module('chuangplus.controllers', []).
     controller('DT_CompanyListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanyListCtrl');
         $scope.company_list = {};
+        $scope.position_type = {
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+        };
+        $scope.scale = {
+            0:"初创",
+            1:"快速发展",
+            2:"成熟"
+        };
+        $scope.field_type={
+            'social':"社交",
+            'e-commerce':"电子商务",
+            'education':"教育",
+            'health_medical':"健康医疗",
+            'culture_creativity':"文化创意",
+            'living_consumption':"生活消费",
+            'hardware':"硬件",
+            '020':"O2O",
+            'others':"其他"
+        };
         $scope.get_company_list = function(){
             $http.get(urls.api+"/account/company/list").
                 success(function(data){
@@ -1169,6 +1201,12 @@ angular.module('chuangplus.controllers', []).
                     $scope.company_list = data.data;
                     for(i=0;i<$scope.company_list.length;i++){
                         $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
+                        $scope.company_list[i].scale_value = $scope.scale[$scope.company_list[i].scale];
+                        $scope.company_list[i].field_type = $scope.field_type[$scope.company_list[i].field];
+                        $scope.company_list[i].position_type_value = {};
+                        for(j = 0; j < $scope.company_list[i].position_type.length; j ++){
+                        $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
+                        }
                     }
                 }
                 else{
