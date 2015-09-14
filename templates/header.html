@@ -60,7 +60,7 @@
               {% if not user.is_authenticated %}
                    <div class="item">
                        <img src="/static/image/icon/login-01.png">
-                       <a href="/login">登录</a>&nbsp;·&nbsp;<a href="/register">注册</a>
+                       <a ng-click="login()">登录</a>&nbsp;·&nbsp;<a ng-click="register()">注册</a>
                    </div>
               {% endif %}
                <div class="item" on-mouseover="scan=true" on-mouseout="scan=false">

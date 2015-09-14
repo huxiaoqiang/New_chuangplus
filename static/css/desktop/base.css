@@ -158,6 +158,7 @@ header .shadow {
   background: -ms-linear-gradient(top, #e1e1e1 -50%, #f0f0f0 100%);
   background-color: linear-gradient(to bottom, #e1e1e1 -50%, #f0f0f0 100%);
   height: 60px;
+  margin-top: -1px;
 }
 * {
   margin: 0;
@@ -215,6 +216,7 @@ body > #wrap {
 #footer .navbar-footer ul#footer-nav li a {
   color: white;
   text-decoration: none;
+  font-size: 12px;
 }
 #footer .navbar-footer ul#footer-nav li a:hover {
   color: #98769E;
@@ -223,6 +225,7 @@ body > #wrap {
   padding-top: 20px;
   float: right;
   color: white;
+  font-size: 12px;
 }
 #container {
   margin: 0 auto;
@@ -2111,6 +2114,204 @@ form.financing_add input {
 }
 #container #no-company-info .go a:hover img {
   width: 30px;
+}
+#container .head {
+  float: left;
+  height: 60px;
+  width: 95%;
+  margin-left: 24px;
+}
+#container .head div.item {
+  height: 10px;
+  width: 24%;
+  background-color: #98769E;
+  float: left;
+  position: relative;
+}
+#container .head div.item span.text {
+  position: absolute;
+  top: -30px;
+  left: 94px;
+  font-size: 1.2em;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container .left-info {
+  background-color: white;
+  width: 48%;
+  height: 450px;
+  float: left;
+  padding-top: 40px;
+}
+#container .left-info .input-group {
+  width: 100%;
+  margin-bottom: 20px;
+}
+#container .right-info {
+  background-color: white;
+  width: 48%;
+  height: 450px;
+  float: left;
+  padding-top: 40px;
+  margin-left: 4%;
+}
+#container .right-info .input-group {
+  width: 100%;
+  margin-bottom: 20px;
+}
+#container #first-step {
+  margin-top: 70px;
+}
+#container #first-step .info1 {
+  height: 450px;
+}
+#container #first-step .info1 .left-info .input-group {
+  margin-bottom: 40px;
+  width: 100%;
+}
+#container #first-step .info1 .left-info .input-group .col-sm-4 {
+  text-align: right;
+}
+#container #first-step .info1 .left-info .input-group .col-sm-4 label {
+  font-size: 16px;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #first-step .info1 .left-info .input-group .col-sm-8 input {
+  width: 90%;
+  height: 32px;
+}
+#container #first-step .info1 .left-info .input-group .col-sm-8 img {
+  height: 160px;
+  width: 160px;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-4 {
+  text-align: right;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-4 label {
+  font-size: 16px;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-8 table {
+  width: 100%;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-8 table tbody {
+  width: 100%;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-8 table tbody tr td label {
+  color: #707070;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-8 label {
+  color: #707070;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-8 .form-control.tags_input {
+  float: left;
+  width: 70%;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-8 input.btn-primary {
+  border-radius: 0px;
+  background-color: #98769E;
+  border-color: #98769E;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-8 label.checkbox-label {
+  margin: 0px 18px 5px 5px;
+}
+#container #first-step .info1 .right-info .input-group .col-sm-8 span.err-msg {
+  position: absolute;
+  bottom: 0px;
+}
+#container #second-step {
+  margin-top: 70px;
+}
+#container #second-step .info2 .left-info {
+  position: relative;
+}
+#container #second-step .info2 .left-info .input-group {
+  margin-bottom: 30px;
+}
+#container #second-step .info2 .left-info .input-group .col-sm-4 {
+  text-align: right;
+}
+#container #second-step .info2 .left-info .input-group .col-sm-4 label {
+  font-size: 16px;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #second-step .info2 .left-info .input-group .col-sm-8 input {
+  width: 90%;
+  height: 32px;
+}
+#container #second-step .info2 .left-info .input-group .col-sm-8 img {
+  cursor: pointer;
+  height: 160px;
+  width: 160px;
+}
+#container #second-step .info2 .left-info input.btn {
+  border-radius: 0px;
+}
+#container #second-step .info2 .left-info input.pre-button {
+  position: absolute;
+  bottom: -60px;
+  right: 0px;
+  width: 150px;
+  color: white;
+}
+#container #second-step .info2 .right-info {
+  position: relative;
+}
+#container #second-step .info2 .right-info input.next-button {
+  position: absolute;
+  bottom: -60px;
+  left: 0px;
+  width: 150px;
+  color: white;
+}
+#container #third-step {
+  margin-top: 70px;
+}
+#container #third-step .info3 {
+  padding: 30px;
+  width: 100%;
+  height: 500px;
+  background-color: white;
+  position: relative;
+}
+#container #third-step .info3 label {
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #707070;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #third-step .info3 textarea {
+  min-height: 150px;
+  max-width: 100%;
+  width: 100%;
+  margin-bottom: 30px;
+  padding: 10px;
+  border-radius: 5px;
+  resize: none;
+}
+#container #third-step .info3 .btn {
+  border-radius: 0px;
+}
+#container #third-step .info3 input.pre-button {
+  position: absolute;
+  bottom: -60px;
+  width: 150px;
+  color: white;
+  left: 30%;
+}
+#container #third-step .info3 input.next-button {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  width: 150px;
+  color: white;
+}
+#container #forth-step {
+  margin-top: 70px;
+}
+#container #forth-step .info4 {
+  background-color: white;
 }
 body {
   background-color: #f0f0f0;
