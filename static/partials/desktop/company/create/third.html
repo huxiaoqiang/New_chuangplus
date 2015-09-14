@@ -1,23 +1,25 @@
 <div id="container">
     <div id="third-step">
         <div class="head">
-            <div class="item"></div>
-            <div class="item"></div>
+            <div class="item alpha20"></div>
+            <div class="item alpha40"></div>
             <div class="item"><span class="text">第三步</span></div>
-            <div class="item"></div>
+            <div class="item alpha20"></div>
         </div>
         <div style="clear:both;"></div>
-        <div class="info3">
-            <div>
-                <label>公司简介</label><br/>
-                <textarea></textarea>
+        <form name="SecondStepForm" ng-submit="second_step_submit()">
+            <div class="info3">
+                <div>
+                    <label>公司简介</label><br/>
+                    <textarea></textarea>
+                </div>
+                <div>
+                    <label>产品/服务简介</label><br/>
+                    <textarea></textarea>
+                </div>
+            <input type="button" class="pre-button btn" value="上一步" ng-click="pre_step()">
+            <input type="button" class="next-button btn" value="下一步" ng-click="next_step()">
             </div>
-            <div>
-                <label>产品/服务简介</label><br/>
-                <textarea></textarea>
-            </div>
-        <input type="button" class="pre-button btn" value="上一步">
-        <input type="button" class="next-button btn" value="下一步">
-        </div>
+        </form>
     </div>
 </div>

@@ -157,14 +157,15 @@
         position: relative;
         .input-group{
           margin-bottom: 30px;
-          .col-sm-4{
+          .col-sm-3{
             text-align: right;
             label{
+              color: #707070;
               font-size: 16px;
               font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
             }
           }
-          .col-sm-8{
+          .col-sm-9{
             input{
               width: 90%;
               height: 32px;
@@ -176,25 +177,31 @@
             }
           }
         }
-        input.btn{
-          border-radius: 0px;
-        }
         input.pre-button{
           position: absolute;
           bottom: -60px;
           right: 0px;
           width: 150px;
           color: white;
+          background-color: #707070;
         }
       }
       .right-info{
         position: relative;
+        padding-left:30px;
+        padding-right: 30px;
+        label{
+          color: #707070;
+          font-size: 16px;
+          font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+        }
         input.next-button{
           position: absolute;
           bottom: -60px;
           left: 0px;
           width: 150px;
           color: white;
+          background-color: #98769E;
         }
       }
     }
@@ -207,6 +214,8 @@
       height: 500px;
       background-color: white;
       position: relative;
+      border-radius: 6px;
+      border: solid 1px #bfbfbf;
       label{
         margin-bottom: 15px;
         font-size: 16px;
@@ -222,22 +231,21 @@
         border-radius: 5px;
         resize: none;
       }
-      .btn{
-        border-radius: 0px;
-      }
       input.pre-button{
-          position: absolute;
-          bottom: -60px;
-          width: 150px;
-          color: white;
-          left: 30%;
+        position: absolute;
+        bottom: -60px;
+        width: 150px;
+        color: white;
+        left: 30%;
+        background-color: #707070;
       }
       input.next-button{
-          position: absolute;
-          bottom: -60px;
-          left: 50%;
-          width: 150px;
-          color: white;
+        position: absolute;
+        bottom: -60px;
+        left: 50%;
+        width: 150px;
+        color: white;
+        background-color: #8f4e96;
       }
     }
   }
@@ -245,8 +253,11 @@
     margin-top: 70px;
     .info4{
       background-color: white;
-      height: 450px;
+      min-height: 360px;
       padding: 30px;
+      border-radius: 6px;
+      border: solid 1px #bfbfbf;
+      position: relative;
       label{
         color: #707070;
         font-size: 16px;
@@ -262,8 +273,119 @@
         width: 100%;
         margin-bottom: 30px;
         padding: 10px;
-        border-radius: 5px;
+        border-radius: 6px;
         resize: none;
+        outline: none;
+      }
+      input.pre-button{
+        position: absolute;
+        bottom: -60px;
+        width: 150px;
+        color: white;
+        left: 30%;
+        background-color: #707070;
+      }
+      input.next-button{
+        position: absolute;
+        bottom: -60px;
+        left: 50%;
+        width: 150px;
+        color: white;
+        background-color: #8f4e96;
+      }
+      .add-member{
+        img{
+          height: 20px;
+          float: right;
+          cursor: pointer;
+        }
+        .member-tag{
+          width: 45%;
+          float: left;
+          height: 40px;
+          background-color: #fafafa;
+          border: solid 1px #bfbfbf;
+          padding-left: 25px;
+          font-size: 16px;
+          font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+          padding-top: 8px;
+          border-radius: 6px;
+          margin-right: 20px;
+          margin-left: 20px;
+          margin-bottom: 10px;
+          .item{
+            margin-top: -21px;
+            margin-right: 10px;
+            img{
+              margin-left: 15px;
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+        .member{
+          width: 100%;
+          padding: 15px;
+          .member-info-card{
+            width: 45%;
+            margin-right: 20px;
+            margin-left: 20px;
+            height: 400px;
+            background-color: #fafafa;
+            border: solid 1px #bfbfbf;
+            border-radius: 6px;
+            float: left;
+            img.delete{
+              float: right;
+              width: 20px;
+              height: 20px;
+              margin: 5px 5px 0px 0px;
+            }
+            .avatar-origin{
+              border-radius: 50%;
+              width: 120px;
+              height: 120px;
+              background-color: white;
+              border: solid 1px #e1e0e2;
+              margin: 0 auto;
+              margin-top: 25px;
+              text-align: center;
+              line-height: 112px;
+              color: #bfbfbf;
+              cursor: pointer;
+            }
+            .name-position{
+              margin: 0 auto;
+              display: table;
+              padding: 10px;
+              input{
+                margin-bottom: 10px;
+                border-radius: 3px;
+                outline: none;
+                padding: 2px;
+                padding-left: 5px;
+              }
+            }
+            textarea.member-intro{
+              margin: 0px 10px 15px 24px;
+              resize: none;
+              width: 87.5%;
+              padding: 10px;
+              min-height: 110px;
+            }
+            .yes{
+              margin: 0 auto;
+              width: 30px;
+              height: 30px;
+              margin-top: -8px;
+              img{
+                width: 26px;
+                height: 26px;
+              }
+            }
+          }
+        }
+
       }
     }
   }

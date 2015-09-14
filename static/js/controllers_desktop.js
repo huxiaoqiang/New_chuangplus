@@ -30,10 +30,10 @@ angular.module('chuangplus.controllers', []).
                     if(data.error.code == 1){
                         $scope.company_id = data.data._id.$oid;
                         if(data.data.abbreviation != null){
-                            $scope.url = '/company/'+data.data._id.$oid+'/firststep';
+                            $scope.url = '/company/'+$scope.company_id+'/create/first';
                         }
                         else{
-                            $scope.url = '/company/no';
+                            $scope.url = '/company/'+$scope.company_id+'/no';
                         }
                     }
                 });
@@ -1315,8 +1315,13 @@ angular.module('chuangplus.controllers', []).
                 });
         };
     }]).
+    controller('DT_CompanyNoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
+        console.log('DT_CompanyNoCtrl');
+        $scope.company_id = $routeParams.company_id;
+    }]).
     controller('DT_CompanyFirstCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanyFirstCtrl');
+        $scope.company_id = $routeParams.company_id;
         $scope.tag_list = ["技能培训","扁平管理","可转正","弹性工作","定期出游","地铁周边","股票期权","水果零食","正餐补助","班车接送"];
         $scope.tags = [
             {
@@ -1364,22 +1369,140 @@ angular.module('chuangplus.controllers', []).
         $scope.tag_long_error=function(ngModelController){
             return ngModelController.$invalid && ngModelController.$dirty;
         };
+        $scope.next_step = function(){
+            window.location.href = '/company/create/second';
+        };
     }]).
     controller('DT_CompanySecondCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanySecondCtrl');
+        $scope.company_id = $routeParams.company_id;
+        $scope.pre_step = function(){
+            window.location.href = '/company/create/first';
+        };
+        $scope.next_step = function(){
+            window.location.href = '/company/create/third';
+        };
 
     }]).
     controller('DT_CompanySecondCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanySecondCtrl');
-
+        $scope.company_id = $routeParams.company_id;
+        $scope.pre_step = function(){
+            window.location.href = '/company/'+$scope.company_id+'/create/first';
+        };
+        $scope.next_step = function(){
+            window.location.href = '/company/'+$scope.company_id+'/create/third';
+        };
     }]).
     controller('DT_CompanyThirdCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanyThirdCtrl');
-
+        $scope.company_id = $routeParams.company_id;
+        $scope.pre_step = function(){
+            window.location.href = '/company/'+$scope.company_id+'/create/second';
+        };
+        $scope.next_step = function(){
+            window.location.href = '/company/'+$scope.company_id+'/create/forth';
+        };
     }]).
-    controller('DT_CompanyForthCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
+    controller('DT_CompanyForthCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_CompanyForthCtrl');
+        $scope.company_id = $routeParams.company_id;
+        $scope.add_member_flag = false;
+        $scope.member_add = {};
+        $scope.company_id = $routeParams.company_id;
+        $scope.member_list = [
+        ];
+         $scope.upload = function(file,file_t){
+            var param = {
+               "file_type":file_t,
+               "description":$scope.company_id + file_t,
+               "category":$scope.company_id + '_'+file_t
+            };
+            var headers = {
+                   'X-CSRFToken': $csrf.val(),
+                   'Content-Type': file.type
+            };
+            Upload.upload({
+               url:urls.api+'/file/upload',
+               data: param,
+               headers:headers,
+               file: file
+            }).
+            success(function(data, status, headers, config){
+                if(data.error.code == 1){
+                    console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
+                    $scope.member_add.m_avatar_id = data.data;
+                }
+                else{
+                    console.log(data.error.message);
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
+        $scope.show_member_card = function(){
+            $scope.add_member_flag = true;
+        };
+        $scope.get_member_list = function(){
+            $http.get(urls.api+"/account/member/"+$scope.company_id+"/list").
+            success(function(data){
+                if(data.error.code == 1){
+                    $scope.member_list = data.data;
+                }
+                else{
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
+        $scope.cancer_add = function(){
+            $scope.add_member_flag = false;
+            $scope.member_add = {};
+        };
+        $scope.add_member = function(){
+            $csrf.set_csrf($scope.member_add);
+            $http.post(urls.api+'/account/member/create',$.param($scope.member_add)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.get_member_list();
+                        $scope.member_add = {};
+                        $scope.avatar = undefined;
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                    }
+                });
+        };
+        $scope.delete_member = function(index){
+            var param = {
+                "csrfmiddlewaretoken" : $csrf.val()
+            };
+            $http.post(urls.api+"/account/member/"+$scope.member_list[index]._id.$oid+"/delete", $.param(param)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $http.post(urls.api+"/file/" + $scope.member_list[index].m_avatar_id + "/delete", $.param(param)).
+                            success(function(data){
+                                if(data.error.code == 1){
+                                    $scope.get_member_list();
+                                    $('#delete_member').modal('hide');
+                                }
+                                else{
+                                    $scope.error = $errMsg.format_error('',data.error);
+                                }
+                            });
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                    }
+                });
+        };
+        $scope.edit_member = function(index){
 
+        };
+        $scope.view_member = function(index){
+            
+        };
+        $scope.pre_step = function(){
+            window.location.href = '/company/'+$scope.company_id+'/create/third';
+        };
     }]).
     controller('DT_PositionListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_PositionListCtrl');
