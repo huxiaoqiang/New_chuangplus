@@ -1405,8 +1405,8 @@ angular.module('chuangplus.controllers', []).
                         var welfare_tags = data.data.welfare_tags;
                         for(i=0;i<welfare_tags.length;i++){
                             for(j=0;j<$scope.tags.length;j++){
-                                if(tags[j].value == welfare_tags[i]){
-                                    tags[j].chosed = true;
+                                if($scope.tags[j].value == welfare_tags[i]){
+                                    $scope.tags[j].chosed = true;
                                     break;
                                 }
                             }
