@@ -43,8 +43,8 @@ header #header .navbar .navbar-item.not-login li a {
   cursor: pointer;
 }
 header #header .navbar .navbar-item.not-login li a:hover {
-  border: solid #8f4e96;
-  border-width: 0px 0px 3px 0px;
+  color: #8f4e96;
+  background-color: white;
 }
 header #header .navbar .navbar-item.not-login li.active {
   border: solid #8f4e96;
@@ -70,8 +70,8 @@ header #header .navbar .navbar-item.login li a {
   cursor: pointer;
 }
 header #header .navbar .navbar-item.login li a:hover {
-  border: solid #8f4e96;
-  border-width: 0px 0px 3px 0px;
+  color: #8f4e96;
+  background-color: white;
 }
 header #header .navbar .navbar-item.login li.active {
   border: solid #8f4e96;
@@ -235,46 +235,52 @@ body > #wrap {
   filter: alpha(opacity=80);
   opicaty: 50;
 }
-#container #login .ui.segment.form {
+#container #login .login-form {
   border-radius: 6px;
   margin-top: 0px;
   padding: 0em;
   background-color: #FFFFFF;
   width: 420px;
+  border: 1px solid #bfbfbf;
 }
-#container #login .ui.segment.form #login_form {
+#container #login .login-form #login_form {
   padding: 25px 20px 15px 20px;
 }
-#container #login .ui.segment.form #login_form .form-input {
+#container #login .login-form #login_form .form-group {
+  width: 380px;
+}
+#container #login .login-form #login_form .form-input {
   border: 1px solid #e1e0e2;
   border-radius: 6px;
   width: 380px;
   height: 30px;
+  padding-left: 5px;
+  outline: none;
 }
-#container #login .ui.segment.form #login_form #captcha_form {
+#container #login .login-form #login_form #captcha_form {
   width: 40%;
   float: left;
 }
-#container #login .ui.segment.form #login_form #captcha_form input {
+#container #login .login-form #login_form #captcha_form input {
   height: 30px;
   width: 260px;
 }
-#container #login .ui.segment.form #login_form #captcha_img {
+#container #login .login-form #login_form #captcha_img {
   margin-left: 13px;
   height: 30px;
 }
-#container #login .ui.segment.form #login_form .fresh {
+#container #login .login-form #login_form .fresh {
   cursor: pointer;
   color: #cccccc;
   text-decoration: none;
 }
-#container #login .ui.segment.form #login_form .fresh .icon-repeat.icon-large {
+#container #login .login-form #login_form .fresh .icon-repeat.icon-large {
   margin-left: 7px;
 }
-#container #login .ui.segment.form #login_form a.fresh:hover {
+#container #login .login-form #login_form a.fresh:hover {
   color: #98769E;
 }
-#container #login .ui.segment.form #login_form #login_button {
+#container #login .login-form #login_form #login_button {
   width: 380px;
   height: 30px;
   background-color: #8F4E96;
@@ -282,114 +288,133 @@ body > #wrap {
   font-size: 1.0em;
   border: 0;
   border-radius: 6px;
+  outline: none;
 }
-#container #login .ui.segment.form #login_form #options {
+#container #login .login-form #login_form #options {
   margin-top: 10px;
   font-size: 0.8em;
 }
-#container #login .ui.segment.form #login_form #options .findpwd {
-  color: #000000;
-  text-decoration: none;
-}
-#container #login .ui.segment.form #login_form #options .regbtn {
-  color: #792222;
-  text-decoration: none;
-}
-#container #login .ui.segment.form #login_form #options .findpwd:hover {
+#container #login .login-form #login_form #options .findpwd {
   color: #999999;
+  text-decoration: none;
 }
-#container #login .ui.segment.form #login_form #options .regbtn:hover {
-  color: #B16464;
+#container #login .login-form #login_form #options .regbtn {
+  color: rgba(143, 78, 150, 0.7);
+  text-decoration: none;
+}
+#container #login .login-form #login_form #options .findpwd:hover {
+  color: #000000;
+}
+#container #login .login-form #login_form #options .regbtn:hover {
+  color: #8f4e96;
 }
 #container #register {
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   margin: 0 auto;
   margin-top: 50px;
-  padding: 10px 25px 10px 25px;
+  padding: 20px 30px 20px 30px;
   width: 480px;
   background-color: #EFEFEF;
   filter: alpha(opacity=80);
   opicaty: 50;
 }
-#container #register .ui.form.segment {
+#container #register .register-form {
   padding: 0em;
   background-color: #FFFFFF;
   border-radius: 6px;
+  width: 420px;
+  border: 1px solid #bfbfbf;
 }
-#container #register .ui.form.segment .tabs {
+#container #register .register-form .tabs {
   border: 0;
-  padding: 5px 5px 0 5px;
+  padding: 5px 10px 0 10px;
+  width: 100%;
 }
-#container #register .ui.form.segment .tabs li {
+#container #register .register-form .tabs li {
   list-style: none;
   float: left;
   width: 50%;
+  height: 25px;
   text-align: center;
+  line-height: 25px;
   border-radius: 0;
   background-color: #EFEFEF;
   filter: alpha(opacity=80);
   opicaty: 50;
 }
-#container #register .ui.form.segment .tabs li .active {
-  background-color: #FFFFFF;
-}
-#container #register .ui.form.segment .tabs li a {
+#container #register .register-form .tabs li a {
   text-decoration: none;
+  text-align: center;
   border-radius: 0;
   width: 100%;
   height: 100%;
   font-size: 1em;
   color: #000000;
 }
-#container #register .ui.form.segment .tabs li a:hover {
-  background-color: white;
+#container #register .register-form .tabs li.active {
+  background-color: #FFFFFF;
 }
-#container #register .ui.form.segment #reg_form {
-  padding: 2em;
+#container #register .register-form #reg_form {
+  padding: 25px 20px 15px 20px;
 }
-#container #register .ui.form.segment #reg_form .form-group span.err-msg {
+#container #register .register-form #reg_form .form-group span.err-msg {
   color: #a94442;
   margin-left: 30px;
 }
-#container #register .ui.form.segment #reg_form .form-control {
-  border: 1px solid #8F4E96;
-  border-radius: 0;
-  width: 360px;
+#container #register .register-form #reg_form .form-group {
+  width: 380px;
 }
-#container #register .ui.form.segment #reg_form #captcha_form {
+#container #register .register-form #reg_form .form-control {
+  border: 1px solid #e1e0e2;
+  border-radius: 6px;
+  width: 380px;
+  height: 30px;
+  outline: none;
+}
+#container #register .register-form #reg_form #captcha_form {
   width: 40%;
   float: left;
 }
-#container #register .ui.form.segment #reg_form #captcha_form input {
-  border: 1px solid #8F4E96;
-  border-radius: 0;
-  width: 200px;
+#container #register .register-form #reg_form #captcha_form input {
+  border-radius: 6px;
+  width: 260px;
+  height: 30px;
 }
-#container #register .ui.form.segment #reg_form #captcha_img {
-  margin-left: 3%;
-  height: 40px;
+#container #register .register-form #reg_form #captcha_img {
+  margin-left: 13px;
+  height: 30px;
 }
-#container #register .ui.form.segment #reg_form .fresh {
+#container #register .register-form #reg_form .fresh {
   cursor: pointer;
   color: #cccccc;
   text-decoration: none;
 }
-#container #register .ui.form.segment #reg_form .fresh .icon-repeat.icon-large {
+#container #register .register-form #reg_form .fresh .icon-repeat.icon-large {
   margin-left: 7px;
 }
-#container #register .ui.form.segment #reg_form a.fresh:hover {
+#container #register .register-form #reg_form a.fresh:hover {
   color: #98769E;
 }
-#container #register .ui.form.segment #reg_form #regist_button {
-  width: 100%;
-  height: 40px;
+#container #register .register-form #reg_form #regist_button {
+  width: 380px;
+  height: 30px;
   border: 0;
+  border-radius: 6px;
   background-color: #8F4E96;
   color: white;
-  font-size: 1.2em;
+  font-size: 1.0em;
+  outline: none;
 }
-#container #register .ui.form.segment #reg_form #options {
-  float: right;
+#container #register .register-form #reg_form #options {
+  float: left;
+  font-size: 0.8em;
+  margin-top: 10px;
+}
+#container #register .register-form #reg_form #options .regbtn {
+  color: rgba(143, 78, 150, 0.7);
+}
+#container #register .register-form #reg_form #options .regbtn:hover {
+  color: #8f4e96;
 }
 #container {
   margin: 0 auto;
@@ -398,10 +423,9 @@ body > #wrap {
 #container #information {
   margin: 0 auto;
   margin-top: 50px;
-  font-family: "微软雅黑";
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   padding: 20px 30px 20px 30px;
   width: 480px;
-  height: 320px;
   background-color: #EFEFEF;
   filter: alpha(opacity=80);
   opicaty: 50;
@@ -409,31 +433,37 @@ body > #wrap {
 #container #information .txt {
   color: black；
           margin: 0 auto;
-  font-family: "微软雅黑";
+  margin-top: 10px;
   text-align: center;
-  margin-bottom: 20px;
 }
-#container #information .ui.segment.form {
-  border-radius: 0;
+#container #information .information-form {
+  border-radius: 6px;
+  border: 1px solid #bfbfbf;
   margin-top: 0px;
-  padding: 2em;
+  padding: 0em;
   background-color: #FFFFFF;
   width: 420px;
-  height: 280px;
 }
-#container #information .ui.segment.form #info_form input {
-  border: 1px solid #8F4E96;
-  border-radius: 0;
-  width: 360px;
+#container #information .information-form #info_form {
+  padding: 15px 20px 20px 20px;
 }
-#container #information .ui.segment.form #info_form #enter_button {
-  margin-top: 10px;
-  width: 360px;
+#container #information .information-form #info_form input {
+  border: 1px solid #e1e0e2;
+  border-radius: 6px;
+  width: 380px;
+  height: 30px;
+  outline: none;
+}
+#container #information .information-form #info_form #enter_button {
+  width: 380px;
+  height: 30px;
   background-color: #8F4E96;
   color: white;
-  font-size: 1.2em;
+  font-size: 1.0em;
   border: 0;
   padding: 5px 0 5px 0;
+  border-radius: 6px;
+  outline: none;
 }
 #container {
   font-family: "微软雅黑";
@@ -2113,212 +2143,83 @@ form.financing_add input {
 #container #no-company-info .go a:hover img {
   width: 30px;
 }
-#container .head {
-  float: left;
+#no_header #header {
+  background-color: #FFFFFF;
+  border-bottom: 2px solid #cecece;
+}
+#no_header #header .header-head {
+  background-color: #8f4e96;
+  height: 3px;
+}
+#no_header #header .header-div {
+  margin-bottom: 0px;
+  margin: 0 auto;
+  display: block;
+  width: 960px;
+}
+#no_header #header .header-div #head-logo {
+  margin: 0 auto;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  width: 240px;
+}
+#no_header #header .header-div #head-logo img {
+  width: 240px;
+}
+#no_header .up-shadow {
+  background: -moz-linear-gradient(top, #e1e1e1 -50%, #f0f0f0 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(-50%, #e1e1e1), color-stop(100%, #f0f0f0));
+  background: -webkit-linear-gradient(top, #e1e1e1 -50%, #f0f0f0 100%);
+  background: -o-linear-gradient(top, #e1e1e1 -50%, #f0f0f0 100%);
+  background: -ms-linear-gradient(top, #e1e1e1 -50%, #f0f0f0 100%);
+  background-color: linear-gradient(to bottom, #e1e1e1 -50%, #f0f0f0 100%);
   height: 60px;
-  width: 95%;
-  margin-left: 24px;
+  margin-top: -1px;
 }
-#container .head div.item {
-  height: 10px;
-  width: 24%;
-  background-color: #98769E;
-  float: left;
-  position: relative;
+* {
+  margin: 0;
+  padding: 0;
 }
-#container .head div.item span.text {
-  position: absolute;
-  top: -30px;
-  left: 94px;
-  font-size: 1.2em;
-  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+html,
+body,
+#wrap {
+  height: 100%;
 }
-#container .left-info {
-  background-color: white;
-  width: 48%;
-  height: 450px;
-  float: left;
-  padding-top: 40px;
+body > #wrap {
+  height: auto;
+  min-height: 94%;
 }
-#container .left-info .input-group {
-  width: 100%;
-  margin-bottom: 20px;
+#main-container {
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 70px;
 }
-#container .right-info {
-  background-color: white;
-  width: 48%;
-  height: 450px;
-  float: left;
-  padding-top: 40px;
-  margin-left: 4%;
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
 }
-#container .right-info .input-group {
-  width: 100%;
-  margin-bottom: 20px;
+.clearfix {
+  display: inline-block;
 }
-#container #first-step {
-  margin-top: 70px;
+* html .clearfix {
+  height: 1%;
 }
-#container #first-step .info1 {
-  height: 450px;
+.clearfix {
+  display: block;
 }
-#container #first-step .info1 .left-info .input-group {
-  margin-bottom: 40px;
-  width: 100%;
-}
-#container #first-step .info1 .left-info .input-group .col-sm-4 {
-  text-align: right;
-}
-#container #first-step .info1 .left-info .input-group .col-sm-4 label {
-  font-size: 16px;
-  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
-}
-#container #first-step .info1 .left-info .input-group .col-sm-8 input {
-  width: 90%;
-  height: 32px;
-}
-#container #first-step .info1 .left-info .input-group .col-sm-8 img {
-  height: 160px;
-  width: 160px;
-}
-#container #first-step .info1 .right-info .input-group .col-sm-4 {
-  text-align: right;
-}
-#container #first-step .info1 .right-info .input-group .col-sm-4 label {
-  font-size: 16px;
-  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
-}
-#container #first-step .info1 .right-info .input-group .col-sm-8 table {
-  width: 100%;
-}
-#container #first-step .info1 .right-info .input-group .col-sm-8 table tbody {
-  width: 100%;
-}
-#container #first-step .info1 .right-info .input-group .col-sm-8 table tbody tr td label {
-  color: #707070;
-  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
-}
-#container #first-step .info1 .right-info .input-group .col-sm-8 label {
-  color: #707070;
-  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
-}
-#container #first-step .info1 .right-info .input-group .col-sm-8 .form-control.tags_input {
-  float: left;
-  width: 70%;
-}
-#container #first-step .info1 .right-info .input-group .col-sm-8 input.btn-primary {
-  border-radius: 0px;
-  background-color: #98769E;
-  border-color: #98769E;
-}
-#container #first-step .info1 .right-info .input-group .col-sm-8 label.checkbox-label {
-  margin: 0px 18px 5px 5px;
-}
-#container #first-step .info1 .right-info .input-group .col-sm-8 span.err-msg {
-  position: absolute;
-  bottom: 0px;
-}
-#container #second-step {
-  margin-top: 70px;
-}
-#container #second-step .info2 .left-info {
-  position: relative;
-}
-#container #second-step .info2 .left-info .input-group {
-  margin-bottom: 30px;
-}
-#container #second-step .info2 .left-info .input-group .col-sm-4 {
-  text-align: right;
-}
-#container #second-step .info2 .left-info .input-group .col-sm-4 label {
-  font-size: 16px;
-  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
-}
-#container #second-step .info2 .left-info .input-group .col-sm-8 input {
-  width: 90%;
-  height: 32px;
-}
-#container #second-step .info2 .left-info .input-group .col-sm-8 img {
-  cursor: pointer;
-  height: 160px;
-  width: 160px;
-}
-#container #second-step .info2 .left-info input.btn {
-  border-radius: 0px;
-}
-#container #second-step .info2 .left-info input.pre-button {
-  position: absolute;
-  bottom: -60px;
-  right: 0px;
-  width: 150px;
-  color: white;
-}
-#container #second-step .info2 .right-info {
-  position: relative;
-}
-#container #second-step .info2 .right-info input.next-button {
-  position: absolute;
-  bottom: -60px;
-  left: 0px;
-  width: 150px;
-  color: white;
-}
-#container #third-step {
-  margin-top: 70px;
-}
-#container #third-step .info3 {
-  padding: 30px;
-  width: 100%;
-  height: 500px;
-  background-color: white;
-  position: relative;
-}
-#container #third-step .info3 label {
-  margin-bottom: 15px;
-  font-size: 16px;
-  color: #707070;
-  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
-}
-#container #third-step .info3 textarea {
-  min-height: 150px;
-  max-width: 100%;
-  width: 100%;
-  margin-bottom: 30px;
-  padding: 10px;
-  border-radius: 5px;
-  resize: none;
-}
-#container #third-step .info3 .btn {
-  border-radius: 0px;
-}
-#container #third-step .info3 input.pre-button {
-  position: absolute;
-  bottom: -60px;
-  width: 150px;
-  color: white;
-  left: 30%;
-}
-#container #third-step .info3 input.next-button {
-  position: absolute;
-  bottom: -60px;
-  left: 50%;
-  width: 150px;
-  color: white;
-}
-#container #forth-step {
-  margin-top: 70px;
-}
-#container #forth-step .info4 {
-  background-color: white;
-  height: 450px;
-  padding: 30px;
-}
-#container #forth-step .info4 label {
-  font-size: 16px;
-  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
-}
-#container #forth-step .info4 p {
-  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+.down-shadow {
+  background: -moz-linear-gradient(top, #f0f0f0 100%, #d3d3d3 -50%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(100%, #f0f0f0), color-stop(-50%, #d3d3d3));
+  background: -webkit-linear-gradient(top, #f0f0f0 100%, #d3d3d3 -50%);
+  background: -o-linear-gradient(top, #f0f0f0 100%, #d3d3d3 -50%);
+  background: -ms-linear-gradient(top, #f0f0f0 100%, #d3d3d3 -50%);
+  background-color: linear-gradient(to bottom, #f0f0f0 100%, #d3d3d3 -50%);
+  height: 60px;
+  margin-top: -1px;
 }
 body {
   background-color: #f0f0f0;
