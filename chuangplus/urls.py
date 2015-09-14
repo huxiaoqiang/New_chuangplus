@@ -22,5 +22,7 @@ urlpatterns = [
 
 urlpatterns += [
     url(r'^mobile/.*','app.views.mobile_index'),
+    url(r'^login$','app.views.no_head_footer'),
+    url(r'^register$','app.views.no_head_footer'),
     url(r'^.*$', 'app.views.index'),
 ]
