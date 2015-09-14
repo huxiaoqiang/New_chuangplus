@@ -75,7 +75,7 @@
             <div class="qrcode_img" ng-if="scan">
                 <img src="/static/image/logo/erweima-01.png">
             </div>
-            <div class="search_input"  on-mouseover="search=true" on-mouseout="search=false">
+            <div class="search_input" ng-if="search" on-mouseover="search=true" on-mouseout="search=false">
                 <input type="text">
             </div>
         </nav>
@@ -86,4 +86,5 @@
         </div>
     </div>
     <div class="shadow"></div>
+    <div style="clear:both;"></div>
 </header>
