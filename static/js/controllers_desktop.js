@@ -57,7 +57,7 @@ angular.module('chuangplus.controllers', []).
                     }
                 });
         };
-        //tab active control
+       //tab active control
         $scope.homepage_active = function(){
             $scope.homepage = true;
             $scope.position = $scope.company = $scope.resume = false;

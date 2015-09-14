@@ -1,12 +1,13 @@
 header {
-  font-family: "微软雅黑";
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
 header #header {
   background-color: #FFFFFF;
+  border-bottom: 2px solid #cecece;
 }
 header #header .header-head {
-  background-color: #9f4e96;
-  height: 5px;
+  background-color: #8f4e96;
+  height: 3px;
 }
 header #header .navbar {
   margin-bottom: 0px;
@@ -14,61 +15,67 @@ header #header .navbar {
   display: block;
   width: 960px;
 }
+header #header .navbar .navbar-header {
+  width: 100%;
+}
 header #header .navbar .navbar-header #head-logo {
   margin-top: 8px;
   margin-bottom: 8px;
-  width: 280px;
+  width: 240px;
   float: left;
 }
 header #header .navbar .navbar-header #head-logo img {
   width: 100%;
 }
 header #header .navbar .navbar-item.not-login {
-  margin-left: 35px;
+  margin-left: 47px;
   width: 400px;
 }
 header #header .navbar .navbar-item.not-login li {
   text-align: center;
-  width: 29%;
+  width: 33%;
 }
 header #header .navbar .navbar-item.not-login li a {
   color: #707070;
   padding-top: 22px;
   padding-bottom: 12px;
-  font-size: 1.2em;
+  font-size: 1.1em;
   cursor: pointer;
-  font-family: "华文细黑";
 }
 header #header .navbar .navbar-item.not-login li a:hover {
   border: solid #8f4e96;
-  border-width: 0px 0px 5px 0px;
+  border-width: 0px 0px 3px 0px;
 }
 header #header .navbar .navbar-item.not-login li.active {
   border: solid #8f4e96;
-  border-width: 0px 0px 5px 0px;
+  border-width: 0px 0px 3px 0px;
 }
 header #header .navbar .navbar-item.not-login li.active a:hover {
   border-width: 0px 0px 0px 0px;
 }
 header #header .navbar .navbar-item.login {
-  margin-left: 15px;
-  width: 400px;
+  margin-right: 30px;
+  margin-left: 30px;
+  width: 545px;
+}
+header #header .navbar .navbar-item.login li {
+  text-align: center;
+  width: 20%;
 }
 header #header .navbar .navbar-item.login li a {
   color: #707070;
-  padding-top: 24px;
-  padding-bottom: 24px;
-  font-size: 1.2em;
+  padding-top: 22px;
+  padding-bottom: 12px;
+  font-size: 1.1em;
   cursor: pointer;
-  font-family: "华文细黑";
 }
 header #header .navbar .navbar-item.login li a:hover {
   border: solid #8f4e96;
-  border-width: 0px 0px 5px 0px;
+  border-width: 0px 0px 3px 0px;
 }
 header #header .navbar .navbar-item.login li.active {
   border: solid #8f4e96;
-  border-width: 0px 0px 5px 0px;
+  border-width: 0px 0px 3px 0px;
 }
 header #header .navbar .navbar-item.login li.active a:hover {
   border-width: 0px 0px 0px 0px;
@@ -83,17 +90,16 @@ header #header .navbar .navbar-item.login li.dropdown .dropdown-menu a {
 }
 header #header .navbar .navbar-item.login li.dropdown .dropdown-menu a:hover {
   border: solid #8f4e96;
-  border-width: 0px 0px 0px 5px;
+  border-width: 0px 0px 0px 3px;
 }
 header #header .navbar .header-item {
   float: right;
   position: relative;
-  width: 240px;
   margin-top: 22px;
 }
 header #header .navbar .header-item .item {
   float: right;
-  margin-left: 10px;
+  margin-left: 20px;
   cursor: pointer;
 }
 header #header .navbar .header-item .item img {
@@ -102,11 +108,17 @@ header #header .navbar .header-item .item img {
 header #header .navbar .header-item .item a {
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   color: #707070;
-  font-size: 1em;
+  font-size: 0.9em;
   text-decoration: none;
 }
 header #header .navbar .header-item .item a:hover {
   border-width: 0px 0px 0px 0px;
+}
+header #header .navbar .header-item .log_register {
+  color: #8f4e96;
+}
+header #header .navbar .header-item .log_register a {
+  color: #8f4e96;
 }
 header #header .navbar .header-item .search {
   margin-left: 0px;
@@ -130,25 +142,6 @@ header #header .navbar .search_input {
   border: solid 1px #eeeeee;
   background-color: #eeeeee;
   padding: 12px 10px 10px 20px;
-}
-header #header .right-block {
-  position: fixed;
-  right: 20px;
-  top: 168px;
-  height: 100%;
-  width: 120px;
-  margin: 0 auto;
-  z-index: 1;
-}
-header #header .right-block .txt {
-  font-size: 1.0em;
-  color: #707070;
-  text-align: center;
-  width: 100%;
-}
-header #header .right-block .img-1 {
-  height: 120px;
-  width: 120px;
 }
 header .shadow {
   background: -moz-linear-gradient(top, #e1e1e1 -50%, #f0f0f0 100%);
@@ -196,8 +189,9 @@ body > #wrap {
   display: block;
 }
 #footer {
-  font-family: "微软雅黑";
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   background-color: #3a3a3a;
+  font-size: 0.5em;
 }
 #footer .navbar-footer {
   width: 960px;
@@ -234,41 +228,40 @@ body > #wrap {
 #container #login {
   margin: 0 auto;
   margin-top: 50px;
-  font-family: "微软雅黑";
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   padding: 20px 30px 20px 30px;
   width: 480px;
-  height: 320px;
   background-color: #EFEFEF;
   filter: alpha(opacity=80);
   opicaty: 50;
 }
 #container #login .ui.segment.form {
-  border-radius: 0;
+  border-radius: 6px;
   margin-top: 0px;
   padding: 0em;
   background-color: #FFFFFF;
   width: 420px;
-  height: 280px;
 }
 #container #login .ui.segment.form #login_form {
-  padding: 2em;
+  padding: 25px 20px 15px 20px;
 }
 #container #login .ui.segment.form #login_form .form-input {
-  border: 1px solid #8F4E96;
-  border-radius: 0;
-  width: 360px;
+  border: 1px solid #e1e0e2;
+  border-radius: 6px;
+  width: 380px;
+  height: 30px;
 }
 #container #login .ui.segment.form #login_form #captcha_form {
   width: 40%;
   float: left;
 }
 #container #login .ui.segment.form #login_form #captcha_form input {
-  height: 40px;
-  width: 208px;
+  height: 30px;
+  width: 260px;
 }
 #container #login .ui.segment.form #login_form #captcha_img {
   margin-left: 13px;
-  height: 40px;
+  height: 30px;
 }
 #container #login .ui.segment.form #login_form .fresh {
   cursor: pointer;
@@ -282,15 +275,17 @@ body > #wrap {
   color: #98769E;
 }
 #container #login .ui.segment.form #login_form #login_button {
-  width: 100%;
-  height: 40px;
+  width: 380px;
+  height: 30px;
   background-color: #8F4E96;
   color: white;
-  font-size: 1.2em;
+  font-size: 1.0em;
   border: 0;
+  border-radius: 6px;
 }
 #container #login .ui.segment.form #login_form #options {
-  margin-top: 5px;
+  margin-top: 10px;
+  font-size: 0.8em;
 }
 #container #login .ui.segment.form #login_form #options .findpwd {
   color: #000000;
@@ -307,7 +302,7 @@ body > #wrap {
   color: #B16464;
 }
 #container #register {
-  font-family: "微软雅黑";
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   margin: 0 auto;
   margin-top: 50px;
   padding: 10px 25px 10px 25px;
@@ -319,13 +314,15 @@ body > #wrap {
 #container #register .ui.form.segment {
   padding: 0em;
   background-color: #FFFFFF;
-  border-radius: 0;
+  border-radius: 6px;
 }
-#container #register .ui.form.segment .nav-tabs {
+#container #register .ui.form.segment .tabs {
   border: 0;
   padding: 5px 5px 0 5px;
 }
-#container #register .ui.form.segment .nav-tabs li {
+#container #register .ui.form.segment .tabs li {
+  list-style: none;
+  float: left;
   width: 50%;
   text-align: center;
   border-radius: 0;
@@ -333,17 +330,18 @@ body > #wrap {
   filter: alpha(opacity=80);
   opicaty: 50;
 }
-#container #register .ui.form.segment .nav-tabs li .active {
+#container #register .ui.form.segment .tabs li .active {
   background-color: #FFFFFF;
 }
-#container #register .ui.form.segment .nav-tabs li a {
+#container #register .ui.form.segment .tabs li a {
+  text-decoration: none;
   border-radius: 0;
   width: 100%;
   height: 100%;
   font-size: 1em;
   color: #000000;
 }
-#container #register .ui.form.segment .nav-tabs li a:hover {
+#container #register .ui.form.segment .tabs li a:hover {
   background-color: white;
 }
 #container #register .ui.form.segment #reg_form {

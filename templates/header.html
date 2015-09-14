@@ -4,9 +4,9 @@
         <nav class="navbar">
             <div class="navbar-header">
                <div id="head-logo">
-                   <a href="/"><img src="/static/image/logo/xiuniulogo-01.png"></a>
+                   <a href="/" ng-click="homepage_active()"><img src="/static/image/logo/finallogo-01.png"></a>
                </div>
-            {% if not user.is_authenticated %}
+            {% if not user.is_authenticated%}
               <ul class="nav navbar-nav navbar-item not-login" ng-init="homepage=true">
                  <li ng-class="{'active':homepage}" ng-click="homepage_active()"><a href="/">首页</a></li>
                  <li ng-class="{'active':company}" ng-click="company_active()"><a href="/company/list">公司列表</a></li>
@@ -58,9 +58,9 @@
             {% endif %}
             <div class="header-item">
               {% if not user.is_authenticated %}
-                   <div class="item">
+                   <div class="item log_register">
                        <img src="/static/image/icon/login-01.png">
-                       <a ng-click="login()">登录</a>&nbsp;·&nbsp;<a ng-click="register()">注册</a>
+                       <a ng-click="login()" href="/login">登录</a>&nbsp;·&nbsp;<a ng-click="login()" href="/register">注册</a>
                    </div>
               {% endif %}
                <div class="item" on-mouseover="scan=true" on-mouseout="scan=false">
@@ -79,11 +79,6 @@
                 <input type="text">
             </div>
         </nav>
-
-        <div class="right-block">
-            <div class="txt">关注我们</div>
-            <img class="img-1" src="/static/image/logo/erweima-01.png">
-        </div>
     </div>
     <div class="shadow"></div>
     <div style="clear:both;"></div>
