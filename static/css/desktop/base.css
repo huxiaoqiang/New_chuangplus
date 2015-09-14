@@ -2312,6 +2312,15 @@ form.financing_add input {
 }
 #container #forth-step .info4 {
   background-color: white;
+  height: 450px;
+  padding: 30px;
+}
+#container #forth-step .info4 label {
+  font-size: 16px;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #forth-step .info4 p {
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
 body {
   background-color: #f0f0f0;

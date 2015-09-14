@@ -38,6 +38,12 @@ angular.module('chuangplus.controllers', []).
                     }
                 });
         };
+        $scope.register  = function(){
+            window.location.href='/register';
+        };
+        $scope.login  = function(){
+            window.location.href='/login';
+        };
         if($user.role()==1){
             $scope.get_company_info();
         }
@@ -97,6 +103,8 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_RegisterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_RegisterCtrl');
+        $scope.show_footer = 'false';
+        $scope.show_header = 'false';
         $scope.error = {};
         $scope.reg_info = {};
         $scope.reg_info.role = 0;
@@ -1303,6 +1311,72 @@ angular.module('chuangplus.controllers', []).
                     }
                 });
         };
+    }]).
+    controller('DT_CompanyFirstCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
+        console.log('DT_CompanyFirstCtrl');
+        $scope.tag_list = ["技能培训","扁平管理","可转正","弹性工作","定期出游","地铁周边","股票期权","水果零食","正餐补助","班车接送"];
+        $scope.tags = [
+            {
+                "chosed":false,
+                "value" :"技能培训"
+            },
+            {
+                "chosed":false,
+                "value" :"扁平管理"
+            },
+            {
+                "chosed":false,
+                "value" :"弹性工作"
+            },
+            {
+                "chosed":false,
+                "value" :"定期出游"
+            },
+            {
+                "chosed":false,
+                "value" :"地铁周边"
+            },
+            {
+                "chosed":false,
+                "value" :"股票期权"
+            },
+            {
+                "chosed":false,
+                "value" :"正餐补助"
+            },
+            {
+                "chosed":false,
+                "value" :"班车接送"
+            }
+        ];
+        $scope.add_tag = function(){
+            $scope.tags.push({
+                "chosed":false,
+                "value" :$scope.tag_added
+            });
+        };
+        $scope.canAdd = function(ngModelController){
+            return (ngModelController.$invalid && ngModelController.$dirty) ||  ngModelController.$pristine;
+        };
+        $scope.tag_long_error=function(ngModelController){
+            return ngModelController.$invalid && ngModelController.$dirty;
+        };
+    }]).
+    controller('DT_CompanySecondCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
+        console.log('DT_CompanySecondCtrl');
+
+    }]).
+    controller('DT_CompanySecondCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
+        console.log('DT_CompanySecondCtrl');
+
+    }]).
+    controller('DT_CompanyThirdCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
+        console.log('DT_CompanyThirdCtrl');
+
+    }]).
+    controller('DT_CompanyForthCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
+        console.log('DT_CompanyForthCtrl');
+
     }]).
     controller('DT_PositionListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_PositionListCtrl');

@@ -1,0 +1,54 @@
+<div id="container">
+    <div id="second-step">
+        <div class="head">
+            <div class="item"></div>
+            <div class="item"><span class="text">第二步</span></div>
+            <div class="item"></div>
+            <div class="item"></div>
+        </div>
+        <div style="clear:both;"></div>
+        <div class="info2">
+            <div class="left-info">
+                <div class="input-group">
+                    <div class="col-sm-4">
+                        <label>工商注册名</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" required ng-model="companyinfo.abbreviation">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="col-sm-4">
+                        <label>公司主页</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" required ng-model="companyinfo.brief_introduction">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="col-sm-4">
+                        <label>公司所在地</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" required ng-model="companyinfo.brief_introduction">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="col-sm-4">
+                        <label>微信公众号</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="change_tab" ng-model="qrcode"  ngf-select="upload($file,'qrcode','qrcode')">
+                            <img ng-if="qrcode==null" src="/static/image/logo/qrcode.jpg" title="单击图片修改二维码"><br/>
+                            <img ng-if="qrcode!=null" ngf-src="qrcode" title="单击图片修改二维码"><br/>
+                        </div>
+                    </div>
+                </div>
+                <input type="button" class="pre-button btn" value="上一步">
+            </div>
+            <div class="right-info">
+                <input type="button" class="next-button btn" value="下一步">
+            </div>
+        </div>
+    </div>
+</div>
