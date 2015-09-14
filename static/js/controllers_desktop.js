@@ -1353,11 +1353,11 @@ angular.module('chuangplus.controllers', []).
                 });
         };
     }]).
-    controller('DT_CompanyNoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
+    controller('DT_CompanyNoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanyNoCtrl');
         $scope.company_id = $routeParams.company_id;
     }]).
-    controller('DT_CompanyFirstCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
+    controller('DT_CompanyFirstCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_CompanyFirstCtrl');
         $scope.company_id = $routeParams.company_id;
         $scope.tag_list = ["技能培训","扁平管理","可转正","弹性工作","定期出游","地铁周边","股票期权","水果零食","正餐补助","班车接送"];
@@ -1407,8 +1407,80 @@ angular.module('chuangplus.controllers', []).
         $scope.tag_long_error=function(ngModelController){
             return ngModelController.$invalid && ngModelController.$dirty;
         };
+        $scope.upload = function(file,file_t){
+            var param = {
+               "file_type": file_t,
+               "description": $scope.company_id + file_t,
+               "category": $scope.company_id + '_'+file_t
+            };
+            var headers = {
+                   'X-CSRFToken': $csrf.val(),
+                   'Content-Type': file.type
+               };
+            Upload.upload({
+               url:urls.api+'/file/upload',
+               data: param,
+               headers:headers,
+               file: file
+            }).
+            progress(function(evt){
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                $scope.progress= 'progress: ' + progressPercentage + '% ' + evt.config.file.name;
+            }).
+            success(function(data, status, headers, config){
+                if(data.error.code == 1){
+                    $scope.companyinfo.logo_id = data.data;
+                }
+                else{
+                    console.log(data.error.message);
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
         $scope.next_step = function(){
-            window.location.href = '/company/'+ $scope.company_id+'/create/second';
+            if($scope.companyinfo.field == undefined){
+                $scope.error = $errMsg.format_error("请选择公司领域信息",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if($scope.companyinfo.scale == undefined){
+                $scope.error = $errMsg.format_error("请选择公司发展阶段信息",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            $scope.companyinfo.welfare_tags = '';
+            var tag_number = 0;
+            for(i=0; i<$scope.tags.length; i++){
+                if($scope.tags[i].chosed == true){
+                    $scope.companyinfo.welfare_tags += $scope.tags[i].value;
+                    $scope.companyinfo.welfare_tags += ',';
+                    tag_number++;
+                }
+            }
+            if(tag_number == 0){
+                $scope.error = $errMsg.format_error("至少选择一个福利标签",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(tag_number > 6){
+                $scope.error = $errMsg.format_error("福利标签数不能超过6个",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            $scope.companyinfo.welfare_tags = $scope.companyinfo.welfare_tags.substring(0,$scope.companyinfo.welfare_tags.length-1);
+            $csrf.set_csrf($scope.companyinfo);
+                $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
+                success(function(data){
+                    if(data.error.code == 1){
+//                        $scope.error = $errMsg.format_error("保存公司信息成功",data.error);
+                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                        window.location.href = '/company/'+ $scope.company_id+'/create/second';
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                    }
+                });
         };
     }]).
     controller('DT_CompanySecondCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
