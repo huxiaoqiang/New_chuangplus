@@ -2157,30 +2157,48 @@ form.financing_add input {
   margin-left: 24px;
 }
 #container .head div.item {
-  height: 10px;
+  height: 4px;
   width: 24%;
-  background-color: #98769E;
+  background-color: #8f4e96;
   float: left;
   position: relative;
 }
 #container .head div.item span.text {
+  color: #707070;
   position: absolute;
   top: -30px;
-  left: 94px;
+  left: 84px;
   font-size: 1.2em;
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
-
+#container .head .item.alpha40 {
+  background-color: rgba(143, 78, 150, 0.4);
+}
+#container .head .item.alpha20 {
+  background-color: rgba(143, 78, 150, 0.2);
+}
+#container .head .item.alpha10 {
+  background-color: rgba(143, 78, 150, 0.1);
+}
 #container .left-info {
   background-color: white;
   width: 48%;
   height: 450px;
   float: left;
   padding-top: 40px;
+  border: solid 1px #bfbfbf;
+  border-radius: 6px;
 }
 #container .left-info .input-group {
   width: 100%;
   margin-bottom: 20px;
+}
+#container .left-info .input-group input {
+  width: 90%;
+  outline: none;
+  height: 32px;
+  padding: 5px;
+  border-radius: 3px;
 }
 #container .right-info {
   background-color: white;
@@ -2189,6 +2207,8 @@ form.financing_add input {
   float: left;
   padding-top: 40px;
   margin-left: 4%;
+  border: solid 1px #bfbfbf;
+  border-radius: 6px;
 }
 #container .right-info .input-group {
   width: 100%;
@@ -2199,63 +2219,73 @@ form.financing_add input {
 }
 #container #first-step .info1 {
   height: 450px;
+  position: relative;
 }
 #container #first-step .info1 .left-info .input-group {
   margin-bottom: 40px;
   width: 100%;
 }
-#container #first-step .info1 .left-info .input-group .col-sm-4 {
+#container #first-step .info1 .left-info .input-group .col-sm-3 {
   text-align: right;
 }
-#container #first-step .info1 .left-info .input-group .col-sm-4 label {
+#container #first-step .info1 .left-info .input-group .col-sm-3 label {
+  color: #707070;
   font-size: 16px;
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
-#container #first-step .info1 .left-info .input-group .col-sm-8 input {
+#container #first-step .info1 .left-info .input-group .col-sm-9 input {
   width: 90%;
   height: 32px;
 }
-#container #first-step .info1 .left-info .input-group .col-sm-8 img {
+#container #first-step .info1 .left-info .input-group .col-sm-9 img {
   height: 160px;
   width: 160px;
 }
-#container #first-step .info1 .right-info .input-group .col-sm-4 {
+#container #first-step .info1 .right-info .input-group .col-sm-3 {
   text-align: right;
 }
-#container #first-step .info1 .right-info .input-group .col-sm-4 label {
+#container #first-step .info1 .right-info .input-group .col-sm-3 label {
+  color: #707070;
   font-size: 16px;
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
-#container #first-step .info1 .right-info .input-group .col-sm-8 table {
+#container #first-step .info1 .right-info .input-group .col-sm-9 table {
   width: 100%;
 }
-#container #first-step .info1 .right-info .input-group .col-sm-8 table tbody {
+#container #first-step .info1 .right-info .input-group .col-sm-9 table tbody {
   width: 100%;
 }
-#container #first-step .info1 .right-info .input-group .col-sm-8 table tbody tr td label {
+#container #first-step .info1 .right-info .input-group .col-sm-9 table tbody tr td label {
   color: #707070;
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
-#container #first-step .info1 .right-info .input-group .col-sm-8 label {
+#container #first-step .info1 .right-info .input-group .col-sm-9 label {
   color: #707070;
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
-#container #first-step .info1 .right-info .input-group .col-sm-8 .form-control.tags_input {
+#container #first-step .info1 .right-info .input-group .col-sm-9 .form-control.tags_input {
   float: left;
   width: 70%;
 }
-#container #first-step .info1 .right-info .input-group .col-sm-8 input.btn-primary {
-
+#container #first-step .info1 .right-info .input-group .col-sm-9 input.btn-primary {
   border-radius: 0px;
   background-color: #98769E;
   border-color: #98769E;
 }
-#container #first-step .info1 .right-info .input-group .col-sm-8 label.checkbox-label {
+#container #first-step .info1 .right-info .input-group .col-sm-9 label.checkbox-label {
   margin: 0px 18px 5px 5px;
 }
-#container #first-step .info1 .right-info .input-group .col-sm-8 span.err-msg {
+#container #first-step .info1 .right-info .input-group .col-sm-9 span.err-msg {
   position: absolute;
   bottom: 0px;
+}
+#container #first-step .info1 input.next-button {
+  position: absolute;
+  bottom: -60px;
+  left: 41.5%;
+  width: 150px;
+  color: white;
+  background-color: #8f4e96;
 }
 #container #second-step {
   margin-top: 70px;
@@ -2266,24 +2296,22 @@ form.financing_add input {
 #container #second-step .info2 .left-info .input-group {
   margin-bottom: 30px;
 }
-#container #second-step .info2 .left-info .input-group .col-sm-4 {
+#container #second-step .info2 .left-info .input-group .col-sm-3 {
   text-align: right;
 }
-#container #second-step .info2 .left-info .input-group .col-sm-4 label {
+#container #second-step .info2 .left-info .input-group .col-sm-3 label {
+  color: #707070;
   font-size: 16px;
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
-#container #second-step .info2 .left-info .input-group .col-sm-8 input {
+#container #second-step .info2 .left-info .input-group .col-sm-9 input {
   width: 90%;
   height: 32px;
 }
-#container #second-step .info2 .left-info .input-group .col-sm-8 img {
+#container #second-step .info2 .left-info .input-group .col-sm-9 img {
   cursor: pointer;
   height: 160px;
   width: 160px;
-}
-#container #second-step .info2 .left-info input.btn {
-  border-radius: 0px;
 }
 #container #second-step .info2 .left-info input.pre-button {
   position: absolute;
@@ -2291,9 +2319,17 @@ form.financing_add input {
   right: 0px;
   width: 150px;
   color: white;
+  background-color: #707070;
 }
 #container #second-step .info2 .right-info {
   position: relative;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+#container #second-step .info2 .right-info label {
+  color: #707070;
+  font-size: 16px;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
 #container #second-step .info2 .right-info input.next-button {
   position: absolute;
@@ -2301,6 +2337,7 @@ form.financing_add input {
   left: 0px;
   width: 150px;
   color: white;
+  background-color: #98769E;
 }
 #container #third-step {
   margin-top: 70px;
@@ -2311,6 +2348,8 @@ form.financing_add input {
   height: 500px;
   background-color: white;
   position: relative;
+  border-radius: 6px;
+  border: solid 1px #bfbfbf;
 }
 #container #third-step .info3 label {
   margin-bottom: 15px;
@@ -2327,15 +2366,13 @@ form.financing_add input {
   border-radius: 5px;
   resize: none;
 }
-#container #third-step .info3 .btn {
-  border-radius: 0px;
-}
 #container #third-step .info3 input.pre-button {
   position: absolute;
   bottom: -60px;
   width: 150px;
   color: white;
   left: 30%;
+  background-color: #707070;
 }
 #container #third-step .info3 input.next-button {
   position: absolute;
@@ -2343,23 +2380,145 @@ form.financing_add input {
   left: 50%;
   width: 150px;
   color: white;
+  background-color: #8f4e96;
 }
 #container #forth-step {
   margin-top: 70px;
 }
 #container #forth-step .info4 {
   background-color: white;
-  height: 450px;
+  min-height: 360px;
   padding: 30px;
+  border-radius: 6px;
+  border: solid 1px #bfbfbf;
+  position: relative;
 }
 #container #forth-step .info4 label {
+  color: #707070;
   font-size: 16px;
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
 #container #forth-step .info4 p {
+  color: #707070;
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
-
+#container #forth-step .info4 textarea {
+  min-height: 150px;
+  max-width: 100%;
+  width: 100%;
+  margin-bottom: 30px;
+  padding: 10px;
+  border-radius: 6px;
+  resize: none;
+  outline: none;
+}
+#container #forth-step .info4 input.pre-button {
+  position: absolute;
+  bottom: -60px;
+  width: 150px;
+  color: white;
+  left: 30%;
+  background-color: #707070;
+}
+#container #forth-step .info4 input.next-button {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  width: 150px;
+  color: white;
+  background-color: #8f4e96;
+}
+#container #forth-step .info4 .add-member img {
+  height: 20px;
+  float: right;
+  cursor: pointer;
+}
+#container #forth-step .info4 .add-member .member-tag {
+  width: 45%;
+  float: left;
+  height: 40px;
+  background-color: #fafafa;
+  border: solid 1px #bfbfbf;
+  padding-left: 25px;
+  font-size: 16px;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  padding-top: 8px;
+  border-radius: 6px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+#container #forth-step .info4 .add-member .member-tag .item {
+  margin-top: -21px;
+  margin-right: 10px;
+}
+#container #forth-step .info4 .add-member .member-tag .item img {
+  margin-left: 15px;
+  width: 20px;
+  height: 20px;
+}
+#container #forth-step .info4 .add-member .member {
+  width: 100%;
+  padding: 15px;
+}
+#container #forth-step .info4 .add-member .member .member-info-card {
+  width: 45%;
+  margin-right: 20px;
+  margin-left: 20px;
+  height: 400px;
+  background-color: #fafafa;
+  border: solid 1px #bfbfbf;
+  border-radius: 6px;
+  float: left;
+}
+#container #forth-step .info4 .add-member .member .member-info-card img.delete {
+  float: right;
+  width: 20px;
+  height: 20px;
+  margin: 5px 5px 0px 0px;
+}
+#container #forth-step .info4 .add-member .member .member-info-card .avatar-origin {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  background-color: white;
+  border: solid 1px #e1e0e2;
+  margin: 0 auto;
+  margin-top: 25px;
+  text-align: center;
+  line-height: 112px;
+  color: #bfbfbf;
+  cursor: pointer;
+}
+#container #forth-step .info4 .add-member .member .member-info-card .name-position {
+  margin: 0 auto;
+  display: table;
+  padding: 10px;
+}
+#container #forth-step .info4 .add-member .member .member-info-card .name-position input {
+  margin-bottom: 10px;
+  border-radius: 3px;
+  outline: none;
+  padding: 2px;
+  padding-left: 5px;
+}
+#container #forth-step .info4 .add-member .member .member-info-card textarea.member-intro {
+  margin: 0px 10px 15px 24px;
+  resize: none;
+  width: 87.5%;
+  padding: 10px;
+  min-height: 110px;
+}
+#container #forth-step .info4 .add-member .member .member-info-card .yes {
+  margin: 0 auto;
+  width: 30px;
+  height: 30px;
+  margin-top: -8px;
+}
+#container #forth-step .info4 .add-member .member .member-info-card .yes img {
+  width: 26px;
+  height: 26px;
+}
 #no_header #header {
   background-color: #FFFFFF;
   border-bottom: 2px solid #cecece;

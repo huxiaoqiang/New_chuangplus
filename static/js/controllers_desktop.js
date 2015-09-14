@@ -1360,6 +1360,7 @@ angular.module('chuangplus.controllers', []).
     controller('DT_CompanyFirstCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_CompanyFirstCtrl');
         $scope.company_id = $routeParams.company_id;
+        $scope.companyinfo = {};
         $scope.tag_list = ["技能培训","扁平管理","可转正","弹性工作","定期出游","地铁周边","股票期权","水果零食","正餐补助","班车接送"];
         $scope.tags = [
             {
@@ -1438,12 +1439,27 @@ angular.module('chuangplus.controllers', []).
             });
         };
         $scope.next_step = function(){
-            if($scope.companyinfo.field == undefined){
+            if(!$scope.companyinfo.hasOwnProperty('abbreviation')){
+                $scope.error = $errMsg.format_error("请填写公司简称",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(!$scope.companyinfo.hasOwnProperty('brief_introduction')){
+                $scope.error = $errMsg.format_error("请填写公司一句话简介",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(!$scope.companyinfo.hasOwnProperty('logo')){
+                $scope.error = $errMsg.format_error("请上传公司logo",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(!$scope.companyinfo.hasOwnProperty('field')){
                 $scope.error = $errMsg.format_error("请选择公司领域信息",{code:"-1"});
                 setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                 return;
             }
-            else if($scope.companyinfo.scale == undefined){
+            else if(!$scope.companyinfo.hasOwnProperty('scale')){
                 $scope.error = $errMsg.format_error("请选择公司发展阶段信息",{code:"-1"});
                 setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                 return;

@@ -91,6 +91,7 @@
                 </div>
             </div>
             <input type="button" class="next-button btn" value="下一步" ng-click="next_step()">
+            <div id="err-msg" ng-show="error.show"  ng-class="error.class">[[error.message]]</div>
         </div>
         </form>
     </div>
