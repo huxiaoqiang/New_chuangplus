@@ -2221,7 +2221,7 @@ form.financing_add input {
 }
 #container .head {
   float: left;
-  height: 60px;
+  height: 30px;
   width: 95%;
   margin-left: 40px;
 }
@@ -2355,6 +2355,8 @@ form.financing_add input {
   width: 150px;
   color: white;
   background-color: #8f4e96;
+  outline-color: #98769E;
+  outline-width: 1px;
 }
 #container #second-step {
   margin-top: 70px;
