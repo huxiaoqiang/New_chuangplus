@@ -1717,35 +1717,7 @@ angular.module('chuangplus.controllers', []).
         $scope.add_member_flag = false;
         $scope.member_add = {};
         $scope.company_id = $routeParams.company_id;
-        $scope.member_list = [
-        ];
-         $scope.upload = function(file,file_t){
-            var param = {
-               "file_type":file_t,
-               "description":$scope.company_id + file_t,
-               "category":$scope.company_id + '_'+file_t
-            };
-            var headers = {
-                   'X-CSRFToken': $csrf.val(),
-                   'Content-Type': file.type
-            };
-            Upload.upload({
-               url:urls.api+'/file/upload',
-               data: param,
-               headers:headers,
-               file: file
-            }).
-            success(function(data, status, headers, config){
-                if(data.error.code == 1){
-                    console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
-                    $scope.member_add.m_avatar_id = data.data;
-                }
-                else{
-                    console.log(data.error.message);
-                    $scope.error = $errMsg.format_error('',data.error);
-                }
-            });
-        };
+        $scope.member_list = [];
         $scope.show_member_card = function(){
             $scope.add_member_flag = true;
         };
