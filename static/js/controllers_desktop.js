@@ -1765,6 +1765,11 @@ angular.module('chuangplus.controllers', []).
             $scope.member_add = {};
         };
         $scope.add_member = function(){
+            if(!$scope.member_add.hasOwnProperty('m_avatar_id')){
+                $scope.error = $errMsg.format_error("请上传成员头像",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
             $csrf.set_csrf($scope.member_add);
             $http.post(urls.api+'/account/member/create',$.param($scope.member_add)).
                 success(function(data){
@@ -1772,6 +1777,7 @@ angular.module('chuangplus.controllers', []).
                         $scope.get_member_list();
                         $scope.member_add = {};
                         $scope.avatar = undefined;
+                        $('#addMember').modal('hide');
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
@@ -1800,6 +1806,36 @@ angular.module('chuangplus.controllers', []).
                         $scope.error = $errMsg.format_error('',data.error);
                     }
                 });
+        };
+        $scope.upload = function(file,file_t){
+            var param = {
+               "file_type": file_t,
+               "description": $scope.company_id + file_t,
+               "category": $scope.company_id + '_'+file_t
+            };
+            var headers = {
+                   'X-CSRFToken': $csrf.val(),
+                   'Content-Type': file.type
+               };
+            Upload.upload({
+               url:urls.api+'/file/upload',
+               data: param,
+               headers:headers,
+               file: file
+            }).
+            progress(function(evt){
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                $scope.progress= 'progress: ' + progressPercentage + '% ' + evt.config.file.name;
+            }).
+            success(function(data, status, headers, config){
+                if(data.error.code == 1){
+                    $scope.member_add.m_avatar_id = data.data;
+                }
+                else{
+                    console.log(data.error.message);
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
         };
         $scope.edit_member = function(index){
 
