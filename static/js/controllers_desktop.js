@@ -1739,6 +1739,7 @@ angular.module('chuangplus.controllers', []).
             $scope.add_member_flag = false;
             $scope.member_add = {};
             $('#addMember').modal('hide');
+            $scope.avatar = null;
         };
         $scope.save_member = function(){
             if(!$scope.member_add.hasOwnProperty('m_avatar_id')){
@@ -1835,8 +1836,29 @@ angular.module('chuangplus.controllers', []).
             $scope.edit = true;
             $scope.index = index;
         };
-        $scope.pre_step = function(){
-            window.location.href = '/company/'+$scope.company_id+'/create/third';
+                $scope.pre_step = function(){
+            window.location.href = '/company/'+$scope.company_id+'/create/second';
+        };
+
+        $scope.next_step = function(){
+            if(!$scope.companyinfo.hasOwnProperty('team_description')){
+                $scope.error = $errMsg.format_error("请填写团队介绍",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+             $csrf.set_csrf($scope.companyinfo);
+                $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.error = $errMsg.format_error("创建公司信息成功",data.error);
+                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                        window.location.href = '/';
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                    }
+                });
         };
     }]).
     controller('DT_PositionListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
