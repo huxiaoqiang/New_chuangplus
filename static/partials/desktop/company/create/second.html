@@ -135,3 +135,33 @@
     </div>
   </div>
 </div>
+
+<!-- delete_financing Modal -->
+<div class="modal fade" id="delete_financing" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="get_delete_index()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">删除融资经历</h4>
+      </div>
+      <div class="modal-body">
+          确定删除：</br>
+          [[financing_list[delete_index].organization]]对贵公司的
+        <span ng-if="financing_list[delete_index].stage=='seed'">种子轮</span>
+        <span ng-if="financing_list[delete_index].stage=='angel'">天使轮</span>
+        <span ng-if="financing_list[delete_index].stage=='A'">A轮</span>
+        <span ng-if="financing_list[delete_index].stage=='B'">B轮</span>
+        <span ng-if="financing_list[delete_index].stage=='C'">C轮</span>
+        <span ng-if="financing_list[delete_index].stage=='D_plus'">D轮及D轮以上</span>
+          投资？
+      </div>
+      <div style="clear:both;"></div>
+      <div class="modal-footer">
+        <input type="button" class="btn btn-default" data-dismiss="modal" value="取消">
+        <button type="button"class="btn btn-primary" ng-click="delete_financing(delete_index)">确定</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1593,6 +1593,38 @@ angular.module('chuangplus.controllers', []).
                 }
             });
         };
+        $scope.get_delete_index = function($index){
+            $scope.delete_index = $index;
+        };
+        $scope.delete_financing = function(index){
+            var param = {
+                "csrfmiddlewaretoken" : $csrf.val()
+            };
+            $http.post(urls.api+"/account/financing/"+$scope.financing_list[index]._id.$oid+"/delete", $.param(param)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.get_financing_list();
+                        $('#delete_financing').modal('hide');
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                    }
+                });
+        };
+        $scope.add_financing = function(){
+            $csrf.set_csrf($scope.financing_add);
+            $http.post(urls.api+'/account/financing/create',$.param($scope.financing_add)).
+            success(function(data){
+                if(data.error.code == 1){
+                    $scope.get_financing_list();
+                    $scope.financing_add = null;
+                    $('#add_financing').modal('hide');
+                }
+                else{
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
         $scope.pre_step = function(){
             window.location.href = '/company/'+ $scope.company_id+'/create/first';
         };
