@@ -1840,6 +1840,16 @@ angular.module('chuangplus.controllers', []).
             window.location.href = '/company/'+$scope.company_id+'/create/second';
         };
 
+        $scope.get_company_info = function(){
+            $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
+                success(function(data){
+                    if(data.error.code == 1){
+                            $scope.companyinfo = data.data;
+                        }
+                });
+        };
+        $scope.get_company_info();
+
         $scope.next_step = function(){
             if(!$scope.companyinfo.hasOwnProperty('team_description')){
                 $scope.error = $errMsg.format_error("请填写团队介绍",{code:"-1"});
