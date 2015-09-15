@@ -1714,6 +1714,7 @@ angular.module('chuangplus.controllers', []).
     controller('DT_CompanyForthCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_CompanyForthCtrl');
         $scope.company_id = $routeParams.company_id;
+
         $scope.add_member_flag = false;
         $scope.member_add = {};
         $scope.company_id = $routeParams.company_id;
@@ -1726,6 +1727,7 @@ angular.module('chuangplus.controllers', []).
             success(function(data){
                 if(data.error.code == 1){
                     $scope.member_list = data.data;
+                    $scope.member_number = data.data.length;
                 }
                 else{
                     $scope.error = $errMsg.format_error('',data.error);
@@ -1792,11 +1794,11 @@ angular.module('chuangplus.controllers', []).
                     }
                 });
         };
-        $scope.upload = function(file,file_t){
+        $scope.upload = function(file,file_t,category){
             var param = {
                "file_type": file_t,
                "description": $scope.company_id + file_t,
-               "category": $scope.company_id + '_'+file_t
+               "category": $scope.company_id + '_'+category
             };
             var headers = {
                    'X-CSRFToken': $csrf.val(),
