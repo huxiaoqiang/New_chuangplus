@@ -1764,6 +1764,7 @@ angular.module('chuangplus.controllers', []).
         $scope.cancer_add = function(){
             $scope.add_member_flag = false;
             $scope.member_add = {};
+            $('#addMember').modal('hide');
         };
         $scope.save_member = function(){
             if(!$scope.member_add.hasOwnProperty('m_avatar_id')){

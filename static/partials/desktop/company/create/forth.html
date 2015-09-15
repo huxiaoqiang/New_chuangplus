@@ -29,7 +29,7 @@
                     <br/>
                     <div class="intro">
                         [[member.m_name]]&nbsp;/&nbsp;[[member.m_position]]<br/>
-                        [[member_add.m_introduction]]
+                        [[member.m_introduction]]
                     </div>
 
                 </div>
@@ -51,7 +51,9 @@
            <div class="member-info-card">
                 <a ng-click="cancer_add()" data-dismiss="modal" aria-label="Close"><img class="delete" src="/static/image/icon/delete-01.png"></a>
                 <div ng-if="!member_add.hasOwnProperty('m_avatar_id')" ng-model="avatar" ngf-select="upload($file,'memberavatar')" class="avatar-origin">点击上传图像</div>
-                <img src="/api/file/[[member_add.m_avatar_id]]/download" ng-if="member_add.hasOwnProperty('m_avatar_id')">
+                <div ngf-select="upload($file,'memberavatar')">
+                    <img src="/api/file/[[member_add.m_avatar_id]]/download" ng-if="member_add.hasOwnProperty('m_avatar_id')">
+                </div>
                 <div class="name-position">
                     <input type="text" ng-model="member_add.m_name" placeholder="成员姓名"></br>
                     <input type="text" ng-model="member_add.m_position" placeholder="成员职务">
