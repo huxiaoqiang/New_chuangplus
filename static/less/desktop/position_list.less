@@ -1,5 +1,6 @@
 #container{
   #pisition-list{
+font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
     .panel.panel-info{
       border-color: #772B84;
       margin-bottom: 10px;
@@ -17,83 +18,135 @@
       }
     }
     .col-md-8{
-        margin-top: 10px;
+        width: 750px;
         ul li{
             list-style-type:none;
-
+            background-color: #ffffff;
+            border: 1px solid #bfbfbf;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            height: 130px;
             .favor-list-item{
-
-                margin-top: 10px;
-                border: 1px solid #8E8E8E;
                 width: 100%;
-                height: 140px;
-                padding: 10px 10px 10px 10px;
-                .item-pic{
-                    float: left;
-                    width: 120px;
-                    height: 120px;
-                    .company-pic{
-                        width: 100%;
-                        height: 100%;
+                height: 100%;
+                padding:0 10px 0 15px;
+                .auth{
+                    width: 100%;
+                    height: 15px;
+                    text-align: right;
+                    margin-bottom: 5px;
+                    padding-top: 5px;
+                    p{
+                        font-size: 12px;
+                        color: #8f4e96;
                     }
                 }
-                .item-info{
-                    float: left;
-                    margin-left: 10px;
-                    height: 140px;
-
-                    .position{
-                        font-size: 1.2em;
-                        border-bottom: 1px solid#8E8E8E;
-                        width: 300px;
-                        color: rgb(140, 93, 144);
+                .middle-block{
+                    width: 100%;
+                    height: 90px;
+                    .item-pic{
+                        float: left;
+                        width: 90px;
+                        height: 90px;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                        }
                     }
-                    .company{
-                      font-size: 1.3em;
-                      float: left;
-                      color: #000000;
-                    }
-                    .company-discrpt{
-                      font-size: 1.3em;
-                      color: #8E8E8E;
-                    }
-                    .item-label{
-                        margin-bottom: 10px;
-                        height: 30px;
-                        .label{
-                            width: 80px;
-                            height: 30px;
+                    .info{
+                        width: 100%;
+                        height: 100%;
+                        .line{
+                            width: 1px;
+                            height: 50px;
+                            margin-top: 20px;
+                            margin-bottom: 20px;
                             float: left;
-                            border: 1px solid#8E8E8E;
-                            background-color: #F0F0F0;
-                            font-size: 12px;
-                            border-radius: 0.3em;
-                            margin-right: 10px;
-                            color: black;
+                            border-left: 1px solid #aaaaaa;
+                        }
+p{
+margin-bottom: 0;
+}
+                        .item-info.info-1{
+                            width: 150px;
                             text-align: center;
-                            line-height: 30px;
-                            padding: 1px 0 5px 0;
+                            padding: 0 15px 0 15px;
+                            p{
+                                color: black;
+                                font-size: 1.1em;
+                            }
+                        }
+                        .item-info.info-2{
+                            width: 140px;
+                            padding: 0 15px 0 15px;
+text-align: center;
+
+                            .company{
+                                font-size: 1.3em;
+                                color: black;
+                                text-align: center;
+                            }
+                            .company-discrpt{
+                                color: #707070;
+                                font-size: 12px;
+                                text-align: center;
+                            }
+                        }
+                        .item-info.info-3{
+                            width: 90px;
+                        }
+                        .item-info.info-4{
+                            padding-left: 15px;
+                            .label{
+                                border-radius: 10px;
+                                padding: 0 8px 0 8px;
+                                background-color: rgba(143,78,150,0.1);
+                                color: #707070;
+                                font-size: 5px;
+                                margin-right: 5px;
+                                float: left;
+                                margin-bottom: 5px;
+                                text-align: center;
+                                font-weight: 100;
+                            }
+                        }
+                        .item-info{
+                            float: left;
+                            height: 100%;
+                            display: table;
+                        }
+                        .vertical-center{
+                            display: table-cell;
+                            vertical-align: middle;
+                        }
+                       .label-1{
+                            img{
+                                width: 11px;
+                                height: 11px;
+                                float: left;
+                                margin-right: 5px;
+                                margin-top: 2px;
+                            }
+                            p{
+                                color: #707070;
+                                font-size: 10px;
+                                margin-bottom: 5px;
+                            }
                         }
                     }
-                    .submit-time{
-                        font-size: 12px;
-                        color: #8E8E8E;
-                    }
-                    .item-button{
-                        text-align: right;
-                        .btn.btn-submit{
-                            width: 100px;
-                            height: 30px;
-                            border-radius: 0.3em;
-                            background-color: rgb(140, 93, 144);
-                            color: white;
-                            font-size: 1.0em;
-                        }
+                }
+                .bottom-block{
+                    width: 100%;
+                    height: 20px;
+                    text-align: right;
+padding-bottom: 5px;
+                    p{
+                        font-size: 0.8em;
+                        color: #707070;
                     }
                 }
             }
         }
     }
-
   }
 }

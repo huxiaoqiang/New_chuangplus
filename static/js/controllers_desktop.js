@@ -1461,6 +1461,18 @@ angular.module('chuangplus.controllers', []).
             'functions':"职能",
             'others':"其他"
         };
+        $scope.field_type={
+            'social':"社交",
+            'e-commerce':"电子商务",
+            'education':"教育",
+            'health_medical':"健康医疗",
+            'culture_creativity':"文化创意",
+            'living_consumption':"生活消费",
+            'hardware':"硬件",
+            '020':"O2O",
+            'others':"其他"
+        };
+
         $scope.positions = {};
         $scope.get_positions = function(){
             $http.get(urls.api+"/position/search").
@@ -1469,6 +1481,7 @@ angular.module('chuangplus.controllers', []).
                         $scope.positions = data.positions;
                         for(i=0; i<$scope.positions.length;i++){
                             $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
+                            $scope.positions[i].company.field_type = $scope.field_type[$scope.positions[i].company.field];
                             if($scope.positions[i].company.scale == 0){
                                 $scope.positions[i].company.scale_value = "初创";
                             }
