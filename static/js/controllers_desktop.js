@@ -1778,7 +1778,7 @@ angular.module('chuangplus.controllers', []).
                 request_url = urls.api+'/account/member/create';
             }
             else{
-                request_url = urls.api+'/account/member/'+$scope.member_list[$scope.index].m_avatar_id+'/set';
+                request_url = urls.api+'/account/member/'+$scope.member_list[$scope.index]._id['$oid']+'/set';
             }
             $http.post(request_url,$.param($scope.member_add)).
                 success(function(data){
