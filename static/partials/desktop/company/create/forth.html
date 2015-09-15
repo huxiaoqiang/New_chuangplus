@@ -15,7 +15,7 @@
             </div>
             <div class="add-member">
                 <label>团队成员</label>
-                <a data-toggle="modal"  data-target="#addMember"><img src="/static/image/icon/add.png"></a>
+                <a ng-click="add_member()"><img src="/static/image/icon/add.png"></a>
                 <div style="clear: both"></div>
 
                 <div class="member-tag" ng-repeat="member in member_list">
@@ -28,8 +28,8 @@
                     </div>
                     <br/>
                     <div class="intro">
-                        [[member.m_name]]&nbsp;/&nbsp;[[member.m_position]]<br/>
-                        [[member.m_introduction]]
+                        <span>[[member.m_name]]&nbsp;/&nbsp;[[member.m_position]]</span><br/>
+                        <p>[[member.m_introduction]]</p>
                     </div>
 
                 </div>

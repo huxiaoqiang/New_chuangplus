@@ -1773,6 +1773,13 @@ angular.module('chuangplus.controllers', []).
                 return;
             }
             $csrf.set_csrf($scope.member_add);
+            var request_url;
+            if($scope.edit == false){
+                request_url = urls.api+'/account/member/create';
+            }
+            else{
+                request_url = urls.api+'/account/member/'+$scope.index+'/set';
+            }
             $http.post(urls.api+'/account/member/create',$.param($scope.member_add)).
                 success(function(data){
                     if(data.error.code == 1){
@@ -1839,12 +1846,15 @@ angular.module('chuangplus.controllers', []).
                 }
             });
         };
+        $scope.add_member = function(){
+            $scope.edit = false;
+            $('#addMember').modal('show');
+        };
         $scope.edit_member = function(index){
             $scope.member_add = $scope.member_list[index];
             $('#addMember').modal('show');
-        };
-        $scope.view_member = function(index){
-            
+            $scope.edit = true;
+            $scope.index = index;
         };
         $scope.pre_step = function(){
             window.location.href = '/company/'+$scope.company_id+'/create/third';
