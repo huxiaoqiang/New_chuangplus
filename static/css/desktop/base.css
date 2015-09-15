@@ -2584,6 +2584,18 @@ form.financing_add input {
   cursor: pointer;
   border-radius: 50%;
 }
+#delete_member .modal-dialog {
+  margin: 200px auto;
+}
+#delete_member .modal-dialog .modal-content .modal-header h4 {
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  color: #707070;
+}
+#delete_member .modal-dialog .modal-content .modal-body p {
+  font-size: 16px;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  color: #707070;
+}
 .cancer-button.btn:hover {
   color: white;
 }

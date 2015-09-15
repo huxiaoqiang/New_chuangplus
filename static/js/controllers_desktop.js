@@ -1793,6 +1793,10 @@ angular.module('chuangplus.controllers', []).
                     }
                 });
         };
+        $scope.delete_modal = function(index){
+            $scope.delete_index = index;
+            $('#delete_member').modal('show');
+        };
         $scope.delete_member = function(index){
             var param = {
                 "csrfmiddlewaretoken" : $csrf.val()
