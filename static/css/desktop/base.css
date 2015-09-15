@@ -2563,6 +2563,15 @@ form.financing_add input {
   width: 26px;
   height: 26px;
 }
+#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card img {
+  height: 120px;
+  width: 120px;
+  margin: 0 auto;
+  display: block;
+  margin-top: 25px;
+  cursor: pointer;
+  border-radius: 50%;
+}
 .cancer-button.btn:hover {
   color: white;
 }

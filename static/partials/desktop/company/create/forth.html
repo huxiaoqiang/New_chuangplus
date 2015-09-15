@@ -53,8 +53,8 @@
                 <div ng-if="!member_add.hasOwnProperty('m_avatar_id')" ng-model="avatar" ngf-select="upload($file,'memberavatar')" class="avatar-origin">点击上传图像</div>
                 <img src="/api/file/[[member_add.m_avatar_id]]/download" ng-if="member_add.hasOwnProperty('m_avatar_id')">
                 <div class="name-position">
-                    <input type="text" ng-model="member_add.m_name"></br>
-                    <input type="text" ng-model="member_add.m_position">
+                    <input type="text" ng-model="member_add.m_name" placeholder="成员姓名"></br>
+                    <input type="text" ng-model="member_add.m_position" placeholder="成员职务">
                 </div>
                 <textarea class="member-intro" placeholder="成员简介" ng-model="member_add.m_introduction"></textarea>
                 <div class="yes" ng-click="add_member()"><img src="/static/image/icon/yes-01.png"></div>
