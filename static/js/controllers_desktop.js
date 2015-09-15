@@ -1765,7 +1765,7 @@ angular.module('chuangplus.controllers', []).
             $scope.add_member_flag = false;
             $scope.member_add = {};
         };
-        $scope.add_member = function(){
+        $scope.save_member = function(){
             if(!$scope.member_add.hasOwnProperty('m_avatar_id')){
                 $scope.error = $errMsg.format_error("请上传成员头像",{code:"-1"});
                 setTimeout(function(){$errMsg.remove_error($scope.error)},2000);

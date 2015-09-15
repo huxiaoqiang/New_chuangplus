@@ -17,13 +17,21 @@
                 <label>团队成员</label>
                 <a data-toggle="modal"  data-target="#addMember"><img src="/static/image/icon/add.png"></a>
                 <div style="clear: both"></div>
+
                 <div class="member-tag" ng-repeat="member in member_list">
-                    [[member.m_name]]&nbsp;/&nbsp;[[member.m_position]]
                     <div class="item">
                         <a ng-click="delete_member($index)"><img src="/static/image/icon/delete-01.png"></a>
                         <a ng-click="edit_member($index)"><img src="/static/image/icon/pencil-01.png"></a>
-                        <a ng-click="view_member($index)"><img src="/static/image/icon/eye-01.png"></a>
                     </div>
+                    <div class="avatar_img">
+                        <img src="/api/file/[[member.m_avatar_id]]/download">
+                    </div>
+                    <br/>
+                    <div class="intro">
+                        [[member.m_name]]&nbsp;/&nbsp;[[member.m_position]]<br/>
+                        [[member_add.m_introduction]]
+                    </div>
+
                 </div>
                 <div style="clear: both"></div>
             </div>
@@ -39,11 +47,12 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
-       <form class="member_add form-horizontal" name="memberAddForm" ng-submit="add_member()">
+       <form class="member_add form-horizontal" name="memberAddForm" ng-submit="save_member()">
            <div class="member-info-card">
                 <a ng-click="cancer_add()" data-dismiss="modal" aria-label="Close"><img class="delete" src="/static/image/icon/delete-01.png"></a>
                 <div ng-if="avatar==undefined" ng-model="avatar" ngf-select="upload($file,'memberavatar')" class="avatar-origin">点击上传图像</div>
                 <img ngf-src="avatar" ng-if="avatar!=undefined">
+                <img src="/api/file/[[member_add.m_avatar_id]]/download" ng-if="member_add.hasOwnProperty('m_avatar_id')">
                 <div class="name-position">
                     <input type="text" ng-model="member_add.m_name"></br>
                     <input type="text" ng-model="member_add.m_position">

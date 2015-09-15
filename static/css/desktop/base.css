@@ -2467,12 +2467,11 @@ form.financing_add input {
   cursor: pointer;
 }
 #container #forth-step .info4 .add-member .member-tag {
-  width: 45%;
+  width: 30%;
   float: left;
-  height: 40px;
+  height: 300px;
   background-color: #fafafa;
   border: solid 1px #bfbfbf;
-  padding-left: 25px;
   font-size: 16px;
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   padding-top: 8px;
@@ -2482,13 +2481,22 @@ form.financing_add input {
   margin-bottom: 10px;
 }
 #container #forth-step .info4 .add-member .member-tag .item {
-  margin-top: -21px;
   margin-right: 10px;
 }
 #container #forth-step .info4 .add-member .member-tag .item img {
   margin-left: 15px;
   width: 20px;
   height: 20px;
+}
+#container #forth-step .info4 .add-member .member-tag .avatar_img img {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+#container #forth-step .info4 .add-member .member-tag .intro {
+  margin-top: 90px;
+  text-align: center;
 }
 #container #forth-step .info4 .add-member .member {
   width: 100%;
