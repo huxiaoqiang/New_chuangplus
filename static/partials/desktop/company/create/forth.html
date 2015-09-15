@@ -49,12 +49,21 @@
       <div class="modal-body">
        <form class="member_add form-horizontal" name="memberAddForm" ng-submit="save_member()">
            <div class="member-info-card">
-                <a ng-click="cancer_add()" data-dismiss="modal" aria-label="Close"><img class="delete" src="/static/image/icon/delete-01.png"></a>
-                <div ng-if="!member_add.hasOwnProperty('m_avatar_id')" ng-model="avatar" ngf-select="upload($file,'memberavatar',[[member_number]])" class="avatar-origin">点击上传图像</div>
+               <a ng-click="cancer_add()"><img class="delete" src="/static/image/icon/delete-01.png"></a>
+
+               <div ng-model="avatar"  ngf-select="upload($file,'memberavatar','[[member_number]]')">
+                    <img ng-if="avatar==null && member_add.hasOwnProperty('m_avatar_id')" src="/api/file/[[member_add.m_avatar_id]]/download">
+                    <div ng-if="avatar==null && !member_add.hasOwnProperty('m_avatar_id')" class="avatar-origin">点击上传图像</div>
+                    <img ng-if="avatar!=null" ngf-src="avatar" title="单击图片上传头像"><br/>
+                </div>
+
+<!--
+               <div ng-if="!member_add.hasOwnProperty('m_avatar_id')" ng-model="avatar" ngf-select="upload($file,'memberavatar',[[member_number]])" class="avatar-origin">点击上传图像</div>
 
                <div ngf-select="upload($file,'memberavatar',[[member_number]])" ng-model="avatar">
-                    <img src="/api/file/[[member_add.m_avatar_id]]/download" ng-if="member_add.hasOwnProperty('m_avatar_id')">
+                    <img ngf-src="avatar" ng-if="member_add.hasOwnProperty('m_avatar_id')">
                 </div>
+-->
                 <div class="name-position">
                     <input type="text" ng-model="member_add.m_name" placeholder="成员姓名"></br>
                     <input type="text" ng-model="member_add.m_position" placeholder="成员职务">
