@@ -2154,7 +2154,7 @@ form.financing_add input {
   float: left;
   height: 60px;
   width: 95%;
-  margin-left: 24px;
+  margin-left: 40px;
 }
 #container .head div.item {
   height: 4px;
@@ -2286,6 +2286,8 @@ form.financing_add input {
   width: 150px;
   color: white;
   background-color: #8f4e96;
+  outline-color: #98769E;
+  outline-width: 1px;
 }
 #container #second-step {
   margin-top: 70px;
@@ -2331,13 +2333,40 @@ form.financing_add input {
   font-size: 16px;
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
+#container #second-step .info2 .right-info .add_financing span img {
+  float: right;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+}
+#container #second-step .info2 .right-info .add_financing .financing_list .financing {
+  width: 90%;
+  border: solid 1px #bfbfbf;
+  border-radius: 6px;
+  height: 35px;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  font-size: 16px;
+  padding: 6px;
+  margin-bottom: 10px;
+}
+#container #second-step .info2 .right-info .add_financing .financing_list .financing .stage {
+  float: left;
+}
+#container #second-step .info2 .right-info .add_financing .financing_list .financing .organization {
+  float: left;
+}
+#container #second-step .info2 .right-info .add_financing .financing_list .financing .amount {
+  float: left;
+}
 #container #second-step .info2 .right-info input.next-button {
   position: absolute;
   bottom: -60px;
   left: 0px;
   width: 150px;
   color: white;
-  background-color: #98769E;
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  outline-width: 1px;
 }
 #container #third-step {
   margin-top: 70px;
@@ -2381,6 +2410,8 @@ form.financing_add input {
   width: 150px;
   color: white;
   background-color: #8f4e96;
+  outline-color: #98769E;
+  outline-width: 1px;
 }
 #container #forth-step {
   margin-top: 70px;
@@ -2427,6 +2458,8 @@ form.financing_add input {
   width: 150px;
   color: white;
   background-color: #8f4e96;
+  outline-color: #98769E;
+  outline-width: 1px;
 }
 #container #forth-step .info4 .add-member img {
   height: 20px;
@@ -2518,6 +2551,32 @@ form.financing_add input {
 #container #forth-step .info4 .add-member .member .member-info-card .yes img {
   width: 26px;
   height: 26px;
+}
+#add_financing {
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#add_financing .modal-dialog {
+  margin: 200px auto;
+}
+.cancer-button.btn:hover {
+  color: white;
+}
+.save-button.btn:hover {
+  color: white;
+}
+.cancer-button {
+  width: 150px;
+  color: white;
+  background-color: #707070;
+  outline-width: 1px;
+  outline-color: #bfbfbf;
+}
+.save-button {
+  width: 150px;
+  color: white;
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  outline-width: 1px;
 }
 #no_header #header {
   background-color: #FFFFFF;

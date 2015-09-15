@@ -1,4 +1,4 @@
-<div id="container">
+<div id="container" xmlns="http://www.w3.org/1999/html">
     <div id="second-step">
         <div class="head">
             <div class="item alpha40"></div>
@@ -15,7 +15,7 @@
                             <label>工商注册名</label>
                         </div>
                         <div class="col-sm-9">
-                            <input type="text" required ng-model="companyinfo.abbreviation">
+                            <input type="text" required ng-model="companyinfo.ICregist_name">
                         </div>
                     </div>
                     <div class="input-group">
@@ -23,7 +23,7 @@
                             <label>公司主页</label>
                         </div>
                         <div class="col-sm-9">
-                            <input type="text" required ng-model="companyinfo.brief_introduction">
+                            <input type="text" required ng-model="companyinfo.homepage">
                         </div>
                     </div>
                     <div class="input-group">
@@ -31,7 +31,7 @@
                             <label>公司所在地</label>
                         </div>
                         <div class="col-sm-9">
-                            <input type="text" required ng-model="companyinfo.brief_introduction">
+                            <input type="text" required ng-model="companyinfo.city">
                         </div>
                     </div>
                     <div class="input-group">
@@ -50,11 +50,87 @@
                 <div class="right-info">
                    <label>融资信息</label>
                     <p>特别说明：犀牛会与贵公司最近一轮融资的投资机构联系，提供认证。请至少填写最近两轮融资信息，天使轮及以前可只填写一轮。未融资请在下方勾选，不需要填写</p>
-                    <input type="radio" ng-model="companyinfo.field" value="social">&nbsp;&nbsp;未融资</label>
+                    <input type="radio" ng-model="companyinfo.no_financing" value="no" ng-disabled="financing_list!=null">&nbsp;&nbsp;未融资</label>
+                    <div class="add_financing">
+                        <span data-toggle="modal"  data-target="#add_financing" ng-show="companyinfo.no_financing!='no'">
+                            <img src="/static/image/icon/add.png">
+                        </span>
+                        <div style="clear: both"></div>
+                        <div class="financing_list">
+                            <div class="financing" ng-repeat="financing in financing_list">
+                                <div class="stage" ng-if="financing.stage=='seed'">种子轮&nbsp;&nbsp;/&nbsp;&nbsp;</div>
+                                <div class="stage" ng-if="financing.stage=='angel'">天使轮&nbsp;&nbsp;/&nbsp;&nbsp;</div>
+                                <div class="stage" ng-if="financing.stage=='A'">A轮&nbsp;&nbsp;/&nbsp;&nbsp;</div>
+                                <div class="stage" ng-if="financing.stage=='B'">B轮&nbsp;&nbsp;/&nbsp;&nbsp;</div>
+                                <div class="stage" ng-if="financing.stage=='C'">C轮&nbsp;&nbsp;/&nbsp;&nbsp;</div>
+                                <div class="stage" ng-if="financing.stage=='D_plus'">D轮及D轮以上&nbsp;&nbsp;/&nbsp;&nbsp;</div>
 
+                                <div class="organization">[[financing.organization]]</div>
+
+                                <div class="amount" ng-if="financing.amount=='ten'">&nbsp;&nbsp;/&nbsp;&nbsp;十万级</div>
+                                <div class="amount" ng-if="financing.amount=='hundred'">&nbsp;&nbsp;/&nbsp;&nbsp;百万级</div>
+                                <div class="amount" ng-if="financing.amount=='thousand'">&nbsp;&nbsp;/&nbsp;&nbsp;千万级</div>
+                                <div class="amount" ng-if="financing.amount=='thousand_plus'">&nbsp;&nbsp;/&nbsp;&nbsp;亿级</div>
+                                <div class="">
+                                    <button type="button" class="close" aria-label="Close" data-target="#delete_financing"  data-toggle="modal" ng-click="get_delete_index($index)">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <br/>
+                            </div>
+
+                        </div>
+                    </div>
                     <input type="button" class="next-button btn" value="下一步" ng-click="next_step()">
                 </div>
             </div>
         </form>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="add_financing" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">添加融资经历</h4>
+      </div>
+      <div class="modal-body">
+       <form class="financing_add form-horizontal" name="financingAddForm" ng-submit="add_financing()">
+           <div class="col-sm-12">
+             <span>融资轮数</span>
+             <select ng-model="financing_add.stage" required>
+                <option value="" ng-selectd="financing_add.stage==''">选择轮数</option>
+                <option value="seed" ng-selectd="financing_add.stage=='seed'">种子轮</option>
+                <option value="angel" ng-selectd="financing_add.stage='angel'">天使轮</option>
+                <option value="A" ng-selectd="financing_add.stage=='A'">A轮</option>
+                <option value="B" ng-selectd="financing_add.stage=='B'">B轮</option>
+                <option value="C" ng-selectd="financing_add.stage=='C'">C轮</option>
+                <option value="D_plus" ng-selectd="financing_add.stage=='D'">D及D以上</option>
+             </select>
+             <span>融资金额</span>
+               <select ng-model="financing_add.amount" required>
+                <option value="" ng-selectd="financing_add.amount==''">选择融资金额</option>
+                <option value="ten" ng-selectd="financing_add.amount=='ten'">十万级</option>
+                <option value="hundred" ng-selectd="financing_add.amount='hundred'">百万级</option>
+                <option value="thousand" ng-selectd="financing_add.amount=='thousand'">千万级</option>
+                <option value="thousand_plus" ng-selectd="financing_add.amount=='thousand_plus'">亿级</option>
+              </select>
+           </div>
+            <div class="col-sm-12">
+                <span>投资机构</span>
+                <input type="text" ng-model="financing_add.organization" placeholder="请输入投资机构名称" required>
+           </div>
+        </form>
+      </div>
+      <div style="clear:both;"></div>
+      <div class="modal-footer">
+        <input type="button" class="btn cancer-button" data-dismiss="modal" value="取消" ng-click="financing_add=null">
+        <button type="button" ng-disabled="!financingAddForm.$valid" class="btn save-button" ng-click="add_financing()">保存</button>
+      </div>
+    </div>
+  </div>
 </div>

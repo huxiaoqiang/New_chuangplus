@@ -3,7 +3,7 @@
       float: left;
       height: 60px;
       width: 95%;
-      margin-left: 24px;
+      margin-left: 40px;
       div.item{
         height: 4px;
         width: 24%;
@@ -147,6 +147,8 @@
         width: 150px;
         color: white;
         background-color: #8f4e96;
+        outline-color: #98769E;
+        outline-width: 1px;
       }
     }
   }
@@ -195,13 +197,46 @@
           font-size: 16px;
           font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
         }
+        .add_financing{
+          span{
+            img{
+              float: right;
+              height: 25px;
+              width: 25px;
+              cursor: pointer;
+            }
+          }
+          .financing_list{
+            .financing{
+              width: 90%;
+              border: solid 1px #bfbfbf;
+              border-radius: 6px;
+              height: 35px;
+              font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+              font-size: 16px;
+              padding: 6px;
+              margin-bottom: 10px;
+              .stage{
+                float: left;
+              }
+              .organization{
+                float: left;
+              }
+              .amount{
+                float: left;
+              }
+            }
+          }
+        }
         input.next-button{
           position: absolute;
           bottom: -60px;
           left: 0px;
           width: 150px;
           color: white;
-          background-color: #98769E;
+          background-color: #8f4e96;
+          outline-color: #98769E;
+          outline-width: 1px;
         }
       }
     }
@@ -246,6 +281,8 @@
         width: 150px;
         color: white;
         background-color: #8f4e96;
+        outline-color: #98769E;
+        outline-width: 1px;
       }
     }
   }
@@ -292,6 +329,8 @@
         width: 150px;
         color: white;
         background-color: #8f4e96;
+        outline-color: #98769E;
+        outline-width: 1px;
       }
       .add-member{
         img{
@@ -389,4 +428,31 @@
       }
     }
   }
+}
+#add_financing{
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  .modal-dialog{
+    margin: 200px auto;
+  }
+}
+.cancer-button.btn:hover{
+  color: white;
+}
+.save-button.btn:hover{
+  color: white;
+}
+
+.cancer-button{
+  width: 150px;
+  color: white;
+  background-color: #707070;
+  outline-width: 1px;
+  outline-color: #bfbfbf;
+}
+.save-button{
+  width: 150px;
+  color: white;
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  outline-width: 1px;
 }

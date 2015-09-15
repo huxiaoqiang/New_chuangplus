@@ -1526,24 +1526,131 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_CompanySecondCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanySecondCtrl');
+        $scope.test = 'aaaa';
         $scope.company_id = $routeParams.company_id;
+        $scope.financing_list = [
+            {
+                'stage':'seed',
+                'organization':'清华创加',
+                'amount' : 'ten'
+            },
+            {
+                'stage':'seed',
+                'organization':'清华创加',
+                'amount' : 'ten'
+            }
+        ];
+        $scope.get_financing_list = function(){
+            $http.get(urls.api+"/account/financing/"+$scope.company_id+"/list").
+                success(function(data){
+                if(data.error.code == 1){
+                    $scope.financing_list = data.data;
+                }
+                else{
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
+        $scope.get_company_info = function(){
+            $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.companyinfo = data.data;
+                        var i=j=0;
+                        var welfare_tags = data.data.welfare_tags;
+                        for(i=0;i<welfare_tags.length;i++){
+                            for(j=0;j<$scope.tags.length;j++){
+                                if($scope.tags[j].value == welfare_tags[i]){
+                                    $scope.tags[j].chosed = true;
+                                    break;
+                                }
+                            }
+                            if(j==$scope.tags.length){
+                                $scope.tags.push({
+                                   "value":welfare_tags[i],
+                                    "chosed":true
+                                });
+                            }
+                        }
+                    }
+                });
+        };
+        $scope.get_financing_list();
+        $scope.get_company_info();
+        $scope.upload = function(file,file_t){
+            var param = {
+               "file_type": file_t,
+               "description": $scope.company_id + file_t,
+               "category": $scope.company_id + '_'+file_t
+            };
+            var headers = {
+                   'X-CSRFToken': $csrf.val(),
+                   'Content-Type': file.type
+               };
+            Upload.upload({
+               url:urls.api+'/file/upload',
+               data: param,
+               headers:headers,
+               file: file
+            }).
+            progress(function(evt){
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                $scope.progress= 'progress: ' + progressPercentage + '% ' + evt.config.file.name;
+            }).
+            success(function(data, status, headers, config){
+                if(data.error.code == 1){
+                    $scope.companyinfo.qrcode_id = data.data;
+                }
+                else{
+                    console.log(data.error.message);
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
         $scope.pre_step = function(){
             window.location.href = '/company/'+ $scope.company_id+'/create/first';
         };
         $scope.next_step = function(){
-            window.location.href = '/company/'+ $scope.company_id+'create/third';
+            if(!$scope.companyinfo.hasOwnProperty('ICregist_name')){
+                $scope.error = $errMsg.format_error("请填写公司工商注册名",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(!$scope.companyinfo.hasOwnProperty('homepage')){
+                $scope.error = $errMsg.format_error("请填写公司主页地址",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(!$scope.companyinfo.hasOwnProperty('city')){
+                $scope.error = $errMsg.format_error("请填写公司所在地",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(!$scope.companyinfo.hasOwnProperty('qrcode_id')){
+                $scope.error = $errMsg.format_error("请上传公司微信二维码",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(!$scope.companyinfo.hasOwnProperty('no_financing') && $scope.financing_list.length==0){
+                $scope.error = $errMsg.format_error("请填写融资信息，若无请勾选无融资",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+             $csrf.set_csrf($scope.companyinfo);
+                $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
+                success(function(data){
+                    if(data.error.code == 1){
+//                        $scope.error = $errMsg.format_error("保存公司信息成功",data.error);
+//                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                        window.location.href = '/company/'+ $scope.company_id+'/create/third';
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                    }
+                });
         };
 
-    }]).
-    controller('DT_CompanySecondCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
-        console.log('DT_CompanySecondCtrl');
-        $scope.company_id = $routeParams.company_id;
-        $scope.pre_step = function(){
-            window.location.href = '/company/'+$scope.company_id+'/create/first';
-        };
-        $scope.next_step = function(){
-            window.location.href = '/company/'+$scope.company_id+'/create/third';
-        };
     }]).
     controller('DT_CompanyThirdCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanyThirdCtrl');
