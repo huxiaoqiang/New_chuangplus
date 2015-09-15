@@ -1813,6 +1813,7 @@ angular.module('chuangplus.controllers', []).
             progress(function(evt){
                 var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                 $scope.progress= 'progress: ' + progressPercentage + '% ' + evt.config.file.name;
+                console.log($scope.progress);
             }).
             success(function(data, status, headers, config){
                 if(data.error.code == 1){
