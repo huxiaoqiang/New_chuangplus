@@ -1673,11 +1673,42 @@ angular.module('chuangplus.controllers', []).
     controller('DT_CompanyThirdCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanyThirdCtrl');
         $scope.company_id = $routeParams.company_id;
+        $scope.get_company_info = function(){
+            $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
+                success(function(data){
+                    if(data.error.code == 1){
+                            $scope.companyinfo = data.data;
+                        }
+                });
+        };
+        $scope.get_company_info();
         $scope.pre_step = function(){
             window.location.href = '/company/'+$scope.company_id+'/create/second';
         };
         $scope.next_step = function(){
-            window.location.href = '/company/'+$scope.company_id+'/create/forth';
+            if(!$scope.companyinfo.hasOwnProperty('company_description')){
+                $scope.error = $errMsg.format_error("请填写公司介绍",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(!$scope.companyinfo.hasOwnProperty('product_description')){
+                $scope.error = $errMsg.format_error("请填写产品或服务介绍",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+             $csrf.set_csrf($scope.companyinfo);
+                $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
+                success(function(data){
+                    if(data.error.code == 1){
+//                        $scope.error = $errMsg.format_error("保存公司信息成功",data.error);
+//                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                        window.location.href = '/company/'+ $scope.company_id+'/create/forth';
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                    }
+                });
         };
     }]).
     controller('DT_CompanyForthCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
