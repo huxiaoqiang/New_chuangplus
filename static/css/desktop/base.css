@@ -2223,7 +2223,7 @@ form.financing_add input {
   float: left;
   height: 60px;
   width: 95%;
-  margin-left: 24px;
+  margin-left: 40px;
 }
 #container .head div.item {
   height: 4px;
@@ -2365,24 +2365,22 @@ form.financing_add input {
 #container #second-step .info2 .left-info .input-group {
   margin-bottom: 30px;
 }
-#container #second-step .info2 .left-info .input-group .col-sm-4 {
+#container #second-step .info2 .left-info .input-group .col-sm-3 {
   text-align: right;
 }
-#container #second-step .info2 .left-info .input-group .col-sm-4 label {
+#container #second-step .info2 .left-info .input-group .col-sm-3 label {
+  color: #707070;
   font-size: 16px;
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
-#container #second-step .info2 .left-info .input-group .col-sm-8 input {
+#container #second-step .info2 .left-info .input-group .col-sm-9 input {
   width: 90%;
   height: 32px;
 }
-#container #second-step .info2 .left-info .input-group .col-sm-8 img {
+#container #second-step .info2 .left-info .input-group .col-sm-9 img {
   cursor: pointer;
   height: 160px;
   width: 160px;
-}
-#container #second-step .info2 .left-info input.btn {
-  border-radius: 0px;
 }
 #container #second-step .info2 .left-info input.pre-button {
   position: absolute;
@@ -2390,9 +2388,42 @@ form.financing_add input {
   right: 0px;
   width: 150px;
   color: white;
+  background-color: #707070;
 }
 #container #second-step .info2 .right-info {
   position: relative;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+#container #second-step .info2 .right-info label {
+  color: #707070;
+  font-size: 16px;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#container #second-step .info2 .right-info .add_financing span img {
+  float: right;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+}
+#container #second-step .info2 .right-info .add_financing .financing_list .financing {
+  width: 90%;
+  border: solid 1px #bfbfbf;
+  border-radius: 6px;
+  height: 35px;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  font-size: 16px;
+  padding: 6px;
+  margin-bottom: 10px;
+}
+#container #second-step .info2 .right-info .add_financing .financing_list .financing .stage {
+  float: left;
+}
+#container #second-step .info2 .right-info .add_financing .financing_list .financing .organization {
+  float: left;
+}
+#container #second-step .info2 .right-info .add_financing .financing_list .financing .amount {
+  float: left;
 }
 #container #second-step .info2 .right-info input.next-button {
   position: absolute;
@@ -2400,6 +2431,9 @@ form.financing_add input {
   left: 0px;
   width: 150px;
   color: white;
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  outline-width: 1px;
 }
 #container #third-step {
   margin-top: 70px;
@@ -2410,6 +2444,8 @@ form.financing_add input {
   height: 500px;
   background-color: white;
   position: relative;
+  border-radius: 6px;
+  border: solid 1px #bfbfbf;
 }
 #container #third-step .info3 label {
   margin-bottom: 15px;
@@ -2426,15 +2462,13 @@ form.financing_add input {
   border-radius: 5px;
   resize: none;
 }
-#container #third-step .info3 .btn {
-  border-radius: 0px;
-}
 #container #third-step .info3 input.pre-button {
   position: absolute;
   bottom: -60px;
   width: 150px;
   color: white;
   left: 30%;
+  background-color: #707070;
 }
 #container #third-step .info3 input.next-button {
   position: absolute;
@@ -2442,14 +2476,20 @@ form.financing_add input {
   left: 50%;
   width: 150px;
   color: white;
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  outline-width: 1px;
 }
 #container #forth-step {
   margin-top: 70px;
 }
 #container #forth-step .info4 {
   background-color: white;
-  height: 450px;
+  min-height: 360px;
   padding: 30px;
+  border-radius: 6px;
+  border: solid 1px #bfbfbf;
+  position: relative;
 }
 #container #forth-step .info4 label {
   color: #707070;
@@ -2466,8 +2506,182 @@ form.financing_add input {
   width: 100%;
   margin-bottom: 30px;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 6px;
   resize: none;
+  outline: none;
+}
+#container #forth-step .info4 input.pre-button {
+  position: absolute;
+  bottom: -60px;
+  width: 150px;
+  color: white;
+  left: 30%;
+  background-color: #707070;
+}
+#container #forth-step .info4 input.next-button {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  width: 150px;
+  color: white;
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  outline-width: 1px;
+}
+#container #forth-step .info4 .add-member img {
+  height: 20px;
+  float: right;
+  cursor: pointer;
+}
+#container #forth-step .info4 .add-member .member-tag {
+  width: 28%;
+  float: left;
+  height: 300px;
+  background-color: #fafafa;
+  border: solid 1px #bfbfbf;
+  font-size: 16px;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  padding-top: 8px;
+  border-radius: 6px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+#container #forth-step .info4 .add-member .member-tag .item {
+  margin-right: 10px;
+}
+#container #forth-step .info4 .add-member .member-tag .item img {
+  margin-left: 15px;
+  width: 20px;
+  height: 20px;
+}
+#container #forth-step .info4 .add-member .member-tag .avatar_img {
+  margin-top: 15px;
+}
+#container #forth-step .info4 .add-member .member-tag .avatar_img img {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+#container #forth-step .info4 .add-member .member-tag .intro {
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  margin-top: 90px;
+  text-align: center;
+}
+#container #forth-step .info4 .add-member .member-tag .intro span {
+  color: #707070;
+}
+#container #forth-step .info4 .add-member .member-tag .intro p {
+  margin-top: 10px ;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+#container #forth-step .info4 .add-member .member {
+  width: 100%;
+  padding: 15px;
+}
+#add_financing {
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+}
+#add_financing .modal-dialog {
+  margin: 200px auto;
+}
+#addMember .modal-dialog {
+  width: 400px;
+  margin: 150px auto;
+}
+#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card {
+  width: 100%;
+}
+#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card img.delete {
+  float: right;
+  width: 20px;
+  height: 20px;
+  margin: -20px 5px 0px 0px;
+}
+#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card .avatar-origin {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  background-color: white;
+  border: solid 1px #e1e0e2;
+  margin: 0 auto;
+  margin-top: 25px;
+  text-align: center;
+  line-height: 112px;
+  color: #bfbfbf;
+  cursor: pointer;
+}
+#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card .name-position {
+  margin: 0 auto;
+  display: table;
+  padding: 10px;
+}
+#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card .name-position input {
+  margin-bottom: 10px;
+  border-radius: 3px;
+  outline: none;
+  padding: 2px;
+  padding-left: 5px;
+}
+#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card textarea.member-intro {
+  margin: 0px 10px 15px 24px;
+  resize: none;
+  width: 87.5%;
+  padding: 10px;
+  min-height: 110px;
+}
+#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card .yes {
+  margin: 0 auto;
+  width: 30px;
+  height: 30px;
+  margin-top: -8px;
+}
+#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card .yes img {
+  width: 26px;
+  height: 26px;
+}
+#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card img {
+  height: 120px;
+  width: 120px;
+  margin: 0 auto;
+  display: block;
+  margin-top: 25px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+#delete_member .modal-dialog {
+  margin: 200px auto;
+}
+#delete_member .modal-dialog .modal-content .modal-header h4 {
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  color: #707070;
+}
+#delete_member .modal-dialog .modal-content .modal-body p {
+  font-size: 16px;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  color: #707070;
+}
+.cancer-button.btn:hover {
+  color: white;
+}
+.save-button.btn:hover {
+  color: white;
+}
+.cancer-button {
+  width: 150px;
+  color: white;
+  background-color: #707070;
+  outline-width: 1px;
+  outline-color: #bfbfbf;
+}
+.save-button {
+  width: 150px;
+  color: white;
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  outline-width: 1px;
 }
 #no_header #header {
   background-color: #FFFFFF;

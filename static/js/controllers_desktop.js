@@ -30,10 +30,10 @@ angular.module('chuangplus.controllers', []).
                     if(data.error.code == 1){
                         $scope.company_id = data.data._id.$oid;
                         if(data.data.abbreviation != null){
-                            $scope.url = '/company/'+data.data._id.$oid+'/firststep';
+                            $scope.url = '/company/'+$scope.company_id+'/create/first';
                         }
                         else{
-                            $scope.url = '/company/no';
+                            $scope.url = '/company/'+$scope.company_id+'/no';
                         }
                     }
                 });
@@ -1353,8 +1353,15 @@ angular.module('chuangplus.controllers', []).
                 });
         };
     }]).
-    controller('DT_CompanyFirstCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
+    controller('DT_CompanyNoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
+        console.log('DT_CompanyNoCtrl');
+        $scope.company_id = $routeParams.company_id;
+    }]).
+    controller('DT_CompanyFirstCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload',
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_CompanyFirstCtrl');
+        $scope.company_id = $routeParams.company_id;
+        $scope.companyinfo = {};
         $scope.tag_list = ["技能培训","扁平管理","可转正","弹性工作","定期出游","地铁周边","股票期权","水果零食","正餐补助","班车接送"];
         $scope.tags = [
             {
@@ -1390,6 +1397,30 @@ angular.module('chuangplus.controllers', []).
                 "value" :"班车接送"
             }
         ];
+        $scope.get_company_info = function(){
+            $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.companyinfo = data.data;
+                        var i=j=0;
+                        var welfare_tags = data.data.welfare_tags;
+                        for(i=0;i<welfare_tags.length;i++){
+                            for(j=0;j<$scope.tags.length;j++){
+                                if($scope.tags[j].value == welfare_tags[i]){
+                                    $scope.tags[j].chosed = true;
+                                    break;
+                                }
+                            }
+                            if(j==$scope.tags.length){
+                                $scope.tags.push({
+                                   "value":welfare_tags[i],
+                                    "chosed":true
+                                });
+                            }
+                        }
+                    }
+                });
+        };
         $scope.add_tag = function(){
             $scope.tags.push({
                 "chosed":false,
@@ -1402,22 +1433,411 @@ angular.module('chuangplus.controllers', []).
         $scope.tag_long_error=function(ngModelController){
             return ngModelController.$invalid && ngModelController.$dirty;
         };
+        $scope.upload = function(file,file_t){
+            var param = {
+               "file_type": file_t,
+               "description": $scope.company_id + file_t,
+               "category": $scope.company_id + '_'+file_t
+            };
+            var headers = {
+                   'X-CSRFToken': $csrf.val(),
+                   'Content-Type': file.type
+               };
+            Upload.upload({
+               url:urls.api+'/file/upload',
+               data: param,
+               headers:headers,
+               file: file
+            }).
+            progress(function(evt){
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                $scope.progress= 'progress: ' + progressPercentage + '% ' + evt.config.file.name;
+            }).
+            success(function(data, status, headers, config){
+                if(data.error.code == 1){
+                    $scope.companyinfo.logo_id = data.data;
+                }
+                else{
+                    console.log(data.error.message);
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
+        $scope.next_step = function(){
+            if(!$scope.companyinfo.hasOwnProperty('abbreviation')){
+                $scope.error = $errMsg.format_error("请填写公司简称",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(!$scope.companyinfo.hasOwnProperty('brief_introduction')){
+                $scope.error = $errMsg.format_error("请填写公司一句话简介",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(!$scope.companyinfo.hasOwnProperty('logo_id')){
+                $scope.error = $errMsg.format_error("请上传公司logo",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(!$scope.companyinfo.hasOwnProperty('field')){
+                $scope.error = $errMsg.format_error("请选择公司领域信息",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(!$scope.companyinfo.hasOwnProperty('scale')){
+                $scope.error = $errMsg.format_error("请选择公司发展阶段信息",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            $scope.companyinfo.welfare_tags = '';
+            var tag_number = 0;
+            for(i=0; i<$scope.tags.length; i++){
+                if($scope.tags[i].chosed == true){
+                    $scope.companyinfo.welfare_tags += $scope.tags[i].value;
+                    $scope.companyinfo.welfare_tags += ',';
+                    tag_number++;
+                }
+            }
+            if(tag_number == 0){
+                $scope.error = $errMsg.format_error("至少选择一个福利标签",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(tag_number > 6){
+                $scope.error = $errMsg.format_error("福利标签数不能超过6个",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            $scope.companyinfo.welfare_tags = $scope.companyinfo.welfare_tags.substring(0,$scope.companyinfo.welfare_tags.length-1);
+            $csrf.set_csrf($scope.companyinfo);
+                $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
+                success(function(data){
+                    if(data.error.code == 1){
+//                        $scope.error = $errMsg.format_error("保存公司信息成功",data.error);
+                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                        window.location.href = '/company/'+ $scope.company_id+'/create/second';
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                    }
+                });
+        };
+        $scope.get_company_info();
     }]).
-    controller('DT_CompanySecondCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
+    controller('DT_CompanySecondCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload',
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_CompanySecondCtrl');
-
-    }]).
-    controller('DT_CompanySecondCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
-        console.log('DT_CompanySecondCtrl');
+        $scope.test = 'aaaa';
+        $scope.company_id = $routeParams.company_id;
+        $scope.financing_list = [
+            {
+                'stage':'seed',
+                'organization':'清华创加',
+                'amount' : 'ten'
+            },
+            {
+                'stage':'seed',
+                'organization':'清华创加',
+                'amount' : 'ten'
+            }
+        ];
+        $scope.get_financing_list = function(){
+            $http.get(urls.api+"/account/financing/"+$scope.company_id+"/list").
+                success(function(data){
+                if(data.error.code == 1){
+                    $scope.financing_list = data.data;
+                }
+                else{
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
+        $scope.get_company_info = function(){
+            $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
+                success(function(data){
+                    if(data.error.code == 1){
+                            $scope.companyinfo = data.data;
+                        }
+                });
+        };
+        $scope.get_financing_list();
+        $scope.get_company_info();
+        $scope.upload = function(file,file_t){
+            var param = {
+               "file_type": file_t,
+               "description": $scope.company_id + file_t,
+               "category": $scope.company_id + '_'+file_t
+            };
+            var headers = {
+                   'X-CSRFToken': $csrf.val(),
+                   'Content-Type': file.type
+               };
+            Upload.upload({
+               url:urls.api+'/file/upload',
+               data: param,
+               headers:headers,
+               file: file
+            }).
+            progress(function(evt){
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                $scope.progress= 'progress: ' + progressPercentage + '% ' + evt.config.file.name;
+            }).
+            success(function(data, status, headers, config){
+                if(data.error.code == 1){
+                    $scope.companyinfo.qrcode_id = data.data;
+                }
+                else{
+                    console.log(data.error.message);
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
+        $scope.get_delete_index = function($index){
+            $scope.delete_index = $index;
+        };
+        $scope.delete_financing = function(index){
+            var param = {
+                "csrfmiddlewaretoken" : $csrf.val()
+            };
+            $http.post(urls.api+"/account/financing/"+$scope.financing_list[index]._id.$oid+"/delete", $.param(param)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.get_financing_list();
+                        $('#delete_financing').modal('hide');
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                    }
+                });
+        };
+        $scope.add_financing = function(){
+            $csrf.set_csrf($scope.financing_add);
+            $http.post(urls.api+'/account/financing/create',$.param($scope.financing_add)).
+            success(function(data){
+                if(data.error.code == 1){
+                    $scope.get_financing_list();
+                    $scope.financing_add = null;
+                    $('#add_financing').modal('hide');
+                }
+                else{
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
+        $scope.pre_step = function(){
+            window.location.href = '/company/'+ $scope.company_id+'/create/first';
+        };
+        $scope.next_step = function(){
+            if(!$scope.companyinfo.hasOwnProperty('ICregist_name')){
+                $scope.error = $errMsg.format_error("请填写公司工商注册名",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(!$scope.companyinfo.hasOwnProperty('homepage')){
+                $scope.error = $errMsg.format_error("请填写公司主页地址",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(!$scope.companyinfo.hasOwnProperty('city')){
+                $scope.error = $errMsg.format_error("请填写公司所在地",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(!$scope.companyinfo.hasOwnProperty('qrcode_id')){
+                $scope.error = $errMsg.format_error("请上传公司微信二维码",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(!$scope.companyinfo.hasOwnProperty('no_financing') && $scope.financing_list.length==0){
+                $scope.error = $errMsg.format_error("请填写融资信息，若无请勾选无融资",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+             $csrf.set_csrf($scope.companyinfo);
+                $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
+                success(function(data){
+                    if(data.error.code == 1){
+//                        $scope.error = $errMsg.format_error("保存公司信息成功",data.error);
+//                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                        window.location.href = '/company/'+ $scope.company_id+'/create/third';
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                    }
+                });
+        };
 
     }]).
     controller('DT_CompanyThirdCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanyThirdCtrl');
-
+        $scope.company_id = $routeParams.company_id;
+        $scope.get_company_info = function(){
+            $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
+                success(function(data){
+                    if(data.error.code == 1){
+                            $scope.companyinfo = data.data;
+                        }
+                });
+        };
+        $scope.get_company_info();
+        $scope.pre_step = function(){
+            window.location.href = '/company/'+$scope.company_id+'/create/second';
+        };
+        $scope.next_step = function(){
+            if(!$scope.companyinfo.hasOwnProperty('company_description')){
+                $scope.error = $errMsg.format_error("请填写公司介绍",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(!$scope.companyinfo.hasOwnProperty('product_description')){
+                $scope.error = $errMsg.format_error("请填写产品或服务介绍",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+             $csrf.set_csrf($scope.companyinfo);
+                $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
+                success(function(data){
+                    if(data.error.code == 1){
+//                        $scope.error = $errMsg.format_error("保存公司信息成功",data.error);
+//                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                        window.location.href = '/company/'+ $scope.company_id+'/create/forth';
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                    }
+                });
+        };
     }]).
-    controller('DT_CompanyForthCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
+    controller('DT_CompanyForthCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_CompanyForthCtrl');
+        $scope.company_id = $routeParams.company_id;
 
+        $scope.add_member_flag = false;
+        $scope.member_add = {};
+        $scope.company_id = $routeParams.company_id;
+        $scope.member_list = [];
+        $scope.show_member_card = function(){
+            $scope.add_member_flag = true;
+        };
+        $scope.get_member_list = function(){
+            $http.get(urls.api+"/account/member/"+$scope.company_id+"/list").
+            success(function(data){
+                if(data.error.code == 1){
+                    $scope.member_list = data.data;
+                    $scope.member_number = data.data.length;
+                }
+                else{
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
+        $scope.get_member_list();
+        $scope.cancer_add = function(){
+            $scope.add_member_flag = false;
+            $scope.member_add = {};
+            $('#addMember').modal('hide');
+        };
+        $scope.save_member = function(){
+            if(!$scope.member_add.hasOwnProperty('m_avatar_id')){
+                $scope.error = $errMsg.format_error("请上传成员头像",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            $csrf.set_csrf($scope.member_add);
+            var request_url;
+            if($scope.edit == false){
+                request_url = urls.api+'/account/member/create';
+            }
+            else{
+                request_url = urls.api+'/account/member/'+$scope.member_list[$scope.index]._id['$oid']+'/set';
+            }
+            $http.post(request_url,$.param($scope.member_add)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.get_member_list();
+                        $scope.member_add = {};
+                        $scope.avatar = undefined;
+                        $('#addMember').modal('hide');
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                    }
+                });
+        };
+        $scope.delete_modal = function(index){
+            $scope.delete_index = index;
+            $('#delete_member').modal('show');
+        };
+        $scope.delete_member = function(index){
+            var param = {
+                "csrfmiddlewaretoken" : $csrf.val()
+            };
+            $http.post(urls.api+"/account/member/"+$scope.member_list[index]._id.$oid+"/delete", $.param(param)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $http.post(urls.api+"/file/" + $scope.member_list[index].m_avatar_id + "/delete", $.param(param)).
+                            success(function(data){
+                                if(data.error.code == 1){
+                                    $scope.get_member_list();
+                                    $('#delete_member').modal('hide');
+                                }
+                                else{
+                                    $scope.error = $errMsg.format_error('',data.error);
+                                }
+                            });
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                    }
+                });
+        };
+        $scope.upload = function(file,file_t,category){
+            var param = {
+               "file_type": file_t,
+               "description": $scope.company_id + file_t,
+               "category": $scope.company_id + '_'+category
+            };
+            var headers = {
+                   'X-CSRFToken': $csrf.val(),
+                   'Content-Type': file.type
+               };
+            Upload.upload({
+               url:urls.api+'/file/upload',
+               data: param,
+               headers:headers,
+               file: file
+            }).
+            progress(function(evt){
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                $scope.progress= 'progress: ' + progressPercentage + '% ' + evt.config.file.name;
+                console.log($scope.progress);
+            }).
+            success(function(data, status, headers, config){
+                if(data.error.code == 1){
+                    $scope.member_add.m_avatar_id = data.data;
+                }
+                else{
+                    console.log(data.error.message);
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
+        $scope.add_member = function(){
+            $scope.edit = false;
+            $('#addMember').modal('show');
+        };
+        $scope.edit_member = function(index){
+            $scope.member_add = $scope.member_list[index];
+            $('#addMember').modal('show');
+            $scope.edit = true;
+            $scope.index = index;
+        };
+        $scope.pre_step = function(){
+            window.location.href = '/company/'+$scope.company_id+'/create/third';
+        };
     }]).
     controller('DT_PositionListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_PositionListCtrl');

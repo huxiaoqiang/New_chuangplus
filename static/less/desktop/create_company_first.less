@@ -3,7 +3,7 @@
       float: left;
       height: 60px;
       width: 95%;
-      margin-left: 24px;
+      margin-left: 40px;
       div.item{
         height: 4px;
         width: 24%;
@@ -147,6 +147,8 @@
         width: 150px;
         color: white;
         background-color: #8f4e96;
+        outline-color: #98769E;
+        outline-width: 1px;
       }
     }
   }
@@ -157,14 +159,15 @@
         position: relative;
         .input-group{
           margin-bottom: 30px;
-          .col-sm-4{
+          .col-sm-3{
             text-align: right;
             label{
+              color: #707070;
               font-size: 16px;
               font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
             }
           }
-          .col-sm-8{
+          .col-sm-9{
             input{
               width: 90%;
               height: 32px;
@@ -176,25 +179,64 @@
             }
           }
         }
-        input.btn{
-          border-radius: 0px;
-        }
         input.pre-button{
           position: absolute;
           bottom: -60px;
           right: 0px;
           width: 150px;
           color: white;
+          background-color: #707070;
         }
       }
       .right-info{
         position: relative;
+        padding-left:30px;
+        padding-right: 30px;
+        label{
+          color: #707070;
+          font-size: 16px;
+          font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+        }
+        .add_financing{
+          span{
+            img{
+              float: right;
+              height: 25px;
+              width: 25px;
+              cursor: pointer;
+            }
+          }
+          .financing_list{
+            .financing{
+              width: 90%;
+              border: solid 1px #bfbfbf;
+              border-radius: 6px;
+              height: 35px;
+              font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+              font-size: 16px;
+              padding: 6px;
+              margin-bottom: 10px;
+              .stage{
+                float: left;
+              }
+              .organization{
+                float: left;
+              }
+              .amount{
+                float: left;
+              }
+            }
+          }
+        }
         input.next-button{
           position: absolute;
           bottom: -60px;
           left: 0px;
           width: 150px;
           color: white;
+          background-color: #8f4e96;
+          outline-color: #98769E;
+          outline-width: 1px;
         }
       }
     }
@@ -207,6 +249,8 @@
       height: 500px;
       background-color: white;
       position: relative;
+      border-radius: 6px;
+      border: solid 1px #bfbfbf;
       label{
         margin-bottom: 15px;
         font-size: 16px;
@@ -222,22 +266,23 @@
         border-radius: 5px;
         resize: none;
       }
-      .btn{
-        border-radius: 0px;
-      }
       input.pre-button{
-          position: absolute;
-          bottom: -60px;
-          width: 150px;
-          color: white;
-          left: 30%;
+        position: absolute;
+        bottom: -60px;
+        width: 150px;
+        color: white;
+        left: 30%;
+        background-color: #707070;
       }
       input.next-button{
-          position: absolute;
-          bottom: -60px;
-          left: 50%;
-          width: 150px;
-          color: white;
+        position: absolute;
+        bottom: -60px;
+        left: 50%;
+        width: 150px;
+        color: white;
+        background-color: #8f4e96;
+        outline-color: #98769E;
+        outline-width: 1px;
       }
     }
   }
@@ -245,8 +290,11 @@
     margin-top: 70px;
     .info4{
       background-color: white;
-      height: 450px;
+      min-height: 360px;
       padding: 30px;
+      border-radius: 6px;
+      border: solid 1px #bfbfbf;
+      position: relative;
       label{
         color: #707070;
         font-size: 16px;
@@ -262,9 +310,205 @@
         width: 100%;
         margin-bottom: 30px;
         padding: 10px;
-        border-radius: 5px;
+        border-radius: 6px;
         resize: none;
+        outline: none;
+      }
+      input.pre-button{
+        position: absolute;
+        bottom: -60px;
+        width: 150px;
+        color: white;
+        left: 30%;
+        background-color: #707070;
+      }
+      input.next-button{
+        position: absolute;
+        bottom: -60px;
+        left: 50%;
+        width: 150px;
+        color: white;
+        background-color: #8f4e96;
+        outline-color: #98769E;
+        outline-width: 1px;
+      }
+      .add-member{
+        img{
+          height: 20px;
+          float: right;
+          cursor: pointer;
+        }
+        .member-tag{
+          width: 28%;
+          float: left;
+          height: 300px;
+          background-color: #fafafa;
+          border: solid 1px #bfbfbf;
+          font-size: 16px;
+          font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+          padding-top: 8px;
+          border-radius: 6px;
+          margin-right: 20px;
+          margin-left: 20px;
+          margin-bottom: 10px;
+          .item{
+            margin-right: 10px;
+            img{
+              margin-left: 15px;
+              width: 20px;
+              height: 20px;
+            }
+          }
+          .avatar_img{
+            margin-top: 15px;
+            img{
+              width: 100px;
+              height: 100px;
+              margin: 0 auto;
+              border-radius: 50%;
+            }
+          }
+          .intro{
+            font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+            margin-top: 90px;
+            text-align: center;
+            span{
+              color: #707070;
+            }
+            p{
+              margin-top: 10px ;
+              padding-left: 5px;
+              padding-right: 5px;
+
+            }
+          }
+        }
+        .member{
+          width: 100%;
+          padding: 15px;
+        }
+
       }
     }
   }
+}
+#add_financing{
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  .modal-dialog{
+    margin: 200px auto;
+  }
+}
+#addMember{
+  .modal-dialog{
+    width: 400px;
+    margin: 150px auto;
+    .modal-content{
+      .modal-body{
+        .member_add{
+          .member-info-card{
+            width: 100%;
+            img.delete{
+              float: right;
+              width: 20px;
+              height: 20px;
+              margin: -20px 5px 0px 0px;
+            }
+            .avatar-origin{
+              border-radius: 50%;
+              width: 120px;
+              height: 120px;
+              background-color: white;
+              border: solid 1px #e1e0e2;
+              margin: 0 auto;
+              margin-top: 25px;
+              text-align: center;
+              line-height: 112px;
+              color: #bfbfbf;
+              cursor: pointer;
+            }
+            .name-position{
+              margin: 0 auto;
+              display: table;
+              padding: 10px;
+              input{
+                margin-bottom: 10px;
+                border-radius: 3px;
+                outline: none;
+                padding: 2px;
+                padding-left: 5px;
+              }
+            }
+            textarea.member-intro{
+              margin: 0px 10px 15px 24px;
+              resize: none;
+              width: 87.5%;
+              padding: 10px;
+              min-height: 110px;
+            }
+            .yes{
+              margin: 0 auto;
+              width: 30px;
+              height: 30px;
+              margin-top: -8px;
+              img{
+                width: 26px;
+                height: 26px;
+              }
+            }
+            img{
+              height: 120px;
+              width: 120px;
+              margin: 0 auto;
+              display: block;
+              margin-top: 25px;
+              cursor: pointer;
+              border-radius: 50%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+#delete_member{
+  .modal-dialog{
+    margin: 200px auto;
+    .modal-content{
+      .modal-header{
+        h4{
+          font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+          color: #707070;
+        }
+      }
+      .modal-body{
+        p{
+          font-size: 16px;
+          font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+          color: #707070;
+        }
+      }
+
+    }
+  }
+}
+.cancer-button.btn:hover{
+  color: white;
+}
+.save-button.btn:hover{
+  color: white;
+}
+
+.cancer-button{
+  width: 150px;
+  color: white;
+  background-color: #707070;
+  outline-width: 1px;
+  outline-color: #bfbfbf;
+}
+.save-button{
+  width: 150px;
+  color: white;
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  outline-width: 1px;
 }

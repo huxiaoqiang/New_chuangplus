@@ -1,23 +1,102 @@
-<div id="container">
+<div id="container" xmlns="http://www.w3.org/1999/html">
     <div id="forth-step">
         <div class="head">
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
+            <div class="item alpha10"></div>
+            <div class="item alpha20"></div>
+            <div class="item alpha40"></div>
             <div class="item"><span class="text">第四步</span></div>
         </div>
         <div style="clear: both"></div>
         <div class="info4">
             <div>
                 <label>团队简介</label>
-                <p>根据犀牛的市场调研，超过60%的同学把团队情况作为对创业公司的主要判断依据，姑本页内容建议认真填写</p>
-                <textarea></textarea>
+                <p>根据犀牛的市场调研，超过60%的同学把团队情况作为对创业公司的主要判断依据，故本页内容建议认真填写</p>
+                <textarea ng-model="companyinfo.team_description"></textarea>
             </div>
-            <div>
+            <div class="add-member">
                 <label>团队成员</label>
+                <a ng-click="add_member()"><img src="/static/image/icon/add.png"></a>
+                <div style="clear: both"></div>
 
+                <div class="member-tag" ng-repeat="member in member_list">
+                    <div class="item">
+                        <a ng-click="delete_modal($index)"><img src="/static/image/icon/delete-01.png"></a>
+                        <a ng-click="edit_member($index)"><img src="/static/image/icon/pencil-01.png"></a>
+                    </div>
+                    <div class="avatar_img">
+                        <img src="/api/file/[[member.m_avatar_id]]/download">
+                    </div>
+                    <br/>
+                    <div class="intro">
+                        <span>[[member.m_name]]&nbsp;/&nbsp;[[member.m_position]]</span><br/>
+                        <p>[[member.m_introduction]]</p>
+                    </div>
+
+                </div>
+                <div style="clear: both"></div>
             </div>
+            <input type="button" class="pre-button btn" value="上一步" ng-click="pre_step()">
+            <input type="button" class="next-button btn" value="完成提交" ng-click="next_step()">
+        </div>
+    </div>
+</div>
+<div id="err-msg" ng-show="error.show"  ng-class="error.class">[[error.message]]</div>
 
+<!-- Modal -->
+<div class="modal fade" id="addMember" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+       <form class="member_add form-horizontal" name="memberAddForm" ng-submit="save_member()">
+           <div class="member-info-card">
+               <a ng-click="cancer_add()"><img class="delete" src="/static/image/icon/delete-01.png"></a>
+
+               <div ng-model="avatar"  ngf-select="upload($file,'memberavatar','[[member_number]]')">
+                    <img ng-if="avatar==null && member_add.hasOwnProperty('m_avatar_id')" src="/api/file/[[member_add.m_avatar_id]]/download">
+                    <div ng-if="avatar==null && !member_add.hasOwnProperty('m_avatar_id')" class="avatar-origin">点击上传图像</div>
+                    <img ng-if="avatar!=null" ngf-src="avatar" title="单击图片上传头像"><br/>
+                </div>
+
+<!--
+               <div ng-if="!member_add.hasOwnProperty('m_avatar_id')" ng-model="avatar" ngf-select="upload($file,'memberavatar',[[member_number]])" class="avatar-origin">点击上传图像</div>
+
+               <div ngf-select="upload($file,'memberavatar',[[member_number]])" ng-model="avatar">
+                    <img ngf-src="avatar" ng-if="member_add.hasOwnProperty('m_avatar_id')">
+                </div>
+-->
+                <div class="name-position">
+                    <input type="text" ng-model="member_add.m_name" placeholder="成员姓名"></br>
+                    <input type="text" ng-model="member_add.m_position" placeholder="成员职务">
+                </div>
+                <textarea class="member-intro" placeholder="成员简介" ng-model="member_add.m_introduction"></textarea>
+                <div class="yes" ng-click="save_member()"><img src="/static/image/icon/yes-01.png"></div>
+            </div>
+        </form>
+      </div>
+      <div style="clear:both;"></div>
     </div>
+  </div>
+</div>
+
+
+<!-- delete_member Modal -->
+<div class="modal fade" id="delete_member" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4>删除成员:[[member_list[delete_index].m_name]]</h4>
+      </div>
+      <div class="modal-body">
+          <p>确定删除成员[[member_list[delete_index].m_name]]？</p>
+      </div>
+      <div style="clear:both;"></div>
+      <div class="modal-footer">
+        <input type="button" class="btn cancer-button" data-dismiss="modal" value="取消">
+        <button type="button"class="btn save-button" ng-click="delete_member(delete_index)">确定</button>
+      </div>
     </div>
+  </div>
 </div>
