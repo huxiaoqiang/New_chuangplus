@@ -6,14 +6,16 @@
                 <a href="/company/[[company._id.$oid]]/detail">
                 <li>
                     <div class="company-info">
+                        <div class="auth" >
+                            <p>v[[company.auth_organization]]红杉资本认证</p>
+                        </div>
+                        <div class="bottom-side">
+                        
                         <div class="item-pic">
                             <img src="/api/file/[[company.logo_id]]/download" class="company-pic" alt="图片">
-                        </div>
-                        <div class="right-side">
-                        <div class="auth" >
-                            <p>v[[company.auth_organization]]认证</p>
-                        </div>
+                                </div>
                         <div class="info">
+                            
                         <div class="item-info info-1">
                             <div class="vertical-center">
                             <p class="abbreviation">[[company.abbreviation]]</p>
@@ -47,7 +49,7 @@
                         <div class="item-info info-3">
                             
                             <div class="welfare_tags">
-                                <span class="tags" ng-repeat="tag in company.welfare_tags">[[tag]]</span>
+                                <div class="tags" ng-repeat="tag in company.welfare_tags">[[tag]]</div>
                             </div>
                            
                         </div>

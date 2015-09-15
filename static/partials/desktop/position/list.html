@@ -82,24 +82,55 @@
                 <a href="/position/[[position._id.$oid]]/detail">
                 <li>
                     <div class="favor-list-item">
-                        <div class="item-pic">
-                            <img src="/api/file/[[position.company.logo_id]]/download" class="company-pic" alt="图片"></img>
+                        <div class="auth" >
+                            <p>v[[position.company.auth_organization]]红杉资本认证</p>
                         </div>
-                        <div class="item-info">
-                            <p class="position">[[position.position_type_value]]|[[position.name]]</p>
-                            <div class="company-description">
-                                <p class="company">[[position.company.abbreviation]]</p>
-                                <p class="company-discrpt">&nbsp;&nbsp;[[position.company.brief_introduction]]</p>
+                        <div class="middle-block">
+                            <div class="item-pic">
+                                <img src="/api/file/[[position.company.logo_id]]/download" class="company-pic" alt="图片"></img>
                             </div>
-                            <div style="clear:both;"></div>
-                            <div class="item-label">
-                                <p class="label">[[position.days_per_week]]天/周</p>
-                                <p class="label">[[position.salary_min]]k-[[position.salary_max]]k</p>
-                                <p class="label">[[position.company.scale_value]]</p>
-                                <p class="label">[[position.company.city]]</p>
+                            <div class="info">
+                                <div class="item-info info-1">
+                                    <div class="vertical-center">
+                                        <p class="position">[[position.position_type_value]]|[[position.name]]</p>
+                                    </div>
+                                </div>
+                                <div class="line"></div>
+                                <div class="item-info info-2">
+                                    <div class="vertical-center">
+                                        <p class="company">[[position.company.abbreviation]]</p>
+                                        <p class="company-discrpt">&nbsp;&nbsp;[[position.company.brief_introduction]]</p>
+                                    </div>
+                                </div>
+                                <div class="item-info info-3">
+                                    <div class="vertical-center">
+                                        <div class="label-1" ng-show="position.company.field != null">
+                                            <img src="/static/image/icon/111-01.png">
+                                            <p>[[position.company.field_type]]</p>
+                                        </div>
+                                        <div class="label-1" ng-show="position.company.scale != null">
+                                            <img src="/static/image/icon/222-01.png">
+                                            <p>[[position.company.scale_value]]</p>
+                                        </div>
+                                        <div class="label-1" ng-show="position.company.city != null">
+                                            <img src="/static/image/icon/333-01.png">
+                                            <p class="last-p">[[position.company.city]]</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="line"></div>
+                                <div class="item-info info-4">
+                                    <div class="vertical-center">
+                                        <span class="label">[[position.days_per_week]]天/周</span>
+                                        <span class="label">[[position.salary_min]]k-[[position.salary_max]]k</span>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                        <div class="bottom-block">
                             <p class="submit-time">发布时间：[[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]</p>
                         </div>
+                       
                     </div>
                 </li>
                 </a>
