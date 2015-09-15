@@ -1839,7 +1839,8 @@ angular.module('chuangplus.controllers', []).
             });
         };
         $scope.edit_member = function(index){
-
+            $scope.member_add = $scope.member_list[index];
+            $('#addMember').modal('show');
         };
         $scope.view_member = function(index){
             
