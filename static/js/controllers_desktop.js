@@ -1555,24 +1555,8 @@ angular.module('chuangplus.controllers', []).
             $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
                 success(function(data){
                     if(data.error.code == 1){
-                        $scope.companyinfo = data.data;
-                        var i=j=0;
-                        var welfare_tags = data.data.welfare_tags;
-                        for(i=0;i<welfare_tags.length;i++){
-                            for(j=0;j<$scope.tags.length;j++){
-                                if($scope.tags[j].value == welfare_tags[i]){
-                                    $scope.tags[j].chosed = true;
-                                    break;
-                                }
-                            }
-                            if(j==$scope.tags.length){
-                                $scope.tags.push({
-                                   "value":welfare_tags[i],
-                                    "chosed":true
-                                });
-                            }
+                            $scope.companyinfo = data.data;
                         }
-                    }
                 });
         };
         $scope.get_financing_list();
