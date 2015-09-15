@@ -1780,7 +1780,7 @@ angular.module('chuangplus.controllers', []).
             else{
                 request_url = urls.api+'/account/member/'+$scope.index+'/set';
             }
-            $http.post(urls.api+'/account/member/create',$.param($scope.member_add)).
+            $http.post(request_url,$.param($scope.member_add)).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.get_member_list();

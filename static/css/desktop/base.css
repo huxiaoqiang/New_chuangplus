@@ -2488,6 +2488,9 @@ form.financing_add input {
   width: 20px;
   height: 20px;
 }
+#container #forth-step .info4 .add-member .member-tag .avatar_img {
+  margin-top: 15px;
+}
 #container #forth-step .info4 .add-member .member-tag .avatar_img img {
   width: 100px;
   height: 100px;
