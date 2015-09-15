@@ -1760,6 +1760,7 @@ angular.module('chuangplus.controllers', []).
                 }
             });
         };
+        $scope.get_member_list();
         $scope.cancer_add = function(){
             $scope.add_member_flag = false;
             $scope.member_add = {};
