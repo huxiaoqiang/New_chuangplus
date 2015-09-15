@@ -15,7 +15,7 @@
             </div>
             <div class="add-member">
                 <label>团队成员</label>
-                <a ng-click="show_member_card()"><img src="/static/image/icon/add.png"></a>
+                <a data-toggle="modal"  data-target="#addMember"><img src="/static/image/icon/add.png"></a>
                 <div style="clear: both"></div>
                 <div class="member-tag" ng-repeat="member in member_list">
                     [[member.m_name]]&nbsp;/&nbsp;[[member.m_position]]
@@ -25,23 +25,34 @@
                         <a ng-click="view_member($index)"><img src="/static/image/icon/eye-01.png"></a>
                     </div>
                 </div>
-                <div class="member" ng-if="add_member_flag == true">
-                    <div class="member-info-card">
-                        <a ng-click="cancer_add()"><img class="delete" src="/static/image/icon/delete-01.png"></a>
-                        <div ng-if="avatar==undefined" ng-model="avatar" ngf-select="upload($file,'memberavatar')" class="avatar-origin">点击上传图像</div>
-                        <img ngf-src="avatar" ng-if="avatar!=undefined">
-                        <div class="name-position">
-                            <input type="text" ng-model="member_add.m_name"></br>
-                            <input type="text" ng-model="member_add.m_position">
-                        </div>
-                        <textarea class="member-intro" placeholder="成员简介" ng-model="member_add.m_introduction"></textarea>
-                        <div class="yes" ng-click="add_member()"><img src="/static/image/icon/yes-01.png"></div>
-                    </div>
-                 </div>
                 <div style="clear: both"></div>
             </div>
             <input type="button" class="pre-button btn" value="上一步" ng-click="pre_step()">
             <input type="button" class="next-button btn" value="完成提交" ng-click="next_step()">
         </div>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addMember" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+       <form class="member_add form-horizontal" name="memberAddForm" ng-submit="add_member()">
+           <div class="member-info-card">
+                <a ng-click="cancer_add()" data-dismiss="modal" aria-label="Close"><img class="delete" src="/static/image/icon/delete-01.png"></a>
+                <div ng-if="avatar==undefined" ng-model="avatar" ngf-select="upload($file,'memberavatar')" class="avatar-origin">点击上传图像</div>
+                <img ngf-src="avatar" ng-if="avatar!=undefined">
+                <div class="name-position">
+                    <input type="text" ng-model="member_add.m_name"></br>
+                    <input type="text" ng-model="member_add.m_position">
+                </div>
+                <textarea class="member-intro" placeholder="成员简介" ng-model="member_add.m_introduction"></textarea>
+                <div class="yes" ng-click="add_member()"><img src="/static/image/icon/yes-01.png"></div>
+            </div>
+        </form>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </div>
 </div>

@@ -2494,23 +2494,26 @@ form.financing_add input {
   width: 100%;
   padding: 15px;
 }
-#container #forth-step .info4 .add-member .member .member-info-card {
-  width: 45%;
-  margin-right: 20px;
-  margin-left: 20px;
-  height: 400px;
-  background-color: #fafafa;
-  border: solid 1px #bfbfbf;
-  border-radius: 6px;
-  float: left;
+#add_financing {
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
-#container #forth-step .info4 .add-member .member .member-info-card img.delete {
+#add_financing .modal-dialog {
+  margin: 200px auto;
+}
+#addMember .modal-dialog {
+  width: 400px;
+  margin: 150px auto;
+}
+#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card {
+  width: 100%;
+}
+#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card img.delete {
   float: right;
   width: 20px;
   height: 20px;
-  margin: 5px 5px 0px 0px;
+  margin: -20px 5px 0px 0px;
 }
-#container #forth-step .info4 .add-member .member .member-info-card .avatar-origin {
+#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card .avatar-origin {
   border-radius: 50%;
   width: 120px;
   height: 120px;
@@ -2523,40 +2526,34 @@ form.financing_add input {
   color: #bfbfbf;
   cursor: pointer;
 }
-#container #forth-step .info4 .add-member .member .member-info-card .name-position {
+#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card .name-position {
   margin: 0 auto;
   display: table;
   padding: 10px;
 }
-#container #forth-step .info4 .add-member .member .member-info-card .name-position input {
+#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card .name-position input {
   margin-bottom: 10px;
   border-radius: 3px;
   outline: none;
   padding: 2px;
   padding-left: 5px;
 }
-#container #forth-step .info4 .add-member .member .member-info-card textarea.member-intro {
+#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card textarea.member-intro {
   margin: 0px 10px 15px 24px;
   resize: none;
   width: 87.5%;
   padding: 10px;
   min-height: 110px;
 }
-#container #forth-step .info4 .add-member .member .member-info-card .yes {
+#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card .yes {
   margin: 0 auto;
   width: 30px;
   height: 30px;
   margin-top: -8px;
 }
-#container #forth-step .info4 .add-member .member .member-info-card .yes img {
+#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card .yes img {
   width: 26px;
   height: 26px;
-}
-#add_financing {
-  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
-}
-#add_financing .modal-dialog {
-  margin: 200px auto;
 }
 .cancer-button.btn:hover {
   color: white;
