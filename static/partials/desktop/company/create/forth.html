@@ -51,7 +51,7 @@
            <div class="member-info-card">
                 <a ng-click="cancer_add()" data-dismiss="modal" aria-label="Close"><img class="delete" src="/static/image/icon/delete-01.png"></a>
                 <div ng-if="!member_add.hasOwnProperty('m_avatar_id')" ng-model="avatar" ngf-select="upload($file,'memberavatar')" class="avatar-origin">点击上传图像</div>
-                <div ngf-select="upload($file,'memberavatar')">
+                <div ngf-select="upload($file,'memberavatar')" ng-model="avatar">
                     <img src="/api/file/[[member_add.m_avatar_id]]/download" ng-if="member_add.hasOwnProperty('m_avatar_id')">
                 </div>
                 <div class="name-position">
