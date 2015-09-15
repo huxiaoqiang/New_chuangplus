@@ -40,7 +40,8 @@
                         </div>
                         <div class="col-sm-9">
                             <div class="change_tab" ng-model="qrcode"  ngf-select="upload($file,'qrcode','qrcode')">
-                                <img ng-if="qrcode==null" src="/static/image/logo/qrcode.jpg" title="单击图片修改二维码"><br/>
+                                <img ng-if="qrcode==null && companyinfo.hasOwnProperty('qrcode_id')" src="/api/file/[[companyinfo.qrcode_id]]/download">
+                                <img ng-if="qrcode==null && !companyinfo.hasOwnProperty('qrcode_id')" src="/static/image/logo/qrcode.jpg" title="单击图片修改二维码"><br/>
                                 <img ng-if="qrcode!=null" ngf-src="qrcode" title="单击图片修改二维码"><br/>
                             </div>
                         </div>
