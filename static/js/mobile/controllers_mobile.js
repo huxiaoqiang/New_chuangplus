@@ -922,7 +922,7 @@ angular.module('chuangplus_mobile.controllers', [])
                             $scope.positions[index].resume_submitted = true;
                         }
                         else{
-                    $scope.positions[index].resume_submitted = false;
+                            $scope.positions[index].resume_submitted = false;
                         }
                     }
                     else{
@@ -956,29 +956,40 @@ angular.module('chuangplus_mobile.controllers', [])
         };
 
         $scope.submit_all = function(){
-            for(var i = 0; i < $scope.positions.length; i ++){
-                $scope.submit_posi($scope.positions[i]._id.$oid);
+            if($scope.resume_compelete)
+            {
+                $scope.submitResume = {};
+                $csrf.set_csrf($scope.submitResume);
+                $http.post(urls.api + "/account/userinfo/position/favor/submitall", $.param($scope.submitResume)).
+                    success(function(data){
+                        if(data.error.code == 1){
+                            $scope.submit_value = "已投递";
+                            $notice.show("已全部投递");
+                            for(var i = 0; i < $scope.positions.length; i ++){
+                                $scope.positions[i].resume_submitted = true;
+                            }
+                        }
+                            else{
+                            $notice.show($errMsg.format_error("",data.error).message);
+                        }
+                    }
+                ); 
             }
         };
 
         $scope.clear_invalid = function(){
-            var all_invalid = 0, clear_num = 0;
-            for(var i = 0; i < $scope.positions.length; i ++)
-            if($scope.positions[i].status == 'closed')
-            {
-                all_invalid ++;
-                $scope.submitUnFavor = {};
-                $scope.submitUnFavor.position_id = $scope.positions[i]._id.$oid;
-                $csrf.set_csrf($scope.submitUnFavor);
-                $http.post(urls.api+"/position/"+$scope.positions[i]._id.$oid+"/userunlikeposition", $.param($scope.submitUnFavor)).
+            $scope.submitResume = {};
+            $csrf.set_csrf($scope.submitResume);
+            $http.post(urls.api + "/account/userinfo/remove/closed_position", $.param($scope.submitResume)).
                 success(function(data){
-                    clear_num ++;
-                });
-            }
-            if(all_invalid == clear_num)
-                $notice.show("已全部清除");
-            else
-                $notice.show("清除遇到问题");
+                    if(data.error.code == 1){
+                        window.location.href="/mobile/position/collect";
+                    }
+                    else{
+                        $notice.show($errMsg.format_error("",data.error).message);
+                    }
+                }
+            ); 
         };
     }])
     .controller('MB_CompanyFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService', 'NoticeService',
