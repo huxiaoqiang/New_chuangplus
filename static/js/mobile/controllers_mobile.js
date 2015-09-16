@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('chuangplus_mobile.controllers', [])
-    .controller('MB_CompanyListCtrl', ['$scope', '$http', 'urls',
-     function($scope, $http, urls) {
+    .controller('MB_CompanyListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg) {
         console.log('MB_CompanyListCtrl');
         $scope.company_list = {};
         $scope.filter_show = false;
@@ -109,8 +109,8 @@ angular.module('chuangplus_mobile.controllers', [])
             });
         }
     }])
-    .controller('MB_PositionListCtrl', ['$scope', '$http', 'urls',
-     function($scope, $http, urls) {
+    .controller('MB_PositionListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg) {
         console.log('MB_PositionListCtrl');
         $scope.positions = {};
         $scope.get_positions = function(){
