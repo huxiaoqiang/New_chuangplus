@@ -59,13 +59,13 @@ body {
   background-color: white;
 }
 .purple-border {
-  border: 2px solid #966497;
+  border: 1px solid #966497;
 }
 .mid-gray-border {
-  border: 2px solid #b5b5b5;
+  border: 1px solid #b5b5b5;
 }
 .lit-gray-border {
-  border: 2px solid #dcdcdc;
+  border: 1px solid #dcdcdc;
 }
 .panel-group-top {
   height: 42px;
@@ -111,7 +111,7 @@ body {
 }
 .panel-radius {
   height: 40px;
-  border: 2px solid #966497;
+  border: 1px solid #966497;
   background: white;
   color: #966497;
   font-size: 18px;
@@ -510,7 +510,7 @@ a:hover {
 .filter-squ label {
   border-radius: 0;
   border-color: #966497;
-  border-width: 2px;
+  border-width: 1px;
   font-size: 15px;
   text-wrap: none;
 }
@@ -765,16 +765,16 @@ a:hover {
   border-color: #d4abd3;
 }
 .lit-gray-t-border {
-  border-left: 2px solid #ffffff;
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-  border-top: 2px solid #dcdcdc;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  border-top: 1px solid #dcdcdc;
 }
 .lit-gray-b-border {
-  border-left: 2px solid #ffffff;
-  border-right: 2px solid #ffffff;
-  border-top: 2px solid #ffffff;
-  border-bottom: 2px solid #dcdcdc;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #dcdcdc;
 }
 .edit-resume {
   background-color: #dcdcdc;
