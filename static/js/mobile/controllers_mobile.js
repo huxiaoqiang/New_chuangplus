@@ -42,11 +42,11 @@ angular.module('chuangplus_mobile.controllers', [])
             'functions':"职能",
             'others':"其他"
         };
-        $scope.filters = {
+        $scope.filter = {
             "field":{
                 'social':false,
                 'e_commerce':false,
-                'education':false,
+                'education':true,
                 'health_medical':false,
                 'culture_creativity':false,
                 'living_consumption':false,
@@ -85,7 +85,7 @@ angular.module('chuangplus_mobile.controllers', [])
         }
         $scope.submit_filter = function()
         {
-            $scope.filter_submit = $scope.filters;
+            $scope.filter_submit = $scope.filter;
             $http.get(urls.api+"/account/company/list", $.param($scope.filter_submit)).
                 success(function(data){
                 if(data.error.code == 1){
