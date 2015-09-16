@@ -113,6 +113,7 @@ body {
   width: 100%;
   display: block;
   background-color: white;
+  position: relative;
 }
 .panel-radius {
   height: 40px;
@@ -189,13 +190,13 @@ a:hover {
 }
 .input-notice {
   float: right;
-  font-size: 24px;
+  font-size: 20px;
   line-height: inherit;
   position: absolute;
   right: 42px;
   color: #966497;
   display: none;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 .notice-bar {
   height: 42px;
@@ -211,13 +212,13 @@ a:hover {
   display: none;
 }
 #captcha_img {
-  height: 38px;
+  height: 28px;
   position: absolute;
   right: 37px;
-  bottom: 9px;
+  bottom: 7px;
 }
 #captcha-pass {
-  right: 150px;
+  right: 135px;
 }
 .panel-title {
   color: #966497;
