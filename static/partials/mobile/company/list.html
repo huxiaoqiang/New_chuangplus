@@ -11,36 +11,37 @@
                         行业/领域
                     </div>
 
-                    <div class="filter-elem filter-single-line">
-                        <label><input type="checkbox" value="1"/>没有要求</label> 
-                    </div>
-                    <div class="filter-elem">
-                        <label><input type="checkbox" value="2"/>社交</label> 
-                    </div>
-                    <div class="filter-elem">
-                        <label><input type="checkbox" value="3" />电子商务</label> 
-                    </div>
-                    <div class="filter-elem">
-                        <label><input type="checkbox" value="4"/>教育</label> 
-                    </div>
-                    <div class="filter-elem">
-                        <label><input type="checkbox" value="5"/>健康医疗</label> 
-                    </div>
-                    <div class="filter-elem">
-                        <label><input type="checkbox" value="6"/>文化创意</label> 
-                    </div>
-                    <div class="filter-elem">
-                        <label><input type="checkbox" value="6" />生活消费</label> 
-                    </div>
-                    <div class="filter-elem">
-                        <label><input type="checkbox" value="6" />硬件</label> 
-                    </div>
-                    <div class="filter-elem">
-                        <label><input type="checkbox" value="6" id="6"/>O2O</label> 
-                    </div>
-                    <div class="filter-elem">
-                        <label><input type="checkbox" value="6" id="6"/>其它</label> 
-                    </div>
+                <div class="filter-elem filter-single-line">
+                    <label><input type="checkbox" value="1" />没有要求</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox" ng-model="filter.field.social" />社交</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox"  ng-model="filter.field.e_commerce" />电子商务</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox"  ng-model="filter.field.education" />教育</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox"  ng-model="filter.field.health_medical" />健康医疗</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox"  ng-model="filter.field.culture_creativity" />文化创意</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox"  ng-model="filter.field.living_consumption" />生活消费</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox"  ng-model="filter.field.hardware" />硬件</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox"  ng-model="filter.field.O2O" />O2O</label> 
+                </div>
+                <div class="filter-elem">
+                    <label><input type="checkbox"  ng-model="filter.field.others" />其它</label> 
+                </div>
+
 
                 </div>
 
@@ -50,16 +51,16 @@
                     </div>
 
                     <div class="filter-elem filter-single-line">
-                        <label><input name="comp-scale" type="radio" value="1"/>没有要求</label> 
+                        <label><input name="comp-scale" type="radio" ng-model="filter.scale" value=""/>没有要求</label> 
                     </div>
                     <div class="filter-elem filter-single-line">
-                        <label><input name="comp-scale" type="radio" value="2" />初创（未融资/种子轮/天使轮）</label> 
+                        <label><input name="comp-scale" type="radio" ng-model="filter.scale" value="0" />初创（未融资/种子轮/天使轮）</label> 
                     </div>
                     <div class="filter-elem filter-single-line">
-                        <label><input name="comp-scale" type="radio" value="3" />成长（A轮/B轮）</label> 
+                        <label><input name="comp-scale" type="radio" ng-model="filter.scale" value="1" />成长（A轮/B轮）</label> 
                     </div>
                     <div class="filter-elem filter-single-line">
-                        <label><input name="comp-scale" type="radio" value="4" />成熟（C轮以上/已上市）</label> 
+                        <label><input name="comp-scale" type="radio" ng-model="filter.scale" value="2" />成熟（C轮以上/已上市）</label> 
                     </div>
 
                 </div>
@@ -89,7 +90,7 @@
                     </div>
 
                 </div>
-                <button class="panel-radius form-control btn-b-pur filter-btn" ng-click="hide_filter()">按条件筛选公司</button>
+                <button class="panel-radius form-control btn-b-pur filter-btn" ng-click="submit_filter()">按条件筛选公司</button>
             </div>
 
         </div>
