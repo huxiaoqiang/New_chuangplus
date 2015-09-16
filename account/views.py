@@ -1118,7 +1118,7 @@ def search_submit_intern(request):
         processed = request.GET.get('processed','')
 
         try:
-            company = Companyinfo.objects.get(username='company2')
+            company = Companyinfo.objects.get(username=request.user.username)
         except:
             re["error"] = error(105,"company does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
