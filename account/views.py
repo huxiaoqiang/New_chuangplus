@@ -420,6 +420,11 @@ def get_position_favor(request):
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             position_re = json.loads(posi.to_json())
             try:
+                userposition = UserPosition(user=request.user,position=posi)
+                position_re['resume_submitted'] = True
+            except:
+                position_re['resume_submitted'] = False
+            try:
                 company = Companyinfo.objects.get(id=posi.company.id)
             except DoesNotExist:
                 re['error'] = error(105,"Companyinfo does not exist!")
