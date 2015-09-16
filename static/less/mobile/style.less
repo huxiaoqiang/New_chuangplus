@@ -439,21 +439,27 @@ a:hover
 }
 .require-bar .require-box
 {
-    font-size: @cl-require-fsize;
-    height: @cl-require-hgt;
-    line-height: @cl-require-hgt;
+    font-size: 16px;
+    height: 46px;
+    line-height: 46px;
     display: block;
-    padding: 0 @cl-require-boxpd 0 @cl-require-boxpd / 2;
+    padding: 0 23px 0 5px;
     float: left;
-    border: 1px solid @dark-gray;
-    color:  black;
+    border: 1px solid #707070;
+    color: black;
     position: relative;
+    background: url("/static/image/icon/delete-01.png") no-repeat right 4px center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    margin-right: -1px;
 }
 .require-bar .requires .require-box .require-delete
 {
     float: right;
     right: 3px;
-    width: 8px;
+    width: 15px;
+    top: 15px;
+    position: absolute;
 }
 .require-bar .requires
 {
