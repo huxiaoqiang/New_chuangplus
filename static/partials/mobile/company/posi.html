@@ -1,9 +1,13 @@
 <div ng-controller="MB_CompanyPositionCtrl">
+<div class="notice-bar">
+    notice
+</div>
 <div class="main-content scrollable" >
 <div class="scrollable-content">
     <div class="header-bar">
         <div class="header">公司岗位</div>
     </div>    
+
 
     <div class="comp-detail">
         <div class="comp-listbox " >
@@ -61,7 +65,7 @@
 <div ui-content-for="footer">
 <div class="navbar navbar-app navbar-absolute-bottom">
     <a class="nav-bar-2 selected" href="/mobile/company/detail/[[company_id]]">返回公司</a>
-    <a class="nav-bar-2 ">收藏公司</a>
+    <a class="nav-bar-2 " ng-click="post()">[[post_value]]</a>
 </div>
 </div>
 </div>
