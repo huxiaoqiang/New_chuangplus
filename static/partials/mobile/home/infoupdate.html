@@ -85,7 +85,9 @@
   </div>
   </div>
   <div ui-content-for="footer">
-      <a ng-class="{1: 'nav-bar-2 ', 2: 'nav-bar-2 selected'}[tab_now]" ng-click="tab_now = 2">修改信息</a>
-      <a ng-class="{1: 'nav-bar-2 selected', 2: 'nav-bar-2'}[tab_now]" ng-click="tab_now = 1">修改密码</a>
+      <div class="navbar navbar-app navbar-absolute-bottom">
+          <a ng-class="{1: 'nav-bar-2 ', 2: 'nav-bar-2 selected'}[tab_now]" ng-click="tab_now = 2">修改信息</a>
+          <a ng-class="{1: 'nav-bar-2 selected', 2: 'nav-bar-2'}[tab_now]" ng-click="tab_now = 1">修改密码</a>
+      </div>
   </div>
 </div>

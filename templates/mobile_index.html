@@ -38,22 +38,18 @@
     <a  ui-toggle='uiSidebarLeft'>Toggle sidebar left</a>
     -->
     <div class="app" >
-        <div ui-yield-to="header">
-        </div>
+      <div ui-yield-to="header"></div>
       <!-- App Body -->
-        <div class="app-body" ng-class="{loading: loading}">
-            <div ng-show="loading" class="app-content-loading">
-              <i class="fa fa-spinner fa-spin loading-spinner"></i>
-            </div>
-              <ng-view></ng-view>
+      <div class="app-body" ng-class="{loading: loading}">
+        <div ng-show="loading" class="app-content-loading">
+          <i class="fa fa-spinner fa-spin loading-spinner"></i>
         </div>
-        <div ui-yield-to="footer" class="navbar navbar-app navbar-absolute-bottom">
-      
-        </div>
+          <ng-view></ng-view>
+      </div>
+      <div ui-yield-to="footer"></div>
     </div>
     <!-- ~ .app -->
-    <div ui-yield-to="overlays">
-    </div>
+    <div ui-yield-to="overlays"></div>
 
     <script src="/static/js/mobile/app_mobile.js"></script>
     <script src="/static/js/mobile/services_mobile.js"></script>
