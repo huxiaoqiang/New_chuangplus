@@ -119,6 +119,37 @@ angular.module('chuangplus_mobile.controllers', [])
         console.log('MB_PositionListCtrl');
         $scope.positions = {};
         $scope.filter_show = false;
+        $scope.filter = {
+            "workdays":{
+                "day0": false,
+                "day3": false,
+                "day4": false,
+                "day5": false,
+                "day6": false,
+                "day7": false
+            },
+            "field":{
+                'social':false,
+                'e_commerce':false,
+                'education':false,
+                'health_medical':false,
+                'culture_creativity':false,
+                'living_consumption':false,
+                'hardware':false,
+                'O2O':false,
+                'others':false
+            },
+            "type":{
+                'technology':false,
+                'product':false,
+                'design':false,
+                'operate':false,
+                'marketing':false,
+                'functions':false,
+                'others':false
+            },
+            "salary": ''
+        };
         $scope.get_positions = function(){
             $http.get(urls.api+"/position/search").
                 success(function(data){
@@ -182,37 +213,7 @@ angular.module('chuangplus_mobile.controllers', [])
     }])
     .controller('MB_PositionFilterCtrl', ['$scope', '$http', 'urls', '$routeParams',
          function($scope, $http, urls, $routeParams) {
-    $scope.filter = {
-            "workdays":{
-                "day0": false,
-                "day3": false,
-                "day4": false,
-                "day5": false,
-                "day6": false,
-                "day7": false
-            },
-            "field":{
-                'social':false,
-                'e_commerce':false,
-                'education':false,
-                'health_medical':false,
-                'culture_creativity':false,
-                'living_consumption':false,
-                'hardware':false,
-                'O2O':false,
-                'others':false
-            },
-            "type":{
-                'technology':false,
-                'product':false,
-                'design':false,
-                'operate':false,
-                'marketing':false,
-                'functions':false,
-                'others':false
-            },
-            "salary": ''
-        };
+    
     }])
     .controller('MB_CompanyPositionCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
     function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
