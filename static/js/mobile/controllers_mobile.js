@@ -46,7 +46,7 @@ angular.module('chuangplus_mobile.controllers', [])
             "field":{
                 'social':false,
                 'e_commerce':false,
-                'education':true,
+                'education':false,
                 'health_medical':false,
                 'culture_creativity':false,
                 'living_consumption':false,
@@ -86,8 +86,8 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.submit_filter = function()
         {
             $scope.filter_submit = $scope.filter;
-            $http.get(urls.api+"/account/company/list", $.param($scope.filter_submit)).
-                success(function(data){
+            $http.post(urls.api+"/account/company/list", $.param($scope.filter_submit)).
+            success(function(data){
                 if(data.error.code == 1){
                     $scope.company_list = data.data;
                     console.log(data);
@@ -106,7 +106,6 @@ angular.module('chuangplus_mobile.controllers', [])
                     $scope.filter_show = false;
                 }
             });
-
         }
     }])
     .controller('MB_PositionListCtrl', ['$scope', '$http', 'urls',
