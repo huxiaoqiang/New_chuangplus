@@ -1856,8 +1856,9 @@ angular.module('chuangplus.controllers', []).
                 setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                 return;
             }
-             $csrf.set_csrf($scope.companyinfo);
-                $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
+            $scope.companyinfo.info_complete = true;
+            $csrf.set_csrf($scope.companyinfo);
+            $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.error = $errMsg.format_error("创建公司信息成功",data.error);

@@ -956,7 +956,7 @@ def get_company_list(request):
         scale = request.GET.get('scale', '')
         status = request.GET.get('status', '')
 
-        companies = Companyinfo.objects.all()
+        companies = Companyinfo.objects(info_complete=True)
 
         if text != '':
             companies = companies.filter(
