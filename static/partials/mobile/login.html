@@ -32,17 +32,17 @@
     <div name="login" id="login">
       <div class="panel-list">
         <span class="panel-group-top purple-border">
-          <div class="panel-elem elem-width-4 panel-title">用户名</div>
+          <div class="panel-elem elem-width-4 panel-title">&nbsp;用户名</div>
           <input class="panel-elem elem-width-43" type="text" name="username" ng-model="login_info.username"  required>
         </span>
 
         <span class="panel-group-mid login-input purple-border">
-          <div class="panel-elem elem-width-4 panel-title">密码</div>
+          <div class="panel-elem elem-width-4 panel-title">&nbsp;密码</div>
           <input class="panel-elem elem-width-43" type="password" ng-model="login_info.password"  required> 
         </span>
 
         <span class="panel-group-bot login-input purple-border">
-          <div class="panel-elem elem-width-4 panel-title">验证码</div>
+          <div class="panel-elem elem-width-4 panel-title">&nbsp;验证码</div>
           <input class="panel-elem elem-width-3" type="text" ng-blur="check_captcha()" ng-model="login_info.captcha" required>
           <img ng-click="refresh_captcha()" ng-src='[[captcha_url]]' id="captcha_img" alt="验证码">
           <i class="fa fa-check-circle input-notice" id="captcha-pass"></i>
@@ -52,7 +52,7 @@
     </div>
 
     <div class="panel-list">
-        <a class="panel-radius form-control" ng-click="login_user()">登录</a>
+        <a class="panel-radius form-control selected" ng-click="login_user()">登录</a>
         <a class="panel-radius form-control login-input" href="/mobile/register">注册</a>
     </div>
     </div>
