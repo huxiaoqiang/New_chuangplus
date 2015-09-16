@@ -372,7 +372,7 @@ def search_position(request):
                 position_types = position_types.split(',')
                 for position_type in position_types:
                     assert position_type in TYPE
-                qs = qs.filter(position_type_in = position_types)
+                qs = qs.filter(position_type__in = position_types)
             except (AssertionError,ValueError,UnicodeDecodeError):
                 re['error'] = error(238,"Invaild search type!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')

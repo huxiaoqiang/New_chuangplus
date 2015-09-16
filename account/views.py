@@ -1084,7 +1084,7 @@ def process_single(request,position_id,username):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission('login')
-def get_submit_list(request,position_id):
+def get_submit_list_intern(request,position_id):
     re = dict()
     if request.method == 'GET':
         try:
@@ -1107,3 +1107,44 @@ def get_submit_list(request,position_id):
     else:
         re['error'] = error(3,'Error, need GET')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+TYPE = ('technology','product','design','operate','marketing','functions','others')
+@user_permission('login')
+def search_submit_intern(request):
+    re = dict()
+    if request.method == 'GET':
+        type = request.GET.get('type', '')
+        processed = request.GET.get('process','')
+
+        try:
+            company = Companyinfo.objects.get(username=request.user.username)
+        except:
+            re["error"] = error(105,"company does not exist!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        try:
+            up = UserPosition.objects(company=company)
+        except DoesNotExist:
+            re['error'] = error(267,'Nobody submit the position')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        if processed != '':
+             up = up.filter(processed = bool(processed))
+
+        if type != '':
+            try:
+                assert type in TYPE
+                up = up.filter(position__position_type = type)
+            except (AssertionError,ValueError,UnicodeDecodeError):
+                re['error'] = error(238,"Invaild search type!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+        user_list = []
+        for item in up:
+            u = Userinfo.objects.get(user = item.user)
+            userinfo = json.loads(u.to_json())
+            user_list.append(userinfo)
+        re['error'] = error(1,'succeed ')
+        re['data'] = user_list
+        re['data']['position_name'] = item.position.name
+    else:
+        re['error'] = error(3,'Error,need GET')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
