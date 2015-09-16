@@ -72,10 +72,10 @@
                                 <div class="amount" ng-if="financing.amount=='hundred'">&nbsp;&nbsp;/&nbsp;&nbsp;百万级</div>
                                 <div class="amount" ng-if="financing.amount=='thousand'">&nbsp;&nbsp;/&nbsp;&nbsp;千万级</div>
                                 <div class="amount" ng-if="financing.amount=='thousand_plus'">&nbsp;&nbsp;/&nbsp;&nbsp;亿级</div>
-                                <div class="">
-                                    <button type="button" class="close" aria-label="Close" data-target="#delete_financing"  data-toggle="modal" ng-click="get_delete_index($index)">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                <div class="delete_button">
+                                    <a ng-click="get_delete_index($index)">
+                                        <img src="/static/image/icon/delete-01.png">
+                                    </a>
                                 </div>
                                 <br/>
                             </div>
@@ -147,15 +147,23 @@
         <h4 class="modal-title" id="myModalLabel">删除融资经历</h4>
       </div>
       <div class="modal-body">
-          确定删除：</br>
-          [[financing_list[delete_index].organization]]对贵公司的
-        <span ng-if="financing_list[delete_index].stage=='seed'">种子轮</span>
-        <span ng-if="financing_list[delete_index].stage=='angel'">天使轮</span>
-        <span ng-if="financing_list[delete_index].stage=='A'">A轮</span>
-        <span ng-if="financing_list[delete_index].stage=='B'">B轮</span>
-        <span ng-if="financing_list[delete_index].stage=='C'">C轮</span>
-        <span ng-if="financing_list[delete_index].stage=='D_plus'">D轮及D轮以上</span>
-          投资？
+          确定删除融资信息：</br>
+          <div class="financing" ng-repeat="financing in financing_list">
+              <div class="stage" ng-if="financing.stage=='seed'">种子轮&nbsp;&nbsp;/&nbsp;&nbsp;</div>
+              <div class="stage" ng-if="financing.stage=='angel'">天使轮&nbsp;&nbsp;/&nbsp;&nbsp;</div>
+              <div class="stage" ng-if="financing.stage=='A'">A轮&nbsp;&nbsp;/&nbsp;&nbsp;</div>
+              <div class="stage" ng-if="financing.stage=='B'">B轮&nbsp;&nbsp;/&nbsp;&nbsp;</div>
+              <div class="stage" ng-if="financing.stage=='C'">C轮&nbsp;&nbsp;/&nbsp;&nbsp;</div>
+              <div class="stage" ng-if="financing.stage=='D_plus'">D轮及D轮以上&nbsp;&nbsp;/&nbsp;&nbsp;</div>
+              
+              <div class="organization">[[financing.organization]]</div>
+              
+              <div class="amount" ng-if="financing.amount=='ten'">&nbsp;&nbsp;/&nbsp;&nbsp;十万级</div>
+              <div class="amount" ng-if="financing.amount=='hundred'">&nbsp;&nbsp;/&nbsp;&nbsp;百万级</div>
+              <div class="amount" ng-if="financing.amount=='thousand'">&nbsp;&nbsp;/&nbsp;&nbsp;千万级</div>
+              <div class="amount" ng-if="financing.amount=='thousand_plus'">&nbsp;&nbsp;/&nbsp;&nbsp;亿级</div>
+        </div>
+
       </div>
       <div style="clear:both;"></div>
       <div class="modal-footer">

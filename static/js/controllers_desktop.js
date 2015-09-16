@@ -1238,6 +1238,23 @@ angular.module('chuangplus.controllers', []).
             'functions':"职能",
             'others':"其他"
         };
+        $scope.scale = {
+            0:"初创",
+            1:"快速发展",
+            2:"成熟"
+        };
+        $scope.field_type={
+            'social':"社交",
+            'e-commerce':"电子商务",
+            'education':"教育",
+            'health_medical':"健康医疗",
+            'culture_creativity':"文化创意",
+            'living_consumption':"生活消费",
+            'hardware':"硬件",
+            '020':"O2O",
+            'others':"其他"
+        };
+
         $scope.stage = {
             "seed" :"种子轮",
             "angel":"天使轮",
@@ -1287,9 +1304,15 @@ angular.module('chuangplus.controllers', []).
                     $scope.company = data.data;
 
                     $scope.company.position_number = $scope.company.positions.length;
-                    for(i=0;i<$scope.company.position_number;i++){
-                        $scope.company.position_list[i].position_type_value = $scope.position_type[$scope.company.position_list[i].position_type];
+                    $scope.company.scale_value = $scope.scale[$scope.company.scale];
+                    $scope.company.field_type = $scope.field_type[$scope.company.field];
+                      $scope.company.position_type_value = {};
+                    for(i=0;i<$scope.company.position_type.length;i++){
+                      $scope.company.position_type_value[i] = $scope.position_type[$scope.company.position_type[i]];
                     }
+                      for(i=0;i<$scope.company.position_number;i++){
+                        $scope.company.position_list[i].position_type_value = $scope.position_type[$scope.company.position_list[i].position_type]
+                      }
                 }
                 else{
                     $scope.error = $errMsg.format_error("",data.error);
@@ -1598,6 +1621,7 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.get_delete_index = function($index){
             $scope.delete_index = $index;
+            $('#delete_financing').modal('show');
         };
         $scope.delete_financing = function(index){
             var param = {
