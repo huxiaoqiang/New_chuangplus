@@ -68,6 +68,11 @@ angular.module('chuangplus_mobile.controllers', [])
             $("#filter-content").slideDown("normal");
             $scope.filter_show = true;
         }
+        $scope.hide_filter = function()
+        {
+            $("#filter-content").slideUp("normal");
+            $scope.filter_show = false;
+        }
     }])
     .controller('MB_PositionListCtrl', ['$scope', '$http', 'urls',
      function($scope, $http, urls) {
