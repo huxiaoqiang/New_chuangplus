@@ -167,10 +167,7 @@ body
 .panel-group-top
 {
     height: @input-height ;
-    border-top-left-radius:     @btn-radius;
-    border-top-right-radius:  @btn-radius;
-    border-bottom-left-radius:     0;
-    border-bottom-right-radius: 0;
+    border-radius:     @btn-radius;
     background:                 white;
     width: 100%;
     display: block;
@@ -180,8 +177,8 @@ body
 {
     height: @input-height ;
     background: white;
-    border-radius:     0;
-    margin-top: -@btn-border;
+    border-radius:     @btn-radius;
+    margin-top: 8px;
     width: 100%;
     display: block;
 }
@@ -209,13 +206,10 @@ body
 .panel-group-bot
 {
     height: @input-height ;
-    border-top-left-radius:     0;
-    border-top-right-radius:  0;
-    border-bottom-left-radius:     @btn-radius;
-    border-bottom-right-radius: @btn-radius;
-    margin-top: -@btn-border;
+    border-radius:     @btn-radius;
     width: 100%;
     display: block;
+    margin-top: 8px;
     background-color: white;
     position: relative;
 }
