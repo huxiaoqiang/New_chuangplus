@@ -44,7 +44,6 @@
           </span>
 
           <span class="panel-group-mid login-input purple-border">
-            <div class="panel-elem elem-width-4 panel-title">确认密码</div>
             <input class="panel-elem elem-width-full" ng-blur="check_pass_same()" ng-model="repeate_password" ng-minlength="6" required type="password" placeholder="确认密码">
             <i class="fa fa-check-circle input-notice" id="pass2-pass"></i>
           </span>
@@ -58,7 +57,7 @@
       </div>
 
       <div class="panel-list">
-          <button class="panel-radius form-control" ng-click="register()"> 注册 </button>
+          <button class="panel-radius form-control selected" ng-click="register()"> 注册 </button>
       </div>
 
     </div>
