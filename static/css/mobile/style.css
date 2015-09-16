@@ -74,11 +74,13 @@ body {
   width: 100%;
   display: block;
 }
+.login-input {
+  margin-top: 15px;
+}
 .panel-group-mid {
   height: 42px;
   background: white;
   border-radius: 5px;
-  margin-top: 8px;
   width: 100%;
   display: block;
 }
@@ -105,7 +107,6 @@ body {
   border-radius: 5px;
   width: 100%;
   display: block;
-  margin-top: 8px;
   background-color: white;
   position: relative;
 }
