@@ -13,16 +13,16 @@
           <div class="info-block-title">账户信息</div>
 
           <span class="panel-group-top info-input lit-gray-b-border">
-            <input class="panel-elem full-width-input" name="password" ng-model="user_pwd.password" type="password" placeholder="请输入旧密码">
+            <input class="panel-elem " name="password" ng-model="user_pwd.password" type="password" placeholder="请输入旧密码">
           </span>
 
           <span class="panel-group-mid info-input lit-gray-t-border">
-            <input class="panel-elem full-width-input" ng-blur="check_pass_len()" name="password" ng-model="user_pwd.new_password" ng-minlength="6"  type="password" placeholder="请输入新密码">
+            <input class="panel-elem " ng-blur="check_pass_len()" name="password" ng-model="user_pwd.new_password" ng-minlength="6"  type="password" placeholder="请输入新密码">
             <i class="fa fa-check-circle input-notice" id="pass1-pass"></i>
           </span>
 
           <span class="panel-group-bot lit-gray-t-border">
-            <input class="panel-elem full-width-input" ng-blur="check_pass_same()" ng-model="repeate_password" ng-minlength="6" type="password" placeholder="请确认密码">
+            <input class="panel-elem " ng-blur="check_pass_same()" ng-model="repeate_password" ng-minlength="6" type="password" placeholder="请确认密码">
             <i class="fa fa-check-circle input-notice" id="pass2-pass"></i>
           </span>
         </div>
