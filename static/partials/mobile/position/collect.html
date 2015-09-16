@@ -41,11 +41,15 @@
                                 发布时间：[[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]
                             </div>
                         </a>
-                        <div class="send-resume" ng-click="submit_posi('[[position._id.$oid]]')" ng-if="!position.resume_submitted">
+                        <div class="send-resume" ng-click="submit_posi($index)" ng-show="!position.resume_submitted && resume_compelete">
                             <i class="fa fa-envelope send-resume-logo"></i>
                             <div class="send-resume-text">投递简历</div>
                         </div>
-                        <div class="send-resume" ng-if='position.resume_submitted'>
+                        <div class="send-resume" ui-turn-on="addresume" ng-show="!position.resume_submitted && !resume_compelete">
+                            <i class="fa fa-envelope send-resume-logo"></i>
+                            <div class="send-resume-text">投递简历</div>
+                        </div>
+                        <div class="send-resume" ng-show='position.resume_submitted'>
                             <i class="fa fa-check-square-o send-resume-logo"></i>
                             <div class="send-resume-text">已投递</div>
                         </div>
@@ -60,8 +64,12 @@
     </div>
     <div ui-content-for="footer">
         <div class="navbar navbar-app navbar-absolute-bottom">
-            <a class="nav-bar-2 selected" ng-click="submit_all()">一键全部投递</a>
-            <a class="nav-bar-2 ">清除失效岗位</a>
+            <a class="nav-bar-2 selected" ng-if="resume_compelete"ng-click="submit_all()">一键全部投递</a>
+            <a class="nav-bar-2 selected" ng-if="!resume_compelete" ui-turn-on="addresume">一键全部投递</a>
+            <a class="nav-bar-2 " ng-click='clear_invalid'>清除失效岗位</a>
         </div>
+    </div>
+    <div ui-content-for="overlays">
+        <div ng-include="'/static/partials/mobile/partials/overlay_addresume.html'"></div>
     </div>
 </div>

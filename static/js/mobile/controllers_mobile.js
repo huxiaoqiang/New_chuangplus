@@ -921,8 +921,8 @@ angular.module('chuangplus_mobile.controllers', [])
                         if(data.exist == true){
                             $scope.positions[index].resume_submitted = true;
                         }
-                        else{
-                    $scope.positions[index].resume_submitted = false;
+                        else{$index
+                            $scope.positions[index].resume_submitted = false;
                         }
                     }
                     else{
@@ -933,7 +933,7 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.get_userInfo();
         $scope.get_positions();
 
-        $scope.submit_posi = function(submit_id){
+        $scope.submit_posi = function(index){
             if($scope.resume_submitted == true)
                 $scope.submitResume.resume_choice = 1;
             else
@@ -941,11 +941,11 @@ angular.module('chuangplus_mobile.controllers', [])
             if($scope.resume_compelete)
             {
                 $csrf.set_csrf($scope.submitResume);
-                $http.post(urls.api + "/position/"+submit_id+"/submit", $.param($scope.submitResume)).
+                $http.post(urls.api + "/position/"+$scope.positions[index]._id.$oid+"/submit", $.param($scope.submitResume)).
                     success(function(data){
                         if(data.error.code == 1){
-                            $scope.submit_value = "已投递";
                             $notice.show("已投递");
+                            $scope.positions[index].resume_submitted = true;
                         }
                             else{
                             $notice.show($errMsg.format_error("",data.error).message);
@@ -956,29 +956,40 @@ angular.module('chuangplus_mobile.controllers', [])
         };
 
         $scope.submit_all = function(){
-            for(var i = 0; i < $scope.positions.length; i ++){
-                $scope.submit_posi($scope.positions[i]._id.$oid);
+            if($scope.resume_compelete)
+            {
+                $scope.submitResume = {};
+                $csrf.set_csrf($scope.submitResume);
+                $http.post(urls.api + "/account/userinfo/position/favor/submitall", $.param($scope.submitResume)).
+                    success(function(data){
+                        if(data.error.code == 1){
+                            $scope.submit_value = "已投递";
+                            $notice.show("已全部投递");
+                            for(var i = 0; i < $scope.positions.length; i ++){
+                                $scope.positions[i].resume_submitted = true;
+                            }
+                        }
+                            else{
+                            $notice.show($errMsg.format_error("",data.error).message);
+                        }
+                    }
+                ); 
             }
         };
 
         $scope.clear_invalid = function(){
-            var all_invalid = 0, clear_num = 0;
-            for(var i = 0; i < $scope.positions.length; i ++)
-            if($scope.positions[i].status == 'closed')
-            {
-                all_invalid ++;
-                $scope.submitUnFavor = {};
-                $scope.submitUnFavor.position_id = $scope.positions[i]._id.$oid;
-                $csrf.set_csrf($scope.submitUnFavor);
-                $http.post(urls.api+"/position/"+$scope.positions[i]._id.$oid+"/userunlikeposition", $.param($scope.submitUnFavor)).
+            $scope.submitResume = {};
+            $csrf.set_csrf($scope.submitResume);
+            $http.post(urls.api + "/account/userinfo/remove/closed_position", $.param($scope.submitResume)).
                 success(function(data){
-                    clear_num ++;
-                });
-            }
-            if(all_invalid == clear_num)
-                $notice.show("已全部清除");
-            else
-                $notice.show("清除遇到问题");
+                    if(data.error.code == 1){
+                        window.location.href="/mobile/position/collect";
+                    }
+                    else{
+                        $notice.show($errMsg.format_error("",data.error).message);
+                    }
+                }
+            ); 
         };
     }])
     .controller('MB_CompanyFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService', 'NoticeService',
