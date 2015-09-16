@@ -37,7 +37,7 @@
 
 @cl-require-hgt:   46px;
 @cl-require-fsize:  16px;
-@cl-require-boxpd:  12px;
+@cl-require-boxpd:  14px;
 
 @cl-search-hgt:    46px;
 @cl-require-btn-rad :   8px;
@@ -443,10 +443,17 @@ a:hover
     height: @cl-require-hgt;
     line-height: @cl-require-hgt;
     display: block;
-    padding: 0 0 0 @cl-require-boxpd;
+    padding: 0 @cl-require-boxpd 0 @cl-require-boxpd / 2;
     float: left;
     border: 1px solid @dark-gray;
     color:  black;
+    position: relative;
+}
+.require-bar .requires .require-box .require-delete
+{
+    float: right;
+    right: 3px;
+    width: 8px;
 }
 .require-bar .requires
 {
@@ -584,6 +591,7 @@ a:hover
     margin-right: @cl-comp-tag-mag;
     text-align: center;
     white-space:nowrap;
+    margin-bottom: 1px;
 }
 
 .comp-desc-list{
@@ -601,6 +609,7 @@ a:hover
     font-size: @cl-comp-desct-fsize;
     margin-right: @cl-comp-tag-mag;
     text-align: center;
+    margin-bottom: 1px;
     white-space:nowrap;
 }
 
@@ -617,6 +626,7 @@ a:hover
     border-radius: @cl-comp-tag-radius;
     float: left;
     margin-right: @cl-comp-tag-mag;
+    margin-bottom: 1px;
 }
 
 .post-time{
