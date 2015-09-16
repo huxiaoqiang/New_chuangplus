@@ -9,8 +9,26 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   overflow-x: hidden;
 }
+.navbar-app {
+  min-height: 40px !important;
+}
 .no-bar-top {
   top: 0 !important;
+}
+.app-content-loading {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.6);
+  position: relative;
+}
+.loading-spinner {
+  position: absolute;
+  font-size: 50px;
+  left: 50%;
+  top: 50%;
+  margin-left: -25px;
+  margin-top: -25px;
 }
 .sidebar-toggle {
   color: white !important;
@@ -36,34 +54,33 @@ body {
 }
 .main-content {
   display: block;
-  padding-bottom: 54px;
+  padding-bottom: 50px;
   height: 100%;
   background-color: white;
 }
 .purple-border {
-  border: 2px solid #966497;
+  border: 1px solid #966497;
 }
 .mid-gray-border {
-  border: 2px solid #b5b5b5;
+  border: 1px solid #b5b5b5;
 }
 .lit-gray-border {
-  border: 2px solid #dcdcdc;
+  border: 1px solid #dcdcdc;
 }
 .panel-group-top {
-  height: 56px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  height: 36px;
+  border-radius: 5px;
   background: white;
   width: 100%;
   display: block;
 }
+.login-input {
+  margin-top: 15px;
+}
 .panel-group-mid {
-  height: 56px;
+  height: 36px;
   background: white;
-  border-radius: 0;
-  margin-top: -2px;
+  border-radius: 5px;
   width: 100%;
   display: block;
 }
@@ -86,23 +103,22 @@ body {
   background-color: white;
 }
 .panel-group-bot {
-  height: 56px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  margin-top: -2px;
+  height: 36px;
+  border-radius: 5px;
   width: 100%;
   display: block;
   background-color: white;
+  position: relative;
 }
 .panel-radius {
-  height: 50px;
-  border: 2px solid #966497;
+  width: 100%;
+  height: 36px;
+  line-height: 36px;
+  border: 1px solid #966497;
   background: white;
   color: #966497;
-  font-size: 22px;
-  border-radius: 10px;
+  font-size: 18px;
+  border-radius: 5px;
   text-align: center;
 }
 .login-btn {
@@ -114,7 +130,7 @@ body {
 }
 .panel-list {
   width: 100%;
-  padding: 0 20px 0 20px;
+  padding: 0 40px 0 40px;
 }
 a {
   display: inline-block;
@@ -125,14 +141,7 @@ a:hover {
   text-decoration: none;
   color: black;
 }
-.panel-radius input {
-  border: 0;
-  border-radius: inherit;
-  width: 92%;
-  height: 100%;
-  margin-left: 8%;
-}
-.panel-radius select {
+.panel-group-bot select {
   border: 0;
   border-radius: inherit;
   width: 100%;
@@ -144,10 +153,10 @@ a:hover {
   float: left;
   position: relative;
   height: 100%;
-  padding: 0;
+  padding: 0 5px 0 5px;
   border: 0;
   margin: 0;
-  font-size: 18px;
+  font-size: 16px;
   border-radius: inherit;
 }
 .full-width-input {
@@ -171,13 +180,13 @@ a:hover {
 }
 .input-notice {
   float: right;
-  font-size: 24px;
+  font-size: 20px;
   line-height: inherit;
   position: absolute;
   right: 42px;
   color: #966497;
   display: none;
-  margin-top: 10px;
+  margin-top: 3px;
 }
 .notice-bar {
   height: 42px;
@@ -193,37 +202,37 @@ a:hover {
   display: none;
 }
 #captcha_img {
-  height: 38px;
+  height: 28px;
   position: absolute;
-  right: 37px;
-  bottom: 9px;
+  right: 10px;
+  bottom: 3px;
 }
 #captcha-pass {
-  right: 150px;
+  right: 95px;
 }
 .panel-title {
-  color: #966497;
-  text-align: center;
-  line-height: 56px;
+  color: #b5b5b5;
+  text-align: left;
+  line-height: 36px;
   margin: 0 0 0 0;
   position: relative;
   left: 0;
 }
 .login-header {
-  height: 180px;
+  height: 210px;
   text-align: center;
   margin-bottom: 5px;
 }
 .login-header .logo {
-  width: 90px;
-  margin-top: 30px;
+  width: 180px;
+  margin-top: 8px;
 }
 .login-header .name {
   margin-top: 12px;
   text-align: center;
   font-size: 20pt;
 }
-.login-input {
+.input-btn-part {
   position: relative;
   margin-bottom: 30px;
 }
@@ -273,9 +282,22 @@ a:hover {
   height: 46px;
   line-height: 46px;
   display: block;
-  padding: 0 0 0 12px;
+  padding: 0 23px 0 5px;
   float: left;
-  color: #707070;
+  border: 1px solid #707070;
+  color: black;
+  position: relative;
+  background: url("/static/image/icon/delete-01.png") no-repeat right 4px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  margin-right: -1px;
+}
+.require-bar .requires .require-box .require-delete {
+  float: right;
+  right: 3px;
+  width: 15px;
+  top: 15px;
+  position: absolute;
 }
 .require-bar .requires {
   position: absolute;
@@ -330,7 +352,7 @@ a:hover {
 .comp-listbox {
   display: block;
   min-height: 114px;
-  margin-bottom: 3px;
+  margin-bottom: 1px;
   background-color: white;
   overflow: hidden;
   position: relative;
@@ -351,6 +373,8 @@ a:hover {
 .comp-prev-img {
   position: relative;
   float: left;
+  border-radius: 3px;
+  border-color: #b5b5b5;
   width: 94px;
   height: 94px;
   margin-right: 10px;
@@ -381,29 +405,31 @@ a:hover {
   font-size: 12px;
 }
 .comp-req-tag {
-  padding: 1px 1px 1px 1px ;
-  border-radius: 2px;
+  padding: 0px 4px 0px 4px;
+  border-radius: 9px;
   background-color: #966497;
   border: 1px solid #966497;
   color: white;
   font-size: 11px;
-  margin-right: 3px;
+  margin-right: 4px;
   text-align: center;
   white-space: nowrap;
+  margin-bottom: 1px;
 }
 .comp-desc-list {
   line-height: 20px;
   overflow: hidden;
 }
 .comp-desc-tag {
-  padding: 1px 1px 1px 1px ;
-  border-radius: 2px;
+  padding: 0px 4px 0px 4px;
+  border-radius: 9px;
   background-color: white;
   color: #966497;
   border: 1px solid #966497;
   font-size: 11px;
-  margin-right: 3px;
+  margin-right: 4px;
   text-align: center;
+  margin-bottom: 1px;
   white-space: nowrap;
 }
 .comp-benefit-list {
@@ -411,10 +437,14 @@ a:hover {
   overflow: hidden;
 }
 .comp-benefit-tag {
-  color: #b5b5b5;
+  color: #707070;
+  background: #dcdcdc;
+  padding: 0px 4px 0px 4px;
   font-size: 11px;
+  border-radius: 9px;
   float: left;
-  margin-right: 3px;
+  margin-right: 4px;
+  margin-bottom: 1px;
 }
 .post-time {
   line-height: 18px;
@@ -430,7 +460,7 @@ a:hover {
   transform: translate3d(0, 0, 0);
   box-sizing: border-box;
   display: block;
-  height: 54px;
+  height: 50px;
   position: fixed !important;
   width: 100%;
   bottom: 0;
@@ -443,8 +473,8 @@ a:hover {
   text-decoration: none;
   width: 33.32%;
   float: left;
-  height: 54px;
-  line-height: 54px;
+  height: 50px;
+  line-height: 50px;
   font-size: 20px;
   text-align: center;
   vertical-align: middle;
@@ -456,8 +486,8 @@ a:hover {
   display: block;
   width: 49.99%;
   float: left;
-  height: 54px;
-  line-height: 54px;
+  height: 50px;
+  line-height: 50px;
   font-size: 20px;
   text-align: center;
   vertical-align: middle;
@@ -469,8 +499,8 @@ a:hover {
   display: block;
   width: 100%;
   float: left;
-  height: 54px;
-  line-height: 54px;
+  height: 50px;
+  line-height: 50px;
   font-size: 20px;
   text-align: center;
   vertical-align: middle;
@@ -497,7 +527,7 @@ a:hover {
 .filter-squ label {
   border-radius: 0;
   border-color: #966497;
-  border-width: 2px;
+  border-width: 1px;
   font-size: 15px;
   text-wrap: none;
 }
@@ -537,13 +567,13 @@ a:hover {
 .inline-input {
   height: inherit;
   margin: 5px 5px 5px 0 ;
-  border-radius: 10px;
+  border-radius: 5px;
   width: 22%;
   background: white;
   border: 1px solid #b5b5b5;
 }
 .id-list {
-  height: 330px;
+  height: 260px;
 }
 .comp-detail {
   padding-bottom: 12px;
@@ -752,16 +782,16 @@ a:hover {
   border-color: #d4abd3;
 }
 .lit-gray-t-border {
-  border-left: 2px solid #ffffff;
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-  border-top: 2px solid #dcdcdc;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  border-top: 1px solid #dcdcdc;
 }
 .lit-gray-b-border {
-  border-left: 2px solid #ffffff;
-  border-right: 2px solid #ffffff;
-  border-top: 2px solid #ffffff;
-  border-bottom: 2px solid #dcdcdc;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #dcdcdc;
 }
 .edit-resume {
   background-color: #dcdcdc;
@@ -798,19 +828,19 @@ a:hover {
   display: block;
 }
 .upload-header {
-  height: 180px;
+  height: 210px;
   text-align: center;
   margin-bottom: 45px;
   display: block;
 }
 .upload-header .logo {
-  margin-top: 30px;
+  margin-top: 8px;
   display: block;
   margin-bottom: 15px;
 }
 .upload-header .logo img {
   margin-left: 0;
-  width: 90px;
+  width: 180px;
   margin-right: 0;
 }
 .upload-header .text {

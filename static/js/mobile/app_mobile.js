@@ -66,3 +66,15 @@ var app = angular.module('chuangplus_mobile', [
         });
     }]);
 
+
+  app.run(['$rootScope', '$location', function($rootScope, $location){
+    $rootScope.$on('$routeChangeStart', function(){
+        $rootScope.loading = true;
+        //alert('route begin change');
+        console.log('route begin change');
+    });
+    $rootScope.$on('$routeChangeSuccess', function(){
+        
+    });
+}]);
+

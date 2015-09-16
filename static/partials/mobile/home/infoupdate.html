@@ -12,17 +12,17 @@
         <div class="panel-list">
           <div class="info-block-title">账户信息</div>
 
-          <span class="panel-group-top lit-gray-b-border">
-            <input class="panel-elem full-width-input" name="password" ng-model="user_pwd.password" type="password" placeholder="请输入旧密码">
+          <span class="panel-group-top info-input lit-gray-b-border">
+            <input class="panel-elem " name="password" ng-model="user_pwd.password" type="password" placeholder="请输入旧密码">
           </span>
 
-          <span class="panel-group-mid lit-gray-t-border">
-            <input class="panel-elem full-width-input" ng-blur="check_pass_len()" name="password" ng-model="user_pwd.new_password" ng-minlength="6"  type="password" placeholder="请输入新密码">
+          <span class="panel-group-mid info-input lit-gray-t-border">
+            <input class="panel-elem " ng-blur="check_pass_len()" name="password" ng-model="user_pwd.new_password" ng-minlength="6"  type="password" placeholder="请输入新密码">
             <i class="fa fa-check-circle input-notice" id="pass1-pass"></i>
           </span>
 
           <span class="panel-group-bot lit-gray-t-border">
-            <input class="panel-elem full-width-input" ng-blur="check_pass_same()" ng-model="repeate_password" ng-minlength="6" type="password" placeholder="请确认密码">
+            <input class="panel-elem " ng-blur="check_pass_same()" ng-model="repeate_password" ng-minlength="6" type="password" placeholder="请确认密码">
             <i class="fa fa-check-circle input-notice" id="pass2-pass"></i>
           </span>
         </div>
@@ -31,7 +31,7 @@
 
       <div class="info-block">
         <div class="panel-list">
-          <button class="panel-radius login-btn form-control lit-p-bg" ng-click="update_password()">更新密码</button>
+          <button class="panel-radius login-btn lit-p-bg" ng-click="update_password()">更新密码</button>
         </div>
       </div>
 
@@ -42,19 +42,19 @@
         <div class="panel-list">
             <div class="info-block-title">基本信息</div>
 
-            <span class="panel-radius form-control info-input">
-            <input class="panel-elem full-width-input" type="email" ng-model="user_info.email" placeholder="请输入邮箱" required>
+            <span class="panel-group-top info-input">
+            <input class="panel-elem elem-width-full" type="email" ng-model="user_info.email" placeholder="请输入邮箱" required>
             </span>
 
-            <span class="panel-radius form-control info-input">
+            <span class="panel-group-mid info-input">
               <input class="panel-elem elem-width-full" type="text" ng-model="user_info.university" placeholder="学校" required>
             </span>
 
-            <span class="panel-radius form-control info-input">
+            <span class="panel-group-mid info-input">
               <input class="panel-elem elem-width-full" type="text" ng-model="user_info.major" placeholder="专业" required>
             </span>
 
-            <div class="panel-radius form-control info-input">
+            <div class="panel-group-bot info-input">
               <select class="panel-elem-full">
                 <option value="">年级</option>
                 <option value="11">本科1年级</option>
@@ -76,7 +76,7 @@
 
       <div class="info-block">
         <div class="panel-list">
-          <a class="panel-radius login-btn form-control lit-p-bg" ng-click="update_info()">更新信息</a>
+          <a class="panel-radius login-btn lit-p-bg" ng-click="update_info()">更新信息</a>
         </div>
       </div>
     </div>
@@ -84,10 +84,8 @@
   </div>
   </div>
   </div>
-  <div ui-content-for="footer">
-      <div class="navbar navbar-app navbar-absolute-bottom">
-          <a ng-class="{1: 'nav-bar-2 ', 2: 'nav-bar-2 selected'}[tab_now]" ng-click="tab_now = 2">修改信息</a>
-          <a ng-class="{1: 'nav-bar-2 selected', 2: 'nav-bar-2'}[tab_now]" ng-click="tab_now = 1">修改密码</a>
-      </div>
-  </div>
+    <div class="navbar navbar-app navbar-absolute-bottom">
+        <a ng-class="{1: 'nav-bar-2 ', 2: 'nav-bar-2 selected'}[tab_now]" ng-click="tab_now = 2">修改信息</a>
+        <a ng-class="{1: 'nav-bar-2 selected', 2: 'nav-bar-2'}[tab_now]" ng-click="tab_now = 1">修改密码</a>
+    </div>
 </div>

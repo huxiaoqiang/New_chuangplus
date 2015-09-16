@@ -90,19 +90,19 @@
                     </div>
 
                 </div>
-                <a class="panel-radius form-control btn-b-pur filter-btn" ng-click="submit_filter()">按条件筛选公司</a>
-                <a class="panel-radius form-control btn-b-pur filter-btn info-input" ng-click="hide_filter()">返回</a>
+                <a class="panel-radius btn-b-pur filter-btn" ng-click="submit_filter()">按条件筛选公司</a>
+                <a class="panel-radius btn-b-pur filter-btn info-input" ng-click="hide_filter()">返回</a>
             </div>
 
         </div>
         <div id="list-content" ng-show="!filter_show">
             <div class="require-bar">
                 <div class="requires">
-                    <div class="require-box">移动互联网</div>
+                    <div class="require-box">移动互联网<img src="/static/image/icon/delete-01.png" class="require-delete"></div>
                     <div class="require-box">初创阶段</div>
                     <div class="require-box">红杉资本认证</div>
                 </div>
-                <a class="require-btn" ng-click="show_filter()">编辑条件</a>
+                <div class="require-btn" ng-click="show_filter()">编辑条件</div>
             </div>
 
             <div class="search-bar">
@@ -134,7 +134,7 @@
                         </a>
                 -->
                 <div ng-repeat="company in company_list">   
-                    <a class="comp-listbox" href="/mobile/company/detail/[[company._id.$oid]]"> <!-- /[[company._id.$oid]] -->
+                    <a class="comp-listbox" ng-href="/mobile/company/detail/[[company._id.$oid]]"> <!-- /[[company._id.$oid]] -->
                         <img class="comp-prev-img" src="/api/file/[[company.logo_id]]/download">
                         <div class="comp-name">[[company.abbreviation]]</div>
                         <div class="comp-desc">[[company.brief_introduction]]</div>
@@ -164,6 +164,10 @@
         </div>
     </div>
 </div>
-<div ui-content-for="footer">
-    <div ng-include="'/static/partials/mobile/partials/nav-3-2.html'" ></div>
+    
+<div class="navbar navbar-app navbar-absolute-bottom">
+    <a class="nav-bar-3 "  ng-href="/mobile/position/list" >职位</a>
+    <a class="nav-bar-3 selected" ng-href="/mobile/index" onclick="alert('xxxx');">公司</a>
+    <a class="nav-bar-3 " ng-href="/mobile/home" >个人中心</a>
 </div>
+

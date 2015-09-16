@@ -6,24 +6,25 @@
 @lit-purple :   #d4abd3;
 
 @padding-hor:   20px;
+@panel-padding-hor  :   40px;
 
-@btn-border :   2px;
-@btn-radius :   10px;
-@btn-height     : 50px;
-@btn-font-size  : 22px;
+@btn-border :   1px;
+@btn-radius :   5px;
+@btn-height     : 36px;
+@btn-font-size  : 18px;
 
 
-@input-height   : 56px;
+@input-height   : 36px;
 @input-left-mag : 16px;
-@input-font-size  : 18px;
+@input-font-size  : 16px;
 
 
 //login.html
-@login-part2:   180px;
+@login-part2:   210px;
 @login-part3:   30px;
-@login-logo-size:   90px;
+@login-logo-size:   180px;
 @login-btn-mag :   18px;
-@login-logo-top:    30px;
+@login-logo-top:    8px;
 @login-header-top:  12px;
 
 //info.html
@@ -36,12 +37,12 @@
 
 @cl-require-hgt:   46px;
 @cl-require-fsize:  16px;
-@cl-require-boxpd:  12px;
+@cl-require-boxpd:  14px;
 
 @cl-search-hgt:    46px;
 @cl-require-btn-rad :   8px;
 
-@cl-nav-hgt:        54px;  
+@cl-nav-hgt:        50px;  
 @cl-nav-fsize:        20px;   
 
 @cl-input-radius  :  10px;
@@ -56,8 +57,8 @@
 @cl-comp-name-fsize:    17px;
 @cl-comp-desc-fsize:    11px;
 @cl-comp-req-fsize:    12px;
-@cl-comp-tag-radius:    2px;
-@cl-comp-tag-mag:    3px;
+@cl-comp-tag-radius:    9px;
+@cl-comp-tag-mag:    4px;
 @cl-comp-reqt-fsize:    11px;
 @cl-comp-desct-fsize:    11px;
 @cl-comp-bent-fsize:    11px;
@@ -90,9 +91,28 @@ body
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     overflow-x: hidden;
 }
+.navbar-app
+{
+    min-height: 40px !important;
+}
 .no-bar-top
 {
     top: 0 !important;
+}
+.app-content-loading {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  background: rgba(255,255,255,0.6);
+  position: relative;
+}
+.loading-spinner {
+  position: absolute;
+  font-size: 50px;
+  left: 50%;
+  top: 50%;
+  margin-left: -25px;
+  margin-top: -25px;
 }
 .sidebar-toggle
 {
@@ -148,21 +168,21 @@ body
 .panel-group-top
 {
     height: @input-height ;
-    border-top-left-radius:     @btn-radius;
-    border-top-right-radius:  @btn-radius;
-    border-bottom-left-radius:     0;
-    border-bottom-right-radius: 0;
+    border-radius:     @btn-radius;
     background:                 white;
     width: 100%;
     display: block;
+}
+.login-input
+{
+    margin-top: 15px;
 }
 
 .panel-group-mid
 {
     height: @input-height ;
     background: white;
-    border-radius:     0;
-    margin-top: -@btn-border;
+    border-radius:     @btn-radius;
     width: 100%;
     display: block;
 }
@@ -190,19 +210,18 @@ body
 .panel-group-bot
 {
     height: @input-height ;
-    border-top-left-radius:     0;
-    border-top-right-radius:  0;
-    border-bottom-left-radius:     @btn-radius;
-    border-bottom-right-radius: @btn-radius;
-    margin-top: -@btn-border;
+    border-radius:     @btn-radius;
     width: 100%;
     display: block;
     background-color: white;
+    position: relative;
 }
 
 .panel-radius
 {
+    width: 100%;
     height: @btn-height;
+    line-height: @btn-height;
     border: @btn-border solid @std-purple;
     background:                 white;
     color:                 @std-purple;
@@ -225,7 +244,7 @@ body
 .panel-list
 {
     width: 100%;
-    padding: 0 @padding-hor 0 @padding-hor;
+    padding: 0 @panel-padding-hor 0 @panel-padding-hor;
 }
 
 a
@@ -240,15 +259,7 @@ a:hover
     color: black;
 }
 
-.panel-radius input
-{
-    border: 0;
-    border-radius: inherit;
-    width: 92%;
-    height: 100%;
-    margin-left: 8%;
-}
-.panel-radius select
+.panel-group-bot select
 {
     border: 0;
     border-radius: inherit;
@@ -260,10 +271,10 @@ a:hover
 .panel-elem
 {
     display: block;
-    float: left;
+    float: left;    
     position: relative;
     height: 100%;
-    padding: 0;
+    padding: 0 5px 0 5px;
     border: 0;
     margin: 0;
     font-size: @input-font-size ;
@@ -302,13 +313,13 @@ a:hover
 .input-notice
 {
     float: right;
-    font-size: 24px;
+    font-size: 20px;
     line-height: inherit;
     position: absolute;
     right: 42px;
     color: @std-purple;
     display: none;
-    margin-top: 10px;
+    margin-top: 3px;
 }
 .notice-bar
 {
@@ -326,20 +337,20 @@ a:hover
 }
 #captcha_img
 {    
-    height: 38px;
+    height: 28px;
     position: absolute;
-    right: 37px;
-    bottom: 9px;
+    right: 10px;
+    bottom: 3px;
 }
 #captcha-pass
 {
-    right: 150px;
+    right: 95px;
 }
 
 .panel-title
 {
-    color: @std-purple;
-    text-align: center;
+    color: @mid-gray;
+    text-align: left;
     line-height: @input-height;
     margin: 0 0 0 0;
     position: relative;
@@ -364,7 +375,7 @@ a:hover
     font-size: 20pt;
 }
 
-.login-input
+.input-btn-part
 {
     position: relative;
     margin-bottom: @login-part3;
@@ -428,13 +439,27 @@ a:hover
 }
 .require-bar .require-box
 {
-    font-size: @cl-require-fsize;
-    height: @cl-require-hgt;
-    line-height: @cl-require-hgt;
+    font-size: 16px;
+    height: 46px;
+    line-height: 46px;
     display: block;
-    padding: 0 0 0 @cl-require-boxpd;
+    padding: 0 23px 0 5px;
     float: left;
-    color:  @dark-gray;
+    border: 1px solid #707070;
+    color: black;
+    position: relative;
+    background: url("/static/image/icon/delete-01.png") no-repeat right 4px center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    margin-right: -1px;
+}
+.require-bar .requires .require-box .require-delete
+{
+    float: right;
+    right: 3px;
+    width: 15px;
+    top: 15px;
+    position: absolute;
 }
 .require-bar .requires
 {
@@ -498,7 +523,7 @@ a:hover
 {
     display: block;
     min-height: @cl-listbox-hgt;
-    margin-bottom: 3px;
+    margin-bottom: 1px;
     background-color: white;
     overflow: hidden;
     position: relative;
@@ -525,6 +550,8 @@ a:hover
 {
     position: relative;
     float: left;
+    border-radius: 3px;
+    border-color: @mid-gray;
     width: @cl-comp-img-size;
     height: @cl-comp-img-size;
     margin-right: (@cl-listbox-hgt - @cl-comp-img-size)/2 ;
@@ -561,7 +588,7 @@ a:hover
 }
 .comp-req-tag
 {
-    padding: 1px 1px 1px 1px ;
+    padding: 0px 4px 0px 4px;
     border-radius: @cl-comp-tag-radius;
     background-color: @std-purple;
     border: 1px solid @std-purple;
@@ -570,6 +597,7 @@ a:hover
     margin-right: @cl-comp-tag-mag;
     text-align: center;
     white-space:nowrap;
+    margin-bottom: 1px;
 }
 
 .comp-desc-list{
@@ -578,7 +606,7 @@ a:hover
 }
 .comp-desc-tag
 {
-    padding: 1px 1px 1px 1px ;
+    padding: 0px 4px 0px 4px;
     border-radius: @cl-comp-tag-radius;
     background-color: white;
     color:   @std-purple;
@@ -587,6 +615,7 @@ a:hover
     font-size: @cl-comp-desct-fsize;
     margin-right: @cl-comp-tag-mag;
     text-align: center;
+    margin-bottom: 1px;
     white-space:nowrap;
 }
 
@@ -596,10 +625,14 @@ a:hover
 }
 .comp-benefit-tag
 {
-    color:   @mid-gray;
+    color:   @dark-gray;
+    background: @lit-gray;
+    padding: 0px 4px 0px 4px;
     font-size: @cl-comp-bent-fsize;
+    border-radius: @cl-comp-tag-radius;
     float: left;
     margin-right: @cl-comp-tag-mag;
+    margin-bottom: 1px;
 }
 
 .post-time{

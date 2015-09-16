@@ -19,20 +19,22 @@
         <div class="scrollable-content">
             <div class="panel-list absolute-center id-list" >
 
-              <a class="panel-radius info-input form-control" onclick="location='/mobile/home/mypost'">我的投递</a>
+              <a class="panel-radius info-input " onclick="location='/mobile/home/mypost'">我的投递</a>
 
-              <a class="panel-radius info-input form-control" onclick="location='/mobile/position/collect'">我收藏的职位</a>
+              <a class="panel-radius info-input " onclick="location='/mobile/position/collect'">我收藏的职位</a>
 
-              <a class="panel-radius info-input form-control" onclick="location='/mobile/company/collect'">我收藏的公司</a>
+              <a class="panel-radius info-input" onclick="location='/mobile/company/collect'">我收藏的公司</a>
 
-              <a class="panel-radius info-input form-control" onclick="location='/mobile/home/editresume'">查看编辑简历</a>
+              <a class="panel-radius info-input " onclick="location='/mobile/home/editresume'">查看编辑简历</a>
 
-              <a class="panel-radius info-input form-control" onclick="location='/mobile/home/infoupdate'">维护个人信息</a>
+              <a class="panel-radius info-input " onclick="location='/mobile/home/infoupdate'">维护个人信息</a>
 
             </div>
         </div>
     </div>
-    <div ui-content-for="footer">
-        <div ng-include="'/static/partials/mobile/partials/nav-3-3.html'" ></div>
+    <div class="navbar navbar-app navbar-absolute-bottom">
+        <a class="nav-bar-3 "  ng-href="/mobile/position/list" >职位</a>
+        <a class="nav-bar-3 " ng-href="/mobile/index">公司</a>
+        <a class="nav-bar-3 selected" ng-href="/mobile/home" >个人中心</a>
     </div>
 </div>

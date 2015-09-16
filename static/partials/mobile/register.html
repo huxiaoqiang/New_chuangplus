@@ -21,41 +21,35 @@
   <div class="scrollable">
   <div class="scrollable-content padding-header">
     <div class="login-header">
-        <img class="logo" src="/static/pic/logo.jpg">
-        <div class="name">犀牛</div>
+        <img class="logo" src="/static/pic/logo.png">
     </div>
 
     <div name="login" id="login" >
 
-      <div class="login-input">
+      <div class="input-btn-part">
         <div class="panel-list">
-          <span class="panel-group-top purple-border">
-            <div class="panel-elem elem-width-4 panel-title">用户名</div>
-            <input class="panel-elem elem-width-43" ng-blur="check_username()" name="username" ng-model="reg_info.username" type="text" placeholder="请输入用户名(最短6位)">
+          <span class="panel-group-top login-input purple-border">
+            <input class="panel-elem elem-width-full" ng-blur="check_username()" name="username" ng-model="reg_info.username" type="text" placeholder="用户名(最短6位)">
             <i class="fa fa-check-circle input-notice" id="username-pass"></i>
           </span>
 
-          <span class="panel-group-mid purple-border">
-            <div class="panel-elem elem-width-4 panel-title">邮箱</div>
-            <input class="panel-elem elem-width-43" ng-blur="check_email()" name="email" ng-model="reg_info.email" type="email" placeholder="请输入邮箱">
+          <span class="panel-group-mid login-input purple-border">
+            <input class="panel-elem elem-width-full" ng-blur="check_email()" name="email" ng-model="reg_info.email" type="email" placeholder="邮箱">
             <i class="fa fa-check-circle input-notice" id="email-pass"></i>
           </span>
 
-          <span class="panel-group-mid purple-border">
-            <div class="panel-elem elem-width-4 panel-title">密码</div>
-            <input class="panel-elem elem-width-43" ng-blur="check_pass_len()" name="password" ng-model="reg_info.password" ng-minlength="6" required type="password" placeholder="请输入密码">
+          <span class="panel-group-mid login-input purple-border">
+            <input class="panel-elem elem-width-full" ng-blur="check_pass_len()" name="password" ng-model="reg_info.password" ng-minlength="6" required type="password" placeholder="密码">
             <i class="fa fa-check-circle input-notice" id="pass1-pass"></i>
           </span>
 
-          <span class="panel-group-mid purple-border">
-            <div class="panel-elem elem-width-4 panel-title">确认密码</div>
-            <input class="panel-elem elem-width-43" ng-blur="check_pass_same()" ng-model="repeate_password" ng-minlength="6" required type="password" placeholder="请再次输入密码">
+          <span class="panel-group-mid login-input purple-border">
+            <input class="panel-elem elem-width-full" ng-blur="check_pass_same()" ng-model="repeate_password" ng-minlength="6" required type="password" placeholder="确认密码">
             <i class="fa fa-check-circle input-notice" id="pass2-pass"></i>
           </span>
 
-          <span class="panel-group-bot purple-border">
-            <div class="panel-elem elem-width-4 panel-title">验证码</div>
-            <input class="panel-elem elem-width-3" ng-blur="check_captcha()" type="text" placeholder="验证码" ng-model="reg_info.captcha" required>
+          <span class="panel-group-bot login-input purple-border">
+            <input class="panel-elem elem-width-43" ng-blur="check_captcha()" type="text" placeholder="验证码" ng-model="reg_info.captcha" required>
             <img ng-click="refresh_captcha()" ng-src='[[captcha_url]]' id="captcha_img" alt="验证码">
             <i class="fa fa-check-circle input-notice" id="captcha-pass"></i>
           </span>
@@ -63,7 +57,7 @@
       </div>
 
       <div class="panel-list">
-          <button class="panel-radius form-control" ng-click="register()"> 注册 </button>
+          <button class="panel-radius selected" ng-click="register()"> 注册 </button>
       </div>
 
     </div>
