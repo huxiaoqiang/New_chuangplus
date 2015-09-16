@@ -684,21 +684,21 @@ a:hover {
 .posi-close {
   float: right;
   position: absolute;
-  bottom: 26px;
+  top: 10px;
   right: 15px;
   font-size: 12px;
 }
 .hr-solve {
   float: right;
   position: absolute;
-  bottom: 10px;
+  top: 26px;
   right: 15px;
   color: #966497;
   font-size: 12px;
 }
 .send-resume {
   position: absolute;
-  bottom: 26px;
+  top: 10px;
   right: 15px;
   text-align: center;
   color: #966497;
