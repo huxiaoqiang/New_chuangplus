@@ -1554,20 +1554,12 @@ angular.module('chuangplus.controllers', []).
     controller('DT_CompanySecondCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_CompanySecondCtrl');
-        $scope.test = 'aaaa';
         $scope.company_id = $routeParams.company_id;
-        $scope.financing_list = [
-            {
-                'stage':'seed',
-                'organization':'清华创加',
-                'amount' : 'ten'
-            },
-            {
-                'stage':'seed',
-                'organization':'清华创加',
-                'amount' : 'ten'
-            }
-        ];
+        $scope.no_financing = false;
+        $scope.financing_list = [];
+        $scope.toggle_checkbox = function(){
+            $scope.no_financing = !$scope.companyinfo.no_financing;
+        };
         $scope.get_financing_list = function(){
             $http.get(urls.api+"/account/financing/"+$scope.company_id+"/list").
                 success(function(data){
