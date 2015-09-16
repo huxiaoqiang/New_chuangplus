@@ -310,7 +310,8 @@ a:hover {
 .require-btn {
   height: 40px;
   position: absolute;
-  width: 22%;
+  background: url("/static/image/icon/pencil-01.png") no-repeat;
+  background-size: 20px;
   padding: 0;
   right: 0;
   background: white;
