@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('chuangplus_mobile.controllers', [])
-    .controller('MB_CompanyListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService',
+    .controller('MB_CompanyListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
     function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
          $rootScope.$on('$routeChangeStart', function(){
     $rootScope.loading = true;
