@@ -1,5 +1,6 @@
 //genernal
 @std-purple :   #966497;
+@lit-purple :   rgba(143, 78, 150, 0.08);
 @dark-gray  :   #707070;
 @mid-gray   :   #b5b5b5;
 @lit-gray   :   #dcdcdc;
@@ -35,11 +36,11 @@
 //complist.html
 @cl-header-hgt  :   50px;
 
-@cl-require-hgt:   46px;
+@cl-require-hgt:   40px;
 @cl-require-fsize:  16px;
 @cl-require-boxpd:  14px;
 
-@cl-search-hgt:    46px;
+@cl-search-hgt:    42px;
 @cl-require-btn-rad :   8px;
 
 @cl-nav-hgt:        50px;  
@@ -439,13 +440,13 @@ a:hover
 }
 .require-bar .require-box
 {
-    font-size: 16px;
-    height: 46px;
-    line-height: 46px;
+    font-size: 15px;
+    height: @cl-require-hgt;;
+    line-height: @cl-require-hgt;
     display: block;
-    padding: 0 23px 0 5px;
+    padding: 0 28px 0 8px;
     float: left;
-    border: 1px solid #707070;
+    border: 1px solid @lit-gray;
     color: black;
     position: relative;
     background: url("/static/image/icon/delete-01.png") no-repeat right 4px center;
@@ -472,18 +473,20 @@ a:hover
 }
 .require-btn
 {
-    height: @cl-require-hgt - 10px;
-    margin: 5px 5px 5px 0 ;
+    height: @cl-require-hgt;
+    width: 50px;
+    //margin: 5px 5px 5px 0 ;
     position: absolute;
-    border-radius: @cl-require-btn-rad ;
-    width: 22%;
+    //border-radius: @cl-require-btn-rad ;
+    //width: 22%;
+    background: url("/static/image/icon/pencil-01.png") no-repeat center;
+    background-size: 20px;
     padding: 0;
     right: 0;
-    background: white;
     border: 1px solid @mid-gray;
     color: @mid-gray;
     text-align: center;
-    line-height: 33px;
+    line-height: @cl-require-hgt - 11px;
 }
 
 .search-bar
@@ -625,8 +628,8 @@ a:hover
 }
 .comp-benefit-tag
 {
-    color:   @dark-gray;
-    background: @lit-gray;
+    color:   white;
+    background: @lit-purple;
     padding: 0px 4px 0px 4px;
     font-size: @cl-comp-bent-fsize;
     border-radius: @cl-comp-tag-radius;

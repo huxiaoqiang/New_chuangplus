@@ -274,17 +274,17 @@ a:hover {
 .require-bar {
   overflow: hidden;
   display: block;
-  height: 46px;
+  height: 40px;
   position: relative;
 }
 .require-bar .require-box {
-  font-size: 16px;
-  height: 46px;
-  line-height: 46px;
+  font-size: 15px;
+  height: 40px;
+  line-height: 40px;
   display: block;
-  padding: 0 23px 0 5px;
+  padding: 0 28px 0 8px;
   float: left;
-  border: 1px solid #707070;
+  border: 1px solid #dcdcdc;
   color: black;
   position: relative;
   background: url("/static/image/icon/delete-01.png") no-repeat right 4px center;
@@ -303,27 +303,26 @@ a:hover {
   position: absolute;
   display: block;
   width: 78%;
-  height: 46px;
+  height: 40px;
   background: white;
   overflow: hidden;
 }
 .require-btn {
-  height: 36px;
-  margin: 5px 5px 5px 0 ;
+  height: 40px;
+  width: 50px;
   position: absolute;
-  border-radius: 8px;
-  width: 22%;
+  background: url("/static/image/icon/pencil-01.png") no-repeat center;
+  background-size: 20px;
   padding: 0;
   right: 0;
-  background: white;
   border: 1px solid #b5b5b5;
   color: #b5b5b5;
   text-align: center;
-  line-height: 33px;
+  line-height: 29px;
 }
 .search-bar {
   display: block;
-  height: 46px;
+  height: 42px;
   background: #b5b5b5;
   vertical-align: center;
   overflow: auto;
@@ -332,7 +331,7 @@ a:hover {
 .search-input {
   border: 0px solid;
   border-radius: 10px;
-  height: 36px;
+  height: 32px;
 }
 /*
 
@@ -437,8 +436,8 @@ a:hover {
   overflow: hidden;
 }
 .comp-benefit-tag {
-  color: #707070;
-  background: #dcdcdc;
+  color: white;
+  background: #d4abd3;
   padding: 0px 4px 0px 4px;
   font-size: 11px;
   border-radius: 9px;

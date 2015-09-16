@@ -29,6 +29,9 @@
         background-color: rgba(143,78,150,0.1);
       }
     }
+label{
+font-weight: 100;
+}
   .left-info{
     background-color: white;
     width: 48%;
@@ -46,6 +49,7 @@
         height: 32px;
         padding: 5px;
         border-radius: 3px;
+border: 1px solid #e1e0e2;
       }
     }
   }
@@ -75,7 +79,7 @@
           .col-sm-3{
             text-align: right;
             label{
-              color: #707070;
+              color: #262626;
               font-size: 16px;
               font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
             }
@@ -97,7 +101,7 @@
           .col-sm-3{
             text-align: right;
             label{
-              color: #707070;
+              color: #262626;
               font-size: 16px;
               font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
             }
@@ -119,19 +123,29 @@
             }
             label{
               color: #707070;
+              font-size: 12px;
               font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
             }
             .form-control.tags_input{
               float: left;
-              width: 70%;
+              width: 50%;
+              border-radius: 3px;
+              margin-right: 3%;
+              height: 25px;
+              font-size: 13px;
+              border: 1px solid #e1e0e2;
             }
             input.btn-primary{
               border-radius: 0px;
               background-color: #98769E;
               border-color: #98769E;
+              border-radius: 3px;
+              height: 25px;
+              font-size: 13px;
+              padding: 4px 12px;
             }
             label.checkbox-label{
-              margin:0px 18px 5px 5px;
+              margin:0px 18px 5px 0;
             }
             span.err-msg{
               position: absolute;
@@ -162,7 +176,7 @@
           .col-sm-3{
             text-align: right;
             label{
-              color: #707070;
+              color: #262626;
               font-size: 16px;
               font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
             }
@@ -192,8 +206,12 @@
         position: relative;
         padding-left:30px;
         padding-right: 30px;
+        font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+        p{
+            color: #707070;
+        }
         label{
-          color: #707070;
+          color: #262626;
           font-size: 16px;
           font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
         }
@@ -209,12 +227,12 @@
           .financing_list{
             .financing{
               width: 90%;
-              border: solid 1px #bfbfbf;
+              border: solid 1px #e1e0e2;
               border-radius: 6px;
-              height: 35px;
+              height: 30px;
               font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
-              font-size: 16px;
-              padding: 6px;
+              font-size: 14px;
+              padding: 5px 0 0 5px;
               margin-bottom: 10px;
               .stage{
                 float: left;
@@ -225,6 +243,17 @@
               .amount{
                 float: left;
               }
+.delete_button{
+width: 20px;
+height: 25px;
+padding-bottom: 5px;
+float: right;
+margin-right: 5px;
+img{
+width: 20px;
+height: 20px;
+}
+}
             }
           }
         }
@@ -243,6 +272,7 @@
   }
   #third-step{
     margin-top: 70px;
+    font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
     .info3{
       padding: 30px;
       width: 100%;
@@ -265,6 +295,7 @@
         padding: 10px;
         border-radius: 5px;
         resize: none;
+        border: 1px solid #e1e0e2;
       }
       input.pre-button{
         position: absolute;
@@ -288,6 +319,7 @@
   }
   #forth-step{
     margin-top: 70px;
+    font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
     .info4{
       background-color: white;
       min-height: 360px;
@@ -296,7 +328,7 @@
       border: solid 1px #bfbfbf;
       position: relative;
       label{
-        color: #707070;
+        color: #262626;
         font-size: 16px;
         font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
       }
@@ -313,6 +345,7 @@
         border-radius: 6px;
         resize: none;
         outline: none;
+        border: 1px solid #e1e0e2;
       }
       input.pre-button{
         position: absolute;
@@ -403,6 +436,37 @@
   .modal-dialog{
     margin: 200px auto;
   }
+}
+#delete_financing{
+font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+.modal-dialog{
+    margin: 200px auto;
+.modal-content{
+.modal-body{
+.financing{
+width: 90%;
+border: solid 1px #e1e0e2;
+border-radius: 6px;
+height: 30px;
+font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+font-size: 14px;
+padding: 5px 0 0 5px;
+margin-bottom: 10px;
+.stage{
+float: left;
+}
+.organization{
+float: left;
+}
+.amount{
+float: left;
+}
+
+}
+}
+}
+}
+
 }
 #addMember{
   .modal-dialog{
