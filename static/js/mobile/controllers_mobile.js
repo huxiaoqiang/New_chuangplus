@@ -662,10 +662,8 @@ angular.module('chuangplus_mobile.controllers', [])
         //提醒完善简历
         $scope.complete_resume = function(){
              setTimeout(function(){window.location.href='/intern/resume'},2000);
-             $('#myModal').modal('hide');       
-
+             
         };
-        $rootScope.loading = false;
     }])
     .controller('MB_LoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
     function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {

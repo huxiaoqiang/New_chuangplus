@@ -124,7 +124,7 @@ body {
 }
 .padding {
   width: 100%;
-  padding: 0 40px 0 40px;
+  padding: 0 20px 0 20px;
 }
 .panel-list {
   width: 100%;
@@ -224,7 +224,7 @@ a:hover {
   left: 0;
 }
 .login-header {
-  height: 220px;
+  height: 210px;
   text-align: center;
   margin-bottom: 5px;
 }
@@ -573,7 +573,7 @@ a:hover {
   font-size: 23px;
 }
 .comp-map {
-  padding: 8px 40px 8px 40px;
+  padding: 8px 20px 8px 20px;
   background-color: white;
   margin-top: 2px;
   color: #707070;
@@ -812,7 +812,7 @@ a:hover {
   display: block;
 }
 .upload-header {
-  height: 220px;
+  height: 210px;
   text-align: center;
   margin-bottom: 45px;
   display: block;
