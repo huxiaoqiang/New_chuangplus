@@ -3,56 +3,166 @@
     <div class="header-bar">
         <div ng-include="'/static/partials/mobile/partials/header-logo.html'" ></div>
         <div class="header"> 犀牛·帮你找实习</div>
-    </div>    
+    </div>     
+        <div id="filter-content">
+            <div class="padding">
+                <div class="filter-squ">
+                    <div class="filter-title">
+                        每周至多工作几天
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="radio" name="work-time"  ng-model="filter.workdays.day0" >弹性时间</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="radio" name="work-time"  ng-model="filter.workdays.day3"/>3天</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="radio" name="work-time"  ng-model="filter.workdays.day4"/>4天</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="radio" name="work-time"  ng-model="filter.workdays.day5"/>5天</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="radio" name="work-time"  ng-model="filter.workdays.day6"/>6天</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="radio" name="work-time"  ng-model="filter.workdays.day7"/>7天</label> 
+                    </div>
+                </div>
 
-    <div class="require-bar">
-        <div class="requires">
-            <div class="require-box">每周五天</div>
-            <div class="require-box">3K</div>
-            <div class="require-box">电子商务</div>
-            <div class="require-box">产品</div>
+                <div class="filter-squ">
+                    <div class="filter-title">
+                        月薪下限
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox" value="1" id="1"/>没有要求</label> 
+                    </div>
+                    <div class="filter-elem">
+                        请填写整数
+                        <input type="text" class="inline-input"/>
+                        K
+                    </div>
+                </div>
+
+                <div class="filter-squ">
+                    <div class="filter-title">
+                        行业/领域
+                    </div>
+                    <div class="filter-elem filter-single-line">
+                        <label><input type="checkbox" value="1" />没有要求</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox" ng-model="filter.field.social" />社交</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox"  ng-model="filter.field.e_commerce" />电子商务</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox"  ng-model="filter.field.education" />教育</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox"  ng-model="filter.field.health_medical" />健康医疗</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox"  ng-model="filter.field.culture_creativity" />文化创意</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox"  ng-model="filter.field.living_consumption" />生活消费</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox"  ng-model="filter.field.hardware" />硬件</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox"  ng-model="filter.field.O2O" />O2O</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox"  ng-model="filter.field.others" />其它</label> 
+                    </div>
+                </div>
+
+                <div class="filter-squ">
+                    <div class="filter-title">
+                        职位类型
+                    </div>
+                    <div class="filter-elem filter-single-line">
+                        <label><input type="checkbox" value="1" />没有要求</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox" ng-model="filter.type.technology" />技术</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox" ng-model="filter.type.operate" />运营</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox" ng-model="filter.type.product" />产品</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox" ng-model="filter.type.design" />设计</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox" ng-model="filter.type.marketing" />市场</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox" ng-model="filter.type.functions" />职能</label> 
+                    </div>
+
+                </div>
+                <a class="panel-radius form-control btn-b-pur filter-btn" ng-click="submit_filter()">按条件筛选职位</a>
+                <a class="panel-radius form-control btn-b-pur filter-btn info-input" ng-click="hide_filter()">返回</a>
+            </div>
+
         </div>
-        <button class="require-btn" onclick="location='/mobile/position/filter'">编辑条件</button>
-    </div>
 
-    <div class="search-bar">
-          <input class=" search-input form-control" type="text" placeholder="输入关键词进行搜索">
-    </div>
-
-    <div class="comp-list">
-        <a class="comp-listbox" href="/mobile/position/detail/[[position._id.$oid]]" ng-repeat="position in positions">
-            <img class="comp-prev-img" src="/api/file/[[position.company.logo_id]]/download">
-            <div ng-if="position.company.is_auth" class="comp-auth">[[position.company.auth_organization]]认证</div>
-            <div class="comp-name">[[position.position_type_value]] | [[position.name]]</div>
-
-            <div class="comp-req-list">
-                <span class="comp-req-title">[[position.company.abbreviation]]</span>
-            </div>
-            <div class="comp-desc">[[position.company.brief_introduction]]</div>
-
-            <div class="comp-desc-list">
-                <span class="comp-desc-tag">
-                    [[position.days_per_week]]天/周
-                </span>
-                <span class="comp-desc-tag">
-                    [[position.salary_min]]K-[[position.salary_max]]K
-                </span>
-                <span class="comp-desc-tag">
-                    [[position.field_value]]
-                </span>
-                <span class="comp-desc-tag">
-                    [[position.company.scale_value]]期
-                </span>
-                <span class="comp-desc-tag">
-                    [[position.company.city]]
-                </span>
+        <div id="list-content" ng-show="!filter_show">
+            <div class="require-bar">
+                <div class="requires">
+                    <div class="require-box">每周五天</div>
+                    <div class="require-box">3K</div>
+                    <div class="require-box">电子商务</div>
+                    <div class="require-box">产品</div>
+                </div>
+                <a class="require-btn" ng-click="show_filter()">编辑条件</a>
             </div>
 
-            <div class="post-time">
-                发布时间：[[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]
+            <div class="search-bar">
+                  <input class=" search-input form-control" type="text" placeholder="输入关键词进行搜索">
             </div>
-        </a>
-    </div>
+
+            <div class="comp-list">
+                <a class="comp-listbox" href="/mobile/position/detail/[[position._id.$oid]]" ng-repeat="position in positions">
+                    <img class="comp-prev-img" src="/api/file/[[position.company.logo_id]]/download">
+                    <div ng-if="position.company.is_auth" class="comp-auth">[[position.company.auth_organization]]认证</div>
+                    <div class="comp-name">[[position.position_type_value]] | [[position.name]]</div>
+
+                    <div class="comp-req-list">
+                        <span class="comp-req-title">[[position.company.abbreviation]]</span>
+                    </div>
+                    <div class="comp-desc">[[position.company.brief_introduction]]</div>
+
+                    <div class="comp-desc-list">
+                        <span class="comp-desc-tag">
+                            [[position.days_per_week]]天/周
+                        </span>
+                        <span class="comp-desc-tag">
+                            [[position.salary_min]]K-[[position.salary_max]]K
+                        </span>
+                        <span class="comp-desc-tag">
+                            [[position.field_value]]
+                        </span>
+                        <span class="comp-desc-tag">
+                            [[position.company.scale_value]]期
+                        </span>
+                        <span class="comp-desc-tag">
+                            [[position.company.city]]
+                        </span>
+                    </div>
+
+                    <div class="post-time">
+                        发布时间：[[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]
+                    </div>
+                </a>
+            </div>
+        </div>
 </div>
 </div>
 <div ui-content-for="footer">

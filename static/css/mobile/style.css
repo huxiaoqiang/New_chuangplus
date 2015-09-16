@@ -296,6 +296,8 @@ a:hover {
   background: white;
   border: 1px solid #b5b5b5;
   color: #b5b5b5;
+  text-align: center;
+  line-height: 33px;
 }
 .search-bar {
   display: block;
@@ -480,6 +482,9 @@ a:hover {
   background: #966497 !important;
   border: 0;
   color: white !important;
+}
+#filter-content {
+  display: none;
 }
 #comp-filter {
   margin-top: 20px;

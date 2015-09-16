@@ -927,6 +927,7 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_PositionDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_PositionDetailCtrl');
+        $scope.role = $user.role();
         $scope.position_id = $routeParams.position_id;
         $scope.position_type = {
             "technology":"技术",
@@ -1222,6 +1223,7 @@ angular.module('chuangplus.controllers', []).
     controller('DT_CompanyDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyDetailCtrl');
         $scope.company_id = $routeParams.company_id;
+        $scope.role = $user.role();
         $scope.company = {};
         $scope.member_list = {};
         $scope.tab1 = true;
