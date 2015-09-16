@@ -5,96 +5,92 @@
             <div class="header"> 犀牛·帮你找实习</div>
         </div>    
         <div id="filter-content">
-            <div class="main-content scrollable">
-                <div class="scrollable-content">
-                    <div class="padding">
-                        <div class="filter-squ">
-                            <div class="filter-title">
-                                行业/领域
-                            </div>
-
-                            <div class="filter-elem filter-single-line">
-                                <label><input type="checkbox" value="1"/>没有要求</label> 
-                            </div>
-                            <div class="filter-elem">
-                                <label><input type="checkbox" value="2"/>社交</label> 
-                            </div>
-                            <div class="filter-elem">
-                                <label><input type="checkbox" value="3" />电子商务</label> 
-                            </div>
-                            <div class="filter-elem">
-                                <label><input type="checkbox" value="4"/>教育</label> 
-                            </div>
-                            <div class="filter-elem">
-                                <label><input type="checkbox" value="5"/>健康医疗</label> 
-                            </div>
-                            <div class="filter-elem">
-                                <label><input type="checkbox" value="6"/>文化创意</label> 
-                            </div>
-                            <div class="filter-elem">
-                                <label><input type="checkbox" value="6" />生活消费</label> 
-                            </div>
-                            <div class="filter-elem">
-                                <label><input type="checkbox" value="6" />硬件</label> 
-                            </div>
-                            <div class="filter-elem">
-                                <label><input type="checkbox" value="6" id="6"/>O2O</label> 
-                            </div>
-                            <div class="filter-elem">
-                                <label><input type="checkbox" value="6" id="6"/>其它</label> 
-                            </div>
-
-                        </div>
-
-                        <div class="filter-squ">
-                            <div class="filter-title">
-                                公司规模/融资轮数
-                            </div>
-
-                            <div class="filter-elem filter-single-line">
-                                <label><input name="comp-scale" type="radio" value="1"/>没有要求</label> 
-                            </div>
-                            <div class="filter-elem filter-single-line">
-                                <label><input name="comp-scale" type="radio" value="2" />初创（未融资/种子轮/天使轮）</label> 
-                            </div>
-                            <div class="filter-elem filter-single-line">
-                                <label><input name="comp-scale" type="radio" value="3" />成长（A轮/B轮）</label> 
-                            </div>
-                            <div class="filter-elem filter-single-line">
-                                <label><input name="comp-scale" type="radio" value="4" />成熟（C轮以上/已上市）</label> 
-                            </div>
-
-                        </div>
-
-                        <div class="filter-squ">
-                            <div class="filter-title">
-                                投资机构认证
-                            </div>
-
-                            <div class="filter-elem">
-                                <label><input type="checkbox" value="1"/>没有要求</label> 
-                            </div>
-                            <div class="filter-elem filter-end-line">
-                                <label><input type="checkbox" value="2"/>所有已认证</label> 
-                            </div>
-                            <div class="filter-elem" style="display: hidden;">
-                                <label><input type="checkbox" value="3"/>没有要求</label> 
-                            </div>
-                            <div class="filter-elem">
-                                <label><input type="checkbox" value="4"/>没有要求</label> 
-                            </div>
-                            <div class="filter-elem">
-                                <label><input type="checkbox" value="5"/>没有要求</label> 
-                            </div>
-                            <div class="filter-elem">
-                                <label><input type="checkbox" value="6"/>没有要求</label> 
-                            </div>
-
-                        </div>
-                        <button class="panel-radius form-control btn-b-pur filter-btn" ng-click="hide_filter()">按条件筛选公司</button>
+            <div class="padding">
+                <div class="filter-squ">
+                    <div class="filter-title">
+                        行业/领域
                     </div>
+
+                    <div class="filter-elem filter-single-line">
+                        <label><input type="checkbox" value="1"/>没有要求</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox" value="2"/>社交</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox" value="3" />电子商务</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox" value="4"/>教育</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox" value="5"/>健康医疗</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox" value="6"/>文化创意</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox" value="6" />生活消费</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox" value="6" />硬件</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox" value="6" id="6"/>O2O</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox" value="6" id="6"/>其它</label> 
+                    </div>
+
                 </div>
+
+                <div class="filter-squ">
+                    <div class="filter-title">
+                        公司规模/融资轮数
+                    </div>
+
+                    <div class="filter-elem filter-single-line">
+                        <label><input name="comp-scale" type="radio" value="1"/>没有要求</label> 
+                    </div>
+                    <div class="filter-elem filter-single-line">
+                        <label><input name="comp-scale" type="radio" value="2" />初创（未融资/种子轮/天使轮）</label> 
+                    </div>
+                    <div class="filter-elem filter-single-line">
+                        <label><input name="comp-scale" type="radio" value="3" />成长（A轮/B轮）</label> 
+                    </div>
+                    <div class="filter-elem filter-single-line">
+                        <label><input name="comp-scale" type="radio" value="4" />成熟（C轮以上/已上市）</label> 
+                    </div>
+
                 </div>
+
+                <div class="filter-squ">
+                    <div class="filter-title">
+                        投资机构认证
+                    </div>
+
+                    <div class="filter-elem">
+                        <label><input type="checkbox" value="1"/>没有要求</label> 
+                    </div>
+                    <div class="filter-elem filter-end-line">
+                        <label><input type="checkbox" value="2"/>所有已认证</label> 
+                    </div>
+                    <div class="filter-elem" style="display: hidden;">
+                        <label><input type="checkbox" value="3"/>没有要求</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox" value="4"/>没有要求</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox" value="5"/>没有要求</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox" value="6"/>没有要求</label> 
+                    </div>
+
+                </div>
+                <button class="panel-radius form-control btn-b-pur filter-btn" ng-click="hide_filter()">按条件筛选公司</button>
+            </div>
 
         </div>
         <div id="list-content" ng-show="!filter_show">
