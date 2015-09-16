@@ -83,11 +83,16 @@ angular.module('chuangplus_mobile.controllers', [])
             $("#filter-content").slideDown("fast");
             $scope.filter_show = true;
         }
+        $scope.hide_filter = function()
+        {
+            $("#filter-content").slideUp("fast");
+            $scope.filter_show = false;
+        }
         $scope.submit_filter = function()
         {
             $scope.filter_submit = $scope.filter;
             $csrf.set_csrf($scope.filter_submit);
-            $http.get(urls.api+"/account/company/list", $.param($scope.filter_submit)).
+            $http.post(urls.api+"/account/company/list", $.param($scope.filter_submit)).
             success(function(data){
                 if(data.error.code == 1){
                     $scope.company_list = data.data;
@@ -113,6 +118,7 @@ angular.module('chuangplus_mobile.controllers', [])
     function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg) {
         console.log('MB_PositionListCtrl');
         $scope.positions = {};
+        $scope.filter_show = false;
         $scope.get_positions = function(){
             $http.get(urls.api+"/position/search").
                 success(function(data){
@@ -137,6 +143,41 @@ angular.module('chuangplus_mobile.controllers', [])
                 });
         };
         $scope.get_positions();
+        $scope.show_filter = function()
+        {
+            $("#filter-content").slideDown("fast");
+            $scope.filter_show = true;
+        }
+        $scope.hide_filter = function()
+        {
+            $("#filter-content").slideUp("fast");
+            $scope.filter_show = false;
+        }
+        $scope.submit_filter = function()
+        {
+            $scope.filter_submit = $scope.filter;
+            $csrf.set_csrf($scope.filter_submit);
+            $http.get(urls.api+"/position/search", $.param($scope.filter_submit)).
+            success(function(data){
+                if(data.error.code == 1){
+                    $scope.positions = data.positions;
+                    for(var i=0; i<$scope.positions.length;i++){
+                        $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
+                        if($scope.positions[i].company.scale == 0){
+                            $scope.positions[i].company.scale_value = "初创";
+                        }
+                        else if($scope.positions[i].company.scale == 1){
+                            $scope.positions[i].company.scale_value = "快速发展";
+                        }
+                        else{
+                            $scope.positions[i].company.scale_value = "成熟";
+                        }
+                    }
+                    $("#filter-content").slideUp("fast");
+                    $scope.filter_show = false;
+                }
+            });
+        }
 
     }])
     .controller('MB_PositionFilterCtrl', ['$scope', '$http', 'urls', '$routeParams',
