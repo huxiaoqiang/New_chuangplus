@@ -1,17 +1,123 @@
 #container{
   #edit_position{
-    h2{
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .form-group{
-      .input-group{
-        width: 40%;
-        float: left;
-        margin-right: 20px;
+    margin-top: 70px;
+    font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+    .form-position{
+      height: 450px;
+      position: relative;
+      label{
+        font-weight: 200;
+        vertical-align: sub;
       }
-      textarea{
-        min-height: 100px;
+      .left-info{
+        .input-group{
+          padding-left: 30px;
+          position: relative;
+          margin-bottom: 15px;
+          .col-sm-3{
+            width: 21%;
+            label{
+              font-weight: 200;
+            }
+          }
+          .col-sm-9{
+            table{
+              width: 90%;
+              tbody{
+                tr{
+                  td{
+                    label{
+                      margin-bottom: 15px;
+                      input.radio{
+                        width: 30px;
+                        height: 13px;
+                        float: left;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .col-sm-6{
+            table{
+              width: 100%;
+              tbody{
+                tr{
+                  td{
+                    label{
+                      input.radio{
+                        width: 30px;
+                        height: 13px;
+                        float: left;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            .salary{
+              width: 35%;
+              float: left;
+            }
+            .k{
+              width: 4%;
+              float: left;
+              padding-top: 6px;
+            }
+            .to{
+              float: left;
+              margin-top: 4px;
+            }
+            .k1{
+              width: 4%;
+              float: left;
+              padding-top: 6px;
+              margin-right: 5px;
+            }
+            .month_input{
+              width: 70%;
+            }
+            .month{
+              margin-top: 6px;
+              float: left;
+              margin-left: 10px;
+            }
+          }
+
+          i{
+            color: #8f4e96;
+            position: absolute;
+            right: 25px;
+            top: 5px;
+            cursor: pointer;
+          }
+        }
+      }
+      .right-info{
+        .input-group{
+          padding-left: 30px;
+          textarea{
+            min-height: 140px;
+            max-width: 100%;
+            width: 94%;
+            padding: 10px;
+            border-radius: 6px;
+            resize: none;
+            outline: none;
+          }
+        }
+      }
+      button{
+        position: absolute;
+        bottom: -60px;
+        left: 41.5%;
+        width: 150px;
+        color: white;
+        color: white;
+        background-color: #8f4e96;
+        outline-color: #98769E;
+        outline-width: 1px;
       }
     }
   }
