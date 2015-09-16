@@ -31,6 +31,7 @@ var app = angular.module('chuangplus_mobile', [
 
         //mobile configure
         $routeProvider.when('/mobile/index', {templateUrl: urls.part_mobile + '/company/list.html',title:'公司列表'});
+        //$routeProvider.when('/mobile/index/', {templateUrl: urls.part_mobile + '/company/list.html',title:'公司列表'});
         $routeProvider.when('/mobile/test', {templateUrl: urls.part_mobile + '/test.html',title:'公司列表'});
         $routeProvider.when('/mobile/notlogin', {templateUrl: urls.part_mobile + '/notlogin.html',title:'未登录'});
 

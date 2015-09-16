@@ -481,6 +481,10 @@ a:hover {
   border: 0;
   color: white !important;
 }
+#filter-content {
+  display: none;
+  z-index: 10000;
+}
 #comp-filter {
   margin-top: 20px;
 }

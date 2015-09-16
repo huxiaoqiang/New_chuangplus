@@ -62,6 +62,10 @@ angular.module('chuangplus_mobile.controllers', [])
             });
         };
         $scope.get_company_list();
+        $scope.show_filter = function()
+        {
+            $("#filter-content").slideDown("fast");
+        }
     }])
     .controller('MB_PositionListCtrl', ['$scope', '$http', 'urls',
      function($scope, $http, urls) {
