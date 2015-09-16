@@ -87,7 +87,7 @@ angular.module('chuangplus_mobile.controllers', [])
         {
             $scope.filter_submit = $scope.filter;
             $csrf.set_csrf($scope.filter_submit);
-            $http.post(urls.api+"/account/company/list", $.param($scope.filter_submit)).
+            $http.get(urls.api+"/account/company/list", $.param($scope.filter_submit)).
             success(function(data){
                 if(data.error.code == 1){
                     $scope.company_list = data.data;
