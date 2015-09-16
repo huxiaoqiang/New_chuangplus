@@ -115,8 +115,8 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $rootScope.loading = false;
     }])
-    .controller('MB_PositionListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg) {
+    .controller('MB_PositionListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log('MB_PositionListCtrl');
         $scope.positions = {};
         $scope.filter_show = false;
@@ -225,8 +225,8 @@ angular.module('chuangplus_mobile.controllers', [])
          function($scope, $http, urls, $routeParams) {
     
     }])
-    .controller('MB_CompanyPositionCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
+    .controller('MB_CompanyPositionCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         $scope.get_company = function(){
         $scope.company_id = $routeParams.company_id;
         console.log($scope.company_id);
@@ -339,8 +339,8 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $rootScope.loading = false;
     }])
-    .controller('MB_CompanyDetailCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
+    .controller('MB_CompanyDetailCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         $scope.company_id = $routeParams.company_id;
         console.log('MB_CompanyDetailCtrl ' + $scope.company_id);
         $scope.company = {};
@@ -493,8 +493,8 @@ angular.module('chuangplus_mobile.controllers', [])
         $rootScope.loading = false;
     }])
 
-    .controller('MB_PositionDetailCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
+    .controller('MB_PositionDetailCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         $scope.position_id = $routeParams.position_id;
         console.log($scope.position_id);
         $scope.latest_scale = {
@@ -656,8 +656,8 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $rootScope.loading = false;
     }])
-    .controller('MB_LoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
+    .controller('MB_LoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log("MB_LoginCtrl");
         $scope.captcha_url = urls.api+"/captcha/image/";
         $scope.login_info = {};
@@ -736,8 +736,8 @@ angular.module('chuangplus_mobile.controllers', [])
         $rootScope.loading = false;
     }
     ])
-    .controller('MB_RegisterCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $notice, $errMsg) {
+    .controller('MB_RegisterCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log("MB_RegisterCtrl");
 
         $scope.info_check = [0, 0, 0, 0];
@@ -879,8 +879,8 @@ angular.module('chuangplus_mobile.controllers', [])
         $rootScope.loading = false;
     }
     ])
-    .controller('MB_PositionFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg) {
+    .controller('MB_PositionFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log('MB_PositionFavorCtrl');
         $user.check_login();
         $scope.positions = {};
@@ -1038,8 +1038,8 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $rootScope.loading = false;
     }])
-    .controller('MB_CompanyFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService', 'NoticeService',
-    function($scope, $http, urls, $csrf, $routeParams, $user, $notice) {
+    .controller('MB_CompanyFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         $user.check_login();
         $scope.company_list = {};
         $scope.position_type = {
@@ -1101,8 +1101,8 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.get_company_list();
         $rootScope.loading = false;
     }])
-    .controller('MB_EditResumeCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService', 'NoticeService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $user , $notice, $errMsg) {
+    .controller('MB_EditResumeCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log('MB_EditResumeCtrl');
         $user.check_login();
         $scope.filename = "无简历附件";
@@ -1181,8 +1181,8 @@ angular.module('chuangplus_mobile.controllers', [])
         $rootScope.loading = false;
     }])
 
-    .controller('MB_UserInfoUpdateCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
+    .controller('MB_UserInfoUpdateCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log('MB_UserInfoUpdateCtrl');
         $user.check_login();
         $scope.info = {};
@@ -1264,8 +1264,8 @@ angular.module('chuangplus_mobile.controllers', [])
         }  
         $rootScope.loading = false;
     }])
-    .controller('MB_LeftSidebarCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService','$location',
-    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg, $location ) {
+    .controller('MB_LeftSidebarCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
 
         console.log($user.username());
 
@@ -1284,8 +1284,8 @@ angular.module('chuangplus_mobile.controllers', [])
         };
     }])
 
-    .controller('MB_UserInfoEditCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
+    .controller('MB_UserInfoEditCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log('MB_UserInfoEditCtrl');
         if($user.username == undefined)
             window.location.href='/mobile/notlogin';
@@ -1320,8 +1320,8 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $rootScope.loading = false;
     }])
-    .controller('MB_PostListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
+    .controller('MB_PostListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log('MB_PostListCtrl');
         $user.check_login();
         $scope.positions = {};
@@ -1383,8 +1383,8 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.get_positions();
         $rootScope.loading = false;
     }])
-    .controller('MB_NotLoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
+    .controller('MB_NotLoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log('MB_NotLoginCtrl');
 
         setTimeout(function(){window.location.href='/mobile/login';},2000);
