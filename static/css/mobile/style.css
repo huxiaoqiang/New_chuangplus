@@ -68,7 +68,7 @@ body {
   border: 2px solid #dcdcdc;
 }
 .panel-group-top {
-  height: 46px;
+  height: 42px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   border-bottom-left-radius: 0;
@@ -78,7 +78,7 @@ body {
   display: block;
 }
 .panel-group-mid {
-  height: 46px;
+  height: 42px;
   background: white;
   border-radius: 0;
   margin-top: -2px;
@@ -104,7 +104,7 @@ body {
   background-color: white;
 }
 .panel-group-bot {
-  height: 46px;
+  height: 42px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-bottom-left-radius: 5px;
@@ -165,7 +165,7 @@ a:hover {
   padding: 0;
   border: 0;
   margin: 0;
-  font-size: 18px;
+  font-size: 16px;
   border-radius: inherit;
 }
 .full-width-input {
@@ -222,7 +222,7 @@ a:hover {
 .panel-title {
   color: #966497;
   text-align: center;
-  line-height: 46px;
+  line-height: 42px;
   margin: 0 0 0 0;
   position: relative;
   left: 0;
