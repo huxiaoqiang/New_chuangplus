@@ -9,6 +9,9 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   overflow-x: hidden;
 }
+.navbar-app {
+  min-height: 40px !important;
+}
 .no-bar-top {
   top: 0 !important;
 }
@@ -65,9 +68,9 @@ body {
   border: 2px solid #dcdcdc;
 }
 .panel-group-top {
-  height: 56px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  height: 46px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   background: white;
@@ -75,7 +78,7 @@ body {
   display: block;
 }
 .panel-group-mid {
-  height: 56px;
+  height: 46px;
   background: white;
   border-radius: 0;
   margin-top: -2px;
@@ -101,23 +104,23 @@ body {
   background-color: white;
 }
 .panel-group-bot {
-  height: 56px;
+  height: 46px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   margin-top: -2px;
   width: 100%;
   display: block;
   background-color: white;
 }
 .panel-radius {
-  height: 50px;
+  height: 40px;
   border: 2px solid #966497;
   background: white;
   color: #966497;
   font-size: 22px;
-  border-radius: 10px;
+  border-radius: 5px;
   text-align: center;
 }
 .login-btn {
@@ -125,11 +128,11 @@ body {
 }
 .padding {
   width: 100%;
-  padding: 0 20px 0 20px;
+  padding: 0 30px 0 30px;
 }
 .panel-list {
   width: 100%;
-  padding: 0 20px 0 20px;
+  padding: 0 30px 0 30px;
 }
 a {
   display: inline-block;
@@ -219,7 +222,7 @@ a:hover {
 .panel-title {
   color: #966497;
   text-align: center;
-  line-height: 56px;
+  line-height: 46px;
   margin: 0 0 0 0;
   position: relative;
   left: 0;
@@ -552,13 +555,13 @@ a:hover {
 .inline-input {
   height: inherit;
   margin: 5px 5px 5px 0 ;
-  border-radius: 10px;
+  border-radius: 5px;
   width: 22%;
   background: white;
   border: 1px solid #b5b5b5;
 }
 .id-list {
-  height: 330px;
+  height: 280px;
 }
 .comp-detail {
   padding-bottom: 12px;
@@ -574,7 +577,7 @@ a:hover {
   font-size: 23px;
 }
 .comp-map {
-  padding: 8px 20px 8px 20px;
+  padding: 8px 30px 8px 30px;
   background-color: white;
   margin-top: 2px;
   color: #707070;
