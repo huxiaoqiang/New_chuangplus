@@ -111,7 +111,7 @@ body {
   position: relative;
 }
 .panel-radius {
-  height: 40px;
+  height: 36px;
   border: 1px solid #966497;
   background: white;
   color: #966497;
@@ -557,7 +557,7 @@ a:hover {
   border: 1px solid #b5b5b5;
 }
 .id-list {
-  height: 280px;
+  height: 260px;
 }
 .comp-detail {
   padding-bottom: 12px;
