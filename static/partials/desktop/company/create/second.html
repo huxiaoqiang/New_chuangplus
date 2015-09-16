@@ -144,31 +144,28 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="get_delete_index()">
             <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="myModalLabel">删除融资经历</h4>
+        <h4 class="modal-title" id="myModalLabel">确定删除融资信息：</h4>
       </div>
       <div class="modal-body">
-          确定删除融资信息：</br>
-          <div class="financing" ng-repeat="financing in financing_list">
-              <div class="stage" ng-if="financing.stage=='seed'">种子轮&nbsp;&nbsp;/&nbsp;&nbsp;</div>
-              <div class="stage" ng-if="financing.stage=='angel'">天使轮&nbsp;&nbsp;/&nbsp;&nbsp;</div>
-              <div class="stage" ng-if="financing.stage=='A'">A轮&nbsp;&nbsp;/&nbsp;&nbsp;</div>
-              <div class="stage" ng-if="financing.stage=='B'">B轮&nbsp;&nbsp;/&nbsp;&nbsp;</div>
-              <div class="stage" ng-if="financing.stage=='C'">C轮&nbsp;&nbsp;/&nbsp;&nbsp;</div>
-              <div class="stage" ng-if="financing.stage=='D_plus'">D轮及D轮以上&nbsp;&nbsp;/&nbsp;&nbsp;</div>
+          <div class="financing">
+              <div class="stage" ng-if="financing_list[delete_index].stage=='seed'">种子轮&nbsp;&nbsp;/&nbsp;&nbsp;</div>
+              <div class="stage" ng-if="financing_list[delete_index].stage=='angel'">天使轮&nbsp;&nbsp;/&nbsp;&nbsp;</div>
+              <div class="stage" ng-if="financing_list[delete_index].stage=='A'">A轮&nbsp;&nbsp;/&nbsp;&nbsp;</div>
+              <div class="stage" ng-if="financing_list[delete_index].stage=='B'">B轮&nbsp;&nbsp;/&nbsp;&nbsp;</div>
+              <div class="stage" ng-if="financing_list[delete_index].stage=='C'">C轮&nbsp;&nbsp;/&nbsp;&nbsp;</div>
+              <div class="stage" ng-if="financing_list[delete_index].stage=='D_plus'">D轮及D轮以上&nbsp;&nbsp;/&nbsp;&nbsp;</div>
               
-              <div class="organization">[[financing.organization]]</div>
+              <div class="organization">[[financing_list[delete_index].organization]]</div>
               
-              <div class="amount" ng-if="financing.amount=='ten'">&nbsp;&nbsp;/&nbsp;&nbsp;十万级</div>
-              <div class="amount" ng-if="financing.amount=='hundred'">&nbsp;&nbsp;/&nbsp;&nbsp;百万级</div>
-              <div class="amount" ng-if="financing.amount=='thousand'">&nbsp;&nbsp;/&nbsp;&nbsp;千万级</div>
-              <div class="amount" ng-if="financing.amount=='thousand_plus'">&nbsp;&nbsp;/&nbsp;&nbsp;亿级</div>
+              <div class="amount" ng-if="financing_list[delete_index].amount=='ten'">&nbsp;&nbsp;/&nbsp;&nbsp;十万级</div>
+              <div class="amount" ng-if="financing_list[delete_index].amount=='hundred'">&nbsp;&nbsp;/&nbsp;&nbsp;百万级</div>
+              <div class="amount" ng-if="financing_list[delete_index].amount=='thousand'">&nbsp;&nbsp;/&nbsp;&nbsp;千万级</div>
+              <div class="amount" ng-if="financing_list[delete_index].amount=='thousand_plus'">&nbsp;&nbsp;/&nbsp;&nbsp;亿级</div>
         </div>
-
-      </div>
-      <div style="clear:both;"></div>
-      <div class="modal-footer">
-        <input type="button" class="btn btn-default" data-dismiss="modal" value="取消">
-        <button type="button"class="btn btn-primary" ng-click="delete_financing(delete_index)">确定</button>
+        <div style="clear:both;"></div>
+        <input type="button" class="btn cancer-button" data-dismiss="modal" value="取消">
+        <button type="button"class="btn save-button" ng-click="delete_financing(delete_index)">确定</button>
+        <div style="clear:both;"></div>
       </div>
     </div>
   </div>
