@@ -369,6 +369,7 @@ def set_companyinfo(request,company_id):
         c.product_description = request.POST.get('product_description', c.product_description)
         c.team_description = request.POST.get('team_description', c.team_description)
         c.slogan = request.POST.get('slogan', c.slogan)
+        c.info_complete = request.POST.get('info_complete', c.info_complete)
         c.update_time = datetime_now()
         c.save()
 
@@ -956,7 +957,7 @@ def get_company_list(request):
         scale = request.GET.get('scale', '')
         status = request.GET.get('status', '')
 
-        companies = Companyinfo.objects.all()
+        companies = Companyinfo.objects(info_complete=True)
 
         if text != '':
             companies = companies.filter(
