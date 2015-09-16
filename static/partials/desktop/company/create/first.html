@@ -47,19 +47,28 @@
                         <table>
                             <tbody>
                                 <tr>
-                                  <td><label><input type="radio" ng-model="companyinfo.field" value="social">社交</label></td>
-                                  <td><label><input type="radio" ng-model="companyinfo.field" value="e-commerce">电子商务</label></td>
-                                  <td><label><input type="radio" ng-model="companyinfo.field" value="education">教育</label></td>
+                                  <td><input type="radio" ng-model="companyinfo.field" value="social">
+                                      <label>社交</label></td>
+                                  <td><input type="radio" ng-model="companyinfo.field" value="e-commerce">
+                                      <label>电子商务</label></td>
+                                  <td><input type="radio" ng-model="companyinfo.field" value="education">
+                                      <label>教育</label></td>
                                 </tr>
                                 <tr>
-                                  <td><label><input type="radio" ng-model="companyinfo.field" value="health_medical">健康医疗</label></td>
-                                  <td><label><input type="radio" ng-model="companyinfo.field" value="culture_creativity">文化创新</label></td>
-                                  <td><label><input type="radio" ng-model="companyinfo.field" value="living_consumption">生活消费</label></td>
+                                  <td><input type="radio" ng-model="companyinfo.field" value="health_medical">
+                                      <label>健康医疗</label></td>
+                                  <td><input type="radio" ng-model="companyinfo.field" value="culture_creativity">
+                                      <label>文化创新</label></td>
+                                  <td><input type="radio" ng-model="companyinfo.field" value="living_consumption">
+                                      <label>生活消费</label></td>
                                 </tr>
                                 <tr>
-                                  <td><label><input type="radio" ng-model="companyinfo.field" value="hardware">硬件</label></td>
-                                  <td><label><input type="radio" ng-model="companyinfo.field" value="O2O">O2O</label></td>
-                                  <td><label><input type="radio" ng-model="companyinfo.field" value="others">其他</label></td>
+                                  <td><input type="radio" ng-model="companyinfo.field" value="hardware">
+                                      <label>硬件</label></td>
+                                  <td><input type="radio" ng-model="companyinfo.field" value="O2O">
+                                      <label>O2O</label></td>
+                                  <td><input type="radio" ng-model="companyinfo.field" value="others">
+                                      <label>其他</label></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -70,9 +79,12 @@
                         <label>发展阶段</label>
                     </div>
                     <div class="col-sm-9">
-                          <label><input type="radio" ng-model="companyinfo.scale" value="0">初创（未融资/种子轮/天使轮）</label><br/>
-                          <label><input type="radio" ng-model="companyinfo.scale" value="1">成长（A轮/B轮）</label><br/>
-                          <label><input type="radio" ng-model="companyinfo.scale" value="2">成熟（C轮以上/已上市）</label>
+                          <input type="radio" ng-model="companyinfo.scale" value="0">
+                              <label>初创（未融资/种子轮/天使轮）</label><br/>
+                          <input type="radio" ng-model="companyinfo.scale" value="1">
+                              <label>成长（A轮/B轮）</label><br/>
+                          <input type="radio" ng-model="companyinfo.scale" value="2">
+                              <label>成熟（C轮以上/已上市）</label>
                     </div>
                 </div>
                 <div class="input-group">
@@ -80,7 +92,10 @@
                         <label>福利标签</label>
                     </div>
                     <div class="col-sm-9">
-                      <label class="checkbox-label" ng-repeat="tag in tags"><input type="checkbox" ng-model="tag.chosed">[[tag.value]]</label>
+                    <label class="checkbox-label" ng-repeat="tag in tags">
+                      <input type="checkbox" ng-model="tag.chosed">
+                      <label>[[tag.value]]</label>
+                    </label>
                           <br/>
                               <input name="addtag" type="text" class="form-control tags_input" placeholder="自定义标签" ng-maxlength="4" ng-model="tag_added">
                               <input type="button" class="btn btn-primary" value="添加" ng-click="add_tag()" ng-disabled="canAdd(FirstStepForm.addtag)">

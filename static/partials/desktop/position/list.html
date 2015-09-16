@@ -82,13 +82,8 @@
                 <a href="/position/[[position._id.$oid]]/detail">
                 <li>
                     <div class="favor-list-item">
-                        <div class="auth" >
-                            <p>v[[position.company.auth_organization]]红杉资本认证</p>
-                        </div>
                         <div class="middle-block">
-                            <div class="item-pic">
-                                <img src="/api/file/[[position.company.logo_id]]/download" class="company-pic" alt="图片"></img>
-                            </div>
+                            
                             <div class="info">
                                 <div class="item-info info-1">
                                     <div class="vertical-center">
@@ -97,6 +92,15 @@
                                             <span class="tags">[[position.days_per_week]]天/周</span>
                                             <span class="tags">[[position.salary_min]]k-[[position.salary_max]]k</span>
                                         </div>
+                                        <div class="submit-time">
+                                            <p>发布时间：[[position.release_time.$date |date :'yyyy-MM-dd']]</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="line"></div>
+                                <div class="item-info info-4">
+                                    <div class="vertical-center">
+                                        <div class="tags" ng-repeat="tag in position.company.welfare_tags">[[tag]]</div>
                                     </div>
                                 </div>
                                 <div class="line"></div>
@@ -104,6 +108,7 @@
                                     <div class="vertical-center">
                                         <p class="company">[[position.company.abbreviation]]</p>
                                         <p class="company-discrpt">&nbsp;&nbsp;[[position.company.brief_introduction]]</p>
+                                        <p class="auth">v[[position.company.auth_organization]]红杉资本认证</p>
                                     </div>
                                 </div>
                                 <div class="item-info info-3">
@@ -122,16 +127,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="line"></div>
-                                <div class="item-info info-4">
+                               
+                                <div class="item-pic">
                                     <div class="vertical-center">
-                                        <div class="tags" ng-repeat="tag in position.company.welfare_tags">[[tag]]</div>
+                                        <img src="/api/file/[[position.company.logo_id]]/download" class="company-pic" alt="图片"></img>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="bottom-block">
-                            <p class="submit-time">发布时间：[[position.release_time.$date |date :'yyyy-MM-dd']]</p>
                         </div>
                        
                     </div>

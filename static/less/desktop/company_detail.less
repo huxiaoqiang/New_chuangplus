@@ -2,85 +2,195 @@
   #company-detail{
     min-height: 600px;
     .col-md-8{
-      border: solid #eeeeee;
-      border-width: 0px 30px 0px 0px;
-    .company-info{
-      border: solid #98769E;
-      border-width: 1px 1px 1px 10px;
-      padding: 10px;
-      margin: 10px;
-      .company-logo{
-        float: left;
-        img{
-          height: 120px;
-          width: 120px;
+     // border: solid #eeeeee;
+        width: 100%;
+margin-top: 30px;
+ font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+        .company-info{
+            margin-top: 0px;
+            background-color: #FFFFFF;
+            border: 1px solid#bfbfbf;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            height: 105px;
+
+            padding: 0 10px 5px 5px;
+            width: 100%;
+            height: 100px;
+            .auth{
+
+                text-align: right;
+                width: 100%;
+                height: 5px;
+                padding-top: 5px;
+                p{
+
+                    font-size: 12px;
+                    color:#8f4e96;
+                }
+            }
+            .bottom-side{
+                width: 100%;
+                height: 90px;
+
+                .item-pic{
+                    float: left;
+                    width: 90px;
+                    height: 90px;
+                    .company-pic{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+                .info{
+                    width: 800px;
+                    float: left;
+                    padding: 10px 0 10px 0;
+                    height: 90px;
+                    .line{
+                        width: 1px;
+                        height: 50px;
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                        float: left;
+                        border-left: 1px solid #aaaaaa;
+                    }
+                    .item-info.info-1{
+                        width: 250px;
+                        padding-left: 20px;
+                    }
+                    .item-info.info-2{
+                        width: 125px;
+                    }
+                    .item-info.info-3{
+
+                        width: 180px;
+                    }
+                    .vertical-center{
+                        display: table-cell;
+                        vertical-align: middle;
+                        padding: 0 10px 0 15px;
+                    }
+                    .item-info{
+
+                        float: left;
+                        height: 100%;
+                        display:table;
+                        .abbreviation{
+                            font-size: 1.3em;
+                            color: black;
+                        }
+                        .brief_introduction{
+                            color: #707070;
+                            font-size: 12px;
+                            margin-top: -10px;
+                        }
+                        .label-1{
+
+                            img{
+                                width: 13px;
+                                height: 13px;
+                                float: left;
+                                margin-right: 5px;
+                                margin-top: 2px;
+                            }
+                            p{
+                                color: #707070;
+
+                                font-size: 10px;
+                                margin-bottom: 5px;
+                            }
+                            .last-p{
+                                margin-bottom: 0;
+                                float: left;
+                            }
+                        }
+                        .position_number{
+                            font-size: 1.1em;
+                            color: black;
+                            text-align: left;
+                            margin-left: 23px;
+                            margin-bottom: 5px;
+
+                        }
+                        .position_tags{
+                            margin: 0 auto;
+                            margin-top: 0;
+                            margin-left: 23px;
+                            width: 135px;
+                            .tags{
+                                width: 40px;
+                            }
+
+                        }
+
+                    }
+                    .welfare_tags{
+                        width: 138px;
+                        float: left;
+                        margin-left: 20px;
+                        margin-top: 5px;
+                        .tags{
+                            width: 64px;
+                        }
+                    }
+                    .tags{
+                        border-radius: 10px;
+                        padding: 0 8px 0 8px;
+                        background-color: rgba(143,78,150,0.1);
+                        color: #707070;
+                        font-size: 5px;
+                        margin-right: 5px;
+                        float: left;
+                        margin-bottom: 5px;
+                        text-align: center;
+                    }
+
+                }
+            }
         }
-      }
-      .item-info{
-        .name{
-          padding-left: 140px;
-          font-size: 1.5em;
-          font-family: "微软雅黑";
-        }
-        .brief_introduction{
-          padding-left: 140px;
-          color: #8E8E8E;
-          margin-top: -10px;
-          font-family: "微软雅黑";
-        }
-        .position_number{
-          margin-left: 140px;
-          color: #98769E;
-          font-family: "微软雅黑";
-          font-weight: bolder;
-          font-size: 1.5em;
-        }
-        .favor{
-          margin-left: 20px;
-          padding: 5px;
-          font-size: 1.5em;
-          color: white;
-          background-color: #98769E;
-          cursor: pointer;
-          float: right;
-          margin-top: -45px;
-          margin-right: 18px;
-        }
-      }
-      .welfare_tags{
-          float: right;
-          color: #8E8E8E;
-        }
-    }
-    .detail{
+
+      .detail{
+.vertical-center{
+display: table-cell;
+vertical-align: middle;
+padding: 0 10px 0 15px;
+}
+p{
+margin: 0;
+}
+.left-block{
+float: left;
+width: 610px;
       .header{
         margin-left: 10px;
-        font-size: 1.5em;
-        font-family: "微软雅黑";
-        font-weight: bolder;
+        font-size: 16px;
+        font-weight: 100;
         cursor: pointer;
+
         .tab{
+          margin: 0;
+          padding: 5px 20px 5px 20px;
           border: solid;
-          border-width: 0px 0px 5px 0px;
-          color: #DCDEE0;
+          border-color: rgba(143,78,150,0.1);
+          border-width: 0px 0px 4px 0px;
+          color: #707070;
         }
         .tab:hover{
-          border-color:#98679E ;
+          border-color:#8f4e96 ;
         }
         .tab-active{
-           border-color: #98769E;
-           color: #98769E;
+           border-color: #8f4e96;
         }
       }
       .company{
         margin-top: 24px;
         margin-left: 10px;
-        h3{
-          font-size: 1.5em;
-          font-family: "微软雅黑";
-          font-weight: bolder;
+        p{
+          font-size: 17px;
           cursor: pointer;
-          color: #98769E;
+          color: #707070;
         }
         .line{
           border: solid 1px #dddddd;
@@ -88,31 +198,54 @@
         }
         .description{
           min-height: 100px;
+          p{
+            font-size: 15px;
+          }
         }
         .company-description{
 
         }
         .team-member{
+
           .member{
-            border: solid #98769E;
-            border-width: 1px 1px 1px 10px;
+            background-color: white;
+            border: 1px solid #bcbcbc;
             padding: 10px;
-            margin-bottom: 10px;
+            border-radius: 3px;
+            margin-bottom: 15px;
+            width: 100%;
+            height: 80px;
             .avatar{
               float: left;
               img{
+                border-radius: 3px;
+                border: 1px solid #d8d8d8;
                 width: 60px;
                 height: 60px;
               }
             }
             .member-description{
-              .name-position{
-                margin-left: 70px;
-                color: #98769E;
+              float: left;
+              margin-left: 20px;
+              text-align: center;
+              display: table;
+              height: 100%;
+              .m-name{
+                color: #707070;
               }
-              .m_introduction{
-                margin-left: 70px;
+              .m-position{
+                font-size: 15px;
               }
+
+            }
+            .member-intro{
+                float: left;
+                margin-left: 20px;
+                display:table;
+                height: 100%;
+                .m_introduction{
+
+                }
             }
           }
 
@@ -122,14 +255,18 @@
         margin-top: 24px;
         margin-left: 10px;
         .position_list{
-        border: solid 2px #98769E;
-        border-width: 1px 1px 1px 10px;
+        background-color: white;
+        width: 100%;
+        height: 100px;
+        border: solid 1px #e1e0e2;
+        border-radius: 4px;
         cursor: pointer;
-        padding: 10px;
+        padding: 10px 20px 10px 20px;
         margin: 1px 1px 15px 1px;
         .position_name{
-          color: #98769E;
-          font-size: 1.5em;
+          //color: #707070;
+          font-size: 1.3em;
+          margin-bottom: 5px;
         }
         .edit{
           float: right;
@@ -138,32 +275,62 @@
           cursor: pointer;
         }
         .tags{
+          width: 100%;
+          height: 22px;
+          float: left;
           span{
-            border: solid 1px #98769e;
-            padding: 2px;
-            border-radius: 4px;
+            width: 64px;
+            border-radius: 10px;
+            padding: 0 8px 0 8px;
+            background-color: rgba(143,78,150,0.1);
+            //color: #707070;
+            font-size: 5px;
+            margin-right: 5px;
+            float: left;
+            margin-top: 5px;
+            text-align: center;
           }
         }
-        .number{
-          margin-top: 10px;
-        }
         .time{
-          float: right;
+          width: 100%;
+          float: left;
           color: #a6aaa9;
-          margin-top: -20px;
+          font-size: 10px;
+          margin-top: -5px;
+          text-align: right;
         }
-      }
-      .position_list:hover{
-        background-color: #FAFAFA;
       }
     }
     }
   }
-    .qrcode{
-      width:250px;
-      height: 250px;
-      margin-top: 10px;
-      margin-bottom: 10px;
+}
+    .col-md-4{
+        float: right;
+        width: 200px;
+        padding: 50px 0 0 0;
+        .company-dscrpt{
+            width: 200px;
+            padding: 5px 5px 0 5px;
+            background-color: white;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            p{
+                padding-bottom: 5px;
+                color: #707070;
+            }
+.index{
+font-size: 14px;
+}
+.txt{
+font-size: 10px;
+}
+        }
+        .qrcode{
+        width:200px;
+        height: 200px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        }
     }
   }
 }
