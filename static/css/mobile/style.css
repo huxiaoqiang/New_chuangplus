@@ -141,7 +141,7 @@ a:hover {
   text-decoration: none;
   color: black;
 }
-.panel-radius select {
+.panel-group-bot select {
   border: 0;
   border-radius: inherit;
   width: 100%;
@@ -284,7 +284,8 @@ a:hover {
   display: block;
   padding: 0 0 0 12px;
   float: left;
-  color: #707070;
+  border: 1px solid #707070;
+  color: black;
 }
 .require-bar .requires {
   position: absolute;
@@ -360,6 +361,8 @@ a:hover {
 .comp-prev-img {
   position: relative;
   float: left;
+  border-radius: 3px;
+  border-color: #b5b5b5;
   width: 94px;
   height: 94px;
   margin-right: 10px;
@@ -390,13 +393,13 @@ a:hover {
   font-size: 12px;
 }
 .comp-req-tag {
-  padding: 1px 1px 1px 1px ;
+  padding: 0px 4px 0px 4px;
   border-radius: 2px;
   background-color: #966497;
   border: 1px solid #966497;
   color: white;
   font-size: 11px;
-  margin-right: 3px;
+  margin-right: 4px;
   text-align: center;
   white-space: nowrap;
 }
@@ -405,13 +408,13 @@ a:hover {
   overflow: hidden;
 }
 .comp-desc-tag {
-  padding: 1px 1px 1px 1px ;
+  padding: 0px 4px 0px 4px;
   border-radius: 2px;
   background-color: white;
   color: #966497;
   border: 1px solid #966497;
   font-size: 11px;
-  margin-right: 3px;
+  margin-right: 4px;
   text-align: center;
   white-space: nowrap;
 }
@@ -420,10 +423,12 @@ a:hover {
   overflow: hidden;
 }
 .comp-benefit-tag {
-  color: #b5b5b5;
+  color: #707070;
+  background: #dcdcdc;
+  padding: 0px 4px 0px 4px;
   font-size: 11px;
   float: left;
-  margin-right: 3px;
+  margin-right: 4px;
 }
 .post-time {
   line-height: 18px;

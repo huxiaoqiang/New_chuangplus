@@ -58,7 +58,7 @@
 @cl-comp-desc-fsize:    11px;
 @cl-comp-req-fsize:    12px;
 @cl-comp-tag-radius:    2px;
-@cl-comp-tag-mag:    3px;
+@cl-comp-tag-mag:    4px;
 @cl-comp-reqt-fsize:    11px;
 @cl-comp-desct-fsize:    11px;
 @cl-comp-bent-fsize:    11px;
@@ -259,7 +259,7 @@ a:hover
     color: black;
 }
 
-.panel-radius select
+.panel-group-bot select
 {
     border: 0;
     border-radius: inherit;
@@ -445,7 +445,8 @@ a:hover
     display: block;
     padding: 0 0 0 @cl-require-boxpd;
     float: left;
-    color:  @dark-gray;
+    border: 1px solid @dark-gray;
+    color:  black;
 }
 .require-bar .requires
 {
@@ -536,6 +537,8 @@ a:hover
 {
     position: relative;
     float: left;
+    border-radius: 3px;
+    border-color: @mid-gray;
     width: @cl-comp-img-size;
     height: @cl-comp-img-size;
     margin-right: (@cl-listbox-hgt - @cl-comp-img-size)/2 ;
@@ -572,7 +575,7 @@ a:hover
 }
 .comp-req-tag
 {
-    padding: 1px 1px 1px 1px ;
+    padding: 0px 4px 0px 4px;
     border-radius: @cl-comp-tag-radius;
     background-color: @std-purple;
     border: 1px solid @std-purple;
@@ -589,7 +592,7 @@ a:hover
 }
 .comp-desc-tag
 {
-    padding: 1px 1px 1px 1px ;
+    padding: 0px 4px 0px 4px;
     border-radius: @cl-comp-tag-radius;
     background-color: white;
     color:   @std-purple;
@@ -607,7 +610,9 @@ a:hover
 }
 .comp-benefit-tag
 {
-    color:   @mid-gray;
+    color:   @dark-gray;
+    background: @lit-gray;
+    padding: 0px 4px 0px 4px;
     font-size: @cl-comp-bent-fsize;
     float: left;
     margin-right: @cl-comp-tag-mag;
