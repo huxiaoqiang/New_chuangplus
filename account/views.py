@@ -369,6 +369,9 @@ def set_companyinfo(request,company_id):
         c.product_description = request.POST.get('product_description', c.product_description)
         c.team_description = request.POST.get('team_description', c.team_description)
         c.slogan = request.POST.get('slogan', c.slogan)
+        info_complete = request.POST.get('info_complete', False)
+        if info_complete != False:
+            info_complete = True
         c.update_time = datetime_now()
         c.save()
 
@@ -419,6 +422,11 @@ def get_position_favor(request):
                 re['error'] = error(260,"Position does not exist")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             position_re = json.loads(posi.to_json())
+            try:
+                userposition = UserPosition(user=request.user,position=posi)
+                position_re['resume_submitted'] = True
+            except:
+                position_re['resume_submitted'] = False
             try:
                 company = Companyinfo.objects.get(id=posi.company.id)
             except DoesNotExist:
@@ -951,7 +959,7 @@ def get_company_list(request):
         scale = request.GET.get('scale', '')
         status = request.GET.get('status', '')
 
-        companies = Companyinfo.objects.all()
+        companies = Companyinfo.objects(info_complete=True)
 
         if text != '':
             companies = companies.filter(

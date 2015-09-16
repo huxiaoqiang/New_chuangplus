@@ -1,81 +1,170 @@
-<script type="text/javascript">
-
-
-
-</script>
 <div class="main-content scrollable" ng-controller="MB_CompanyListCtrl">
-<div class="scrollable-content">
-    <div class="header-bar">
-        <div ng-include="'/static/partials/mobile/partials/header-logo.html'" ></div>
-        <div class="header"> 犀牛·帮你找实习</div>
-    </div>    
-
-    <div class="require-bar">
-        <div class="requires">
-            <div class="require-box">移动互联网</div>
-            <div class="require-box">初创阶段</div>
-            <div class="require-box">红杉资本认证</div>
-        </div>
-        <button class="require-btn" onclick="location='/mobile/company/filter'">编辑条件</button>
-    </div>
-
-    <div class="search-bar">
-          <input class=" search-input form-control" type="text" placeholder="输入关键词进行搜索">
-    </div>
-
-    <div class="comp-list">
-        <!--
-                <a href="/company/[[company._id.$oid]]/detail">
-                <li>
-                    <div class="company-info">
-                        <div class="item-pic">
-                            <img src="/api/file/[[company.logo_id]]/download" class="company-pic" alt="图片">
-                        </div>
-                        <div class="item-info">
-                            <p class="abbreviation">[[company.abbreviation]]</p>
-                            <p class="brief_introduction">[[company.brief_introduction]]</p>
-                            <p class="line"></p>
-                            <p class="position_number">在招岗位数：[[company.position_number]]</p>
-                            <div class="welfare_tags">
-                                <span class="tags" ng-repeat="tag in company.welfare_tags">[[tag]]</span>
+    <div class="scrollable-content">
+        <div class="header-bar">
+            <div ng-include="'/static/partials/mobile/partials/header-logo.html'" ></div>
+            <div class="header"> 犀牛·帮你找实习</div>
+        </div>    
+        <div id="filter-content">
+            <div class="main-content scrollable">
+                <div class="scrollable-content">
+                    <div class="padding">
+                        <div class="filter-squ">
+                            <div class="filter-title">
+                                行业/领域
                             </div>
+
+                            <div class="filter-elem filter-single-line">
+                                <label><input type="checkbox" value="1"/>没有要求</label> 
+                            </div>
+                            <div class="filter-elem">
+                                <label><input type="checkbox" value="2"/>社交</label> 
+                            </div>
+                            <div class="filter-elem">
+                                <label><input type="checkbox" value="3" />电子商务</label> 
+                            </div>
+                            <div class="filter-elem">
+                                <label><input type="checkbox" value="4"/>教育</label> 
+                            </div>
+                            <div class="filter-elem">
+                                <label><input type="checkbox" value="5"/>健康医疗</label> 
+                            </div>
+                            <div class="filter-elem">
+                                <label><input type="checkbox" value="6"/>文化创意</label> 
+                            </div>
+                            <div class="filter-elem">
+                                <label><input type="checkbox" value="6" />生活消费</label> 
+                            </div>
+                            <div class="filter-elem">
+                                <label><input type="checkbox" value="6" />硬件</label> 
+                            </div>
+                            <div class="filter-elem">
+                                <label><input type="checkbox" value="6" id="6"/>O2O</label> 
+                            </div>
+                            <div class="filter-elem">
+                                <label><input type="checkbox" value="6" id="6"/>其它</label> 
+                            </div>
+
                         </div>
-                        <div class="auth">
-                            <p>机构认证</p>
+
+                        <div class="filter-squ">
+                            <div class="filter-title">
+                                公司规模/融资轮数
+                            </div>
+
+                            <div class="filter-elem filter-single-line">
+                                <label><input name="comp-scale" type="radio" value="1"/>没有要求</label> 
+                            </div>
+                            <div class="filter-elem filter-single-line">
+                                <label><input name="comp-scale" type="radio" value="2" />初创（未融资/种子轮/天使轮）</label> 
+                            </div>
+                            <div class="filter-elem filter-single-line">
+                                <label><input name="comp-scale" type="radio" value="3" />成长（A轮/B轮）</label> 
+                            </div>
+                            <div class="filter-elem filter-single-line">
+                                <label><input name="comp-scale" type="radio" value="4" />成熟（C轮以上/已上市）</label> 
+                            </div>
+
                         </div>
+
+                        <div class="filter-squ">
+                            <div class="filter-title">
+                                投资机构认证
+                            </div>
+
+                            <div class="filter-elem">
+                                <label><input type="checkbox" value="1"/>没有要求</label> 
+                            </div>
+                            <div class="filter-elem filter-end-line">
+                                <label><input type="checkbox" value="2"/>所有已认证</label> 
+                            </div>
+                            <div class="filter-elem" style="display: hidden;">
+                                <label><input type="checkbox" value="3"/>没有要求</label> 
+                            </div>
+                            <div class="filter-elem">
+                                <label><input type="checkbox" value="4"/>没有要求</label> 
+                            </div>
+                            <div class="filter-elem">
+                                <label><input type="checkbox" value="5"/>没有要求</label> 
+                            </div>
+                            <div class="filter-elem">
+                                <label><input type="checkbox" value="6"/>没有要求</label> 
+                            </div>
+
+                        </div>
+                        <button class="panel-radius form-control btn-b-pur filter-btn" ng-click="hide_filter()">按条件筛选公司</button>
                     </div>
-                </li>
-                </a>
-        -->
-        <div ng-repeat="company in company_list">   
-            <a class="comp-listbox" href="/mobile/company/detail/[[company._id.$oid]]"> <!-- /[[company._id.$oid]] -->
-                <img class="comp-prev-img" src="/api/file/[[company.logo_id]]/download">
-                <div class="comp-name">[[company.abbreviation]]</div>
-                <div class="comp-desc">[[company.brief_introduction]]</div>
-                <div ng-if="company.is_auth" class="comp-auth">[[company.auth_organization]]认证</div>
-                <div class="comp-req-list">
-                    <span class="comp-req-title">[[company.position_number]]岗位在招</span>
-                    <span class="comp-req-tag" ng-repeat="tag in company.position_type_value">[[tag]]</span>
                 </div>
-                <div class="comp-desc-list">
-                    <span class="comp-desc-tag">
-                        [[company.field_value]]
-                    </span>
-                    <span class="comp-desc-tag">
-                        [[company.scale_value]]期
-                    </span>
-                    <span class="comp-desc-tag">
-                        [[company.city]]
-                    </span>
                 </div>
 
-                <div class="comp-benefit-list">
-                    <span class="comp-benefit-tag" ng-repeat="tag in company.welfare_tags">[[tag]]</span>
+        </div>
+        <div id="list-content" ng-show="!filter_show">
+            <div class="require-bar">
+                <div class="requires">
+                    <div class="require-box">移动互联网</div>
+                    <div class="require-box">初创阶段</div>
+                    <div class="require-box">红杉资本认证</div>
                 </div>
-            </a>
+                <button class="require-btn" ng-click="show_filter()">编辑条件</button>
+            </div>
+
+            <div class="search-bar">
+                  <input class=" search-input form-control" type="text" placeholder="输入关键词进行搜索">
+            </div>
+
+            <div class="comp-list">
+                <!--
+                        <a href="/company/[[company._id.$oid]]/detail">
+                        <li>
+                            <div class="company-info">
+                                <div class="item-pic">
+                                    <img src="/api/file/[[company.logo_id]]/download" class="company-pic" alt="图片">
+                                </div>
+                                <div class="item-info">
+                                    <p class="abbreviation">[[company.abbreviation]]</p>
+                                    <p class="brief_introduction">[[company.brief_introduction]]</p>
+                                    <p class="line"></p>
+                                    <p class="position_number">在招岗位数：[[company.position_number]]</p>
+                                    <div class="welfare_tags">
+                                        <span class="tags" ng-repeat="tag in company.welfare_tags">[[tag]]</span>
+                                    </div>
+                                </div>
+                                <div class="auth">
+                                    <p>机构认证</p>
+                                </div>
+                            </div>
+                        </li>
+                        </a>
+                -->
+                <div ng-repeat="company in company_list">   
+                    <a class="comp-listbox" href="/mobile/company/detail/[[company._id.$oid]]"> <!-- /[[company._id.$oid]] -->
+                        <img class="comp-prev-img" src="/api/file/[[company.logo_id]]/download">
+                        <div class="comp-name">[[company.abbreviation]]</div>
+                        <div class="comp-desc">[[company.brief_introduction]]</div>
+                        <div ng-if="company.is_auth" class="comp-auth">[[company.auth_organization]]认证</div>
+                        <div class="comp-req-list">
+                            <span class="comp-req-title">[[company.position_number]]岗位在招</span>
+                            <span class="comp-req-tag" ng-repeat="tag in company.position_type_value">[[tag]]</span>
+                        </div>
+                        <div class="comp-desc-list">
+                            <span class="comp-desc-tag">
+                                [[company.field_value]]
+                            </span>
+                            <span class="comp-desc-tag">
+                                [[company.scale_value]]期
+                            </span>
+                            <span class="comp-desc-tag">
+                                [[company.city]]
+                            </span>
+                        </div>
+
+                        <div class="comp-benefit-list">
+                            <span class="comp-benefit-tag" ng-repeat="tag in company.welfare_tags">[[tag]]</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
-  </div>
 </div>
 <div ui-content-for="footer">
     <div ng-include="'/static/partials/mobile/partials/nav-3-2.html'" ></div>
