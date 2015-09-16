@@ -906,7 +906,6 @@ angular.module('chuangplus_mobile.controllers', [])
                         else{
                             $scope.positions[i].company.scale_value = "成熟";
                         }
-                        $scope.check_submit(i);
                     }
                 }
                 else{
