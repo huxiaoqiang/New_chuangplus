@@ -1112,10 +1112,10 @@ angular.module('chuangplus.controllers', []).
     controller('DT_CompanyPositionEditCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanyPositionEditCtrl');
         $scope.position_id = $routeParams.position_id;
-        $scope.create_position = function(){
+        $scope.submit_position = function(){
             $csrf.set_csrf($scope.position);
             if($scope.position.end_time != ''){
-                $scope.position.end_time = $filter('date')($scope.position.end_time, 'yyyy-MM-dd HH:mm:ss');
+                $scope.position.end_time = $filter('date')($scope.position.end_time, 'yyyy-MM-dd');
             }
             $http.post(urls.api+"/position/create", $.param($scope.position)).
                 success(function(data){

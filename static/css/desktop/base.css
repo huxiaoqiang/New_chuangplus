@@ -1023,12 +1023,15 @@ form.financing_add input {
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
 #container #edit_position .form-position {
-  height: 450px;
+  height: 480px;
   position: relative;
 }
 #container #edit_position .form-position label {
   font-weight: 200;
   vertical-align: sub;
+}
+#container #edit_position .form-position .left-info {
+  height: 480px;
 }
 #container #edit_position .form-position .left-info .input-group {
   padding-left: 30px;
@@ -1094,11 +1097,14 @@ form.financing_add input {
   top: 5px;
   cursor: pointer;
 }
+#container #edit_position .form-position .right-info {
+  height: 480px;
+}
 #container #edit_position .form-position .right-info .input-group {
   padding-left: 30px;
 }
 #container #edit_position .form-position .right-info .input-group textarea {
-  min-height: 140px;
+  min-height: 159px;
   max-width: 100%;
   width: 94%;
   padding: 10px;
