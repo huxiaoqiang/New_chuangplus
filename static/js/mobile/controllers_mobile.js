@@ -621,6 +621,17 @@ angular.module('chuangplus_mobile.controllers', [])
                 else{
                     console.log($errMsg.format_error("",data.error).message);
                 }
+        });
+
+        $scope.is_submit = "投简历";
+        $http.get(urls.api + "/position/" +$scope.position_id+ "/check_submit").
+            success(function(data){
+                if(data.error.code == 1){
+                    if(data.exist)
+                        $scope.is_submit = "已投递";
+                }
+                else{
+                }
                 $rootScope.loading = false;
         });
         
