@@ -41,7 +41,7 @@
                                 发布时间：[[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]
                             </div>
                         </a>
-                        <div class="send-resume" ng-click="submit_posi('[[position._id.$oid]]')" ng-show="!position.resume_submitted && resume_compelete">
+                        <div class="send-resume" ng-click="submit_posi($index)" ng-show="!position.resume_submitted && resume_compelete">
                             <i class="fa fa-envelope send-resume-logo"></i>
                             <div class="send-resume-text">投递简历</div>
                         </div>

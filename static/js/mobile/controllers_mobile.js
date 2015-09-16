@@ -921,7 +921,7 @@ angular.module('chuangplus_mobile.controllers', [])
                         if(data.exist == true){
                             $scope.positions[index].resume_submitted = true;
                         }
-                        else{
+                        else{$index
                             $scope.positions[index].resume_submitted = false;
                         }
                     }
@@ -933,7 +933,7 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.get_userInfo();
         $scope.get_positions();
 
-        $scope.submit_posi = function(submit_id){
+        $scope.submit_posi = function(index){
             if($scope.resume_submitted == true)
                 $scope.submitResume.resume_choice = 1;
             else
@@ -941,11 +941,11 @@ angular.module('chuangplus_mobile.controllers', [])
             if($scope.resume_compelete)
             {
                 $csrf.set_csrf($scope.submitResume);
-                $http.post(urls.api + "/position/"+submit_id+"/submit", $.param($scope.submitResume)).
+                $http.post(urls.api + "/position/"+$scope.positions[index]._id.$oid+"/submit", $.param($scope.submitResume)).
                     success(function(data){
                         if(data.error.code == 1){
-                            $scope.submit_value = "已投递";
                             $notice.show("已投递");
+                            $scope.positions[index].resume_submitted = true;
                         }
                             else{
                             $notice.show($errMsg.format_error("",data.error).message);
