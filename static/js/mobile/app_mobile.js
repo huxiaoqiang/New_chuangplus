@@ -73,7 +73,7 @@ var app = angular.module('chuangplus_mobile', [
         console.log('route begin change');
     });
     $rootScope.$on('$routeChangeSuccess', function(){
-        $rootScope.loading = false;
+        
     });
 }]);
 

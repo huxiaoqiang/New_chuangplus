@@ -113,6 +113,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 }
             });
         };
+        $rootScope.loading = false;
     }])
     .controller('MB_PositionListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService',
     function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg) {
@@ -218,7 +219,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 }
             });
         };
-
+        $rootScope.loading = false;
     }])
     .controller('MB_PositionFilterCtrl', ['$scope', '$http', 'urls', '$routeParams',
          function($scope, $http, urls, $routeParams) {
@@ -336,6 +337,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 $notice.show("请先登录");
 
         };
+        $rootScope.loading = false;
     }])
     .controller('MB_CompanyDetailCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
     function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
@@ -488,6 +490,7 @@ angular.module('chuangplus_mobile.controllers', [])
             else
                 $notice.show("请先登录");
         };
+        $rootScope.loading = false;
     }])
 
     .controller('MB_PositionDetailCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
@@ -651,6 +654,7 @@ angular.module('chuangplus_mobile.controllers', [])
              $('#myModal').modal('hide');       
 
         };
+        $rootScope.loading = false;
     }])
     .controller('MB_LoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
     function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
@@ -729,6 +733,7 @@ angular.module('chuangplus_mobile.controllers', [])
             }
         };
         $scope.refresh_captcha();
+        $rootScope.loading = false;
     }
     ])
     .controller('MB_RegisterCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService','ErrorService',
@@ -871,6 +876,7 @@ angular.module('chuangplus_mobile.controllers', [])
             return true;
         };
         $scope.refresh_captcha();
+        $rootScope.loading = false;
     }
     ])
     .controller('MB_PositionFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService',
@@ -1030,6 +1036,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 }
             ); 
         };
+        $rootScope.loading = false;
     }])
     .controller('MB_CompanyFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService', 'NoticeService',
     function($scope, $http, urls, $csrf, $routeParams, $user, $notice) {
@@ -1092,6 +1099,7 @@ angular.module('chuangplus_mobile.controllers', [])
             });
         };
         $scope.get_company_list();
+        $rootScope.loading = false;
     }])
     .controller('MB_EditResumeCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService', 'NoticeService','ErrorService',
     function($scope, $http, urls, $csrf, $routeParams, $user , $notice, $errMsg) {
@@ -1170,6 +1178,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 }
             });
         };
+        $rootScope.loading = false;
     }])
 
     .controller('MB_UserInfoUpdateCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
@@ -1253,6 +1262,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 });
             }
         }  
+        $rootScope.loading = false;
     }])
     .controller('MB_LeftSidebarCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService','$location',
     function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg, $location ) {
@@ -1308,6 +1318,7 @@ angular.module('chuangplus_mobile.controllers', [])
             else
                 $notice.show("请填写合法的信息");
         };
+        $rootScope.loading = false;
     }])
     .controller('MB_PostListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
     function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
@@ -1370,6 +1381,7 @@ angular.module('chuangplus_mobile.controllers', [])
             });
         };
         $scope.get_positions();
+        $rootScope.loading = false;
     }])
     .controller('MB_NotLoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
     function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
