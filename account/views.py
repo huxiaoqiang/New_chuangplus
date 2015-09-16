@@ -371,7 +371,7 @@ def set_companyinfo(request,company_id):
         c.slogan = request.POST.get('slogan', c.slogan)
         info_complete = request.POST.get('info_complete', False)
         if info_complete != False:
-            info_complete = True
+            c.info_complete = True
         c.update_time = datetime_now()
         c.save()
 
