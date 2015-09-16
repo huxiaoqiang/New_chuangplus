@@ -1101,6 +1101,7 @@ def get_submit_list_intern(request,position_id):
         for item in up:
             u = Userinfo.objects.get(user = item.user)
             userinfo = json.loads(u.to_json())
+            userinfo['position_name'] = item.position.name
             user_list.append(userinfo)
         re['error'] = error(1,'succeed ')
         re['data'] = user_list
@@ -1109,15 +1110,15 @@ def get_submit_list_intern(request,position_id):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 TYPE = ('technology','product','design','operate','marketing','functions','others')
-@user_permission('login')
+#@user_permission('login')
 def search_submit_intern(request):
     re = dict()
     if request.method == 'GET':
         type = request.GET.get('type', '')
-        processed = request.GET.get('process','')
+        processed = request.GET.get('processed','')
 
         try:
-            company = Companyinfo.objects.get(username=request.user.username)
+            company = Companyinfo.objects.get(username='company2')
         except:
             re["error"] = error(105,"company does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -1128,22 +1129,27 @@ def search_submit_intern(request):
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         if processed != '':
              up = up.filter(processed = bool(processed))
-
         if type != '':
             try:
                 assert type in TYPE
-                up = up.filter(position__position_type = type)
             except (AssertionError,ValueError,UnicodeDecodeError):
                 re['error'] = error(238,"Invaild search type!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
+            #todo: how to  filter???
+            try:
+                positions = Position.objects(position_type=type)
+            except DoesNotExist:
+                re['error'] = error(260,'Position does not exist')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            up = up.filter(position__in = positions)
         user_list = []
         for item in up:
             u = Userinfo.objects.get(user = item.user)
             userinfo = json.loads(u.to_json())
+            userinfo['position_name'] = item.position.name
             user_list.append(userinfo)
         re['error'] = error(1,'succeed ')
         re['data'] = user_list
-        re['data']['position_name'] = item.position.name
     else:
         re['error'] = error(3,'Error,need GET')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
