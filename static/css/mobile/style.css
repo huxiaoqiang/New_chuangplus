@@ -112,6 +112,7 @@ body {
 }
 .panel-radius {
   height: 36px;
+  line-height: 36px;
   border: 1px solid #966497;
   background: white;
   color: #966497;
