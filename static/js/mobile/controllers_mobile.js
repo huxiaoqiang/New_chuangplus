@@ -7,6 +7,7 @@ angular.module('chuangplus_mobile.controllers', [])
      function($scope, $http, urls) {
         console.log('MB_CompanyListCtrl');
         $scope.company_list = {};
+        $scope.filter_show = false;
         $scope.stage = {
             "0":"初创",
             "1":"快速发展",
@@ -65,6 +66,7 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.show_filter = function()
         {
             $("#filter-content").slideDown("fast");
+            $scope.filter_show = true;
         }
     }])
     .controller('MB_PositionListCtrl', ['$scope', '$http', 'urls',
