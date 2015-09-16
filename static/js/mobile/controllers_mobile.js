@@ -85,7 +85,7 @@ angular.module('chuangplus_mobile.controllers', [])
         }
         $scope.submit_filter = function()
         {
-            $http.get(urls.api+"/account/company/list"), $.param($scope.filters)).
+            $http.get(urls.api+"/account/company/list", $.param($scope.filters)).
                 success(function(data){
                 if(data.error.code == 1){
                     $scope.company_list = data.data;
