@@ -28,8 +28,8 @@
                     </div>
                     <br/>
                     <div class="intro">
-                        <span>[[member.m_name]]&nbsp;/&nbsp;[[member.m_position]]</span><br/>
-                        <p>[[member.m_introduction]]</p>
+                        <span ng-bind="member.m_name"></span>&nbsp;/&nbsp;<span ng-bind="member.m_position"></span><br/>
+                        <div class="m_intro"><span ng-bind="member.m_introduction"></span></div>
                     </div>
 
                 </div>

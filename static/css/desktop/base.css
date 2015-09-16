@@ -1015,17 +1015,103 @@ form.financing_add input {
   margin-bottom: 10px;
   margin-top: 10px;
 }
-#container #edit_position h2 {
-  text-align: center;
-  margin-bottom: 30px;
+#container #edit_position {
+  margin-top: 70px;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
-#container #edit_position .form-group .input-group {
-  width: 40%;
+#container #edit_position .form-position {
+  height: 450px;
+  position: relative;
+}
+#container #edit_position .form-position label {
+  font-weight: 200;
+  vertical-align: sub;
+}
+#container #edit_position .form-position .left-info .input-group {
+  padding-left: 30px;
+  position: relative;
+  margin-bottom: 15px;
+}
+#container #edit_position .form-position .left-info .input-group .col-sm-3 {
+  width: 21%;
+}
+#container #edit_position .form-position .left-info .input-group .col-sm-3 label {
+  font-weight: 200;
+}
+#container #edit_position .form-position .left-info .input-group .col-sm-9 table {
+  width: 90%;
+}
+#container #edit_position .form-position .left-info .input-group .col-sm-9 table tbody tr td label {
+  margin-bottom: 15px;
+}
+#container #edit_position .form-position .left-info .input-group .col-sm-9 table tbody tr td label input.radio {
+  width: 30px;
+  height: 13px;
   float: left;
-  margin-right: 20px;
 }
-#container #edit_position .form-group textarea {
-  min-height: 100px;
+#container #edit_position .form-position .left-info .input-group .col-sm-6 table {
+  width: 100%;
+}
+#container #edit_position .form-position .left-info .input-group .col-sm-6 table tbody tr td label input.radio {
+  width: 30px;
+  height: 13px;
+  float: left;
+}
+#container #edit_position .form-position .left-info .input-group .col-sm-6 .salary {
+  width: 35%;
+  float: left;
+}
+#container #edit_position .form-position .left-info .input-group .col-sm-6 .k {
+  width: 4%;
+  float: left;
+  padding-top: 6px;
+}
+#container #edit_position .form-position .left-info .input-group .col-sm-6 .to {
+  float: left;
+  margin-top: 4px;
+}
+#container #edit_position .form-position .left-info .input-group .col-sm-6 .k1 {
+  width: 4%;
+  float: left;
+  padding-top: 6px;
+  margin-right: 5px;
+}
+#container #edit_position .form-position .left-info .input-group .col-sm-6 .month_input {
+  width: 70%;
+}
+#container #edit_position .form-position .left-info .input-group .col-sm-6 .month {
+  margin-top: 6px;
+  float: left;
+  margin-left: 10px;
+}
+#container #edit_position .form-position .left-info .input-group i {
+  color: #8f4e96;
+  position: absolute;
+  right: 25px;
+  top: 5px;
+  cursor: pointer;
+}
+#container #edit_position .form-position .right-info .input-group {
+  padding-left: 30px;
+}
+#container #edit_position .form-position .right-info .input-group textarea {
+  min-height: 140px;
+  max-width: 100%;
+  width: 94%;
+  padding: 10px;
+  border-radius: 6px;
+  resize: none;
+  outline: none;
+}
+#container #edit_position .form-position button {
+  position: absolute;
+  bottom: -60px;
+  left: 41.5%;
+  width: 150px;
+  color: white;
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  outline-width: 1px;
 }
 #container #userinfo {
   font-family: "微软雅黑";
@@ -2769,6 +2855,11 @@ form.financing_add input {
 }
 #container #forth-step .info4 .add-member .member-tag .intro span {
   color: #707070;
+}
+#container #forth-step .info4 .add-member .member-tag .intro .m_intro {
+  word-wrap: break-word;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 #container #forth-step .info4 .add-member .member-tag .intro p {
   margin-top: 10px ;

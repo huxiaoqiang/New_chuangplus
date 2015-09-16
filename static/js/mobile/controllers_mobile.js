@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('chuangplus_mobile.controllers', [])
-    .controller('MB_CompanyListCtrl', ['$scope', '$http', 'urls',
-     function($scope, $http, urls) {
+    .controller('MB_CompanyListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log('MB_CompanyListCtrl');
         $scope.company_list = {};
         $scope.filter_show = false;
@@ -42,6 +42,21 @@ angular.module('chuangplus_mobile.controllers', [])
             'functions':"职能",
             'others':"其他"
         };
+        $scope.filter = {
+            "field":{
+                'social':false,
+                'e_commerce':false,
+                'education':false,
+                'health_medical':false,
+                'culture_creativity':false,
+                'living_consumption':false,
+                'hardware':false,
+                'O2O':false,
+                'others':false
+            },
+            "scale": ''
+            //,"csrfmiddlewaretoken" : $csrf.val()
+        };
         $scope.get_company_list = function(){
             $http.get(urls.api+"/account/company/list").
                 success(function(data){
@@ -59,54 +74,61 @@ angular.module('chuangplus_mobile.controllers', [])
                             $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
                     
                     }
+                    $rootScope.loading = false;
                 }
             });
         };
         $scope.get_company_list();
         $scope.show_filter = function()
         {
-            $("#filter-content").slideDown("normal");
+            $("#filter-content").slideDown("fast");
             $scope.filter_show = true;
-        }
+        };
         $scope.hide_filter = function()
         {
-            $("#filter-content").slideUp("normal");
+            $("#filter-content").slideUp("fast");
             $scope.filter_show = false;
-        }
+        };
+        $scope.submit_filter = function()
+        {
+            $scope.filter_submit = $scope.filter;
+            $csrf.set_csrf($scope.filter_submit);
+            $http.get(urls.api+"/account/company/list", $.param($scope.filter_submit)).
+            success(function(data){
+                if(data.error.code == 1){
+                    $scope.company_list = data.data;
+                    console.log(data);
+                    for(var i=0;i<$scope.company_list.length;i++){
+                        $scope.company_list[i].scale_value = $scope.stage[$scope.company_list[i].scale];
+                        $scope.company_list[i].field_value = $scope.pfield[$scope.company_list[i].field];
+                        $scope.company_list[i].type_value = $scope.ptype[$scope.company_list[i].type];
+                        $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
+                        $scope.company_list[i].position_type_value = {};
+
+                        for(var j=0;j<$scope.company_list[i].position_type.length;j++)
+                            $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
+                    
+                    }
+                    $("#filter-content").slideUp("fast");
+                }
+            });
+        };
     }])
-    .controller('MB_PositionListCtrl', ['$scope', '$http', 'urls',
-     function($scope, $http, urls) {
+    .controller('MB_PositionListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log('MB_PositionListCtrl');
         $scope.positions = {};
-        $scope.get_positions = function(){
-            $http.get(urls.api+"/position/search").
-                success(function(data){
-                    if(data.error.code == 1){
-                        $scope.positions = data.positions;
-                        for(var i=0; i<$scope.positions.length;i++){
-                            $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
-                            if($scope.positions[i].company.scale == 0){
-                                $scope.positions[i].company.scale_value = "初创";
-                            }
-                            else if($scope.positions[i].company.scale == 1){
-                                $scope.positions[i].company.scale_value = "快速发展";
-                            }
-                            else{
-                                $scope.positions[i].company.scale_value = "成熟";
-                            }
-                        }
-                    }
-                    else{
-                        console.log(data.error.message);
-                    }
-                });
+        $scope.filter_show = false;
+        $scope.position_type = {
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
         };
-        $scope.get_positions();
-
-    }])
-    .controller('MB_PositionFilterCtrl', ['$scope', '$http', 'urls', '$routeParams',
-         function($scope, $http, urls, $routeParams) {
-    $scope.filter = {
+        $scope.filter = {
             "workdays":{
                 "day0": false,
                 "day3": false,
@@ -137,9 +159,86 @@ angular.module('chuangplus_mobile.controllers', [])
             },
             "salary": ''
         };
+        $scope.cfield = {
+                'social':'社交',
+                'e_commerce':'电子商务',
+                'education':'健康医疗',
+                'health_medical':'文化创意',
+                'culture_creativity':'硬件',
+                'living_consumption':'O2O',
+                'hardware':'生活消费',
+                'O2O':'教育',
+                'others':'其它'
+        };
+        $scope.get_positions = function(){
+            $http.get(urls.api+"/position/search").
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.positions = data.positions;
+                        for(var i=0; i<$scope.positions.length;i++){
+                            $scope.positions[i].field_value = $scope.cfield[$scope.positions[i].field];
+                            $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
+                            if($scope.positions[i].company.scale == 0){
+                                $scope.positions[i].company.scale_value = "初创";
+                            }
+                            else if($scope.positions[i].company.scale == 1){
+                                $scope.positions[i].company.scale_value = "快速发展";
+                            }
+                            else{
+                                $scope.positions[i].company.scale_value = "成熟";
+                            }
+                        }
+                    }
+                    else{
+                        console.log(data.error.message);
+                    }
+                    $rootScope.loading = false;
+                });
+        };
+        $scope.get_positions();
+        $scope.show_filter = function()
+        {
+            $("#filter-content").slideDown("fast");
+            $scope.filter_show = true;
+        };
+        $scope.hide_filter = function()
+        {
+            $("#filter-content").slideUp("fast");
+            $scope.filter_show = false;
+        };
+        $scope.submit_filter = function()
+        {
+            $scope.filter_submit = $scope.filter;
+            $csrf.set_csrf($scope.filter_submit);
+            $http.get(urls.api+"/position/search", $.param($scope.filter_submit)).
+            success(function(data){
+                if(data.error.code == 1){
+                    $scope.positions = data.positions;
+                    for(var i=0; i<$scope.positions.length;i++){
+                        field_value
+                        $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
+                        if($scope.positions[i].company.scale == 0){
+                            $scope.positions[i].company.scale_value = "初创";
+                        }
+                        else if($scope.positions[i].company.scale == 1){
+                            $scope.positions[i].company.scale_value = "快速发展";
+                        }
+                        else{
+                            $scope.positions[i].company.scale_value = "成熟";
+                        }
+                    }
+                    $("#filter-content").slideUp("fast");
+                    $scope.filter_show = false;
+                }
+            });
+        };
     }])
-    .controller('MB_CompanyPositionCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
+    .controller('MB_PositionFilterCtrl', ['$scope', '$http', 'urls', '$routeParams',
+         function($scope, $http, urls, $routeParams) {
+    
+    }])
+    .controller('MB_CompanyPositionCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         $scope.get_company = function(){
         $scope.company_id = $routeParams.company_id;
         console.log($scope.company_id);
@@ -184,6 +283,7 @@ angular.module('chuangplus_mobile.controllers', [])
             else{
 
             }
+            $rootScope.loading = false;
             });
         };
         $scope.get_company();
@@ -251,8 +351,8 @@ angular.module('chuangplus_mobile.controllers', [])
 
         };
     }])
-    .controller('MB_CompanyDetailCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
+    .controller('MB_CompanyDetailCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         $scope.company_id = $routeParams.company_id;
         console.log('MB_CompanyDetailCtrl ' + $scope.company_id);
         $scope.company = {};
@@ -332,6 +432,7 @@ angular.module('chuangplus_mobile.controllers', [])
                             else{
 
                             }
+                            $rootScope.loading = false;
                         }); 
 
                 }
@@ -403,66 +504,9 @@ angular.module('chuangplus_mobile.controllers', [])
                 $notice.show("请先登录");
         };
     }])
-    .controller('MB_PositionListCtrl', ['$scope', '$http', 'urls', '$routeParams',
-    function($scope, $http, urls, $routeParams) {
-        $scope.latest_scale = {
-            "0":"初创",
-            "1":"快速发展",
-            "2":"成熟"
-        };
-        $scope.cfield = {
-                'social':'社交',
-                'e_commerce':'电子商务',
-                'education':'健康医疗',
-                'health_medical':'文化创意',
-                'culture_creativity':'硬件',
-                'living_consumption':'O2O',
-                'hardware':'生活消费',
-                'O2O':'教育',
-                'others':'其它'
-        };
-        $scope.position_type = {
-            "technology":"技术",
-            'product':"产品",
-            'design':"设计",
-            'operate':"运营",
-            'marketing':"市场",
-            'functions':"职能",
-            'others':"其他"
-        };
 
-        $scope.positions = {};
-        $scope.get_positions = function(){
-            $http.get(urls.api+"/position/search").
-                success(function(data){
-                    if(data.error.code == 1){
-                        $scope.positions = data.positions;
-                        console.log($scope.positions.length);
-                        for(var i=0; i<$scope.positions.length;i++){
-                            $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
-                            $scope.positions[i].field_value = $scope.cfield[$scope.positions[i].company.field];
-                            
-                            if($scope.positions[i].company.scale == 0){
-                                $scope.positions[i].company.scale_value = "初创";
-                            }
-                            else if($scope.positions[i].company.scale == 1){
-                                $scope.positions[i].company.scale_value = "快速发展";
-                            }
-                            else{
-                                $scope.positions[i].company.scale_value = "成熟";
-                            }
-                        }
-                    }
-                    else{
-                        console.log(data.error.message);
-                    }
-                });
-        };
-        $scope.get_positions();
-    }])
-
-    .controller('MB_PositionDetailCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
+    .controller('MB_PositionDetailCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         $scope.position_id = $routeParams.position_id;
         console.log($scope.position_id);
         $scope.latest_scale = {
@@ -591,6 +635,18 @@ angular.module('chuangplus_mobile.controllers', [])
                     console.log($errMsg.format_error("",data.error).message);
                 }
         });
+
+        $scope.is_submit = "投简历";
+        $http.get(urls.api + "/position/" +$scope.position_id+ "/check_submit").
+            success(function(data){
+                if(data.error.code == 1){
+                    if(data.exist)
+                        $scope.is_submit = "已投递";
+                }
+                else{
+                }
+                $rootScope.loading = false;
+        });
         
         //投递职位
         $scope.submit_posi = function(){
@@ -619,12 +675,11 @@ angular.module('chuangplus_mobile.controllers', [])
         //提醒完善简历
         $scope.complete_resume = function(){
              setTimeout(function(){window.location.href='/intern/resume'},2000);
-             $('#myModal').modal('hide');       
-
+             
         };
     }])
-    .controller('MB_LoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
+    .controller('MB_LoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log("MB_LoginCtrl");
         $scope.captcha_url = urls.api+"/captcha/image/";
         $scope.login_info = {};
@@ -700,10 +755,11 @@ angular.module('chuangplus_mobile.controllers', [])
             }
         };
         $scope.refresh_captcha();
+        $rootScope.loading = false;
     }
     ])
-    .controller('MB_RegisterCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $notice, $errMsg) {
+    .controller('MB_RegisterCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log("MB_RegisterCtrl");
 
         $scope.info_check = [0, 0, 0, 0];
@@ -842,10 +898,11 @@ angular.module('chuangplus_mobile.controllers', [])
             return true;
         };
         $scope.refresh_captcha();
+        $rootScope.loading = false;
     }
     ])
-    .controller('MB_PositionFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg) {
+    .controller('MB_PositionFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log('MB_PositionFavorCtrl');
         $user.check_login();
         $scope.positions = {};
@@ -922,6 +979,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 else{
                     console.log(data.error.message);
                 }
+                $rootScope.loading = false;
             });
         };
         $scope.check_submit = function(index){
@@ -1002,8 +1060,8 @@ angular.module('chuangplus_mobile.controllers', [])
             ); 
         };
     }])
-    .controller('MB_CompanyFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService', 'NoticeService',
-    function($scope, $http, urls, $csrf, $routeParams, $user, $notice) {
+    .controller('MB_CompanyFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         $user.check_login();
         $scope.company_list = {};
         $scope.position_type = {
@@ -1060,12 +1118,13 @@ angular.module('chuangplus_mobile.controllers', [])
                 else{
                     $scope.error = $errMsg.format_error('',data.error);
                 }
+                $rootScope.loading = false;
             });
         };
         $scope.get_company_list();
     }])
-    .controller('MB_EditResumeCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService', 'NoticeService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $user , $notice, $errMsg) {
+    .controller('MB_EditResumeCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log('MB_EditResumeCtrl');
         $user.check_login();
         $scope.filename = "无简历附件";
@@ -1141,10 +1200,11 @@ angular.module('chuangplus_mobile.controllers', [])
                 }
             });
         };
+        $rootScope.loading = false;
     }])
 
-    .controller('MB_UserInfoUpdateCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
+    .controller('MB_UserInfoUpdateCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log('MB_UserInfoUpdateCtrl');
         $user.check_login();
         $scope.info = {};
@@ -1225,8 +1285,8 @@ angular.module('chuangplus_mobile.controllers', [])
             }
         }  
     }])
-    .controller('MB_LeftSidebarCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService','$location',
-    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg, $location ) {
+    .controller('MB_LeftSidebarCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
 
         console.log($user.username());
 
@@ -1245,8 +1305,8 @@ angular.module('chuangplus_mobile.controllers', [])
         };
     }])
 
-    .controller('MB_UserInfoEditCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
+    .controller('MB_UserInfoEditCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log('MB_UserInfoEditCtrl');
         if($user.username == undefined)
             window.location.href='/mobile/notlogin';
@@ -1279,9 +1339,10 @@ angular.module('chuangplus_mobile.controllers', [])
             else
                 $notice.show("请填写合法的信息");
         };
+        $rootScope.loading = false;
     }])
-    .controller('MB_PostListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
+    .controller('MB_PostListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log('MB_PostListCtrl');
         $user.check_login();
         $scope.positions = {};
@@ -1338,12 +1399,14 @@ angular.module('chuangplus_mobile.controllers', [])
                     else{
                         console.log(data.error.message);
                     }
+                    $rootScope.loading = false;
             });
         };
         $scope.get_positions();
+        $rootScope.loading = false;
     }])
-    .controller('MB_NotLoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'UserService','NoticeService','ErrorService',
-    function($scope, $http, urls, $csrf, $routeParams, $user, $notice, $errMsg ) {
+    .controller('MB_NotLoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log('MB_NotLoginCtrl');
 
         setTimeout(function(){window.location.href='/mobile/login';},2000);

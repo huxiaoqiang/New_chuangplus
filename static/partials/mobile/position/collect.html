@@ -62,12 +62,10 @@
             </div>
         </div>
     </div>
-    <div ui-content-for="footer">
-        <div class="navbar navbar-app navbar-absolute-bottom">
-            <a class="nav-bar-2 selected" ng-if="resume_compelete"ng-click="submit_all()">一键全部投递</a>
-            <a class="nav-bar-2 selected" ng-if="!resume_compelete" ui-turn-on="addresume">一键全部投递</a>
-            <a class="nav-bar-2 " ng-click='clear_invalid'>清除失效岗位</a>
-        </div>
+    <div class="navbar navbar-app navbar-absolute-bottom">
+        <a class="nav-bar-2 selected" ng-if="resume_compelete"ng-click="submit_all()">一键全部投递</a>
+        <a class="nav-bar-2 selected" ng-if="!resume_compelete" ui-turn-on="addresume">一键全部投递</a>
+        <a class="nav-bar-2 " ng-click='clear_invalid'>清除失效岗位</a>
     </div>
     <div ui-content-for="overlays">
         <div ng-include="'/static/partials/mobile/partials/overlay_addresume.html'"></div>

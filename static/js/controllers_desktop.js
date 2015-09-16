@@ -1302,6 +1302,7 @@ angular.module('chuangplus.controllers', []).
                 console.log(headers('Content-Type'));
                 if(data.error.code == 1){
                     $scope.company = data.data;
+
                     $scope.company.position_number = $scope.company.positions.length;
                     $scope.company.scale_value = $scope.scale[$scope.company.scale];
                     $scope.company.field_type = $scope.field_type[$scope.company.field];
@@ -1857,13 +1858,18 @@ angular.module('chuangplus.controllers', []).
             $('#addMember').modal('show');
         };
         $scope.edit_member = function(index){
-            $scope.member_add = $scope.member_list[index];
+            var mem = {};
+            mem.m_avatar_id = $scope.member_list[index].m_avatar_id;
+            mem.m_introduction = $scope.member_list[index].m_introduction;
+            mem.m_name = $scope.member_list[index].m_name;
+            mem.m_position = $scope.member_list[index].m_position;
+            $scope.member_add = mem;
             $('#addMember').modal('show');
             $scope.edit = true;
             $scope.index = index;
         };
-                $scope.pre_step = function(){
-            window.location.href = '/company/'+$scope.company_id+'/create/second';
+        $scope.pre_step = function(){
+            window.location.href = '/company/'+$scope.company_id+'/create/third';
         };
 
         $scope.get_company_info = function(){

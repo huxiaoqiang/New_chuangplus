@@ -371,7 +371,7 @@ def set_companyinfo(request,company_id):
         c.slogan = request.POST.get('slogan', c.slogan)
         info_complete = request.POST.get('info_complete', False)
         if info_complete != False:
-            info_complete = True
+            c.info_complete = True
         c.update_time = datetime_now()
         c.save()
 
@@ -966,11 +966,16 @@ def get_company_list(request):
                 Q(abbreviation__icontains = text) | 
                 Q(ICregist_name__icontains = text))
         if field != '':
-            companies = companies.filter(field = field)
+            field = field.split(',')
+            companies = companies.filter(field__in = field)
         if auth_organization != '':
-            companies = companies.filter(auth_organization = auth_organization)
+            auth_organization = auth_organization.split(',')
+            companies = companies.filter(auth_organization__in = auth_organization)
         if scale != '':
-            companies = companies.filter(scale = int(scale))
+            scale = scale.split(',')
+            for i in range(0,len(scale)):
+                scale[i] = int(scale[i])
+            companies = companies.filter(scale__in = scale)
         if status != '':
             companies = companies.filter(status = bool(status))
         companies_re = json.loads(companies.to_json())
@@ -988,7 +993,7 @@ def get_company_list(request):
         re['error'] = error(1, "get company list successfully")
         re['data'] = companies_re
     else:
-        re['error'] = error(2, 'error, need POST!')
+        re['error'] = error(2, 'error, need GET!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission("login")

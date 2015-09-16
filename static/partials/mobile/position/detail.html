@@ -116,12 +116,10 @@
             </div>
         </div>
     </div>
-    <div ui-content-for="footer">
-        <div class="navbar navbar-app navbar-absolute-bottom">
-            <a ng-if="!resume_compelete" class="nav-bar-2 selected" ui-turn-on="addresume">投简历</a>
-            <a ng-if="resume_compelete" class="nav-bar-2 selected" ng-click="submit_posi()">投简历</a>
-            <a ng-click="post()" class="nav-bar-2 ">[[post_value]]</a>
-        </div>
+    <div class="navbar navbar-app navbar-absolute-bottom">
+        <a ng-if="!resume_compelete" class="nav-bar-2 selected" ui-turn-on="addresume">[[is_submit]]</a>
+        <a ng-if="resume_compelete" class="nav-bar-2 selected" ng-click="submit_posi()">[[is_submit]]</a>
+        <a ng-click="post()" class="nav-bar-2 ">[[post_value]]</a>
     </div>
     <div ui-content-for="overlays">
         <div ng-include="'/static/partials/mobile/partials/overlay_addresume.html'"></div>
