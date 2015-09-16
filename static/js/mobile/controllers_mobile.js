@@ -82,12 +82,12 @@ angular.module('chuangplus_mobile.controllers', [])
         {
             $("#filter-content").slideDown("fast");
             $scope.filter_show = true;
-        }
+        };
         $scope.hide_filter = function()
         {
             $("#filter-content").slideUp("fast");
             $scope.filter_show = false;
-        }
+        };
         $scope.submit_filter = function()
         {
             $scope.filter_submit = $scope.filter;
@@ -112,7 +112,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     $scope.filter_show = false;
                 }
             });
-        }
+        };
     }])
     .controller('MB_PositionListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService',
     function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg) {
@@ -147,12 +147,12 @@ angular.module('chuangplus_mobile.controllers', [])
         {
             $("#filter-content").slideDown("fast");
             $scope.filter_show = true;
-        }
+        };
         $scope.hide_filter = function()
         {
             $("#filter-content").slideUp("fast");
             $scope.filter_show = false;
-        }
+        };
         $scope.submit_filter = function()
         {
             $scope.filter_submit = $scope.filter;
@@ -177,7 +177,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     $scope.filter_show = false;
                 }
             });
-        }
+        };
 
     }])
     .controller('MB_PositionFilterCtrl', ['$scope', '$http', 'urls', '$routeParams',
