@@ -340,7 +340,7 @@ a:hover {
 .comp-listbox {
   display: block;
   min-height: 114px;
-  margin-bottom: 3px;
+  margin-bottom: 1px;
   background-color: white;
   overflow: hidden;
   position: relative;
@@ -394,7 +394,7 @@ a:hover {
 }
 .comp-req-tag {
   padding: 0px 4px 0px 4px;
-  border-radius: 2px;
+  border-radius: 4px;
   background-color: #966497;
   border: 1px solid #966497;
   color: white;
@@ -409,7 +409,7 @@ a:hover {
 }
 .comp-desc-tag {
   padding: 0px 4px 0px 4px;
-  border-radius: 2px;
+  border-radius: 4px;
   background-color: white;
   color: #966497;
   border: 1px solid #966497;
@@ -427,6 +427,7 @@ a:hover {
   background: #dcdcdc;
   padding: 0px 4px 0px 4px;
   font-size: 11px;
+  border-radius: 4px;
   float: left;
   margin-right: 4px;
 }

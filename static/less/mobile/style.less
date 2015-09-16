@@ -57,7 +57,7 @@
 @cl-comp-name-fsize:    17px;
 @cl-comp-desc-fsize:    11px;
 @cl-comp-req-fsize:    12px;
-@cl-comp-tag-radius:    2px;
+@cl-comp-tag-radius:    4px;
 @cl-comp-tag-mag:    4px;
 @cl-comp-reqt-fsize:    11px;
 @cl-comp-desct-fsize:    11px;
@@ -510,7 +510,7 @@ a:hover
 {
     display: block;
     min-height: @cl-listbox-hgt;
-    margin-bottom: 3px;
+    margin-bottom: 1px;
     background-color: white;
     overflow: hidden;
     position: relative;
@@ -614,6 +614,7 @@ a:hover
     background: @lit-gray;
     padding: 0px 4px 0px 4px;
     font-size: @cl-comp-bent-fsize;
+    border-radius: @cl-comp-tag-radius;
     float: left;
     margin-right: @cl-comp-tag-mag;
 }
