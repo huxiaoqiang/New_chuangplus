@@ -39,13 +39,13 @@ var app = angular.module('chuangplus_mobile', [
         $routeProvider.when('/mobile/login', {templateUrl: urls.part_mobile + '/login.html', title:'登录'});
         $routeProvider.when('/mobile/info', {templateUrl: urls.part_mobile + '/info.html',title:'基本信息填写'});
 
-        $routeProvider.when('/mobile/position/filter', {templateUrl: urls.part_mobile + '/position/filter.html',title:'筛选'});
+        //$routeProvider.when('/mobile/position/filter', {templateUrl: urls.part_mobile + '/position/filter.html',title:'筛选'});
         $routeProvider.when('/mobile/position/list', {templateUrl: urls.part_mobile + '/position/list.html',title:'职位列表'});
         $routeProvider.when('/mobile/position/import', {templateUrl: urls.part_mobile + '/position/import.html',title:'职位导入'});
         $routeProvider.when('/mobile/position/detail/:position_id', {templateUrl: urls.part_mobile + '/position/detail.html',title:'职位详情'});
         $routeProvider.when('/mobile/position/collect', {templateUrl: urls.part_mobile + '/position/collect.html',title:'职位收藏列表'});
 
-        $routeProvider.when('/mobile/company/filter', {templateUrl: urls.part_mobile + '/company/filter.html',title:'公司筛选'});
+        //$routeProvider.when('/mobile/company/filter', {templateUrl: urls.part_mobile + '/company/filter.html',title:'公司筛选'});
         $routeProvider.when('/mobile/company/detail/:company_id', {templateUrl: urls.part_mobile + '/company/detail.html',title:'公司详情'});
         $routeProvider.when('/mobile/company/posi/:company_id', {templateUrl: urls.part_mobile + '/company/posi.html',title:'公司所有职位'});
         //$routeProvider.when('/mobile/company/list', {templateUrl: urls.part_mobile + '/company/list.html',controller:'MB_CompanyListCtrl', title:'公司列表'});
