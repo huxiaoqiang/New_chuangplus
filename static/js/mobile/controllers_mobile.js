@@ -119,6 +119,15 @@ angular.module('chuangplus_mobile.controllers', [])
         console.log('MB_PositionListCtrl');
         $scope.positions = {};
         $scope.filter_show = false;
+        $scope.position_type = {
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+        };
         $scope.filter = {
             "workdays":{
                 "day0": false,
