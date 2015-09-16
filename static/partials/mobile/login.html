@@ -32,17 +32,17 @@
     <div class="login-input">
     <div name="login" id="login">
       <div class="panel-list">
-        <span class="panel-group-top purple-border">
+        <span class="panel-radius purple-border">
           <div class="panel-elem elem-width-4 panel-title">用户名</div>
           <input class="panel-elem elem-width-43" type="text" name="username" ng-model="login_info.username" placeholder="请输入用户名" required>
         </span>
 
-        <span class="panel-group-mid purple-border">
+        <span class="panel-radius purple-border">
           <div class="panel-elem elem-width-4 panel-title">密码</div>
           <input class="panel-elem elem-width-43" type="password" ng-model="login_info.password" placeholder="请输入密码" required> 
         </span>
 
-        <span class="panel-group-bot purple-border">
+        <span class="panel-radius purple-border">
           <div class="panel-elem elem-width-4 panel-title">验证码</div>
           <input class="panel-elem elem-width-3" type="text" ng-blur="check_captcha()" placeholder="验证码" ng-model="login_info.captcha" required>
           <img ng-click="refresh_captcha()" ng-src='[[captcha_url]]' id="captcha_img" alt="验证码">
