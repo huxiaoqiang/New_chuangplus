@@ -191,7 +191,7 @@ a:hover {
   right: 42px;
   color: #966497;
   display: none;
-  margin-top: 5px;
+  margin-top: 3px;
 }
 .notice-bar {
   height: 42px;
@@ -237,7 +237,7 @@ a:hover {
   text-align: center;
   font-size: 20pt;
 }
-.login-part {
+.input-btn-part {
   position: relative;
   margin-bottom: 30px;
 }
