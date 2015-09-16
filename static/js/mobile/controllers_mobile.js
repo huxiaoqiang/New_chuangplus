@@ -65,12 +65,12 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.get_company_list();
         $scope.show_filter = function()
         {
-            $("#filter-content").slideDown("normal");
+            $("#filter-content").slideDown("slow");
             $scope.filter_show = true;
         }
         $scope.hide_filter = function()
         {
-            $("#filter-content").slideUp("normal");
+            $("#filter-content").hide();
             $scope.filter_show = false;
         }
     }])
