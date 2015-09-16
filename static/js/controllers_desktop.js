@@ -1285,6 +1285,7 @@ angular.module('chuangplus.controllers', []).
                 console.log(headers('Content-Type'));
                 if(data.error.code == 1){
                     $scope.company = data.data;
+
                     $scope.company.position_number = $scope.company.positions.length;
                     for(i=0;i<$scope.company.position_number;i++){
                         $scope.company.position_list[i].position_type_value = $scope.position_type[$scope.company.position_list[i].position_type];
