@@ -93,6 +93,10 @@
                                 <div class="item-info info-1">
                                     <div class="vertical-center">
                                         <p class="position">[[position.position_type_value]]|[[position.name]]</p>
+                                        <div class="position-tags">
+                                            <span class="tags">[[position.days_per_week]]天/周</span>
+                                            <span class="tags">[[position.salary_min]]k-[[position.salary_max]]k</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="line"></div>
@@ -121,14 +125,13 @@
                                 <div class="line"></div>
                                 <div class="item-info info-4">
                                     <div class="vertical-center">
-                                        <span class="label">[[position.days_per_week]]天/周</span>
-                                        <span class="label">[[position.salary_min]]k-[[position.salary_max]]k</span>
+                                        <div class="tags" ng-repeat="tag in position.company.welfare_tags">[[tag]]</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="bottom-block">
-                            <p class="submit-time">发布时间：[[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]</p>
+                            <p class="submit-time">发布时间：[[position.release_time.$date |date :'yyyy-MM-dd']]</p>
                         </div>
                        
                     </div>
