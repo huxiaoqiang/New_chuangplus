@@ -158,7 +158,7 @@ a:hover {
   float: left;
   position: relative;
   height: 100%;
-  padding: 0;
+  padding: 0 5px 0 5px;
   border: 0;
   margin: 0;
   font-size: 16px;
@@ -210,7 +210,7 @@ a:hover {
   height: 28px;
   position: absolute;
   right: 10px;
-  bottom: 5px;
+  bottom: 3px;
 }
 #captcha-pass {
   right: 95px;
