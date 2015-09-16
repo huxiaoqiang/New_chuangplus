@@ -284,7 +284,7 @@ a:hover {
   display: block;
   padding: 0 28px 0 8px;
   float: left;
-  border: 1px solid #707070;
+  border: 1px solid #dcdcdc;
   color: black;
   position: relative;
   background: url("/static/image/icon/delete-01.png") no-repeat right 4px center;
@@ -308,10 +308,8 @@ a:hover {
   overflow: hidden;
 }
 .require-btn {
-  height: 30px;
-  margin: 5px 5px 5px 0 ;
+  height: 40px;
   position: absolute;
-  border-radius: 8px;
   width: 22%;
   padding: 0;
   right: 0;

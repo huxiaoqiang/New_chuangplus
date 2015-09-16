@@ -159,12 +159,24 @@ angular.module('chuangplus_mobile.controllers', [])
             },
             "salary": ''
         };
+        $scope.cfield = {
+                'social':'社交',
+                'e_commerce':'电子商务',
+                'education':'健康医疗',
+                'health_medical':'文化创意',
+                'culture_creativity':'硬件',
+                'living_consumption':'O2O',
+                'hardware':'生活消费',
+                'O2O':'教育',
+                'others':'其它'
+        };
         $scope.get_positions = function(){
             $http.get(urls.api+"/position/search").
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.positions = data.positions;
                         for(var i=0; i<$scope.positions.length;i++){
+                            $scope.positions[i].field_value = $scope.cfield[$scope.positions[i].field];
                             $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
                             if($scope.positions[i].company.scale == 0){
                                 $scope.positions[i].company.scale_value = "初创";
@@ -203,6 +215,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 if(data.error.code == 1){
                     $scope.positions = data.positions;
                     for(var i=0; i<$scope.positions.length;i++){
+                        field_value
                         $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
                         if($scope.positions[i].company.scale == 0){
                             $scope.positions[i].company.scale_value = "初创";
