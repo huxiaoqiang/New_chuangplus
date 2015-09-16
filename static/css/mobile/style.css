@@ -274,13 +274,13 @@ a:hover {
 .require-bar {
   overflow: hidden;
   display: block;
-  height: 46px;
+  height: 40px;
   position: relative;
 }
 .require-bar .require-box {
   font-size: 16px;
   height: 46px;
-  line-height: 46px;
+  line-height: 40px;
   display: block;
   padding: 0 23px 0 5px;
   float: left;
@@ -303,12 +303,12 @@ a:hover {
   position: absolute;
   display: block;
   width: 78%;
-  height: 46px;
+  height: 40px;
   background: white;
   overflow: hidden;
 }
 .require-btn {
-  height: 36px;
+  height: 30px;
   margin: 5px 5px 5px 0 ;
   position: absolute;
   border-radius: 8px;
@@ -319,11 +319,11 @@ a:hover {
   border: 1px solid #b5b5b5;
   color: #b5b5b5;
   text-align: center;
-  line-height: 33px;
+  line-height: 37px;
 }
 .search-bar {
   display: block;
-  height: 46px;
+  height: 42px;
   background: #b5b5b5;
   vertical-align: center;
   overflow: auto;
@@ -332,7 +332,7 @@ a:hover {
 .search-input {
   border: 0px solid;
   border-radius: 10px;
-  height: 36px;
+  height: 32px;
 }
 /*
 

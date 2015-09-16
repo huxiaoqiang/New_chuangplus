@@ -35,11 +35,11 @@
 //complist.html
 @cl-header-hgt  :   50px;
 
-@cl-require-hgt:   46px;
+@cl-require-hgt:   40px;
 @cl-require-fsize:  16px;
 @cl-require-boxpd:  14px;
 
-@cl-search-hgt:    46px;
+@cl-search-hgt:    42px;
 @cl-require-btn-rad :   8px;
 
 @cl-nav-hgt:        50px;  
@@ -441,7 +441,7 @@ a:hover
 {
     font-size: 16px;
     height: 46px;
-    line-height: 46px;
+    line-height: @cl-require-hgt;
     display: block;
     padding: 0 23px 0 5px;
     float: left;
@@ -483,7 +483,7 @@ a:hover
     border: 1px solid @mid-gray;
     color: @mid-gray;
     text-align: center;
-    line-height: 33px;
+    line-height: @cl-require-hgt - 3px;
 }
 
 .search-bar
