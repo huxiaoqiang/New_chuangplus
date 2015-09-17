@@ -3339,3 +3339,6 @@ input.form-control.ng-invalid.ng-dirty {
   border-radius: 0;
   width: 200px;
 }
+.pagination {
+  float: right;
+}
