@@ -625,10 +625,13 @@ a:hover {
   overflow: auto;
 }
 .detail-desc .desc-block .desc-title {
-  color: #966497;
-  padding-bottom: 10px;
+  color: black;
+  margin-bottom: 10px;
+  padding-bottom: 2px;
   font-size: 18px;
+  border-bottom: #966497 solid 1px;
   display: block;
+  width: 73px;
 }
 .posi-condition {
   float: right;
@@ -678,18 +681,31 @@ a:hover {
   margin: 7px 0 7px 0;
 }
 .desc-subtitle {
-  color: #966497;
+  color: black;
   padding-bottom: 10px;
   font-size: 15px;
+  float: left;
+  text-align: center;
+  margin-top: 20px;
+  margin-right: 10px;
 }
 .desc-img {
   width: 80px;
   height: 80px;
   float: left;
-  margin-right: 15px;
+  border-radius: 40px;
+  border: #dcdcdc solid 1px;
+  margin-right: 10px;
 }
 .desc-content {
   display: -webkit-box;
+}
+.stuff-desc {
+  display: -webkit-box;
+  border-radius: 3px;
+  border: 1px solid #dcdcdc;
+  height: 80px;
+  float: left;
 }
 .comp-posi-list {
   background-color: #dcdcdc;
