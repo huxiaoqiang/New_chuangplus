@@ -1022,7 +1022,7 @@ form.financing_add input {
 }
 #container #edit_position .datepicker {
   position: absolute;
-  width: 16%;
+  width: 17%;
   top: 405px;
   left: 259px;
 }
@@ -1970,7 +1970,7 @@ form.financing_add input {
   padding: 0 8px 0 8px;
   background-color: rgba(143, 78, 150, 0.1);
   color: #707070;
-  font-size: 5px;
+  font-size: 12px;
   margin-right: 5px;
   float: left;
   margin-bottom: 5px;
@@ -2107,7 +2107,7 @@ form.financing_add input {
   padding: 0 8px 0 8px;
   background-color: rgba(143, 78, 150, 0.1);
   color: #707070;
-  font-size: 5px;
+  font-size: 12px;
   margin-right: 5px;
   float: left;
   margin-bottom: 5px;
@@ -2235,7 +2235,7 @@ form.financing_add input {
   border-radius: 10px;
   padding: 0 8px 0 8px;
   background-color: rgba(143, 78, 150, 0.1);
-  font-size: 5px;
+  font-size: 12px;
   margin-right: 5px;
   float: left;
   margin-top: 5px;
