@@ -1,17 +1,17 @@
 <div ng-include="'/static/partials/mobile/partials/sidebar-left.html'" ></div>
 <div ui-content-for="header">
-<div class="navbar navbar-app navbar-absolute-top selected" >
-    <div class="navbar-brand navbar-brand-center" style="font-size: 20px;" >
-       <div ui-yield-to="title">
-            个人中心
-       </div>
-    </div>
-    <div class="btn-group pull-left">
-      <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle" >
-        <i class="fa fa-bars" style="color: white;"></i> 菜单
+  <div class="navbar navbar-app navbar-absolute-top selected" >
+      <div class="navbar-brand navbar-brand-center" style="font-size: 20px;" >
+         <div ui-yield-to="title">
+              个人中心
+         </div>
       </div>
-    </div>
-</div>
+      <div class="btn-group pull-left">
+        <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle" >
+          <i class="fa fa-bars" style="color: white;"></i>
+        </div>
+      </div>
+  </div>
 </div>
 
 <div ng-swipe-right='Ui.turnOn("uiSidebarLeft")' ui-swipe-left='Ui.turnOff("uiSidebarLeft")'>
