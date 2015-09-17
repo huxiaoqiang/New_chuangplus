@@ -183,7 +183,7 @@ a:hover {
   font-size: 20px;
   line-height: inherit;
   position: absolute;
-  right: 42px;
+  right: 48px;
   color: #966497;
   display: none;
   margin-top: 3px;
@@ -269,7 +269,7 @@ a:hover {
   float: left;
   position: absolute;
   height: 30px;
-  margin: 10px 10px 10px 10px;
+  margin: 10px 10px 10px 15px;
 }
 .require-bar {
   overflow: hidden;
