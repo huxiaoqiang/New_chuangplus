@@ -69,7 +69,7 @@ def create_position(request):
         assert request.user.is_staff
         #todo change here
         #cpn = Companyinfo.objects.get(user = request.user)
-        cpn = Companyinfo.objects.get(username = 'company2')
+        cpn = Companyinfo.objects.get(username = request.user.username)
     except:
         re['error'] = error(100,"Permission denied!")
   
