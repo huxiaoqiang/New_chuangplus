@@ -92,9 +92,9 @@
             </span>
             <div class="member-block" ng-repeat="member in member_list">
                 <img class="desc-img" src="/api/file/[[member.m_avatar_id]]/download" alt="成员头像">
-                <span class="desc-subtitle">
-                    [[member.m_name]] | [[member.m_position]]
-                </span>
+                <div class="desc-subtitle">
+                    [[member.m_name]] <br> [[member.m_position]]
+                </div>
                 <span class="stuff-desc">
                     [[member.m_introduction]]
                 </span>
