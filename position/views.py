@@ -20,7 +20,7 @@ from app.common_api import error,user_permission,if_legal
 TYPE = ('technology','product','design','operate','marketing','functions','others')
 FIELD = ('social','e-commerce','education','health_medical','culture_creativity','living_consumption','hardware','O2O','others')
 STATUS = ('open','closed')
-POSITIONS_PER_PAGE = 10
+POSITIONS_PER_PAGE = 7
 
 '''
 def dump_position(posi):
@@ -320,7 +320,7 @@ def search_position(request):
     #    return HttpResponse(json.dumps(re), content_type = 'application/json')
     
     qs = Position.objects.all()
-    
+
     if "id" in request.GET.keys():
         if len(request.GET["id"]) > 0:
             try:
@@ -549,9 +549,12 @@ def search_position(request):
             except:
                 re['error'] = error(299,'Unknown Error!')
                 return HttpResponse(json.dumps(re),content_type = 'application/json')
-
-    orderValue = "id"            
+    #todo fen ye
+    orderValue = "id"
     qs.order_by(orderValue)
+    shang = qs.count() / POSITIONS_PER_PAGE
+    yushu = 1 if qs.count() % POSITIONS_PER_PAGE else 0
+    page_bumber =  shang + yushu
     qs = qs[(page - 1) * POSITIONS_PER_PAGE: page * POSITIONS_PER_PAGE]
     positions = json.loads(qs.to_json())
 
@@ -560,6 +563,7 @@ def search_position(request):
             print position["company"]["$oid"]
             company = Companyinfo.objects.get(id=position["company"]["$oid"])
             position["company"] = json.loads(company.to_json())
+            position['page_number'] = page_bumber
         except DoesNotExist:
             re['error'] = error(105,'Companyinfo does not exist!')
             return HttpResponse(json.dumps(re),content_type = 'application/json')
