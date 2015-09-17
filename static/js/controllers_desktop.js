@@ -1134,7 +1134,7 @@ angular.module('chuangplus.controllers', []).
         $scope.set_position = function(){
             $csrf.set_csrf($scope.position);
             if($scope.position.end_time != ''){
-                $scope.position.end_time = $filter('date')($scope.position.end_time, 'yyyy-MM-dd HH:mm:ss');
+                $scope.position.end_time = $filter('date')($scope.position.end_time, 'yyyy-MM-dd');
             }
             $http.post(urls.api+"/position/"+$scope.position_id+"/set", $.param($scope.position)).
                 success(function(data){
@@ -1153,7 +1153,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.position = data.data;
-                        $scope.position.end_time = $filter('date')($scope.position.end_time.$date, 'yyyy-MM-dd HH:mm:ss');
+                        $scope.position.end_time = $filter('date')($scope.position.end_time.$date, 'yyyy-MM-dd');
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
