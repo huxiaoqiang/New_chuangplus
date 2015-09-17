@@ -938,34 +938,104 @@ angular.module('chuangplus.controllers', []).
             'functions':"职能",
             'others':"其他"
         };
+        $scope.scale = {
+            0:"初创",
+            1:"快速发展",
+            2:"成熟"
+        };
+        $scope.field_type={
+            'social':"社交",
+            'e-commerce':"电子商务",
+            'education':"教育",
+            'health_medical':"健康医疗",
+            'culture_creativity':"文化创意",
+            'living_consumption':"生活消费",
+            'hardware':"硬件",
+            '020':"O2O",
+            'others':"其他"
+        };
 
-    $http.get(urls.api+"/account/userinfo/"+$scope.position_id+"/check_favor_position").
-        success(function(data){
-        if(data.error.code == 1){
-            $scope.favor_exist = data.data.exist;
-            if($scope.favor_exist == true){
-            $scope.post_value = "取消收藏";
-            }
-            else{
-            $scope.post_value = "先收藏";
-            }
-        }
-        else{
-            console.log(data.error.message);
-        }
-    });
-    
-        $http.get(urls.api+"/position/"+ $scope.position_id +"/get_with_company").
+        $scope.stage = {
+            "seed" :"种子轮",
+            "angel":"天使轮",
+            "A":"A轮",
+            "B":"B轮",
+            "C":"C轮",
+            "D_plus":"D及以上轮"
+        };
+        $scope.amount = {
+            "ten":"十万级",
+            "hundred":"百万级",
+            "thousand":"千万级",
+            "thousand_plus":"亿级"
+        };
+        $scope.check_favor_position = function(){
+            $http.get(urls.api+"/account/userinfo/"+$scope.position_id+"/check_favor_position").
             success(function(data){
                 if(data.error.code == 1){
-                    $scope.position = data.data;
-                    $scope.position.position_type_value = $scope.position_type[$scope.position.position_type];
+                    $scope.favor_exist = data.data.exist;
+                    if($scope.favor_exist == true){
+                        $scope.post_value = "取消收藏";
+                    }
+                    else{
+                        $scope.post_value = "先收藏";
+                    }
                 }
                 else{
-                    console.log(data.error.message)
+                    console.log(data.error.message);
                 }
             });
-    console.log($scope.position_id);
+        };
+    $scope.get_position_detail = function(){
+        $http.get(urls.api+"/position/"+ $scope.position_id +"/get_with_company").
+        success(function(data){
+            if(data.error.code == 1){
+                $scope.position = data.data;
+                $scope.position.position_type_value = $scope.position_type[$scope.position.position_type];
+                $scope.position.company.field_type = $scope.field_type[$scope.position.company.field];
+                $scope.position.company.scale_value = $scope.scale[$scope.position.company.scale];
+                $scope.position.company.position_number = $scope.position.company.positions.length;
+                if($scope.position.status == "open")
+                {
+                    $scope.position.status_value = "职位在招";
+                }
+                else{
+                    $scope.position.status_value = "职位关闭";
+                }
+                $scope.position.company.position_type_value = {};
+                $scope.company_id = $scope.position.company._id.$oid;
+                $scope.get_financing_list();
+
+                for(i=0;i<$scope.position.company.position_type.length;i++){
+                    $scope.position.company.position_type_value[i] = $scope.position_type[$scope.position.company.position_type[i]];
+                    console.log( $scope.position_type[$scope.position.company.position_type[i]]);
+                }
+
+            }
+            else{
+                console.log(data.error.message)
+            }
+        });
+    };
+                                      
+    $scope.get_financing_list = function(){
+        $http.get(urls.api+"/account/financing/"+$scope.company_id+"/list").
+        success(function(data){
+            if(data.error.code == 1){
+                $scope.financing_list = data.data;
+                for(i=0;$scope.financing_list.length;i++){
+                    $scope.financing_list[i].stage_value = $scope.stage[$scope.financing_list[i].stage];
+                    $scope.financing_list[i].amount_value = $scope.amount[$scope.financing_list[i].amount];
+                }
+            }
+            else{
+                $scope.error = $errMsg.format_error('',data.error);
+            }
+        });
+    };
+    $scope.check_favor_position();
+    $scope.get_position_detail();
+                                       
     $scope.userinfo = {};
         $http.get(urls.api + "/account/userinfo/get").
             success(function(data){
