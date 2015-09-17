@@ -372,8 +372,8 @@ a:hover {
 .comp-prev-img {
   position: relative;
   float: left;
-  border-radius: 3px;
-  border-color: #b5b5b5;
+  border-radius: 5px;
+  border: #b5b5b5 solid 1px;
   width: 94px;
   height: 94px;
   margin-right: 10px;
@@ -446,6 +446,11 @@ a:hover {
   margin-bottom: 1px;
 }
 .post-time {
+  line-height: 18px;
+  color: #b5b5b5;
+  font-size: 11px;
+}
+.post-time-corner {
   line-height: 18px;
   color: #b5b5b5;
   font-size: 11px;
@@ -604,6 +609,7 @@ a:hover {
   top: 0;
   bottom: 0;
   left: 20px;
+  color: #966497;
 }
 .comp-map .icon i {
   font-size: 26px;
@@ -634,10 +640,20 @@ a:hover {
   width: 73px;
 }
 .posi-condition {
-  float: right;
+  position: absolute;
   font-size: 10px;
+  right: 5px;
+  top: 18px;
 }
-.posi-condition-elem {
+.posi-time-corner {
+  line-height: 18px;
+  color: #b5b5b5;
+  font-size: 11px;
+  position: absolute;
+  top: -1px;
+  right: 10px;
+}
+.posi-condition .posi-condition-elem {
   padding: 1px 1px 1px 1px;
   border-radius: 2px;
   background-color: #966497;
@@ -669,7 +685,7 @@ a:hover {
 }
 .fi-cond {
   float: left;
-  width: 32%;
+  width: 28%;
 }
 .comp-full-name {
   font-size: 16px;
@@ -682,12 +698,13 @@ a:hover {
 }
 .desc-subtitle {
   color: black;
+  width: 50px;
   padding-bottom: 10px;
   font-size: 15px;
   float: left;
-  text-align: center;
+  text-align: left;
   margin-top: 20px;
-  margin-right: 10px;
+  margin-right: 8px;
 }
 .desc-img {
   width: 80px;
@@ -695,7 +712,7 @@ a:hover {
   float: left;
   border-radius: 40px;
   border: #dcdcdc solid 1px;
-  margin-right: 10px;
+  margin-right: 8px;
 }
 .desc-content {
   display: -webkit-box;
@@ -706,6 +723,8 @@ a:hover {
   border: 1px solid #dcdcdc;
   height: 80px;
   float: left;
+  width: 188px;
+  overflow-y: auto;
 }
 .comp-posi-list {
   background-color: #dcdcdc;

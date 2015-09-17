@@ -553,8 +553,8 @@ a:hover
 {
     position: relative;
     float: left;
-    border-radius: 3px;
-    border-color: @mid-gray;
+    border-radius: 5px;
+    border: @mid-gray solid 1px;
     width: @cl-comp-img-size;
     height: @cl-comp-img-size;
     margin-right: (@cl-listbox-hgt - @cl-comp-img-size)/2 ;
@@ -643,7 +643,12 @@ a:hover
     color: @mid-gray;
     font-size: @cl-comp-bent-fsize;
 }
-
+.post-time-corner
+{
+    line-height: @cl-come-lineh;
+    color: @mid-gray;
+    font-size: @cl-comp-bent-fsize;
+}
 .nav-bar
 {   
     margin: 0;padding: 0;
@@ -843,6 +848,7 @@ a:hover
     top: 0;
     bottom: 0;
     left: 20px;
+    color: @std-purple;
 }
 .comp-map .icon i
 {
@@ -881,10 +887,21 @@ a:hover
 }
 
 .posi-condition{
-  float: right;
-  font-size: 10px;
+    position: absolute;
+    font-size: 10px;
+    right: 5px;
+    top: 18px;
 }
-.posi-condition-elem {
+.posi-time-corner
+{
+    line-height: 18px;
+    color: #b5b5b5;
+    font-size: 11px;
+    position: absolute;
+    top: -1px;
+    right: 10px;
+}
+.posi-condition .posi-condition-elem {
   padding: 1px 1px 1px 1px;
   border-radius: 2px;
   background-color: @std-purple;
@@ -921,7 +938,7 @@ a:hover
 .fi-cond
 {
     float: left;
-    width: 32%;
+    width: 28%;
 }
 
 .comp-full-name
@@ -940,12 +957,13 @@ a:hover
 .desc-subtitle
 {
     color: black;
+    width: 50px;
     padding-bottom: 10px;
     font-size: 15px;
     float: left;
-    text-align: center;
+    text-align: left;
     margin-top: 20px;
-    margin-right: 10px;
+    margin-right: 8px;
 }
 .desc-img
 {
@@ -954,7 +972,7 @@ a:hover
     float: left;
     border-radius: 40px;
     border: @lit-gray solid 1px;
-    margin-right: 10px;
+    margin-right: 8px;
 }
 .desc-content
 {
@@ -967,6 +985,8 @@ a:hover
     border: 1px solid @lit-gray;
     height: 80px;
     float: left;
+    width: 188px;
+    overflow-y: auto;
 }
 
 //compposi.html
