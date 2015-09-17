@@ -1,18 +1,14 @@
 <div class="main-content scrollable" ng-controller="MB_CompanyListCtrl">
     <div class="scrollable-content">
-        <div ng-include="'/static/partials/mobile/partials/sidebar-left.html'" ></div>
-        <div class="navbar navbar-app navbar-absolute-top selected" >
-          <div class="navbar-brand navbar-brand-center" style="font-size: 20px;" >
-             <div ui-yield-to="title">
-                  犀牛·帮你找实习
-             </div>
-          </div>
-          <div class="btn-group pull-left">
-            <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle" >
-              <i class="fa fa-bars" style="color: white;"></i>
+        <div class="header-bar">
+            <div ng-include="'/static/partials/mobile/partials/header-logo.html'" ></div>
+            <div class="header"> 犀牛·帮你找实习</div>
+            <div class="btn-group pull-left">
+                <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle" >
+                    <i class="fa fa-bars" style="color: white;"></i>
+                </div>
             </div>
-          </div>
-        </div>
+        </div>    
         <div id="filter-content">
             <div class="padding">
                 <div class="filter-squ">
