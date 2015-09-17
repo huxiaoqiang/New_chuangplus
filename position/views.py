@@ -108,19 +108,6 @@ def create_position(request):
     except (AssertionError):
         re['error'] = error(212,'Invaild position type')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
-    
-    #try:
-    #    assert len(work_city) in range(1,50)
-    #    if_legal(work_city,False)
-    #except (AssertionError):
-    #    re['error'] = error(213,'Work city is too short or too long!')
-    #    return HttpResponse(json.dumps(re),content_type = 'application/json')
-    #except (UnicodeDecodeError,ValueError):
-    #    re['error'] = error(214,'Illeage character found in work city!')
-    #    return HttpResponse(json.dumps(re),content_type = 'application/json')
-    #except:
-    #    re['error'] = error(299,'Unknown error!')
-    #    return HttpResponse(json.dumps(re),content_type = 'application/json')
 
     
     try:
@@ -234,7 +221,7 @@ def create_position(request):
         re['error'] = error(228,'Invaild position status')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
-    posi = Position(name = name,position_type = position_type,work_city = work_city,work_address = work_address,
+    posi = Position(name = name,position_type = position_type,work_address = work_address,
                     end_time = end_time,position_description = position_description,
                     position_request = position_request,days_per_week = days_per_week,
                     internship_time = internship_time,salary_min = salary_min,salary_max = salary_max,part_or_full_time=part_or_full_time,status = status, company = cpn)
@@ -590,12 +577,23 @@ def get_position_with_company(request,position_id):
             return HttpResponse(json.dumps(re),content_type = 'application/json')
         try:
             company = Companyinfo.objects.get(id=position.company.id)
-            re['data'] = json.loads(position.to_json())
-            re['data']['company'] = json.loads(company.to_json())
-            re["error"] = error(1,"Get position succeed!")
         except:
             re['error'] = error(105,'Companyinfo does not exist!')
             return HttpResponse(json.dumps(re),content_type = 'application/json')
+        re['data'] = json.loads(position.to_json())
+        companie_re = json.loads(company.to_json())
+        position_type = []
+        for p in companie_re['positions']:
+            try:
+                position = Position.objects.get(id=p['$oid'])
+            except DoesNotExist:
+                re['error'] = error(260,'Position does not exist')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            if position.position_type not in position_type:
+                position_type.append(position.position_type)
+        companie_re['position_type'] = position_type
+        re['data']['company'] = companie_re
+        re["error"] = error(1,"Get position succeed!")
     else:
         re['error'] = error(2,'error, need get!')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
