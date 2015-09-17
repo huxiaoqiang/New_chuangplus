@@ -580,7 +580,7 @@ a:hover {
   height: 260px;
 }
 .comp-detail {
-  padding-bottom: 12px;
+  padding-bottom: 8px;
   background: #dcdcdc;
   position: relative;
 }
@@ -716,6 +716,7 @@ a:hover {
 }
 .desc-content {
   display: -webkit-box;
+  color: #707070;
 }
 .stuff-desc {
   display: -webkit-box;
