@@ -54,7 +54,7 @@ def if_legal(str,enter = False):
         raise ValueError,c
     return True
 
-@user_permission('login')
+#@user_permission('login')
 def create_position(request):
     re = dict()
     cpn = Companyinfo()
@@ -67,7 +67,9 @@ def create_position(request):
     try:
         assert request.user != None
         assert request.user.is_staff
-        cpn = Companyinfo.objects.get(user = request.user)
+        #todo change here
+        #cpn = Companyinfo.objects.get(user = request.user)
+        cpn = Companyinfo.objects.get(username = 'company2')
     except:
         re['error'] = error(100,"Permission denied!")
   
@@ -121,7 +123,7 @@ def create_position(request):
         return HttpResponse(json.dumps(re),content_type = 'application/json')
 
     try:
-        end_time = datetime.strptime(et,'%Y-%m-%d %H:%M:%S')
+        end_time = datetime.strptime(et,'%Y-%m-%d')
         assert end_time > release_time
     except (ValueError):
         re['error'] = error(217,'Invaild end time format!')
