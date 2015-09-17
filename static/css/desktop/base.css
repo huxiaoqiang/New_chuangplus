@@ -1745,94 +1745,258 @@ form.financing_add input {
   float: right;
   color: #a6aaa9;
 }
-#container #position-detail .position-info {
-  border: solid #98769E;
-  border-width: 1px 1px 1px 10px;
-  padding: 10px;
-  margin: 10px;
+#container #position-detail {
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  margin-top: 30px;
 }
-#container #position-detail .position-info .position {
-  font-family: "微软雅黑";
-  color: #98769E;
-  font-size: 1.5em;
-}
-#container #position-detail .position-info .submit-num {
-  float: right;
-  margin-top: -30px;
-  color: #98769E;
-}
-#container #position-detail .position-info .item-label {
+#container #position-detail .col-md-9 {
+  width: 80%;
   float: left;
 }
-#container #position-detail .position-info .item-label .label {
-  color: #98769E;
-  border: solid 1px;
+#container #position-detail .col-md-9 .position-info {
+  width: 100%;
+  height: 105px;
+  padding: 5px 5px 5px 5px;
+  background-color: white;
+  border: 1px solid #bfbfbf;
   border-radius: 4px;
+  margin-top: 20px;
 }
-#container #position-detail .position-info .submit-time {
-  float: right;
-  color: #8E8E8E;
+#container #position-detail .col-md-9 .position-info p {
+  margin: 0;
 }
-#container #position-detail .company-info {
-  border: solid #98769E;
-  border-width: 1px 1px 1px 10px;
-  padding: 10px;
-  margin: 10px;
+#container #position-detail .col-md-9 .position-info .vertical-center {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0 10px 0 15px;
 }
-#container #position-detail .company-info .company-logo {
+#container #position-detail .col-md-9 .position-info .line {
+  width: 1px;
+  height: 50px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  float: left;
+  border-left: 1px solid #aaaaaa;
+}
+#container #position-detail .col-md-9 .position-info .tags {
+  border-radius: 10px;
+  padding: 0 8px 0 8px;
+  background-color: rgba(143, 78, 150, 0.1);
+  color: #707070;
+  font-size: 5px;
+  margin-right: 10px;
+  float: left;
+  margin-bottom: 10px;
+  text-align: center;
+}
+#container #position-detail .col-md-9 .position-info .top-block {
+  width: 100%;
+  height: 95px;
+  padding: 5px 0 5px 0;
   float: left;
 }
-#container #position-detail .company-info .company-logo img {
-  height: 120px;
+#container #position-detail .col-md-9 .position-info .position-name {
+  width: 150px;
+  float: left;
+  display: table;
+  height: 100%;
+  text-align: center;
+  font-size: 16px;
+}
+#container #position-detail .col-md-9 .position-info .position-name .name {
+  font-size: 16px;
+}
+#container #position-detail .col-md-9 .position-info .position-name .brief_introduction {
+  font-size: 14px;
+  color: #707070;
+}
+#container #position-detail .col-md-9 .position-info .position-name .auth {
+  font-size: 12px;
+  color: red;
+}
+#container #position-detail .col-md-9 .position-info .item-label {
+  width: 120px;
+  float: left;
+  display: table;
+  height: 100%;
+  padding: 0 5px 0 5px;
+}
+#container #position-detail .col-md-9 .position-info .item-label .vertical-center {
+  padding-top: 5px;
+}
+#container #position-detail .col-md-9 .position-info .item-label.label-1 {
+  width: 183px;
+}
+#container #position-detail .col-md-9 .position-info .item-label.label-1 .tags {
+  width: 64px;
+}
+#container #position-detail .col-md-9 .position-info .item-label.label-2 {
   width: 120px;
 }
-#container #position-detail .company-info .item-info .name {
-  padding-left: 140px;
-  font-size: 1.5em;
-  font-family: "微软雅黑";
+#container #position-detail .col-md-9 .position-info .item-label.label-2 img {
+  width: 13px;
+  height: 13px;
+  float: left;
+  margin-right: 5px;
+  margin-top: 2px;
 }
-#container #position-detail .company-info .item-info .brief_introduction {
-  padding-left: 140px;
-  color: #8E8E8E;
-  margin-top: -10px;
-  font-family: "微软雅黑";
+#container #position-detail .col-md-9 .position-info .item-label.label-2 p {
+  color: #707070;
+  font-size: 10px;
+  margin-bottom: 5px;
 }
-#container #position-detail .company-info .item-info .company-detail {
-  margin-left: 20px;
-  padding: 5px;
-  font-size: 1.5em;
-  color: white;
-  background-color: #98769E;
-  cursor: pointer;
+#container #position-detail .col-md-9 .position-info .item-label.label-3 {
+  width: 130px;
 }
-#container #position-detail .company-info .welfare_tags {
+#container #position-detail .col-md-9 .position-info .item-label.label-3 p {
+  font-size: 10px;
+  color: #707070;
+}
+#container #position-detail .col-md-9 .position-info .position-addr {
+  float: left;
+  height: 100%;
+  display: table;
+  width: 180px;
+}
+#container #position-detail .col-md-9 .position-info .position-addr img {
+  width: 34px;
+  height: 34px;
+  padding: 5px 5px 5px 5px;
+  float: left;
+}
+#container #position-detail .col-md-9 .position-info .position-addr .addr {
+  float: left;
+  font-size: 12px;
+  width: 121px;
+}
+#container #position-detail .col-md-9 .position-info .position-addr .addr p {
+  margin-bottom: 0;
+}
+#container #position-detail .col-md-9 .position-info .position-state {
   float: right;
-  color: #8E8E8E;
+  display: table;
+  height: 100%;
+}
+#container #position-detail .col-md-9 .position-info .position-state p {
+  font-size: 10px;
+  color: white;
+  background-color: #8f4e96;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  text-align: center;
+  padding: 0 5px 0 5px;
+}
+#container #position-detail .col-md-9 .position-info .bottom-block {
+  width: 100%;
+  float: left;
+  text-align: right;
+  font-size: 10px;
+  margin-top: -15px;
+  color: #707070;
+}
+#container #position-detail .col-md-9 .position-info .company-logo {
+  height: 100%;
+  width: 85px;
+  float: left;
+}
+#container #position-detail .col-md-9 .position-info .company-logo img {
+  width: 85px;
+  height: 85px;
+}
+#container #position-detail .col-md-9 .position-info .skip-btn {
+  float: right;
+  width: 130px;
+  height: 100%;
+  display: table;
+  font-size: 14px;
+}
+#container #position-detail .col-md-9 .position-info .skip-btn a {
+  text-decoration: none;
+  color: #707070;
+}
+#container #position-detail .col-md-9 .position-dscrpt {
+  width: 100%;
+  margin-top: 20px;
+}
+#container #position-detail .col-md-9 .position-dscrpt .dscrpt-title {
+  width: 100%;
+  height: 35px;
+}
+#container #position-detail .col-md-9 .position-dscrpt .dscrpt-title span {
+  font-size: 16px;
+  color: #707070;
+  border-bottom: 3px solid #8f4e96;
+  padding: 5px 15px 5px 15px;
+}
+#container #position-detail .col-md-9 .position-dscrpt .txt {
+  width: 60%;
+  float: left;
+  margin-top: 10px;
+}
+#container #position-detail .col-md-9 .position-dscrpt .txt .description {
+  width: 100%;
+  margin-bottom: 50px;
+}
+#container #position-detail .col-md-9 .position-dscrpt .txt .description p {
+  font-size: 16px;
+  color: #707070;
+}
+#container #position-detail .col-md-9 .position-dscrpt .txt .description .value {
+  margin-top: 15px;
+}
+#container #position-detail .col-md-9 .position-dscrpt .txt .description .value p {
+  font-size: 14px;
+}
+#container #position-detail .col-md-9 .position-dscrpt .map {
+  width: 30%;
+  margin-left: 10%;
+  float: right;
+}
+#container #position-detail .col-md-9 .position-dscrpt .map img {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #707070;
 }
 #container #position-detail .submit_favor {
-  float: right;
+  float: left;
+  margin-top: 10px;
 }
-#container #position-detail .submit_favor .item {
-  font-size: 1.5em;
-  background-color: #98769E;
+#container #position-detail .submit_favor span {
+  background-color: #8f4e96;
+  border-radius: 4px;
   color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  padding: 5px 40px;
-  margin-right: 8px;
+  font-size: 10px;
+  padding: 5px 50px;
+  height: 30px;
+  margin-right: 20px;
 }
-#container #position-detail .description h3 {
-  font-size: 1.5em;
-  font-family: "微软雅黑";
-  font-weight: bolder;
-  cursor: pointer;
-  color: #98769E;
+#container #position-detail .col-md-4 {
+  float: right;
+  width: 18%;
+  padding: 0 0 0 0;
 }
-#container #position-detail .description .line {
-  border: solid 1px #EEEEFB;
+#container #position-detail .col-md-4 .company-dscrpt {
+  width: 100%;
+  padding: 5px 5px 0 5px;
+  background-color: white;
+  border-radius: 4px;
+  margin-bottom: 20px;
 }
-#container #position-detail .description .value {
-  min-height: 100px;
+#container #position-detail .col-md-4 .company-dscrpt p {
+  padding-bottom: 5px;
+  color: #707070;
+}
+#container #position-detail .col-md-4 .company-dscrpt .index {
+  font-size: 14px;
+}
+#container #position-detail .col-md-4 .company-dscrpt .txt {
+  font-size: 10px;
+}
+#container #position-detail .col-md-4 .qrcode {
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 #container {
   margin: 0 auto;

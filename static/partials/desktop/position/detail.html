@@ -1,55 +1,144 @@
 <div id="container">
     <div id="position-detail">
+        <div class="col-md-4">
+            <img class="qrcode" src="/api/file/[[position.company.qrcode_id]]/download" alt="微信二维码">
+            <div class="company-dscrpt">
+                <p class="index">公司名称：</p>
+                <p class="txt">[[position.company.ICregist_name]]</p>
+            </div>
+            <div class="company-dscrpt">
+                <p class="index">公司主页：</p>
+                <p class="txt">[[position.company.homepage]]</p>
+            </div>
+            <div class="company-dscrpt">
+                <p class="index">融资情况：</p>
+                <p class="txt"ng-repeat="financing in financing_list">[[financing.stage_value]]&nbsp;&nbsp;[[financing.organization]]&nbsp;&nbsp;[[financing.amount_value]]</p>
+            </div>
+        </div>
+
         <div class="col-md-9">
             <div class="position-info">
-                <p class="position">[[position.position_type_value]]|[[position.name]]</p>
-                <p class="submit-num">已有[[position.submit_num]]投递</p>
-                <div style="clear:both;"></div>
-                <div class="item-label" >
-                    <p class="label">[[position.days_per_week]]天/周</p>
-                    <p class="label">[[position.salary_min]]k-[[position.salary_max]]k</p>
-                    <p class="label">至少工作[[position.internship_time]]月</p>
+                <div class="top-block">
+                    <div class="position-name">
+                        <div class="vertical-center">
+                            <p>[[position.position_type_value]]|[[position.name]]</p>
+                        </div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="item-label" >
+                        <div class="vertical-center">
+                            <span class="tags">[[position.days_per_week]]天/周</span>
+                            <span class="tags">[[position.salary_min]]k-[[position.salary_max]]k</span>
+                            <span class="tags">至少[[position.internship_time]]个月</span>
+                        </div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="item-label label-1">
+                        <div class="vertical-center">
+                            <span class="tags" ng-repeat="tag in position.company.welfare_tags">[[tag]]</span>
+                        </div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="position-addr">
+                        <div class="vertical-center">
+                            <img src="/static/image/icon/333-01.png">
+                            <div class="addr">
+                                <p>[[position.work_city]]</p>
+                                <p>[[position.work_address]]</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="position-state">
+                        <div class="vertical-center">
+                            <p>[[position.status_value]]</p>
+                            <p>[[position.submit_num]]人已投</p>
+                        </div>
+                    </div>
                 </div>
-                <p class="submit-time">发布时间：[[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]</p>
-                <div style="clear:both;"></div>
+                <div class="bottom-block">
+                    <p class="submit-time">发布时间：[[position.release_time.$date |date :'yyyy-MM-dd']]</p>
+                </div>
             </div>
-            <div class="company-info">
+            
+            <div class="position-info">
+                <div class="top-block">
                 <div class="company-logo">
                     <img src="/api/file/[[position.company.logo_id]]/download" alt="图片">
                 </div>
-                <div class="item-info">
-                    <p class="name">[[position.company.abbreviation]]</p>
-                    <p class="brief_introduction">[[position.company.brief_introduction]]</p>
-                    <a><span class="company-detail">查看公司详情</span></a>
+                <div class="position-name">
+                    <div class="vertical-center">
+                        <p class="name">[[position.company.abbreviation]]</p>
+                        <p class="brief_introduction">[[position.company.brief_introduction]]</p>
+                        <p class="auth">v[[position.company.auth_organization]]红杉资本认证</p>
+                    </div>
                 </div>
-                <div class="welfare_tags">
-                    <span ng-repeat="tag in position.company.welfare_tags">[[tag]]&nbsp;&nbsp;</span>&nbsp;&nbsp;
+                <div class="item-label label-2">
+                    <div class="vertical-center">
+                        <div class="label-1" ng-show="position.company.field != null">
+                            <img src="/static/image/icon/111-01.png">
+                            <p>[[position.company.field_type]]</p>
+                        </div>
+                        <div class="label-1" ng-show="position.company.scale != null">
+                            <img src="/static/image/icon/222-01.png">
+                            <p>[[position.company.scale_value]]</p>
+                        </div>
+                        <div class="label-1" ng-show="position.company.city != null">
+                            <img src="/static/image/icon/333-01.png">
+                            <p class="last-p">[[position.company.city]]</p>
+                        </div>
+                    </div>
                 </div>
-                <div style="clear:both;"></div>
+                <div class="line"></div>
+                <div class="item-label label-3">
+                    <div class="vertical-center">
+                        <p class="position_number">在招岗位数：[[position.company.position_number]]</p>
+                        <div class="position_tags" >
+                            <span class="tags" ng-repeat="position_type in position.company.position_type_value">[[position_type]]</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skip-btn">
+                    <div class="vertical-center">
+                        <a href="/company/[[position.company._id.$oid]]/detail">
+                            <div>
+                                查看公司详情 >
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                </div>
+            </div>
+            
+            <div class="position-dscrpt">
+                <div class="dscrpt-title">
+                    <span>职位描述</span>
+                </div>
+                <div class="txt">
+                    <div class="description">
+                        <p>工作内容</p>
+                      
+                        <div class="value">
+                            <p>[[position.position_description]]</p>
+                        </div>
+                    </div>
+                    <div class="description">
+                        <p>能力要求</p>
+                      
+                        <div class="value">
+                            <p>[[position.position_request]]</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="map">
+                    <img>
+                </div>
+                <div style="clear:both"></div>
             </div>
             <div class="submit_favor" ng-show="role == 0">
                 <span class="item" ng-show="resume_submitted"ng-click="submit()" ng-model="submit_value">[[submit_value]]</span>
                 <span class="item" ng-show="!resume_submitted" data-toggle="modal" data-target="#myModal">[[submit_value]]</span>
-	        <span class="item" ng-click="post()" ng-model="post_value">[[post_value]]</span>
+                <span class="item" ng-click="post()" ng-model="post_value">[[post_value]]</span>
             </div>
-            <div style="clear:both;"></div>
-            <div class="description">
-                <h3>工作内容</h3>
-                <p class="line"></p>
-                <div class="value">
-                    <p>[[position.position_description]]</p>
-                </div>
-            </div>
-            <div class="description">
-                <h3>能力要求</h3>
-                <p class="line"></p>
-                <div class="value">
-                    <p>[[position.position_request]]</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <p>[[position.company.city]]</p>
         </div>
 
     </div>

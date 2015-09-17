@@ -1,98 +1,260 @@
 #container{
   #position-detail{
-    .position-info{
-      border: solid #98769E;
-      border-width: 1px 1px 1px 10px;
-      padding: 10px;
-      margin: 10px;
-      .position{
-        font-family: "微软雅黑";
-        color: #98769E;
-        font-size: 1.5em;
-      }
-      .submit-num{
-        float: right;
-        margin-top: -30px;
-        color: #98769E;
-      }
-      .item-label{
+font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+margin-top: 30px;
+.col-md-9{
+        width: 80%;
         float: left;
-        .label{
-            color: #98769E;
-            border: solid 1px;
+        .position-info{
+            width: 100%;
+            height: 105px;
+            padding: 5px 5px 5px 5px;
+            background-color: white;
+            border: 1px solid #bfbfbf;
             border-radius: 4px;
+            margin-top: 20px;
+            p{
+                margin: 0;
+            }
+            .vertical-center{
+                display: table-cell;
+                vertical-align: middle;
+                padding: 0 10px 0 15px;
+            }
+            .line{
+                width: 1px;
+                height: 50px;
+                margin-top: 15px;
+                margin-bottom: 15px;
+                float: left;
+                border-left: 1px solid #aaaaaa;
+            }
+            .tags{
+                border-radius: 10px;
+                padding: 0 8px 0 8px;
+                background-color: rgba(143,78,150,0.1);
+                color: #707070;
+                font-size: 5px;
+                margin-right: 10px;
+                float: left;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+
+            .top-block{
+                width: 100%;
+                height: 95px;
+                padding: 5px 0 5px 0;
+float: left;
+}
+                .position-name{
+                    width: 150px;
+                    float: left;
+                    display: table;
+                    height: 100%;
+                    text-align: center;
+                    font-size: 16px;
+.name{
+font-size: 16px;
+}
+.brief_introduction{
+font-size: 14px;
+color: #707070;
+}
+.auth{
+font-size: 12px;
+color: red;
+}
+                }
+                .item-label{
+                    width: 120px;
+                    float: left;
+                    display: table;
+                    height: 100%;
+                    padding: 0 5px 0 5px;
+                    .vertical-center{
+                        padding-top: 5px;
+                    }
+                }
+                .item-label.label-1{
+                    width: 183px;
+                    .tags{
+                        width: 64px;
+                    }
+                }
+.item-label.label-2{
+width: 120px;
+img{
+width: 13px;
+height: 13px;
+float: left;
+margin-right: 5px;
+margin-top: 2px;
+}
+p{
+color: #707070;
+
+font-size: 10px;
+margin-bottom: 5px;
+}
+}
+.item-label.label-3{
+width: 130px;
+p{
+font-size: 10px;
+color: #707070;
+}
+}
+                .position-addr{
+                    float: left;
+                    height: 100%;
+                    display: table;
+                    width: 180px;
+                    img{
+                        width: 34px;
+                        height: 34px;
+                        padding: 5px 5px 5px 5px;
+                        float: left;
+                    }
+                    .addr{
+                        float: left;
+                        font-size: 12px;
+width:121px;
+                        p{
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+.position-state{
+float: right;
+display: table;
+height: 100%;
+p{
+font-size: 10px;
+color: white;
+background-color: #8f4e96;
+border-radius: 4px;
+margin-bottom: 10px;
+text-align: center;
+padding: 0 5px 0 5px;
+}
+}
+            .bottom-block{
+                width: 100%;
+                float: left;
+                text-align: right;
+font-size: 10px;
+margin-top: -15px;
+color: #707070;
+            }
+.company-logo{
+height: 100%;
+width: 85px;
+float: left;
+img{
+width: 85px;
+height: 85px;
+}
+}
+.skip-btn{
+float: right;
+width: 130px;
+height: 100%;
+display: table;
+font-size: 14px;
+
+a{
+text-decoration: none;
+color: #707070;
+}
+}
         }
-      }
-      .submit-time{
-        float: right;
-        color: #8E8E8E;
-      }
+        .position-dscrpt{
+            width: 100%;
+            margin-top: 20px;
+            .dscrpt-title{
+                width: 100%;
+                height: 35px;
+                span{
+                    font-size: 16px;
+                    color: #707070;
+                    border-bottom: 3px solid #8f4e96;
+                    padding: 5px 15px 5px 15px;
+                }
+            }
+            .txt{
+                width: 60%;
+                float: left;
+                margin-top: 10px;
+                .description{
+                    width: 100%;
+                    margin-bottom: 50px;
+                    p{
+                        font-size: 16px;
+                        color: #707070;
+                    }
+                    .value{
+                        margin-top: 15px;
+                        p{
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+            .map{
+                width: 30%;
+                margin-left: 10%;
+                float: right;
+                img{
+                    width: 100%;
+                    height: 300px;
+                    border: 1px solid #707070;
+                }
+            }
+        }
+
     }
-    .company-info{
-      border: solid #98769E;
-      border-width: 1px 1px 1px 10px;
-      padding: 10px;
-      margin: 10px;
-      .company-logo{
-        float: left;
-        img{
-          height: 120px;
-          width: 120px;
-        }
-      }
-      .item-info{
-        .name{
-          padding-left: 140px;
-          font-size: 1.5em;
-          font-family: "微软雅黑";
-        }
-        .brief_introduction{
-          padding-left: 140px;
-          color: #8E8E8E;
-          margin-top: -10px;
-          font-family: "微软雅黑";
-        }
-        .company-detail{
-          margin-left: 20px;
-          padding: 5px;
-          font-size: 1.5em;
-          color: white;
-          background-color: #98769E;
-          cursor: pointer;
-        }
-      }
-      .welfare_tags{
-          float: right;
-          color: #8E8E8E;
-        }
-    }
-    .submit_favor{
-      float: right;
-      .item{
-        font-size: 1.5em;
-        background-color: #98769E;
-        color: white;
-        border-radius: 5px;
-        cursor: pointer;
-        padding: 5px 40px;
-        margin-right: 8px;
-      }
-    }
-    .description{
-      h3{
-        font-weight: bolder;
-        font-size: 1.5em;
-        font-family: "微软雅黑";
-        font-weight: bolder;
-        cursor: pointer;
-        color: #98769E;
-      }
-      .line{
-            border: solid 1px #EEEEFB;
-      }
-      .value{
-        min-height: 100px;
-      }
-    }
+.submit_favor{
+float: left;
+margin-top: 10px;
+span{
+background-color: #8f4e96;
+border-radius: 4px;
+color: white;
+font-size: 10px;
+padding: 5px 50px;
+height: 30px;
+margin-right: 20px;
+}
+}
+.col-md-4{
+float: right;
+width: 18%;
+padding: 0 0 0 0;
+.company-dscrpt{
+width: 100%;
+padding: 5px 5px 0 5px;
+background-color: white;
+border-radius: 4px;
+margin-bottom: 20px;
+p{
+padding-bottom: 5px;
+color: #707070;
+}
+.index{
+font-size: 14px;
+}
+.txt{
+font-size: 10px;
+}
+}
+.qrcode{
+width:100%;
+height: 100%;
+margin-top: 20px;
+margin-bottom: 10px;
+}
+}
+
   }
 }
