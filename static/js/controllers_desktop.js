@@ -542,6 +542,8 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_CompanyResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyResumeCtrl');
+        $scope.submit_list = [];
+
     }]).
     controller('DT_CompanyInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','Upload','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, Upload,$errMsg){
         console.log('DT_CompanyInfoCtrl');
@@ -938,34 +940,104 @@ angular.module('chuangplus.controllers', []).
             'functions':"职能",
             'others':"其他"
         };
+        $scope.scale = {
+            0:"初创",
+            1:"快速发展",
+            2:"成熟"
+        };
+        $scope.field_type={
+            'social':"社交",
+            'e-commerce':"电子商务",
+            'education':"教育",
+            'health_medical':"健康医疗",
+            'culture_creativity':"文化创意",
+            'living_consumption':"生活消费",
+            'hardware':"硬件",
+            '020':"O2O",
+            'others':"其他"
+        };
 
-    $http.get(urls.api+"/account/userinfo/"+$scope.position_id+"/check_favor_position").
-        success(function(data){
-        if(data.error.code == 1){
-            $scope.favor_exist = data.data.exist;
-            if($scope.favor_exist == true){
-            $scope.post_value = "取消收藏";
-            }
-            else{
-            $scope.post_value = "先收藏";
-            }
-        }
-        else{
-            console.log(data.error.message);
-        }
-    });
-    
-        $http.get(urls.api+"/position/"+ $scope.position_id +"/get_with_company").
+        $scope.stage = {
+            "seed" :"种子轮",
+            "angel":"天使轮",
+            "A":"A轮",
+            "B":"B轮",
+            "C":"C轮",
+            "D_plus":"D及以上轮"
+        };
+        $scope.amount = {
+            "ten":"十万级",
+            "hundred":"百万级",
+            "thousand":"千万级",
+            "thousand_plus":"亿级"
+        };
+        $scope.check_favor_position = function(){
+            $http.get(urls.api+"/account/userinfo/"+$scope.position_id+"/check_favor_position").
             success(function(data){
                 if(data.error.code == 1){
-                    $scope.position = data.data;
-                    $scope.position.position_type_value = $scope.position_type[$scope.position.position_type];
+                    $scope.favor_exist = data.data.exist;
+                    if($scope.favor_exist == true){
+                        $scope.post_value = "取消收藏";
+                    }
+                    else{
+                        $scope.post_value = "先收藏";
+                    }
                 }
                 else{
-                    console.log(data.error.message)
+                    console.log(data.error.message);
                 }
             });
-    console.log($scope.position_id);
+        };
+    $scope.get_position_detail = function(){
+        $http.get(urls.api+"/position/"+ $scope.position_id +"/get_with_company").
+        success(function(data){
+            if(data.error.code == 1){
+                $scope.position = data.data;
+                $scope.position.position_type_value = $scope.position_type[$scope.position.position_type];
+                $scope.position.company.field_type = $scope.field_type[$scope.position.company.field];
+                $scope.position.company.scale_value = $scope.scale[$scope.position.company.scale];
+                $scope.position.company.position_number = $scope.position.company.positions.length;
+                if($scope.position.status == "open")
+                {
+                    $scope.position.status_value = "职位在招";
+                }
+                else{
+                    $scope.position.status_value = "职位关闭";
+                }
+                $scope.position.company.position_type_value = {};
+                $scope.company_id = $scope.position.company._id.$oid;
+                $scope.get_financing_list();
+
+                for(i=0;i<$scope.position.company.position_type.length;i++){
+                    $scope.position.company.position_type_value[i] = $scope.position_type[$scope.position.company.position_type[i]];
+                    console.log( $scope.position_type[$scope.position.company.position_type[i]]);
+                }
+
+            }
+            else{
+                console.log(data.error.message)
+            }
+        });
+    };
+                                      
+    $scope.get_financing_list = function(){
+        $http.get(urls.api+"/account/financing/"+$scope.company_id+"/list").
+        success(function(data){
+            if(data.error.code == 1){
+                $scope.financing_list = data.data;
+                for(i=0;$scope.financing_list.length;i++){
+                    $scope.financing_list[i].stage_value = $scope.stage[$scope.financing_list[i].stage];
+                    $scope.financing_list[i].amount_value = $scope.amount[$scope.financing_list[i].amount];
+                }
+            }
+            else{
+                $scope.error = $errMsg.format_error('',data.error);
+            }
+        });
+    };
+    $scope.check_favor_position();
+    $scope.get_position_detail();
+                                       
     $scope.userinfo = {};
         $http.get(urls.api + "/account/userinfo/get").
             success(function(data){
@@ -1050,7 +1122,7 @@ angular.module('chuangplus.controllers', []).
     };
     
     $scope.complete_resume = function(){
-         setTimeout(function(){window.location.href='/intern/resume'},2000);
+         setTimeout(function(){window.location.href='/intern/resume/view'},2000);
          $('#myModal').modal('hide');       
 
     };
@@ -1111,17 +1183,18 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_CompanyPositionEditCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanyPositionEditCtrl');
+        $scope.company_id = $routeParams.company_id;
         $scope.position_id = $routeParams.position_id;
-        $scope.create_position = function(){
+        $scope.submit_position = function(){
             $csrf.set_csrf($scope.position);
             if($scope.position.end_time != ''){
-                $scope.position.end_time = $filter('date')($scope.position.end_time, 'yyyy-MM-dd HH:mm:ss');
+                $scope.position.end_time = $filter('date')($scope.position.end_time, 'yyyy-MM-dd');
             }
             $http.post(urls.api+"/position/create", $.param($scope.position)).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.error = $errMsg.format_error('发布职位成功',data.error);
-                        setTimeout(function(){window.location.href='/company/'+$scope.position.company.$oid+'/position/manage'},2000);
+                        setTimeout(function(){window.location.href='/company/' + $scope.company_id + '/position/manage'},1500);
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
@@ -1132,13 +1205,13 @@ angular.module('chuangplus.controllers', []).
         $scope.set_position = function(){
             $csrf.set_csrf($scope.position);
             if($scope.position.end_time != ''){
-                $scope.position.end_time = $filter('date')($scope.position.end_time, 'yyyy-MM-dd HH:mm:ss');
+                $scope.position.end_time = $filter('date')($scope.position.end_time, 'yyyy-MM-dd');
             }
             $http.post(urls.api+"/position/"+$scope.position_id+"/set", $.param($scope.position)).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.error = $errMsg.format_error('修改职位成功',data.error);
-                        setTimeout(function(){window.location.href='/company/'+$scope.position.company.$oid+'/position/manage'},1500);
+                        setTimeout(function(){window.location.href='/company/' + $scope.company_id + '/position/manage'},1500);
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
@@ -1151,7 +1224,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.position = data.data;
-                        $scope.position.end_time = $filter('date')($scope.position.end_time.$date, 'yyyy-MM-dd HH:mm:ss');
+                        $scope.position.end_time = $filter('date')($scope.position.end_time.$date, 'yyyy-MM-dd');
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
@@ -1554,20 +1627,12 @@ angular.module('chuangplus.controllers', []).
     controller('DT_CompanySecondCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_CompanySecondCtrl');
-        $scope.test = 'aaaa';
         $scope.company_id = $routeParams.company_id;
-        $scope.financing_list = [
-            {
-                'stage':'seed',
-                'organization':'清华创加',
-                'amount' : 'ten'
-            },
-            {
-                'stage':'seed',
-                'organization':'清华创加',
-                'amount' : 'ten'
-            }
-        ];
+        $scope.no_financing = false;
+        $scope.financing_list = [];
+        $scope.toggle_checkbox = function(){
+            $scope.no_financing = !$scope.companyinfo.no_financing;
+        };
         $scope.get_financing_list = function(){
             $http.get(urls.api+"/account/financing/"+$scope.company_id+"/list").
                 success(function(data){

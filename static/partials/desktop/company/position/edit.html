@@ -1,7 +1,7 @@
-<div id="container" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
-     xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<div id="container">
     <div id="edit_position">
         <form name="positionInfoForm" class="form-position" ng-submit="submit_position()">
+
             <div class="form-position">
                 <div class="left-info">
                     <div class="input-group">
@@ -90,7 +90,7 @@
                             <span class="k">&nbsp;K</span>
                         </div>
                     </div>
-
+                    <div style="clear: both"></div>
                     <div class="input-group">
                         <div class="col-sm-6">
                             <label>至少工作月数</label>
@@ -99,11 +99,8 @@
                         </div>
                         <div class="col-sm-6">
                           <label>招聘截止时间</label>
-                          <input name="end_time" type="text" class="form-control" ng-model="position.end_time" datepicker-popup="yyyy-MM-dd HH:mm:ss">
                         </div>
                     </div>
-
-
                 </div>
                 <div class="right-info">
                     <div class="input-group">
@@ -119,5 +116,6 @@
                 <div id="err-msg" ng-show="error.show"  ng-class="error.class">[[error.message]]</div>
             </div>
         </form>
+        <input name="end_time" type="text" class="form-control datepicker" ng-model="position.end_time" datepicker-popup="yyyy-MM-dd HH:mm:ss" ng-required="true">
     </div>
 </div>
