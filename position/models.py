@@ -33,6 +33,7 @@ class Position(Document):
         return self.name
 
 class UserPosition(Document):
+    company = ReferenceField(Companyinfo)
     user = ReferenceField(User,required=True)
     position = ReferenceField(Position,required=True)
     submit_date = DateTimeField()

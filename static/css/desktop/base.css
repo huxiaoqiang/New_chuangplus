@@ -1016,16 +1016,26 @@ form.financing_add input {
   margin-top: 10px;
 }
 #container #edit_position {
+  position: relative;
   margin-top: 70px;
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
+#container #edit_position .datepicker {
+  position: absolute;
+  width: 16%;
+  top: 405px;
+  left: 259px;
+}
 #container #edit_position .form-position {
-  height: 450px;
+  height: 480px;
   position: relative;
 }
 #container #edit_position .form-position label {
   font-weight: 200;
   vertical-align: sub;
+}
+#container #edit_position .form-position .left-info {
+  height: 480px;
 }
 #container #edit_position .form-position .left-info .input-group {
   padding-left: 30px;
@@ -1091,11 +1101,14 @@ form.financing_add input {
   top: 5px;
   cursor: pointer;
 }
+#container #edit_position .form-position .right-info {
+  height: 480px;
+}
 #container #edit_position .form-position .right-info .input-group {
   padding-left: 30px;
 }
 #container #edit_position .form-position .right-info .input-group textarea {
-  min-height: 140px;
+  min-height: 159px;
   max-width: 100%;
   width: 94%;
   padding: 10px;
@@ -2864,6 +2877,7 @@ form.financing_add input {
   padding-bottom: 5px;
   float: right;
   margin-right: 5px;
+  cursor: pointer;
 }
 #container #second-step .info2 .right-info .add_financing .financing_list .financing .delete_button img {
   width: 20px;
@@ -3065,6 +3079,13 @@ form.financing_add input {
 #delete_financing .modal-dialog .modal-content .modal-body .financing .amount {
   float: left;
 }
+#delete_financing .modal-dialog .modal-content .modal-body .cancer-button {
+  float: right;
+  margin-left: 15px;
+}
+#delete_financing .modal-dialog .modal-content .modal-body .save-button {
+  float: right;
+}
 #addMember .modal-dialog {
   width: 400px;
   margin: 150px auto;
@@ -3257,6 +3278,20 @@ body > #wrap_no_header_footer #main-container {
   background: -ms-linear-gradient(top, #f0f0f0 0%, #d3d3d3 100%);
   background-color: linear-gradient(to bottom, #f0f0f0 0%, #d3d3d3 100%);
   height: 200px;
+}
+#container #company_resume {
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  margin-top: 70px;
+}
+#container #company_resume .btn {
+  width: 160px;
+  margin-left: 9px;
+  color: white;
+  background-color: #707070;
+  outline: none;
+}
+#container #company_resume .btn.active {
+  background-color: #8f4e96;
 }
 body {
   background-color: #f0f0f0;

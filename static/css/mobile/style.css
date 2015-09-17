@@ -309,11 +309,12 @@ a:hover {
 }
 .require-btn {
   height: 40px;
+  width: 50px;
   position: absolute;
-  width: 22%;
+  background: url("/static/image/icon/pencil-01.png") no-repeat center;
+  background-size: 20px;
   padding: 0;
   right: 0;
-  background: white;
   border: 1px solid #b5b5b5;
   color: #b5b5b5;
   text-align: center;
@@ -435,8 +436,8 @@ a:hover {
   overflow: hidden;
 }
 .comp-benefit-tag {
-  color: #707070;
-  background: #dcdcdc;
+  color: white;
+  background: #d4abd3;
   padding: 0px 4px 0px 4px;
   font-size: 11px;
   border-radius: 9px;

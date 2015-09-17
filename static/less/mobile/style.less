@@ -1,5 +1,6 @@
 //genernal
 @std-purple :   #966497;
+@lit-purple :   rgba(143, 78, 150, 0.08);
 @dark-gray  :   #707070;
 @mid-gray   :   #b5b5b5;
 @lit-gray   :   #dcdcdc;
@@ -473,13 +474,15 @@ a:hover
 .require-btn
 {
     height: @cl-require-hgt;
+    width: 50px;
     //margin: 5px 5px 5px 0 ;
     position: absolute;
     //border-radius: @cl-require-btn-rad ;
-    width: 22%;
+    //width: 22%;
+    background: url("/static/image/icon/pencil-01.png") no-repeat center;
+    background-size: 20px;
     padding: 0;
     right: 0;
-    background: white;
     border: 1px solid @mid-gray;
     color: @mid-gray;
     text-align: center;
@@ -625,8 +628,8 @@ a:hover
 }
 .comp-benefit-tag
 {
-    color:   @dark-gray;
-    background: @lit-gray;
+    color:   white;
+    background: @lit-purple;
     padding: 0px 4px 0px 4px;
     font-size: @cl-comp-bent-fsize;
     border-radius: @cl-comp-tag-radius;

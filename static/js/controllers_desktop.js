@@ -542,6 +542,8 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_CompanyResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyResumeCtrl');
+        $scope.submit_list = [];
+
     }]).
     controller('DT_CompanyInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','Upload','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, Upload,$errMsg){
         console.log('DT_CompanyInfoCtrl');
@@ -1181,17 +1183,18 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_CompanyPositionEditCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanyPositionEditCtrl');
+        $scope.company_id = $routeParams.company_id;
         $scope.position_id = $routeParams.position_id;
-        $scope.create_position = function(){
+        $scope.submit_position = function(){
             $csrf.set_csrf($scope.position);
             if($scope.position.end_time != ''){
-                $scope.position.end_time = $filter('date')($scope.position.end_time, 'yyyy-MM-dd HH:mm:ss');
+                $scope.position.end_time = $filter('date')($scope.position.end_time, 'yyyy-MM-dd');
             }
             $http.post(urls.api+"/position/create", $.param($scope.position)).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.error = $errMsg.format_error('发布职位成功',data.error);
-                        setTimeout(function(){window.location.href='/company/'+$scope.position.company.$oid+'/position/manage'},2000);
+                        setTimeout(function(){window.location.href='/company/' + $scope.company_id + '/position/manage'},1500);
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
@@ -1202,13 +1205,13 @@ angular.module('chuangplus.controllers', []).
         $scope.set_position = function(){
             $csrf.set_csrf($scope.position);
             if($scope.position.end_time != ''){
-                $scope.position.end_time = $filter('date')($scope.position.end_time, 'yyyy-MM-dd HH:mm:ss');
+                $scope.position.end_time = $filter('date')($scope.position.end_time, 'yyyy-MM-dd');
             }
             $http.post(urls.api+"/position/"+$scope.position_id+"/set", $.param($scope.position)).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.error = $errMsg.format_error('修改职位成功',data.error);
-                        setTimeout(function(){window.location.href='/company/'+$scope.position.company.$oid+'/position/manage'},1500);
+                        setTimeout(function(){window.location.href='/company/' + $scope.company_id + '/position/manage'},1500);
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
@@ -1221,7 +1224,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.position = data.data;
-                        $scope.position.end_time = $filter('date')($scope.position.end_time.$date, 'yyyy-MM-dd HH:mm:ss');
+                        $scope.position.end_time = $filter('date')($scope.position.end_time.$date, 'yyyy-MM-dd');
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
@@ -1624,20 +1627,12 @@ angular.module('chuangplus.controllers', []).
     controller('DT_CompanySecondCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_CompanySecondCtrl');
-        $scope.test = 'aaaa';
         $scope.company_id = $routeParams.company_id;
-        $scope.financing_list = [
-            {
-                'stage':'seed',
-                'organization':'清华创加',
-                'amount' : 'ten'
-            },
-            {
-                'stage':'seed',
-                'organization':'清华创加',
-                'amount' : 'ten'
-            }
-        ];
+        $scope.no_financing = false;
+        $scope.financing_list = [];
+        $scope.toggle_checkbox = function(){
+            $scope.no_financing = !$scope.companyinfo.no_financing;
+        };
         $scope.get_financing_list = function(){
             $http.get(urls.api+"/account/financing/"+$scope.company_id+"/list").
                 success(function(data){

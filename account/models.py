@@ -51,7 +51,7 @@ class Companyinfo(Document):
     field = StringField(max_length=30,choices=FIELD)
     scale = IntField(default=0)  #0 newly established  1:rapid expansion 2:mature period
     stage = StringField(max_length=10,choices=STAGE,default='none')
-    homepage = URLField()
+    homepage = StringField()
     wechat = StringField(max_length=40)
     email_resume=EmailField()  #email for receiving resume
     qrcode_id = StringField(max_length=30)

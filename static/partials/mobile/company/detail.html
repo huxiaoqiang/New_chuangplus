@@ -16,12 +16,7 @@
             <div style="display: block;position: relative;left: 104px; width:50%;">
             <div class="comp-name">[[company.abbreviation]]</div>
             <div class="comp-desc">[[company.brief_introduction]]</div>
-            <div ng-if="company.is_auth" class="comp-auth">[[company.auth_organization]]认证</div>
-            <div class="comp-req-list">
-                <span class="comp-req-title">[[company.positions.length]]岗位在招</span>
-                <span class="comp-req-tag" ng-repeat="tag in company.position_type_value">[[tag]]</span>
-            </div>
-            <div class="comp-desc-list">
+            <div ng-if="company.is_auth" class="comp-auth">[[company.auth_organization]]认证</div><div class="comp-desc-list">
                 <span class="comp-desc-tag">
                     [[company.field_value]]
                 </span>
@@ -32,6 +27,11 @@
                     [[company.city]]
                 </span>
             </div>
+            <div class="comp-req-list">
+                <span class="comp-req-title">[[company.positions.length]]岗位在招</span>
+                <span class="comp-req-tag" ng-repeat="tag in company.position_type_value">[[tag]]</span>
+            </div>
+            
 
             <div class="comp-benefit-list">
                 <span class="comp-benefit-tag" ng-repeat="tag in company.welfare_tags">[[tag]]</span>
