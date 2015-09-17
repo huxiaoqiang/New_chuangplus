@@ -554,7 +554,7 @@ def search_position(request):
     qs.order_by(orderValue)
     shang = qs.count() / POSITIONS_PER_PAGE
     yushu = 1 if qs.count() % POSITIONS_PER_PAGE else 0
-    page_bumber =  shang + yushu
+    page_number =  shang + yushu
     qs = qs[(page - 1) * POSITIONS_PER_PAGE: page * POSITIONS_PER_PAGE]
     positions = json.loads(qs.to_json())
 
@@ -563,11 +563,11 @@ def search_position(request):
             print position["company"]["$oid"]
             company = Companyinfo.objects.get(id=position["company"]["$oid"])
             position["company"] = json.loads(company.to_json())
-            position['page_number'] = page_bumber
         except DoesNotExist:
             re['error'] = error(105,'Companyinfo does not exist!')
             return HttpResponse(json.dumps(re),content_type = 'application/json')
     re['positions'] = positions
+    re['page_number'] = page_number
     re["error"] = error(1,"Search succeed!")
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 

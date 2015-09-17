@@ -130,7 +130,7 @@
                                
                                 <div class="item-pic">
                                     <div class="vertical-center">
-                                        <img src="/api/file/[[position.company.logo_id]]/download" class="company-pic" alt="图片"></img>
+                                        <img src="/api/file/[[position.company.logo_id]]/download" class="company-pic" alt="图片">
                                     </div>
                                 </div>
                             </div>
@@ -140,6 +140,9 @@
                 </li>
                 </a>
             </ul>
+            <page num-pages="task.pageCount" current-page="task.currentPage" on-select-page="selectPage(page)">
+
+            </page>
         </div>
     </div>
 </div>
