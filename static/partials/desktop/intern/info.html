@@ -1,12 +1,12 @@
 <div id="container" ng-controller="DT_UserInfoCtrl">
     <div id="userinfo">
-        <div class="ui form segment">
-                <ul class="nav nav-tabs" ng-init="tab1=true">
-                    <li ng-class="{'active': view_tab == 'tab1'}">
-                        <a ng-click="changeTab('tab1')" href="#">基本信息</a>
+        <div class="info-form">
+                <ul class="tabs" ng-init="tab1=true">
+                    <li ng-class="{'active': view_tab == 'tab1'}" ng-click="changeTab('tab1')">
+                        <a  href="#">基本信息</a>
                     </li>
-                    <li ng-class="{'active': view_tab == 'tab2'}">
-                        <a ng-click="changeTab('tab2')" href="#">修改密码</a>
+                    <li ng-class="{'active': view_tab == 'tab2'}" ng-click="changeTab('tab2')" >
+                        <a href="#">修改密码</a>
                     </li>
                 </ul>
                 <div class="tab-pane" ng-show="view_tab == 'tab1'">
