@@ -871,9 +871,10 @@ a:hover
 }
 .detail-desc .desc-block .desc-title
 {
-    color: @std-purple;
+    color: black;
     padding-bottom: 10px;
     font-size: 18px;
+    border-bottom: @std-purple solid 2px;
     display: block;
 }
 
@@ -936,20 +937,31 @@ a:hover
 
 .desc-subtitle
 {
-  color: @std-purple;
+  color: black;
   padding-bottom: 10px;
   font-size: 15px;
+  float: left;
 }
 .desc-img
 {
     width: 80px;
     height: 80px;
     float: left;
+    border-radius: 40px;
+    border: @lit-gray solid 1px;
     margin-right: 15px;
 }
 .desc-content
 {
     display: -webkit-box;
+}
+.stuff-desc
+{
+    display: -webkit-box;
+    border-radius: 3px;
+    border: 1px solid @lit-gray;
+    height: 80px;
+    float: left;
 }
 
 //compposi.html
