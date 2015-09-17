@@ -1113,6 +1113,7 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_CompanyPositionEditCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanyPositionEditCtrl');
+        $scope.company_id = $routeParams.company_id;
         $scope.position_id = $routeParams.position_id;
         $scope.submit_position = function(){
             $csrf.set_csrf($scope.position);
@@ -1123,7 +1124,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.error = $errMsg.format_error('发布职位成功',data.error);
-                        setTimeout(function(){window.location.href='/company/'+$scope.position.company.$oid+'/position/manage'},2000);
+                        setTimeout(function(){window.location.href='/company/' + $scope.company_id + '/position/manage'},1500);
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
@@ -1140,7 +1141,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.error = $errMsg.format_error('修改职位成功',data.error);
-                        setTimeout(function(){window.location.href='/company/'+$scope.position.company.$oid+'/position/manage'},1500);
+                        setTimeout(function(){window.location.href='/company/' + $scope.company_id + '/position/manage'},1500);
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
