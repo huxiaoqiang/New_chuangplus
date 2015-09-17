@@ -726,6 +726,9 @@ a:hover {
   float: left;
   width: 188px;
   overflow-y: auto;
+  padding: 5px;
+  color: #707070;
+  font-size: 13px;
 }
 .comp-posi-list {
   background-color: #dcdcdc;
