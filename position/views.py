@@ -109,18 +109,18 @@ def create_position(request):
         re['error'] = error(212,'Invaild position type')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
     
-    try:
-        assert len(work_city) in range(1,50)
-        if_legal(work_city,False)
-    except (AssertionError):
-        re['error'] = error(213,'Work city is too short or too long!')
-        return HttpResponse(json.dumps(re),content_type = 'application/json')
-    except (UnicodeDecodeError,ValueError):
-        re['error'] = error(214,'Illeage character found in work city!')
-        return HttpResponse(json.dumps(re),content_type = 'application/json')
-    except:
-        re['error'] = error(299,'Unknown error!')
-        return HttpResponse(json.dumps(re),content_type = 'application/json')
+    #try:
+    #    assert len(work_city) in range(1,50)
+    #    if_legal(work_city,False)
+    #except (AssertionError):
+    #    re['error'] = error(213,'Work city is too short or too long!')
+    #    return HttpResponse(json.dumps(re),content_type = 'application/json')
+    #except (UnicodeDecodeError,ValueError):
+    #    re['error'] = error(214,'Illeage character found in work city!')
+    #    return HttpResponse(json.dumps(re),content_type = 'application/json')
+    #except:
+    #    re['error'] = error(299,'Unknown error!')
+    #    return HttpResponse(json.dumps(re),content_type = 'application/json')
 
     
     try:
