@@ -1122,7 +1122,7 @@ angular.module('chuangplus.controllers', []).
     };
     
     $scope.complete_resume = function(){
-         setTimeout(function(){window.location.href='/intern/resume'},2000);
+         setTimeout(function(){window.location.href='/intern/resume/view'},2000);
          $('#myModal').modal('hide');       
 
     };
