@@ -5,7 +5,11 @@
 <div class="main-content scrollable" >
 <div class="scrollable-content">
     <div class="header-bar">
-        <div class="header">公司详情</div>
+        <div class="logo sidebar-toggle" ui-toggle="uiSidebarLeft">
+                <i class="fa fa-bars" style="color: white;"></i>
+        </div>
+        <div ng-include="'/static/partials/mobile/partials/sidebar-left.html'" ></div>
+        <div class="header"> 公司详情</div>
     </div>    
 
     <div class="comp-detail " >

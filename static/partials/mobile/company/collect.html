@@ -1,9 +1,14 @@
 <div ng-controller="MB_CompanyFavorCtrl">
     <div class="main-content scrollable">
         <div class="scrollable-content">
+
             <div class="header-bar">
+                <div class="logo sidebar-toggle" ui-toggle="uiSidebarLeft">
+                        <i class="fa fa-bars" style="color: white;"></i>
+                </div>
+                <div ng-include="'/static/partials/mobile/partials/sidebar-left.html'" ></div>
                 <div class="header">公司收藏</div>
-            </div>    
+            </div> 
 
             <div class="comp-list">
                 <a class="comp-listbox" href="/mobile/company/detail/[[company._id.$oid]]" ng-repeat="company in company_list">

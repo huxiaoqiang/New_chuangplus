@@ -7,15 +7,25 @@
           <div class="list-group" toggle="off" bubble target="mainSidebar">
 
             <div ng-show="!is_login">
+
                 <a class="list-group-item" href="/mobile/login">登录 <i class="fa fa-chevron-right pull-right"></i></a>
                 <a class="list-group-item" href="/mobile/register">注册 <i class="fa fa-chevron-right pull-right"></i></a>
+                <a class="list-group-item" href="/mobile/home">个人中心 <i class="fa fa-chevron-right pull-right"></i></a>
+
             </div>
 
-            <a class="list-group-item" href="/mobile/home">个人中心 <i class="fa fa-chevron-right pull-right"></i></a>
+            <div ng-show="is_login">
+                <a class="list-group-item" href="/mobile/home">个人中心 <i class="fa fa-chevron-right pull-right"></i></a>
+                <a class="list-group-item" href="/mobile/company/collect">收藏的公司 <i class="fa fa-chevron-right pull-right"></i></a>
+                <a class="list-group-item" href="/mobile/position/collect">收藏的职位 <i class="fa fa-chevron-right pull-right"></i></a>
+                <a class="list-group-item" href="/mobile/home/mypost">投递的职位 <i class="fa fa-chevron-right pull-right"></i></a>
+                <a class="list-group-item" href="/mobile/home/editresume">简历修改 <i class="fa fa-chevron-right pull-right"></i></a>
+                <a class="list-group-item" ng-click="logout()">退出登录 <i class="fa fa-chevron-right pull-right"></i></a>
+            </div>
 
-            <a class="list-group-item" ng-show="is_login" ng-click="logout()">登出 <i class="fa fa-chevron-right pull-right"></i></a>
+            
 
-            <a class="list-group-item" ui-toggle="uiSidebarLeft">返回 <i class="fa fa-chevron-right pull-right"></i></a>
+            <a class="list-group-item" ui-turn-off='uiSidebarLeft'>返回 <i class="fa fa-chevron-right pull-right"></i></a>
           </div>
 
         </div>

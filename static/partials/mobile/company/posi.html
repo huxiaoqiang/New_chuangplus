@@ -5,7 +5,11 @@
 <div class="main-content scrollable" >
 <div class="scrollable-content">
     <div class="header-bar">
-        <div class="header">公司岗位</div>
+        <div class="logo sidebar-toggle" ui-toggle="uiSidebarLeft">
+                <i class="fa fa-bars" style="color: white;"></i>
+        </div>
+        <div ng-include="'/static/partials/mobile/partials/sidebar-left.html'" ></div>
+        <div class="header"> 犀牛·帮你找实习</div>
     </div>    
 
 
@@ -17,10 +21,7 @@
             <div class="comp-name">[[company.abbreviation]]</div>
             <div class="comp-desc">[[company.brief_introduction]]</div>
             <div ng-if="company.is_auth" class="comp-auth">[[company.auth_organization]]认证</div>
-            <div class="comp-req-list">
-                <span class="comp-req-title">[[company.positions.length]]岗位在招</span>
-                <span class="comp-req-tag" ng-repeat="tag in company.position_list">[[tag.position_type_value]]</span>
-            </div>
+
             <div class="comp-desc-list">
                 <span class="comp-desc-tag">
                     [[company.field_value]]
@@ -31,6 +32,11 @@
                 <span class="comp-desc-tag">
                     [[company.city]]
                 </span>
+            </div>
+
+            <div class="comp-req-list">
+                <span class="comp-req-title">[[company.positions.length]]岗位在招</span>
+                <span class="comp-req-tag" ng-repeat="tag in company.position_list">[[tag.position_type_value]]</span>
             </div>
 
             <div class="comp-benefit-list">
@@ -45,7 +51,7 @@
         <a ng-repeat="position in company.position_list" class="comp-posi-block" ng-href="/mobile/position/detail/[[position._id.$oid]]">
             <div class="comp-posi-detail"> 查看岗位详情 <i class="fa fa-chevron-right "></i> </div>
             <div class="comp-posi-title">
-                [[position.position_type_value]] | [[position.name]]
+                [[position.position_type_value]] / [[position.name]]
             </div>
             <div class="comp-desc-list">
                 <span class="comp-desc-tag">
