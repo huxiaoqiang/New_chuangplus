@@ -8,7 +8,11 @@
                 <input class="btn" type="button" value="清除不符合条件">
             </div>
             <div class="submit_list">
-
+                <div ng-repeat="user in submit_list" class="submit_item">
+                    <span class="real_name">[[user.real_name]]</span>
+                    应聘岗位：<span class="position_name">[[user.position_name]]</span><br/>
+                    <span>[[user.university]]/[[user.major]]</span>
+                </div>
             </div>
         </div>
         <div class="col-sm-3">

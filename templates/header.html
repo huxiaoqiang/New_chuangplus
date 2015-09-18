@@ -20,7 +20,7 @@
                  <li ng-class="{'active':company}" ng-click="company_active()"><a href="/company/list">公司列表</a></li>
                  <li ng-class = "{'active':position}" ng-click="position_active()"><a href="/position/list">职位列表</a></li>
                  {% if role == 1 %}
-                 <li ng-class = "{'active':resume}" ng-click="resume_active()"><a href="/company/resume">处理简历</a></li>
+                 <li ng-class = "{'active':resume}" ng-click="resume_active()"><a href="/company/[[company_id]]/resume">处理简历</a></li>
                  {% else %}
                  <li ng-class = "{'active':resume}" ng-click="resume_active()"><a href="/intern/resume/view">查看简历</a></li>
                  {% endif %}

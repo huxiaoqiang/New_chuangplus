@@ -545,10 +545,30 @@ angular.module('chuangplus.controllers', []).
     controller('DT_RegEnterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_RegEnterCtrl');
     }]).
-    controller('DT_CompanyResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_CompanyResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService',
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyResumeCtrl');
         $scope.submit_list = [];
-
+        $scope.get_submit_list = function(data){
+            var param;
+            if(data != null){
+                param = '?';
+                if(data.hasOwnProperty('page')){
+                    param += "page=" + data.page;
+                }
+            }
+            $http.get(urls.api+"/account/company/submit/search").
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.submit_list = data.data;
+                    }
+                    else{
+                        console.log(data.error.message);
+                        $scope.error = $errMsg.format_error('',data.error);
+                    }
+                });
+        };
+        $scope.get_submit_list();
     }]).
     controller('DT_CompanyInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','Upload','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, Upload,$errMsg){
         console.log('DT_CompanyInfoCtrl');
