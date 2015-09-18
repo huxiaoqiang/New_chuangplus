@@ -98,11 +98,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media/'
 
 from mongoengine import connect
-<<<<<<< HEAD
-connect('chuangplus', host='123.56.88.173', username='chuangplus', password='THUcj2014', port=27017)
-=======
 connect('chuangplus', host='123.56.88.173', port=27017, username='chuangplus', password='THUcj2014')
->>>>>>> 6b0d02582c8543f084256ed5afc80584ff07ab92
 
 # add session
 SESSION_ENGINE = 'mongoengine.django.sessions'
@@ -152,9 +148,4 @@ EMAIL_USE_SSL = True
 EMAIL_PORT = 587
 EMAIL_HOST = 'smtp.mxhichina.com'
 EMAIL_HOST_USER = 'support@chuangplus.com'
-<<<<<<< HEAD
 EMAIL_HOST_PASSWORD = 'THUcj2015'
-
-=======
-EMAIL_HOST_PASSWORD = 'THUcj2015'
->>>>>>> 6b0d02582c8543f084256ed5afc80584ff07ab92
