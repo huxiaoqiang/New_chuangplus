@@ -473,6 +473,7 @@ angular.module('chuangplus.controllers', []).
     controller('DT_InternResumeEditCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_InternResumeCtrl');
         $scope.filename = "无简历附件";
+        $scope.progressPercentage = 0;
         $scope.intern_info = {};
         $scope.get_intern_info = function(){
             $http.get(urls.api+"/account/userinfo/get").
@@ -519,8 +520,10 @@ angular.module('chuangplus.controllers', []).
                file: file
             }).
             progress(function(evt){
-                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                $scope.progress= 'progress: ' + progressPercentage + '% ' + evt.config.file.name;
+                $scope.show_bar = true;
+                $scope.progressPercentage = parseInt(100.0 * evt.loaded / evt.total)+"%";
+                $('.progress-bar').css("width",$scope.progressPercentage);
+                $scope.progress= 'progress: ' + $scope.progressPercentage + '% ' + evt.config.file.name;
             }).
             success(function(data, status, headers, config){
                 if(data.error.code == 1){
