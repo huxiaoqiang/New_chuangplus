@@ -783,15 +783,16 @@ angular.module('chuangplus_mobile.controllers', [])
                         $notice.show('验证码错误');
                         $('#captcha-pass').hide();
                         $scope.info_check[3] = 0;
+                        return false;
                     }
                     else
                     {
                         $('#captcha-pass').show();
                         $scope.info_check[3] = 1;
+                        return true;
                     }
 
                 });
-            
         }
 
         $scope.check_username = function(){
@@ -888,6 +889,9 @@ angular.module('chuangplus_mobile.controllers', [])
                         if($scope.check_pass_same())
                             if($scope.check_captcha())
                                 checked_info = 4;
+            for (var i = $scope.info_check.length - 1; i >= 0; i--) {
+                checked_info += $scope.info_check[i];
+            };
             if(checked_info == 4)
             {
                 console.log($scope.reg_info);

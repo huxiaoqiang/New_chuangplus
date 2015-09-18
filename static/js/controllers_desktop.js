@@ -936,6 +936,7 @@ angular.module('chuangplus.controllers', []).
         console.log('DT_PositionDetailCtrl');
         $scope.role = $user.role();
         $scope.position_id = $routeParams.position_id;
+        $scope.img2_src = "/static/image/icon/weixin-01.png";
         $scope.position_type = {
             "technology":"技术",
             'product':"产品",
@@ -983,9 +984,11 @@ angular.module('chuangplus.controllers', []).
                     $scope.favor_exist = data.data.exist;
                     if($scope.favor_exist == true){
                         $scope.post_value = "取消收藏";
+                         $scope.img_src = "/static/image/icon/shoucangdianliang-01.png";
                     }
                     else{
                         $scope.post_value = "先收藏";
+                     $scope.img_src = "/static/image/icon/shoucang-01.png";
                     }
                 }
                 else{
@@ -993,6 +996,21 @@ angular.module('chuangplus.controllers', []).
                 }
             });
         };
+                                        $scope.change_in = function(){
+                                        if(!$scope.favor_exist)
+                                        $scope.img_src = "/static/image/icon/shoucang2-01.png";
+                                        };
+                                        $scope.change_out = function(){
+                                        if(!$scope.favor_exist)
+                                        $scope.img_src = "/static/image/icon/shoucang-01.png";
+                                        };
+                                        $scope.change2_in = function(){
+                                        $scope.img2_src="/static/image/icon/weixin2-01.png";
+                                        };
+                                        $scope.change2_out = function(){
+                                        $scope.img2_src="/static/image/icon/weixin-01.png";
+                                        };
+
     $scope.get_position_detail = function(){
         $http.get(urls.api+"/position/"+ $scope.position_id +"/get_with_company").
         success(function(data){
@@ -1091,6 +1109,7 @@ angular.module('chuangplus.controllers', []).
 		    success(function(data){
 		    	$scope.post_value = "取消收藏";
 			$scope.favor_exist = true;
+                    $scope.img_src = "/static/image/icon/shoucangdianliang-01.png";
 		});
 	    }
 	    else{
@@ -1101,6 +1120,7 @@ angular.module('chuangplus.controllers', []).
 		    success(function(data){
 			$scope.post_value = "收藏职位";
 			$scope.favor_exist = false;
+            $scope.img_src = "/static/image/icon/shoucang-01.png";
 		    });
 	    }
 		
@@ -1302,11 +1322,13 @@ angular.module('chuangplus.controllers', []).
         console.log('DT_CompanyDetailCtrl');
         $scope.company_id = $routeParams.company_id;
         $scope.role = $user.role();
+                                       console.log($scope.role);
         $scope.company = {};
         $scope.member_list = {};
         $scope.tab1 = true;
         $scope.tab2 = false;
         $scope.favored = false;
+        $scope.img2_src="/static/image/icon/weixin-01.png";
         $scope.position_type = {
             "technology":"技术",
             'product':"产品",
@@ -1364,15 +1386,29 @@ angular.module('chuangplus.controllers', []).
                 if(data.error.code == 1){
                     if(data.data.exist == true){
                         $scope.favored = true;
+                        $scope.img_src = "/static/image/icon/shoucangdianliang-01.png";
                     }
                     else{
                         $scope.favored = false;
+                        $scope.img_src = "/static/image/icon/shoucang-01.png";
                     }
                 }
                 else{
                     $scope.error = $errorMsg.format_error('',data.error);
                 }
             });
+        };
+        $scope.change_in = function(){
+            $scope.img_src = "/static/image/icon/shoucang2-01.png";
+        };
+        $scope.change_out = function(){
+            $scope.img_src = "/static/image/icon/shoucang-01.png";
+        };
+        $scope.change2_in = function(){
+            $scope.img2_src="/static/image/icon/weixin2-01.png";
+        };
+        $scope.change2_out = function(){
+            $scope.img2_src="/static/image/icon/weixin-01.png";
         };
         $scope.get_company = function(){
             $http.get(urls.api+"/account/company/" + $scope.company_id + "/detail_with_positions").
@@ -1436,6 +1472,7 @@ angular.module('chuangplus.controllers', []).
             success(function(data){
                 if(data.error.code == 1){
                     $scope.favored = true;
+                    $scope.img_src = "/static/image/icon/shoucangdianliang-01.png"
                 }
                 else{
                     $scope.error = $errMsg.format_error('',data.error);
