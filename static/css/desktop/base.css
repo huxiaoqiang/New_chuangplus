@@ -1220,19 +1220,18 @@ form.financing_add input {
   display: block;
 }
 #container #userresume {
-  font-family: "微软雅黑";
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   padding-top: 5%;
 }
 #container #userresume .title span {
   color: #707070;
   font-size: 1.2em;
-  font-family: "华文细黑";
 }
 #container #userresume .title div.line {
   width: 96px;
   background-color: #8f4e96;
   margin-top: 4px;
-  height: 7px;
+  height: 3px;
 }
 #container #userresume .resume-title {
   margin-top: 35px;
@@ -1252,6 +1251,9 @@ form.financing_add input {
 #container #userresume .basic_info label.gender {
   margin-left: 55px;
 }
+#container #userresume .basic_info label.txt {
+  float: left;
+}
 #container #userresume .basic_info select {
   margin-left: 15px;
   margin-top: 10px;
@@ -1265,14 +1267,23 @@ form.financing_add input {
 }
 #container #userresume .basic_info input {
   margin-left: 15px;
-  margin-top: 10px;
+  margin-right: 0;
   border-radius: 3px;
   width: 240px;
+  height: 24px;
   border-color: rgba(240, 240, 240, 0.3);
   padding-left: 5px;
 }
 #container #userresume .basic_info input {
   outline-color: #f0f0f0;
+}
+#container #userresume .basic_info .form-group {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+#container #userresume .basic_info input.form-control {
+  float: left;
+  margin-top: 0;
 }
 #container #userresume .bref-info p {
   padding: 20px;
@@ -1301,12 +1312,14 @@ form.financing_add input {
 #container #userresume .resume {
   height: 100px;
   width: 50%;
-  background-color: rgba(240, 240, 240, 0.5);
+  background-color: white;
   margin-top: 10px;
+  border: 1px solid #e1e0e2;
+  border-radius: 4px;
+  padding: 15px 0 10px 0;
 }
 #container #userresume .resume img {
   height: 60px;
-  margin-top: 20px;
   margin-left: 25px;
 }
 #container #userresume .resume .upload-resume {
@@ -1317,6 +1330,7 @@ form.financing_add input {
   color: white;
   padding: 2px 10px 2px 10px;
   cursor: pointer;
+  border-radius: 3px;
 }
 #container #userresume .resume .upload-resume:hover {
   background-color: #98769E;
@@ -1344,6 +1358,7 @@ form.financing_add input {
   color: white;
   padding: 7px 15px;
   border-color: rgba(0, 0, 0, 0);
+  border-radius: 3px;
 }
 #container #userresume .save-resume-btn:hover {
   background-color: #98769E;
@@ -1351,9 +1366,12 @@ form.financing_add input {
 #container #userresume_edit .view {
   font-family: "微软雅黑";
   min-height: 300px;
+  width: 100%;
   margin-top: 20px;
   padding-left: 30px;
-  background-color: rgba(240, 240, 240, 0.5);
+  background-color: white;
+  border: 1px solid #e1e0e2;
+  border-radius: 4px;
 }
 #container #userresume_edit .view .first-line {
   padding-top: 30px;
@@ -1373,7 +1391,9 @@ form.financing_add input {
 #container #userresume_edit .resume {
   height: 100px;
   width: 50%;
-  background-color: rgba(240, 240, 240, 0.5);
+  background-color: white;
+  border: 1px solid #e1e0e2;
+  border-radius: 4px;
   margin-top: 10px;
 }
 #container #userresume_edit .resume img {
@@ -1397,6 +1417,7 @@ form.financing_add input {
   color: white;
   padding: 7px 15px;
   border-color: rgba(0, 0, 0, 0);
+  border-radius: 4px;
 }
 #container #userresume_edit .edit-resume-btn:hover {
   background-color: #98769E;

@@ -21,7 +21,7 @@
 
                 <div class="form-group">
                     <div class="input-group">
-                        <input name="email" type="email" class="form-control" placeholder="邮箱" ng-model="reg_info.email" ng-blur="check_email()" required>
+                        <input name="email" list="email_list" type="email" class="form-control" placeholder="邮箱" ng-model="reg_info.email" ng-blur="check_email()" required>
                     </div>
                     <span ng-show="showError(registerForm.email,'email')" class="err-msg">
                         <i class="icon-warning-sign"></i>请输入正确的邮箱格式，如hxq@xiniu.com
@@ -77,6 +77,37 @@
             </div>
 
         </form>
+        <datalist id="email_list">
+            <option value="@gmail.com"/>
+            <option value="@yahoo.com"/>
+            <option>@msn.com</option>
+            <option>@hotmail.com</option>
+            <option>@aol.com</option>
+            <option>@ask.com</option>
+            <option>@live.com</option>
+            <option>@qq.com</option>
+            <option>@0355.net</option>
+            <option>@163.com</option>
+            <option>@163.net</option>
+            <option>@263.net</option>      
+            <option>@3721.net</option>                          
+            <option>@yeah.net</option>
+            <option>@googlemail.com</option>
+            <option>@mail.com</option>
+            <option>@126.com</option>
+            <option>@sina.com</option>
+            <option>@21cn.com</option>
+            <option>@sohu.com</option>
+            <option>@yahoo.com.cn</option>
+            <option>@tom.com</option>
+            <option>@etang.com</option>
+            <option>@eyou.com</option>
+            <option>@56.com</option>
+            <option>@x.cn</option>
+            <option>@chinaren.com</option>
+            <option>@sogou.com</option>
+            <option>@citiz.com</option>
+        </datalist>
     </div>
 
 </div>
