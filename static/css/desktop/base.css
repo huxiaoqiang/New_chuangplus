@@ -1308,6 +1308,12 @@ form.financing_add input {
   top: -40px;
   left: 90px;
 }
+#container #userresume .progress {
+  width: 50%;
+}
+#container #userresume .progress .progress-bar {
+  background-color: #8f4e96;
+}
 #container #userresume .save-resume-btn {
   float: right;
   background-color: #8f4e96;
@@ -3338,4 +3344,7 @@ input.form-control.ng-invalid.ng-dirty {
   margin-right: auto;
   border-radius: 0;
   width: 200px;
+}
+.pagination {
+  float: right;
 }
