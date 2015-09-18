@@ -788,10 +788,11 @@ angular.module('chuangplus_mobile.controllers', [])
                     {
                         $('#captcha-pass').show();
                         $scope.info_check[3] = 1;
+                        return true;
                     }
 
                 });
-            
+            return false;
         }
 
         $scope.check_username = function(){
