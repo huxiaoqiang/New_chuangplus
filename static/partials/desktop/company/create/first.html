@@ -7,7 +7,7 @@
             <div class="item alpha10"></div>
         </div>
         <div style="clear:both;"></div>
-        <form name="FirstStepForm">
+        <form name="FirstStepForm" ng-submit="next_step()">
         <div class="info1">
             <div class="left-info">
                 <div class="input-group">
@@ -15,7 +15,7 @@
                         <label>公司简称</label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="text" required ng-model="companyinfo.abbreviation">
+                        <input type="text" required ng-model="companyinfo.abbreviation" placeholder="如：犀牛">
                     </div>
                 </div>
                 <div class="input-group">
@@ -23,7 +23,7 @@
                         <label>一句话简介</label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="text" required ng-model="companyinfo.brief_introduction">
+                        <input type="text" required ng-model="companyinfo.brief_introduction" placeholder="不超过15字" maxlength="15">
                     </div>
                 </div>
                 <div class="input-group">
@@ -105,7 +105,7 @@
                     </div>
                 </div>
             </div>
-            <input type="button" class="next-button btn" value="下一步" ng-click="next_step()">
+            <input type="submit" class="next-button btn" value="下一步">
             <div id="err-msg" ng-show="error.show"  ng-class="error.class">[[error.message]]</div>
         </div>
         </form>
