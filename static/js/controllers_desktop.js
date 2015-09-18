@@ -1296,6 +1296,7 @@ angular.module('chuangplus.controllers', []).
             '020':"O2O",
             'others':"其他"
         };
+        $scope.loading = true;
         $scope.get_company_list = function(){
             $http.get(urls.api+"/account/company/list").
                 success(function(data){
@@ -1314,6 +1315,7 @@ angular.module('chuangplus.controllers', []).
                 else{
                      $scope.error = $errMsg.format_error('',data.error);
                 }
+                $scope.loading = false;
             });
         };
         $scope.get_company_list();
@@ -2076,6 +2078,7 @@ angular.module('chuangplus.controllers', []).
             $scope.get_positions(param);
         };
         $scope.get_positions = function(data){
+            $scope.loading = true;
             var param = '';
             if(data != null){
                 param = '?';
@@ -2105,6 +2108,7 @@ angular.module('chuangplus.controllers', []).
                     else{
                         console.log(data.error.message);
                     }
+                    $scope.loading=false;
                 });
         };
         $scope.get_positions();

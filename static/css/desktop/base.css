@@ -57,6 +57,7 @@ header #header .navbar .navbar-item.login {
   margin-right: 30px;
   margin-left: 30px;
   width: 545px;
+  height: 58px;
 }
 header #header .navbar .navbar-item.login li {
   text-align: center;
@@ -596,6 +597,12 @@ body > #wrap {
   width: 750px;
   float: left;
   padding-right: 0;
+}
+#container #pisition-list .col-md-8 .loading {
+  width: 100%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  text-align: center;
 }
 #container #pisition-list .col-md-8 a {
   text-decoration: none;
@@ -2134,6 +2141,13 @@ form.financing_add input {
 }
 #container #company_list .col-md-8 {
   width: 750px;
+  min-height: 500px;
+}
+#container #company_list .col-md-8 .loading {
+  width: 100%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  text-align: center;
 }
 #container #company_list .col-md-8 a {
   text-decoration: none;
@@ -2621,6 +2635,7 @@ form.financing_add input {
 }
 #container #homepage .slide-block {
   height: 420px;
+  min-height: 420px;
   margin-bottom: 15px;
 }
 #container #homepage .company-block {

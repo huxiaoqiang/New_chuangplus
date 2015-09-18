@@ -78,71 +78,74 @@
             </div>
         </div>
         <div class="col-md-8">
-            <ul ng-repeat="position in positions">
-                <a href="/position/[[position._id.$oid]]/detail">
-                <li>
-                    <div class="favor-list-item">
-                        <div class="middle-block">
-                            
-                            <div class="info">
-                                <div class="item-info info-1">
-                                    <div class="vertical-center">
-                                        <p class="position">[[position.position_type_value]]|[[position.name]]</p>
-                                        <div class="position-tags">
-                                            <span class="tags">[[position.days_per_week]]天/周</span>
-                                            <span class="tags">[[position.salary_min]]k-[[position.salary_max]]k</span>
-                                        </div>
-                                        <div class="submit-time">
-                                            <p>发布时间：[[position.release_time.$date |date :'yyyy-MM-dd']]</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="line"></div>
-                                <div class="item-info info-4">
-                                    <div class="vertical-center">
-                                        <div class="tags" ng-repeat="tag in position.company.welfare_tags">[[tag]]</div>
-                                    </div>
-                                </div>
-                                <div class="line"></div>
-                                <div class="item-info info-2">
-                                    <div class="vertical-center">
-                                        <p class="company">[[position.company.abbreviation]]</p>
-                                        <p class="company-discrpt">&nbsp;&nbsp;[[position.company.brief_introduction]]</p>
-                                        <p class="auth">v[[position.company.auth_organization]]红杉资本认证</p>
-                                    </div>
-                                </div>
-                                <div class="item-info info-3">
-                                    <div class="vertical-center">
-                                        <div class="label-1" ng-show="position.company.field != null">
-                                            <img src="/static/image/icon/111-01.png">
-                                            <p>[[position.company.field_type]]</p>
-                                        </div>
-                                        <div class="label-1" ng-show="position.company.scale != null">
-                                            <img src="/static/image/icon/222-01.png">
-                                            <p>[[position.company.scale_value]]</p>
-                                        </div>
-                                        <div class="label-1" ng-show="position.company.city != null">
-                                            <img src="/static/image/icon/333-01.png">
-                                            <p class="last-p">[[position.company.city]]</p>
+            <div ng-show="loading" class="loading">
+                <img src="/static/image/icon/loading.gif">
+            </div>
+            <div ng-show="!loading">
+                <ul ng-repeat="position in positions">
+                    <a href="/position/[[position._id.$oid]]/detail">
+                    <li>
+                        <div class="favor-list-item">
+                            <div class="middle-block">
+                                <div class="info">
+                                    <div class="item-info info-1">
+                                        <div class="vertical-center">
+                                            <p class="position">[[position.position_type_value]]|[[position.name]]</p>
+                                            <div class="position-tags">
+                                                <span class="tags">[[position.days_per_week]]天/周</span>
+                                                <span class="tags">[[position.salary_min]]k-[[position.salary_max]]k</span>
+                                            </div>
+                                            <div class="submit-time">
+                                                <p>发布时间：[[position.release_time.$date |date :'yyyy-MM-dd']]</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                               
-                                <div class="item-pic">
-                                    <div class="vertical-center">
-                                        <img src="/api/file/[[position.company.logo_id]]/download" class="company-pic" alt="图片">
+                                    <div class="line"></div>
+                                    <div class="item-info info-4">
+                                        <div class="vertical-center">
+                                            <div class="tags" ng-repeat="tag in position.company.welfare_tags">[[tag]]</div>
+                                        </div>
+                                    </div>
+                                    <div class="line"></div>
+                                    <div class="item-info info-2">
+                                        <div class="vertical-center">
+                                            <p class="company">[[position.company.abbreviation]]</p>
+                                            <p class="company-discrpt">&nbsp;&nbsp;[[position.company.brief_introduction]]</p>
+                                            <p class="auth">v[[position.company.auth_organization]]红杉资本认证</p>
+                                        </div>
+                                    </div>
+                                    <div class="item-info info-3">
+                                        <div class="vertical-center">
+                                            <div class="label-1" ng-show="position.company.field != null">
+                                                <img src="/static/image/icon/111-01.png">
+                                                <p>[[position.company.field_type]]</p>
+                                            </div>
+                                            <div class="label-1" ng-show="position.company.scale != null">
+                                                <img src="/static/image/icon/222-01.png">
+                                                <p>[[position.company.scale_value]]</p>
+                                            </div>
+                                            <div class="label-1" ng-show="position.company.city != null">
+                                                <img src="/static/image/icon/333-01.png">
+                                                <p class="last-p">[[position.company.city]]</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="item-pic">
+                                        <div class="vertical-center">
+                                            <img src="/api/file/[[position.company.logo_id]]/download" class="company-pic" alt="图片">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                       
-                    </div>
-                </li>
-                </a>
-            </ul>
-            <page num-pages="task.pageCount" current-page="task.currentPage" on-select-page="selectPage(page)">
 
-            </page>
+                        </div>
+                    </li>
+                    </a>
+                </ul>
+                <page num-pages="task.pageCount" current-page="task.currentPage" on-select-page="selectPage(page)">
+                </page>
+            </div>
         </div>
     </div>
 </div>
