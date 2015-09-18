@@ -1,38 +1,42 @@
 <div id="container">
     <div id="intern-post-list">
-        <div class="col-sm-4">
 	    <div class="tips" ng-show="positions.length == 0">
-		<p>您还没有投递任何职位，快去<a href="/position/list">"职位列表</a>看看吧^_^</p>
-	    </div>
-            <div class="col-md-8">
-                <ul ng-repeat="position in positions">
-		    <a href="/position/[[position._id.$oid]]/detail">
-                    <li>
-                        <div class="post-list-item">
-                            <div class="item-pic">
-                                <img class="company-pic" src="/api/file/[[position.company.logo_id]]/download"  alt="图片"></img>
-                            </div>
-                            <div class="item-info">
-                                <div class="position-info">
-                                    <p class="position">[[position.position_type_value]]|[[position.name]]</p>
-                                    <p class="hire">职位在招</p>
-                                    <p class="check">HR待处理</p>
-                                </div>
-                                <p class="company">[[position.company.abbreviation]]</p>
-                                <p class="company-discrpt">[[position.company.brief_introduction]]</p>
-                                <div class="item-label">
-                                    <p class="label">[[position.days_per_week]]天/周</p>
-                                    <p class="label">[[position.salary_min]]k-[[position.salary_max]]k</p>
-                                    <p class="label">创业服务</p>
-                                    <p class="label">[[position.company.scale_value]]</p>
-                                    <p class="label">[[position.company.city]]</p>
-                                </div>
-                                <p class="submit-time">发布时间:[[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]</p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+            <div class="inner">
+                <p>您还没有投递任何职位</p>
+                <p class="go-txt">快去职位列表看看吧</p>
+                <div class="go">
+                    <a href="/position/list"><img src="/static/image/icon/go-01.png"></a>
+                </div>
             </div>
+	    </div>
+        <div class="col-md-8">
+            <ul ng-repeat="position in positions">
+                <a href="/position/[[position._id.$oid]]/detail">
+                <li>
+                    <div class="post-list-item">
+                        <div class="item-pic">
+                            <img class="company-pic" src="/api/file/[[position.company.logo_id]]/download"  alt="图片"></img>
+                        </div>
+                        <div class="item-info">
+                            <div class="position-info">
+                                <p class="position">[[position.position_type_value]]|[[position.name]]</p>
+                                <p class="hire">职位在招</p>
+                                <p class="check">HR待处理</p>
+                            </div>
+                            <p class="company">[[position.company.abbreviation]]</p>
+                            <p class="company-discrpt">[[position.company.brief_introduction]]</p>
+                            <div class="item-label">
+                                <p class="label">[[position.days_per_week]]天/周</p>
+                                <p class="label">[[position.salary_min]]k-[[position.salary_max]]k</p>
+                                <p class="label">创业服务</p>
+                                <p class="label">[[position.company.scale_value]]</p>
+                                <p class="label">[[position.company.city]]</p>
+                            </div>
+                            <p class="submit-time">发布时间:[[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
