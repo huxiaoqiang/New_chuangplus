@@ -21,9 +21,11 @@ angular.module('chuangplus.controllers', []).
         $scope.scan = false;
         $scope.search = false;
     }]).
-    controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService',
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_HeaderCtrl');
         $scope.company_id = '';
+        $scope.username = $user.username();
         $scope.get_company_info = function(){
             $http.get(urls.api+"/account/company/detail").
                 success(function(data){
