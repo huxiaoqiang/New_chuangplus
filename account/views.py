@@ -1140,7 +1140,8 @@ def search_submit_intern(request):
         processed = request.GET.get('processed','')
 
         try:
-            company = Companyinfo.objects.get(username=request.user.username)
+            #company = Companyinfo.objects.get(username=request.user.username)
+            company = Companyinfo.objects.get(username='company2')
         except:
             re["error"] = error(105,"company does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -1164,6 +1165,27 @@ def search_submit_intern(request):
                 re['error'] = error(260,'Position does not exist')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             up = up.filter(position__in = positions)
+
+        page = 1
+        if "page" in request.GET.keys():
+            if len(request.GET["page"]) > 0:
+                try:
+                    page = int(request.GET["page"])
+                    assert page > 0
+                except (ValueError,AssertionError):
+                    re['error'] = error(200,"Invaild request!")
+                    return HttpResponse(json.dumps(re), content_type = 'application/json')
+                except:
+                    re['error'] = error(299,'Unknown Error!')
+                    return HttpResponse(json.dumps(re),content_type = 'application/json')
+
+        orderValue = "id"
+        up.order_by(orderValue)
+        shang = up.count() / POSITIONS_PER_PAGE
+        yushu = 1 if up.count() % POSITIONS_PER_PAGE else 0
+        page_number =  shang + yushu
+        up = up[(page - 1) * POSITIONS_PER_PAGE: page * POSITIONS_PER_PAGE]
+
         user_list = []
         for item in up:
             u = Userinfo.objects.get(user = item.user)
@@ -1172,6 +1194,7 @@ def search_submit_intern(request):
             user_list.append(userinfo)
         re['error'] = error(1,'succeed ')
         re['data'] = user_list
+        re['page_number'] = page_number
     else:
         re['error'] = error(3,'Error,need GET')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
