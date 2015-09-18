@@ -385,6 +385,15 @@ a:hover {
   height: 94px;
   margin-right: 10px;
 }
+.comp-finance-img {
+  position: relative;
+  float: left;
+  border-radius: 5px;
+  border: #b5b5b5 solid 1px;
+  width: 94px;
+  height: 94px;
+  margin-right: 10px;
+}
 .comp-prev-img {
   position: absolute;
   float: left;
