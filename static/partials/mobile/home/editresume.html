@@ -5,8 +5,12 @@
   <div class="scrollable">
   <div class="scrollable-content">
   <div class="header-bar">
-      <div class="header">我的简历</div>
-  </div>    
+      <div class="logo sidebar-toggle" ui-toggle="uiSidebarLeft">
+              <i class="fa fa-bars" style="color: white;"></i>
+      </div>
+      <div ng-include="'/static/partials/mobile/partials/sidebar-left.html'" ></div>
+      <div class="header"> 我的简历</div>
+  </div> 
 
   <div class="edit-resume">
     <form name="editresume" id="editresume" role="form" ng-submit='edit_resume()'>
