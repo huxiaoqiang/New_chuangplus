@@ -386,7 +386,7 @@ a:hover {
   margin-right: 10px;
 }
 .comp-prev-img {
-  position: relative;
+  position: absolute;
   float: left;
   border-radius: 5px;
   border: #b5b5b5 solid 1px;
@@ -429,11 +429,11 @@ a:hover {
   background-color: white;
   color: #707070;
   border: 1px solid #966497;
+  text-align: center;
   font-size: 11px;
   margin-right: 4px;
-  text-align: center;
   margin-bottom: 1px;
-  white-space: nowrap;
+  display: -webkit-inline-box;
 }
 .comp-benefit-list {
   line-height: 18px;
@@ -447,6 +447,7 @@ a:hover {
   border-radius: 3px;
   margin-right: 4px;
   margin-bottom: 1px;
+  display: -webkit-inline-box;
 }
 .comp-req-tag {
   padding: 0px 4px 0px 4px;
@@ -456,9 +457,8 @@ a:hover {
   color: white;
   font-size: 11px;
   margin-right: 4px;
-  text-align: center;
-  white-space: nowrap;
   margin-bottom: 1px;
+  display: -webkit-inline-box;
 }
 .post-time {
   line-height: 18px;
@@ -683,7 +683,13 @@ a:hover {
   display: block;
   position: relative;
   left: 104px;
-  width: 50%;
+  width: 53%;
+}
+.comp-list-info-block {
+  display: block;
+  position: relative;
+  left: 104px;
+  width: 64%;
 }
 .comp-more-info {
   margin: auto;

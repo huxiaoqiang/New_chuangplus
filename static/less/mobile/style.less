@@ -567,7 +567,7 @@ a:hover
 }
 .comp-prev-img
 {
-    position: relative;
+    position: absolute;
     float: left;
     border-radius: 5px;
     border: @mid-gray solid 1px;
@@ -620,9 +620,8 @@ a:hover
     text-align: center;
     font-size: @cl-comp-desct-fsize;
     margin-right: @cl-comp-tag-mag;
-    text-align: center;
     margin-bottom: 1px;
-    white-space:nowrap;
+    display: -webkit-inline-box;
 }
 
 .comp-benefit-list{
@@ -638,6 +637,7 @@ a:hover
     border-radius: 3px;
     margin-right: @cl-comp-tag-mag;
     margin-bottom: 1px;
+    display: -webkit-inline-box;
 }
 .comp-req-tag
 {
@@ -648,9 +648,8 @@ a:hover
     color: white;
     font-size: @cl-comp-reqt-fsize;
     margin-right: @cl-comp-tag-mag;
-    text-align: center;
-    white-space:nowrap;
     margin-bottom: 1px;
+    display: -webkit-inline-box;
 }
 
 .post-time{
@@ -932,7 +931,15 @@ a:hover
     display: block;
     position: relative;
     left: 104px; 
-    width:50%;
+    width:53%;
+}
+
+.comp-list-info-block
+{
+    display: block;
+    position: relative;
+    left: 104px; 
+    width:64%;
 }
 .comp-more-info
 {
