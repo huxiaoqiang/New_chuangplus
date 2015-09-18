@@ -1410,8 +1410,44 @@ form.financing_add input {
   display: block;
 }
 #container #favor-position-list {
-  font-family: "微软雅黑";
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   padding-top: 5%;
+}
+#container #favor-position-list .block {
+  width: 50%;
+  background-color: white;
+  height: 200px;
+  margin: 0 auto;
+  margin-top: 10%;
+  border-radius: 4px;
+}
+#container #favor-position-list .block .inner {
+  width: 100%;
+  height: 100%;
+  padding: 10% 10%;
+}
+#container #favor-position-list .block .inner p {
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 0;
+}
+#container #favor-position-list .block .inner .go-txt {
+  margin-bottom: 10px;
+}
+#container #favor-position-list .block .inner .go {
+  text-align: center;
+}
+#container #favor-position-list .block .inner .go a {
+  cursor: pointer;
+}
+#container #favor-position-list .block .inner .go a img {
+  width: 25px;
+}
+#container #favor-position-list .block .inner .go a:hover {
+  cursor: pointer;
+}
+#container #favor-position-list .block .inner .go a:hover img {
+  width: 30px;
 }
 #container #favor-position-list .col-md-9 table tr td {
   padding-right: 10%;
@@ -1927,7 +1963,7 @@ form.financing_add input {
   margin-top: 20px;
 }
 #container #position-detail .col-md-9 .position-dscrpt .dscrpt-title {
-  width: 100%;
+  width: 60%;
   height: 35px;
 }
 #container #position-detail .col-md-9 .position-dscrpt .dscrpt-title span {
@@ -1936,23 +1972,26 @@ form.financing_add input {
   border-bottom: 3px solid #8f4e96;
   padding: 5px 15px 5px 15px;
 }
-#container #position-detail .col-md-9 .position-dscrpt .txt {
-  width: 60%;
+#container #position-detail .col-md-9 .position-dscrpt .dscrpt-title .img-button {
+  text-align: right;
+}
+#container #position-detail .col-md-9 .position-dscrpt .dscrpt-title .txt {
+  width: 100%;
   float: left;
   margin-top: 10px;
 }
-#container #position-detail .col-md-9 .position-dscrpt .txt .description {
+#container #position-detail .col-md-9 .position-dscrpt .dscrpt-title .txt .description {
   width: 100%;
   margin-bottom: 50px;
 }
-#container #position-detail .col-md-9 .position-dscrpt .txt .description p {
+#container #position-detail .col-md-9 .position-dscrpt .dscrpt-title .txt .description p {
   font-size: 16px;
   color: #707070;
 }
-#container #position-detail .col-md-9 .position-dscrpt .txt .description .value {
+#container #position-detail .col-md-9 .position-dscrpt .dscrpt-title .txt .description .value {
   margin-top: 15px;
 }
-#container #position-detail .col-md-9 .position-dscrpt .txt .description .value p {
+#container #position-detail .col-md-9 .position-dscrpt .dscrpt-title .txt .description .value p {
   font-size: 14px;
 }
 #container #position-detail .col-md-9 .position-dscrpt .map {
@@ -2316,6 +2355,9 @@ form.financing_add input {
 }
 #container #company-detail .col-md-8 .detail .left-block .header .tab-active {
   border-color: #8f4e96;
+}
+#container #company-detail .col-md-8 .detail .left-block .header .img-button {
+  text-align: right;
 }
 #container #company-detail .col-md-8 .detail .left-block .company {
   margin-top: 24px;

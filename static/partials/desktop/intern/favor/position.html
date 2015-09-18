@@ -1,7 +1,13 @@
 <div id="container">
     <div id="favor-position-list">
-	<div ng-show="positions.length <= 0 || positions == null" class="col-sm-4">
-	    <p>您还没有收藏任何职位，快去<a href="/position/list">职位列表</a>看看吧^_^</p>
+	<div ng-show="positions.length <= 0 || positions == null" class="block">
+        <div class="inner">
+            <p>您还没有收藏任何职位</p>
+            <p class="go-txt">快去职位列表看看吧</p>
+            <div class="go">
+            <a href="/position/list"><img src="/static/image/icon/go-01.png"></a>
+            </div>
+        </div>
 	</div>
         <div class="col-sm-4" ng-show="positions.length > 0">
             <div class="col-md-9">

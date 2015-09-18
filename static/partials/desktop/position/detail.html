@@ -113,22 +113,28 @@
             <div class="position-dscrpt">
                 <div class="dscrpt-title">
                     <span>职位描述</span>
-                </div>
-                <div class="txt">
-                    <div class="description">
-                        <p>工作内容</p>
-                      
-                        <div class="value">
-                            <p>[[position.position_description]]</p>
-                        </div>
+                    <div class="img-button" ng-show="role==0">
+                        <img src="[[img_src]]" ng-click="post()" ng-mouseover="change_in()" ng-mouseout="change_out()" ng-model="post_value">
+                        <img src="[[img2_src]]" class="favor" ng-mouseover="change2_in()" ng-mouseout="change2_out()">
                     </div>
-                    <div class="description">
-                        <p>能力要求</p>
-                      
-                        <div class="value">
-                            <p>[[position.position_request]]</p>
+                    <div class="txt">
+                        <div class="description">
+                            <p>工作内容</p>
+                            
+                            <div class="value">
+                                <p>[[position.position_description]]</p>
+                            </div>
                         </div>
+                        <div class="description">
+                            <p>能力要求</p>
+                            
+                            <div class="value">
+                                <p>[[position.position_request]]</p>
+                            </div>
+                        </div>
+                        
                     </div>
+                    <div style="clear:both"></div>
                 </div>
                 <div class="map">
                     <img>
