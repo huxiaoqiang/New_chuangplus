@@ -9,6 +9,13 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   overflow-x: hidden;
 }
+@media (min-width: 992px) {
+  .has-sidebar-left .app,
+  .sidebar-left-in .app {
+    margin-left: 250px;
+    left: 0;
+  }
+}
 .sidebar-left-in .app {
   transform: translate(250px, 0) !important;
   -webkit-transform: translate(250px, 0) !important;
