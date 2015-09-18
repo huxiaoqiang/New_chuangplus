@@ -2103,10 +2103,11 @@ form.financing_add input {
   margin-top: 10px;
 }
 #container #position-detail .position-dscrpt .dscrpt-title .txt .description {
+  min-height: 180px;
   width: 100%;
   margin-bottom: 20px;
   background-color: white;
-  border: 1px solid #;
+  border: 1px solid #bfbfbf;
   border-radius: 4px;
   padding: 10px 10px;
 }
@@ -2541,12 +2542,13 @@ form.financing_add input {
   width: 99%;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .description {
-  min-height: 50px;
+  min-height: 150px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .description p {
   font-size: 15px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .company-description {
+  min-height: 150px;
   width: 100%;
   background-color: white;
   border: 1px solid #e1e0e2;
