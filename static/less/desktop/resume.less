@@ -2,19 +2,18 @@
     margin:0 auto;
     display: block;
     #userresume{
-        font-family: "微软雅黑";
+        font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
         padding-top: 5%;
         .title{
             span{
               color: #707070;
               font-size: 1.2em;
-              font-family: "华文细黑";
             }
           div.line{
             width: 96px;
             background-color: #8f4e96;
             margin-top: 4px;
-            height: 7px;
+            height: 3px;
           }
         }
       .resume-title{
@@ -34,6 +33,9 @@
           label.gender{
             margin-left: 55px;
           }
+          label.txt{
+            float: left;
+          }
           select{
             margin-left: 15px;
             margin-top: 10px;
@@ -47,14 +49,23 @@
           }
           input{
             margin-left: 15px;
-            margin-top: 10px;
+            margin-right: 0;
             border-radius: 3px;
             width: 240px;
+            height: 24px;
             border-color: rgba(240,240,240,0.3);
             padding-left: 5px;
           }
           input{
             outline-color: rgb(240,240,240);
+          }
+          .form-group{
+            margin-top: 10px;
+            margin-bottom: 0;
+          }
+          input.form-control{
+            float: left;
+            margin-top: 0;
           }
         }
       .bref-info{
@@ -86,11 +97,13 @@
       .resume{
         height: 100px;
         width: 50%;
-        background-color: rgba(240, 240, 240, 0.5);
+        background-color: white;
         margin-top: 10px;
+        border: 1px solid #e1e0e2;
+        border-radius: 4px;
+        padding: 15px 0 10px 0;
         img{
           height: 60px;
-          margin-top: 20px;
           margin-left: 25px;
         }
         .upload-resume{
@@ -101,6 +114,7 @@
           color: white;
           padding: 2px 10px 2px 10px;
           cursor: pointer;
+          border-radius: 3px;
         }
         .upload-resume:hover{
           background-color: #98769E;
@@ -129,6 +143,7 @@
         color: white;
         padding: 7px 15px;
         border-color: rgba(0,0,0,0);
+        border-radius: 3px;
       }
       .save-resume-btn:hover{
         background-color: #98769E;
@@ -138,9 +153,12 @@
     .view{
       font-family: "微软雅黑";
       min-height: 300px;
+      width: 100%;
       margin-top: 20px;
       padding-left: 30px;
-      background-color: rgba(240, 240, 240, 0.5);
+      background-color: white;
+      border: 1px solid #e1e0e2;
+      border-radius: 4px;
       .first-line{
         padding-top: 30px;
         .name{
@@ -160,7 +178,9 @@
     .resume{
       height: 100px;
       width: 50%;
-      background-color: rgba(240, 240, 240, 0.5);
+      background-color: white;
+      border: 1px solid #e1e0e2;
+      border-radius: 4px;
       margin-top: 10px;
       img{
         height: 60px;
@@ -184,6 +204,7 @@
       color: white;
       padding: 7px 15px;
       border-color: rgba(0,0,0,0);
+      border-radius: 4px;
     }
     .edit-resume-btn:hover{
       background-color: #98769E;
