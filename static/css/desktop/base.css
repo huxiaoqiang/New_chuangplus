@@ -135,7 +135,7 @@ header #header .navbar .header-item .search {
 }
 header #header .navbar .qrcode_img {
   position: absolute;
-  top: 50px;
+  top: 57px;
   right: 57px;
   z-index: 2;
 }
