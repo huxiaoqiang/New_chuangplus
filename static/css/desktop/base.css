@@ -2024,6 +2024,9 @@ form.financing_add input {
 #container #company_list .col-md-8 {
   width: 750px;
 }
+#container #company_list .col-md-8 a {
+  text-decoration: none;
+}
 #container #company_list .col-md-8 ul li {
   list-style-type: none;
   background-color: #FFFFFF;
@@ -2154,6 +2157,9 @@ form.financing_add input {
   float: left;
   margin-bottom: 5px;
   text-align: center;
+}
+#container #company_list .col-md-8 ul li .company-info:hover {
+  background-color: rgba(243, 243, 243, 0.53);
 }
 #container #company-detail {
   min-height: 600px;
