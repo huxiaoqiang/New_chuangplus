@@ -18,6 +18,7 @@ TYPE = ('technology','product','design','operate','marketing','functions','other
 class Userinfo(Document):
     user = ReferenceField(User,required=True)
     username = StringField(max_length=30,required=True)
+    user_avatar_id = StringField(max_length=30)
     email = EmailField(required=True)
     real_name = StringField(max_length=20)
     work_city = StringField(max_length=100)
