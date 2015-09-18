@@ -127,6 +127,9 @@ header #header .navbar .header-item .log_register {
 header #header .navbar .header-item .log_register a {
   color: #8f4e96;
 }
+header #header .navbar .header-item li {
+  list-style-type: none;
+}
 header #header .navbar .header-item .search {
   margin-left: 0px;
 }
@@ -139,16 +142,41 @@ header #header .navbar .qrcode_img {
 header #header .navbar .qrcode_img img {
   width: 100px;
 }
-header #header .navbar .search_input {
+header #header .navbar .search_input.not_login {
   position: absolute;
-  top: 50px;
-  right: 12px;
+  top: 57px;
+  right: -55px;
   z-index: 2;
-  width: 200px;
-  height: 50px;
-  border: solid 1px #eeeeee;
-  background-color: #eeeeee;
+  width: 270px;
+  height: 70px;
+  border: solid 1px #C5C5C5;
+  background-color: #ffffff;
   padding: 12px 10px 10px 20px;
+}
+header #header .navbar .search_input.not_login input {
+  float: left;
+  width: 180px;
+  height: 28px;
+  border-radius: 0;
+  margin-top: 8px;
+}
+header #header .navbar .search_input.not_login input.form-control:focus {
+  border-color: #98769E;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(143, 78, 150, 0.1);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(143, 78, 150, 0.3);
+  border-color: #8f4e96;
+}
+header #header .navbar .search_input.not_login input.form-control:hover {
+  border-color: #98769E;
+}
+header #header .navbar .search_input.not_login .search-btn {
+  height: 28px;
+  width: 30px;
+  margin-top: 8px;
+  color: #ffffff;
+  background-color: #8f4e96;
+  outline: none;
+  border: darkgray;
 }
 header .shadow {
   background: -moz-linear-gradient(top, #e1e1e1 -50%, #f0f0f0 100%);

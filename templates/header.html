@@ -53,28 +53,49 @@
                  </li>
               </ul>
             {% endif %}
-            <div class="header-item">
-              {% if not user.is_authenticated %}
-                   <div class="item log_register">
+            {% if not user.is_authenticated %}
+            <ul class="header-item">
+                   <li class="item log_register">
                        <img src="/static/image/icon/login-01.png">
                        <a ng-click="login()">登录</a>&nbsp;·&nbsp;<a ng-click="register()">注册</a>
-                   </div>
-              {% endif %}
-               <div class="item" on-mouseover="scan=true" on-mouseout="scan=false">
+                   </li>
+
+               <li class="item" on-mouseover="scan=true" on-mouseout="scan=false">
                    <img src="/static/image/icon/scan-01.png">
                    <a>关注</a>
-               </div>
-               <div class="item search" on-mouseover="search=true" on-mouseout="search=false">
+               </li>
+               <li class="item search" on-mouseover="search=true">
                    <img src="/static/image/icon/search-01.png">
                    <a>搜索</a>
-               </div>
-            </div>
-            <div class="qrcode_img" ng-if="scan">
+               </li>
+            </ul>
+            <div class="qrcode_img not_login" ng-if="scan">
                 <img src="/static/image/logo/erweima-01.png">
             </div>
-            <div class="search_input" ng-if="search" on-mouseover="search=true" on-mouseout="search=false">
+            <div class="search_input"  on-mouseover="search_mouseon()" on-mouseout="search_mouseout()" ng-show="search">
+                <input type="text" class="form-control" placeholder="搜索公司或职位">
+                <button class="search-btn"><i class="icon-search"></i></button>
+            </div>
+
+            {% endif %}
+            {% if user.is_authenticated  %}
+            <ul class="header-item">
+               <li class="item" on-mouseover="scan=true" on-mouseout="scan=false">
+                   <img src="/static/image/icon/scan-01.png">
+                   <a>关注</a>
+               </li>
+               <li class="item search login" on-mouseover="search_mouseon()" on-mouseout="search_mouseout()">
+                   <img src="/static/image/icon/search-01.png">
+                   <a>搜索</a>
+               </li>
+            </ul>
+            <div class="qrcode_img login" ng-if="scan">
+                <img src="/static/image/logo/erweima-01.png">
+            </div>
+            <div class="search_input login" ng-if="search" on-mouseover="search=true" on-mouseout="search=false">
                 <input type="text">
             </div>
+            {% endif %}
         </nav>
     </div>
     <div class="shadow"></div>

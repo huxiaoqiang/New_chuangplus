@@ -26,6 +26,24 @@ angular.module('chuangplus.controllers', []).
         console.log('DT_HeaderCtrl');
         $scope.company_id = '';
         $scope.username = $user.username();
+        $scope.search_mouseout = function(){
+            $scope.timeout_id = setTimeout($scope.hide_search,1000);
+        };
+        $scope.hide_search = function(){
+            $scope.$apply(function(){
+               $scope.search = false;
+            });
+        };
+        $scope.search_mouseon = function(){
+          $scope.search=true;
+          clearTimeout($scope.timeout_id);
+        };
+        $scope.hide_search = function(){
+            $scope.$apply(function(){
+               $scope.search = false;
+            });
+        };
+
         $scope.get_company_info = function(){
             $http.get(urls.api+"/account/company/detail").
                 success(function(data){
