@@ -36,45 +36,45 @@
       a{
         text-decoration: none;
       }
-        ul li{
-            list-style-type:none;
-            background-color: #ffffff;
-            border: 1px solid #bfbfbf;
-            border-radius: 4px;
-            margin-bottom: 15px;
-            height: 120px;
-            .favor-list-item{
+      ul li{
+        list-style-type:none;
+        background-color: #ffffff;
+        border: 1px solid #bfbfbf;
+        border-radius: 4px;
+        margin-bottom: 15px;
+        height: 120px;
+        .favor-list-item{
+            width: 100%;
+            height: 100%;
+            padding:10px 10px 10px 15px;
+            .middle-block{
                 width: 100%;
                 height: 100%;
-                padding:10px 10px 10px 15px;
-                .middle-block{
+                .item-pic{
+                  float: left;
+                  width: 90px;
+                  display: table;
+                  height: 100%;
+                    img{
+                        width: 90px;
+                        height: 90px;
+                        }
+                }
+                .info{
                     width: 100%;
                     height: 100%;
-                    .item-pic{
-                        float: left;
-                        width: 90px;
-display: table;
-                        height: 100%;
-                        img{
-                            width: 90px;
-height: 90px;
-                        }
-                    }
-                    .info{
-                        width: 100%;
-                        height: 100%;
-.tags{
-border-radius: 10px;
-padding: 0 8px 0 8px;
-background-color: rgba(143,78,150,0.1);
-color: #707070;
-font-size: 5px;
-margin-right: 5px;
-float: left;
-margin-bottom: 5px;
-text-align: center;
-font-weight: 100;
-}
+                  .tags{
+                    border-radius: 10px;
+                    padding: 0 8px 0 8px;
+                    background-color: rgba(143,78,150,0.1);
+                    color: #707070;
+                    font-size: 5px;
+                    margin-right: 5px;
+                    float: left;
+                    margin-bottom: 5px;
+                    text-align: center;
+                    font-weight: 100;
+                  }
                         .line{
                             width: 1px;
                             height: 50px;
@@ -170,6 +170,23 @@ width: 64px;
                 }
             }
         }
+      ul.pagination{
+        float: right;
+
+        li{
+          border: none;
+          a{
+            cursor: pointer;
+            span{
+              color: #337ab7;
+            }
+          }
+          }
+        }
+      .pagination>.active>a{
+        background-color: #8f4e96;
+        border-color: #98769E;
+      }
     }
   }
 }

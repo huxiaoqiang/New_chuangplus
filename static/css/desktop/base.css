@@ -736,6 +736,22 @@ body > #wrap {
   font-size: 10px;
   margin-bottom: 5px;
 }
+#container #pisition-list .col-md-8 ul.pagination {
+  float: right;
+}
+#container #pisition-list .col-md-8 ul.pagination li {
+  border: none;
+}
+#container #pisition-list .col-md-8 ul.pagination li a {
+  cursor: pointer;
+}
+#container #pisition-list .col-md-8 ul.pagination li a span {
+  color: #337ab7;
+}
+#container #pisition-list .col-md-8 .pagination > .active > a {
+  background-color: #8f4e96;
+  border-color: #98769E;
+}
 #container #company_info h2 {
   text-align: center;
   margin-bottom: 25px;
@@ -3497,6 +3513,9 @@ input.form-control.ng-invalid.ng-dirty {
   border-radius: 0;
   width: 200px;
 }
-.pagination {
+ul.pagination {
   float: right;
+}
+ul.pagination li {
+  border: none;
 }
