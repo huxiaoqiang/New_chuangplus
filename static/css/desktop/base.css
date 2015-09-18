@@ -2083,6 +2083,20 @@ form.financing_add input {
 #container #position-detail .position-dscrpt .dscrpt-title .img-button {
   text-align: right;
 }
+#container #position-detail .position-dscrpt .dscrpt-title .img-button span {
+  margin-left: 10px;
+  font-size: 13px;
+  color: #707070;
+  border: 0;
+  padding: 0;
+}
+#container #position-detail .position-dscrpt .dscrpt-title .img-button span img {
+  height: 17px;
+  margin-right: 5px;
+}
+#container #position-detail .position-dscrpt .dscrpt-title .img-button span .img-1 {
+  margin-top: -2px;
+}
 #container #position-detail .position-dscrpt .dscrpt-title .txt {
   width: 100%;
   float: left;
@@ -2090,7 +2104,11 @@ form.financing_add input {
 }
 #container #position-detail .position-dscrpt .dscrpt-title .txt .description {
   width: 100%;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
+  background-color: white;
+  border: 1px solid #;
+  border-radius: 4px;
+  padding: 10px 10px;
 }
 #container #position-detail .position-dscrpt .dscrpt-title .txt .description p {
   font-size: 16px;
@@ -2098,6 +2116,7 @@ form.financing_add input {
 }
 #container #position-detail .position-dscrpt .dscrpt-title .txt .description .value {
   margin-top: 15px;
+  min-height: 50px;
 }
 #container #position-detail .position-dscrpt .dscrpt-title .txt .description .value p {
   font-size: 14px;
@@ -2496,6 +2515,18 @@ form.financing_add input {
 #container #company-detail .col-md-8 .detail .left-block .header .img-button {
   text-align: right;
 }
+#container #company-detail .col-md-8 .detail .left-block .header .img-button span {
+  margin-left: 10px;
+  font-size: 13px;
+  color: #707070;
+}
+#container #company-detail .col-md-8 .detail .left-block .header .img-button span img {
+  height: 17px;
+  margin-right: 5px;
+}
+#container #company-detail .col-md-8 .detail .left-block .header .img-button span .img-1 {
+  margin-top: -2px;
+}
 #container #company-detail .col-md-8 .detail .left-block .company {
   margin-top: 24px;
   margin-left: 10px;
@@ -2518,7 +2549,7 @@ form.financing_add input {
 #container #company-detail .col-md-8 .detail .left-block .company .company-description {
   width: 100%;
   background-color: white;
-  border: 1px solid #bfbfbf;
+  border: 1px solid #e1e0e2;
   border-radius: 4px;
   padding: 10px 10px;
   margin-bottom: 25px;
@@ -2527,7 +2558,7 @@ form.financing_add input {
   margin-bottom: 25px;
   width: 100%;
   background-color: white;
-  border: 1px solid #bfbfbf;
+  border: 1px solid #e1e0e2;
   border-radius: 4px;
   padding: 10px 10px;
 }
