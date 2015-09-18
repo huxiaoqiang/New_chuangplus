@@ -92,8 +92,9 @@
             <div class="qrcode_img login" ng-if="scan">
                 <img src="/static/image/logo/erweima-01.png">
             </div>
-            <div class="search_input login" ng-if="search" on-mouseover="search=true" on-mouseout="search=false">
-                <input type="text">
+            <div class="search_input"  on-mouseover="search_mouseon()" on-mouseout="search_mouseout()">
+                <input type="text" class="form-control" placeholder="搜索公司或职位">
+                <button class="search-btn"><i class="icon-search"></i></button>
             </div>
             {% endif %}
         </nav>
