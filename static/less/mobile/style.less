@@ -631,6 +631,7 @@ a:hover
     font-size: @cl-comp-desct-fsize;
     margin-right: @cl-comp-tag-mag;
     margin-bottom: 1px;
+    line-height: @cl-comp-desct-fsize + 2px;
     display: -webkit-inline-box;
 }
 
@@ -644,6 +645,7 @@ a:hover
     border: 1px solid @std-purple;
     padding: 0px 4px 0px 4px;
     font-size: @cl-comp-bent-fsize;
+    line-height: @cl-comp-bent-fsize + 2px;
     border-radius: 3px;
     margin-right: @cl-comp-tag-mag;
     margin-bottom: 1px;
@@ -658,6 +660,7 @@ a:hover
     color: white;
     font-size: @cl-comp-reqt-fsize;
     margin-right: @cl-comp-tag-mag;
+    line-height: @cl-comp-reqt-fsize + 2px;
     margin-bottom: 1px;
     display: -webkit-inline-box;
 }
@@ -952,6 +955,19 @@ a:hover
     width:64%;
 }
 .comp-more-info
+{
+    margin: auto;
+    position: absolute;
+    top: 0; bottom: 0; right: 12px;
+    font-size: 14px;
+    height: 26px;
+    color: @dark-gray;
+}
+.comp-more-info img
+{
+    height: 30px;
+}
+.comp-more-info-arrow
 {
     margin: auto;
     position: absolute;

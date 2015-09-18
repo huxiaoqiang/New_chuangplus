@@ -280,6 +280,10 @@ angular.module('chuangplus_mobile.controllers', [])
                 $scope.company.position_type_value = {};
                 for(var i=0;i<$scope.company.position_type.length;i++)
                     $scope.company.position_type_value[i] = $scope.position_type[$scope.company.position_type[i]];
+                        
+                for(var i=0;i<$scope.company.position_number;i++){
+                    $scope.company.position_list[i].position_type_value = $scope.position_type[$scope.company.position_list[i].position_type];
+                }
             }
             else{
 
