@@ -5,7 +5,11 @@
 <div class="main-content scrollable" >
 <div class="scrollable-content">
     <div class="header-bar">
-        <div class="header">公司详情</div>
+        <div class="logo sidebar-toggle" ui-toggle="uiSidebarLeft">
+                <i class="fa fa-bars" style="color: white;"></i>
+        </div>
+        <div ng-include="'/static/partials/mobile/partials/sidebar-left.html'" ></div>
+        <div class="header"> 公司详情</div>
     </div>    
 
     <div class="comp-detail " >
@@ -92,10 +96,10 @@
             </span>
             <div class="member-block" ng-repeat="member in member_list">
                 <img class="desc-img" src="/api/file/[[member.m_avatar_id]]/download" alt="成员头像">
-                <span class="desc-subtitle">
-                    [[member.m_name]] | [[member.m_position]]
-                </span>
-                <span class="desc-content">
+                <div class="desc-subtitle">
+                    [[member.m_name]] <br> [[member.m_position]]
+                </div>
+                <span class="stuff-desc">
                     [[member.m_introduction]]
                 </span>
             </div>

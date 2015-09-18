@@ -5,12 +5,19 @@
     <div class="main-content scrollable">
         <div class="scrollable-content">
             <div class="header-bar">
-                <div class="header">职位详情</div>
+                <div class="logo sidebar-toggle" ui-toggle="uiSidebarLeft">
+                        <i class="fa fa-bars" style="color: white;"></i>
+                </div>
+                <div ng-include="'/static/partials/mobile/partials/sidebar-left.html'" ></div>
+                <div class="header"> 职位详情</div>
             </div>    
             <div class="comp-detail">
                     <div class="posi-detail padding">
 
-                        <div class="detail-name">[[position.position_type_value]] | [[position.name]]</div>
+                        <div class="detail-name">[[position.position_type_value]] / [[position.name]]</div>
+                        <div class="post-time-corner">
+                            发布时间：[[position.release_time.$date |date :'yyyy/MM/dd']]
+                        </div>
                         <div class="posi-condition"> 
                             <div class="posi-condition-elem" ng-if="position.status == 'open'">
                                 职位在招
@@ -20,8 +27,19 @@
                             </div>
 
                             <div class="posi-condition-elem">
-                                [[position.submit_num]]人投选
+                                [[position.submit_num]]人已投递
                             </div>
+                        </div>
+                        <div class="comp-desc-list">
+                            <span class="comp-desc-tag">
+                                [[position.field_value]]
+                            </span>
+                            <span class="comp-desc-tag">
+                                [[position.scale_value]]期
+                            </span>
+                            <span class="comp-desc-tag">
+                                [[position.company.city]]
+                            </span>
                         </div>
                         <div class="comp-desc-list">
                             <span class="comp-desc-tag">
@@ -31,13 +49,7 @@
                                 [[position.salary_min]]K-[[position.salary_max]]K
                             </span>
                             <span class="comp-desc-tag">
-                                [[position.field_value]]
-                            </span>
-                            <span class="comp-desc-tag">
-                                [[position.scale_value]]期
-                            </span>
-                            <span class="comp-desc-tag">
-                                [[position.company.city]]
+                                至少工作[[position.internship_time]]个月
                             </span>
                         </div>
                         <!--
@@ -50,9 +62,6 @@
                             </div>
                         </div>
                         -->
-                        <div class="post-time">
-                            发布时间：[[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]
-                        </div>
                     </div>
                     <div class="comp-map padding">
                         <div class="icon">
@@ -106,7 +115,7 @@
 
                 <div class="desc-block">
                     <span class="desc-title">
-                        要求
+                        职位要求
                     </span>
                     <span class="desc-content">
                         [[position.position_request]]

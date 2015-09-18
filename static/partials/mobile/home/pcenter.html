@@ -1,17 +1,17 @@
 <div ng-include="'/static/partials/mobile/partials/sidebar-left.html'" ></div>
 <div ui-content-for="header">
-<div class="navbar navbar-app navbar-absolute-top selected" >
-    <div class="navbar-brand navbar-brand-center" style="font-size: 20px;" >
-       <div ui-yield-to="title">
-            个人中心
-       </div>
-    </div>
-    <div class="btn-group pull-left">
-      <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle" >
-        <i class="fa fa-bars" style="color: white;"></i> 菜单
+  <div class="navbar navbar-app navbar-absolute-top selected" >
+      <div class="navbar-brand navbar-brand-center" style="font-size: 20px;" >
+         <div ui-yield-to="title">
+              个人中心
+         </div>
       </div>
-    </div>
-</div>
+      <div class="btn-group pull-left">
+        <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle" >
+          <i class="fa fa-bars" style="color: white;"></i>
+        </div>
+      </div>
+  </div>
 </div>
 
 <div ng-swipe-right='Ui.turnOn("uiSidebarLeft")' ui-swipe-left='Ui.turnOff("uiSidebarLeft")'>
@@ -19,15 +19,15 @@
         <div class="scrollable-content">
             <div class="panel-list absolute-center id-list" >
 
-              <a class="panel-radius info-input " onclick="location='/mobile/home/mypost'">我的投递</a>
+              <a class="panel-radius info-input " href="/mobile/home/mypost">我的投递</a>
 
-              <a class="panel-radius info-input " onclick="location='/mobile/position/collect'">我收藏的职位</a>
+              <a class="panel-radius info-input " href="/mobile/position/collect">我收藏的职位</a>
 
-              <a class="panel-radius info-input" onclick="location='/mobile/company/collect'">我收藏的公司</a>
+              <a class="panel-radius info-input" href="/mobile/company/collect">我收藏的公司</a>
 
-              <a class="panel-radius info-input " onclick="location='/mobile/home/editresume'">查看编辑简历</a>
+              <a class="panel-radius info-input " href="/mobile/home/editresume">查看编辑简历</a>
 
-              <a class="panel-radius info-input " onclick="location='/mobile/home/infoupdate'">维护个人信息</a>
+              <a class="panel-radius info-input " href="/mobile/home/infoupdate">维护个人信息</a>
 
             </div>
         </div>

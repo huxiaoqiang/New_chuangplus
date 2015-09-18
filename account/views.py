@@ -735,7 +735,7 @@ def set_financinginfo(request,fin_id):
         try:
             financing_info = Financing.objects.get(id=fin_id)
         except:
-            re['error'] = error(112,"financing_info does not exist!")
+            re['error'] = error(121,"financing_info does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         if request.user.is_superuser == True or\
         financing_info.company.username == request.user.username:

@@ -53,6 +53,11 @@
             <div class="resume-name"><a ng-show="intern_info.resume_id != null" ng-href="/api/file/[[intern_info.resume_id]]/download" target="_self">[[filename]]</a></div>
             <div class="upload-resume" ng-model="resume" ngf-select="upload($file,'resume')" type="file">上传/更新附件</div>
         </div>
+        <div class="progress" ng-show="show_bar">
+          <div class="progress-bar" role="progressbar" aria-valuenow="[[progressPercentage]]" aria-valuemin="0" aria-valuemax="100">
+            [[progressPercentage]]
+          </div>
+        </div>
         <button class="save-resume-btn">保存修改</button>
         </form>
         <div id="err-msg" ng-show="error.show" class="error.class">[[error.message]]</div>

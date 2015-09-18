@@ -771,26 +771,6 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.refresh_captcha = function(){
             $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
         };
-        $scope.register = function(){
-            var checked_info = 0;
-            for (var i = $scope.info_check.length - 1; i >= 0; i--) {
-                checked_info += $scope.info_check[i];
-            };
-            if(checked_info == 4)
-            {
-                console.log($scope.reg_info);
-                $csrf.set_csrf($scope.reg_info);
-                $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
-                    success(function(data){
-                        if(data.error.code == 1){
-                            window.location.href='/mobile/info';
-                        }
-                        else{
-                            $notice.show($errMsg.format_error("",data.error).message);
-                        }
-                    });
-            }
-        };
 
         $scope.check_captcha = function(){
             $csrf.set_csrf($scope.capcha_info);
@@ -803,15 +783,16 @@ angular.module('chuangplus_mobile.controllers', [])
                         $notice.show('验证码错误');
                         $('#captcha-pass').hide();
                         $scope.info_check[3] = 0;
+                        return false;
                     }
                     else
                     {
                         $('#captcha-pass').show();
                         $scope.info_check[3] = 1;
+                        return true;
                     }
 
                 });
-            
         }
 
         $scope.check_username = function(){
@@ -898,6 +879,34 @@ angular.module('chuangplus_mobile.controllers', [])
             return true;
         };
         $scope.refresh_captcha();
+        $scope.info_check_flist = [$scope.check_username, $scope.check_email, $scope.check_pass_len, $scope.check_pass_same, $scope.check_captcha];
+        
+        $scope.register = function(){
+            var checked_info = 0;
+            if($scope.check_username())
+                if($scope.check_email())
+                    if($scope.check_pass_len())
+                        if($scope.check_pass_same())
+                            if($scope.check_captcha())
+                                checked_info = 4;
+            for (var i = $scope.info_check.length - 1; i >= 0; i--) {
+                checked_info += $scope.info_check[i];
+            };
+            if(checked_info == 4)
+            {
+                console.log($scope.reg_info);
+                $csrf.set_csrf($scope.reg_info);
+                $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
+                    success(function(data){
+                        if(data.error.code == 1){
+                            window.location.href='/mobile/info';
+                        }
+                        else{
+                            $notice.show($errMsg.format_error("",data.error).message);
+                        }
+                    });
+            }
+        };
         $rootScope.loading = false;
     }
     ])
@@ -1291,7 +1300,7 @@ angular.module('chuangplus_mobile.controllers', [])
         console.log($user.username());
 
         $scope.is_login = ($user.username() != undefined && $user.username() != '');
-
+        $scope.username = $user.username();
         $scope.logout = function(){
             console.log("logout");
             $http.get(urls.api+"/account/logout").

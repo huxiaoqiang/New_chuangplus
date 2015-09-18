@@ -75,7 +75,7 @@
 
 //posifilter.html
 
-@detail-bottom :   12px;
+@detail-bottom :   8px;
 
 //gengeral
 
@@ -91,6 +91,14 @@ body
     font-weight: normal;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     overflow-x: hidden;
+}
+.sidebar-left-in .app
+{
+    transform: translate(250px,0) !important;
+    -webkit-transform: translate(250px,0) !important;
+}
+.sidebar-left, .sidebar-right {
+    width: 250px !important;
 }
 .navbar-app
 {
@@ -118,7 +126,7 @@ body
 .sidebar-toggle
 {
     color: white !important; 
-    font-size: 17px !important;
+    font-size: 22px !important;
 }
 .no-margin
 {
@@ -222,7 +230,7 @@ body
 {
     width: 100%;
     height: @btn-height;
-    line-height: @btn-height;
+    line-height: @btn-height - 2px;
     border: @btn-border solid @std-purple;
     background:                 white;
     color:                 @std-purple;
@@ -317,7 +325,7 @@ a:hover
     font-size: 20px;
     line-height: inherit;
     position: absolute;
-    right: 42px;
+    right: 48px;
     color: @std-purple;
     display: none;
     margin-top: 3px;
@@ -345,7 +353,7 @@ a:hover
 }
 #captcha-pass
 {
-    right: 95px;
+    right: 92px;
 }
 
 .panel-title
@@ -428,7 +436,7 @@ a:hover
     float: left;
     position: absolute;
     height: @cl-header-hgt - @cl-header-logo-mgn *2;
-    margin: @cl-header-logo-mgn @cl-header-logo-mgn @cl-header-logo-mgn @cl-header-logo-mgn ;
+    margin: @cl-header-logo-mgn @cl-header-logo-mgn @cl-header-logo-mgn @cl-header-logo-mgn + 5px ;
 }
 
 .require-bar
@@ -553,8 +561,8 @@ a:hover
 {
     position: relative;
     float: left;
-    border-radius: 3px;
-    border-color: @mid-gray;
+    border-radius: 5px;
+    border: @mid-gray solid 1px;
     width: @cl-comp-img-size;
     height: @cl-comp-img-size;
     margin-right: (@cl-listbox-hgt - @cl-comp-img-size)/2 ;
@@ -643,7 +651,12 @@ a:hover
     color: @mid-gray;
     font-size: @cl-comp-bent-fsize;
 }
-
+.post-time-corner
+{
+    line-height: @cl-come-lineh;
+    color: @mid-gray;
+    font-size: @cl-comp-bent-fsize;
+}
 .nav-bar
 {   
     margin: 0;padding: 0;
@@ -843,6 +856,7 @@ a:hover
     top: 0;
     bottom: 0;
     left: 20px;
+    color: @std-purple;
 }
 .comp-map .icon i
 {
@@ -871,17 +885,31 @@ a:hover
 }
 .detail-desc .desc-block .desc-title
 {
-    color: @std-purple;
-    padding-bottom: 10px;
+    color: black;
+    margin-bottom: 10px;
+    padding-bottom: 2px;
     font-size: 18px;
+    border-bottom: @std-purple solid 1px;
     display: block;
+    width: 73px;
 }
 
 .posi-condition{
-  float: right;
-  font-size: 10px;
+    position: absolute;
+    font-size: 10px;
+    right: 5px;
+    top: 18px;
 }
-.posi-condition-elem {
+.post-time-corner
+{
+    line-height: 18px;
+    color: @mid-gray;
+    font-size: 11px;
+    position: absolute;
+    top: -1px;
+    right: 10px;
+}
+.posi-condition .posi-condition-elem {
   padding: 1px 1px 1px 1px;
   border-radius: 2px;
   background-color: @std-purple;
@@ -918,7 +946,7 @@ a:hover
 .fi-cond
 {
     float: left;
-    width: 32%;
+    width: 28%;
 }
 
 .comp-full-name
@@ -936,20 +964,41 @@ a:hover
 
 .desc-subtitle
 {
-  color: @std-purple;
-  padding-bottom: 10px;
-  font-size: 15px;
+    color: black;
+    width: 50px;
+    padding-bottom: 10px;
+    font-size: 15px;
+    float: left;
+    text-align: left;
+    margin-top: 20px;
+    margin-right: 8px;
 }
 .desc-img
 {
     width: 80px;
     height: 80px;
     float: left;
-    margin-right: 15px;
+    border-radius: 40px;
+    border: @lit-gray solid 1px;
+    margin-right: 8px;
 }
 .desc-content
 {
     display: -webkit-box;
+    color: @dark-gray;
+}
+.stuff-desc
+{
+    display: -webkit-box;
+    border-radius: 3px;
+    border: 1px solid #dcdcdc;
+    height: 80px;
+    float: left;
+    width: 188px;
+    overflow-y: auto;
+    padding: 5px;
+    color: @dark-gray;
+    font-size: 13px;
 }
 
 //compposi.html

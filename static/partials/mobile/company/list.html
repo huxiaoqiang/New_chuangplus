@@ -1,7 +1,10 @@
 <div class="main-content scrollable" ng-controller="MB_CompanyListCtrl">
     <div class="scrollable-content">
         <div class="header-bar">
-            <div ng-include="'/static/partials/mobile/partials/header-logo.html'" ></div>
+            <div class="logo sidebar-toggle" ui-toggle="uiSidebarLeft">
+                    <i class="fa fa-bars" style="color: white;"></i>
+            </div>
+            <div ng-include="'/static/partials/mobile/partials/sidebar-left.html'" ></div>
             <div class="header"> 犀牛·帮你找实习</div>
         </div>    
         <div id="filter-content">
@@ -139,10 +142,7 @@
                         <div class="comp-name">[[company.abbreviation]]</div>
                         <div class="comp-desc">[[company.brief_introduction]]</div>
                         <div ng-if="company.is_auth" class="comp-auth">[[company.auth_organization]]认证</div>
-                        <div class="comp-req-list">
-                            <span class="comp-req-title">[[company.position_number]]岗位在招</span>
-                            <span class="comp-req-tag" ng-repeat="tag in company.position_type_value">[[tag]]</span>
-                        </div>
+                        
                         <div class="comp-desc-list">
                             <span class="comp-desc-tag">
                                 [[company.field_value]]
@@ -153,6 +153,11 @@
                             <span class="comp-desc-tag">
                                 [[company.city]]
                             </span>
+                        </div>
+
+                        <div class="comp-req-list">
+                            <span class="comp-req-title">[[company.position_number]]岗职在招</span>
+                            <span class="comp-req-tag" ng-repeat="tag in company.position_type_value">[[tag]]</span>
                         </div>
 
                         <div class="comp-benefit-list">

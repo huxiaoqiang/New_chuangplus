@@ -4,25 +4,31 @@
   </div>
   <div class="info-input-content">     
       <div class="panel-list">
-        <span class="panel-radius info-input">
-            <input class="elem-width-full" type="text" ng-model="user_info.university" placeholder="学校" required>
+
+        <span class="panel-group-top info-input lit-gray-b-border">
+          <input class="panel-elem " type="text" ng-model="user_info.university" placeholder="学校" required>
         </span>
 
-        <span class="panel-radius info-input">
-          <input class="elem-width-full" type="text" ng-model="user_info.major" placeholder="专业" required>
+        <span class="panel-group-mid info-input lit-gray-t-border">
+          <input class="panel-elem " type="text" ng-model="user_info.major" placeholder="专业" required>
         </span>
 
-        <span class="panel-radius info-input">
-          <select class="panel-elem-full">
-            <option value ="">选择年级</option>
-            <option value ="大一">大一</option>
-            <option value="大二">大二</option>
-            <option value="大三">大三</option>
-            <option value="大四">大四</option>
-            <option value="硕士">硕士</option>
-            <option value="博士">博士</option>
-          </select>
-        </span>
+        <div class="panel-group-bot info-input lit-gray-t-border">
+              <select class="panel-elem-full">
+                <option value="">年级</option>
+                <option value="11">本科1年级</option>
+                <option value="12">本科2年级</option>
+                <option value="13">本科3年级</option>
+                <option value="14">本科4年级</option>
+                <option value="15">本科5年级</option>
+                <option value="21">硕士1年级</option>
+                <option value="22">硕士3年级</option>
+                <option value="23">硕士2年级</option>
+                <option value="31">博士1年级</option>
+                <option value="32">博士2年级</option>
+                <option value="33">博士高年级</option>
+              </select>
+        </div>
       </div>
   </div>
 
