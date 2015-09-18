@@ -31,6 +31,7 @@
 116: Email is not legal
 117: Password error
 120: Resume does not exist
+121: Financing_info does not exist!
 200: illegal request # A request without necessary keys
 210~228: Creating / Updating position failures (Invaild keys)
 210: Invaild length for name(should be in [1,30])
