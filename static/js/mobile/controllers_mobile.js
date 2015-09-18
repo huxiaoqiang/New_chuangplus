@@ -171,7 +171,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 'others':'其它'
         };
         $scope.get_positions = function(){
-            $http.get(urls.api+"/position/search").
+            $http.get(urls.api+"/position/search?name=工程师").
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.positions = data.positions;
@@ -280,6 +280,10 @@ angular.module('chuangplus_mobile.controllers', [])
                 $scope.company.position_type_value = {};
                 for(var i=0;i<$scope.company.position_type.length;i++)
                     $scope.company.position_type_value[i] = $scope.position_type[$scope.company.position_type[i]];
+                        
+                for(var i=0;i<$scope.company.position_number;i++){
+                    $scope.company.position_list[i].position_type_value = $scope.position_type[$scope.company.position_list[i].position_type];
+                }
             }
             else{
 

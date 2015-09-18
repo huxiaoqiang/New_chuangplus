@@ -73,10 +73,9 @@
             </div>
 
             <div class="comp-detail">
-
                 <a class="comp-listbox no-margin" href="/mobile/company/detail/[[position.company._id.$oid]]">
                     <img class="comp-prev-img" src="/api/file/[[position.company.logo_id]]/download">
-                    <div class="comp-more-info" >查看公司 <i class="fa fa-chevron-right"></i> </div>
+                    <div class="comp-more-info" >查看公司<img src="/static/image/icon/jiantou.png"></div>
                     <div class="comp-info-block">
                         <div ng-if="company.is_auth" class="comp-auth">[[company.auth_organization]]认证</div>
                         <div class="comp-name">[[position.company.abbreviation]]</div>

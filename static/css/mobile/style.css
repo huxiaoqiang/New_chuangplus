@@ -442,6 +442,7 @@ a:hover {
   font-size: 11px;
   margin-right: 4px;
   margin-bottom: 1px;
+  line-height: 13px;
   display: -webkit-inline-box;
 }
 .comp-benefit-list {
@@ -453,6 +454,7 @@ a:hover {
   border: 1px solid #966497;
   padding: 0px 4px 0px 4px;
   font-size: 11px;
+  line-height: 13px;
   border-radius: 3px;
   margin-right: 4px;
   margin-bottom: 1px;
@@ -466,6 +468,7 @@ a:hover {
   color: white;
   font-size: 11px;
   margin-right: 4px;
+  line-height: 13px;
   margin-bottom: 1px;
   display: -webkit-inline-box;
 }
@@ -701,6 +704,19 @@ a:hover {
   width: 64%;
 }
 .comp-more-info {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 12px;
+  font-size: 14px;
+  height: 26px;
+  color: #707070;
+}
+.comp-more-info img {
+  height: 30px;
+}
+.comp-more-info-arrow {
   margin: auto;
   position: absolute;
   top: 0;
