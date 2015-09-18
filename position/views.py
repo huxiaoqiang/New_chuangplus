@@ -343,7 +343,9 @@ def search_position(request):
                 name = request.GET["name"]
                 assert len(name) < 30
                 if_legal(name)
-                qs = qs.filter(name = name)
+                qs = qs.filter(
+                Q(name__icontains = name)|
+                Q(name__icontains = name))
             except (AssertionError, ValueError, UnicodeDecodeError):
                 re['error'] = error(231,"Invaild search name!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
