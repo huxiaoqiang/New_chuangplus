@@ -605,19 +605,6 @@ a:hover
     color:   @std-purple;
     font-size: @cl-comp-req-fsize;
 }
-.comp-req-tag
-{
-    padding: 0px 4px 0px 4px;
-    border-radius: @cl-comp-tag-radius;
-    background-color: @std-purple;
-    border: 1px solid @std-purple;
-    color: white;
-    font-size: @cl-comp-reqt-fsize;
-    margin-right: @cl-comp-tag-mag;
-    text-align: center;
-    white-space:nowrap;
-    margin-bottom: 1px;
-}
 
 .comp-desc-list{
     line-height: @cl-come-lineh+2px;
@@ -649,8 +636,20 @@ a:hover
     padding: 0px 4px 0px 4px;
     font-size: @cl-comp-bent-fsize;
     border-radius: 3px;
-    float: left;
     margin-right: @cl-comp-tag-mag;
+    margin-bottom: 1px;
+}
+.comp-req-tag
+{
+    padding: 0px 4px 0px 4px;
+    border-radius: @cl-comp-tag-radius;
+    background-color: @std-purple;
+    border: 1px solid @std-purple;
+    color: white;
+    font-size: @cl-comp-reqt-fsize;
+    margin-right: @cl-comp-tag-mag;
+    text-align: center;
+    white-space:nowrap;
     margin-bottom: 1px;
 }
 
@@ -928,14 +927,20 @@ a:hover
   margin-bottom: 4px;
   text-align: center;
 }
-
+.comp-info-block
+{
+    display: block;
+    position: relative;
+    left: 104px; 
+    width:50%;
+}
 .comp-more-info
 {
     margin: auto;
     position: absolute;
     top: 0; bottom: 0; right: 15px;
     font-size: 16px;
-    height: 18px;
+    height: 26px;
     color: @dark-gray;
 }
 

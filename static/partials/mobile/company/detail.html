@@ -17,29 +17,29 @@
             <img class="comp-title-img" src="/api/file/[[company.logo_id]]/download">
             <div class="comp-more-info" >查看岗位 <i class="fa fa-chevron-right"></i></div>
 
-            <div style="display: block;position: relative;left: 104px; width:50%;">
-            <div class="comp-name">[[company.abbreviation]]</div>
-            <div class="comp-desc">[[company.brief_introduction]]</div>
-            <div ng-if="company.is_auth" class="comp-auth">[[company.auth_organization]]认证</div><div class="comp-desc-list">
-                <span class="comp-desc-tag">
-                    [[company.field_value]]
-                </span>
-                <span class="comp-desc-tag">
-                    [[company.scale_value]]期
-                </span>
-                <span class="comp-desc-tag">
-                    [[company.city]]
-                </span>
-            </div>
-            <div class="comp-req-list">
-                <span class="comp-req-title">[[company.positions.length]]岗位在招</span>
-                <span class="comp-req-tag" ng-repeat="tag in company.position_type_value">[[tag]]</span>
-            </div>
-            
+            <div class="comp-info-block">
+                <div class="comp-name">[[company.abbreviation]]</div>
+                <div class="comp-desc">[[company.brief_introduction]]</div>
+                <div ng-if="company.is_auth" class="comp-auth">[[company.auth_organization]]认证</div><div class="comp-desc-list">
+                    <span class="comp-desc-tag">
+                        [[company.field_value]]
+                    </span>
+                    <span class="comp-desc-tag">
+                        [[company.scale_value]]期
+                    </span>
+                    <span class="comp-desc-tag">
+                        [[company.city]]
+                    </span>
+                </div>
+                <div class="comp-req-list">
+                    <span class="comp-req-title">[[company.positions.length]]岗位在招</span>
+                    <span class="comp-req-tag" ng-repeat="tag in company.position_type_value">[[tag]]</span>
+                </div>
+                
 
-            <div class="comp-benefit-list">
-                <span class="comp-benefit-tag" ng-repeat="tag in company.welfare_tags">[[tag]]</span>
-            </div>
+                <div class="comp-benefit-list">
+                    <span class="comp-benefit-tag" ng-repeat="tag in company.welfare_tags">[[tag]]</span>
+                </div>
             </div>
         </a>
     </div>
