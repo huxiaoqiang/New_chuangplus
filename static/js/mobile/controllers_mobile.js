@@ -176,7 +176,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     if(data.error.code == 1){
                         $scope.positions = data.positions;
                         for(var i=0; i<$scope.positions.length;i++){
-                            $scope.positions[i].field_value = $scope.cfield[$scope.positions[i].field];
+                            $scope.positions[i].field_value = $scope.cfield[$scope.positions[i].company.field];
                             $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
                             if($scope.positions[i].company.scale == 0){
                                 $scope.positions[i].company.scale_value = "初创";
