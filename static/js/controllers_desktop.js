@@ -983,11 +983,11 @@ angular.module('chuangplus.controllers', []).
                 if(data.error.code == 1){
                     $scope.favor_exist = data.data.exist;
                     if($scope.favor_exist == true){
-                        $scope.post_value = "取消收藏";
+                        $scope.post_value = "已收藏";
                          $scope.img_src = "/static/image/icon/shoucangdianliang-01.png";
                     }
                     else{
-                        $scope.post_value = "先收藏";
+                        $scope.post_value = "收藏";
                      $scope.img_src = "/static/image/icon/shoucang-01.png";
                     }
                 }
@@ -1107,7 +1107,7 @@ angular.module('chuangplus.controllers', []).
             	$csrf.set_csrf($scope.submitFavor);
 	    	$http.post(urls.api + "/position/"+$scope.position_id+"/userlikeposition", $.param($scope.submitFavor)).
 		    success(function(data){
-		    	$scope.post_value = "取消收藏";
+		    	$scope.post_value = "已收藏";
 			$scope.favor_exist = true;
                     $scope.img_src = "/static/image/icon/shoucangdianliang-01.png";
 		});
@@ -1118,7 +1118,7 @@ angular.module('chuangplus.controllers', []).
 		$csrf.set_csrf($scope.submitUnFavor);
 		$http.post(urls.api+"/position/"+$scope.position_id+"/userunlikeposition", $.param($scope.submitUnFavor)).
 		    success(function(data){
-			$scope.post_value = "收藏职位";
+			$scope.post_value = "收藏";
 			$scope.favor_exist = false;
             $scope.img_src = "/static/image/icon/shoucang-01.png";
 		    });

@@ -919,3 +919,7 @@ a:hover {
 .app {
   background: white;
 }
+.sidebar-username {
+  background: #555555;
+  color: white;
+}

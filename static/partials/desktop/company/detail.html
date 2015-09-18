@@ -1,68 +1,62 @@
 <div id="container">
     <div id="company-detail">
         <div class="col-md-8">
-                <div class="company-info">
-                    <div class="auth" >
-                        <p>v[[company.auth_organization]]红杉资本认证</p>
-                    </div>
-                    <div class="bottom-side">
-                        
-                        <div class="item-pic">
-                            <img src="/api/file/[[company.logo_id]]/download" class="company-pic" alt="图片">
-                                </div>
-                        <div class="info">
-                            
-                            <div class="item-info info-1">
-                                <div class="vertical-center">
-                                    <p class="abbreviation">[[company.abbreviation]]</p>
-                                    <p class="brief_introduction">[[company.brief_introduction]]</p>
-                                </div>
+            <div class="company-info">
+                <div class="auth" >
+                    <p>v[[company.auth_organization]]红杉资本认证</p>
+                </div>
+                
+                <div class="bottom-side">
+                    <div class="item-pic">
+                        <img src="/api/file/[[company.logo_id]]/download" class="company-pic" alt="图片">
+                     </div>
+                    <div class="info">
+                        <div class="item-info info-1">
+                             <div class="vertical-center">
+                                <p class="abbreviation">[[company.abbreviation]]</p>
+                                <p class="brief_introduction">[[company.brief_introduction]]</p>
                             </div>
-                            <div class="item-info info-2">
-                                <div class="vertical-center">
-                                    <div class="label-1" ng-show="company.field != null">
-                                        <img src="/static/image/icon/111-01.png">
-                                            <p>[[company.field_type]]</p>
-                                            </div>
-                                    <div class="label-1" ng-show="company.scale != null">
-                                        <img src="/static/image/icon/222-01.png">
-                                            <p>[[company.scale_value]]</p>
-                                            </div>
-                                    <div class="label-1" ng-show="company.city != null">
-                                        <img src="/static/image/icon/333-01.png">
-                                        <p class="last-p">[[company.city]]</p>
+                        </div>
+                        <div class="item-info info-2">
+                            <div class="vertical-center">
+                                <div class="label-1" ng-show="company.field != null">
+                                    <img src="/static/image/icon/111-01.png">
+                                        <p>[[company.field_type]]</p>
                                     </div>
+                                <div class="label-1" ng-show="company.scale != null">
+                                    <img src="/static/image/icon/222-01.png">
+                                        <p>[[company.scale_value]]</p>
+                                </div>
+                                <div class="label-1" ng-show="company.city != null">
+                                    <img src="/static/image/icon/333-01.png">
+                                    <p class="last-p">[[company.city]]</p>
                                 </div>
                             </div>
-                            <div class="line"> </div>
-                            <div class="item-info info-3">
-                                <div class="vertical-center">
+                        </div>
+                        <div class="line"> </div>
+                        <div class="item-info info-3">
+                            <div class="vertical-center">
                                 <p class="position_number">在招岗位数：[[company.position_number]]</p>
                                 <div class="position_tags" >
                                     <span class="tags" ng-repeat="position_type in company.position_type_value">[[position_type]]</span>
                                 </div>
-                                </div>
                             </div>
-                            <div class="line"></div>
+                        </div>
+                        <div class="line"></div>
                             <div class="item-info info-3">
                                 <div class="vertical-center">
-                                <div class="welfare_tags">
-                                    <div class="tags" ng-repeat="tag in company.welfare_tags">[[tag]]</div>
-                                </div>
+                                    <div class="welfare_tags">
+                                        <div class="tags" ng-repeat="tag in company.welfare_tags">[[tag]]</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-               
-                    <div ng-show="role==0">
-                    <span class="favor" ng-if="!favored" ng-click="favor()" ng-model="post_value">收藏公司</span>
-                    <span class="favor" ng-if="favored" ng-click="unfavor()" ng-model="post_value">取消收藏</span>
-                    </div>
             
-            <div class="detail">
-                <div class="col-md-4">
-                    <img class="qrcode" src="/api/file/[[company.qrcode_id]]/download" alt="微信二维码">
+                <div class="detail">
+                    <div class="col-md-4">
+                        <img class="qrcode" src="/api/file/[[company.qrcode_id]]/download" alt="微信二维码">
                         <div class="company-dscrpt">
                             <p class="index">公司名称：</p>
                             <p class="txt">[[company.ICregist_name]]</p>
@@ -73,71 +67,78 @@
                         </div>
                         <div class="company-dscrpt">
                             <p class="index">融资情况：</p>
-                        <p class="txt"ng-repeat="financing in financing_list">[[financing.stage_value]]&nbsp;&nbsp;[[financing.organization]]&nbsp;&nbsp;[[financing.amount_value]]</p>
-                        </div>
-                </div>
-                <div class="left-block">
-                <div class="header">
-                    <span class="tab" ng-class="{'tab-active':tab1}" ng-click="tab1_click()">公司介绍</span>
-                    <span class="tab" ng-class="{'tab-active':tab2}" ng-click="tab2_click()">职位列表</span>
-                    <div class="img-button" ng-show="role==0">
-                        <img src="[[img_src]]" class="favor" ng-if="!favored" ng-click="favor()" ng-mouseover="change_in()" ng-mouseout="change_out()" ng-model="post_value">
-                        <img src="[[img_src]]" class="favor" ng-if="favored" ng-click="unfavor()" ng-model="post_value">
-                        <img src="[[img2_src]]" class="favor" ng-mouseover="change2_in()" ng-mouseout="change2_out()">
-                    </div>
-                </div>
-                <div ng-if="tab1==true" class="company">
-                    <div class="company-description">
-                        <p>公司简介</p>
-                        <div class="description">
-                            <p>[[company.company_description]]</p>
+                            <p class="txt"ng-repeat="financing in financing_list">[[financing.stage_value]]&nbsp;&nbsp;[[financing.organization]]&nbsp;&nbsp;[[financing.amount_value]]</p>
                         </div>
                     </div>
-                    <div class="team-description">
-                        <p>团队简介</p>
-                        <div class="description">
-                            <p>[[company.team_description]]</p>
+                    <div class="left-block">
+                        <div class="header">
+                            <span class="tab" ng-class="{'tab-active':tab1}" ng-click="tab1_click()">公司介绍</span>
+                            <span class="tab" ng-class="{'tab-active':tab2}" ng-click="tab2_click()">职位列表</span>
+                            <div class="img-button" ng-show="role==0">
+                                <span class="favor" ng-if="!favored" ng-click="favor()" ng-mouseover="change_in()" ng-mouseout="change_out()" ng-model="post_value">
+                                    <img class="img-1" src="[[img_src]]">收藏
+                                </span>
+                                <span class="favor" ng-if="favored" ng-click="unfavor()" ng-model="post_value">
+                                    <img class="img-1" src="[[img_src]]">已收藏
+                                </span>
+                                <span class="favor" ng-mouseover="change2_in()" ng-mouseout="change2_out()">
+                                    <img src="[[img2_src]]">分享
+                                </span>
+                                
+                            </div>
                         </div>
+                        <div ng-if="tab1==true" class="company">
+                        <div class="company-description">
+                            <p>公司简介</p>
+                            <div class="description">
+                                <p>[[company.company_description]]</p>
+                            </div>
+                        </div>
+                        <div class="team-description">
+                            <p>团队简介</p>
+                            <div class="description">
+                                <p>[[company.team_description]]</p>
+                            </div>
 
-                    </div>
-                    <div class="team-member">
-                        <div ng-repeat="member in member_list" class="member">
-                            <div class="avatar">
-                                <img src="/api/file/[[member.m_avatar_id]]/download" alt="成员头像">
-                            </div>
-                            <div class="member-description">
-                                <div class="vertical-center">
-                                    <p class="m-name">[[member.m_name]]</p>
-                                    <p class="m-position">[[member.m_position]]</p>
+                        </div>
+                        <div class="team-member">
+                            <div ng-repeat="member in member_list" class="member">
+                                <div class="avatar">
+                                    <img src="/api/file/[[member.m_avatar_id]]/download" alt="成员头像">
+                                </div>
+                                <div class="member-description">
+                                    <div class="vertical-center">
+                                        <p class="m-name">[[member.m_name]]</p>
+                                        <p class="m-position">[[member.m_position]]</p>
+                                    </div>
+                                </div>
+                                <div class="member-intro">
+                                    <div class="vertical-center">
+                                        <p class="m_introduction">[[member.m_introduction]]</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="member-intro">
-                                <div class="vertical-center">
-                                    <p class="m_introduction">[[member.m_introduction]]</p>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                </div>
-                <div ng-if="tab2==true" class="position">
-                    <div ng-repeat="position in company.position_list" class="position_list" ng-href="/company/position/[[position._id.$oid]]/detail" ng-click="position_detail($index)">
-                        <p class="position_name">[[position.position_type_value]]|[[position.name]]</p>
-                        <div class="tags">
-                            <span>[[position.days_per_week]]天/周</span>
-                            <span>工作[[position.internship_time]]月</span>
-                            <span>[[position.salary_min]]k~[[position.salary_max]]k</span>
-                        </div>
-                        <div class="tags">
-                            <span ng-repeat="tag in company.welfare_tags">[[tag]]</span>
-                        </div>
-                        <div class="time">发布时间:
+                    <div ng-if="tab2==true" class="position">
+                        <div ng-repeat="position in company.position_list" class="position_list" ng-href="/company/position/[[position._id.$oid]]/detail" ng-click="position_detail($index)">
+                            <p class="position_name">[[position.position_type_value]]|[[position.name]]</p>
+                            <div class="tags">
+                                <span>[[position.days_per_week]]天/周</span>
+                                <span>工作[[position.internship_time]]月</span>
+                                <span>[[position.salary_min]]k~[[position.salary_max]]k</span>
+                            </div>
+                            <div class="tags">
+                                <span ng-repeat="tag in company.welfare_tags">[[tag]]</span>
+                            </div>
+                            <div class="time">发布时间:
                             [[position.release_time.$date |date :'yyyy-MM-dd']]
+                            </div>
+                            <div style="clear:both;"></div>
                         </div>
-                        <div style="clear:both;"></div>
                     </div>
                 </div>
             </div>
-</div>
         </div>
     </div>
 </div>
