@@ -171,7 +171,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 'others':'其它'
         };
         $scope.get_positions = function(){
-            $http.get(urls.api+"/position/search?name=工程师").
+            $http.get(urls.api+"/position/search").
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.positions = data.positions;
