@@ -385,8 +385,17 @@ a:hover {
   height: 94px;
   margin-right: 10px;
 }
-.comp-prev-img {
+.comp-finance-img {
   position: relative;
+  float: left;
+  border-radius: 5px;
+  border: #b5b5b5 solid 1px;
+  width: 94px;
+  height: 94px;
+  margin-right: 10px;
+}
+.comp-prev-img {
+  position: absolute;
   float: left;
   border-radius: 5px;
   border: #b5b5b5 solid 1px;
@@ -419,18 +428,6 @@ a:hover {
   color: #966497;
   font-size: 12px;
 }
-.comp-req-tag {
-  padding: 0px 4px 0px 4px;
-  border-radius: 9px;
-  background-color: #966497;
-  border: 1px solid #966497;
-  color: white;
-  font-size: 11px;
-  margin-right: 4px;
-  text-align: center;
-  white-space: nowrap;
-  margin-bottom: 1px;
-}
 .comp-desc-list {
   line-height: 20px;
   overflow: hidden;
@@ -441,11 +438,11 @@ a:hover {
   background-color: white;
   color: #707070;
   border: 1px solid #966497;
+  text-align: center;
   font-size: 11px;
   margin-right: 4px;
-  text-align: center;
   margin-bottom: 1px;
-  white-space: nowrap;
+  display: -webkit-inline-box;
 }
 .comp-benefit-list {
   line-height: 18px;
@@ -457,9 +454,20 @@ a:hover {
   padding: 0px 4px 0px 4px;
   font-size: 11px;
   border-radius: 3px;
-  float: left;
   margin-right: 4px;
   margin-bottom: 1px;
+  display: -webkit-inline-box;
+}
+.comp-req-tag {
+  padding: 0px 4px 0px 4px;
+  border-radius: 9px;
+  background-color: #966497;
+  border: 1px solid #966497;
+  color: white;
+  font-size: 11px;
+  margin-right: 4px;
+  margin-bottom: 1px;
+  display: -webkit-inline-box;
 }
 .post-time {
   line-height: 18px;
@@ -680,6 +688,18 @@ a:hover {
   margin-bottom: 4px;
   text-align: center;
 }
+.comp-info-block {
+  display: block;
+  position: relative;
+  left: 104px;
+  width: 53%;
+}
+.comp-list-info-block {
+  display: block;
+  position: relative;
+  left: 104px;
+  width: 64%;
+}
 .comp-more-info {
   margin: auto;
   position: absolute;
@@ -687,7 +707,7 @@ a:hover {
   bottom: 0;
   right: 15px;
   font-size: 16px;
-  height: 18px;
+  height: 26px;
   color: #707070;
 }
 .comp-listbox table td {

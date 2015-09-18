@@ -565,9 +565,19 @@ a:hover
     height: @cl-comp-img-size;
     margin-right: (@cl-listbox-hgt - @cl-comp-img-size)/2 ;
 }
-.comp-prev-img
+.comp-finance-img
 {
     position: relative;
+    float: left;
+    border-radius: 5px;
+    border: @mid-gray solid 1px;
+    width: @cl-comp-img-size;
+    height: @cl-comp-img-size;
+    margin-right: (@cl-listbox-hgt - @cl-comp-img-size)/2 ;
+}
+.comp-prev-img
+{
+    position: absolute;
     float: left;
     border-radius: 5px;
     border: @mid-gray solid 1px;
@@ -605,19 +615,6 @@ a:hover
     color:   @std-purple;
     font-size: @cl-comp-req-fsize;
 }
-.comp-req-tag
-{
-    padding: 0px 4px 0px 4px;
-    border-radius: @cl-comp-tag-radius;
-    background-color: @std-purple;
-    border: 1px solid @std-purple;
-    color: white;
-    font-size: @cl-comp-reqt-fsize;
-    margin-right: @cl-comp-tag-mag;
-    text-align: center;
-    white-space:nowrap;
-    margin-bottom: 1px;
-}
 
 .comp-desc-list{
     line-height: @cl-come-lineh+2px;
@@ -633,9 +630,8 @@ a:hover
     text-align: center;
     font-size: @cl-comp-desct-fsize;
     margin-right: @cl-comp-tag-mag;
-    text-align: center;
     margin-bottom: 1px;
-    white-space:nowrap;
+    display: -webkit-inline-box;
 }
 
 .comp-benefit-list{
@@ -649,9 +645,21 @@ a:hover
     padding: 0px 4px 0px 4px;
     font-size: @cl-comp-bent-fsize;
     border-radius: 3px;
-    float: left;
     margin-right: @cl-comp-tag-mag;
     margin-bottom: 1px;
+    display: -webkit-inline-box;
+}
+.comp-req-tag
+{
+    padding: 0px 4px 0px 4px;
+    border-radius: @cl-comp-tag-radius;
+    background-color: @std-purple;
+    border: 1px solid @std-purple;
+    color: white;
+    font-size: @cl-comp-reqt-fsize;
+    margin-right: @cl-comp-tag-mag;
+    margin-bottom: 1px;
+    display: -webkit-inline-box;
 }
 
 .post-time{
@@ -928,14 +936,28 @@ a:hover
   margin-bottom: 4px;
   text-align: center;
 }
+.comp-info-block
+{
+    display: block;
+    position: relative;
+    left: 104px; 
+    width:53%;
+}
 
+.comp-list-info-block
+{
+    display: block;
+    position: relative;
+    left: 104px; 
+    width:64%;
+}
 .comp-more-info
 {
     margin: auto;
     position: absolute;
     top: 0; bottom: 0; right: 15px;
     font-size: 16px;
-    height: 18px;
+    height: 26px;
     color: @dark-gray;
 }
 
