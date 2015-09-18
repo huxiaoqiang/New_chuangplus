@@ -8,10 +8,11 @@
         </div>
         <div style="clear: both"></div>
         <div class="info4">
+            <form ng-submit="next_step()" name="ForthStepForm">
             <div>
                 <label>团队简介</label>
                 <p>根据犀牛的市场调研，超过60%的同学把团队情况作为对创业公司的主要判断依据，故本页内容建议认真填写</p>
-                <textarea ng-model="companyinfo.team_description"></textarea>
+                <textarea ng-model="companyinfo.team_description" required></textarea>
             </div>
             <div class="add-member">
                 <label>团队成员</label>
@@ -36,7 +37,8 @@
                 <div style="clear: both"></div>
             </div>
             <input type="button" class="pre-button btn" value="上一步" ng-click="pre_step()">
-            <input type="button" class="next-button btn" value="完成提交" ng-click="next_step()">
+            <input type="submit" class="next-button btn" value="完成提交">
+            </form>
         </div>
     </div>
 </div>
