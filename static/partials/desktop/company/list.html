@@ -2,7 +2,11 @@
     <div id="company_list">
         <div class="col-md-4"></div>
         <div class="col-md-8">
-            <ul ng-repeat="company in company_list">
+            <div ng-show="loading" class="loading">
+                <img src="/static/image/icon/loading.gif">
+            </div>
+            <div  ng-show="!loading">
+                <ul ng-repeat="company in company_list">
                 <a href="/company/[[company._id.$oid]]/detail">
                 <li>
                     <div class="company-info">
@@ -59,6 +63,7 @@
                 </li>
                 </a>
             </ul>
+            </div>
         </div>
     </div>
 </div>

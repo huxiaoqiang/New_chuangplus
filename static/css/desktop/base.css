@@ -598,6 +598,12 @@ body > #wrap {
   float: left;
   padding-right: 0;
 }
+#container #pisition-list .col-md-8 .loading {
+  width: 100%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  text-align: center;
+}
 #container #pisition-list .col-md-8 a {
   text-decoration: none;
 }
@@ -729,6 +735,22 @@ body > #wrap {
   color: #707070;
   font-size: 10px;
   margin-bottom: 5px;
+}
+#container #pisition-list .col-md-8 ul.pagination {
+  float: right;
+}
+#container #pisition-list .col-md-8 ul.pagination li {
+  border: none;
+}
+#container #pisition-list .col-md-8 ul.pagination li a {
+  cursor: pointer;
+}
+#container #pisition-list .col-md-8 ul.pagination li a span {
+  color: #337ab7;
+}
+#container #pisition-list .col-md-8 .pagination > .active > a {
+  background-color: #8f4e96;
+  border-color: #98769E;
 }
 #container #company_info h2 {
   text-align: center;
@@ -2154,6 +2176,13 @@ form.financing_add input {
 }
 #container #company_list .col-md-8 {
   width: 750px;
+  min-height: 500px;
+}
+#container #company_list .col-md-8 .loading {
+  width: 100%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  text-align: center;
 }
 #container #company_list .col-md-8 a {
   text-decoration: none;
@@ -2653,6 +2682,7 @@ form.financing_add input {
 }
 #container #homepage .slide-block {
   height: 420px;
+  min-height: 420px;
   margin-bottom: 15px;
 }
 #container #homepage .company-block {
@@ -3514,6 +3544,9 @@ input.form-control.ng-invalid.ng-dirty {
   border-radius: 0;
   width: 200px;
 }
-.pagination {
+ul.pagination {
   float: right;
+}
+ul.pagination li {
+  border: none;
 }

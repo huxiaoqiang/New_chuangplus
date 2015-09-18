@@ -12,7 +12,7 @@
                         <input ng-pattern="/[a-z0-9A-Z_]{6,20}/" name="username" type="text" class="form-control" placeholder="用户名" ng-blur="check_username()" ng-model-options="{ updateOn: 'blur'}" ng-model="reg_info.username" required>
                     </div>
                     <span ng-show="showError(registerForm.username,'pattern')" class="err-msg">
-                        <i class="icon-warning-sign"></i>用户名长度在6~20，不能包含特殊字符
+                        <i class="icon-warning-sign"></i>用户名长度在6~20，不能包含特殊字符或者中文
                     </span>
                     <span ng-show="check.exist" class="err-msg">
                         <i class="icon-warning-sign"></i>用户名已存在
