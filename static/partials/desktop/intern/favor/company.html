@@ -1,12 +1,17 @@
 <div id="container">
     <div id="favor-company-list">
-        <div class="col-sm-4">
 	    <div class="tips" ng-show="company_list.length == 0">
-		<p>您还没有收藏任何公司，快去<a href="/company/list">公司列表</a>看看吧^_^</p>
+            <div class="inner">
+                <p>您还没有收藏任何公司</p>
+                <p class="go-txt">快去公司列表看看吧</p>
+                <div class="go">
+                    <a href="/company/list"><img src="/static/image/icon/go-01.png"></a>
+                </div>
             </div>
+        </div>
 	    <div class="col-md-8" ng-show="company_list.length > 0">
                 <ul ng-repeat="company in company_list">
-		    <a href="/company/[[company._id.$oid]]/detail">
+                    <a href="/company/[[company._id.$oid]]/detail">
                     <li>
                         <div class="favor-list-item">
                             <div class="item-pic">
@@ -17,9 +22,9 @@
                                 <p class="company-discrpt">[[company.brief_introduction]]</p>
                                 <div class="position-label">
                                     <p class="position-num">在招岗位：[[company.position_number]]</p>
-				    <div ng-repeat="position_type in company.position_types">
-                                   	 <p class="label">[[position_type]]</p>
-				    </div>
+                                    <div ng-repeat="position_type in company.position_types">
+                                        <p class="label">[[position_type]]</p>
+                                    </div>
                                 </div>
                                 <div class="company-label">
                                     <p class="label">创业服务</p>
@@ -27,9 +32,9 @@
                                     <p class="label">[[company.city]]</p>
                                 </div>
                                 <div class="wellfare-label">
-				    <div ng-repeat="tag in company.welfare_tags">
-                                   	 <p class="label">[[tag]]</p>
-				    </div>
+                                    <div ng-repeat="tag in company.welfare_tags">
+                                        <p class="label">[[tag]]</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
