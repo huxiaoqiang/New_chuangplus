@@ -783,6 +783,7 @@ angular.module('chuangplus_mobile.controllers', [])
                         $notice.show('验证码错误');
                         $('#captcha-pass').hide();
                         $scope.info_check[3] = 0;
+                        return false;
                     }
                     else
                     {
@@ -792,7 +793,6 @@ angular.module('chuangplus_mobile.controllers', [])
                     }
 
                 });
-            return false;
         }
 
         $scope.check_username = function(){
