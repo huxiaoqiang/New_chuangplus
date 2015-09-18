@@ -15,7 +15,7 @@
   <div class="edit-resume">
     <form name="editresume" id="editresume" role="form" ng-submit='edit_resume()'>
       <div class="info-block">
-        <div class="panel-list">
+        <div class="padding">
           <div class="resume-block-title">基本信息</div>
           <span class="panel-group-top lit-gray-border">
             <div class="panel-elem elem-width-4 panel-title font-color-g">姓名</div>
@@ -53,10 +53,10 @@
       </div>
 
       <div class="info-block">
-        <div class="panel-list">
+        <div class="padding">
             <div class="resume-block-title">百字简介</div>
             <div class="info-block-tip">
-                未上传简历前，HR只能通过百字简介判断是否邀请面试，请认真填写。建议格式：基本信息+教育经历+工作/项目经历+学生工作经历+技能+性格特点
+                未上传简历附件前，HR只能通过百字简介判断是否邀请面试，请认真填写。建议格式：基本信息+教育经历+工作/项目经历+学生工作经历+技能+性格特点
             </div>
             <textarea ng-model="intern_info.description" class="info-block-textarea" style="padding: 10px 8px 10px 8px" required>
               
@@ -66,19 +66,20 @@
 
 
       <div class="info-block-last">
-        <div class="panel-list">
+        <div class="padding">
             <div class="resume-block-title">简历附件</div>
 
             <a ng-if="intern_info.resume_id != null" class="resume-block-att" ng-href="/api/file/[[intern_info.resume_id]]/download" target="_self">[[filename]]</a>
 
-            <div class="resume-block-att" ng-if="intern_info.resume_id == null">[无简历附件]</div>
-
-            <a class="panel-radius login-btn btn-b-pur" href="/mobile/home/uploadresume">上传/更新简历</a>
+            <div class="resume-block-att" style="text-decoration: none;"  ng-if="intern_info.resume_id == null">[无简历附件]</div>
+            <div class="info-block-tip" ng-if="intern_info.resume_id == null">
+                上传简历附件请到桌面端
+            </div>
             
           <!--
             <a class="panel-radius login-btn form-control btn-b-pur" href="/mobile/home/uploadresume">上传/更新简历附件</a>
           -->
-          <a class="panel-radius lit-p-bg" ng-click="save_intern_info()">暂不上传，直接投递</a>
+          <a class="panel-radius lit-p-bg" ng-click="save_intern_info()">更新简历简介</a>
         </div>
       </div>
     </form>
