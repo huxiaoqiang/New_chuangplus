@@ -1296,10 +1296,28 @@ angular.module('chuangplus.controllers', []).
             '020':"O2O",
             'others':"其他"
         };
-        $scope.loading = true;
-        $scope.get_company_list = function(){
-            $http.get(urls.api+"/account/company/list").
+        $scope.task = {
+            pageCount: 1,
+            currentPage: 1
+        };
+        $scope.selectPage = function(page){
+            var param = {
+                'page':page
+            };
+            $scope.get_company_list(param);
+        };
+        $scope.get_company_list = function(data){
+            $scope.loading = true;
+            var param = '';
+            if(data != null){
+                param = '?';
+                if(data.hasOwnProperty('page')){
+                    param += "page=" + data.page;
+                }
+            }
+            $http.get(urls.api+"/account/company/list"+param).
                 success(function(data){
+                $scope.task.pageCount = data.page_number;
                 if(data.error.code == 1){
                     $scope.company_list = data.data;
                     for(i=0;i<$scope.company_list.length;i++){

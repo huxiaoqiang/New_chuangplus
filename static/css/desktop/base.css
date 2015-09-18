@@ -81,6 +81,9 @@ header #header .navbar .navbar-item.login li.active {
 header #header .navbar .navbar-item.login li.active a:hover {
   border-width: 0px 0px 0px 0px;
 }
+header #header .navbar .navbar-item.login li.dropdown {
+  height: 58px;
+}
 header #header .navbar .navbar-item.login li.dropdown .dropdown-menu {
   min-width: 100px;
 }
@@ -92,6 +95,9 @@ header #header .navbar .navbar-item.login li.dropdown .dropdown-menu a {
 header #header .navbar .navbar-item.login li.dropdown .dropdown-menu a:hover {
   border: solid #8f4e96;
   border-width: 0px 0px 0px 3px;
+}
+header #header .navbar .navbar-item.login li.dropdown.open {
+  height: 58px;
 }
 header #header .navbar .header-item {
   float: right;
@@ -2118,10 +2124,11 @@ form.financing_add input {
   margin-top: 10px;
 }
 #container #position-detail .position-dscrpt .dscrpt-title .txt .description {
+  min-height: 180px;
   width: 100%;
   margin-bottom: 20px;
   background-color: white;
-  border: 1px solid #;
+  border: 1px solid #bfbfbf;
   border-radius: 4px;
   padding: 10px 10px;
 }
@@ -2342,6 +2349,22 @@ form.financing_add input {
 #container #company_list .col-md-8 ul li .company-info:hover {
   background-color: rgba(243, 243, 243, 0.53);
 }
+#container #company_list .col-md-8 ul.pagination {
+  float: right;
+}
+#container #company_list .col-md-8 ul.pagination li {
+  border: none;
+}
+#container #company_list .col-md-8 ul.pagination li a {
+  cursor: pointer;
+}
+#container #company_list .col-md-8 ul.pagination li a span {
+  color: #337ab7;
+}
+#container #company_list .col-md-8 .pagination > .active > a {
+  background-color: #8f4e96;
+  border-color: #98769E;
+}
 #container #company-detail {
   min-height: 600px;
 }
@@ -2540,12 +2563,13 @@ form.financing_add input {
   width: 99%;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .description {
-  min-height: 50px;
+  min-height: 150px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .description p {
   font-size: 15px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .company-description {
+  min-height: 150px;
   width: 100%;
   background-color: white;
   border: 1px solid #e1e0e2;

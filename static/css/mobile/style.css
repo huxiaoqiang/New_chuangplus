@@ -6,8 +6,15 @@ html {
 }
 body {
   font-weight: normal;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   overflow-x: hidden;
+}
+@media (min-width: 992px) {
+  .has-sidebar-left .app,
+  .sidebar-left-in .app {
+    margin-left: 250px;
+    left: 0;
+  }
 }
 .sidebar-left-in .app {
   transform: translate(250px, 0) !important;
@@ -262,11 +269,12 @@ a:hover {
 }
 .header-bar .header {
   width: 50%;
+  font-weight: 500;
   text-align: center;
   height: 50px;
   line-height: 50px;
   color: white;
-  font-size: 23px;
+  font-size: 20px;
   overflow: hidden;
   margin: auto;
   position: relative;
@@ -431,7 +439,7 @@ a:hover {
   padding: 0px 4px 0px 4px;
   border-radius: 9px;
   background-color: white;
-  color: #966497;
+  color: #707070;
   border: 1px solid #966497;
   font-size: 11px;
   margin-right: 4px;
@@ -444,11 +452,11 @@ a:hover {
   overflow: hidden;
 }
 .comp-benefit-tag {
-  color: white;
-  background: #d4abd3;
+  color: #707070;
+  border: 1px solid #966497;
   padding: 0px 4px 0px 4px;
   font-size: 11px;
-  border-radius: 9px;
+  border-radius: 3px;
   float: left;
   margin-right: 4px;
   margin-bottom: 1px;

@@ -15,7 +15,7 @@ from .models import *
 from position.models import *
 from app.common_api import check_email
 
-
+POSITIONS_PER_PAGE = 10
 def register(request):
     re=dict()
     if request.method == "POST":
@@ -978,6 +978,27 @@ def get_company_list(request):
             companies = companies.filter(scale__in = scale)
         if status != '':
             companies = companies.filter(status = bool(status))
+        page = 1
+        if "page" in request.GET.keys():
+            if len(request.GET["page"]) > 0:
+                try:
+                    page = int(request.GET["page"])
+                    assert page > 0
+                except (ValueError,AssertionError):
+                    re['error'] = error(200,"Invaild request!")
+                    return HttpResponse(json.dumps(re), content_type = 'application/json')
+                except:
+                    re['error'] = error(299,'Unknown Error!')
+                    return HttpResponse(json.dumps(re),content_type = 'application/json')
+
+        orderValue = "id"
+        companies.order_by(orderValue)
+        shang = companies.count() / POSITIONS_PER_PAGE
+        yushu = 1 if companies.count() % POSITIONS_PER_PAGE else 0
+        page_number =  shang + yushu
+        companies = companies[(page - 1) * POSITIONS_PER_PAGE: page * POSITIONS_PER_PAGE]
+
+
         companies_re = json.loads(companies.to_json())
         for cpn in companies_re:
             position_type = []
@@ -992,6 +1013,7 @@ def get_company_list(request):
             cpn['position_type'] = position_type
         re['error'] = error(1, "get company list successfully")
         re['data'] = companies_re
+        re['page_number'] = page_number
     else:
         re['error'] = error(2, 'error, need GET!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
