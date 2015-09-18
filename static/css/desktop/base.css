@@ -1383,11 +1383,11 @@ form.financing_add input {
   left: 90px;
 }
 #container #userresume .progress {
-  width: 44.5%;
-  margin-left: 25px;
+  width: 50%;
+  margin-top: 10px;
 }
 #container #userresume .progress .progress-bar {
-  background-color: lightgray;
+  background-color: gray;
 }
 #container #userresume .save-resume-btn {
   float: right;
