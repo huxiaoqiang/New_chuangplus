@@ -26,6 +26,11 @@ angular.module('chuangplus.controllers', []).
         console.log('DT_HeaderCtrl');
         $scope.company_id = '';
         $scope.username = $user.username();
+        $scope.scan_mouseover = function(){
+            $scope.scan=true;
+            $scope.search=false;
+            clearTimeout($scope.timeout_id);
+        };
         $scope.search_mouseout = function(){
             $scope.timeout_id = setTimeout($scope.hide_search,1000);
         };
@@ -34,7 +39,7 @@ angular.module('chuangplus.controllers', []).
                $scope.search = false;
             });
         };
-        $scope.search_mouseon = function(){
+        $scope.search_mouseover = function(){
           $scope.search=true;
           clearTimeout($scope.timeout_id);
         };
