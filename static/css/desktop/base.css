@@ -106,7 +106,7 @@ header #header .navbar .header-item {
 }
 header #header .navbar .header-item .item {
   float: right;
-  margin-left: 20px;
+  margin-left: 18px;
   cursor: pointer;
 }
 header #header .navbar .header-item .item img {
@@ -2655,8 +2655,19 @@ form.financing_add input {
   display: table;
   height: 100%;
 }
+#container #company-detail .col-md-8 .detail .left-block .company .team-member .member .member-intro .m_introduction p {
+  margin-bottom: 2px;
+}
 #container #company-detail .col-md-8 .detail .left-block .company .team-member .member:hover {
   background-color: #F1F1F1;
+}
+#container #company-detail .col-md-8 .detail .left-block .company p.header-tag {
+  font-size: 18px;
+  border: solid 1px#bfbfbf;
+  border-width: 0px 0px 1px 0px;
+  padding-bottom: 2px;
+  width: 98%;
+  margin-bottom: 10px;
 }
 #container #company-detail .col-md-8 .detail .left-block .position {
   margin-top: 24px;
@@ -3343,13 +3354,13 @@ form.financing_add input {
 }
 #container #forth-step .info4 .add-member .member-tag .intro .m_intro {
   word-wrap: break-word;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 12px;
+  margin-top: 15px;
 }
 #container #forth-step .info4 .add-member .member-tag .intro p {
-  margin-top: 10px ;
-  padding-left: 5px;
-  padding-right: 5px;
+  margin-bottom: 2px;
 }
 #container #forth-step .info4 .add-member .member {
   width: 100%;

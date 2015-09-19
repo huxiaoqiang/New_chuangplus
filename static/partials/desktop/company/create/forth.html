@@ -30,7 +30,7 @@
                     <br/>
                     <div class="intro">
                         <span ng-bind="member.m_name"></span>&nbsp;/&nbsp;<span ng-bind="member.m_position"></span><br/>
-                        <div class="m_intro"><span ng-bind="member.m_introduction"></span></div>
+                        <div class="m_intro"><my-text text="member.m_introduction"></my-text></div>
                     </div>
 
                 </div>
@@ -79,8 +79,6 @@
     </div>
   </div>
 </div>
-
-
 <!-- delete_member Modal -->
 <div class="modal fade" id="delete_member" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
   <div class="modal-dialog" role="document">

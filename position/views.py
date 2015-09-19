@@ -20,7 +20,7 @@ from app.common_api import error,user_permission,if_legal
 TYPE = ('technology','product','design','operate','marketing','functions','others')
 FIELD = ('social','e-commerce','education','health_medical','culture_creativity','living_consumption','hardware','O2O','others')
 STATUS = ('open','closed')
-POSITIONS_PER_PAGE = 2
+POSITIONS_PER_PAGE = 10
 
 '''
 def dump_position(posi):
