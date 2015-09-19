@@ -44,7 +44,7 @@
                     -->
                     <div class="filter-elem">
                         请填写整数
-                        <input type="number" class="inline-input"/>
+                        <input type="number" ng-model="filter.salary" class="inline-input"/>
                         K
                     </div>
                 </div>
@@ -125,10 +125,10 @@
         <div id="list-content" ng-show="!filter_show">
             <div class="require-bar">
                 <div class="requires">
-                    <div class="require-box">每周五天</div>
-                    <div class="require-box">3K</div>
-                    <div class="require-box">电子商务</div>
-                    <div class="require-box">产品</div>
+                    <div class="require-box">[[workdays_notice]]</div>
+                    <div class="require-box">[[salary_notice]]</div>
+                    <div class="require-box">[[filed_notice]]</div>
+                    <div class="require-box">[[type_notice]]</div>
                 </div>
                 <div class="require-btn" ng-click="show_filter()">&nbsp;</div>
             </div>
