@@ -966,4 +966,5 @@ a:hover {
 .sidebar-username {
   background: #555555;
   color: white;
+  margin-top: -10px;
 }
