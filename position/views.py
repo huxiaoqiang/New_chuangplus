@@ -20,7 +20,7 @@ from app.common_api import error,user_permission,if_legal
 TYPE = ('technology','product','design','operate','marketing','functions','others')
 FIELD = ('social','e-commerce','education','health_medical','culture_creativity','living_consumption','hardware','O2O','others')
 STATUS = ('open','closed')
-POSITIONS_PER_PAGE = 10
+POSITIONS_PER_PAGE = 2
 
 '''
 def dump_position(posi):
@@ -465,7 +465,7 @@ def search_position(request):
                 wd_list = []
                 for workday in workdays:
                     wd_list.append(int(workday))
-                qs = qs.filter(days_per_week_in = wd_list)
+                qs = qs.filter(days_per_week__in = wd_list)
             except (ValueError):
                 re['error'] = error(234,"Invaild search max daysperweek!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
