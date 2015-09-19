@@ -204,15 +204,15 @@ a:hover {
   margin-top: 3px;
 }
 .notice-bar {
-  height: 42px;
+  height: 50px;
   width: 100%;
   background-color: red;
   z-index: 10000000;
   position: fixed;
-  top: 50px;
+  top: 0;
   color: white;
   font-size: 19px;
-  line-height: 40px;
+  line-height: 50px;
   text-align: center;
   display: none;
 }
@@ -966,4 +966,5 @@ a:hover {
 .sidebar-username {
   background: #555555;
   color: white;
+  margin-top: -10px;
 }

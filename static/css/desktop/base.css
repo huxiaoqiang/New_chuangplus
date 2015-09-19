@@ -178,6 +178,9 @@ header #header .navbar .search_input .search-btn {
   outline: none;
   border: darkgray;
 }
+header #header .navbar .login {
+  right: 0px;
+}
 header .shadow {
   background: -moz-linear-gradient(top, #e1e1e1 -50%, #f0f0f0 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(-50%, #e1e1e1), color-stop(100%, #f0f0f0));
