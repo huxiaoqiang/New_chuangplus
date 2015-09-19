@@ -742,6 +742,8 @@ angular.module('chuangplus_mobile.controllers', [])
 
                 }
                 });
+                
+                //alert();
         };
         $scope.get_company();
 

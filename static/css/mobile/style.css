@@ -768,7 +768,7 @@ a:hover {
   float: left;
   text-align: left;
   margin-top: 20px;
-  margin-right: 8px;
+  margin-right: 4px;
 }
 .desc-img {
   width: 80px;
@@ -782,70 +782,12 @@ a:hover {
   display: -webkit-box;
   color: #707070;
 }
-@media (min-width: 340px) {
-  .stuff-desc {
-    width: 138px;
-    display: -webkit-box;
-    border-radius: 3px;
-    border: 1px solid #dcdcdc;
-    min-height: 80px;
-    float: left;
-    padding: 5px;
-    color: #707070;
-    font-size: 13px;
-  }
-}
-@media (min-width: 350px) {
-  .stuff-desc {
-    width: 148px;
-    display: -webkit-box;
-    border-radius: 3px;
-    border: 1px solid #dcdcdc;
-    min-height: 80px;
-    float: left;
-    padding: 5px;
-    color: #707070;
-    font-size: 13px;
-  }
-}
-@media (min-width: 360px) {
-  .stuff-desc {
-    width: 158px;
-    display: -webkit-box;
-    border-radius: 3px;
-    border: 1px solid #dcdcdc;
-    min-height: 80px;
-    float: left;
-    padding: 5px;
-    color: #707070;
-    font-size: 13px;
-  }
-}
-@media (min-width: 370px) {
-  .stuff-desc {
-    width: 168px;
-    display: -webkit-box;
-    border-radius: 3px;
-    border: 1px solid #dcdcdc;
-    min-height: 80px;
-    float: left;
-    padding: 5px;
-    color: #707070;
-    font-size: 13px;
-  }
-}
-@media (min-width: 390px) {
-  .stuff-desc {
-    width: 188px;
-    display: -webkit-box;
-    border-radius: 3px;
-    border: 1px solid #dcdcdc;
-    min-height: 80px;
-    float: left;
-    padding: 5px;
-    color: #707070;
-    font-size: 13px;
-  }
+.stuff_desc {
+  color: #707070;
+  display: -webkit-box;
+  border-radius: 3px;
+  border: 1px solid #dcdcdc;
+  padding: 5px;
 }
 .comp-posi-list {
   background-color: #dcdcdc;
