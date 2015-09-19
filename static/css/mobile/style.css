@@ -367,6 +367,14 @@ a:hover {
   line-height: 36px;
   font-size: 16px;
 }
+.no-more-btn {
+  height: 30px;
+  background-color: #dcdcdc;
+  width: 100%;
+  text-align: center;
+  line-height: 30px;
+  font-size: 16px;
+}
 .comp-list {
   background-color: #dcdcdc;
   padding-bottom: 1px;

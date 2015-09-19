@@ -8,6 +8,7 @@ angular.module('chuangplus_mobile.controllers', [])
         console.log('MB_CompanyListCtrl');
         $scope.company_list = {};
         $scope.filter_show = false;
+        $scope.pagenow = 2;
         $scope.filter_params = '';
         $scope.stage = {
             "0":"初创",
@@ -63,7 +64,8 @@ angular.module('chuangplus_mobile.controllers', [])
                 success(function(data){
                 if(data.error.code == 1){
                     $scope.company_list = data.data;
-                    console.log(data);
+                    if (data.page == data.page_number) 
+                        $scope.pagenow = -23333;
                     for(var i=0;i<$scope.company_list.length;i++){
                         $scope.company_list[i].scale_value = $scope.stage[$scope.company_list[i].scale];
                         $scope.company_list[i].field_value = $scope.pfield[$scope.company_list[i].field];
@@ -194,17 +196,52 @@ angular.module('chuangplus_mobile.controllers', [])
                 });
             }
         };
+
         $scope.load_more_item = function()
         {
+            if($scope.pagenow < 0)
+                return;
+            var submitparam = '';
+            if($scope.filter_params == '')
+                if($scope.search_name != '' && $scope.search_name != undefined)
+                    submitparam = "?text=" + $scope.search_name;
+            else
+                if($scope.search_name != '' && $scope.search_name != undefined)
+                    submitparam = $scope.filter_params + "&text=" + $scope.search_name;
+            if(submitparam != '')
+                submitparam += '&page=' + $scope.pagenow;
+            else
+                submitparam += '?page=' + $scope.pagenow;
 
-        }
+            $http.get(urls.api+"/account/company/list" + $scope.filter_params).
+                success(function(data){
+                    if(data.error.code == 1){
+                        var newdata = data.data;
+                        if (data.page == data.page_number) 
+                            $scope.pagenow = -23333;
+                        for(var i=0;i<newdata.length;i++){
+                            newdata[i].scale_value = $scope.stage[newdata[i].scale];
+                            newdata[i].field_value = $scope.pfield[newdata[i].field];
+                            newdata[i].type_value = $scope.ptype[newdata[i].type];
+                            newdata[i].position_number = newdata[i].positions.length;
+                            newdata[i].position_type_value = {};
+
+                            for(var j=0;j<newdata[i].position_type.length;j++)
+                                newdata[i].position_type_value[j] = $scope.position_type[newdata[i].position_type[j]];
+                        
+                        }
+                        $scope.company_list.concat(newdata);
+                        $scope.pagenow ++;
+                    }
+                });
+        };
     }])
     .controller('MB_PositionListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
     function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log('MB_PositionListCtrl');
         $scope.positions = {};
         $scope.filter_show = false;
-        $scope.pagenow = 1;
+        $scope.pagenow = 2;
         $scope.filter_params = '';
         $scope.position_type = {
             "technology":"技术",
@@ -255,6 +292,8 @@ angular.module('chuangplus_mobile.controllers', [])
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.positions = data.positions;
+                        if (data.page == data.page_number) 
+                            $scope.pagenow = -23333;
                         for(var i=0; i<$scope.positions.length;i++){
                             $scope.positions[i].field_value = $scope.cfield[$scope.positions[i].company.field];
                             $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
@@ -424,7 +463,8 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $scope.load_more_item = function()
         {
-
+            if($scope.pagenow < 0)
+                return;
             var submitparam = '';
             if($scope.filter_params == '')
                 if($scope.search_name != '' && $scope.search_name != undefined)
@@ -433,15 +473,17 @@ angular.module('chuangplus_mobile.controllers', [])
                 if($scope.search_name != '' && $scope.search_name != undefined)
                     submitparam = $scope.filter_params + "&name=" + $scope.search_name;
             if(submitparam != '')
-                submitparam += '&page=' + pagenow;
+                submitparam += '&page=' + $scope.pagenow;
             else
-                submitparam += '?page=' + pagenow;
+                submitparam += '?page=' + $scope.pagenow;
 
             $http.get(urls.api+"/position/search" + submitparam).
                 success(function(data){
                     if(data.error.code == 1){
                         //$scope.positions = data.positions;
                         var newdata = data.positions;
+                        if (data.page == data.page_number) 
+                            $scope.pagenow = -23333;
                         for(var i=0; i<newdata.length;i++){
                             newdata[i].field_value = $scope.cfield[newdata[i].company.field];
                             newdata[i].position_type_value = $scope.position_type[newdata[i].position_type];
@@ -456,10 +498,11 @@ angular.module('chuangplus_mobile.controllers', [])
                             }
                         }
                         $scope.positions = $scope.positions.concat(newdata);
+                        $scope.pagenow ++;
                     }
             });
 
-        }
+        };
     }])
     .controller('MB_PositionFilterCtrl', ['$scope', '$http', 'urls', '$routeParams',
          function($scope, $http, urls, $routeParams) {
