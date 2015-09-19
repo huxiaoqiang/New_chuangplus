@@ -2655,6 +2655,9 @@ form.financing_add input {
   display: table;
   height: 100%;
 }
+#container #company-detail .col-md-8 .detail .left-block .company .team-member .member:hover {
+  background-color: #F1F1F1;
+}
 #container #company-detail .col-md-8 .detail .left-block .position {
   margin-top: 24px;
   margin-left: 10px;
