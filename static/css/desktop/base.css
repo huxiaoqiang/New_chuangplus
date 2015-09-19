@@ -135,7 +135,7 @@ header #header .navbar .header-item .search {
 }
 header #header .navbar .qrcode_img {
   position: absolute;
-  top: 50px;
+  top: 57px;
   right: 57px;
   z-index: 2;
 }
@@ -177,6 +177,9 @@ header #header .navbar .search_input .search-btn {
   background-color: #8f4e96;
   outline: none;
   border: darkgray;
+}
+header #header .navbar .login {
+  right: 0px;
 }
 header .shadow {
   background: -moz-linear-gradient(top, #e1e1e1 -50%, #f0f0f0 100%);
@@ -1380,11 +1383,11 @@ form.financing_add input {
   left: 90px;
 }
 #container #userresume .progress {
-  width: 44.5%;
-  margin-left: 25px;
+  width: 50%;
+  margin-top: 10px;
 }
 #container #userresume .progress .progress-bar {
-  background-color: lightgray;
+  background-color: gray;
 }
 #container #userresume .save-resume-btn {
   float: right;

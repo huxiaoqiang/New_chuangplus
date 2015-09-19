@@ -963,8 +963,8 @@ def get_company_list(request):
 
         if text != '':
             companies = companies.filter(
-                Q(abbreviation__icontains = text) | 
-                Q(ICregist_name__icontains = text))
+                Q(abbreviation__contains = text) |
+                Q(ICregist_name__contains = text))
         if field != '':
             field = field.split(',')
             companies = companies.filter(field__in = field)
