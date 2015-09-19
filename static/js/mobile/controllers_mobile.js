@@ -170,7 +170,26 @@ angular.module('chuangplus_mobile.controllers', [])
                                 $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
                         
                         }
-                        $scope.hide_filter();
+                    }
+                });
+            }
+            else
+            {
+                $http.get(urls.api+"/account/company/list" + $scope.filter_params).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.company_list = data.data;
+                        for(var i=0;i<$scope.company_list.length;i++){
+                            $scope.company_list[i].scale_value = $scope.stage[$scope.company_list[i].scale];
+                            $scope.company_list[i].field_value = $scope.pfield[$scope.company_list[i].field];
+                            $scope.company_list[i].type_value = $scope.ptype[$scope.company_list[i].type];
+                            $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
+                            $scope.company_list[i].position_type_value = {};
+
+                            for(var j=0;j<$scope.company_list[i].position_type.length;j++)
+                                $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
+                        
+                        }
                     }
                 });
             }
@@ -372,8 +391,31 @@ angular.module('chuangplus_mobile.controllers', [])
                             }
                         }
                     }
-            });
+                });
             }
+            else
+            {
+                $http.get(urls.api+"/position/search" + $scope.filter_params).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.positions = data.positions;
+                        for(var i=0; i<$scope.positions.length;i++){
+                            $scope.positions[i].field_value = $scope.cfield[$scope.positions[i].company.field];
+                            $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
+                            if($scope.positions[i].company.scale == 0){
+                                $scope.positions[i].company.scale_value = "初创";
+                            }
+                            else if($scope.positions[i].company.scale == 1){
+                                $scope.positions[i].company.scale_value = "快速发展";
+                            }
+                            else{
+                                $scope.positions[i].company.scale_value = "成熟";
+                            }
+                        }
+                    }
+                });
+            }
+
         };
     }])
     .controller('MB_PositionFilterCtrl', ['$scope', '$http', 'urls', '$routeParams',
