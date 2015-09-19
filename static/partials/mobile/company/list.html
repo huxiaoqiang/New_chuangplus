@@ -103,9 +103,11 @@
         <div id="list-content" ng-show="!filter_show">
             <div class="require-bar">
                 <div class="requires">
-                    <div class="require-box">移动互联网</div>
-                    <div class="require-box">初创阶段</div>
-                    <div class="require-box">红杉资本认证</div>
+                    <div class="require-box">[[filed_notice]]</div>
+                    <div class="require-box">[[scale_notice]]</div>
+                    <!--
+                        <div class="require-box">红杉资本认证</div>
+                    -->
                 </div>
                 <div class="require-btn" ng-click="show_filter()">&nbsp;</div>
             </div>
@@ -169,12 +171,12 @@
                             </div>
                         </div>
                     </a>
-                    <a class="load-more-btn" ng-click="load_more_item()" ng-show="pagenow > 0">
-                        点击加载更多
-                    </a>
-                    <div class="no-more-btn" ng-show="pagenow <= 0">
-                        没有更多了
-                    </div>
+                </div>
+                <a class="load-more-btn" ng-click="load_more_item()" ng-show="pagenow > 0">
+                    点击加载更多
+                </a>
+                <div class="no-more-btn" ng-show="pagenow <= 0">
+                    没有更多了
                 </div>
             </div>
         </div>
