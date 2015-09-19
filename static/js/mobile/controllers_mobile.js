@@ -810,6 +810,7 @@ angular.module('chuangplus_mobile.controllers', [])
     .controller('MB_PositionDetailCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
     function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         $scope.position_id = $routeParams.position_id;
+        $scope.is_login = $user.is_login();
         console.log($scope.position_id);
         $scope.latest_scale = {
             "0":"初创",
@@ -973,7 +974,10 @@ angular.module('chuangplus_mobile.controllers', [])
             }
 
         };
-        
+        $scope.notice = function(msg)
+        {
+            $notice.show(msg);
+        }
         //提醒完善简历
         $scope.complete_resume = function(){
              setTimeout(function(){window.location.href='/intern/resume'},2000);
