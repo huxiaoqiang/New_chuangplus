@@ -3,7 +3,7 @@
         <div class="col-md-8">
             <div class="company-info">
                 <div class="auth" >
-                    <p>v[[company.auth_organization]]红杉资本认证</p>
+                    <p>[[company.auth_organization]]</p>
                 </div>
                 
                 <div class="bottom-side">
@@ -121,7 +121,10 @@
                         </div>
                     </div>
                     <div ng-if="tab2==true" class="position">
-                        <div ng-repeat="position in company.position_list" class="position_list" ng-href="/company/position/[[position._id.$oid]]/detail" ng-click="position_detail($index)">
+                        <div class="no-position" ng-if="company.position_list==0">
+                            <p>该公司尚未发布任何职位</p>
+                        </div>
+                        <div ng-if="company.position_list!=0" ng-repeat="position in company.position_list" class="position_list" ng-href="/company/position/[[position._id.$oid]]/detail" ng-click="position_detail($index)">
                             <p class="position_name">[[position.position_type_value]]|[[position.name]]</p>
                             <div class="tags">
                                 <span>[[position.days_per_week]]天/周</span>
