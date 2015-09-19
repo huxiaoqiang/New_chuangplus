@@ -706,13 +706,14 @@ a:hover {
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 12px;
+  right: 10px;
   font-size: 14px;
   height: 26px;
   color: #707070;
 }
 .comp-more-info img {
   height: 30px;
+  margin-left: 1px;
 }
 .comp-more-info-arrow {
   margin: auto;
