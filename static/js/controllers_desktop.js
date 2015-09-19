@@ -1733,10 +1733,10 @@ angular.module('chuangplus.controllers', []).
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_CompanySecondCtrl');
         $scope.company_id = $routeParams.company_id;
-        $scope.no_financing = false;
+        $scope.companyinfo = {};
         $scope.financing_list = [];
         $scope.toggle_checkbox = function(){
-            $scope.no_financing = !$scope.companyinfo.no_financing;
+            $scope.companyinfo.no_financing = !$scope.companyinfo.no_financing;
         };
         $scope.get_financing_list = function(){
             $http.get(urls.api+"/account/financing/"+$scope.company_id+"/list").
@@ -1754,6 +1754,11 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                             $scope.companyinfo = data.data;
+                            $scope.companyinfo.no_financing = false;
+                            if($scope.companyinfo.financings.length == 0){
+                                $scope.companyinfo.no_financing = true;
+                                $('#financing_checkbox').attr("checked",true);
+                            }
                         }
                 });
         };
@@ -1846,8 +1851,9 @@ angular.module('chuangplus.controllers', []).
                 setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                 return;
             }
-            else if(!$scope.companyinfo.hasOwnProperty('no_financing') && $scope.financing_list.length==0){
+            else if($scope.companyinfo.no_financing == false  && $scope.financing_list.length==0){
                 $scope.error = $errMsg.format_error("请填写融资信息，若无请勾选无融资",{code:"-1"});
+
                 setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                 return;
             }
