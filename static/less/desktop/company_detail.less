@@ -197,7 +197,6 @@
             margin-top: 24px;
             margin-left: 10px;
             p{
-              font-size: 17px;
               cursor: pointer;
               color: #707070;
             }
@@ -237,14 +236,14 @@
                 border-radius: 3px;
                 margin-bottom: 15px;
                 width: 100%;
-                height: 80px;
+                min-height: 80px;
                 .avatar{
                   float: left;
                   img{
                     border-radius: 3px;
                     border: 1px solid #d8d8d8;
                     width: 60px;
-                    height: 60px;
+//                    height: 60px;
                   }
                 }
                 .member-description{
@@ -253,6 +252,7 @@
                   text-align: center;
                   display: table;
                   height: 100%;
+                  width: 100px;
                   .m-name{
                     color: #707070;
                   }
@@ -262,7 +262,6 @@
 
                 }
                 .member-intro{
-                  float: left;
                   margin-left: 20px;
                   display:table;
                   height: 100%;
@@ -270,6 +269,9 @@
 
                   }
                 }
+              }
+              .member:hover{
+                background-color: #F1F1F1;
               }
 
             }
@@ -283,7 +285,7 @@
               height: 100px;
               border-radius: 6px;
               border: solid 1px #bfbfbf;
-              p{
+              p.no-position-intro{
                 text-align: center;
                 margin-top: 38px;
                 font-size: 18px;
@@ -315,7 +317,7 @@
                 height: 22px;
                 float: left;
                 span{
-                  width: 64px;
+                  min-width: 64px;
                   border-radius: 10px;
                   padding: 0 8px 0 8px;
                   background-color: rgba(143,78,150,0.1);
@@ -362,10 +364,10 @@
         }
       }
       .qrcode{
-      width:200px;
-      height: 200px;
-      margin-top: 10px;
-      margin-bottom: 10px;
+        width:200px;
+        height: 200px;
+        margin-top: 10px;
+        margin-bottom: 10px;
       }
     }
   }

@@ -53,11 +53,11 @@ angular.module('chuangplus.directives', []).
             restrict : 'E',
             scope : {text : '='},
             replace : true,
-            template : "<p>[[text]]</p>",
-            link : function(scope,elm,attr){
-                scope.$watch('text');
-                console.log(elm[0]);
-                elm[0].innerHTML.replace(/\ /g,"&nbsp;").replace(/\r\n/g,"<br/>");
+            templateUrl : "/static/partials/desktop/directive_templates/myText.html" ,
+            link : function(scope){
+                scope.$watch('text',function(value){
+                    scope.texts = value.split('\n');
+                });
             }
         }
     }).

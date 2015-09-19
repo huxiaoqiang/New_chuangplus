@@ -91,16 +91,22 @@
                         <div class="company-description">
                             <p>公司简介</p>
                             <div class="description">
-                                <p>[[company.company_description]]</p>
+                                <my-text text="company.company_description"></my-text>
+                            </div>
+                        </div>
+                        <div class="team-description">
+                            <p>产品/服务简介</p>
+                            <div class="description">
+                                <my-text text="company.product_description"></my-text>
                             </div>
                         </div>
                         <div class="team-description">
                             <p>团队简介</p>
                             <div class="description">
-                                <p>[[company.team_description]]</p>
+                                <my-text text="company.team_description"></my-text>
                             </div>
-
                         </div>
+
                         <div class="team-member">
                             <div ng-repeat="member in member_list" class="member">
                                 <div class="avatar">
@@ -114,15 +120,16 @@
                                 </div>
                                 <div class="member-intro">
                                     <div class="vertical-center">
-                                        <p class="m_introduction">[[member.m_introduction]]</p>
+                                        <my-text text="member.m_introduction"></my-text>
                                     </div>
                                 </div>
+                                <div style="clear: both"></div>
                             </div>
                         </div>
                     </div>
                     <div ng-if="tab2==true" class="position">
                         <div class="no-position" ng-if="company.position_list==0">
-                            <p>该公司尚未发布任何职位</p>
+                            <p class="no-position-intro">该公司尚未发布任何职位</p>
                         </div>
                         <div ng-if="company.position_list!=0" ng-repeat="position in company.position_list" class="position_list" ng-href="/company/position/[[position._id.$oid]]/detail" ng-click="position_detail($index)">
                             <p class="position_name">[[position.position_type_value]]|[[position.name]]</p>
