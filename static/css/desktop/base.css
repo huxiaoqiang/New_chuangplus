@@ -2589,7 +2589,6 @@ form.financing_add input {
   margin-left: 10px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company p {
-  font-size: 17px;
   cursor: pointer;
   color: #707070;
 }
@@ -2636,7 +2635,6 @@ form.financing_add input {
   border-radius: 3px;
   border: 1px solid #d8d8d8;
   width: 60px;
-  height: 60px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .team-member .member .member-description {
   float: left;
