@@ -59,6 +59,9 @@
                         </div>
                     -->
                     <div class="filter-elem filter-single-line">
+                        <label><input name="comp-scale" type="radio" ng-model="filter.scale" value="" />无要求</label> 
+                    </div>
+                    <div class="filter-elem filter-single-line">
                         <label><input name="comp-scale" type="radio" ng-model="filter.scale" value="0" />初创（未融资/种子轮/天使轮）</label> 
                     </div>
                     <div class="filter-elem filter-single-line">
@@ -113,7 +116,8 @@
             </div>
 
             <div class="search-bar">
-                  <input class=" search-input form-control" type="text" ng-blur="submit_search()" ng-model="search_name" placeholder="输入关键词进行搜索">
+                  <input class=" search-input form-control" type="text" ng-model="search_name" placeholder="输入关键词进行搜索">
+                  <a class="search-btn" ng-click="submit_search()"><i class="fa fa-search"></i>搜索</a>
             </div>
 
             <div class="comp-list">

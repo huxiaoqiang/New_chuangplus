@@ -338,14 +338,21 @@ a:hover {
   display: block;
   height: 42px;
   background: #b5b5b5;
-  vertical-align: center;
-  overflow: auto;
+  position: relative;
   padding: 5px 10px 5px 10px;
 }
 .search-input {
   border: 0px solid;
   border-radius: 10px;
   height: 32px;
+}
+.search-btn {
+  position: absolute;
+  right: 15px;
+  top: 5px;
+  font-size: 17px;
+  color: #b5b5b5;
+  line-height: 33px;
 }
 /*
 

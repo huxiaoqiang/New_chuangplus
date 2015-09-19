@@ -511,8 +511,7 @@ a:hover
     display: block;
     height: @cl-search-hgt;
     background: @mid-gray;
-    vertical-align: center;
-    overflow: auto;
+    position: relative;
     padding: @cl-padding-ver @cl-padding-hor @cl-padding-ver @cl-padding-hor ;
 }
 
@@ -521,6 +520,15 @@ a:hover
     border: 0px solid;
     border-radius: @cl-input-radius;
     height: @cl-search-hgt - @cl-padding-ver * 2;
+}
+.search-btn
+{
+    position: absolute;
+    right: 15px;
+    top: @cl-padding-ver;
+    font-size: 17px;
+    color: @mid-gray;
+    line-height: 33px;
 }
 /*
 
@@ -678,6 +686,7 @@ a:hover
     margin-bottom: 1px;
     display: -webkit-inline-box;
 }
+
 
 .post-time{
     line-height: @cl-come-lineh;
