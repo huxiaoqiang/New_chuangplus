@@ -1853,6 +1853,7 @@ angular.module('chuangplus.controllers', []).
             }
             else if($scope.companyinfo.no_financing == false  && $scope.financing_list.length==0){
                 $scope.error = $errMsg.format_error("请填写融资信息，若无请勾选无融资",{code:"-1"});
+
                 setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                 return;
             }
