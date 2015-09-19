@@ -142,7 +142,7 @@ header #header .navbar .qrcode_img {
 header #header .navbar .qrcode_img img {
   width: 100px;
 }
-header #header .navbar .search_input.not_login {
+header #header .navbar .search_input {
   position: absolute;
   top: 57px;
   right: -55px;
@@ -153,23 +153,23 @@ header #header .navbar .search_input.not_login {
   background-color: #ffffff;
   padding: 12px 10px 10px 20px;
 }
-header #header .navbar .search_input.not_login input {
+header #header .navbar .search_input input {
   float: left;
   width: 180px;
   height: 28px;
   border-radius: 0;
   margin-top: 8px;
 }
-header #header .navbar .search_input.not_login input.form-control:focus {
+header #header .navbar .search_input input.form-control:focus {
   border-color: #98769E;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(143, 78, 150, 0.1);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(143, 78, 150, 0.3);
   border-color: #8f4e96;
 }
-header #header .navbar .search_input.not_login input.form-control:hover {
+header #header .navbar .search_input input.form-control:hover {
   border-color: #98769E;
 }
-header #header .navbar .search_input.not_login .search-btn {
+header #header .navbar .search_input .search-btn {
   height: 28px;
   width: 30px;
   margin-top: 8px;
