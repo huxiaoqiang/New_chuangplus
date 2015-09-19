@@ -136,7 +136,7 @@ def create_position(request):
     
     try:
         assert len(position_description) in range(0,500)
-        if_legal(position_description,True)
+#        if_legal(position_description,True)
     except (AssertionError):
         re['error'] = error(219,'The length of description is too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
@@ -149,7 +149,7 @@ def create_position(request):
     
     try:
         assert len(position_request) in range(0,500)
-        if_legal(position_request,True)
+#        if_legal(position_request,True)
     except (AssertionError):
         re['error'] = error(221,'The length of request is too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
