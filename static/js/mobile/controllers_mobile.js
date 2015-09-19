@@ -1444,6 +1444,7 @@ angular.module('chuangplus_mobile.controllers', [])
     function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log('MB_EditResumeCtrl');
         $user.check_login();
+        $scope.position_id = $routeParams.position_id;
         $scope.filename = "无简历附件";
         $scope.intern_info = {};
         $scope.get_intern_info = function(){
@@ -1473,6 +1474,8 @@ angular.module('chuangplus_mobile.controllers', [])
                     success(function(data){
                         if(data.error.code == 1){
                             $notice.show("修改简历成功");
+                            if($scope.position_id != undefined)
+                                window.location.href="/mobile/position/detail/"+$scope.position_id;
                         }
                         else{
                             $notice.show($errMsg.format_error("",data.error).message);
