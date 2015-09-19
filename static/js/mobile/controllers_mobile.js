@@ -81,7 +81,7 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.get_company_list();
         $scope.show_filter = function()
         {
-            $("#filter-content").slideDown("fast");
+            $("#filter-content").slideDown("normal");
             $scope.filter_show = true;
         };
         $scope.hide_filter = function()
@@ -198,7 +198,7 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.get_positions();
         $scope.show_filter = function()
         {
-            $("#filter-content").slideDown("fast");
+            $("#filter-content").slideDown("normal");
             $scope.filter_show = true;
         };
         $scope.hide_filter = function()
