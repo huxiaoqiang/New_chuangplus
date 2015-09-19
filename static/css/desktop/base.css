@@ -2701,7 +2701,7 @@ form.financing_add input {
   float: left;
 }
 #container #company-detail .col-md-8 .detail .left-block .position .position_list .tags span {
-  width: 64px;
+  min-width: 64px;
   border-radius: 10px;
   padding: 0 8px 0 8px;
   background-color: rgba(143, 78, 150, 0.1);
