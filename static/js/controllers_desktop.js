@@ -1827,27 +1827,27 @@ angular.module('chuangplus.controllers', []).
             window.location.href = '/company/'+ $scope.company_id+'/create/first';
         };
         $scope.next_step = function(){
-//            if(!$scope.companyinfo.hasOwnProperty('ICregist_name')){
-//                $scope.error = $errMsg.format_error("请填写公司工商注册名",{code:"-1"});
-//                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
-//                return;
-//            }
-//            else if(!$scope.companyinfo.hasOwnProperty('homepage')){
-//                $scope.error = $errMsg.format_error("请填写公司主页地址",{code:"-1"});
-//                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
-//                return;
-//            }
-//            else if(!$scope.companyinfo.hasOwnProperty('city')){
-//                $scope.error = $errMsg.format_error("请填写公司所在地",{code:"-1"});
-//                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
-//                return;
-//            }
-//            else if(!$scope.companyinfo.hasOwnProperty('qrcode_id')){
-//                $scope.error = $errMsg.format_error("请上传公司微信二维码",{code:"-1"});
-//                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
-//                return;
-//            }
-            if($scope.companyinfo.no_financing == false  && $scope.financing_list.length==0){
+            if(!$scope.companyinfo.hasOwnProperty('ICregist_name')){
+                $scope.error = $errMsg.format_error("请填写公司工商注册名",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(!$scope.companyinfo.hasOwnProperty('homepage')){
+                $scope.error = $errMsg.format_error("请填写公司主页地址",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(!$scope.companyinfo.hasOwnProperty('city')){
+                $scope.error = $errMsg.format_error("请填写公司所在地",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if(!$scope.companyinfo.hasOwnProperty('qrcode_id')){
+                $scope.error = $errMsg.format_error("请上传公司微信二维码",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if($scope.companyinfo.no_financing == false  && $scope.financing_list.length==0){
                 $scope.error = $errMsg.format_error("请填写融资信息，若无请勾选无融资",{code:"-1"});
                 setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                 return;
