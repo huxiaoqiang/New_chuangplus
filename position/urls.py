@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from . import views,tests
+from . import views
 
 urlpatterns = [
     url(r'^create$', views.create_position, name='create_position'),
