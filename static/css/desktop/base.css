@@ -783,7 +783,7 @@ body > #wrap {
   cursor: pointer;
 }
 #container #pisition-list .col-md-8 ul.pagination li a span {
-  color: #337ab7;
+  color: #707070;
 }
 #container #pisition-list .col-md-8 .pagination > .active > a {
   background-color: #8f4e96;
@@ -2394,7 +2394,7 @@ form.financing_add input {
   cursor: pointer;
 }
 #container #company_list .col-md-8 ul.pagination li a span {
-  color: #337ab7;
+  color: #707070;
 }
 #container #company_list .col-md-8 .pagination > .active > a {
   background-color: #8f4e96;
