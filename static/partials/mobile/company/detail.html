@@ -62,6 +62,9 @@
                             <div class="fi-cond"> [[fi.organization]]</div>
                             <div class="fi-cond"> [[fi.amount_value]]</div>
                         </div>
+                        <div ng-if="company.financing_number == 0">
+                            <div class="fi-cond">该公司尚未融资</div>
+                        </div>
                     </td>
                 </tr>
             </table>

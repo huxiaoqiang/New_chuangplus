@@ -432,32 +432,30 @@ a:hover {
   line-height: 20px;
   overflow: hidden;
 }
+.comp-benefit-list {
+  line-height: 18px;
+  overflow: hidden;
+}
 .comp-desc-tag {
   padding: 0px 4px 0px 4px;
   border-radius: 9px;
-  background-color: white;
   color: #707070;
   border: 1px solid #966497;
-  text-align: center;
   font-size: 11px;
   margin-right: 4px;
   margin-bottom: 1px;
   line-height: 13px;
   display: -webkit-inline-box;
 }
-.comp-benefit-list {
-  line-height: 18px;
-  overflow: hidden;
-}
 .comp-benefit-tag {
+  padding: 0px 4px 0px 4px;
+  border-radius: 3px;
   color: #707070;
   border: 1px solid #966497;
-  padding: 0px 4px 0px 4px;
   font-size: 11px;
-  line-height: 13px;
-  border-radius: 3px;
   margin-right: 4px;
   margin-bottom: 1px;
+  line-height: 13px;
   display: -webkit-inline-box;
 }
 .comp-req-tag {
