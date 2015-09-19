@@ -5,6 +5,7 @@ html {
   padding: 0;
 }
 body {
+  min-width: 340px;
   font-weight: normal;
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   overflow-x: hidden;
@@ -781,17 +782,75 @@ a:hover {
   display: -webkit-box;
   color: #707070;
 }
-.stuff-desc {
-  display: -webkit-box;
-  border-radius: 3px;
-  border: 1px solid #dcdcdc;
-  height: 80px;
-  float: left;
-  width: 188px;
-  overflow-y: auto;
-  padding: 5px;
-  color: #707070;
-  font-size: 13px;
+@media (min-width: 340px) {
+  .stuff-desc {
+    display: -webkit-box;
+    border-radius: 3px;
+    border: 1px solid #dcdcdc;
+    height: 80px;
+    float: left;
+    width: 138px;
+    overflow-y: auto;
+    padding: 5px;
+    color: #707070;
+    font-size: 13px;
+  }
+}
+@media (min-width: 350px) {
+  .stuff-desc {
+    display: -webkit-box;
+    border-radius: 3px;
+    border: 1px solid #dcdcdc;
+    height: 80px;
+    float: left;
+    width: 148px;
+    overflow-y: auto;
+    padding: 5px;
+    color: #707070;
+    font-size: 13px;
+  }
+}
+@media (min-width: 360px) {
+  .stuff-desc {
+    display: -webkit-box;
+    border-radius: 3px;
+    border: 1px solid #dcdcdc;
+    height: 80px;
+    float: left;
+    width: 158px;
+    overflow-y: auto;
+    padding: 5px;
+    color: #707070;
+    font-size: 13px;
+  }
+}
+@media (min-width: 370px) {
+  .stuff-desc {
+    display: -webkit-box;
+    border-radius: 3px;
+    border: 1px solid #dcdcdc;
+    height: 80px;
+    float: left;
+    width: 168px;
+    overflow-y: auto;
+    padding: 5px;
+    color: #707070;
+    font-size: 13px;
+  }
+}
+@media (min-width: 390px) {
+  .stuff-desc {
+    display: -webkit-box;
+    border-radius: 3px;
+    border: 1px solid #dcdcdc;
+    height: 80px;
+    float: left;
+    width: 188px;
+    overflow-y: auto;
+    padding: 5px;
+    color: #707070;
+    font-size: 13px;
+  }
 }
 .comp-posi-list {
   background-color: #dcdcdc;
