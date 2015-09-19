@@ -665,8 +665,8 @@ a:hover {
   overflow: auto;
 }
 .detail-desc .desc-block .member-block {
-  margin-top: 20px;
-  overflow: auto;
+  margin-top: 10px;
+  display: inline-block;
 }
 .detail-desc .desc-block .desc-title {
   color: black;
@@ -784,13 +784,12 @@ a:hover {
 }
 @media (min-width: 340px) {
   .stuff-desc {
+    width: 138px;
     display: -webkit-box;
     border-radius: 3px;
     border: 1px solid #dcdcdc;
-    height: 80px;
+    min-height: 80px;
     float: left;
-    width: 138px;
-    overflow-y: auto;
     padding: 5px;
     color: #707070;
     font-size: 13px;
@@ -798,13 +797,12 @@ a:hover {
 }
 @media (min-width: 350px) {
   .stuff-desc {
+    width: 148px;
     display: -webkit-box;
     border-radius: 3px;
     border: 1px solid #dcdcdc;
-    height: 80px;
+    min-height: 80px;
     float: left;
-    width: 148px;
-    overflow-y: auto;
     padding: 5px;
     color: #707070;
     font-size: 13px;
@@ -812,13 +810,12 @@ a:hover {
 }
 @media (min-width: 360px) {
   .stuff-desc {
+    width: 158px;
     display: -webkit-box;
     border-radius: 3px;
     border: 1px solid #dcdcdc;
-    height: 80px;
+    min-height: 80px;
     float: left;
-    width: 158px;
-    overflow-y: auto;
     padding: 5px;
     color: #707070;
     font-size: 13px;
@@ -826,13 +823,12 @@ a:hover {
 }
 @media (min-width: 370px) {
   .stuff-desc {
+    width: 168px;
     display: -webkit-box;
     border-radius: 3px;
     border: 1px solid #dcdcdc;
-    height: 80px;
+    min-height: 80px;
     float: left;
-    width: 168px;
-    overflow-y: auto;
     padding: 5px;
     color: #707070;
     font-size: 13px;
@@ -840,13 +836,12 @@ a:hover {
 }
 @media (min-width: 390px) {
   .stuff-desc {
+    width: 188px;
     display: -webkit-box;
     border-radius: 3px;
     border: 1px solid #dcdcdc;
-    height: 80px;
+    min-height: 80px;
     float: left;
-    width: 188px;
-    overflow-y: auto;
     padding: 5px;
     color: #707070;
     font-size: 13px;
