@@ -568,6 +568,7 @@ def search_position(request):
             return HttpResponse(json.dumps(re),content_type = 'application/json')
     re['positions'] = positions
     re['page_number'] = page_number
+    re['page'] =page
     re["error"] = error(1,"Search succeed!")
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 

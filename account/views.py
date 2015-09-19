@@ -1014,6 +1014,7 @@ def get_company_list(request):
         re['error'] = error(1, "get company list successfully")
         re['data'] = companies_re
         re['page_number'] = page_number
+        re['page'] = page
     else:
         re['error'] = error(2, 'error, need GET!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
