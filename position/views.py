@@ -479,7 +479,7 @@ def search_position(request):
         if len(request.GET["salary_min"]) > 0:
             try:
                 sa_min = int(request.GET["salary_min"])
-                qs = qs.filter(Q(salary_max__gte = sa_min) | Q(salary_max = 0))
+                qs = qs.filter(salary_max__gte = sa_min)
             except (ValueError):
                 re['error'] = error(235,"Invaild search min salary!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
