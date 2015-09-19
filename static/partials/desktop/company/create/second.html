@@ -51,7 +51,7 @@
                 <div class="right-info">
                    <label>融资信息</label>
                     <p>特别说明：犀牛会与贵公司最近一轮融资的投资机构联系，提供认证。请至少填写最近两轮融资信息，天使轮及以前可只填写一轮。未融资请在下方勾选，不需要填写</p>
-                    <input type="checkbox" ng-model="no_financing" ng-click="toggle_checkbox()" ng-disabled="financing_list.length!=0">&nbsp;&nbsp;未融资</label>
+                    <input id="financing_checkbox" type="checkbox" ng-model="no_financing" ng-click="toggle_checkbox()" ng-disabled="financing_list.length!=0">&nbsp;&nbsp;未融资</label>
                     <div class="add_financing">
                         <span data-toggle="modal"  data-target="#add_financing" ng-show="no_financing==false">
                             <img src="/static/image/icon/add.png">

@@ -1755,6 +1755,10 @@ angular.module('chuangplus.controllers', []).
                     if(data.error.code == 1){
                             $scope.companyinfo = data.data;
                             $scope.companyinfo.no_financing = false;
+                            if($scope.companyinfo.financings.length == 0){
+                                $scope.companyinfo.no_financing = true;
+                                $('#financing_checkbox').attr("checked",true);
+                            }
                         }
                 });
         };
