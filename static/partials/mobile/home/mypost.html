@@ -12,36 +12,38 @@
             <div class="comp-list">
                 <a class="comp-listbox" href="/mobile/position/detail/[[position._id.$oid]]" ng-repeat="position in positions">
                     <img class="comp-prev-img" src="/api/file/[[position.company.logo_id]]/download">
-                    <div ng-if="position.company.is_auth" class="comp-auth">[[position.company.auth_organization]]认证</div>
-                    <div class="comp-name">[[position.position_type_value]] | [[position.name]]</div>
-                    <div class="posi-close">[[position.position_cond]]</div>
-                    <div class="hr-solve">[[position.is_processed]]</div>
+                    <div class="comp-list-info-block">
+                        <div ng-if="position.company.is_auth" class="comp-auth">[[position.company.auth_organization]]认证</div>
+                        <div class="comp-name">[[position.position_type_value]] | [[position.name]]</div>
+                        <div class="posi-close">[[position.position_cond]]</div>
+                        <div class="hr-solve">[[position.is_processed]]</div>
 
-                    <div class="comp-req-list">
-                        <span class="comp-req-title">[[position.company.abbreviation]]</span>
-                    </div>
-                    <div class="comp-desc">[[position.company.brief_introduction]]</div>
+                        <div class="comp-req-list">
+                            <span class="comp-req-title">[[position.company.abbreviation]]</span>
+                        </div>
+                        <div class="comp-desc">[[position.company.brief_introduction]]</div>
 
-                    <div class="comp-desc-list">
-                        <span class="comp-desc-tag">
-                            [[position.days_per_week]]天/周
-                        </span>
-                        <span class="comp-desc-tag">
-                            [[position.salary_min]]K-[[position.salary_max]]K
-                        </span>
-                        <span class="comp-desc-tag">
-                            [[position.field_value]]
-                        </span>
-                        <span class="comp-desc-tag">
-                            [[position.company.scale_value]]期
-                        </span>
-                        <span class="comp-desc-tag">
-                            [[position.company.city]]
-                        </span>
-                    </div>
+                        <div class="comp-desc-list">
+                            <span class="comp-desc-tag">
+                                [[position.days_per_week]]天/周
+                            </span>
+                            <span class="comp-desc-tag">
+                                [[position.salary_min]]K-[[position.salary_max]]K
+                            </span>
+                            <span class="comp-desc-tag">
+                                [[position.field_value]]
+                            </span>
+                            <span class="comp-desc-tag">
+                                [[position.company.scale_value]]期
+                            </span>
+                            <span class="comp-desc-tag">
+                                [[position.company.city]]
+                            </span>
+                        </div>
 
-                    <div class="post-time">
-                        发布时间：[[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]
+                        <div class="post-time">
+                            发布时间：[[position.release_time.$date |date :'yyyy/MM/dd']]
+                        </div>
                     </div>
                 </a>
             </div>
