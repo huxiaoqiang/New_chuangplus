@@ -55,7 +55,7 @@ def register(request):
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
         except DoesNotExist:
             try:
-                find_username = User.objects.get(usename = username)
+                find_username = User.objects.get(username = username)
                 if find_username is not None:
                     re['error'] = error(107,"Username has been registed")
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
