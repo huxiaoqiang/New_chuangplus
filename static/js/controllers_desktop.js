@@ -146,6 +146,10 @@ angular.module('chuangplus.controllers', []).
         $scope.captcha_url = urls.api+"/captcha/image/";
         $scope.check = {};
         $scope.e_check = {};
+        $scope.ic_check = {
+            'exist':true,
+            'used' :false
+        };
         $scope.student = function(){
             $scope.tab1 = true;
             $scope.tab2 = false;
@@ -170,8 +174,20 @@ angular.module('chuangplus.controllers', []).
             $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
                 success(function(data){
                     if(data.error.code == 1){
-                        $scope.error = $errMsg.format_error("注册成功",data.error);
-                        setTimeout(function(){window.location.href='/'},1500);
+                        var param = {
+                            'code':$scope.reg_info.invitation_code
+                        };
+                        $csrf.set_csrf(param);
+                        $http.post(urls.api+"/captcha/register_invitation_code",$.param(param)).
+                            success(function(data){
+                                if(data.error.code == 1){
+                                    $scope.error = $errMsg.format_error("注册成功",data.error);
+                                    setTimeout(function(){window.location.href='/'},1500);
+                                }
+                                else{
+                                    $scope.error = $errMsg.format_error("",data.error);
+                                }
+                            });
                     }
                     else{
                         $scope.error = $errMsg.format_error("",data.error);
@@ -188,6 +204,24 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.check.exist = data.username.exist;
+                    }
+                });
+        };
+        $scope.check_invitation_code = function(){
+            $scope.ic_check.code = $scope.reg_info.invitation_code;
+            $csrf.set_csrf($scope.ic_check);
+            $http.post(urls.api+"/captcha/check_ic", $.param($scope.ic_check)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        if(data.checked == true){
+                            $scope.ic_check.used = true;
+                        }
+                        else{
+                            $scope.ic_check.exist = true;
+                        }
+                    }
+                    else{
+                        $scope.ic_check.exist = false;
                     }
                 });
         };
