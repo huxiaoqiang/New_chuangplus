@@ -91,7 +91,7 @@ def register_invitation_code(request):
     code = request.POST.get('code','')
     if request.method == "POST":
         try:
-            ic = InvitationCode(code=code)
+            ic = InvitationCode.objects.get(code=code)
         except:
             re['error'] = error(269,'Invitation code does not exist!')
             return HttpResponse(json.dumps(re),content_type = 'application/json')
