@@ -1481,6 +1481,8 @@ angular.module('chuangplus_mobile.controllers', [])
                             $notice.show("修改简历成功");
                             if($scope.position_id != undefined)
                                 window.location.href="/mobile/position/detail/"+$scope.position_id;
+                            else
+                                setTimeout("window.location.href='/mobile/home'",1800);
                         }
                         else{
                             $notice.show($errMsg.format_error("",data.error).message);
