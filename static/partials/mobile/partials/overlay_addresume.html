@@ -11,7 +11,7 @@
         <p>是否跳转到简历编辑页面？</p>
       </div>
       <div class="modal-footer">
-        <button ui-turn-off="addresume" class="btn btn-primary" onclick="window.location.href='/mobile/home/editresume'">确认</button>
+        <a ui-turn-off="addresume" class="btn btn-primary" ng-href="/mobile/home/editresume/[[position_id]]">确认</a>
         <button ui-turn-off="addresume" class="btn btn-default">取消</button>
       </div>
     </div>

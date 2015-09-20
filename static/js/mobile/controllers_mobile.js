@@ -298,6 +298,10 @@ angular.module('chuangplus_mobile.controllers', [])
                 'O2O':'教育',
                 'others':'其它'
         };
+        $scope.testLoading = function()
+        {
+            $rootScope.loading = !$rootScope.loading;
+        }
         $scope.get_positions = function(){
             $http.get(urls.api+"/position/search").
                 success(function(data){
@@ -742,6 +746,8 @@ angular.module('chuangplus_mobile.controllers', [])
 
                 }
                 });
+                
+                //alert();
         };
         $scope.get_company();
 
@@ -1442,6 +1448,7 @@ angular.module('chuangplus_mobile.controllers', [])
     function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log('MB_EditResumeCtrl');
         $user.check_login();
+        $scope.position_id = $routeParams.position_id;
         $scope.filename = "无简历附件";
         $scope.intern_info = {};
         $scope.get_intern_info = function(){
@@ -1452,6 +1459,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     if($scope.intern_info.resume_name != undefined && $scope.intern_info.resume_id != undefined){
                         $scope.filename = $scope.intern_info.resume_name;
                     }
+                    $rootScope.loading = false;
                 }
                 else{
                     $scope.error = $errMsg.format_error("",data.error);
@@ -1471,6 +1479,10 @@ angular.module('chuangplus_mobile.controllers', [])
                     success(function(data){
                         if(data.error.code == 1){
                             $notice.show("修改简历成功");
+                            if($scope.position_id != undefined)
+                                window.location.href="/mobile/position/detail/"+$scope.position_id;
+                            else
+                                setTimeout("window.location.href='/mobile/home'",1800);
                         }
                         else{
                             $notice.show($errMsg.format_error("",data.error).message);
@@ -1515,7 +1527,6 @@ angular.module('chuangplus_mobile.controllers', [])
                 }
             });
         };
-        $rootScope.loading = false;
     }])
 
     .controller('MB_UserInfoUpdateCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
@@ -1533,6 +1544,7 @@ angular.module('chuangplus_mobile.controllers', [])
             success(function(data){
             if(data.error.code == 1){
                 $scope.user_info = data.data;
+                $rootScope.loading = false;
             }
         });
 
@@ -1633,6 +1645,7 @@ angular.module('chuangplus_mobile.controllers', [])
             success(function(data){
             if(data.error.code == 1){
                 $scope.user_info = data.data;
+                $rootScope.loading = false;
             }
         });
 
@@ -1654,7 +1667,6 @@ angular.module('chuangplus_mobile.controllers', [])
             else
                 $notice.show("请填写合法的信息");
         };
-        $rootScope.loading = false;
     }])
     .controller('MB_PostListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
     function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
@@ -1718,7 +1730,6 @@ angular.module('chuangplus_mobile.controllers', [])
             });
         };
         $scope.get_positions();
-        $rootScope.loading = false;
     }])
     .controller('MB_NotLoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
     function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
@@ -1726,6 +1737,10 @@ angular.module('chuangplus_mobile.controllers', [])
 
         setTimeout(function(){window.location.href='/mobile/login';},2000);
         
+    }])
+    .controller('MB_HomeCenterCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
+        $rootScope.loading = false;
     }])
     .controller('MB_InfoCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('MB_InfoCtrl');

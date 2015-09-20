@@ -52,7 +52,8 @@ var app = angular.module('chuangplus_mobile', [
         $routeProvider.when('/mobile/company/collect', {templateUrl: urls.part_mobile + '/company/collect.html',title:'公司收藏列表'});
 
         $routeProvider.when('/mobile/home/infoupdate', {templateUrl: urls.part_mobile + '/home/infoupdate.html',title:'更新用户信息'});
-        $routeProvider.when('/mobile/home/editresume', {templateUrl: urls.part_mobile + '/home/editresume.html',title:'编辑简历'});
+        $routeProvider.when('/mobile/home/editresume/:position_id', {templateUrl: urls.part_mobile + '/home/editresume.html',title:'编辑简历'});
+        $routeProvider.when('/mobile/home/editresume/', {templateUrl: urls.part_mobile + '/home/editresume.html',title:'编辑简历'});
         $routeProvider.when('/mobile/home/uploadresume', {templateUrl: urls.part_mobile + '/home/uploadresume.html',title:'上传简历'});
         $routeProvider.when('/mobile/home', {templateUrl: urls.part_mobile + '/home/pcenter.html',title:'个人中心'});
         $routeProvider.when('/mobile/home/mypost', {templateUrl: urls.part_mobile + '/home/mypost.html',title:'我的投递'});

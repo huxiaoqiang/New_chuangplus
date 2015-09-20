@@ -88,6 +88,7 @@ html
 }
 body
 {
+    min-width: 340px;
     font-weight: normal;
     font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
     overflow-x: hidden;
@@ -118,8 +119,9 @@ body
 .app-content-loading {
   text-align: center;
   height: 100%;
+  z-index: 10;
   width: 100%;
-  background: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.9);
   position: relative;
 }
 .loading-spinner {
@@ -423,6 +425,7 @@ a:hover
     height: @cl-header-hgt;
     background: @std-purple;
     position: relative;
+    z-index: 20;
     overflow: auto;
 }
 .header-bar .header
@@ -499,7 +502,7 @@ a:hover
     background-size: 20px;
     padding: 0;
     right: 0;
-    border: 1px solid @mid-gray;
+    border: 1px solid @lit-gray;
     color: @mid-gray;
     text-align: center;
     line-height: @cl-require-hgt - 11px;
@@ -510,8 +513,7 @@ a:hover
     display: block;
     height: @cl-search-hgt;
     background: @mid-gray;
-    vertical-align: center;
-    overflow: auto;
+    position: relative;
     padding: @cl-padding-ver @cl-padding-hor @cl-padding-ver @cl-padding-hor ;
 }
 
@@ -520,6 +522,15 @@ a:hover
     border: 0px solid;
     border-radius: @cl-input-radius;
     height: @cl-search-hgt - @cl-padding-ver * 2;
+}
+.search-btn
+{
+    position: absolute;
+    right: 15px;
+    top: @cl-padding-ver;
+    font-size: 17px;
+    color: @mid-gray;
+    line-height: 33px;
 }
 /*
 
@@ -678,6 +689,7 @@ a:hover
     display: -webkit-inline-box;
 }
 
+
 .post-time{
     line-height: @cl-come-lineh;
     color: @mid-gray;
@@ -788,6 +800,16 @@ a:hover
 .filter-btn
 {
     margin-top: @fil-box-top;
+    float: left;
+    width: 49%;
+    margin-right: 2%;
+}
+.filter-btn-last
+{
+    margin-top: @fil-box-top;
+    float: left;
+    width: 49%;
+    margin-right: 0 !important;
 }
 
 .filter-title
@@ -912,8 +934,8 @@ a:hover
 }
 .detail-desc .desc-block .member-block
 {
-    margin-top: 20px;
-    overflow: auto;
+    margin-top: 10px;
+    display: inline-block;
 }
 .detail-desc .desc-block .desc-title
 {
@@ -1031,7 +1053,7 @@ a:hover
     float: left;
     text-align: left;
     margin-top: 20px;
-    margin-right: 8px;
+    margin-right: 4px;
 }
 .desc-img
 {
@@ -1047,18 +1069,13 @@ a:hover
     display: -webkit-box;
     color: @dark-gray;
 }
-.stuff-desc
+.stuff_desc
 {
+    color: @dark-gray;
     display: -webkit-box;
     border-radius: 3px;
-    border: 1px solid #dcdcdc;
-    height: 80px;
-    float: left;
-    width: 188px;
-    overflow-y: auto;
+    border: 1px solid @lit-gray;
     padding: 5px;
-    color: @dark-gray;
-    font-size: 13px;
 }
 
 //compposi.html

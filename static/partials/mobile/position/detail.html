@@ -110,7 +110,7 @@
                         工作内容
                     </span>
                     <span class="desc-content">
-                        [[position.position_description]]
+                        <my-text text="position.position_description" ></my-text>
                     </span>
                 </div>
 
@@ -119,7 +119,7 @@
                         职位要求
                     </span>
                     <span class="desc-content">
-                        [[position.position_request]]
+                        <my-text text="position.position_request" ></my-text>
                     </span>
                 </div>
 
@@ -133,6 +133,25 @@
         <a ng-click="post()" class="nav-bar-2 ">[[post_value]]</a>
     </div>
     <div ui-content-for="overlays">
-        <div ng-include="'/static/partials/mobile/partials/overlay_addresume.html'"></div>
+        <div class="modal" ui-if='addresume' ui-state='addresume'>
+  <div class="modal-backdrop in"></div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" 
+                ui-turn-off="addresume">&times;</button>
+        <h4 class="modal-title">您的简历信息不完善</h4>
+      </div>
+      <div class="modal-body">
+        <p>是否跳转到简历编辑页面？</p>
+      </div>
+      <div class="modal-footer">
+        <a ui-turn-off="addresume" class="btn btn-primary" ng-href="/mobile/home/editresume/[[position_id]]">确认</a>
+        <button ui-turn-off="addresume" class="btn btn-default">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+
     </div>
 </div>
