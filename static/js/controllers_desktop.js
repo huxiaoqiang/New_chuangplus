@@ -170,6 +170,16 @@ angular.module('chuangplus.controllers', []).
                 $scope.error = $errMsg.format_error("两次输入的密码不一致",$scope.error);
                 return;
             }
+            else if($scope.ic_check.used == true){
+                $scope.error.code = -1;
+                $scope.error = $errMsg.format_error("邀请码已经被注册，请联系创加获取邀请码",$scope.error);
+                return;
+            }
+            else if($scope.ic_check.exist = false){
+                $scope.error.code = -1;
+                $scope.error = $errMsg.format_error("邀请码错误，请联系创加获取邀请码",$scope.error);
+                return;
+            }
             var param = {
                 'code':$scope.reg_info.invitation_code
             };
@@ -224,6 +234,7 @@ angular.module('chuangplus.controllers', []).
                         }
                         else{
                             $scope.ic_check.exist = true;
+                            $scope.ic_check.used = false;
                         }
                     }
                     else{
