@@ -1094,7 +1094,7 @@ def process_position(request,position_id):
 @user_permission('login')
 def process_single(request,position_id,username):
     re = dict()
-    if request.method == 'POST':
+    if request.method == 'get':
         try:
             position = Position.objects.get(id=position_id)
         except DoesNotExist:
@@ -1114,7 +1114,7 @@ def process_single(request,position_id,username):
         up.save()
         re['error'] = error(1,'succeed!')
     else:
-        re['error'] = error(2,'Error, need POST')
+        re['error'] = error(3,'Error, need GET')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission('login')
