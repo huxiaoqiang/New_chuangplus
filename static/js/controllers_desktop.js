@@ -231,6 +231,7 @@ angular.module('chuangplus.controllers', []).
                     if(data.error.code == 1){
                         if(data.checked == true){
                             $scope.ic_check.used = true;
+                            $scope.ic_check.exist = true;
                         }
                         else{
                             $scope.ic_check.exist = true;
@@ -239,6 +240,7 @@ angular.module('chuangplus.controllers', []).
                     }
                     else{
                         $scope.ic_check.exist = false;
+                         $scope.ic_check.used = false;
                     }
                 });
         };
