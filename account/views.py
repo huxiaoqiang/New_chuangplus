@@ -53,13 +53,13 @@ def register(request):
             if find_user_email is not None:
                 re['error'] = error(115,"Email has been registed")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
-        except find_user_email.DoesNotExist:
+        except DoesNotExist:
             try:
                 find_username = User.objects.get(usename = username)
                 if find_username is not None:
                     re['error'] = error(107,"Username has been registed")
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
-            except find_username.DoesNotExist:
+            except DoesNotExist:
                 reguser = User()
                 try:
                     reguser = User.create_user(username=username, password=password, email=email)
