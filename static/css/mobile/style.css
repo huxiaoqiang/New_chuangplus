@@ -73,7 +73,6 @@ body {
   display: block;
   padding-bottom: 50px;
   height: 100%;
-  padding-top: 50px;
   background-color: white;
 }
 .purple-border {
@@ -267,9 +266,7 @@ a:hover {
   display: block;
   height: 50px;
   background: #966497;
-  position: fixed;
-  top: 0;
-  width: 100%;
+  position: relative;
   z-index: 20;
   overflow: auto;
 }
