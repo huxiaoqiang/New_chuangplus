@@ -23,7 +23,11 @@ def register(request):
         session_captcha = request.session.get('captcha', '')
         request_captcha = request.POST.get('captcha','')
 
-        if session_captcha == '' or request_captcha == '':    
+        if session_captcha == '':
+            re['error'] = error(98,"session_captcha is out of work")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+        if request_captcha == '':
             re['error'] = error(99,"Need captcha!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
 
