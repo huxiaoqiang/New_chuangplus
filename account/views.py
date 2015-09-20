@@ -1094,7 +1094,7 @@ def process_position(request,position_id):
 @user_permission('login')
 def process_single(request,position_id,username):
     re = dict()
-    if request.method == 'get':
+    if request.method == 'GET':
         try:
             position = Position.objects.get(id=position_id)
         except DoesNotExist:
