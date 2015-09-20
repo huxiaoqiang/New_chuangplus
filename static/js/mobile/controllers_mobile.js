@@ -1736,6 +1736,10 @@ angular.module('chuangplus_mobile.controllers', [])
         setTimeout(function(){window.location.href='/mobile/login';},2000);
         
     }])
+    .controller('MB_HomeCenterCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
+        $rootScope.loading = true;
+    }])
     .controller('MB_InfoCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('MB_InfoCtrl');
     }]);
