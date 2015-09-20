@@ -170,29 +170,35 @@ angular.module('chuangplus.controllers', []).
                 $scope.error = $errMsg.format_error("两次输入的密码不一致",$scope.error);
                 return;
             }
-            $csrf.set_csrf($scope.reg_info);
-            $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
-                success(function(data){
-                    if(data.error.code == 1){
-                        var param = {
-                            'code':$scope.reg_info.invitation_code
-                        };
-                        $csrf.set_csrf(param);
-                        $http.post(urls.api+"/captcha/register_invitation_code",$.param(param)).
-                            success(function(data){
-                                if(data.error.code == 1){
-                                    $scope.error = $errMsg.format_error("注册成功",data.error);
-                                    setTimeout(function(){window.location.href='/'},1500);
-                                }
-                                else{
-                                    $scope.error = $errMsg.format_error("",data.error);
-                                }
-                            });
-                    }
-                    else{
-                        $scope.error = $errMsg.format_error("",data.error);
-                    }
-                });
+            var param = {
+                'code':$scope.reg_info.invitation_code
+            };
+            $csrf.set_csrf(param);
+            $http.post(urls.api+"/captcha/register_invitation_code",$.param(param)).
+            success(function(data){
+                if(data.error.code == 1){
+                    $csrf.set_csrf($scope.reg_info);
+                    $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
+                        success(function(data){
+                            if(data.error.code == 1){
+                                $scope.error = $errMsg.format_error("注册成功",data.error);
+                                setTimeout(function(){window.location.href='/'},1500);
+                            }
+                            else{
+                                $scope.error = $errMsg.format_error("",data.error);
+                                setTimeout($scope.hide_error,2000);
+                            }
+                    });
+                }
+                else{
+                    $scope.error = $errMsg.format_error("",data.error);
+                }
+            });
+        };
+        $scope.hide_error = function(){
+            $scope.$apply(function(){
+                $errMsg.remove_error($scope.error);
+            });
         };
         $scope.showError = function(ngModelController,error){
             return ngModelController.$error[error];
