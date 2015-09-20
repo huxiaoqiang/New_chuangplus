@@ -1459,6 +1459,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     if($scope.intern_info.resume_name != undefined && $scope.intern_info.resume_id != undefined){
                         $scope.filename = $scope.intern_info.resume_name;
                     }
+                    $rootScope.loading = false;
                 }
                 else{
                     $scope.error = $errMsg.format_error("",data.error);
@@ -1524,7 +1525,6 @@ angular.module('chuangplus_mobile.controllers', [])
                 }
             });
         };
-        $rootScope.loading = false;
     }])
 
     .controller('MB_UserInfoUpdateCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
@@ -1542,6 +1542,7 @@ angular.module('chuangplus_mobile.controllers', [])
             success(function(data){
             if(data.error.code == 1){
                 $scope.user_info = data.data;
+                $rootScope.loading = false;
             }
         });
 
@@ -1642,6 +1643,7 @@ angular.module('chuangplus_mobile.controllers', [])
             success(function(data){
             if(data.error.code == 1){
                 $scope.user_info = data.data;
+                $rootScope.loading = false;
             }
         });
 
@@ -1663,7 +1665,6 @@ angular.module('chuangplus_mobile.controllers', [])
             else
                 $notice.show("请填写合法的信息");
         };
-        $rootScope.loading = false;
     }])
     .controller('MB_PostListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
     function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
@@ -1727,7 +1728,6 @@ angular.module('chuangplus_mobile.controllers', [])
             });
         };
         $scope.get_positions();
-        $rootScope.loading = false;
     }])
     .controller('MB_NotLoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
     function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
@@ -1738,7 +1738,7 @@ angular.module('chuangplus_mobile.controllers', [])
     }])
     .controller('MB_HomeCenterCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
     function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
-        $rootScope.loading = true;
+        $rootScope.loading = false;
     }])
     .controller('MB_InfoCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('MB_InfoCtrl');
