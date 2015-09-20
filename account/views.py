@@ -7,6 +7,7 @@ from app.common_api import error,user_permission
 from django.db import DatabaseError
 from django.core.mail import send_mail
 from random import randint
+from bson.objectid import ObjectId
 from django.db.models import Q
 import traceback
 
@@ -1147,12 +1148,11 @@ TYPE = ('technology','product','design','operate','marketing','functions','other
 def search_submit_intern(request):
     re = dict()
     if request.method == 'GET':
-        type = request.GET.get('type', '')
+        type = request.GET.get('position_type', '')
         processed = request.GET.get('processed','')
-
         try:
             #company = Companyinfo.objects.get(username=request.user.username)
-            company = Companyinfo.objects.get(username='company2')
+            company = Companyinfo.objects.get(username='chuangplus')
         except:
             re["error"] = error(105,"company does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -1201,7 +1201,10 @@ def search_submit_intern(request):
         for item in up:
             u = Userinfo.objects.get(user = item.user)
             userinfo = json.loads(u.to_json())
+            p = json.loads(item.position.to_json())
             userinfo['position_name'] = item.position.name
+            userinfo['position_id'] = p["_id"]["$oid"]
+            userinfo['process'] = item.processed
             user_list.append(userinfo)
         re['error'] = error(1,'succeed ')
         re['data'] = user_list
