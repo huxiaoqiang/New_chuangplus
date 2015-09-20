@@ -14,17 +14,74 @@
         background-color: #8f4e96;
       }
       .submit_list{
+        min-height: 500px;
         font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+        .no_submit{
+          font-size: 20px;
+          color: black;
+          margin-top: 50px;
+          padding-top: 70px;
+          text-align: center;
+          background-color: white;
+          height: 170px;
+          border: solid 1px #bfbfbf;
+          border-radius: 6px;
+        }
         .submit_item{
+          cursor: pointer;
           width: 100%;
           height: 100px;
           background-color: white;
           border: solid 1px#bfbfbf;
           border-radius: 6px;
           margin-top: 15px;
-          padding: 20px;
+          padding: 15px;
+          .real_name{
+            font-size: 20px;
+          }
+          .position_name{
+            font-size: 20px;
+          }
+          .basic-info{
+            margin-top: 10px;
+          }
+        }
+        .submit_item:hover{
+            background-color: rgba(243, 243, 243, 0.53);
+        }
+        ul.pagination>.active>a{
+             background-color: #8f4e96;
+             border-color: #98769E;
+          }
         }
       }
     }
-  }
+    .col-sm-3{
+      .logo{
+        img{
+          width: 100%;
+        }
+      }
+      .abbreviation{
+        font-size: 20px;
+        color: black;
+        margin-top: 10px;
+      }
+      .position_sum{
+        font-size: 20px;
+        color: black;
+      }
+      .search_params_position_type{
+        width: 100%;
+        height: 30px;
+        border: solid 1px #bfbfbf;
+        border-radius: 6px;
+        padding-left: 10px;
+      }
+    }
+}
+#show_intern_info{
+    padding-top: 50px;
+    padding-left: 30px;
+    padding-right: 50px;
 }

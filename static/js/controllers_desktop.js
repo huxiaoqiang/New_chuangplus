@@ -642,6 +642,7 @@ angular.module('chuangplus.controllers', []).
         console.log('DT_CompanyResumeCtrl');
         $scope.company_id = $routeParams.company_id;
         $scope.submit_list = [];
+        $scope.chosed_index = -1;
         $scope.position_type = {
             "technology":"技术",
             'product':"产品",
@@ -660,6 +661,10 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.param = {
             'page' : 1
+        };
+        $scope.show_right_bar = false;
+        $scope.toggleRightBar = function(){
+            $scope.show_right_bar = !$scope.show_right_bar;
         };
         $scope.get_submit_list = function(){
             var param = '';
@@ -724,6 +729,55 @@ angular.module('chuangplus.controllers', []).
             };
             $scope.search_params_position_type = '';
             $scope.get_company_info();
+        };
+        $scope.processe = function(index){
+            if($scope.submit_list[index].process == true){
+                return
+            }
+            $http.get(urls.api+"/account/company/"+ $scope.submit_list[index].position_id+"/"+$scope.submit_list[index].username+"/process").
+                success(function(data){
+                    if(data.error.code == 1){
+                        alert($scope.submit_list[index].position_id,$scope.submit_list[index].username);
+                    }
+                });
+        };
+        $scope.view_detail = function(index){
+            $scope.intern_info = $scope.submit_list[index];
+            $scope.processe(index);
+            if($scope.chosed_index == -1){
+                $scope.chosed_index = index;
+                $scope.toggle_show();
+            }
+            else{
+                if($scope.chosed_index == index){
+                    $scope.toggle_show();
+                }
+                else{
+                    if($('#sideToggle').attr("checked") == "checked"){
+                        $scope.chosed_index = index;
+                        $scope.toggle_show();
+                        setTimeout($scope.toggle_show,500);
+                        $scope.show_right_bar = true;
+                    }
+                    else{
+                        $scope.toggle_show();
+                        $scope.chosed_index = index;
+                    }
+                }
+            }
+        };
+        $scope.show = function(){};
+        $scope.toggle_show = function(){
+            if($('#sideToggle').attr("checked") == "checked"){
+                $('#sideToggle').attr('checked',false);
+                $scope.show_right_bar = false;
+                $('aside').css({width:"0px"});
+            }
+            else{
+                $('#sideToggle').attr("checked",true);
+                $('aside').css({width:"600px"});
+                $scope.show_right_bar = true;
+            }
         };
     }]).
     controller('DT_CompanyInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','Upload','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, Upload,$errMsg){

@@ -72,3 +72,65 @@ ul.pagination{
     border: none;
   }
 }
+
+#main-container{
+  position: relative;
+}
+#main-container.sideMenu{
+  margin:0;
+  -webkit-transform:none;
+  transform:none;
+}
+#sideToggle{
+  display:none;
+}
+#sideToggle:checked + aside{
+    width:600px;
+ }
+#sideToggle:checked{
+    #wrap{
+      padding-right:220px;
+    }
+}
+#main-container > aside{
+  position:fixed;
+  z-index: 3;
+  top:0;
+  bottom:0;
+  right:0px;
+  width:0px;
+  background:#bfbfbf;
+  transition: width 0.8s;
+  -webkit-transition: width 0.8s;
+}
+#main-container > aside > h2{
+  color:#FFF;
+  text-align:center;
+  font-weight:normal;
+  padding:10px;
+}
+#warp-side{
+  margin-left:20px;
+  padding:10px;
+  transition:width 0.8s;
+  -webkit-transition:width 0.8s;
+}
+  #warp-side > label{ display:inline-block; }
+    #warp-side > label{
+      background:#f1103a;
+      border-radius:50px;
+      color: #FFF;
+      cursor: pointer;
+      display: block;
+      font-family: Courier New;
+      font-size: 25px;
+      font-weight: bold;
+      width: 30px;
+      height: 30px;
+      line-height: 35px;
+      text-align: center;
+      text-shadow: 0 -4px;
+    }
+    #warp-side > label:hover{
+      background:#000;
+    }
