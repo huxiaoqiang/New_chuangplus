@@ -53,56 +53,58 @@ def register(request):
             if find_user_email is not None:
                 re['error'] = error(115,"Email has been registed")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
-            find_user_name = User.objects.get(usename = username)
-            if find_user_name is not None:
-                re['error'] = error(107,"Username has been registed")
-                return HttpResponse(json.dumps(re), content_type = 'application/json')
-        except DoesNotExist:
-            reguser = User()
+        except find_user_email.DoesNotExist:
             try:
-                reguser = User.create_user(username=username, password=password, email=email)
-            except Exception as e:
-                #print traceback.print_exc()
-                re['error'] = error(107, 'Username exist or username include special character')
-                return HttpResponse(json.dumps(re), content_type = 'application/json')
-            if reguser is not None and role == "1":
-                reguser.is_staff = True
-                reguser.save()
-                companyinfo = Companyinfo(username=username,user=reguser)
-                companyinfo.date_joined = datetime_now()
-                companyinfo.update_time = datetime_now()
-                companyinfo.hr_cellphone = request.POST.get('hr_cellphone', '')
-                try:
-                    companyinfo.save(force_insert=True)
-                except:
-                    re['error'] = error(106," Register failed")
-                    reguser.delete()
+                find_username = User.objects.get(usename = username)
+                if find_username is not None:
+                    re['error'] = error(107,"Username has been registed")
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
-                re['error'] = error(1, 'company user registered!')
-            elif reguser is not None and role == "0":
-                userinfo = Userinfo(username=username,user=reguser,email=email)
-                userinfo.date_joined = datetime_now()
-                userinfo.update_time = datetime_now()
-                userinfo.save(force_insert=True)
-                re['error'] = error(1, 'ordinary user registered!')
-            #elif role == -1:
-            #    reguser.is_superuser = True
-            #    reguser.save()
-            user = auth.authenticate(username=username, password=password)
-            if user is not None and user.is_active:
-                auth.login(request, user)
-                request.session['role'] = int(role)
-                #request.session['status'] = userinfo.status
-                #request.session['practice_code'] = userinfo.practice_code
-                #re['status'] = userinfo.status
-                re['role'] = role
-                resp = HttpResponse(json.dumps(re), content_type = 'application/json')
-                resp.set_cookie('username', username)
-                #resp.set_cookie('status', userinfo.status)
-                resp.set_cookie('role', int(role))
-                return resp
-            else:
-                re['error'] = error(106,"register fail!")
+            except find_username.DoesNotExist:
+                reguser = User()
+                try:
+                    reguser = User.create_user(username=username, password=password, email=email)
+                except Exception as e:
+                    #print traceback.print_exc()
+                    re['error'] = error(107, 'Username exist or username include special character')
+                    return HttpResponse(json.dumps(re), content_type = 'application/json')
+                if reguser is not None and role == "1":
+                    reguser.is_staff = True
+                    reguser.save()
+                    companyinfo = Companyinfo(username=username,user=reguser)
+                    companyinfo.date_joined = datetime_now()
+                    companyinfo.update_time = datetime_now()
+                    companyinfo.hr_cellphone = request.POST.get('hr_cellphone', '')
+                    try:
+                        companyinfo.save(force_insert=True)
+                    except:
+                        re['error'] = error(106," Register failed")
+                        reguser.delete()
+                        return HttpResponse(json.dumps(re), content_type = 'application/json')
+                    re['error'] = error(1, 'company user registered!')
+                elif reguser is not None and role == "0":
+                    userinfo = Userinfo(username=username,user=reguser,email=email)
+                    userinfo.date_joined = datetime_now()
+                    userinfo.update_time = datetime_now()
+                    userinfo.save(force_insert=True)
+                    re['error'] = error(1, 'ordinary user registered!')
+                #elif role == -1:
+                #    reguser.is_superuser = True
+                #    reguser.save()
+                user = auth.authenticate(username=username, password=password)
+                if user is not None and user.is_active:
+                    auth.login(request, user)
+                    request.session['role'] = int(role)
+                    #request.session['status'] = userinfo.status
+                    #request.session['practice_code'] = userinfo.practice_code
+                    #re['status'] = userinfo.status
+                    re['role'] = role
+                    resp = HttpResponse(json.dumps(re), content_type = 'application/json')
+                    resp.set_cookie('username', username)
+                    #resp.set_cookie('status', userinfo.status)
+                    resp.set_cookie('role', int(role))
+                    return resp
+                else:
+                    re['error'] = error(106,"register fail!")
     else:
         re['error'] = error(2, 'error, need post!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
