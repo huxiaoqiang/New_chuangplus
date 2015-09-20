@@ -584,6 +584,15 @@ a:hover {
 }
 .filter-btn {
   margin-top: 10px;
+  float: left;
+  width: 49%;
+  margin-right: 2%;
+}
+.filter-btn-last {
+  margin-top: 10px;
+  float: left;
+  width: 49%;
+  margin-right: 0 !important;
 }
 .filter-title {
   color: #966497;
