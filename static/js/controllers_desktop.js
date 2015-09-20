@@ -170,7 +170,7 @@ angular.module('chuangplus.controllers', []).
                 $scope.error = $errMsg.format_error("两次输入的密码不一致",$scope.error);
                 return;
             }
-            if(reg_info.role == 1){
+            if($scope.reg_info.role == 1){
                 if($scope.ic_check.used == true){
                     $scope.error.code = -1;
                     $scope.error = $errMsg.format_error("邀请码已经被注册，请联系创加获取邀请码",$scope.error);
