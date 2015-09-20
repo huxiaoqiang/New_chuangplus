@@ -298,6 +298,10 @@ angular.module('chuangplus_mobile.controllers', [])
                 'O2O':'教育',
                 'others':'其它'
         };
+        $scope.testLoading = function()
+        {
+            $rootScope.loading = !$rootScope.loading;
+        }
         $scope.get_positions = function(){
             $http.get(urls.api+"/position/search").
                 success(function(data){

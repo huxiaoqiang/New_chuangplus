@@ -34,6 +34,7 @@ body {
 .app-content-loading {
   text-align: center;
   height: 100%;
+  z-index: 10;
   width: 100%;
   background: rgba(255, 255, 255, 0.6);
   position: relative;
