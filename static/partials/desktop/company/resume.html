@@ -14,6 +14,7 @@
             </div>
             <p class="work_days">每周可工作时长：[[intern_info.work_days]]天/周</p>
             <p class="cellphone">TEL：[[intern_info.cellphone]]</p>
+            <p>百字简介</p>
             <p class="description">[[intern_info.description]]</p>
         </div>
         <div class="resume">
@@ -43,7 +44,7 @@
                         </div>
                         <span class="basic-info">[[user.university]]/[[user.major]]</span>
                     </div>
-                    <page num-pages="task.pageCount" current-page="task.currentPage" on-select-page="selectPage(page)">
+                    <page ng-show="task.pageCount!=1" num-pages="task.pageCount" current-page="task.currentPage" on-select-page="selectPage(page)">
                     </page>
                 </div>
             </div>
