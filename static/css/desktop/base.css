@@ -3631,15 +3631,18 @@ form.financing_add input {
   padding: 10px;
   min-height: 110px;
 }
-#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card .yes {
-  margin: 0 auto;
-  width: 30px;
-  height: 30px;
-  margin-top: -8px;
+#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card .add-member-btn {
+  text-align: center;
 }
-#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card .yes img {
-  width: 26px;
-  height: 26px;
+#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card .add-member-btn .btn {
+  background-color: #8f4e96;
+  color: white;
+  width: 100px;
+  outline: none;
+}
+#addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card .add-member-btn .btn:hover {
+  background-color: #98769E;
+  color: white;
 }
 #addMember .modal-dialog .modal-content .modal-body .member_add .member-info-card img {
   height: 120px;
