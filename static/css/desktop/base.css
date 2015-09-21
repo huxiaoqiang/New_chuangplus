@@ -1175,7 +1175,7 @@ form.financing_add input {
   resize: none;
   outline: none;
 }
-#container #edit_position .form-position button {
+#container #edit_position .form-position .next-button {
   position: absolute;
   bottom: -60px;
   left: 41.5%;
