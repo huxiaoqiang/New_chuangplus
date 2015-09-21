@@ -26,6 +26,8 @@ header #header .navbar .navbar-header #head-logo {
 }
 header #header .navbar .navbar-header #head-logo img {
   width: 100%;
+  padding-top: 8px;
+  margin-left: 15px;
 }
 header #header .navbar .navbar-item.not-login {
   margin-left: 47px;

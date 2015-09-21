@@ -213,6 +213,9 @@ angular.module('chuangplus.controllers', []).
                                     if($scope.reg_info.role == 1){
                                         setTimeout(function(){window.location.href='/company/'+$scope.id+'/create/first'},1500);
                                     }
+                                    else{
+                                        setTimeout(function(){window.location.href='/'},1500);
+                                    }
                                 }
                                 else{
                                     $scope.error = $errMsg.format_error("",data.error);
@@ -1480,6 +1483,7 @@ angular.module('chuangplus.controllers', []).
         $scope.company_id = $routeParams.company_id;
         $scope.position_id = $routeParams.position_id;
         $scope.submit_position = function(){
+            $scope.disable_submit = true;
             $csrf.set_csrf($scope.position);
             if($scope.position.end_time != ''){
                 $scope.position.end_time = $filter('date')($scope.position.end_time, 'yyyy-MM-dd');
@@ -1494,6 +1498,7 @@ angular.module('chuangplus.controllers', []).
                         $scope.error = $errMsg.format_error('',data.error);
                         setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
+                    $scope.disable_submit = false;
                 })
         };
         $scope.set_position = function(){
