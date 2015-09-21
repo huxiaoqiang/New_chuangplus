@@ -2096,7 +2096,7 @@ angular.module('chuangplus.controllers', []).
             var reader = new FileReader(); 
             reader.readAsDataURL(file); 
             reader.onload = function(e){ 
-                $('#logo-preview').innerHTML = '<img src="'+this.result+'" alt=""/>' 
+                $('#image-edit').innerHTML = '<img src="'+this.result+'" alt=""/>' 
             } 
             $scope.resize(file);
         }
