@@ -1873,8 +1873,8 @@ angular.module('chuangplus.controllers', []).
                   constrain = false,
                   min_width = 60, // Change as required
                   min_height = 60,
-                  max_width = 500, // Change as required
-                  max_height = 400,
+                  max_width = 1500, // Change as required
+                  max_height = 1400,
                   resize_canvas = document.createElement('canvas');
 
               var init = function(){
@@ -2102,9 +2102,9 @@ angular.module('chuangplus.controllers', []).
             } 
             var reader = new FileReader(); 
             reader.readAsDataURL(file); 
-            reader.onload = function(e){ 
+///            reader.onload = function(e){ 
                 $('#img_preview').attr('src',this.result);
-            } 
+   //         } 
             $scope.resize(file);
         }
         $scope.add_tag = function(){
