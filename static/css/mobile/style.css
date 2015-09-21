@@ -581,7 +581,7 @@ a:hover {
   background: url('/static/image/icon/3d-purple.png');
 }
 .filter-content {
-  top: -1000;
+  top: -1000px;
   z-index: 1000;
   width: 100%;
   background: white;
