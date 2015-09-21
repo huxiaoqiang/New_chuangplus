@@ -1492,7 +1492,8 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.error = $errMsg.format_error('发布职位成功',data.error);
-                        setTimeout(function(){window.location.href='/company/' + $scope.company_id + '/position/manage'},1500);
+                        //setTimeout(function(){window.location.href='/company/' + $scope.company_id + '/position/manage'},1500);
+                        setTimeout(function(){window.location.href='/position/list'},1500);
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);

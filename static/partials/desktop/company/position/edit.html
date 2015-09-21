@@ -9,7 +9,7 @@
                             <label>职位名称</label>
                         </div>
                         <div class="col-sm-9">
-                            <input type="text" required ng-model="position.name" maxlength=8>
+                            <input type="text" required ng-model="position.name" maxlength=8 placeholder="如：软件工程师（最长8个字）">
                         </div>
                     </div>
                     <div class="input-group">
@@ -39,7 +39,7 @@
                             <label>办公地址</label>
                         </div>
                      <div class="col-sm-9">
-                            <input type="text" required ng-model="position.work_address">
+                            <input type="text" required ng-model="position.work_address" placeholder="请填写办公详细地址">
                         </div>
 
              <!--              <i class="icon-map-marker icon-large"></i>                        -->
@@ -61,7 +61,7 @@
                     </div>
                     <div class="input-group">
                         <div class="col-sm-6">
-                            <label>最少工作日/周</label></br>
+                            <label>最少工作天数/周</label></br>
                               <table>
                                 <tbody>
                                     <tr>
@@ -79,7 +79,7 @@
 
                         </div>
                         <div class="col-sm-6">
-                            <label>薪资</label></br>
+                            <label>薪资（填写整数，单位k）</label></br>
                             <span class="salary">
                                 <input name="salary_min" type="text" class="form-control" ng-model="position.salary_min" required>
                             </span>
@@ -94,7 +94,7 @@
                     <div style="clear: both"></div>
                     <div class="input-group">
                         <div class="col-sm-6">
-                            <label>至少工作月数</label>
+                            <label>至少工作月数（请填写整数）</label>
                             <div><input class="form-control month_input" ng-model="position.internship_time" required></div>
                             <span class="month">个月</span>
                         </div>
@@ -117,6 +117,6 @@
                 <div id="err-msg" ng-show="error.show"  ng-class="error.class">[[error.message]]</div>
             </div>
         </form>
-        <input name="end_time" type="text" class="form-control datepicker" ng-model="position.end_time" datepicker-popup="yyyy-MM-dd" ng-required="true">
+        <input name="end_time" type="text" class="form-control datepicker" ng-model="position.end_time" datepicker-popup="yyyy-MM-dd" ng-required>
     </div>
 </div>
