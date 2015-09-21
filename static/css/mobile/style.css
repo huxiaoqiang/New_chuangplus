@@ -11,6 +11,7 @@ body {
 }
 .scrollable-content {
   position: absolute;
+  padding-bottom: 50px;
 }
 @media (min-width: 992px) {
   .has-sidebar-left .app,
