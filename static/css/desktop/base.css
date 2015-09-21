@@ -3675,12 +3675,63 @@ body > #wrap_no_header_footer #main-container {
   padding-left: 30px;
   padding-right: 50px;
 }
-#show_intern_info .view .description {
-  height: 140px;
+#show_intern_info .view {
   background-color: white;
-  border: solid 1px #bfbfbf;
+  border: solid 1px #c6c6c6;
   border-radius: 6px;
-  padding: 15px;
+  padding: 10px;
+  padding-left: 30px;
+  padding-top: 20px;
+  margin-top: 97px;
+}
+#show_intern_info .view .first-line .name {
+  font-size: 18px;
+  color: black;
+}
+#show_intern_info .view .second-line {
+  margin-top: 5px;
+}
+#show_intern_info .view .work_days {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+#show_intern_info .view p.line {
+  background-color: #c6c6c6;
+  height: 1px;
+  width: 60%;
+}
+#show_intern_info .view .cellphone {
+  margin-top: 5px;
+}
+#show_intern_info .view .description {
+  min-height: 100px;
+}
+#show_intern_info .resume {
+  width: 70%;
+  background-color: white;
+  border: solid 1px#c6c6c6;
+  border-radius: 6px;
+  margin-top: 20px;
+  padding: 20px;
+  position: relative;
+}
+#show_intern_info .resume .resume_file {
+  position: absolute;
+  top: 30px;
+}
+#show_intern_info .resume img {
+  height: 40px;
+  margin-left: 45px;
+}
+#show_intern_info .resume .no-resume {
+  position: absolute;
+  top: 30px;
+  left: 110px;
+}
+#show_intern_info .resume .resume-name {
+  position: absolute;
+  top: 30px;
+  left: 110px;
 }
 body {
   background-color: #f0f0f0;
@@ -3744,13 +3795,15 @@ ul.pagination li {
   padding-right: 220px;
 }
 #main-container > aside {
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   position: fixed;
   z-index: 3;
   top: 0;
   bottom: 0;
   right: 0px;
   width: 0px;
-  background: #bfbfbf;
+  background: #f4f4f4;
+  border: solid 1px #c6c6c6;
   transition: width 0.8s;
   -webkit-transition: width 0.8s;
 }
