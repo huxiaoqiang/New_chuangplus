@@ -10,12 +10,12 @@
         <form name="SecondStepForm" ng-submit="next_step()">
             <div class="info3">
                 <div>
-                    <label>公司介绍</label><br/>
-                    <textarea ng-model="companyinfo.company_description"></textarea>
+                    <label>公司简介</label><br/>
+                    <textarea ng-model="companyinfo.company_description" required></textarea>
                 </div>
                 <div>
                     <label>产品/服务简介</label><br/>
-                    <textarea ng-model="companyinfo.product_description"></textarea>
+                    <textarea ng-model="companyinfo.product_description" required></textarea>
                 </div>
             <input type="button" class="pre-button btn" value="上一步" ng-click="pre_step()">
             <input type="submit" class="next-button btn" value="下一步">

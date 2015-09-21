@@ -12,7 +12,12 @@
             </div>
             <div class="company-dscrpt">
                 <p class="index">融资情况：</p>
-                <p class="txt"ng-repeat="financing in financing_list">[[financing.stage_value]]&nbsp;&nbsp;[[financing.organization]]&nbsp;&nbsp;[[financing.amount_value]]</p>
+                <div ng-if="financing_list.length!=0">
+                    <p class="txt"ng-repeat="financing in financing_list">[[financing.stage_value]]&nbsp;&nbsp;[[financing.organization]]&nbsp;&nbsp;[[financing.amount_value]]</p>
+                </div>
+                <div ng-if="financing_list.length==0">
+                    <p>公司暂未融资</p>
+                </div>
             </div>
         </div>
 
@@ -63,13 +68,13 @@
             <div class="position-info">
                 <div class="top-block">
                 <div class="company-logo">
-                    <img src="/api/file/[[position.company.logo_id]]/download" alt="图片">
+                    <img src="/api/file/[[position.company.logo_id]]/download" alt="公司logo" title="公司logo">
                 </div>
                 <div class="position-name">
                     <div class="vertical-center">
                         <p class="name">[[position.company.abbreviation]]</p>
                         <p class="brief_introduction">[[position.company.brief_introduction]]</p>
-                        <p class="auth">v[[position.company.auth_organization]]红杉资本认证</p>
+                        <p class="auth">[[position.company.auth_organization]]</p>
                     </div>
                 </div>
                 <div class="item-label label-2">
@@ -91,7 +96,7 @@
                 <div class="line"></div>
                 <div class="item-label label-3">
                     <div class="vertical-center">
-                        <p class="position_number">在招岗位数：[[position.company.position_number]]</p>
+                        <p class="position_number">在招职位数：[[position.company.position_number]]</p>
                         <div class="position_tags" >
                             <span class="tags" ng-repeat="position_type in position.company.position_type_value">[[position_type]]</span>
                             <div style="clear:both"></div>
@@ -141,9 +146,10 @@
                 </div>
                 <div style="clear:both"></div>
             </div>
-            <div class="map">
+<!--            <div class="map">
                 <img>
             </div>
+-->
             <div style="clear:both"></div>
         </div>
         <div class="submit_favor" ng-show="role == 0">
