@@ -130,6 +130,9 @@
                     <div class="filter-elem">
                         <label><input type="checkbox" ng-model="filter.type.functions" />职能</label> 
                     </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox" ng-model="filter.type.others" />其它</label> 
+                    </div>
 
                 </div>
                 <a class="panel-radius btn-b-pur filter-btn" ng-click="submit_filter(4)">筛选</a>
@@ -205,7 +208,7 @@
 </div>
 </div>
 <div class="navbar navbar-app navbar-absolute-bottom">
-    <a class="nav-bar-3 selected"  ng-href="/mobile/position/list" >职位</a>
+    <a class="nav-bar-3 bg-3d-purple"  ng-href="/mobile/position/list" >职位</a>
     <a class="nav-bar-3 " ng-href="/mobile/index">公司</a>
     <a class="nav-bar-3 " ng-href="/mobile/home" >个人中心</a>
 </div>

@@ -93,6 +93,10 @@ body
     font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
     overflow-x: hidden;
 }
+.scrollable-content
+{
+    position: absolute;
+}
 @media (min-width: 992px)
 {
     .has-sidebar-left .app, .sidebar-left-in .app {
@@ -240,7 +244,7 @@ body
 {
     width: 100%;
     height: @btn-height;
-    line-height: @btn-height - 2px;
+    line-height: @btn-height;
     border: @btn-border solid @std-purple;
     background:                 white;
     color:                 @std-purple;
@@ -429,6 +433,7 @@ a:hover
     z-index: 20;
     overflow: auto;
     background: url('/static/image/icon/3d-purple.png') ;
+    background-repeat: repeat-x;
 }
 .header-bar .header
 {
@@ -746,8 +751,15 @@ a:hover
     font-size: @cl-nav-fsize;
     text-align: center;
     vertical-align: middle;
+    border-left: 1px solid @lit-gray;
     border-top: 0;
     color: black;
+    background: url('/static/image/icon/3d-gray.png') !important;
+    background-repeat: repeat-x;
+}
+.nav-bar-3:first-child
+{
+    border: 0;
 }
 .nav-bar-2
 {
@@ -759,8 +771,15 @@ a:hover
     font-size: @cl-nav-fsize;
     text-align: center;
     vertical-align: middle;
+    border-left: 1px solid @lit-gray;
     border-top: 0;
     color: black;
+    background: url('/static/image/icon/3d-gray.png') !important;
+    background-repeat: repeat-x;
+}
+.nav-bar-2:first-child
+{
+    border: 0;
 }
 .nav-bar-1
 {
@@ -784,11 +803,21 @@ a:hover
 }
 .bg-3d-purple
 {
-    background: url('/static/image/icon/3d-purple.png') ;
+    background: url('/static/image/icon/3d-purple.png') !important;
+    background-repeat: repeat-x;
+    color: white !important;
+}
+
+.bg-3d-purple-2
+{
+    background: url('/static/image/icon/3d-purple.png');
+    background-repeat: repeat-x;
+    color: white;
 }
 .bg-3d-gray
 {
-
+    background: url('/static/image/icon/3d-gray.png') !important;
+    background-repeat: repeat-x;
 }
 .filter-content
 {

@@ -383,12 +383,12 @@ angular.module('chuangplus_mobile.controllers', [])
                 {
                     if($scope.filter_params == '')
                     {
-                        $scope.filter_params = '?type=' + ele;
+                        $scope.filter_params = '?types=' + ele;
                         $scope.type_notice = $scope.position_type[ele];
                     }
                     else if (!isSelected) 
                     {
-                        $scope.filter_params = '&type=' + ele;
+                        $scope.filter_params = '&types=' + ele;
                         $scope.type_notice = $scope.position_type[ele];
                     }
                     else
@@ -401,9 +401,9 @@ angular.module('chuangplus_mobile.controllers', [])
             if($scope.filter.salary != '' && $scope.filter.salary != undefined)
             {
                 if($scope.filter_params != '')
-                    $scope.filter_params += '&salary=' + $scope.filter.salary;
+                    $scope.filter_params += '&salary_min=' + $scope.filter.salary;
                 else
-                    $scope.filter_params += '?salary=' + $scope.filter.salary;
+                    $scope.filter_params += '?salary_min=' + $scope.filter.salary;
                 $scope.salary_notice = $scope.filter.salary + 'K';
             }
 
