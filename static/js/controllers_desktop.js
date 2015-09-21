@@ -2161,7 +2161,7 @@ angular.module('chuangplus.controllers', []).
             }
             $scope.companyinfo.welfare_tags = '';
             var tag_number = 0;
-            for(i=0; i<$scope.tags.length; i++){
+            for(var i=0; i<$scope.tags.length; i++){
                 if($scope.tags[i].chosed == true){
                     $scope.companyinfo.welfare_tags += $scope.tags[i].value;
                     $scope.companyinfo.welfare_tags += ',';
