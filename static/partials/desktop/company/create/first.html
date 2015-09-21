@@ -32,8 +32,9 @@
                     </div>
                     <div class="col-sm-9">
                       <div class="change_tab" ng-model="logo"  ngf-select="upload($file,'logo','logo')">
-                        <img  ng-if="logo==null" ng-src="/api/file/[[companyinfo.logo_id]]/download" alt="点击上传logo"><br/>
-                        <img  ng-if="logo!=null" ngf-src="logo"><br/>
+                        <img  ng-if="logo==null && companyinfo.logo_id != undefined" ng-src="/api/file/[[companyinfo.logo_id]]/download" title="点击上传logo"><br/>
+                        <div class="upload-img"  ng-if="logo==null && companyinfo.logo_id == undefined" >点击上传logo</div>
+                        <img  ng-if="logo!=null" ngf-src="logo" title="点击上传logo"><br/>
                       </div>
                     </div>
                 </div>
