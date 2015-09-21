@@ -1,3 +1,4 @@
+
 <div id="container" xmlns="http://www.w3.org/1999/html">
     <div id="first-step">
         <div class="head">
@@ -7,6 +8,18 @@
             <div class="item alpha10"></div>
         </div>
         <div style="clear:both;"></div>
+
+        <div ng-controller="DT_ResizeImgCtrl" ng-show="resize_area">
+          <div class="resize-component">
+            <div class="overlay">
+                <div class="overlay-inner">
+                </div>
+            </div>
+            <img class="resize-image" ngf-src="logo" id='image-edit' alt="image for resizing">
+            <button class="btn-crop js-crop">确认修改<img class="icon-crop" src="/static/lib/imageresize/img/crop.svg"></button>
+          </div>
+        </div>
+        
         <form name="FirstStepForm" ng-submit="next_step()">
         <div class="info1">
             <div class="left-info">
@@ -31,10 +44,10 @@
                         <label>公司logo</label>
                     </div>
                     <div class="col-sm-9">
-                      <div class="change_tab" ng-model="logo"  ngf-select="upload($file,'logo','logo')">
-                        <img  ng-if="logo==null && companyinfo.logo_id != undefined" ng-src="/api/file/[[companyinfo.logo_id]]/download" title="点击图片修改logo"><br/>
+                      <div class="change_tab" ng-model="logo"  ngf-select="startUpload($file)">
+                        <img id='logo-preview' ng-if="logo==null && companyinfo.logo_id != undefined" ng-src="/api/file/[[companyinfo.logo_id]]/download" title="点击图片修改logo"><br/>
                         <div class="upload-img"  ng-if="logo==null && companyinfo.logo_id == undefined" >点击上传logo</div>
-                        <img  ng-if="logo!=null" ngf-src="logo" title="点击上传logo"><br/>
+                        <img id='logo-preview' ng-if="logo!=null" ngf-src="logo" title="点击上传logo"><br/>
                       </div>
                       <div>
                           <p>点击图片上传或修改logo</p>
