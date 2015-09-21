@@ -2252,6 +2252,8 @@ form.financing_add input {
 #container #position-detail .col-md-9 .position-info .company-logo img {
   width: 85px;
   height: 85px;
+  border-radius: 6px;
+  border: solid 1px #bfbfbf;
 }
 #container #position-detail .col-md-9 .position-info .skip-btn {
   float: right;
@@ -2260,9 +2262,15 @@ form.financing_add input {
   display: table;
   font-size: 14px;
 }
-#container #position-detail .col-md-9 .position-info .skip-btn a {
+#container #position-detail .col-md-9 .position-info .skip-btn .vertical-center a {
   text-decoration: none;
   color: #707070;
+}
+#container #position-detail .col-md-9 .position-info .skip-btn .vertical-center a div {
+  cursor: pointer;
+}
+#container #position-detail .col-md-9 .position-info .skip-btn .vertical-center a div:hover {
+  color: #98769E;
 }
 #container #position-detail .position-dscrpt {
   width: 100%;
@@ -3298,6 +3306,19 @@ form.financing_add input {
   cursor: pointer;
   height: 160px;
   width: 160px;
+}
+#container #second-step .info2 .left-info .input-group .col-sm-9 .change_tab .no-qrcode {
+  cursor: pointer;
+  width: 160px;
+  height: 160px;
+  background-color: rgba(191, 191, 191, 0.61);
+  color: white;
+  border-radius: 6px;
+  text-align: center;
+  padding-top: 70px;
+}
+#container #second-step .info2 .left-info .input-group .col-sm-9 .change_tab .no-qrcode:hover {
+  color: #98769E;
 }
 #container #second-step .info2 .left-info input.pre-button {
   position: absolute;

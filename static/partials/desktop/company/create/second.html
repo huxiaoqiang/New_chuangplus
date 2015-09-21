@@ -41,7 +41,7 @@
                         <div class="col-sm-9">
                             <div class="change_tab" ng-model="qrcode"  ngf-select="upload($file,'qrcode','qrcode')">
                                 <img ng-if="qrcode==null && companyinfo.hasOwnProperty('qrcode_id')" src="/api/file/[[companyinfo.qrcode_id]]/download">
-                                <img ng-if="qrcode==null && !companyinfo.hasOwnProperty('qrcode_id')" src="/static/image/logo/qrcode.jpg" title="单击图片修改二维码"><br/>
+                                <div class="no-qrcode" ng-if="qrcode==null && !companyinfo.hasOwnProperty('qrcode_id')">单击图片修改二维码</div><br/>
                                 <img ng-if="qrcode!=null" ngf-src="qrcode" title="单击图片修改二维码"><br/>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                     <p>特别说明：犀牛会与贵公司最近一轮融资的投资机构联系，提供认证。请至少填写最近两轮融资信息，天使轮及以前可只填写一轮。未融资请在下方勾选，不需要填写</p>
                     <input id="financing_checkbox" type="checkbox" ng-model="no_financing" ng-click="toggle_checkbox()" ng-disabled="financing_list.length!=0">&nbsp;&nbsp;未融资</label>
                     <div class="add_financing">
-                        <span data-toggle="modal"  data-target="#add_financing" ng-show="no_financing==false">
+                        <span data-toggle="modal"  data-target="#add_financing" ng-show="!no_financing">
                             <img src="/static/image/icon/add.png">
                         </span>
                         <div style="clear: both"></div>

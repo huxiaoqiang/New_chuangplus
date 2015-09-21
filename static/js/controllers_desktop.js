@@ -2649,7 +2649,7 @@ angular.module('chuangplus.controllers', []).
                     if(data.error.code == 1){
                         $scope.positions = data.positions;
                         $scope.task.pageCount = data.page_number;
-                        for(i=0; i<$scope.positions.length;i++){
+                        for(var i=0; i<$scope.positions.length;i++){
                             $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
                             $scope.positions[i].company.field_type = $scope.field_type[$scope.positions[i].company.field];
                             if($scope.positions[i].company.scale == 0){
