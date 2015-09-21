@@ -1873,8 +1873,8 @@ angular.module('chuangplus.controllers', []).
                   constrain = false,
                   min_width = 60, // Change as required
                   min_height = 60,
-                  max_width = 500, // Change as required
-                  max_height = 400,
+                  max_width = 1500, // Change as required
+                  max_height = 1400,
                   resize_canvas = document.createElement('canvas');
 
               var init = function(){
@@ -2071,7 +2071,7 @@ angular.module('chuangplus.controllers', []).
                 window.open(crop_canvas.toDataURL("image/png"));
                 var dataURL=crop_canvas.toDataURL();
                 // dataURL 的格式为 “data:image/png;base64,****”,逗号之前都是一些说明性的文字，我们只需要逗号之后的就行了
-                var data=data.split(',')[1];
+                var data=dataURL.split(',')[1];
                 data=window.atob(data);
                 var ia = new Uint8Array(data.length);
                 for (var i = 0; i < data.length; i++) {
@@ -2080,11 +2080,14 @@ angular.module('chuangplus.controllers', []).
                 // canvas.toDataURL 返回的默认格式就是 image/png
                 var blob=new Blob([ia], {type:"image/png"});
 
-                $('.change_tab').innerHTML = '<img src="'+dataURL+'" alt=""/>' ;
+//                $('.change_tab').innerHTML = '<img src="'+dataURL+'" alt=""/>' ;
 //                document.getElementById('#logo-preview').src="/api/file/"+ $scope.companyinfo.logo_id+ "/download"; 
                 //window.open(crop_canvas.toDataURL("image/png"));
                 $scope.upload(blob,'logo');
                 $scope.resize_area = false;
+                location.reload();
+                //$('#img_preview').attr('ngf-src',crop_canvas.toDataURL("image/png"));
+                
               }
 
               init();
@@ -2101,9 +2104,9 @@ angular.module('chuangplus.controllers', []).
             } 
             var reader = new FileReader(); 
             reader.readAsDataURL(file); 
-            reader.onload = function(e){ 
-                $('#image-edit').innerHTML = '<img class="resize-image"' + 'src="'+this.result+'" alt=""/>' ;
-            } 
+///            reader.onload = function(e){ 
+                $('#img_preview').attr('src',this.result);
+   //         } 
             $scope.resize(file);
         }
         $scope.add_tag = function(){
