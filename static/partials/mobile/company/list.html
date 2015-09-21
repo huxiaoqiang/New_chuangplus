@@ -7,7 +7,19 @@
             <div ng-include="'/static/partials/mobile/partials/sidebar-left.html'" ></div>
             <div class="header"> 犀牛·帮你找实习</div>
         </div>    
-        <div id="filter-content">
+        <div class="require-bar">
+            <div class="requires">
+                <div class="require-box elem-width-2" ng-click="show_filter(1)">[[filed_notice]] <i class="fa fa-caret-down"></i></div>
+                <div class="require-box elem-width-2" ng-click="show_filter(2)">[[scale_notice]] <i class="fa fa-caret-down"></i></div>
+                <!--
+                    <div class="require-box">红杉资本认证</div>
+                -->
+            </div>
+            <!--
+                <div class="require-btn" ng-click="show_filter()">&nbsp;</div>
+            -->
+        </div>
+        <div id="filter-content1" class="filter-content">
             <div class="padding">
                 <div class="filter-squ">
                     <div class="filter-title">
@@ -18,37 +30,40 @@
                         <label><input type="checkbox" ng-model="filter.field.all" />没有要求</label> 
                     </div>
                 -->
-                <div class="filter-elem">
-                    <label><input type="checkbox" ng-model="filter.field.social" />社交</label> 
+                    <div class="filter-elem">
+                        <label><input type="checkbox" ng-model="filter.field.social" />社交</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox"  ng-model="filter.field.e_commerce" />电子商务</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox"  ng-model="filter.field.education" />教育</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox"  ng-model="filter.field.health_medical" />健康医疗</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox"  ng-model="filter.field.culture_creativity" />文化创意</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox"  ng-model="filter.field.living_consumption" />生活消费</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox"  ng-model="filter.field.hardware" />硬件</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox"  ng-model="filter.field.O2O" />O2O</label> 
+                    </div>
+                    <div class="filter-elem">
+                        <label><input type="checkbox"  ng-model="filter.field.others" />其它</label> 
+                    </div>
                 </div>
-                <div class="filter-elem">
-                    <label><input type="checkbox"  ng-model="filter.field.e_commerce" />电子商务</label> 
-                </div>
-                <div class="filter-elem">
-                    <label><input type="checkbox"  ng-model="filter.field.education" />教育</label> 
-                </div>
-                <div class="filter-elem">
-                    <label><input type="checkbox"  ng-model="filter.field.health_medical" />健康医疗</label> 
-                </div>
-                <div class="filter-elem">
-                    <label><input type="checkbox"  ng-model="filter.field.culture_creativity" />文化创意</label> 
-                </div>
-                <div class="filter-elem">
-                    <label><input type="checkbox"  ng-model="filter.field.living_consumption" />生活消费</label> 
-                </div>
-                <div class="filter-elem">
-                    <label><input type="checkbox"  ng-model="filter.field.hardware" />硬件</label> 
-                </div>
-                <div class="filter-elem">
-                    <label><input type="checkbox"  ng-model="filter.field.O2O" />O2O</label> 
-                </div>
-                <div class="filter-elem">
-                    <label><input type="checkbox"  ng-model="filter.field.others" />其它</label> 
-                </div>
-
-
-                </div>
-
+                <a class="panel-radius btn-b-pur filter-btn" ng-click="submit_filter(1)">筛选</a>
+                <a class="panel-radius btn-b-pur filter-btn-last info-input" ng-click="hide_filter(1)">返回</a>
+            </div>
+        </div>
+        <div id="filter-content2" class="filter-content">
+            <div class="padding">
                 <div class="filter-squ">
                     <div class="filter-title">
                         公司规模/融资轮数
@@ -98,22 +113,13 @@
                     </div>
 
                 </div>
-                <a class="panel-radius btn-b-pur filter-btn" ng-click="submit_filter()">筛选</a>
-                <a class="panel-radius btn-b-pur filter-btn-last info-input" ng-click="hide_filter()">返回</a>
+                <a class="panel-radius btn-b-pur filter-btn" ng-click="submit_filter(2)">筛选</a>
+                <a class="panel-radius btn-b-pur filter-btn-last info-input" ng-click="hide_filter(2)">返回</a>
             </div>
 
         </div>
         <div id="list-content" ng-show="!filter_show">
-            <div class="require-bar">
-                <div class="requires">
-                    <div class="require-box">[[filed_notice]]</div>
-                    <div class="require-box">[[scale_notice]]</div>
-                    <!--
-                        <div class="require-box">红杉资本认证</div>
-                    -->
-                </div>
-                <div class="require-btn" ng-click="show_filter()">&nbsp;</div>
-            </div>
+            
 
             <div class="search-bar">
                   <input class=" search-input form-control" type="text" ng-model="search_name" placeholder="输入关键词进行搜索">

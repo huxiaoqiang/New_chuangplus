@@ -17,15 +17,15 @@ angular.module('chuangplus_mobile.controllers', [])
             "1":"快速发展",
             "2":"成熟"
         };
-        $scope.pfield = {
+        $scope.cfield = {
                 'social':'社交',
                 'e_commerce':'电子商务',
-                'education':'健康医疗',
-                'health_medical':'文化创意',
-                'culture_creativity':'硬件',
-                'living_consumption':'O2O',
-                'hardware':'生活消费',
-                'O2O':'教育',
+                'education':'教育',
+                'health_medical':'健康医疗',
+                'culture_creativity':'文化创意',
+                'living_consumption':'生活消费',
+                'hardware':'硬件',
+                'O2O':'O2O',
                 'others':'其它'
         };
         $scope.ptype = {
@@ -58,7 +58,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 'O2O':false,
                 'others':false
             },
-            "scale": ''
+            "scale": '-1'
             //,"csrfmiddlewaretoken" : $csrf.val()
         };
         $scope.get_company_list = function(){
@@ -70,7 +70,7 @@ angular.module('chuangplus_mobile.controllers', [])
                         $scope.pagenow = -23333;
                     for(var i=0;i<$scope.company_list.length;i++){
                         $scope.company_list[i].scale_value = $scope.stage[$scope.company_list[i].scale];
-                        $scope.company_list[i].field_value = $scope.pfield[$scope.company_list[i].field];
+                        $scope.company_list[i].field_value = $scope.cfield[$scope.company_list[i].field];
                         $scope.company_list[i].type_value = $scope.ptype[$scope.company_list[i].type];
                         $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
                         $scope.company_list[i].position_type_value = {};
@@ -83,17 +83,19 @@ angular.module('chuangplus_mobile.controllers', [])
             });
         };
         $scope.get_company_list();
-        $scope.show_filter = function()
+        $scope.show_filter = function(id)
         {
-            $("#filter-content").slideDown("normal");
-            $scope.filter_show = true;
+            //$("#filter-content"+id).slideDown("normal");
+            $("#filter-content"+id).animate({top:90},"200");
+            //$scope.filter_show = true;
         };
-        $scope.hide_filter = function()
+        $scope.hide_filter = function(id)
         {
-            $("#filter-content").slideUp("fast");
-            $scope.filter_show = false;
+            //$("#filter-content"+id).slideUp("fast");
+            $("#filter-content"+id).animate({top:(-400)},"200");
+            //$scope.filter_show = false;
         };
-        $scope.submit_filter = function()
+        $scope.submit_filter = function(id)
         {
             $scope.filed_notice = '行业/领域';
             $scope.scale_notice = '公司规模';
@@ -105,14 +107,14 @@ angular.module('chuangplus_mobile.controllers', [])
                 {
                     if($scope.filter_params == '')
                     {
-                        $scope.filed_notice = $scope.pfield[ele];
+                        $scope.filed_notice = $scope.cfield[ele];
                         $scope.filter_params = '?field=' + ele;
                     }
                     else
                         $scope.filter_params += ','+ele;
                 }
             }
-            if($scope.filter.scale != '')
+            if($scope.filter.scale != '-1' && $scope.filter.scale != '')
             {
                 $scope.scale_notice = $scope.stage[$scope.filter.scale];
                 if($scope.filter_params != '')
@@ -136,7 +138,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     console.log(data);
                     for(var i=0;i<$scope.company_list.length;i++){
                         $scope.company_list[i].scale_value = $scope.stage[$scope.company_list[i].scale];
-                        $scope.company_list[i].field_value = $scope.pfield[$scope.company_list[i].field];
+                        $scope.company_list[i].field_value = $scope.cfield[$scope.company_list[i].field];
                         $scope.company_list[i].type_value = $scope.ptype[$scope.company_list[i].type];
                         $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
                         $scope.company_list[i].position_type_value = {};
@@ -145,7 +147,7 @@ angular.module('chuangplus_mobile.controllers', [])
                             $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
                     
                     }
-                    $scope.hide_filter();
+                    $scope.hide_filter(id);
                 }
             });
         };
@@ -154,7 +156,6 @@ angular.module('chuangplus_mobile.controllers', [])
             if ($scope.search_name != '' && $scope.search_name != undefined) 
             {
                 //$scope.search_name.replace(' ','+');
-
                 var submitparam = '';
                 if($scope.search_name == '' || $scope.search_name == undefined)
                     submitparam = $scope.filter_params;
@@ -169,7 +170,7 @@ angular.module('chuangplus_mobile.controllers', [])
                         $scope.company_list = data.data;
                         for(var i=0;i<$scope.company_list.length;i++){
                             $scope.company_list[i].scale_value = $scope.stage[$scope.company_list[i].scale];
-                            $scope.company_list[i].field_value = $scope.pfield[$scope.company_list[i].field];
+                            $scope.company_list[i].field_value = $scope.cfield[$scope.company_list[i].field];
                             $scope.company_list[i].type_value = $scope.ptype[$scope.company_list[i].type];
                             $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
                             $scope.company_list[i].position_type_value = {};
@@ -189,7 +190,7 @@ angular.module('chuangplus_mobile.controllers', [])
                         $scope.company_list = data.data;
                         for(var i=0;i<$scope.company_list.length;i++){
                             $scope.company_list[i].scale_value = $scope.stage[$scope.company_list[i].scale];
-                            $scope.company_list[i].field_value = $scope.pfield[$scope.company_list[i].field];
+                            $scope.company_list[i].field_value = $scope.cfield[$scope.company_list[i].field];
                             $scope.company_list[i].type_value = $scope.ptype[$scope.company_list[i].type];
                             $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
                             $scope.company_list[i].position_type_value = {};
@@ -227,7 +228,7 @@ angular.module('chuangplus_mobile.controllers', [])
                             $scope.pagenow = -23333;
                         for(var i=0;i<newdata.length;i++){
                             newdata[i].scale_value = $scope.stage[newdata[i].scale];
-                            newdata[i].field_value = $scope.pfield[newdata[i].field];
+                            newdata[i].field_value = $scope.cfield[newdata[i].field];
                             newdata[i].type_value = $scope.ptype[newdata[i].type];
                             newdata[i].position_number = newdata[i].positions.length;
                             newdata[i].position_type_value = {};
@@ -290,12 +291,12 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.cfield = {
                 'social':'社交',
                 'e_commerce':'电子商务',
-                'education':'健康医疗',
-                'health_medical':'文化创意',
-                'culture_creativity':'硬件',
-                'living_consumption':'O2O',
-                'hardware':'生活消费',
-                'O2O':'教育',
+                'education':'教育',
+                'health_medical':'健康医疗',
+                'culture_creativity':'文化创意',
+                'living_consumption':'生活消费',
+                'hardware':'硬件',
+                'O2O':'O2O',
                 'others':'其它'
         };
         $scope.testLoading = function()
@@ -330,17 +331,19 @@ angular.module('chuangplus_mobile.controllers', [])
                 });
         };
         $scope.get_positions();
-        $scope.show_filter = function()
+        $scope.show_filter = function(id)
         {
-            $("#filter-content").slideDown("normal");
-            $scope.filter_show = true;
+            //$("#filter-content"+id).slideDown("normal");
+            $("#filter-content"+id).animate({top:90},"200");
+            //$scope.filter_show = true;
         };
-        $scope.hide_filter = function()
+        $scope.hide_filter = function(id)
         {
-            $("#filter-content").slideUp("fast");
-            $scope.filter_show = false;
+            //$("#filter-content"+id).slideUp("fast");
+            $("#filter-content"+id).animate({top:(-400)},"200");
+            //$scope.filter_show = false;
         };
-        $scope.submit_filter = function()
+        $scope.submit_filter = function(id)
         {
 
             var isSelected = false;
@@ -430,7 +433,7 @@ angular.module('chuangplus_mobile.controllers', [])
                             $scope.positions[i].company.scale_value = "成熟";
                         }
                     }
-                    $scope.hide_filter();
+                    $scope.hide_filter(id);
                 }
             });
         };
@@ -560,12 +563,12 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.cfield = {
                 'social':'社交',
                 'e_commerce':'电子商务',
-                'education':'健康医疗',
-                'health_medical':'文化创意',
-                'culture_creativity':'硬件',
-                'living_consumption':'O2O',
-                'hardware':'生活消费',
-                'O2O':'教育',
+                'education':'教育',
+                'health_medical':'健康医疗',
+                'culture_creativity':'文化创意',
+                'living_consumption':'生活消费',
+                'hardware':'硬件',
+                'O2O':'O2O',
                 'others':'其它'
         };
         $scope.company_id = $routeParams.company_id;
@@ -670,12 +673,12 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.cfield = {
                 'social':'社交',
                 'e_commerce':'电子商务',
-                'education':'健康医疗',
-                'health_medical':'文化创意',
-                'culture_creativity':'硬件',
-                'living_consumption':'O2O',
-                'hardware':'生活消费',
-                'O2O':'教育',
+                'education':'教育',
+                'health_medical':'健康医疗',
+                'culture_creativity':'文化创意',
+                'living_consumption':'生活消费',
+                'hardware':'硬件',
+                'O2O':'O2O',
                 'others':'其它'
         };
         $scope.position_type = {
@@ -826,12 +829,12 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.cfield = {
                 'social':'社交',
                 'e_commerce':'电子商务',
-                'education':'健康医疗',
-                'health_medical':'文化创意',
-                'culture_creativity':'硬件',
-                'living_consumption':'O2O',
-                'hardware':'生活消费',
-                'O2O':'教育',
+                'education':'教育',
+                'health_medical':'健康医疗',
+                'culture_creativity':'文化创意',
+                'living_consumption':'生活消费',
+                'hardware':'硬件',
+                'O2O':'O2O',
                 'others':'其它'
         };
         $scope.position_type = {
@@ -1239,12 +1242,12 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.cfield = {
                 'social':'社交',
                 'e_commerce':'电子商务',
-                'education':'健康医疗',
-                'health_medical':'文化创意',
-                'culture_creativity':'硬件',
-                'living_consumption':'O2O',
-                'hardware':'生活消费',
-                'O2O':'教育',
+                'education':'教育',
+                'health_medical':'健康医疗',
+                'culture_creativity':'文化创意',
+                'living_consumption':'生活消费',
+                'hardware':'硬件',
+                'O2O':'O2O',
                 'others':'其它'
         };
         $scope.get_userInfo = function(){
@@ -1411,12 +1414,12 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.cfield = {
                 'social':'社交',
                 'e_commerce':'电子商务',
-                'education':'健康医疗',
-                'health_medical':'文化创意',
-                'culture_creativity':'硬件',
-                'living_consumption':'O2O',
-                'hardware':'生活消费',
-                'O2O':'教育',
+                'education':'教育',
+                'health_medical':'健康医疗',
+                'culture_creativity':'文化创意',
+                'living_consumption':'生活消费',
+                'hardware':'硬件',
+                'O2O':'O2O',
                 'others':'其它'
         };
         $scope.get_company_list = function(){
@@ -1687,15 +1690,15 @@ angular.module('chuangplus_mobile.controllers', [])
             'closed':"职位关闭"
             }; 
         $scope.cfield = {
-            'social':'社交',
-            'e_commerce':'电子商务',
-            'education':'健康医疗',
-            'health_medical':'文化创意',
-            'culture_creativity':'硬件',
-            'living_consumption':'O2O',
-            'hardware':'生活消费',
-            'O2O':'教育',
-            'others':'其它'
+                'social':'社交',
+                'e_commerce':'电子商务',
+                'education':'教育',
+                'health_medical':'健康医疗',
+                'culture_creativity':'文化创意',
+                'living_consumption':'生活消费',
+                'hardware':'硬件',
+                'O2O':'O2O',
+                'others':'其它'
         };
         $scope.is_processed = {
             true:'HR已处理',
