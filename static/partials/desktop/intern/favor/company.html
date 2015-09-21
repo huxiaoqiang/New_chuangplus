@@ -10,33 +10,62 @@
             </div>
         </div>
 	    <div class="col-md-8" ng-show="company_list.length > 0">
-                <ul ng-repeat="company in company_list">
-                    <a href="/company/[[company._id.$oid]]/detail">
+            <ul ng-repeat="company in company_list">
+                <a href="/company/[[company._id.$oid]]/detail">
                     <li>
-                        <div class="favor-list-item">
-                            <div class="item-pic">
-                                <img class="company-pic" alt="图片" src="/api/file/[[company.logo_id]]/download"></img>
+                        <div class="company-info">
+                            <div class="auth" >
+                                <p>v[[company.auth_organization]]红杉资本认证</p>
                             </div>
-                            <div class="item-info">
-                                <p class="company">[[company.abbreviation]]</p>
-                                <p class="company-discrpt">[[company.brief_introduction]]</p>
-                                <div class="position-label">
-                                    <p class="position-num">在招岗位：[[company.position_number]]</p>
-                                    <div ng-repeat="position_type in company.position_types">
-                                        <p class="label">[[position_type]]</p>
+                            <div class="bottom-side">
+                        
+                                <div class="item-pic">
+                                    <img src="/api/file/[[company.logo_id]]/download" class="company-pic" alt="图片">
+                                </div>
+                                <div class="info">
+                            
+                                    <div class="item-info info-1">
+                                        <div class="vertical-center">
+                                            <p class="abbreviation">[[company.abbreviation]]</p>
+                                            <p class="brief_introduction">[[company.brief_introduction]]</p>
+                                        </div>
+                                    </div>
+                                    <div class="item-info info-2">
+                                        <div class="vertical-center">
+                                            <div class="label-1" ng-show="company.field != null">
+                                                <img src="/static/image/icon/111-01.png">
+                                                <p>[[company.field_type]]</p>
+                                            </div>
+                                            <div class="label-1" ng-show="company.scale != null">
+                                                <img src="/static/image/icon/222-01.png">
+                                                <p>[[company.scale_value]]</p>
+                                            </div>
+                                            <div class="label-1" ng-show="company.city != null">
+                                                <img src="/static/image/icon/333-01.png">
+                                                <p class="last-p">[[company.city]]</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="line"> </div>
+                                    <div class="item-info info-3">
+                                        <p class="position_number">在招岗位数：[[company.position_number]]</p>
+                                        <div class="position_tags" >
+                                            <span class="tags" ng-repeat="position_type in company.position_type_value">[[position_type]]</span>
+                                        </div>
+                                    </div>
+                                    <div class="line"></div>
+                                    <div class="item-info info-3">
+                            
+                                        <div class="welfare_tags">
+                                            <div class="tags" ng-repeat="tag in company.welfare_tags">[[tag]]</div>
+                                        </div>
+                           
                                     </div>
                                 </div>
-                                <div class="company-label">
-                                    <p class="label">创业服务</p>
-                                    <p class="label">[[company.scale_value]]</p>
-                                    <p class="label">[[company.city]]</p>
-                                </div>
-                                <div class="wellfare-label">
-                                    <div ng-repeat="tag in company.welfare_tags">
-                                        <p class="label">[[tag]]</p>
-                                    </div>
-                                </div>
                             </div>
+                        </div>
+                        <div class="right-side">
+                            <b class="tips" >新增一个岗位</b>
                         </div>
                     </li>
                 </ul>

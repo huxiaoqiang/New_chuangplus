@@ -1,6 +1,6 @@
 #container{
-margin: 0 auto;
-display: block;
+    margin: 0 auto;
+    display: block;
     #favor-position-list{
         font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 
@@ -44,100 +44,183 @@ display: block;
                 }
             }
         }
+        .col-sm-4{
+            width: 100%;
         .col-md-9{
-            table tr td{
-                padding-right: 10%;
-                .btn.btn-primary{
-                    width: 100%;
-                    height: 40px;
-                    border-radius: 0.3em;
-                    background-color: rgb(140, 93, 144);
-                    color: white;
-                    font-size: 1.2em;
-                    margin-right: 50px;
-                }
+            
+            padding-right: 10%;
+            .btn.btn-primary{
+                width: 120px;
+                height: 30px;
+                border-radius: 0.3em;
+                background-color: #8f4e96;
+                color: white;
+                font-size: 14px;
+                margin-right: 50px;
+                border: 0;
+                float: left;
             }
+            
         }
 
         .col-md-8{
             margin-top: 10px;
+            width: 100%;
             ul li{
                 list-style-type:none;
-
+                background-color: #ffffff;
+                border: 1px solid #bfbfbf;
+                border-radius: 4px;
+                margin-bottom: 15px;
+                height: 120px;
                 .favor-list-item{
-
-                    margin-top: 10px;
-                    border: 1px solid#8E8E8E;
-                    width: 900px;
-                    height: 220px;
-                    padding: 10px 10px 10px 10px;
-                    .item-pic{
-                        float: left;
-                        width: 200px;
-                        height: 200px;
-                        .company-pic{
+                    width: 100%;
+                    height: 100%;
+                    padding:10px 10px 10px 15px;
+                    .middle-block{
+                        width: 100%;
+                        height: 100%;
+                        .item-pic{
+                            float: left;
+                            width: 130px;
+                            display: table;
+                            height: 100%;
+                            padding: 0 20px 0 20px;
+                            img{
+                                width: 90px;
+                                height: 90px;
+                            }
+                        }
+                        .info{
                             width: 100%;
                             height: 100%;
-                        }
-                    }
-                    .item-info{
-                        float: left;
-                        margin-left: 20px;
-                        width: 640px;
-                        height: 200px;
-
-                        .position{
-                            font-size: 1.2em;
-                            border-bottom: 1px solid#8E8E8E;
-                            width: 300px;
-                            color: rgb(140, 93, 144);
-                        }
-                        .company{
-                            font-size: 1.3em;
-                        }
-                        .company-discrpt{
-                            font-size: 16px;
-                            color: #8E8E8E;
-                        }
-                        .item-label{
-                            margin-top: 10px;
-                            margin-bottom: 10px;
-                            height: 30px;
-                            .label{
-                                width: 80px;
-                                height: 30px;
-                                float: left;
-                                border: 1px solid#8E8E8E;
-                                background-color: #F0F0F0;
+                            .tags{
+                                border-radius: 10px;
+                                padding: 0 8px 0 8px;
+                                background-color: rgba(143,78,150,0.1);
+                                color: #707070;
                                 font-size: 12px;
-                                border-radius: 0.3em;
-                                margin-right: 10px;
-                                color: black;
+                                margin-right: 5px;
+                                float: left;
+                                margin-bottom: 5px;
                                 text-align: center;
-                                line-height: 30px;
-                                padding: 1px 0 5px 0;
+                                font-weight: 100;
+                            }
+                            .line{
+                                width: 1px;
+                                height: 50px;
+                                margin-top: 20px;
+                                margin-bottom: 20px;
+                                float: left;
+                                border-left: 1px solid #aaaaaa;
+                            }
+                            p{
+                                margin-bottom: 0;
+                            }
+                            .item-info.info-1{
+                                width: 200px;
+                                text-align: center;
+                                padding: 0 15px 0 15px;
+                                p{
+                                    color: black;
+                                    font-size: 1.1em;
+                                }
+                                .position-tags{
+                                    margin-top: 10px;
+                                    width: 100%;
+                                    //padding-left: 18px;
+                                    padding: 0 21px 0 31px;
+                                    height: 22px;
+                                    text-align: center;
+                                }
+                                .submit-time{
+                                    width: 100%;
+                                    height: 17px;
+                                    p{
+                                        font-size: 12px;
+                                        color: #707070;
+                                    }
+                                }
+                            }
+                            .item-info.info-2{
+                                width: 130px;
+                                padding: 0 15px 0 5px;
+                                text-align: center;
+
+                                .company{
+                                    font-size: 1.1em;
+                                    color: black;
+                                    text-align: center;
+                                }
+                                .company-discrpt{
+                                    color: #707070;
+                                    font-size: 12px;
+                                    text-align: center;
+                                }
+                                .auth{
+                                    font-size: 12px;
+                                    color: #8f4e96;
+                                }
+                            }
+                            .item-info.info-3{
+                                width: 70px;
+                                padding-left: 15px;
+                            }
+                            .item-info.info-4{
+                                padding:0 15px 0 15px;
+                                width: 190px;
+                                .tags{
+                                    width: 64px;
+                                }
+                                .vertical-center{
+                                    padding: 0 11px 0 11px;
+                                }
+                            }
+                            .item-info{
+                                float: left;
+                                height: 100%;
+                                display: table;
+                            }
+                            .vertical-center{
+                                display: table-cell;
+                                vertical-align: middle;
+                                text-align: center;
+                            }
+                            .label-1{
+                                img{
+                                    width: 13px;
+                                    height: 13px;
+                                    float: left;
+                                    margin-right: 5px;
+                                    margin-top: 2px;
+                                }                                    }
+                                p{
+                                    color: #707070;
+                                    font-size: 12px;
+                                    margin-bottom: 5px;
+                                    //float: left;
+                                }
+                            }
+                            .item-button{
+                                //text-align: right;
+                                height: 100%;
+                                width: 140px;
+                                float: right;
+                                display: table;
+                                .btn.btn-submit{
+                                    width: 90px;
+                                    height: 25px;
+                                    border-radius: 0.3em;
+                                    background-color: #8f4e96;
+                                    color: white;
+                                    font-size: 13px;
+                                    padding: 0;
+                                }
                             }
                         }
-                        .submit-time{
-                            font-size: 12px;
-                            color: #8E8E8E;
-                        }
-                        .item-button{
-                            text-align: right;
-                            .btn.btn-submit{
-                                width: 100px;
-                                height: 30px;
-                                border-radius: 0.3em;
-                                background-color: rgb(140, 93, 144);
-                                color: white;
-                                font-size: 1.0em;
-                            }
-                        }
-                    }
+                    }               
                 }
             }
         }
+        }
     }
-
-
-}
