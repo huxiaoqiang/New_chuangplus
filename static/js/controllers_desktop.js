@@ -2157,8 +2157,11 @@ angular.module('chuangplus.controllers', []).
                     console.log(data.error.message);
                     $scope.error = $errMsg.format_error('',data.error);
                 }
-            }).error(function(data){
-                console.log(data);
+            }).error(function(data,status,headers,config){
+                if(status == 413){
+                    $scope.error = $errMsg.format_error("上传图片失败，文件过大",{code:'-1'});
+                }
+
             });
         };
         $scope.next_step = function(){
