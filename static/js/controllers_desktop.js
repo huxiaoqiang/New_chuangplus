@@ -9,14 +9,14 @@ angular.module('chuangplus.controllers', []).
         $scope.username = $user.username();
         $scope.myInterval = 3000;
         $scope.slides1 = [
-            {image:"/static/image/logo/banner-1.jpg"},
-            {image:"/static/image/logo/banner-2.jpg"},
-            {image:"/static/image/logo/banner-3.jpg"}
+            {image:"/static/image/logo/banner1.jpg"},
+            {image:"/static/image/logo/banner2.jpg"},
+            {image:"/static/image/logo/banner3.jpg"}
         ];
         $scope.slides2 = [
-            {image:"/static/image/logo/banner-1.jpg"},
-            {image:"/static/image/logo/banner-2.jpg"},
-            {image:"/static/image/logo/banner-3.jpg"}
+            {image:"/static/image/logo/banner1.jpg"},
+            {image:"/static/image/logo/banner2.jpg"},
+            {image:"/static/image/logo/banner3.jpg"}
         ];
         $scope.scan = false;
         $scope.search = false;
@@ -2157,6 +2157,8 @@ angular.module('chuangplus.controllers', []).
                     console.log(data.error.message);
                     $scope.error = $errMsg.format_error('',data.error);
                 }
+            }).error(function(data){
+                console.log(data);
             });
         };
         $scope.next_step = function(){

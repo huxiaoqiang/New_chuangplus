@@ -3324,6 +3324,9 @@ form.financing_add input {
 #container #second-step .info2 .left-info .input-group .col-sm-9 .change_tab .no-qrcode:hover {
   color: #98769E;
 }
+#container #second-step .info2 .left-info .input-group .col-sm-9 .upload-qrcode {
+  width: 160px;
+}
 #container #second-step .info2 .left-info input.pre-button {
   position: absolute;
   bottom: -60px;
