@@ -2080,7 +2080,7 @@ angular.module('chuangplus.controllers', []).
                 // canvas.toDataURL 返回的默认格式就是 image/png
                 var blob=new Blob([ia], {type:"image/png"});
 
-                $('#img_preview').attr('src',dataURL);
+                $('#img_preview').attr('ngf-src',dataURL);
 //                $('.change_tab').innerHTML = '<img src="'+dataURL+'" alt=""/>' ;
 //                document.getElementById('#logo-preview').src="/api/file/"+ $scope.companyinfo.logo_id+ "/download"; 
                 //window.open(crop_canvas.toDataURL("image/png"));
