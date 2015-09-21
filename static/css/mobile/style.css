@@ -26,6 +26,7 @@ body {
 }
 .navbar-app {
   min-height: 40px !important;
+  width: 100%;
 }
 .no-bar-top {
   top: 0 !important;
@@ -532,27 +533,25 @@ a:hover {
 .nav-bar-3 {
   display: block;
   text-decoration: none;
-  width: 33.32%;
+  width: 33.33%;
   float: left;
   height: 50px;
   line-height: 50px;
   font-size: 20px;
   text-align: center;
   vertical-align: middle;
-  border: 1px solid #dcdcdc;
   border-top: 0;
   color: black;
 }
 .nav-bar-2 {
   display: block;
-  width: 49.99%;
+  width: 50%;
   float: left;
   height: 50px;
   line-height: 50px;
   font-size: 20px;
   text-align: center;
   vertical-align: middle;
-  border: 1px solid #dcdcdc;
   border-top: 0;
   color: black;
 }
