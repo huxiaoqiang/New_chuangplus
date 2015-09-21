@@ -32,7 +32,7 @@ angular.module('chuangplus.controllers', []).
 
         };
         $scope.search_mouseout = function(){
-            $scope.timeout_id = setTimeout($scope.hide_search,1000);
+            $scope.timeout_id = setTimeout($scope.hide_search,3000);
         };
         $scope.hide_search = function(){
             $scope.$apply(function(){
@@ -653,6 +653,9 @@ angular.module('chuangplus.controllers', []).
             'others':"其他"
         };
         $scope.search_params = {
+          position_type:''
+        };
+        $scope.search_params = {
             "position_type":''
         };
         $scope.task = {
@@ -722,13 +725,6 @@ angular.module('chuangplus.controllers', []).
             };
             $scope.search_params_position_type = '';
             $scope.get_submit_list();
-        };
-        $scope.view_all = function(){
-            $scope.param = {
-                'page' : 1
-            };
-            $scope.search_params_position_type = '';
-            $scope.get_company_info();
         };
         $scope.processe = function(index){
             if($scope.submit_list[index].process == true){
