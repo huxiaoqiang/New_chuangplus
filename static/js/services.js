@@ -26,6 +26,7 @@ angular.module('chuangplus.services', []).
             'code20':'要下载的文件不存在',
             'code30':'没有删除文件的权限',
             'code31':'文件不存在，删除失败',
+            'code98':"验证码已经失效，请刷新验证码重试",
             'code99':"需要验证码",
             'code100':'没有权限 ',
             'code101':'验证码错误',
@@ -84,6 +85,7 @@ angular.module('chuangplus.services', []).
             'code266':"已经投递了该职位",
             'code267':'没有实习生投递该职位',
             'code268':'没有岗位消息要处理',
+            'code269':'邀请码错误，请联系创加获取邀请码',
             'code299':'未知错误'
         };
         return {

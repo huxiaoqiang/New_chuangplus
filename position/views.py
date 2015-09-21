@@ -372,25 +372,25 @@ def search_position(request):
                 re['error'] = error(299,'Unknown Error!')
                 return HttpResponse(json.dumps(re),content_type = 'application/json')
 
-    #todo: tobe tested
-    if "fields" in request.GET.keys():
-        if len(request.GET["fields"]) > 0:
-            try:
-                fields = request.GET["fields"]
-                fields = fields.split(',')
-                for field in fields:
-                    assert field in FIELD
-                qs = qs.filter(company__field__in = fields)
-
-            except (AssertionError,ValueError,UnicodeDecodeError):
-                re['error'] = error(238,"Invaild search type!")
-                return HttpResponse(json.dumps(re), content_type = 'application/json')
-            except (DatabaseError):
-                re['error'] = error(251,"Database error: Failed to search!")
-                return HttpResponse(json.dumps(re), content_type = 'application/json')
-            except:
-                re['error'] = error(299,'Unknown Error!')
-                return HttpResponse(json.dumps(re),content_type = 'application/json')
+    ##todo: tobe tested
+    #if "fields" in request.GET.keys():
+    #    if len(request.GET["fields"]) > 0:
+    #        try:
+    #            fields = request.GET["fields"]
+    #            fields = fields.split(',')
+    #            for field in fields:
+    #                assert field in FIELD
+    #            qs = qs.filter(company__field__in = fields)
+    #
+    #        except (AssertionError,ValueError,UnicodeDecodeError):
+    #            re['error'] = error(238,"Invaild search type!")
+    #            return HttpResponse(json.dumps(re), content_type = 'application/json')
+    #        except (DatabaseError):
+    #            re['error'] = error(251,"Database error: Failed to search!")
+    #            return HttpResponse(json.dumps(re), content_type = 'application/json')
+    #        except:
+    #            re['error'] = error(299,'Unknown Error!')
+    #            return HttpResponse(json.dumps(re),content_type = 'application/json')
 
     ##single
     #if "type" in request.GET.keys():

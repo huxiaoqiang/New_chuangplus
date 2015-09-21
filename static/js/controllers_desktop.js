@@ -146,6 +146,10 @@ angular.module('chuangplus.controllers', []).
         $scope.captcha_url = urls.api+"/captcha/image/";
         $scope.check = {};
         $scope.e_check = {};
+        $scope.ic_check = {
+            'exist':true,
+            'used' :false
+        };
         $scope.student = function(){
             $scope.tab1 = true;
             $scope.tab2 = false;
@@ -166,17 +170,61 @@ angular.module('chuangplus.controllers', []).
                 $scope.error = $errMsg.format_error("两次输入的密码不一致",$scope.error);
                 return;
             }
-            $csrf.set_csrf($scope.reg_info);
-            $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
+            if($scope.reg_info.role == 1){
+                if($scope.ic_check.used == true){
+                    $scope.error.code = -1;
+                    $scope.error = $errMsg.format_error("邀请码已经被注册，请联系创加获取邀请码",$scope.error);
+                    return;
+                }
+                else if($scope.ic_check.exist = false){
+                    $scope.error.code = -1;
+                    $scope.error = $errMsg.format_error("邀请码错误，请联系创加获取邀请码",$scope.error);
+                    return;
+                }
+                var param = {
+                    'code':$scope.reg_info.invitation_code
+                };
+                $csrf.set_csrf(param);
+                $http.post(urls.api+"/captcha/register_invitation_code",$.param(param)).
                 success(function(data){
                     if(data.error.code == 1){
-                        $scope.error = $errMsg.format_error("注册成功",data.error);
-                        setTimeout(function(){window.location.href='/'},1500);
+                        $csrf.set_csrf($scope.reg_info);
+                        $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
+                            success(function(data){
+                                if(data.error.code == 1){
+                                    $scope.error = $errMsg.format_error("注册成功",data.error);
+                                    setTimeout(function(){window.location.href='/'},1500);
+                                }
+                                else{
+                                    $scope.error = $errMsg.format_error("",data.error);
+                                    setTimeout($scope.hide_error,2000);
+                                }
+                        });
                     }
                     else{
                         $scope.error = $errMsg.format_error("",data.error);
                     }
                 });
+            }
+            else{
+                $csrf.set_csrf($scope.reg_info);
+                $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
+                    success(function(data){
+                        if(data.error.code == 1){
+                            $scope.error = $errMsg.format_error("注册成功",data.error);
+                            setTimeout(function(){window.location.href='/'},1500);
+                        }
+                        else{
+                            $scope.error = $errMsg.format_error("",data.error);
+                            setTimeout($scope.hide_error,2000);
+                        }
+                });
+            }
+        };
+        $scope.hide_error = function(){
+            $scope.$apply(function(){
+                $errMsg.remove_error($scope.error);
+            });
         };
         $scope.showError = function(ngModelController,error){
             return ngModelController.$error[error];
@@ -188,6 +236,27 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.check.exist = data.username.exist;
+                    }
+                });
+        };
+        $scope.check_invitation_code = function(){
+            $scope.ic_check.code = $scope.reg_info.invitation_code;
+            $csrf.set_csrf($scope.ic_check);
+            $http.post(urls.api+"/captcha/check_ic", $.param($scope.ic_check)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        if(data.checked == true){
+                            $scope.ic_check.used = true;
+                            $scope.ic_check.exist = true;
+                        }
+                        else{
+                            $scope.ic_check.exist = true;
+                            $scope.ic_check.used = false;
+                        }
+                    }
+                    else{
+                        $scope.ic_check.exist = false;
+                        $scope.ic_check.used = false;
                     }
                 });
         };
@@ -571,19 +640,60 @@ angular.module('chuangplus.controllers', []).
     controller('DT_CompanyResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyResumeCtrl');
+        $scope.company_id = $routeParams.company_id;
         $scope.submit_list = [];
-        $scope.get_submit_list = function(data){
-            var param;
-            if(data != null){
+        $scope.chosed_index = -1;
+        $scope.position_type = {
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+        };
+        $scope.search_params = {
+            "position_type":''
+        };
+        $scope.task = {
+            'pageCount' : 1,
+            'currentPage' : 1
+        };
+        $scope.param = {
+            'page' : 1
+        };
+        $scope.show_right_bar = false;
+        $scope.toggleRightBar = function(){
+            $scope.show_right_bar = !$scope.show_right_bar;
+        };
+        $scope.get_submit_list = function(){
+            var param = '';
+            var param_data = $scope.param;
+            if(param_data != null){
                 param = '?';
-                if(data.hasOwnProperty('page')){
-                    param += "page=" + data.page;
+                if(param_data.hasOwnProperty('page')){
+                    param += "page=" + param_data.page;
+                }
+                if(param_data.hasOwnProperty('position_type')){
+                    if(param!='?'){
+                        param += '&'
+                    }
+                    param += "position_type=" + param_data.position_type;
                 }
             }
-            $http.get(urls.api+"/account/company/submit/search").
+            $http.get(urls.api+"/account/company/submit/search"+param).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.submit_list = data.data;
+                        $scope.task.pageCount = data.page_number;
+                        if($scope.submit_list.length == 0){
+                           if(param_data.hasOwnProperty('position_type')){
+                                $scope.marked_words = "尚未有人投递 " + $scope.position_type[param_data.position_type]+" 相关职位";
+                            }
+                            else{
+                               $scope.marked_words = "尚未有人投递简历";
+                           }
+                        }
                     }
                     else{
                         console.log(data.error.message);
@@ -592,6 +702,83 @@ angular.module('chuangplus.controllers', []).
                 });
         };
         $scope.get_submit_list();
+        $scope.get_company_info = function(){
+            $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.companyinfo = data.data;
+                    }
+                });
+        };
+        $scope.get_company_info();
+        $scope.change = function(position_type){
+            $scope.param.position_type = position_type;
+            $scope.get_submit_list();
+        };
+        $scope.view_unprocessed = function(){
+            $scope.param = {
+                'page' : 1,
+                'processed':false
+            };
+            $scope.search_params_position_type = '';
+            $scope.get_submit_list();
+        };
+        $scope.view_all = function(){
+            $scope.param = {
+                'page' : 1
+            };
+            $scope.search_params_position_type = '';
+            $scope.get_company_info();
+        };
+        $scope.processe = function(index){
+            if($scope.submit_list[index].process == true){
+                return
+            }
+            $http.get(urls.api+"/account/company/"+ $scope.submit_list[index].position_id+"/user/"+$scope.submit_list[index].username+"/process").
+                success(function(data){
+                    if(data.error.code == 1){
+                        alert($scope.submit_list[index].position_id,$scope.submit_list[index].username);
+                    }
+                });
+        };
+        $scope.view_detail = function(index){
+            $scope.intern_info = $scope.submit_list[index];
+            $scope.processe(index);
+            if($scope.chosed_index == -1){
+                $scope.chosed_index = index;
+                $scope.toggle_show();
+            }
+            else{
+                if($scope.chosed_index == index){
+                    $scope.toggle_show();
+                }
+                else{
+                    if($('#sideToggle').attr("checked") == "checked"){
+                        $scope.chosed_index = index;
+                        $scope.toggle_show();
+                        setTimeout($scope.toggle_show,500);
+                        $scope.show_right_bar = true;
+                    }
+                    else{
+                        $scope.toggle_show();
+                        $scope.chosed_index = index;
+                    }
+                }
+            }
+        };
+        $scope.show = function(){};
+        $scope.toggle_show = function(){
+            if($('#sideToggle').attr("checked") == "checked"){
+                $('#sideToggle').attr('checked',false);
+                $scope.show_right_bar = false;
+                $('aside').css({width:"0px"});
+            }
+            else{
+                $('#sideToggle').attr("checked",true);
+                $('aside').css({width:"600px"});
+                $scope.show_right_bar = true;
+            }
+        };
     }]).
     controller('DT_CompanyInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','Upload','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, Upload,$errMsg){
         console.log('DT_CompanyInfoCtrl');

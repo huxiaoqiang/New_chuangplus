@@ -7,6 +7,7 @@ from app.common_api import error,user_permission
 from django.db import DatabaseError
 from django.core.mail import send_mail
 from random import randint
+from bson.objectid import ObjectId
 from django.db.models import Q
 import traceback
 
@@ -23,7 +24,11 @@ def register(request):
         session_captcha = request.session.get('captcha', '')
         request_captcha = request.POST.get('captcha','')
 
-        if session_captcha == '' or request_captcha == '':    
+        if session_captcha == '':
+            re['error'] = error(98,"session_captcha is out of work")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+        if request_captcha == '':
             re['error'] = error(99,"Need captcha!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
 
@@ -50,51 +55,57 @@ def register(request):
                 re['error'] = error(115,"Email has been registed")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
         except DoesNotExist:
-            reguser = User()
             try:
-                reguser = User.create_user(username=username, password=password, email=email)
-            except Exception as e:
-                #print traceback.print_exc()
-                re['error'] = error(107, 'Username exist or username include special character')
-                return HttpResponse(json.dumps(re), content_type = 'application/json')
-            if reguser is not None and role == "1":
-                reguser.is_staff = True
-                reguser.save()
-                companyinfo = Companyinfo(username=username,user=reguser)
-                companyinfo.date_joined = datetime_now()
-                companyinfo.update_time = datetime_now()
-                companyinfo.hr_cellphone = request.POST.get('hr_cellphone', '')
-                try:
-                    companyinfo.save(force_insert=True)
-                except:
-                    re['error'] = error(106," Register failed")
-                    reguser.delete()
+                find_username = User.objects.get(username = username)
+                if find_username is not None:
+                    re['error'] = error(107,"Username has been registed")
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
-                re['error'] = error(1, 'company user registered!')
-            elif reguser is not None and role == "0":
-                userinfo = Userinfo(username=username,user=reguser,email=email)
-                userinfo.date_joined = datetime_now()
-                userinfo.update_time = datetime_now()
-                userinfo.save(force_insert=True)
-                re['error'] = error(1, 'ordinary user registered!')
-            #elif role == -1:
-            #    reguser.is_superuser = True
-            #    reguser.save()
-            user = auth.authenticate(username=username, password=password)
-            if user is not None and user.is_active:
-                auth.login(request, user)
-                request.session['role'] = int(role)
-                #request.session['status'] = userinfo.status
-                #request.session['practice_code'] = userinfo.practice_code
-                #re['status'] = userinfo.status
-                re['role'] = role
-                resp = HttpResponse(json.dumps(re), content_type = 'application/json')
-                resp.set_cookie('username', username)
-                #resp.set_cookie('status', userinfo.status)
-                resp.set_cookie('role', int(role))
-                return resp
-            else:
-                re['error'] = error(106,"register fail!")
+            except DoesNotExist:
+                reguser = User()
+                try:
+                    reguser = User.create_user(username=username, password=password, email=email)
+                except Exception as e:
+                    #print traceback.print_exc()
+                    re['error'] = error(107, 'Username exist or username include special character')
+                    return HttpResponse(json.dumps(re), content_type = 'application/json')
+                if reguser is not None and role == "1":
+                    reguser.is_staff = True
+                    reguser.save()
+                    companyinfo = Companyinfo(username=username,user=reguser)
+                    companyinfo.date_joined = datetime_now()
+                    companyinfo.update_time = datetime_now()
+                    companyinfo.hr_cellphone = request.POST.get('hr_cellphone', '')
+                    try:
+                        companyinfo.save(force_insert=True)
+                    except:
+                        re['error'] = error(106," Register failed")
+                        reguser.delete()
+                        return HttpResponse(json.dumps(re), content_type = 'application/json')
+                    re['error'] = error(1, 'company user registered!')
+                elif reguser is not None and role == "0":
+                    userinfo = Userinfo(username=username,user=reguser,email=email)
+                    userinfo.date_joined = datetime_now()
+                    userinfo.update_time = datetime_now()
+                    userinfo.save(force_insert=True)
+                    re['error'] = error(1, 'ordinary user registered!')
+                #elif role == -1:
+                #    reguser.is_superuser = True
+                #    reguser.save()
+                user = auth.authenticate(username=username, password=password)
+                if user is not None and user.is_active:
+                    auth.login(request, user)
+                    request.session['role'] = int(role)
+                    #request.session['status'] = userinfo.status
+                    #request.session['practice_code'] = userinfo.practice_code
+                    #re['status'] = userinfo.status
+                    re['role'] = role
+                    resp = HttpResponse(json.dumps(re), content_type = 'application/json')
+                    resp.set_cookie('username', username)
+                    #resp.set_cookie('status', userinfo.status)
+                    resp.set_cookie('role', int(role))
+                    return resp
+                else:
+                    re['error'] = error(106,"register fail!")
     else:
         re['error'] = error(2, 'error, need post!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -1083,7 +1094,7 @@ def process_position(request,position_id):
 @user_permission('login')
 def process_single(request,position_id,username):
     re = dict()
-    if request.method == 'POST':
+    if request.method == 'GET':
         try:
             position = Position.objects.get(id=position_id)
         except DoesNotExist:
@@ -1103,7 +1114,7 @@ def process_single(request,position_id,username):
         up.save()
         re['error'] = error(1,'succeed!')
     else:
-        re['error'] = error(2,'Error, need POST')
+        re['error'] = error(3,'Error, need GET')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission('login')
@@ -1137,12 +1148,11 @@ TYPE = ('technology','product','design','operate','marketing','functions','other
 def search_submit_intern(request):
     re = dict()
     if request.method == 'GET':
-        type = request.GET.get('type', '')
+        type = request.GET.get('position_type', '')
         processed = request.GET.get('processed','')
-
         try:
             #company = Companyinfo.objects.get(username=request.user.username)
-            company = Companyinfo.objects.get(username='company2')
+            company = Companyinfo.objects.get(username='chuangplus')
         except:
             re["error"] = error(105,"company does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -1191,7 +1201,10 @@ def search_submit_intern(request):
         for item in up:
             u = Userinfo.objects.get(user = item.user)
             userinfo = json.loads(u.to_json())
+            p = json.loads(item.position.to_json())
             userinfo['position_name'] = item.position.name
+            userinfo['position_id'] = p["_id"]["$oid"]
+            userinfo['process'] = item.processed
             user_list.append(userinfo)
         re['error'] = error(1,'succeed ')
         re['data'] = user_list

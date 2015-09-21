@@ -1,22 +1,70 @@
+<input type='checkbox' id='sideToggle' ng-click="toggleRightBar()">
+<aside>
+    <div ng-show="show_right_bar" id="show_intern_info">
+        <div class="view">
+            <div class="first-line">
+                <span class="name">[[intern_info.real_name]]</span>
+                <span class="gender" ng-if="intern_info.gender==1">男</span>
+                <span class="gender" ng-if="intern_info.gender==0">女</span>
+            </div>
+            <div class="second-line">
+                <span class="university">[[intern_info.university]]</span>
+                <span class="department">[[intern_info.major]]</span>
+                <span class="grade">[[intern_info.grade]]</span>
+            </div>
+            <p class="work_days">每周可工作时长：[[intern_info.work_days]]天/周</p>
+            <p class="cellphone">TEL：[[intern_info.cellphone]]</p>
+            <p class="description">[[intern_info.description]]</p>
+        </div>
+        <div class="resume">
+            <img src="/static/image/logo/fujian-01.png">
+            <div class="no-resume" ng-show="intern_info.resume_id == null">无简历附件</div>
+            <div class="resume-name"><a ng-show="intern_info.resume_id != null" ng-href="/api/file/[[intern_info.resume_id]]/download" target="_self">[[intern_info.resume_name]]</a></div>
+        </div>
+    </div>
+</aside>
 <div id="container">
     <div id="company_resume">
         <div class="col-sm-9">
             <div class="head-button">
-                <input class="btn active" type="button" value="查看未处理">
-                <input class="btn" type="button" value="查看全部">
+                <input class="btn active" type="button" value="查看未处理" ng-click="view_unprocessed()">
+                <input class="btn" type="button" value="查看全部" ng-click="view_all()">
                 <input class="btn" type="button" value="一键下载">
-                <input class="btn" type="button" value="清除不符合条件">
+<!--                <input class="btn" type="button" value="清除不符合条件">-->
             </div>
             <div class="submit_list">
-                <div ng-repeat="user in submit_list" class="submit_item">
-                    <span class="real_name">[[user.real_name]]</span>
-                    应聘岗位：<span class="position_name">[[user.position_name]]</span><br/>
-                    <span>[[user.university]]/[[user.major]]</span>
+                <div ng-show="submit_list.length == 0" class="no_submit">
+                    [[marked_words]]
+                </div>
+                <div ng-show="submit_list.length != 0">
+                    <div ng-repeat="user in submit_list" class="submit_item" ng-click="view_detail($index)">
+                        <div>
+                            <span class="real_name">[[user.real_name]]</span>&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+                            应聘岗位：<span class="position_name">[[user.position_name]]</span><br/>
+                        </div>
+                        <span class="basic-info">[[user.university]]/[[user.major]]</span>
+                    </div>
+                    <page num-pages="task.pageCount" current-page="task.currentPage" on-select-page="selectPage(page)">
+                    </page>
                 </div>
             </div>
         </div>
         <div class="col-sm-3">
-
+            <div class="logo">
+                <img src="/api/file/[[companyinfo.logo_id]]/download">
+            </div>
+            <p class="abbreviation">[[companyinfo.abbreviation]]</p>
+            <p class="brief_introduction">[[companyinfo.brief_introduction]]</p>
+            <p class="position_sum">在招岗位数：[[companyinfo.positions.length]]</p>
+            <select ng-change="change(search_params.position_type)" class="search_params_position_type" ng-model="search_params.position_type">
+                <option value="technology" ng-select="search_params.position_type='technology'">技术</option>
+                <option value="product" ng-select="search_params.position_type='product'">产品</option>
+                <option value="design" ng-select="search_params.position_type='design'">设计</option>
+                <option value="operate" ng-select="search_params.position_type='operate'">运营</option>
+                <option value="marketing" ng-select="search_params.position_type='marketing'">市场</option>
+                <option value="functions" ng-select="search_params.position_type='functions'">职能</option>
+                <option value="others" ng-select="search_params.position_type='others'">其他</option>
+            </select>
         </div>
     </div>
 </div>
