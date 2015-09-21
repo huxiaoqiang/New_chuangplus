@@ -2071,7 +2071,7 @@ angular.module('chuangplus.controllers', []).
                 window.open(crop_canvas.toDataURL("image/png"));
                 var dataURL=crop_canvas.toDataURL();
                 // dataURL 的格式为 “data:image/png;base64,****”,逗号之前都是一些说明性的文字，我们只需要逗号之后的就行了
-                var data=data.split(',')[1];
+                var data=dataURL.split(',')[1];
                 data=window.atob(data);
                 var ia = new Uint8Array(data.length);
                 for (var i = 0; i < data.length; i++) {
@@ -2080,7 +2080,8 @@ angular.module('chuangplus.controllers', []).
                 // canvas.toDataURL 返回的默认格式就是 image/png
                 var blob=new Blob([ia], {type:"image/png"});
 
-                $('.change_tab').innerHTML = '<img src="'+dataURL+'" alt=""/>' ;
+                $('#img_preview').attr('src',dataURL);
+//                $('.change_tab').innerHTML = '<img src="'+dataURL+'" alt=""/>' ;
 //                document.getElementById('#logo-preview').src="/api/file/"+ $scope.companyinfo.logo_id+ "/download"; 
                 //window.open(crop_canvas.toDataURL("image/png"));
                 $scope.upload(blob,'logo');
