@@ -3683,6 +3683,7 @@ body > #wrap_no_header_footer #main-container {
   padding-left: 30px;
   padding-top: 20px;
   margin-top: 97px;
+  width: 500px;
 }
 #show_intern_info .view .first-line .name {
   font-size: 18px;
