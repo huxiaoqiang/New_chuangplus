@@ -265,10 +265,10 @@ a:hover {
 .header-bar {
   display: block;
   height: 50px;
-  background: #966497;
   position: relative;
   z-index: 20;
   overflow: auto;
+  background: url('/static/image/icon/3d-purple.png');
 }
 .header-bar .header {
   width: 50%;
@@ -291,13 +291,27 @@ a:hover {
   margin: 10px 10px 10px 15px;
 }
 .require-bar {
-  overflow: hidden;
   display: block;
   height: 40px;
   position: relative;
 }
 .require-bar .require-box {
-  font-size: 15px;
+  font-size: 14px;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  display: block;
+  padding: 0 10px 0 10px;
+  float: left;
+  border-top: 1px solid #dcdcdc;
+  border-right: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc;
+  color: black;
+  position: relative;
+}
+.require-bar .require-box:first-child {
+  font-size: 14px;
+  text-align: center;
   height: 40px;
   line-height: 40px;
   display: block;
@@ -306,7 +320,6 @@ a:hover {
   border: 1px solid #dcdcdc;
   color: black;
   position: relative;
-  margin-right: -1px;
 }
 .require-bar .requires .require-box .require-delete {
   float: right;
@@ -318,7 +331,7 @@ a:hover {
 .require-bar .requires {
   position: absolute;
   display: block;
-  width: 78%;
+  width: 100%;
   height: 40px;
   background: white;
   overflow: hidden;
@@ -564,8 +577,15 @@ a:hover {
   border: 0;
   color: white !important;
 }
-#filter-content {
-  display: none;
+.bg-3d-purple {
+  background: url('/static/image/icon/3d-purple.png');
+}
+.filter-content {
+  top: -100%;
+  z-index: 1000;
+  width: 100%;
+  background: white;
+  position: absolute;
 }
 #comp-filter {
   margin-top: 20px;

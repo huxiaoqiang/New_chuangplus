@@ -423,10 +423,11 @@ a:hover
 {
     display: block;
     height: @cl-header-hgt;
-    background: @std-purple;
+    //background: @std-purple;
     position: relative;
     z-index: 20;
     overflow: auto;
+    background: url('/static/image/icon/3d-purple.png') ;
 }
 .header-bar .header
 {
@@ -452,14 +453,34 @@ a:hover
 
 .require-bar
 {
-    overflow: hidden;
+    //overflow: hidden;
     display: block;
     height: @cl-require-hgt;
     position: relative;
 }
 .require-bar .require-box
 {
-    font-size: 15px;
+    font-size: 14px;
+    text-align: center;
+    height: @cl-require-hgt;;
+    line-height: @cl-require-hgt;
+    display: block;
+    padding: 0 10px 0 10px;
+    float: left;
+    border-top: 1px solid @lit-gray;
+    border-right: 1px solid @lit-gray;
+    border-bottom: 1px solid @lit-gray;
+    color: black;
+    position: relative;
+    //background: url("/static/image/icon/delete-01.png") no-repeat right 4px center;
+    //background-repeat: no-repeat;
+    //background-size: 16px;
+    //margin-right: -1px;
+}
+.require-bar .require-box:first-child
+{
+    font-size: 14px;
+    text-align: center;
     height: @cl-require-hgt;;
     line-height: @cl-require-hgt;
     display: block;
@@ -468,10 +489,6 @@ a:hover
     border: 1px solid @lit-gray;
     color: black;
     position: relative;
-    //background: url("/static/image/icon/delete-01.png") no-repeat right 4px center;
-    //background-repeat: no-repeat;
-    //background-size: 16px;
-    margin-right: -1px;
 }
 .require-bar .requires .require-box .require-delete
 {
@@ -485,7 +502,7 @@ a:hover
 {
     position: absolute;
     display: block;
-    width: 78%;
+    width: 100%;
     height: @cl-require-hgt;
     background: white;
     overflow: hidden;
@@ -768,10 +785,22 @@ a:hover
     border: 0;
     color: white !important;
 }
-
-#filter-content
+.bg-3d-purple
 {
-    display: none;
+    background: url('/static/image/icon/3d-purple.png') ;
+}
+.bg-3d-gray
+{
+
+}
+.filter-content
+{
+    //display: none;
+    top : -100%;
+    z-index: 1000;
+    width: 100%;
+    background: white;
+    position: absolute;
 }
 
 //compfilter.html
