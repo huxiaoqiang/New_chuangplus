@@ -2987,24 +2987,28 @@ form.financing_add input {
   cursor: pointer;
 }
 #container #homepage .info-block-1 {
-  height: 300px;
   border: 1px solid #b2b2b2;
   margin-bottom: 15px;
 }
+#container #homepage .info-block-1 img {
+  width: 100%;
+}
 #container #homepage .info-block-2 {
-  height: 420px;
   border: 1px solid #b2b2b2;
   margin-bottom: 15px;
+}
+#container #homepage .info-block-2 img {
+  width: 100%;
 }
 #container #homepage .img-block {
   height: 90px;
   margin-bottom: 15px;
 }
 #container #homepage .img-block .img-2 {
-  height: 100%;
-  width: 184px;
+  width: 180px;
   margin-right: 10px;
   float: left;
+  margin-top: 15px;
 }
 #container #homepage .img-block .img-3 {
   height: 100%;
