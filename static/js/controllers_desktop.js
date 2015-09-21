@@ -398,6 +398,17 @@ angular.module('chuangplus.controllers', []).
             1:"快速发展",
             2:"成熟"
         };
+        $scope.field_type={
+            'social':"社交",
+            'e-commerce':"电子商务",
+            'education':"教育",
+            'health_medical':"健康医疗",
+            'culture_creativity':"文化创意",
+            'living_consumption':"生活消费",
+            'hardware':"硬件",
+            '020':"O2O",
+            'others':"其他"
+        };
         $scope.get_company_list = function(){
             $http.get(urls.api+"/account/userinfo/company/favor/list").
             success(function(data){
@@ -406,11 +417,11 @@ angular.module('chuangplus.controllers', []).
 		$scope.company_num = $scope.company_list.length;
                 for(i = 0; i < $scope.company_list.length; i ++){
                     $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
-                    $scope.company_list[i].position_types = {};
                     $scope.company_list[i].scale_value = $scope.scale[$scope.company_list[i].scale];
-                    for(j = 0; j < $scope.company_list[i].positions.length; j ++)
-                    {
-                        $scope.company_list[i].position_types[$scope.position_index[$scope.company_list[i].positions[j].position_type]] = $scope.position_type[$scope.company_list[i].positions[j].position_type];
+                    $scope.company_list[i].field_type = $scope.field_type[$scope.company_list[i].field];
+                    $scope.company_list[i].position_type_value = {};
+                    for(j = 0; j < $scope.company_list[i].position_type.length; j ++){
+                        $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
                     }
                 }
                 }
@@ -431,6 +442,17 @@ angular.module('chuangplus.controllers', []).
             'operate':"运营",
             'marketing':"市场",
             'functions':"职能",
+            'others':"其他"
+        };
+        $scope.field_type={
+            'social':"社交",
+            'e-commerce':"电子商务",
+            'education':"教育",
+            'health_medical':"健康医疗",
+            'culture_creativity':"文化创意",
+            'living_consumption':"生活消费",
+            'hardware':"硬件",
+            '020':"O2O",
             'others':"其他"
         };
         $scope.get_userInfo = function(){
@@ -473,6 +495,7 @@ angular.module('chuangplus.controllers', []).
                         else{
                             $scope.positions[i].company.scale_value = "成熟";
                         }
+                        $scope.positions[i].company.field_type = $scope.field_type[$scope.positions[i].company.field];
             $scope.check_submit(i);
                     }
                 }
@@ -1226,21 +1249,24 @@ angular.module('chuangplus.controllers', []).
                 }
             });
         };
-                                        $scope.change_in = function(){
-                                        if(!$scope.favor_exist)
-                                        $scope.img_src = "/static/image/icon/shoucang2-01.png";
-                                        };
-                                        $scope.change_out = function(){
-                                        if(!$scope.favor_exist)
-                                        $scope.img_src = "/static/image/icon/shoucang-01.png";
-                                        };
-                                        $scope.change2_in = function(){
-                                        $scope.img2_src="/static/image/icon/weixin2-01.png";
-                                        };
-                                        $scope.change2_out = function(){
-                                        $scope.img2_src="/static/image/icon/weixin-01.png";
-                                        };
+        $scope.change_in = function(){
+            if(!$scope.favor_exist)
+                $scope.img_src = "/static/image/icon/shoucang2-01.png";
+        };
+        $scope.change_out = function(){
+            if(!$scope.favor_exist)
+                $scope.img_src = "/static/image/icon/shoucang-01.png";
+        };
+        $scope.change2_in = function(){
+            $scope.img2_src="/static/image/icon/weixin2-01.png";
+        };
+        $scope.change2_out = function(){
+            $scope.img2_src="/static/image/icon/weixin-01.png";
+        };
+    $scope.skip = function(){
+        window.location.href = "/company/" + $scope.company_id + "/detail";
 
+    };
     $scope.get_position_detail = function(){
         $http.get(urls.api+"/position/"+ $scope.position_id +"/get_with_company").
         success(function(data){
