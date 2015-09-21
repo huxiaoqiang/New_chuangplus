@@ -3190,6 +3190,19 @@ form.financing_add input {
   font-size: 16px;
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
+#container #first-step .info1 .left-info .input-group .col-sm-9 .change_tab .upload-img {
+  cursor: pointer;
+  height: 160px;
+  width: 160px;
+  background-color: lightgray;
+  color: white;
+  text-align: center;
+  padding-top: 66px;
+  border-radius: 6px;
+}
+#container #first-step .info1 .left-info .input-group .col-sm-9 .change_tab .upload-img:hover {
+  color: #98769E;
+}
 #container #first-step .info1 .left-info .input-group .col-sm-9 input {
   width: 90%;
   height: 32px;
