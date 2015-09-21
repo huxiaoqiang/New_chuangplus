@@ -7,6 +7,23 @@
             <div class="item alpha10"></div>
         </div>
         <div style="clear:both;"></div>
+
+        <div ng-controller="DT_ResizeImgCtrl">
+          <link rel="stylesheet" type="text/css" href="/static/lib/imageresize/css/normalize.css" />
+          <link rel="stylesheet" type="text/css" href="/static/lib/imageresize/css/demo.css" />
+          <link rel="stylesheet" type="text/css" href="/static/lib/imageresize/css/component.css" />
+          <div class="component">
+            <div class="overlay">
+                <div class="overlay-inner">
+                </div>
+            </div>
+            <!-- This image must be on the same domain as the demo or it will not work on a local file system -->
+            <!-- http://en.wikipedia.org/wiki/Cross-origin_resource_sharing -->
+            <img class="resize-image" src="/static/lib/imageresize/img/image.jpg" alt="image for resizing">
+            <button class="btn-crop js-crop">Crop<img class="icon-crop" src="/static/lib/imageresize/img/crop.svg"></button>
+          </div>
+        </div>
+        
         <form name="FirstStepForm" ng-submit="next_step()">
         <div class="info1">
             <div class="left-info">
@@ -31,7 +48,7 @@
                         <label>公司logo</label>
                     </div>
                     <div class="col-sm-9">
-                      <div class="change_tab" ng-model="logo"  ngf-select="upload($file,'logo','logo')">
+                      <div class="change_tab" ng-model="logo"  ngf-select="upload($file,'logo')">
                         <img  ng-if="logo==null && companyinfo.logo_id != undefined" ng-src="/api/file/[[companyinfo.logo_id]]/download" title="点击上传logo"><br/>
                         <div class="upload-img"  ng-if="logo==null && companyinfo.logo_id == undefined" >点击上传logo</div>
                         <img  ng-if="logo!=null" ngf-src="logo" title="点击上传logo"><br/>

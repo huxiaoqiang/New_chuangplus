@@ -1745,7 +1745,8 @@ angular.module('chuangplus_mobile.controllers', [])
     function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         $rootScope.loading = false;
     }])
-    .controller('MB_ResizeImgCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    .controller('MB_ResizeImgCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         $rootScope.loading = false;
         var resizeableImage = function(image_target) {
           // Some variable and settings
@@ -1936,6 +1937,16 @@ angular.module('chuangplus_mobile.controllers', [])
             
             crop_canvas.getContext('2d').drawImage(image_target, left, top, width, height, 0, 0, width, height);
             window.open(crop_canvas.toDataURL("image/png"));
+            var data=crop_canvas.toDataURL();
+            // dataURL 的格式为 “data:image/png;base64,****”,逗号之前都是一些说明性的文字，我们只需要逗号之后的就行了
+            data=data.split(',')[1];
+            data=window.atob(data);
+            var ia = new Uint8Array(data.length);
+            for (var i = 0; i < data.length; i++) {
+                ia[i] = data.charCodeAt(i);
+            };
+            // canvas.toDataURL 返回的默认格式就是 image/png
+            var blob=new Blob([ia], {type:"image/png"});
           }
 
           init();
