@@ -1,21 +1,16 @@
-<div class="scrollable">
-    <div class="scrollable-content section">
 
-        <form action="" id="" ng-submit="signin()">
-
-            <div bs-panel title="">
-
-                <input bs-form-control type="text" ng-model="user.username" label="" label-class="col-xs-3 col-sm-2 col-lg-1" class="col-xs-10 col-sm-11 col-lg-12" placeholder="Username" />
-
-                <input bs-form-control type="password" ng-model="user.password" label="" label-class="col-xs-3 col-sm-2 col-lg-1" class="col-xs-10 col-sm-11 col-lg-12" placeholder="Password" />
-
-                <button type="submit" id="btnSignIn" class="btn btn-primary" data-style="expand-right">
-                    Sign In
-                </button>
-
-            </div>
-
-        </form>
-
-    </div>
+<div ng-controller="MB_ResizeImgCtrl">
+<link rel="stylesheet" type="text/css" href="/static/lib/imageresize/css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="/static/lib/imageresize/css/demo.css" />
+<link rel="stylesheet" type="text/css" href="/static/lib/imageresize/css/component.css" />
+<div class="component">
+                    <div class="overlay">
+                        <div class="overlay-inner">
+                        </div>
+                    </div>
+                    <!-- This image must be on the same domain as the demo or it will not work on a local file system -->
+                    <!-- http://en.wikipedia.org/wiki/Cross-origin_resource_sharing -->
+                    <img class="resize-image" src="/static/lib/imageresize/img/image.jpg" alt="image for resizing">
+                    <button class="btn-crop js-crop">Crop<img class="icon-crop" src="/static/lib/imageresize/img/crop.svg"></button>
+</div>
 </div>
