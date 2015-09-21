@@ -67,10 +67,10 @@
                 </div>
 -->
                 <div class="name-position">
-                    <input type="text" ng-model="member_add.m_name" placeholder="成员姓名"></br>
-                    <input type="text" ng-model="member_add.m_position" placeholder="成员职务">
+                    <input type="text" ng-model="member_add.m_name" placeholder="成员姓名" required></br>
+                    <input type="text" ng-model="member_add.m_position" placeholder="成员职务" required="">
                 </div>
-                <textarea class="member-intro" placeholder="成员简介" ng-model="member_add.m_introduction"></textarea>
+                <textarea class="member-intro" placeholder="成员简介" ng-model="member_add.m_introduction" required></textarea>
                 <div class="yes" ng-click="save_member()"><img src="/static/image/icon/yes-01.png"></div>
             </div>
         </form>

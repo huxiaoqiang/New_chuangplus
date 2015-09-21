@@ -2556,6 +2556,11 @@ angular.module('chuangplus.controllers', []).
                 setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                 return;
             }
+            else if($scope.member_number == 0){
+                $scope.error = $errMsg.format_error("请至少上传一个团队成员的信息",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
             $scope.companyinfo.info_complete = true;
             $csrf.set_csrf($scope.companyinfo);
             $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
