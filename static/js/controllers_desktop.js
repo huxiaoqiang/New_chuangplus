@@ -1856,7 +1856,7 @@ angular.module('chuangplus.controllers', []).
                     }
                 });
         };
-        $scope.resize = function()
+        $scope.resize = function(file)
         {
             $scope.resize_area = true;
             var resizeableImage = function(image_target) {
@@ -2089,6 +2089,15 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.startUpload = function(file)
         {
+            if(!/image\/\w+/.test(file.type)){ 
+                alert("文件必须为图片！"); 
+                return false; 
+            } 
+            var reader = new FileReader(); 
+            reader.readAsDataURL(file); 
+            reader.onload = function(e){ 
+                $('#logo-preview').innerHTML = '<img src="'+this.result+'" alt=""/>' 
+            } 
             $scope.resize(file);
         }
         $scope.add_tag = function(){
