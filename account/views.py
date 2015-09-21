@@ -82,6 +82,8 @@ def register(request):
                         reguser.delete()
                         return HttpResponse(json.dumps(re), content_type = 'application/json')
                     re['error'] = error(1, 'company user registered!')
+                    cpn_json = json.loads(companyinfo.to_json())
+                    re['id'] = cpn_json['_id']['$oid']
                 elif reguser is not None and role == "0":
                     userinfo = Userinfo(username=username,user=reguser,email=email)
                     userinfo.date_joined = datetime_now()

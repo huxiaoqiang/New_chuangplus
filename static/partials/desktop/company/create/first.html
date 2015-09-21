@@ -32,7 +32,7 @@
                         <label>公司简称</label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="text" required ng-model="companyinfo.abbreviation" placeholder="如：犀牛">
+                        <input name="abbreviation" type="text" required ng-model="companyinfo.abbreviation" placeholder="如：犀牛(不超过8个字)" maxlength="8">
                     </div>
                 </div>
                 <div class="input-group">
@@ -48,10 +48,13 @@
                         <label>公司logo</label>
                     </div>
                     <div class="col-sm-9">
-                      <div class="change_tab" ng-model="logo"  ngf-select="upload($file,'logo')">
-                        <img  ng-if="logo==null && companyinfo.logo_id != undefined" ng-src="/api/file/[[companyinfo.logo_id]]/download" title="点击上传logo"><br/>
+                      <div class="change_tab" ng-model="logo"  ngf-select="upload($file,'logo','logo')">
+                        <img  ng-if="logo==null && companyinfo.logo_id != undefined" ng-src="/api/file/[[companyinfo.logo_id]]/download" title="点击图片修改logo"><br/>
                         <div class="upload-img"  ng-if="logo==null && companyinfo.logo_id == undefined" >点击上传logo</div>
                         <img  ng-if="logo!=null" ngf-src="logo" title="点击上传logo"><br/>
+                      </div>
+                      <div>
+                          <p>点击图片上传或修改logo</p>
                       </div>
                     </div>
                 </div>
@@ -115,11 +118,11 @@
                       <label>[[tag.value]]</label>
                     </label>
                           <br/>
-                              <input name="addtag" type="text" class="form-control tags_input" placeholder="自定义标签" ng-maxlength="4" ng-model="tag_added">
+                              <input name="addtag" type="text" class="form-control tags_input" placeholder="自定义标签" maxlength="4" ng-model="tag_added">
                               <input type="button" class="btn btn-primary" value="添加" ng-click="add_tag()" ng-disabled="canAdd(FirstStepForm.addtag)">
                               <div style="clear:both;"></div>
                           <br/>
-                          <span class="err-msg" ng-show="tag_long_error(FirstStepForm.addtag)"><i class=" icon-warning-sign"></i>福利标签不能超过4个字</span>
+                          <span class="err-msg" ng-show="tags_full"><i class=" icon-warning-sign"></i>最多添加6个自定义标签</span>
                     </div>
                 </div>
             </div>

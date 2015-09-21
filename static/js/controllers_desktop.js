@@ -209,7 +209,10 @@ angular.module('chuangplus.controllers', []).
                             success(function(data){
                                 if(data.error.code == 1){
                                     $scope.error = $errMsg.format_error("注册成功",data.error);
-                                    setTimeout(function(){window.location.href='/'},1500);
+                                    $scope.id = data.id;
+                                    if($scope.reg_info.role == 1){
+                                        setTimeout(function(){window.location.href='/company/'+$scope.id+'/create/first'},1500);
+                                    }
                                 }
                                 else{
                                     $scope.error = $errMsg.format_error("",data.error);
@@ -815,388 +818,386 @@ angular.module('chuangplus.controllers', []).
             }
         };
     }]).
-    controller('DT_CompanyInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','Upload','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, Upload,$errMsg){
-        console.log('DT_CompanyInfoCtrl');
-        if ($user.username() == undefined){
-            window.location.href='/login';
-        };
-        $scope.company_id = "";
-        $scope.companyinfo = {};
-        $scope.company_id = '';
-        $scope.CEO = {
-            "m_position":"CEO"
-        };
-        //get company info
-        $scope.get_company_info = function(){
-            $http.get(urls.api+"/account/company/detail").
-                success(function(data){
-                    if(data.error.code == 1){
-                        $scope.companyinfo = data.data;
-                        $scope.company_id = data.data._id.$oid;
-                    }
-                });
-        };
-        $scope.get_company_info();
-
-        $scope.upload = function(file,file_t){
-            var param = {
-               "file_type":file_t,
-               "description":$scope.company_id + file_t,
-               "category":$scope.company_id + '_'+file_t
-            };
-            var headers = {
-                   'X-CSRFToken': $csrf.val(),
-                   'Content-Type': file.type
-               };
-            Upload.upload({
-               url:urls.api+'/file/upload',
-               data: param,
-               headers:headers,
-               file: file
-            }).
-            progress(function(evt){
-                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                $scope.progress= 'progress: ' + progressPercentage + '% ' + evt.config.file.name;
-            }).
-            success(function(data, status, headers, config){
-                if(data.error.code == 1){
-                    console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
-                    if(file_t == 'logo'){
-                        $scope.companyinfo.logo_id = data.data
-                    }
-                    else{
-                        $scope.CEO.m_avatar_id = data.data
-                    }
-                }
-                else{
-                    console.log(data.error.message);
-                    $scope.error = $errMsg.format_error('',data.error);
-                }
-            });
-        };
-        $scope.create_CEO = function(){
-        $csrf.set_csrf($scope.CEO);
-        $http.post(urls.api+'/account/member/create',$.param($scope.CEO)).
-        success(function(data){
-            if(data.error.code == 1){
-            
-            }
-            else{
-                $scope.error = $errMsg.format_error('',data.error);
-            }
-        });
-    };
-        $scope.create_company = function(){
-            $csrf.set_csrf($scope.companyinfo);
-            $http.post(urls.api+'/account/company/'+$scope.company_id+'/set', $.param($scope.companyinfo)).
-                success(function(data){
-                    if(data.error.code == 1){
-                        $scope.create_CEO();
-                        window.location.href='/company/'+$scope.company_id+ '/infodetail';
-                    }
-                    else{
-                        console.log(data.error.message);
-                        $scope.error = $errMsg.format_error('',data.error);
-                    }
-            });
-        };
-        $scope.showError = function(ngModelController,error){
-            return ngModelController.$error[error];
-        };
-    }]).
-    controller('DT_CompanyInfoDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
-        console.log('DT_CompanyInfoDetailCtrl');
-        $scope.tag_list = ["技能培训","扁平管理","可转正","弹性工作","定期出游","地铁周边","股票期权","水果零食","正餐补助","班车接送"];
-        $scope.tags = [
-            {
-                "chosed":false,
-                "value" :"技能培训"
-            },
-            {
-                "chosed":false,
-                "value" :"扁平管理"
-            },
-            {
-                "chosed":false,
-                "value" :"可转正"
-            },
-            {
-                "chosed":false,
-                "value" :"弹性工作"
-            },
-            {
-                "chosed":false,
-                "value" :"定期出游"
-            },
-            {
-                "chosed":false,
-                "value" :"地铁周边"
-            },
-            {
-                "chosed":false,
-                "value" :"股票期权"
-            },
-            {
-                "chosed":false,
-                "value" :"水果零食"
-            },
-            {
-                "chosed":false,
-                "value" :"正餐补助"
-            },
-            {
-                "chosed":false,
-                "value" :"班车接送"
-            }
-        ];
-        $scope.company_id = $routeParams.company_id;
-        $scope.delete_index = 0;
-        $scope.get_company_info = function(){
-            $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
-                success(function(data){
-                    if(data.error.code == 1){
-                        $scope.companyinfo = data.data;
-                        if(data.data.company_description == undefined)
-                            $scope.old_company_description = "";
-                        else
-                            $scope.old_company_description = data.data.company_description;
-                        if(data.data.team_description == undefined)
-                            $scope.old_team_description = "";
-                        else
-                            $scope.old_team_description = data.data.team_description;
-                    }
-                });
-            };
-        $scope.companyinfo = {};
-        $scope.get_company_info();
-        $scope.get_member_list = function(){
-        $http.get(urls.api+"/account/member/"+$scope.company_id+"/list").
-            success(function(data){
-                if(data.error.code == 1){
-                    $scope.member_list = data.data;
-                    $scope.member_number = data.data.length;
-                }
-                else{
-                    $scope.error = $errMsg.format_error('',data.error);
-                }
-            });
-        };
-        $scope.member_list=[];
-        $scope.get_member_list();
-
-        $scope.get_financing_list = function(){
-            $http.get(urls.api+"/account/financing/"+$scope.company_id+"/list").
-                success(function(data){
-                if(data.error.code == 1){
-                    $scope.financing_list = data.data;
-                }
-                else{
-                    $scope.error = $errMsg.format_error('',data.error);
-                }
-            });
-        };
-        $scope.financing_list=[];
-        $scope.get_financing_list();
-        $scope.old_team_description = "";
-        $scope.old_company_description = "";
-
-        $scope.add_tag = function(){
-            $scope.welfare_tags.append({
-                "chosed":false,
-                "value" :$scope.tag_added
-            });
-        };
-        $scope.canAdd = function(ngModelController){
-            return (ngModelController.$invalid && ngModelController.$dirty) ||  ngModelController.$pristine;
-        };
-        $scope.tag_long_error=function(ngModelController){
-            return ngModelController.$invalid && ngModelController.$dirty;
-        };
-
-        $scope.save_team_description = function(){
-            $scope.edit_team_intro=false;
-            $scope.old_team_description = $scope.companyinfo.team_description;
-            var param = {
-                "team_description":$scope.companyinfo.team_description,
-                "csrfmiddlewaretoken" : $csrf.val()
-            };
-            $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param(param)).
-               success(function(data){
-               if(data.error.code == 1){
-                    $scope.error = $errMsg.format_error("保存成功",data.error);
-               }
-               else{
-                   $scope.error = $errMsg.format_error('',data.error);
-               }
-            });
-        };
-        $scope.cancel_edit = function(){
-            $scope.edit_team_intro=false
-            $scope.companyinfo.team_description = $scope.old_team_description;
-        };
-        $scope.company_cancel_edit = function(){
-            $scope.edit_company_intro=false
-            $scope.companyinfo.company_description = $scope.old_company_description;
-        };
-        $scope.save_company_description = function(){
-            $scope.edit_company_intro=false;
-            $scope.old_company_description = $scope.companyinfo.company_description;
-            var param = {
-                "company_description":$scope.companyinfo.company_description,
-                "csrfmiddlewaretoken" : $csrf.val()
-            };
-            $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param(param)).
-               success(function(data){
-               if(data.error.code == 1){
-                    $scope.error = $errMsg.format_error("保存成功",data.error);
-               }
-               else{
-                   $scope.error = $errMsg.format_error('',data.error);
-               }
-            });
-        };
-         $scope.upload = function(file,file_t,category){
-            var param = {
-               "file_type":file_t,
-               "description":$scope.company_id + file_t,
-               "category":$scope.company_id + '_'+category
-            };
-            var headers = {
-                   'X-CSRFToken': $csrf.val(),
-                   'Content-Type': file.type
-            };
-            Upload.upload({
-               url:urls.api+'/file/upload',
-               data: param,
-               headers:headers,
-               file: file
-            }).
-            success(function(data, status, headers, config){
-                if(data.error.code == 1){
-                    console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
-                    if(file_t == 'memberavatar'){
-                        $scope.member_add.m_avatar_id = data.data;
-                    }
-                    else if(file_t == 'logo'){
-                        $scope.companyinfo.logo_id = data.data;
-                    }
-                    else if(file_t == 'qrcode'){
-                         $scope.companyinfo.qrcode_id = data.data;
-                    }
-                }
-                else{
-                    console.log(data.error.message);
-                    $scope.error = $errMsg.format_error('',data.error);
-                }
-            });
-        };
-        $scope.add_member = function(){
-            $csrf.set_csrf($scope.member_add);
-            $http.post(urls.api+'/account/member/create',$.param($scope.member_add)).
-                success(function(data){
-                    if(data.error.code == 1){
-                        $scope.get_member_list();
-                        $scope.member_add = null;
-                        $scope.avatar = null;
-                        $('#myModal').modal('hide');
-                    }
-                    else{
-                        $scope.error = $errMsg.format_error('',data.error);
-                    }
-                });
-        };
-        $scope.get_delete_index = function($index){
-            $scope.delete_index = $index;
-        };
-        $scope.delete_member = function(index){
-        var param = {
-            "csrfmiddlewaretoken" : $csrf.val()
-        };
-
-        $http.post(urls.api+"/account/member/"+$scope.member_list[index]._id.$oid+"/delete", $.param(param)).
-            success(function(data){
-                if(data.error.code == 1){
-
-                    $http.post(urls.api+"/file/" + $scope.member_list[index].m_avatar_id + "/delete", $.param(param)).
-                        success(function(data){
-                            if(data.error.code == 1){
-                                $scope.get_member_list();
-                                $('#delete_member').modal('hide');
-                            }
-                            else{
-                                $scope.error = $errMsg.format_error('',data.error);
-                            }
-                        });
-                }
-                else{
-                    $scope.error = $errMsg.format_error('',data.error);
-                }
-            });
-        };
-        $scope.add_financing = function(){
-            $csrf.set_csrf($scope.financing_add);
-            $http.post(urls.api+'/account/financing/create',$.param($scope.financing_add)).
-            success(function(data){
-                if(data.error.code == 1){
-                    $scope.get_financing_list();
-                    $scope.financing_add = null;
-                    $('#add_financing').modal('hide');
-                }
-                else{
-                    $scope.error = $errMsg.format_error('',data.error);
-                }
-            });
-        };
-        $scope.delete_financing = function(index){
-            var param = {
-                "csrfmiddlewaretoken" : $csrf.val()
-            };
-            $http.post(urls.api+"/account/financing/"+$scope.financing_list[index]._id.$oid+"/delete", $.param(param)).
-                success(function(data){
-                    if(data.error.code == 1){
-                        $scope.get_financing_list();
-                        $('#delete_financing').modal('hide');
-                    }
-                    else{
-                        $scope.error = $errMsg.format_error('',data.error);
-                    }
-                });
-        };
-        $scope.save_company_info = function(){
-            $scope.companyinfo.welfare_tags = '';
-            var tag_number = 0;
-            for(i=0; i<$scope.tags.length; i++){
-                if($scope.tags[i].chosed == true){
-                    $scope.companyinfo.welfare_tags += $scope.tags[i].value;
-                    $scope.companyinfo.welfare_tags += ',';
-                    tag_number++;
-                }
-            }
-            if(tag_number == 0){
-                $scope.error = $errMsg.format_error("至少选择一个福利标签",{code:"-1"});
-                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
-                return;
-            }
-            else if(tag_number > 5){
-                $scope.error = $errMsg.format_error("福利标签数不能超过5个",{code:"-1"});
-                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
-                return;
-            }
-            $scope.companyinfo.welfare_tags = $scope.companyinfo.welfare_tags.substring(0,$scope.companyinfo.welfare_tags.length-1);
-            $csrf.set_csrf($scope.companyinfo);
-            $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
-                success(function(data){
-                    if(data.error.code == 1){
-                        $scope.error = $errMsg.format_error("保存公司信息成功",data.error);
-                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
-                    }
-                    else{
-                        $scope.error = $errMsg.format_error('',data.error);
-                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
-                    }
-                });
-        };
-    }]).
+//    controller('DT_CompanyInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','Upload','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, Upload,$errMsg){
+//        console.log('DT_CompanyInfoCtrl');
+//        if ($user.username() == undefined){
+//            window.location.href='/login';
+//        };
+//        $scope.company_id = "";
+//        $scope.companyinfo = {};
+//        $scope.company_id = '';
+//        $scope.CEO = {
+//            "m_position":"CEO"
+//        };
+//        //get company info
+//        $scope.get_company_info = function(){
+//            $http.get(urls.api+"/account/company/detail").
+//                success(function(data){
+//                    if(data.error.code == 1){
+//                        $scope.companyinfo = data.data;
+//                        $scope.company_id = data.data._id.$oid;
+//                    }
+//                });
+//        };
+//        $scope.get_company_info();
+//
+//        $scope.upload = function(file,file_t){
+//            var param = {
+//               "file_type":file_t,
+//               "description":$scope.company_id + file_t,
+//               "category":$scope.company_id + '_'+file_t
+//            };
+//            var headers = {
+//                   'X-CSRFToken': $csrf.val(),
+//                   'Content-Type': file.type
+//               };
+//            Upload.upload({
+//               url:urls.api+'/file/upload',
+//               data: param,
+//               headers:headers,
+//               file: file
+//            }).
+//            progress(function(evt){
+//                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+//                $scope.progress= 'progress: ' + progressPercentage + '% ' + evt.config.file.name;
+//            }).
+//            success(function(data, status, headers, config){
+//                if(data.error.code == 1){
+//                    console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
+//                    if(file_t == 'logo'){
+//                        $scope.companyinfo.logo_id = data.data
+//                    }
+//                    else{
+//                        $scope.CEO.m_avatar_id = data.data
+//                    }
+//                }
+//                else{
+//                    console.log(data.error.message);
+//                    $scope.error = $errMsg.format_error('',data.error);
+//                }
+//            });
+//        };
+//        $scope.create_CEO = function(){
+//        $csrf.set_csrf($scope.CEO);
+//        $http.post(urls.api+'/account/member/create',$.param($scope.CEO)).
+//        success(function(data){
+//            if(data.error.code == 1){
+//
+//            }
+//            else{
+//                $scope.error = $errMsg.format_error('',data.error);
+//            }
+//        });
+//    };
+//        $scope.create_company = function(){
+//            $csrf.set_csrf($scope.companyinfo);
+//            $http.post(urls.api+'/account/company/'+$scope.company_id+'/set', $.param($scope.companyinfo)).
+//                success(function(data){
+//                    if(data.error.code == 1){
+//                        $scope.create_CEO();
+//                        window.location.href='/company/'+$scope.company_id+ '/infodetail';
+//                    }
+//                    else{
+//                        console.log(data.error.message);
+//                        $scope.error = $errMsg.format_error('',data.error);
+//                    }
+//            });
+//        };
+//        $scope.showError = function(ngModelController,error){
+//            return ngModelController.$error[error];
+//        };
+//    }]).
+//    controller('DT_CompanyInfoDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
+//        console.log('DT_CompanyInfoDetailCtrl');
+//        $scope.tag_list = ["技能培训","扁平管理","可转正","弹性工作","定期出游","地铁周边","股票期权","水果零食","正餐补助","班车接送"];
+//        $scope.tags = [
+//            {
+//                "chosed":false,
+//                "value" :"技能培训"
+//            },
+//            {
+//                "chosed":false,
+//                "value" :"扁平管理"
+//            },
+//            {
+//                "chosed":false,
+//                "value" :"可转正"
+//            },
+//            {
+//                "chosed":false,
+//                "value" :"弹性工作"
+//            },
+//            {
+//                "chosed":false,
+//                "value" :"定期出游"
+//            },
+//            {
+//                "chosed":false,
+//                "value" :"地铁周边"
+//            },
+//            {
+//                "chosed":false,
+//                "value" :"股票期权"
+//            },
+//            {
+//                "chosed":false,
+//                "value" :"水果零食"
+//            },
+//            {
+//                "chosed":false,
+//                "value" :"正餐补助"
+//            },
+//            {
+//                "chosed":false,
+//                "value" :"班车接送"
+//            }
+//        ];
+//        $scope.company_id = $routeParams.company_id;
+//        $scope.delete_index = 0;
+//        $scope.get_company_info = function(){
+//            $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
+//                success(function(data){
+//                    if(data.error.code == 1){
+//                        $scope.companyinfo = data.data;
+//                        if(data.data.company_description == undefined)
+//                            $scope.old_company_description = "";
+//                        else
+//                            $scope.old_company_description = data.data.company_description;
+//                        if(data.data.team_description == undefined)
+//                            $scope.old_team_description = "";
+//                        else
+//                            $scope.old_team_description = data.data.team_description;
+//                    }
+//                });
+//            };
+//        $scope.companyinfo = {};
+//        $scope.get_company_info();
+//        $scope.get_member_list = function(){
+//        $http.get(urls.api+"/account/member/"+$scope.company_id+"/list").
+//            success(function(data){
+//                if(data.error.code == 1){
+//                    $scope.member_list = data.data;
+//                    $scope.member_number = data.data.length;
+//                }
+//                else{
+//                    $scope.error = $errMsg.format_error('',data.error);
+//                }
+//            });
+//        };
+//        $scope.member_list=[];
+//        $scope.get_member_list();
+//
+//        $scope.get_financing_list = function(){
+//            $http.get(urls.api+"/account/financing/"+$scope.company_id+"/list").
+//                success(function(data){
+//                if(data.error.code == 1){
+//                    $scope.financing_list = data.data;
+//                }
+//                else{
+//                    $scope.error = $errMsg.format_error('',data.error);
+//                }
+//            });
+//        };
+//        $scope.financing_list=[];
+//        $scope.get_financing_list();
+//        $scope.old_team_description = "";
+//        $scope.old_company_description = "";
+//
+//        $scope.add_tag = function(){
+//            $scope.welfare_tags.append({
+//                "chosed":true,
+//                "value" :$scope.tag_added
+//            });
+//
+//        };
+//        $scope.canAdd = function(ngModelController){
+//            return (ngModelController.$invalid && ngModelController.$dirty) ||  ngModelController.$pristine;
+//        };
+//
+//        $scope.save_team_description = function(){
+//            $scope.edit_team_intro=false;
+//            $scope.old_team_description = $scope.companyinfo.team_description;
+//            var param = {
+//                "team_description":$scope.companyinfo.team_description,
+//                "csrfmiddlewaretoken" : $csrf.val()
+//            };
+//            $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param(param)).
+//               success(function(data){
+//               if(data.error.code == 1){
+//                    $scope.error = $errMsg.format_error("保存成功",data.error);
+//               }
+//               else{
+//                   $scope.error = $errMsg.format_error('',data.error);
+//               }
+//            });
+//        };
+//        $scope.cancel_edit = function(){
+//            $scope.edit_team_intro=false
+//            $scope.companyinfo.team_description = $scope.old_team_description;
+//        };
+//        $scope.company_cancel_edit = function(){
+//            $scope.edit_company_intro=false
+//            $scope.companyinfo.company_description = $scope.old_company_description;
+//        };
+//        $scope.save_company_description = function(){
+//            $scope.edit_company_intro=false;
+//            $scope.old_company_description = $scope.companyinfo.company_description;
+//            var param = {
+//                "company_description":$scope.companyinfo.company_description,
+//                "csrfmiddlewaretoken" : $csrf.val()
+//            };
+//            $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param(param)).
+//               success(function(data){
+//               if(data.error.code == 1){
+//                    $scope.error = $errMsg.format_error("保存成功",data.error);
+//               }
+//               else{
+//                   $scope.error = $errMsg.format_error('',data.error);
+//               }
+//            });
+//        };
+//         $scope.upload = function(file,file_t,category){
+//            var param = {
+//               "file_type":file_t,
+//               "description":$scope.company_id + file_t,
+//               "category":$scope.company_id + '_'+category
+//            };
+//            var headers = {
+//                   'X-CSRFToken': $csrf.val(),
+//                   'Content-Type': file.type
+//            };
+//            Upload.upload({
+//               url:urls.api+'/file/upload',
+//               data: param,
+//               headers:headers,
+//               file: file
+//            }).
+//            success(function(data, status, headers, config){
+//                if(data.error.code == 1){
+//                    console.log('file ' + config.file.name + 'uploaded. Response: ' + data.data);
+//                    if(file_t == 'memberavatar'){
+//                        $scope.member_add.m_avatar_id = data.data;
+//                    }
+//                    else if(file_t == 'logo'){
+//                        $scope.companyinfo.logo_id = data.data;
+//                    }
+//                    else if(file_t == 'qrcode'){
+//                         $scope.companyinfo.qrcode_id = data.data;
+//                    }
+//                }
+//                else{
+//                    console.log(data.error.message);
+//                    $scope.error = $errMsg.format_error('',data.error);
+//                }
+//            });
+//        };
+//        $scope.add_member = function(){
+//            $csrf.set_csrf($scope.member_add);
+//            $http.post(urls.api+'/account/member/create',$.param($scope.member_add)).
+//                success(function(data){
+//                    if(data.error.code == 1){
+//                        $scope.get_member_list();
+//                        $scope.member_add = null;
+//                        $scope.avatar = null;
+//                        $('#myModal').modal('hide');
+//                    }
+//                    else{
+//                        $scope.error = $errMsg.format_error('',data.error);
+//                    }
+//                });
+//        };
+//        $scope.get_delete_index = function($index){
+//            $scope.delete_index = $index;
+//        };
+//        $scope.delete_member = function(index){
+//        var param = {
+//            "csrfmiddlewaretoken" : $csrf.val()
+//        };
+//
+//        $http.post(urls.api+"/account/member/"+$scope.member_list[index]._id.$oid+"/delete", $.param(param)).
+//            success(function(data){
+//                if(data.error.code == 1){
+//
+//                    $http.post(urls.api+"/file/" + $scope.member_list[index].m_avatar_id + "/delete", $.param(param)).
+//                        success(function(data){
+//                            if(data.error.code == 1){
+//                                $scope.get_member_list();
+//                                $('#delete_member').modal('hide');
+//                            }
+//                            else{
+//                                $scope.error = $errMsg.format_error('',data.error);
+//                            }
+//                        });
+//                }
+//                else{
+//                    $scope.error = $errMsg.format_error('',data.error);
+//                }
+//            });
+//        };
+//        $scope.add_financing = function(){
+//            $csrf.set_csrf($scope.financing_add);
+//            $http.post(urls.api+'/account/financing/create',$.param($scope.financing_add)).
+//            success(function(data){
+//                if(data.error.code == 1){
+//                    $scope.get_financing_list();
+//                    $scope.financing_add = null;
+//                    $('#add_financing').modal('hide');
+//                }
+//                else{
+//                    $scope.error = $errMsg.format_error('',data.error);
+//                }
+//            });
+//        };
+//        $scope.delete_financing = function(index){
+//            var param = {
+//                "csrfmiddlewaretoken" : $csrf.val()
+//            };
+//            $http.post(urls.api+"/account/financing/"+$scope.financing_list[index]._id.$oid+"/delete", $.param(param)).
+//                success(function(data){
+//                    if(data.error.code == 1){
+//                        $scope.get_financing_list();
+//                        $('#delete_financing').modal('hide');
+//                    }
+//                    else{
+//                        $scope.error = $errMsg.format_error('',data.error);
+//                    }
+//                });
+//        };
+//        $scope.save_company_info = function(){
+//            $scope.companyinfo.welfare_tags = '';
+//            var tag_number = 0;
+//            for(i=0; i<$scope.tags.length; i++){
+//                if($scope.tags[i].chosed == true){
+//                    $scope.companyinfo.welfare_tags += $scope.tags[i].value;
+//                    $scope.companyinfo.welfare_tags += ',';
+//                    tag_number++;
+//                }
+//            }
+//            if(tag_number == 0){
+//                $scope.error = $errMsg.format_error("至少选择一个福利标签",{code:"-1"});
+//                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+//                return;
+//            }
+//            else if(tag_number > 5){
+//                $scope.error = $errMsg.format_error("福利标签数不能超过5个",{code:"-1"});
+//                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+//                return;
+//            }
+//            $scope.companyinfo.welfare_tags = $scope.companyinfo.welfare_tags.substring(0,$scope.companyinfo.welfare_tags.length-1);
+//            $csrf.set_csrf($scope.companyinfo);
+//            $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
+//                success(function(data){
+//                    if(data.error.code == 1){
+//                        $scope.error = $errMsg.format_error("保存公司信息成功",data.error);
+//                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+//                    }
+//                    else{
+//                        $scope.error = $errMsg.format_error('',data.error);
+//                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+//                    }
+//                });
+//        };
+//    }]).
     controller('DT_PositionDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_PositionDetailCtrl');
         $scope.role = $user.role();
@@ -1835,7 +1836,8 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.companyinfo = data.data;
-                        var i=j=0;
+                        var i = 0;
+                        var j = 0;
                         var welfare_tags = data.data.welfare_tags;
                         for(i=0;i<welfare_tags.length;i++){
                             for(j=0;j<$scope.tags.length;j++){
@@ -2088,11 +2090,18 @@ angular.module('chuangplus.controllers', []).
                 "value" :$scope.tag_added
             });
         };
-        $scope.canAdd = function(ngModelController){
-            return (ngModelController.$invalid && ngModelController.$dirty) ||  ngModelController.$pristine;
+        $scope.remove_error = function(){
+             $scope.$apply(function(){$scope.tags_full = false;});
         };
-        $scope.tag_long_error=function(ngModelController){
-            return ngModelController.$invalid && ngModelController.$dirty;
+        $scope.canAdd = function(ngModelController){
+            if($scope.tags.length > 13){
+                $scope.tags_full = true;
+                setTimeout($scope.remove_error,1500);
+                 return true;
+            }
+            else{
+                return (ngModelController.$invalid && ngModelController.$dirty) ||  ngModelController.$pristine;
+            }
         };
         $scope.upload = function(file,file_t){
             var param = {
@@ -2136,7 +2145,7 @@ angular.module('chuangplus.controllers', []).
                 return;
             }
             else if(!$scope.companyinfo.hasOwnProperty('logo_id')){
-                $scope.error = $errMsg.format_error("请上传公司logo",{code:"-1"});
+                $scope.error = $errMsg.format_error("公司logo未上传或上传失败，请上传公司logo",{code:"-1"});
                 setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                 return;
             }
