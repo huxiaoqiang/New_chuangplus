@@ -9,13 +9,13 @@
         </div>
         <div style="clear:both;"></div>
 
-        <div ng-controller="DT_ResizeImgCtrl">
+        <div ng-controller="DT_ResizeImgCtrl" ng-show="resize_area">
           <div class="resize-component">
             <div class="overlay">
                 <div class="overlay-inner">
                 </div>
             </div>
-            <img class="resize-image" src="/static/lib/imageresize/img/image.jpg" alt="image for resizing">
+            <img class="resize-image" ng-src="[[file_path]]" alt="image for resizing">
             <button class="btn-crop js-crop">确认修改<img class="icon-crop" src="/static/lib/imageresize/img/crop.svg"></button>
           </div>
         </div>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-sm-9">
                       <div class="change_tab" ng-model="logo"  ngf-select="upload($file,'logo','logo')">
-                        <img  ng-if="logo==null && companyinfo.logo_id != undefined" ng-src="/api/file/[[companyinfo.logo_id]]/download" title="点击图片修改logo"><br/>
+                        <img id='logo-preview' ng-if="logo==null && companyinfo.logo_id != undefined" ng-src="/api/file/[[companyinfo.logo_id]]/download" title="点击图片修改logo"><br/>
                         <div class="upload-img"  ng-if="logo==null && companyinfo.logo_id == undefined" >点击上传logo</div>
                         <img  ng-if="logo!=null" ngf-src="logo" title="点击上传logo"><br/>
                       </div>

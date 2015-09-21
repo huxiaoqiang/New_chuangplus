@@ -1858,6 +1858,7 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.resize = function()
         {
+            $scope.resize_area = true;
             var resizeableImage = function(image_target) {
               // Some variable and settings
               var $container,
@@ -1867,8 +1868,8 @@ angular.module('chuangplus.controllers', []).
                   constrain = false,
                   min_width = 60, // Change as required
                   min_height = 60,
-                  max_width = 800, // Change as required
-                  max_height = 900,
+                  max_width = 500, // Change as required
+                  max_height = 400,
                   resize_canvas = document.createElement('canvas');
 
               var init = function(){
@@ -2073,8 +2074,11 @@ angular.module('chuangplus.controllers', []).
                 };
                 // canvas.toDataURL 返回的默认格式就是 image/png
                 var blob=new Blob([ia], {type:"image/png"});
+
+                document.getElementById('logo-preview').src="/api/file/"+ $scope.companyinfo.logo_id+ "/download"; 
                 //window.open(crop_canvas.toDataURL("image/png"));
                 $scope.upload(blob,'logo');
+                $scope.resize_area = false;
               }
 
               init();
@@ -2083,7 +2087,10 @@ angular.module('chuangplus.controllers', []).
             // Kick everything off with the target image
             resizeableImage($('.resize-image'));
         };
-        $scope.resize();
+        $scope.startUpload = function(file)
+        {
+            $scope.resize(file);
+        }
         $scope.add_tag = function(){
             $scope.tags.push({
                 "chosed":false,
