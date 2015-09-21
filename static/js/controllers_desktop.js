@@ -1594,12 +1594,12 @@ angular.module('chuangplus.controllers', []).
                 $scope.task.pageCount = data.page_number;
                 if(data.error.code == 1){
                     $scope.company_list = data.data;
-                    for(i=0;i<$scope.company_list.length;i++){
+                    for(var i=0;i<$scope.company_list.length;i++){
                         $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
                         $scope.company_list[i].scale_value = $scope.scale[$scope.company_list[i].scale];
                         $scope.company_list[i].field_type = $scope.field_type[$scope.company_list[i].field];
                         $scope.company_list[i].position_type_value = {};
-                        for(j = 0; j < $scope.company_list[i].position_type.length; j ++){
+                        for(var j = 0; j < $scope.company_list[i].position_type.length; j ++){
                         $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
                         }
                     }
