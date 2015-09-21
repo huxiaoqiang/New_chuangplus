@@ -14,9 +14,11 @@
             </div>
             <p class="work_days">每周可工作时长：[[intern_info.work_days]]天/周</p>
             <p class="cellphone">TEL：[[intern_info.cellphone]]</p>
+            <p class="line"></p>
             <p class="description">[[intern_info.description]]</p>
         </div>
         <div class="resume">
+            <span class="resume_file">附件：</span>
             <img src="/static/image/logo/fujian-01.png">
             <div class="no-resume" ng-show="intern_info.resume_id == null">无简历附件</div>
             <div class="resume-name"><a ng-show="intern_info.resume_id != null" ng-href="/api/file/[[intern_info.resume_id]]/download" target="_self">[[intern_info.resume_name]]</a></div>
@@ -28,7 +30,6 @@
         <div class="col-sm-9">
             <div class="head-button">
                 <input class="btn active" type="button" value="查看未处理" ng-click="view_unprocessed()">
-                <input class="btn" type="button" value="查看全部" ng-click="view_all()">
                 <input class="btn" type="button" value="一键下载">
 <!--                <input class="btn" type="button" value="清除不符合条件">-->
             </div>
@@ -44,7 +45,7 @@
                         </div>
                         <span class="basic-info">[[user.university]]/[[user.major]]</span>
                     </div>
-                    <page num-pages="task.pageCount" current-page="task.currentPage" on-select-page="selectPage(page)">
+                    <page ng-show="task.pageCount!=1" num-pages="task.pageCount" current-page="task.currentPage" on-select-page="selectPage(page)">
                     </page>
                 </div>
             </div>
@@ -57,6 +58,7 @@
             <p class="brief_introduction">[[companyinfo.brief_introduction]]</p>
             <p class="position_sum">在招岗位数：[[companyinfo.positions.length]]</p>
             <select ng-change="change(search_params.position_type)" class="search_params_position_type" ng-model="search_params.position_type">
+                <option value="" ng-select="search_params.position_type=''">全部</option>
                 <option value="technology" ng-select="search_params.position_type='technology'">技术</option>
                 <option value="product" ng-select="search_params.position_type='product'">产品</option>
                 <option value="design" ng-select="search_params.position_type='design'">设计</option>

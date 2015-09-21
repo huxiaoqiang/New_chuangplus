@@ -21,18 +21,17 @@ angular.module('chuangplus.controllers', []).
         $scope.scan = false;
         $scope.search = false;
     }]).
-    controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService',
-        function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','$location','HeaderService',
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$location,$header){
         console.log('DT_HeaderCtrl');
         $scope.company_id = '';
         $scope.username = $user.username();
         $scope.scan_mouseover = function(){
             $scope.scan=true;
             $scope.search=false;
-
         };
         $scope.search_mouseout = function(){
-            $scope.timeout_id = setTimeout($scope.hide_search,1000);
+            $scope.timeout_id = setTimeout($scope.hide_search,3000);
         };
         $scope.hide_search = function(){
             $scope.$apply(function(){
@@ -86,29 +85,46 @@ angular.module('chuangplus.controllers', []).
                 });
         };
        //tab active control
-        $scope.homepage_active = function(){
-            $scope.homepage = true;
-            $scope.position = $scope.company = $scope.resume = false;
-        };
+        $scope.homepage_active =  function(){
+            $scope.header = $header.homepage();
+        }
         $scope.company_active = function(){
-            $scope.company = true;
-            $scope.position = $scope.resume = $scope.homepage = false;
-        };
+            $scope.header = $header.company();
+        }
         $scope.position_active = function(){
-            $scope.position = true;
-            $scope.company = $scope.resume = $scope.homepage = false;
+            $scope.header = $header.position();
+        }
+        $scope.resume_active = function(){$scope.header = $header.resume();}
+        $scope.user_active = function(){$scope.header = $header.user();}
+        $scope.choose_header = function(){
+            var url = $location.url();
+            if(url == '/'){
+                $scope.header = $header.homepage();
+            }
+            else if(url.indexOf("position")==1){
+                $scope.header = $header.position();
+            }
+            else if(url.indexOf("company")==1&&(url.indexOf("list")==9||url.indexOf("detail")==34)){
+                $scope.header = $header.company();
+            }
+            else if(url.indexOf("resume")>0){
+                $scope.header = $header.resume();
+            }
+            else if(url.indexOf("login")>0||url.indexOf("register")>0||url.indexOf("password")>0||url.indexOf("feedback")>0||url.indexOf("about")>0){
+                $scope.header = $header.none();
+            }
+            else{
+                $scope.header = $header.user();
+            }
         };
-        $scope.resume_active = function(){
-            $scope.resume = true;
-            $scope.position = $scope.company = $scope.homepage = false;
-        };
+        $scope.choose_header();
     }]).
     controller('DT_NoHeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_NoHeaderCtrl');
         $scope.homepage_active = function(){
             window.location.href = '/';
         };
-                            
+
     }]).
     controller('DT_LoginCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_LoginCtrl');
@@ -676,6 +692,9 @@ angular.module('chuangplus.controllers', []).
             'others':"其他"
         };
         $scope.search_params = {
+          position_type:''
+        };
+        $scope.search_params = {
             "position_type":''
         };
         $scope.task = {
@@ -745,13 +764,6 @@ angular.module('chuangplus.controllers', []).
             };
             $scope.search_params_position_type = '';
             $scope.get_submit_list();
-        };
-        $scope.view_all = function(){
-            $scope.param = {
-                'page' : 1
-            };
-            $scope.search_params_position_type = '';
-            $scope.get_company_info();
         };
         $scope.processe = function(index){
             if($scope.submit_list[index].process == true){

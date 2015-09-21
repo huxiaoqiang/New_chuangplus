@@ -88,10 +88,14 @@ html
 }
 body
 {
-    min-width: 340px;
+    //min-width: 320px;
     font-weight: normal;
     font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
     overflow-x: hidden;
+}
+.scrollable-content
+{
+    position: absolute;
 }
 @media (min-width: 992px)
 {
@@ -111,6 +115,7 @@ body
 .navbar-app
 {
     min-height: 40px !important;
+    width: 100%;
 }
 .no-bar-top
 {
@@ -239,7 +244,7 @@ body
 {
     width: 100%;
     height: @btn-height;
-    line-height: @btn-height - 2px;
+    line-height: @btn-height;
     border: @btn-border solid @std-purple;
     background:                 white;
     color:                 @std-purple;
@@ -423,10 +428,12 @@ a:hover
 {
     display: block;
     height: @cl-header-hgt;
-    background: @std-purple;
+    //background: @std-purple;
     position: relative;
     z-index: 20;
     overflow: auto;
+    background: url('/static/image/icon/3d-purple.png') ;
+    background-repeat: repeat-x;
 }
 .header-bar .header
 {
@@ -452,26 +459,40 @@ a:hover
 
 .require-bar
 {
-    overflow: hidden;
+    //overflow: hidden;
     display: block;
     height: @cl-require-hgt;
     position: relative;
 }
 .require-bar .require-box
 {
-    font-size: 15px;
+    font-size: 14px;
+    text-align: center;
     height: @cl-require-hgt;;
     line-height: @cl-require-hgt;
     display: block;
-    padding: 0 10px 0 10px;
     float: left;
-    border: 1px solid @lit-gray;
+    border-top: 1px solid @lit-gray;
+    border-right: 1px solid @lit-gray;
+    border-bottom: 1px solid @lit-gray;
     color: black;
     position: relative;
     //background: url("/static/image/icon/delete-01.png") no-repeat right 4px center;
     //background-repeat: no-repeat;
     //background-size: 16px;
-    margin-right: -1px;
+    //margin-right: -1px;
+}
+.require-bar .require-box:first-child
+{
+    font-size: 14px;
+    text-align: center;
+    height: @cl-require-hgt;;
+    line-height: @cl-require-hgt;
+    display: block;
+    float: left;
+    border: 1px solid @lit-gray;
+    color: black;
+    position: relative;
 }
 .require-bar .requires .require-box .require-delete
 {
@@ -485,7 +506,7 @@ a:hover
 {
     position: absolute;
     display: block;
-    width: 78%;
+    width: 100%;
     height: @cl-require-hgt;
     background: white;
     overflow: hidden;
@@ -723,30 +744,42 @@ a:hover
     display: block;
     text-decoration: none;
     color: black;
-    width: 33.32%;
+    width: 33.33%;
     float: left;
     height: @cl-nav-hgt;
     line-height: @cl-nav-hgt;
     font-size: @cl-nav-fsize;
     text-align: center;
     vertical-align: middle;
-    border: 1px solid @lit-gray;
+    border-left: 1px solid @lit-gray;
     border-top: 0;
     color: black;
+    background: url('/static/image/icon/3d-gray.png') !important;
+    background-repeat: repeat-x;
+}
+.nav-bar-3:first-child
+{
+    border: 0;
 }
 .nav-bar-2
 {
     display: block;
-    width: 49.99%;
+    width: 50%;
     float: left;
     height: @cl-nav-hgt;
     line-height: @cl-nav-hgt;
     font-size: @cl-nav-fsize;
     text-align: center;
     vertical-align: middle;
-    border: 1px solid @lit-gray;
+    border-left: 1px solid @lit-gray;
     border-top: 0;
     color: black;
+    background: url('/static/image/icon/3d-gray.png') !important;
+    background-repeat: repeat-x;
+}
+.nav-bar-2:first-child
+{
+    border: 0;
 }
 .nav-bar-1
 {
@@ -768,10 +801,32 @@ a:hover
     border: 0;
     color: white !important;
 }
-
-#filter-content
+.bg-3d-purple
 {
-    display: none;
+    background: url('/static/image/icon/3d-purple.png') !important;
+    background-repeat: repeat-x;
+    color: white !important;
+}
+
+.bg-3d-purple-2
+{
+    background: url('/static/image/icon/3d-purple.png');
+    background-repeat: repeat-x;
+    color: white;
+}
+.bg-3d-gray
+{
+    background: url('/static/image/icon/3d-gray.png') !important;
+    background-repeat: repeat-x;
+}
+.filter-content
+{
+    //display: none;
+    top : -1000px;
+    z-index: 1000;
+    width: 100%;
+    background: white;
+    position: absolute;
 }
 
 //compfilter.html

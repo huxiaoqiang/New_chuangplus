@@ -353,6 +353,7 @@ def search_position(request):
             except:
                 re['error'] = error(299,'Unknown Error!')
                 return HttpResponse(json.dumps(re),content_type = 'application/json')
+
     #types is a string which connected by ',' it is like "technology,design"
     if "types" in request.GET.keys():
         if len(request.GET["types"]) > 0:
@@ -475,6 +476,22 @@ def search_position(request):
             except:
                 re['error'] = error(299,'Unknown Error!')
                 return HttpResponse(json.dumps(re),content_type = 'application/json')
+
+    if "min_workday" in request.GET.keys():
+        if request.GET["min_workday"] != 0:
+            try:
+                min_workday = request.GET["min_workday"]
+                qs = qs.filter(days_per_week__gte  = min_workday)
+            except (ValueError):
+                re['error'] = error(234,"Invaild search max daysperweek!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            except (DatabaseError):
+                re['error'] = error(251,"Database error: Failed to search!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            except:
+                re['error'] = error(299,'Unknown Error!')
+                return HttpResponse(json.dumps(re),content_type = 'application/json')
+
     if "salary_min" in request.GET.keys():
         if len(request.GET["salary_min"]) > 0:
             try:
