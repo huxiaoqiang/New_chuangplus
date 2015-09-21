@@ -9,7 +9,7 @@
                             <label>职位名称</label>
                         </div>
                         <div class="col-sm-9">
-                            <input type="text" required ng-model="position.name" ng-maxlength=8>
+                            <input type="text" required ng-model="position.name" maxlength=8>
                         </div>
                     </div>
                     <div class="input-group">
@@ -38,10 +38,11 @@
                         <div class="col-sm-3">
                             <label>办公地址</label>
                         </div>
-                        <div class="col-sm-9">
+                     <div class="col-sm-9">
                             <input type="text" required ng-model="position.work_address">
                         </div>
-                        <i class="icon-map-marker icon-large"></i>
+
+             <!--              <i class="icon-map-marker icon-large"></i>                        -->
                     </div>
                     <div class="input-group">
                         <div class="col-sm-3">
@@ -51,7 +52,7 @@
                           <table>
                             <tbody>
                                 <tr>
-                                  <td><label><input class="radio" type="radio" ng-model="position.part_or_full_time" value="0">兼职</label></td>
+                                  <td><label><input class="radio" type="radio" ng-model="position.part_or_full_time" value="0">实习</label></td>
                                   <td><label><input class="radio" type="radio" ng-model="position.part_or_full_time" value="1">全职</label></td>
                                 </tr>
                             </tbody>
@@ -95,7 +96,7 @@
                         <div class="col-sm-6">
                             <label>至少工作月数</label>
                             <div><input class="form-control month_input" ng-model="position.internship_time" required></div>
-                            <span class="month">月</span>
+                            <span class="month">个月</span>
                         </div>
                         <div class="col-sm-6">
                           <label>招聘截止时间</label>
@@ -112,10 +113,10 @@
                         <textarea required ng-model="position.position_request"></textarea>
                     </div>
                 </div>
-                <input type="submit" value="完成提交" class="next-button btn">
+                <input type="submit" value="完成提交" class="next-button btn" ng-disabled="disable_submit">
                 <div id="err-msg" ng-show="error.show"  ng-class="error.class">[[error.message]]</div>
             </div>
         </form>
-        <input name="end_time" type="text" class="form-control datepicker" ng-model="position.end_time" datepicker-popup="yyyy-MM-dd HH:mm:ss" ng-required="true">
+        <input name="end_time" type="text" class="form-control datepicker" ng-model="position.end_time" datepicker-popup="yyyy-MM-dd" ng-required="true">
     </div>
 </div>
