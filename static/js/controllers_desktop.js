@@ -2069,9 +2069,9 @@ angular.module('chuangplus.controllers', []).
                 
                 crop_canvas.getContext('2d').drawImage(image_target, left, top, width, height, 0, 0, width, height);
                 window.open(crop_canvas.toDataURL("image/png"));
-                var data=crop_canvas.toDataURL();
+                var dataURL=crop_canvas.toDataURL();
                 // dataURL 的格式为 “data:image/png;base64,****”,逗号之前都是一些说明性的文字，我们只需要逗号之后的就行了
-                data=data.split(',')[1];
+                var data=data.split(',')[1];
                 data=window.atob(data);
                 var ia = new Uint8Array(data.length);
                 for (var i = 0; i < data.length; i++) {
@@ -2080,7 +2080,8 @@ angular.module('chuangplus.controllers', []).
                 // canvas.toDataURL 返回的默认格式就是 image/png
                 var blob=new Blob([ia], {type:"image/png"});
 
-                document.getElementById('#logo-preview').src="/api/file/"+ $scope.companyinfo.logo_id+ "/download"; 
+                $('.change_tab').innerHTML = '<img src="'+dataURL+'" alt=""/>' ;
+//                document.getElementById('#logo-preview').src="/api/file/"+ $scope.companyinfo.logo_id+ "/download"; 
                 //window.open(crop_canvas.toDataURL("image/png"));
                 $scope.upload(blob,'logo');
                 $scope.resize_area = false;
@@ -2101,7 +2102,7 @@ angular.module('chuangplus.controllers', []).
             var reader = new FileReader(); 
             reader.readAsDataURL(file); 
             reader.onload = function(e){ 
-                $('#image-edit').innerHTML = '<img src="'+this.result+'" alt=""/>' 
+                $('#image-edit').innerHTML = '<img class="resize-image"' + 'src="'+this.result+'" alt=""/>' ;
             } 
             $scope.resize(file);
         }
