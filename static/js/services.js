@@ -110,6 +110,84 @@ angular.module('chuangplus.services', []).
             }
         };
     }]).
+    service("HeaderService",[function(){
+        var headerCtr = {
+            "homepage":false,
+            "company":false,
+            "position":false,
+            "resume":false,
+            "none":false,
+            "user":false
+        };
+        return {
+            'homepage':function(){
+                headerCtr = {
+                    "homepage":true,
+                    "company":false,
+                    "position":false,
+                    "resume":false,
+                    "none":false,
+                    "user":false
+                };
+                return headerCtr;
+            },
+            'company':function(){
+                headerCtr = {
+                    "homepage":false,
+                    "company":true,
+                    "position":false,
+                    "resume":false,
+                    "none":false,
+                    "user":false
+                };
+                return headerCtr;
+            },
+            'position':function (){
+                var headerCtr = {
+                    "homepage":false,
+                    "company":false,
+                    "position":true,
+                    "resume":false,
+                    "none":false,
+                    "user":false
+                };
+                return headerCtr;
+            },
+            'resume':function(){
+                var headerCtr = {
+                    "homepage":false,
+                    "company":false,
+                    "position":false,
+                    "resume":true,
+                    "none":false,
+                    "user":false
+                };
+                return headerCtr;
+            },
+             'none':function(){
+                var headerCtr = {
+                    "homepage":false,
+                    "company":false,
+                    "position":false,
+                    "resume":false,
+                    "none":true,
+                    "user":false
+                };
+                return headerCtr;
+            },
+             'user':function(){
+                var headerCtr = {
+                    "homepage":false,
+                    "company":false,
+                    "position":false,
+                    "resume":false,
+                    "none":false,
+                    "user":true
+                };
+                return headerCtr;
+            }
+        };
+    }]).
     service('UserService', ['urls', '$http', '$cookies', function(urls, $http, $cookies){
         var user = {};
         // $.get(urls.api + '/user/status', function(data){
