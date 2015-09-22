@@ -442,6 +442,7 @@ angular.module('chuangplus.services', []).
                 reader.readAsDataURL(file); 
                 reader.onload = function(e){ 
                     $('.resize-image').attr('src',this.result);
+                    $('.resize-image').attr('width','400px');
                     resize(file,file_t,category);
                 } 
             }
