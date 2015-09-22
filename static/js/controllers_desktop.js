@@ -373,7 +373,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.positions = data.data;
-                        for(i = 0; i < $scope.positions.length; i ++){
+                        for(var i = 0; i < $scope.positions.length; i ++){
                             $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
                             if($scope.positions[i].company.scale == 0){
                                 $scope.positions[i].company.scale_value = "初创";
@@ -437,12 +437,12 @@ angular.module('chuangplus.controllers', []).
                 if(data.error.code == 1){
                 $scope.company_list = data.data;
 		$scope.company_num = $scope.company_list.length;
-                for(i = 0; i < $scope.company_list.length; i ++){
+                for(var i = 0; i < $scope.company_list.length; i ++){
                     $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
                     $scope.company_list[i].scale_value = $scope.scale[$scope.company_list[i].scale];
                     $scope.company_list[i].field_type = $scope.field_type[$scope.company_list[i].field];
                     $scope.company_list[i].position_type_value = {};
-                    for(j = 0; j < $scope.company_list[i].position_type.length; j ++){
+                    for(var j = 0; j < $scope.company_list[i].position_type.length; j ++){
                         $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
                     }
                 }
@@ -506,7 +506,7 @@ angular.module('chuangplus.controllers', []).
             success(function(data){
                 if(data.error.code == 1){
                     $scope.positions = data.data;
-                    for(i = 0; i < $scope.positions.length; i ++){
+                    for(var i = 0; i < $scope.positions.length; i ++){
                         $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
                         if($scope.positions[i].company.scale == 0){
                             $scope.positions[i].company.scale_value = "初创";
@@ -573,7 +573,7 @@ angular.module('chuangplus.controllers', []).
     };
 
     $scope.submit_all = function(){
-    for(i = 0; i < $scope.positions.length; i ++){
+    for(var i = 0; i < $scope.positions.length; i ++){
         $scope.submit(i);
     }
     };
@@ -1169,7 +1169,7 @@ angular.module('chuangplus.controllers', []).
 //        $scope.save_company_info = function(){
 //            $scope.companyinfo.welfare_tags = '';
 //            var tag_number = 0;
-//            for(i=0; i<$scope.tags.length; i++){
+//            for(var i=0; i<$scope.tags.length; i++){
 //                if($scope.tags[i].chosed == true){
 //                    $scope.companyinfo.welfare_tags += $scope.tags[i].value;
 //                    $scope.companyinfo.welfare_tags += ',';
@@ -1303,7 +1303,7 @@ angular.module('chuangplus.controllers', []).
                 $scope.company_id = $scope.position.company._id.$oid;
                 $scope.get_financing_list();
 
-                for(i=0;i<$scope.position.company.position_type.length;i++){
+                for(var i=0;i<$scope.position.company.position_type.length;i++){
                     $scope.position.company.position_type_value[i] = $scope.position_type[$scope.position.company.position_type[i]];
                     console.log( $scope.position_type[$scope.position.company.position_type[i]]);
                 }
@@ -1320,7 +1320,7 @@ angular.module('chuangplus.controllers', []).
         success(function(data){
             if(data.error.code == 1){
                 $scope.financing_list = data.data;
-                for(i=0;$scope.financing_list.length;i++){
+                for(var i=0;$scope.financing_list.length;i++){
                     $scope.financing_list[i].stage_value = $scope.stage[$scope.financing_list[i].stage];
                     $scope.financing_list[i].amount_value = $scope.amount[$scope.financing_list[i].amount];
                 }
@@ -1466,7 +1466,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.position_list = data.data;
-                        for(i=0; i<$scope.position_list.length;i++){
+                        for(var i=0; i<$scope.position_list.length;i++){
                             $scope.position_list[i].position_type_value = $scope.position_type[$scope.position_list[i].position_type];
                         }
                     }
@@ -1716,10 +1716,10 @@ angular.module('chuangplus.controllers', []).
                     $scope.company.scale_value = $scope.scale[$scope.company.scale];
                     $scope.company.field_type = $scope.field_type[$scope.company.field];
                       $scope.company.position_type_value = {};
-                    for(i=0;i<$scope.company.position_type.length;i++){
+                    for(var i=0;i<$scope.company.position_type.length;i++){
                       $scope.company.position_type_value[i] = $scope.position_type[$scope.company.position_type[i]];
                     }
-                      for(i=0;i<$scope.company.position_number;i++){
+                      for(var i=0;i<$scope.company.position_number;i++){
                         $scope.company.position_list[i].position_type_value = $scope.position_type[$scope.company.position_list[i].position_type]
                       }
                 }
@@ -1745,7 +1745,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                 if(data.error.code == 1){
                     $scope.financing_list = data.data;
-                    for(i=0;$scope.financing_list.length;i++){
+                    for(var i=0;$scope.financing_list.length;i++){
                         $scope.financing_list[i].stage_value = $scope.stage[$scope.financing_list[i].stage];
                         $scope.financing_list[i].amount_value = $scope.amount[$scope.financing_list[i].amount];
                     }
@@ -1845,8 +1845,8 @@ angular.module('chuangplus.controllers', []).
                         var i = 0;
                         var j = 0;
                         var welfare_tags = data.data.welfare_tags;
-                        for(i=0;i<welfare_tags.length;i++){
-                            for(j=0;j<$scope.tags.length;j++){
+                        for(var i=0;i<welfare_tags.length;i++){
+                            for(var j=0;j<$scope.tags.length;j++){
                                 if($scope.tags[j].value == welfare_tags[i]){
                                     $scope.tags[j].chosed = true;
                                     break;
