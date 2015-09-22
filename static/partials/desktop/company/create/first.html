@@ -15,7 +15,7 @@
                 <div class="overlay-inner">
                 </div>
             </div>
-            <img class="resize-image" ngf-src="logo" id='image-preview' alt="image for resizing">
+            <img class="resize-image" id='image-preview' alt="image for resizing">
             <button class="btn-crop js-crop">确认修改<img class="icon-crop" src="/static/lib/imageresize/img/crop.svg"></button>
           </div>
         </div>
@@ -44,7 +44,7 @@
                         <label>公司logo</label>
                     </div>
                     <div class="col-sm-9">
-                      <div class="change_tab" ng-model="logo"  ngf-select="upload($file,'logo')">
+                      <div class="change_tab" ng-model="logo"  ngf-select="startUpload($file,'logo')">
                         <img id='logo-preview' ng-show="logo==null && companyinfo.logo_id != undefined" ng-src="/api/file/[[companyinfo.logo_id]]/download" title="点击图片修改logo"><br/>
                         <div class="upload-img"  ng-show="logo==null && companyinfo.logo_id == undefined" >点击上传logo</div>
                         <img  ng-show="logo!=null" ngf-src="logo" title="点击上传logo"><br/>

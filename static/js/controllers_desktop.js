@@ -1862,7 +1862,7 @@ angular.module('chuangplus.controllers', []).
                     }
                 });
         };
-        $scope.resize = function(file)
+        $scope.resize = function(file,category)
         {
             $scope.resize_area = true;
             var resizeableImage = function(image_target) {
@@ -2084,7 +2084,7 @@ angular.module('chuangplus.controllers', []).
 //                $('.change_tab').innerHTML = '<img src="'+dataURL+'" alt=""/>' ;
 //                document.getElementById('#logo-preview').src="/api/file/"+ $scope.companyinfo.logo_id+ "/download"; 
                 //window.open(crop_canvas.toDataURL("image/png"));
-                $scope.upload(blob,'logo');
+                $scope.upload(blob,category);
                 $scope.resize_area = false;
                 location.reload();
                 //$('#img_preview').attr('ngf-src',crop_canvas.toDataURL("image/png"));
@@ -2097,7 +2097,7 @@ angular.module('chuangplus.controllers', []).
             // Kick everything off with the target image
             resizeableImage($('.resize-image'));
         };
-        $scope.startUpload = function(file)
+        $scope.startUpload = function(file,category)
         {
             if(!/image\/\w+/.test(file.type)){ 
                 alert("文件必须为图片！"); 
@@ -2106,9 +2106,9 @@ angular.module('chuangplus.controllers', []).
             var reader = new FileReader(); 
             reader.readAsDataURL(file); 
 ///            reader.onload = function(e){ 
-                $('#img_preview').attr('src',this.result);
+            $('.resize-image').attr('src',this.result);
    //         } 
-            $scope.resize(file);
+            $scope.resize(file,category);
         }
         $scope.add_tag = function(){
             $scope.tags.push({
