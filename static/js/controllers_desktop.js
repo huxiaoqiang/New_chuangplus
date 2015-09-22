@@ -1796,7 +1796,7 @@ angular.module('chuangplus.controllers', []).
     controller('DT_ResizeImgCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         //$rootScope.loading = false;
-    }])/*.
+    }]).
     controller('DT_CompanyFirstCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload','ImgResizeService',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload, $imgResize){
         console.log('DT_CompanyFirstCtrl');
@@ -1985,9 +1985,9 @@ angular.module('chuangplus.controllers', []).
                 });
         };
         $scope.get_company_info();
-    }])*/.
+    }]).
 
-    controller('DT_CompanyFirstCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload','ImgResizeService',
+    controller('DT_CompanyTestCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload','ImgResizeService',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload, $imgResize){
         console.log('DT_CompanyFirstCtrl');
         $scope.company_id = $routeParams.company_id;
@@ -2029,9 +2029,7 @@ angular.module('chuangplus.controllers', []).
         ];
         $scope.startUpload = function(file,category)
         {
-            alert('load');
             $imgResize.startUpload(file,category,'',$scope);
-            alert('load2');
         }
         $scope.cancelUpload = function()
         {

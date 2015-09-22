@@ -192,7 +192,6 @@ angular.module('chuangplus.services', []).
         return{
             'cancel' : function(scope, src)
             {
-                scope.resize_area = false;
                 $('.img-upload-preview').attr('src',src);
                 //$('.resize-image').attr('src',src);
             },
@@ -452,7 +451,6 @@ angular.module('chuangplus.services', []).
                     $('.resize-image').attr('src',this.result);
                     resize(file,file_t,category);
                 } ;
-                scope.resize_area = true;
             }
         };
     }])
