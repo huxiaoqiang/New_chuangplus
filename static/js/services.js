@@ -188,13 +188,13 @@ angular.module('chuangplus.services', []).
             }
         };
     }]).
-    service('ImgResizeService', '$scope' [ function($scope){
+    service('ImgResizeService', [ function(){
         return{
-            'startUpload' : function(file,category)
+            'startUpload' : function(file,category,scope)
             {
                 var resize = function(file,category)
                 {
-                    $scope.resize_area = true;
+                    scope.resize_area = true;
                     var resizeableImage = function(image_target) {
                   // Some variable and settings
                       var $container,
@@ -413,11 +413,11 @@ angular.module('chuangplus.services', []).
                         var blob=new Blob([ia], {type:"image/png"});
 
         //                $('.change_tab').innerHTML = '<img src="'+dataURL+'" alt=""/>' ;
-        //                document.getElementById('#logo-preview').src="/api/file/"+ $scope.companyinfo.logo_id+ "/download"; 
+        //                document.getElementById('#logo-preview').src="/api/file/"+ scope.companyinfo.logo_id+ "/download"; 
                         //window.open(crop_canvas.toDataURL("image/png"));
-                        $scope.upload(blob,category);
+                        scope.upload(blob,category);
                         $('.img-upload-preview').attr('src',crop_canvas.toDataURL("image/png"));
-                        $scope.resize_area = false;
+                        scope.resize_area = false;
                         //location.reload();
                         //$('#img_preview').attr('ngf-src',crop_canvas.toDataURL("image/png"));
                         

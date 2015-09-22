@@ -1839,7 +1839,7 @@ angular.module('chuangplus.controllers', []).
         ];
         $scope.startUpload = function(file,category)
         {
-            $imgResize.startUpload(file,category)
+            $imgResize.startUpload(file,category,$scope);
         }
         $scope.get_company_info = function(){
             $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
