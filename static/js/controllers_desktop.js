@@ -1881,7 +1881,7 @@ angular.module('chuangplus.controllers', []).
               var init = function(){
 
                 // When resizing, we will always use this copy of the original as the base
-                orig_src.src=image_target.src;
+                orig_src.src=file.src;
 
                 // Wrap the image with the container and add resize handles
                 $(image_target).wrap('<div class="resize-container"></div>')
@@ -2086,7 +2086,7 @@ angular.module('chuangplus.controllers', []).
                 //window.open(crop_canvas.toDataURL("image/png"));
                 $scope.upload(blob,category);
                 $scope.resize_area = false;
-                location.reload();
+                //location.reload();
                 //$('#img_preview').attr('ngf-src',crop_canvas.toDataURL("image/png"));
                 
               }
@@ -2106,9 +2106,9 @@ angular.module('chuangplus.controllers', []).
             var reader = new FileReader(); 
             reader.readAsDataURL(file); 
             reader.onload = function(e){ 
-            $('.resize-image').attr('src',this.result);
+                $('.resize-image').attr('src',this.result);
+                $scope.resize(file,category);
             } 
-            $scope.resize(file,category);
         }
         $scope.add_tag = function(){
             $scope.tags.push({
