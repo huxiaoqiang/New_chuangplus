@@ -59,7 +59,7 @@ def generate_invitation_code(request):
             count = len(ic)
         except ObjectDoesNotExist:
             count = 0
-        code =  InvitationCodeClass(quantity,15,5,count)
+        code =  InvitationCodeClass(quantity,6,4,count)
         for c in code.invitation_code_generator():
             invitationcode = InvitationCode(code = c)
             invitationcode.save()
