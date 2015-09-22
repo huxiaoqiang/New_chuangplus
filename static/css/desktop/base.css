@@ -76,6 +76,10 @@ header #header .navbar .navbar-item.login li a:hover {
   color: #8f4e96;
   background-color: white;
 }
+header #header .navbar .navbar-item.login li a:focus {
+  background-color: white;
+  font-weight: bold;
+}
 header #header .navbar .navbar-item.login li.active {
   border: solid #8f4e96;
   border-width: 0px 0px 3px 0px;
@@ -97,6 +101,9 @@ header #header .navbar .navbar-item.login li.dropdown .dropdown-menu a {
 header #header .navbar .navbar-item.login li.dropdown .dropdown-menu a:hover {
   border: solid #8f4e96;
   border-width: 0px 0px 0px 3px;
+}
+header #header .navbar .navbar-item.login li.dropdown .dropdown-toggle {
+  font-size: 0.9em;
 }
 header #header .navbar .navbar-item.login li.dropdown.open {
   height: 58px;
@@ -1178,6 +1185,7 @@ form.financing_add input {
   border-radius: 6px;
   resize: none;
   outline: none;
+  border: 1px solid #e1e0e2;
 }
 #container #edit_position .form-position .next-button {
   position: absolute;
@@ -3253,6 +3261,9 @@ form.financing_add input {
 }
 #container #first-step .info1 .left-info .input-group .col-sm-9 .upload-logo {
   width: 160px;
+  font-size: 12px;
+  color: #707070;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
 #container #first-step .info1 .left-info .input-group .col-sm-9 input {
   width: 90%;
@@ -3363,6 +3374,9 @@ form.financing_add input {
 }
 #container #second-step .info2 .left-info .input-group .col-sm-9 .upload-qrcode {
   width: 160px;
+  font-size: 12px;
+  color: #707070;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
 #container #second-step .info2 .left-info input.pre-button {
   position: absolute;
