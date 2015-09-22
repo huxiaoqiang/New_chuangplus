@@ -190,6 +190,12 @@ angular.module('chuangplus.services', []).
     }]).
     service('ImgResizeService', [ function(){
         return{
+            'cancle' : function(scope, src)
+            {
+                scope.resize_area = false;
+                $('.img-upload-preview').attr('src',src);
+                //$('.resize-image').attr('src',src);
+            },
             'startUpload' : function(file,file_t,category,scope)
             {
                 var resize = function(file,file_t,category)
@@ -204,17 +210,19 @@ angular.module('chuangplus.services', []).
                           constrain = false,
                           min_width = 60, // Change as required
                           min_height = 60,
-                          max_width = 1500, // Change as required
-                          max_height = 1400,
+                          max_width = 500, // Change as required
+                          max_height = 400,
                           resize_canvas = document.createElement('canvas');
+                        
 
                       var init = function(){
 
                         // When resizing, we will always use this copy of the original as the base
                         orig_src.src=image_target.src;
-                        resize_canvas.width = 400;
-                        resize_canvas.height = 400 / orig_src.src.width * orig_src.src.height;
-
+                        orig_src.width = 360;
+                        image_target.width = 360;
+                        resize_canvas.width = 360;
+                        resize_canvas.height = orig_src.src.;
                         // Wrap the image with the container and add resize handles
                         $(image_target).wrap('<div class="resize-container"></div>')
                         .before('<span class="resize-handle resize-handle-nw"></span>')
@@ -442,7 +450,6 @@ angular.module('chuangplus.services', []).
                 reader.readAsDataURL(file); 
                 reader.onload = function(e){ 
                     $('.resize-image').attr('src',this.result);
-                    $('.resize-image').attr('width','400px');
                     resize(file,file_t,category);
                 } 
             }

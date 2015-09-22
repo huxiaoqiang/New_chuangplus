@@ -1841,6 +1841,10 @@ angular.module('chuangplus.controllers', []).
         {
             $imgResize.startUpload(file,category,'',$scope);
         }
+        $scope.cancleUpload = function()
+        {
+            $imgResize.cancle($scope,"/api/file/"+scope.companyinfo.logo_id+ "/download");
+        }
         $scope.get_company_info = function(){
             $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
                 success(function(data){
