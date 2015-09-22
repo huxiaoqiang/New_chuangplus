@@ -4097,7 +4097,19 @@ body > #wrap_no_header_footer #main-container {
 .btn-crop {
   position: absolute;
   vertical-align: bottom;
-  right: 5px;
+  right: 62px;
+  bottom: 5px;
+  padding: 6px 10px;
+  z-index: 999;
+  background-color: #de3c50;
+  border: none;
+  border-radius: 5px;
+  color: #FFF;
+}
+.btn-resize-cancel {
+  position: absolute;
+  vertical-align: bottom;
+  right: 8px;
   bottom: 5px;
   padding: 6px 10px;
   z-index: 999;

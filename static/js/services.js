@@ -190,7 +190,7 @@ angular.module('chuangplus.services', []).
     }]).
     service('ImgResizeService', [ function(){
         return{
-            'cancle' : function(scope, src)
+            'cancel' : function(scope, src)
             {
                 scope.resize_area = false;
                 $('.img-upload-preview').attr('src',src);
@@ -200,7 +200,6 @@ angular.module('chuangplus.services', []).
             {
                 var resize = function(file,file_t,category)
                 {
-                    scope.resize_area = true;
                     var resizeableImage = function(image_target) {
                   // Some variable and settings
                       var $container,
@@ -210,8 +209,8 @@ angular.module('chuangplus.services', []).
                           constrain = false,
                           min_width = 60, // Change as required
                           min_height = 60,
-                          max_width = 500, // Change as required
-                          max_height = 400,
+                          max_width = 11500, // Change as required
+                          max_height = 11400,
                           resize_canvas = document.createElement('canvas');
                         
 
@@ -220,7 +219,7 @@ angular.module('chuangplus.services', []).
                         // When resizing, we will always use this copy of the original as the base
                         orig_src.src=image_target.src;
                         //orig_src.width = 360;
-                        //image_target.width = 360;
+                        image_target.width = 360;
                         //resize_canvas.width = 360;
                         //resize_canvas.height = 360 / orig_src.width * orig_src.height;
                         // Wrap the image with the container and add resize handles
@@ -317,6 +316,7 @@ angular.module('chuangplus.services', []).
 
                         if(width > min_width && height > min_height && width < max_width && height < max_height){
                           // To improve performance you might limit how often resizeImage() is called
+                            $('.resize-image').attr('width','');
                           resizeImage(width, height);  
                           // Without this Firefox will not re-calculate the the image dimensions until drag end
                           $container.offset({'left': left, 'top': top});
@@ -451,7 +451,8 @@ angular.module('chuangplus.services', []).
                 reader.onload = function(e){ 
                     $('.resize-image').attr('src',this.result);
                     resize(file,file_t,category);
-                } 
+                } ;
+                scope.resize_area = true;
             }
         };
     }])
