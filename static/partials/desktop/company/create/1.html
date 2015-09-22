@@ -15,7 +15,9 @@
                 <div class="overlay-inner">
                 </div>
             </div>
-            <img class="resize-image" id='image-preview' ngf-src="logo" alt="image for resizing">
+            <div id="resize-box">
+              <img class="resize-image" id='image-preview' ngf-src="logo" alt="image for resizing">
+            </div>
 
             <button class="btn-crop js-crop">确认修改<img class="icon-crop" src="/static/lib/imageresize/img/crop.svg"></button>
             <button class="btn-resize-cancel" ng-click="cancelUpload()">取消</button>
