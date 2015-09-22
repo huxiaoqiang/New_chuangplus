@@ -2796,7 +2796,6 @@ form.financing_add input {
   border-radius: 3px;
   margin-bottom: 15px;
   width: 100%;
-  height: 80px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .team-member .member .avatar {
   float: left;
@@ -2804,7 +2803,7 @@ form.financing_add input {
 #container #company-detail .col-md-8 .detail .left-block .company .team-member .member .avatar img {
   border-radius: 3px;
   border: 1px solid #d8d8d8;
-  height: 60px;
+  width: 60px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .team-member .member .member-description {
   float: left;
