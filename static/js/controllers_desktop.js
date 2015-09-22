@@ -1940,6 +1940,7 @@ angular.module('chuangplus.controllers', []).
                 mouse.x = (e.clientX || e.pageX || e.originalEvent.touches[0].clientX) + $(window).scrollLeft(); 
                 mouse.y = (e.clientY || e.pageY || e.originalEvent.touches[0].clientY) + $(window).scrollTop();
                 
+                e.shiftKey = true;
                 // Position image differently depending on the corner dragged and constraints
                 if( $(event_state.evnt.target).hasClass('resize-handle-se') ){
                   width = mouse.x - event_state.container_left;
@@ -1956,17 +1957,17 @@ angular.module('chuangplus.controllers', []).
                   height = event_state.container_height - (mouse.y - event_state.container_top);
                   left = mouse.x;
                   top = mouse.y;
-                  //if(constrain || e.shiftKey){
+                  if(constrain || e.shiftKey){
                     top = mouse.y - ((width / orig_src.width * orig_src.height) - height);
-                  //}
+                  }
                 } else if($(event_state.evnt.target).hasClass('resize-handle-ne') ){
                   width = mouse.x - event_state.container_left;
                   height = event_state.container_height - (mouse.y - event_state.container_top);
                   left = event_state.container_left;
                   top = mouse.y;
-                  //if(constrain || e.shiftKey){
+                  if(constrain || e.shiftKey){
                     top = mouse.y - ((width / orig_src.width * orig_src.height) - height);
-                  //}
+                  }
                 }
                 
                 // Optionally maintain aspect ratio
@@ -2085,7 +2086,7 @@ angular.module('chuangplus.controllers', []).
 //                document.getElementById('#logo-preview').src="/api/file/"+ $scope.companyinfo.logo_id+ "/download"; 
                 //window.open(crop_canvas.toDataURL("image/png"));
                 $scope.upload(blob,category);
-                $('#logo-preview').attr('ng-src',crop_canvas.toDataURL("image/png"));
+                $('.img-preview').attr('src',crop_canvas.toDataURL("image/png"));
                 $scope.resize_area = false;
                 //location.reload();
                 //$('#img_preview').attr('ngf-src',crop_canvas.toDataURL("image/png"));
