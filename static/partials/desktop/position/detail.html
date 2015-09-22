@@ -4,11 +4,11 @@
             <img class="qrcode" src="/api/file/[[position.company.qrcode_id]]/download" alt="微信二维码">
             <div class="company-dscrpt">
                 <p class="index">公司名称：</p>
-                <p class="txt">[[position.company.ICregist_name]]</p>
+                <p class="txt title">[[position.company.ICregist_name]]</p>
             </div>
             <div class="company-dscrpt">
                 <p class="index">公司主页：</p>
-                <p class="txt">[[position.company.homepage]]</p>
+                <a class="txt" target="_blank" href="[[position.company.homepage]]">[[position.company.homepage]]</a>
             </div>
             <div class="company-dscrpt">
                 <p class="index">融资情况：</p>
@@ -16,7 +16,7 @@
                     <p class="txt"ng-repeat="financing in financing_list">[[financing.stage_value]]&nbsp;&nbsp;[[financing.organization]]&nbsp;&nbsp;[[financing.amount_value]]</p>
                 </div>
                 <div ng-if="financing_list.length==0">
-                    <p>公司暂未融资</p>
+                    <p class="txt">公司暂未融资</p>
                 </div>
             </div>
         </div>

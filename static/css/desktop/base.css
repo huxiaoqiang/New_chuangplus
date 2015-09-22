@@ -142,7 +142,7 @@ header #header .navbar .qrcode_img {
   z-index: 2;
 }
 header #header .navbar .qrcode_img img {
-  width: 100px;
+  width: 150px;
 }
 header #header .navbar .search_input {
   position: absolute;
@@ -773,6 +773,9 @@ body > #wrap {
   color: #707070;
   font-size: 12px;
   margin-bottom: 5px;
+}
+#container #pisition-list .col-md-8 ul li .favor-list-item .middle-block .info .label-1 .last-p {
+  margin-bottom: 0;
 }
 #container #pisition-list .col-md-8 ul.pagination {
   float: right;
@@ -2366,12 +2369,21 @@ form.financing_add input {
 #container #position-detail .col-md-4 .company-dscrpt p {
   padding-bottom: 5px;
   color: #707070;
+  width: 100%;
 }
 #container #position-detail .col-md-4 .company-dscrpt .index {
   font-size: 14px;
 }
 #container #position-detail .col-md-4 .company-dscrpt .txt {
   font-size: 12px;
+  padding-bottom: 5px;
+  color: #707070;
+  width: 100%;
+  word-wrap: break-word;
+}
+#container #position-detail .col-md-4 .company-dscrpt .txt.title {
+  font-size: 14px;
+  word-wrap: break-word;
 }
 #container #position-detail .col-md-4 .qrcode {
   width: 100%;
@@ -2410,7 +2422,7 @@ form.financing_add input {
 }
 #container #company_list .col-md-8 ul li .company-info {
   margin-top: 0px;
-  padding: 5px 10px 20px 15px;
+  padding: 20px 10px 20px 15px;
   width: 100%;
   height: 130px;
 }
@@ -2418,6 +2430,7 @@ form.financing_add input {
   text-align: right;
   width: 100%;
   height: 15px;
+  float: left;
 }
 #container #company_list .col-md-8 ul li .company-info .auth p {
   font-size: 12px;
@@ -2426,6 +2439,8 @@ form.financing_add input {
 #container #company_list .col-md-8 ul li .company-info .bottom-side {
   width: 100%;
   height: 90px;
+  float: left;
+  margin-top: -15px;
 }
 #container #company_list .col-md-8 ul li .company-info .bottom-side .item-pic {
   float: left;
@@ -2453,6 +2468,11 @@ form.financing_add input {
 #container #company_list .col-md-8 ul li .company-info .bottom-side .info .item-info.info-1 {
   width: 125px;
   text-align: center;
+}
+#container #company_list .col-md-8 ul li .company-info .bottom-side .info .item-info.info-1 p {
+  width: 100%;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 #container #company_list .col-md-8 ul li .company-info .bottom-side .info .item-info.info-2 {
   width: 105px;
@@ -2644,7 +2664,7 @@ form.financing_add input {
 }
 #container #company-detail .col-md-8 .company-info .bottom-side .info .item-info .label-1 p {
   color: #707070;
-  font-size: 10px;
+  font-size: 12px;
   margin-bottom: 5px;
 }
 #container #company-detail .col-md-8 .company-info .bottom-side .info .item-info .label-1 .last-p {
@@ -2750,7 +2770,7 @@ form.financing_add input {
   min-height: 150px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .description p {
-  font-size: 15px;
+  font-size: 14px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .company-description {
   min-height: 150px;
@@ -2776,7 +2796,7 @@ form.financing_add input {
   border-radius: 3px;
   margin-bottom: 15px;
   width: 100%;
-  min-height: 80px;
+  height: 80px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .team-member .member .avatar {
   float: left;
@@ -2784,7 +2804,7 @@ form.financing_add input {
 #container #company-detail .col-md-8 .detail .left-block .company .team-member .member .avatar img {
   border-radius: 3px;
   border: 1px solid #d8d8d8;
-  width: 60px;
+  height: 60px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .team-member .member .member-description {
   float: left;
@@ -2804,9 +2824,13 @@ form.financing_add input {
   margin-left: 20px;
   display: table;
   height: 100%;
+  width: 370px;
+  float: left;
+  font-size: 12px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .team-member .member .member-intro .m_introduction p {
   margin-bottom: 2px;
+  font-size: 12px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .team-member .member:hover {
   background-color: #F1F1F1;
@@ -2876,7 +2900,7 @@ form.financing_add input {
   width: 100%;
   float: left;
   color: #a6aaa9;
-  font-size: 10px;
+  font-size: 12px;
   margin-top: -5px;
   text-align: right;
 }
@@ -2895,12 +2919,19 @@ form.financing_add input {
 #container #company-detail .col-md-4 .company-dscrpt p {
   padding-bottom: 5px;
   color: #707070;
+  width: 100%;
+  margin-bottom: 10px;
 }
 #container #company-detail .col-md-4 .company-dscrpt .index {
   font-size: 14px;
 }
 #container #company-detail .col-md-4 .company-dscrpt .txt {
-  font-size: 10px;
+  font-size: 12px;
+  word-wrap: break-word;
+}
+#container #company-detail .col-md-4 .company-dscrpt .txt.title {
+  font-size: 14px;
+  word-wrap: break-word;
 }
 #container #company-detail .col-md-4 .qrcode {
   width: 200px;
@@ -3006,9 +3037,12 @@ form.financing_add input {
 }
 #container #homepage .img-block .img-2 {
   width: 180px;
-  margin-right: 10px;
+  margin-right: 15px;
   float: left;
   margin-top: 15px;
+}
+#container #homepage .img-block .img-2.last {
+  margin-right: 0;
 }
 #container #homepage .img-block .img-3 {
   height: 100%;

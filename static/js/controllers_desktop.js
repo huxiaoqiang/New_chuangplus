@@ -373,7 +373,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.positions = data.data;
-                        for(i = 0; i < $scope.positions.length; i ++){
+                        for(var i = 0; i < $scope.positions.length; i ++){
                             $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
                             if($scope.positions[i].company.scale == 0){
                                 $scope.positions[i].company.scale_value = "初创";
@@ -437,12 +437,12 @@ angular.module('chuangplus.controllers', []).
                 if(data.error.code == 1){
                 $scope.company_list = data.data;
 		$scope.company_num = $scope.company_list.length;
-                for(i = 0; i < $scope.company_list.length; i ++){
+                for(var i = 0; i < $scope.company_list.length; i ++){
                     $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
                     $scope.company_list[i].scale_value = $scope.scale[$scope.company_list[i].scale];
                     $scope.company_list[i].field_type = $scope.field_type[$scope.company_list[i].field];
                     $scope.company_list[i].position_type_value = {};
-                    for(j = 0; j < $scope.company_list[i].position_type.length; j ++){
+                    for(var j = 0; j < $scope.company_list[i].position_type.length; j ++){
                         $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
                     }
                 }
@@ -506,7 +506,7 @@ angular.module('chuangplus.controllers', []).
             success(function(data){
                 if(data.error.code == 1){
                     $scope.positions = data.data;
-                    for(i = 0; i < $scope.positions.length; i ++){
+                    for(var i = 0; i < $scope.positions.length; i ++){
                         $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
                         if($scope.positions[i].company.scale == 0){
                             $scope.positions[i].company.scale_value = "初创";
@@ -573,7 +573,7 @@ angular.module('chuangplus.controllers', []).
     };
 
     $scope.submit_all = function(){
-    for(i = 0; i < $scope.positions.length; i ++){
+    for(var i = 0; i < $scope.positions.length; i ++){
         $scope.submit(i);
     }
     };
@@ -1169,7 +1169,7 @@ angular.module('chuangplus.controllers', []).
 //        $scope.save_company_info = function(){
 //            $scope.companyinfo.welfare_tags = '';
 //            var tag_number = 0;
-//            for(i=0; i<$scope.tags.length; i++){
+//            for(var i=0; i<$scope.tags.length; i++){
 //                if($scope.tags[i].chosed == true){
 //                    $scope.companyinfo.welfare_tags += $scope.tags[i].value;
 //                    $scope.companyinfo.welfare_tags += ',';
@@ -1303,7 +1303,7 @@ angular.module('chuangplus.controllers', []).
                 $scope.company_id = $scope.position.company._id.$oid;
                 $scope.get_financing_list();
 
-                for(i=0;i<$scope.position.company.position_type.length;i++){
+                for(var i=0;i<$scope.position.company.position_type.length;i++){
                     $scope.position.company.position_type_value[i] = $scope.position_type[$scope.position.company.position_type[i]];
                     console.log( $scope.position_type[$scope.position.company.position_type[i]]);
                 }
@@ -1320,7 +1320,7 @@ angular.module('chuangplus.controllers', []).
         success(function(data){
             if(data.error.code == 1){
                 $scope.financing_list = data.data;
-                for(i=0;$scope.financing_list.length;i++){
+                for(var i=0;$scope.financing_list.length;i++){
                     $scope.financing_list[i].stage_value = $scope.stage[$scope.financing_list[i].stage];
                     $scope.financing_list[i].amount_value = $scope.amount[$scope.financing_list[i].amount];
                 }
@@ -1466,7 +1466,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.position_list = data.data;
-                        for(i=0; i<$scope.position_list.length;i++){
+                        for(var i=0; i<$scope.position_list.length;i++){
                             $scope.position_list[i].position_type_value = $scope.position_type[$scope.position_list[i].position_type];
                         }
                     }
@@ -1716,10 +1716,10 @@ angular.module('chuangplus.controllers', []).
                     $scope.company.scale_value = $scope.scale[$scope.company.scale];
                     $scope.company.field_type = $scope.field_type[$scope.company.field];
                       $scope.company.position_type_value = {};
-                    for(i=0;i<$scope.company.position_type.length;i++){
+                    for(var i=0;i<$scope.company.position_type.length;i++){
                       $scope.company.position_type_value[i] = $scope.position_type[$scope.company.position_type[i]];
                     }
-                      for(i=0;i<$scope.company.position_number;i++){
+                      for(var i=0;i<$scope.company.position_number;i++){
                         $scope.company.position_list[i].position_type_value = $scope.position_type[$scope.company.position_list[i].position_type]
                       }
                 }
@@ -1745,7 +1745,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                 if(data.error.code == 1){
                     $scope.financing_list = data.data;
-                    for(i=0;$scope.financing_list.length;i++){
+                    for(var i=0;$scope.financing_list.length;i++){
                         $scope.financing_list[i].stage_value = $scope.stage[$scope.financing_list[i].stage];
                         $scope.financing_list[i].amount_value = $scope.amount[$scope.financing_list[i].amount];
                     }
@@ -1797,8 +1797,8 @@ angular.module('chuangplus.controllers', []).
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         //$rootScope.loading = false;
     }]).
-    controller('DT_CompanyFirstCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload',
-        function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
+    controller('DT_CompanyFirstCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload','ImgResizeService',
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload, $imgResize){
         console.log('DT_CompanyFirstCtrl');
         $scope.company_id = $routeParams.company_id;
         $scope.companyinfo = {};
@@ -1837,6 +1837,10 @@ angular.module('chuangplus.controllers', []).
                 "value" :"班车接送"
             }
         ];
+        $scope.startUpload = function(file,category)
+        {
+            $imgResize.startUpload(file,category,'',$scope);
+        }
         $scope.get_company_info = function(){
             $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
                 success(function(data){
@@ -1845,8 +1849,8 @@ angular.module('chuangplus.controllers', []).
                         var i = 0;
                         var j = 0;
                         var welfare_tags = data.data.welfare_tags;
-                        for(i=0;i<welfare_tags.length;i++){
-                            for(j=0;j<$scope.tags.length;j++){
+                        for(var i=0;i<welfare_tags.length;i++){
+                            for(var j=0;j<$scope.tags.length;j++){
                                 if($scope.tags[j].value == welfare_tags[i]){
                                     $scope.tags[j].chosed = true;
                                     break;
@@ -1862,254 +1866,6 @@ angular.module('chuangplus.controllers', []).
                     }
                 });
         };
-        $scope.resize = function(file)
-        {
-            $scope.resize_area = true;
-            var resizeableImage = function(image_target) {
-              // Some variable and settings
-              var $container,
-                  orig_src = new Image(),
-                  image_target = $(image_target).get(0),
-                  event_state = {},
-                  constrain = false,
-                  min_width = 60, // Change as required
-                  min_height = 60,
-                  max_width = 1500, // Change as required
-                  max_height = 1400,
-                  resize_canvas = document.createElement('canvas');
-
-              var init = function(){
-
-                // When resizing, we will always use this copy of the original as the base
-                orig_src.src=image_target.src;
-
-                // Wrap the image with the container and add resize handles
-                $(image_target).wrap('<div class="resize-container"></div>')
-                .before('<span class="resize-handle resize-handle-nw"></span>')
-                .before('<span class="resize-handle resize-handle-ne"></span>')
-                .after('<span class="resize-handle resize-handle-se"></span>')
-                .after('<span class="resize-handle resize-handle-sw"></span>');
-
-                // Assign the container to a variable
-                $container =  $(image_target).parent('.resize-container');
-
-                // Add events
-                $container.on('mousedown touchstart', '.resize-handle', startResize);
-                $container.on('mousedown touchstart', 'img', startMoving);
-                $('.js-crop').on('click', crop);
-              };
-
-              var startResize = function(e){
-                e.preventDefault();
-                e.stopPropagation();
-                saveEventState(e);
-                $(document).on('mousemove touchmove', resizing);
-                $(document).on('mouseup touchend', endResize);
-              };
-
-              var endResize = function(e){
-                e.preventDefault();
-                $(document).off('mouseup touchend', endResize);
-                $(document).off('mousemove touchmove', resizing);
-              };
-
-              var saveEventState = function(e){
-                // Save the initial event details and container state
-                event_state.container_width = $container.width();
-                event_state.container_height = $container.height();
-                event_state.container_left = $container.offset().left; 
-                event_state.container_top = $container.offset().top;
-                event_state.mouse_x = (e.clientX || e.pageX || e.originalEvent.touches[0].clientX) + $(window).scrollLeft(); 
-                event_state.mouse_y = (e.clientY || e.pageY || e.originalEvent.touches[0].clientY) + $(window).scrollTop();
-                
-                // This is a fix for mobile safari
-                // For some reason it does not allow a direct copy of the touches property
-                if(typeof e.originalEvent.touches !== 'undefined'){
-                    event_state.touches = [];
-                    $.each(e.originalEvent.touches, function(i, ob){
-                      event_state.touches[i] = {};
-                      event_state.touches[i].clientX = 0+ob.clientX;
-                      event_state.touches[i].clientY = 0+ob.clientY;
-                    });
-                }
-                event_state.evnt = e;
-              };
-
-              var resizing = function(e){
-                var mouse={},width,height,left,top,offset=$container.offset();
-                mouse.x = (e.clientX || e.pageX || e.originalEvent.touches[0].clientX) + $(window).scrollLeft(); 
-                mouse.y = (e.clientY || e.pageY || e.originalEvent.touches[0].clientY) + $(window).scrollTop();
-                
-                // Position image differently depending on the corner dragged and constraints
-                if( $(event_state.evnt.target).hasClass('resize-handle-se') ){
-                  width = mouse.x - event_state.container_left;
-                  height = mouse.y  - event_state.container_top;
-                  left = event_state.container_left;
-                  top = event_state.container_top;
-                } else if($(event_state.evnt.target).hasClass('resize-handle-sw') ){
-                  width = event_state.container_width - (mouse.x - event_state.container_left);
-                  height = mouse.y  - event_state.container_top;
-                  left = mouse.x;
-                  top = event_state.container_top;
-                } else if($(event_state.evnt.target).hasClass('resize-handle-nw') ){
-                  width = event_state.container_width - (mouse.x - event_state.container_left);
-                  height = event_state.container_height - (mouse.y - event_state.container_top);
-                  left = mouse.x;
-                  top = mouse.y;
-                  if(constrain || e.shiftKey){
-                    top = mouse.y - ((width / orig_src.width * orig_src.height) - height);
-                  }
-                } else if($(event_state.evnt.target).hasClass('resize-handle-ne') ){
-                  width = mouse.x - event_state.container_left;
-                  height = event_state.container_height - (mouse.y - event_state.container_top);
-                  left = event_state.container_left;
-                  top = mouse.y;
-                  if(constrain || e.shiftKey){
-                    top = mouse.y - ((width / orig_src.width * orig_src.height) - height);
-                  }
-                }
-                
-                // Optionally maintain aspect ratio
-                if(constrain || e.shiftKey){
-                  height = width / orig_src.width * orig_src.height;
-                }
-
-                if(width > min_width && height > min_height && width < max_width && height < max_height){
-                  // To improve performance you might limit how often resizeImage() is called
-                  resizeImage(width, height);  
-                  // Without this Firefox will not re-calculate the the image dimensions until drag end
-                  $container.offset({'left': left, 'top': top});
-                }
-              };
-
-              var resizeImage = function(width, height){
-                resize_canvas.width = width;
-                resize_canvas.height = height;
-                resize_canvas.getContext('2d').drawImage(orig_src, 0, 0, width, height);   
-                $(image_target).attr('src', resize_canvas.toDataURL("image/png"));  
-              };
-
-              var startMoving = function(e){
-                e.preventDefault();
-                e.stopPropagation();
-                saveEventState(e);
-                $(document).on('mousemove touchmove', moving);
-                $(document).on('mouseup touchend', endMoving);
-              };
-
-              var endMoving = function(e){
-                e.preventDefault();
-                $(document).off('mouseup touchend', endMoving);
-                $(document).off('mousemove touchmove', moving);
-              };
-
-              var moving = function(e){
-                var  mouse={}, touches;
-                e.preventDefault();
-                e.stopPropagation();
-                
-                touches = e.originalEvent.touches;
-                
-                mouse.x = (e.clientX || e.pageX || touches[0].clientX) + $(window).scrollLeft(); 
-                mouse.y = (e.clientY || e.pageY || touches[0].clientY) + $(window).scrollTop();
-                $container.offset({
-                  'left': mouse.x - ( event_state.mouse_x - event_state.container_left ),
-                  'top': mouse.y - ( event_state.mouse_y - event_state.container_top ) 
-                });
-                // Watch for pinch zoom gesture while moving
-                if(event_state.touches && event_state.touches.length > 1 && touches.length > 1){
-                  var width = event_state.container_width, height = event_state.container_height;
-                  var a = event_state.touches[0].clientX - event_state.touches[1].clientX;
-                  a = a * a; 
-                  var b = event_state.touches[0].clientY - event_state.touches[1].clientY;
-                  b = b * b; 
-                  var dist1 = Math.sqrt( a + b );
-                  
-                  a = e.originalEvent.touches[0].clientX - touches[1].clientX;
-                  a = a * a; 
-                  b = e.originalEvent.touches[0].clientY - touches[1].clientY;
-                  b = b * b; 
-                  var dist2 = Math.sqrt( a + b );
-
-                  var ratio = dist2 /dist1;
-
-                  width = width * ratio;
-                  height = height * ratio;
-                  // To improve performance you might limit how often resizeImage() is called
-                  resizeImage(width, height);
-                }
-              };
-
-              var transfer = function(canvas)
-              {
-                var data=canvas.toDataURL();
-                // dataURL 的格式为 “data:image/png;base64,****”,逗号之前都是一些说明性的文字，我们只需要逗号之后的就行了
-                data=data.split(',')[1];
-                data=window.atob(data);
-                var ia = new Uint8Array(data.length);
-                for (var i = 0; i < data.length; i++) {
-                    ia[i] = data.charCodeAt(i);
-                };
-
-                // canvas.toDataURL 返回的默认格式就是 image/png
-                var blob=new Blob([ia], {type:"image/png"});
-                return blob;
-              }
-
-              var crop = function(){
-                //Find the part of the image that is inside the crop box
-                var crop_canvas,
-                    left = $('.overlay').offset().left - $container.offset().left,
-                    top =  $('.overlay').offset().top - $container.offset().top,
-                    width = $('.overlay').width(),
-                    height = $('.overlay').height();
-                    
-                crop_canvas = document.createElement('canvas');
-                crop_canvas.width = width;
-                crop_canvas.height = height;
-                
-                crop_canvas.getContext('2d').drawImage(image_target, left, top, width, height, 0, 0, width, height);
-                window.open(crop_canvas.toDataURL("image/png"));
-                var dataURL=crop_canvas.toDataURL();
-                // dataURL 的格式为 “data:image/png;base64,****”,逗号之前都是一些说明性的文字，我们只需要逗号之后的就行了
-                var data=dataURL.split(',')[1];
-                data=window.atob(data);
-                var ia = new Uint8Array(data.length);
-                for (var i = 0; i < data.length; i++) {
-                    ia[i] = data.charCodeAt(i);
-                };
-                // canvas.toDataURL 返回的默认格式就是 image/png
-                var blob=new Blob([ia], {type:"image/png"});
-
-//                $('.change_tab').innerHTML = '<img src="'+dataURL+'" alt=""/>' ;
-//                document.getElementById('#logo-preview').src="/api/file/"+ $scope.companyinfo.logo_id+ "/download"; 
-                //window.open(crop_canvas.toDataURL("image/png"));
-                $scope.upload(blob,'logo');
-                $scope.resize_area = false;
-                location.reload();
-                //$('#img_preview').attr('ngf-src',crop_canvas.toDataURL("image/png"));
-                
-              }
-
-              init();
-            };
-
-            // Kick everything off with the target image
-            resizeableImage($('.resize-image'));
-        };
-        $scope.startUpload = function(file)
-        {
-            if(!/image\/\w+/.test(file.type)){ 
-                alert("文件必须为图片！"); 
-                return false; 
-            } 
-            var reader = new FileReader(); 
-            reader.readAsDataURL(file); 
-///            reader.onload = function(e){ 
-                $('#img_preview').attr('src',this.result);
-   //         } 
-            $scope.resize(file);
-        }
         $scope.add_tag = function(){
             $scope.tags.push({
                 "chosed":false,
@@ -2129,7 +1885,7 @@ angular.module('chuangplus.controllers', []).
                 return (ngModelController.$invalid && ngModelController.$dirty) ||  ngModelController.$pristine;
             }
         };
-        $scope.upload = function(file,file_t){
+        $scope.upload = function(file,file_t,category){
             var param = {
                "file_type": file_t,
                "description": $scope.company_id + file_t,
