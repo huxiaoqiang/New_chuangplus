@@ -46,7 +46,7 @@
                         <label>公司logo</label>
                     </div>
                     <div class="col-sm-9">
-                      <div class="change_tab" ng-model="logo"  ngf-select="startUpload($file,'logo')">
+                      <div class="change_tab" ng-model="logo"  ngf-select="upload($file,'logo')">
                         <img class="img-upload-preview" ng-show="logo==null && companyinfo.logo_id != undefined" ng-src="/api/file/[[companyinfo.logo_id]]/download" title="点击图片修改logo"><br/>
                         <div class="upload-img "  ng-show="logo==null && companyinfo.logo_id == undefined" >点击上传logo</div>
                         <img class="img-upload-preview" ng-show="logo!=null" ngf-src="logo" title="点击上传logo"><br/>
