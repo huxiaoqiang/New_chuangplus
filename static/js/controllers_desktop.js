@@ -1881,7 +1881,7 @@ angular.module('chuangplus.controllers', []).
               var init = function(){
 
                 // When resizing, we will always use this copy of the original as the base
-                orig_src.src=file.src;
+                orig_src.src=image_target.src;
 
                 // Wrap the image with the container and add resize handles
                 $(image_target).wrap('<div class="resize-container"></div>')
