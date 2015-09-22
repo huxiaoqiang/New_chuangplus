@@ -1839,7 +1839,7 @@ angular.module('chuangplus.controllers', []).
         ];
         $scope.startUpload = function(file,category)
         {
-            $imgResize.startUpload(file,category,$scope);
+            $imgResize.startUpload(file,category,'',$scope);
         }
         $scope.get_company_info = function(){
             $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
@@ -1885,7 +1885,7 @@ angular.module('chuangplus.controllers', []).
                 return (ngModelController.$invalid && ngModelController.$dirty) ||  ngModelController.$pristine;
             }
         };
-        $scope.upload = function(file,file_t){
+        $scope.upload = function(file,file_t,category){
             var param = {
                "file_type": file_t,
                "description": $scope.company_id + file_t,
