@@ -190,9 +190,9 @@ angular.module('chuangplus.services', []).
     }]).
     service('ImgResizeService', [ function(){
         return{
-            'startUpload' : function(file,category,scope)
+            'startUpload' : function(file,file_t,category,scope)
             {
-                var resize = function(file,category)
+                var resize = function(file,file_t,category)
                 {
                     scope.resize_area = true;
                     var resizeableImage = function(image_target) {
@@ -212,6 +212,8 @@ angular.module('chuangplus.services', []).
 
                         // When resizing, we will always use this copy of the original as the base
                         orig_src.src=image_target.src;
+                        resize_canvas.width = 400;
+                        resize_canvas.height = 400 / orig_src.src.width * orig_src.src.height;
 
                         // Wrap the image with the container and add resize handles
                         $(image_target).wrap('<div class="resize-container"></div>')
@@ -415,7 +417,7 @@ angular.module('chuangplus.services', []).
         //                $('.change_tab').innerHTML = '<img src="'+dataURL+'" alt=""/>' ;
         //                document.getElementById('#logo-preview').src="/api/file/"+ scope.companyinfo.logo_id+ "/download"; 
                         //window.open(crop_canvas.toDataURL("image/png"));
-                        scope.upload(blob,category);
+                        scope.upload(blob,file_t,category);
                         $('.img-upload-preview').attr('src',crop_canvas.toDataURL("image/png"));
                         scope.resize_area = false;
                         //location.reload();
@@ -440,7 +442,8 @@ angular.module('chuangplus.services', []).
                 reader.readAsDataURL(file); 
                 reader.onload = function(e){ 
                     $('.resize-image').attr('src',this.result);
-                    resize(file,category);
+                    $('.resize-image').attr('width','400px');
+                    resize(file,file_t,category);
                 } 
             }
         };
