@@ -1837,14 +1837,26 @@ angular.module('chuangplus.controllers', []).
                 "value" :"班车接送"
             }
         ];
+        $scope.cancelUpload = function()
+        {
+            $imgResize.cancel($scope,"/api/file/"+$scope.companyinfo.logo_id+ "/download");
+            $scope.resize_area = false;
+        };
         $scope.startUpload = function(file,category)
         {
-            $imgResize.startUpload(file,category,'',$scope);
-        }
-        $scope.cancleUpload = function()
-        {
-            $imgResize.cancle($scope,"/api/file/"+scope.companyinfo.logo_id+ "/download");
-        }
+            if(file != null && file != undefined)
+            {
+                if(!/image\/\w+/.test(file.type)){ 
+                    alert("文件必须为图片！"); 
+                    return false; 
+                } 
+//                alert('here');
+                $imgResize.startUpload(file,category,'',$scope);
+                $scope.resize_area = true;
+                //alert('true');   
+            }
+            file = null;
+        };
         $scope.get_company_info = function(){
             $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
                 success(function(data){
