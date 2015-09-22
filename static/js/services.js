@@ -188,7 +188,7 @@ angular.module('chuangplus.services', []).
             }
         };
     }]).
-    service('ImgResizeService', [ function(){
+    service('ImgResizeService', '$scope' [ function($scope){
         return{
             'startUpload' : function(file,category)
             {
