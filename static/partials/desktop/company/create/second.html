@@ -40,9 +40,9 @@
                         </div>
                         <div class="col-sm-9">
                             <div class="change_tab" ng-model="qrcode"  ngf-select="upload($file,'qrcode','qrcode')">
-                                <img ng-if="qrcode==null && companyinfo.hasOwnProperty('qrcode_id')" src="/api/file/[[companyinfo.qrcode_id]]/download">
-                                <div class="no-qrcode" ng-if="qrcode==null && !companyinfo.hasOwnProperty('qrcode_id')">单击图片修改二维码</div><br/>
-                                <img ng-if="qrcode!=null" ngf-src="qrcode" title="单击图片修改二维码"><br/>
+                                <img ng-show="qrcode==null && companyinfo.hasOwnProperty('qrcode_id')" src="/api/file/[[companyinfo.qrcode_id]]/download">
+                                <div class="no-qrcode" ng-show="qrcode==null && !companyinfo.hasOwnProperty('qrcode_id')">单击图片修改二维码</div><br/>
+                                <img ng-show="qrcode!=null" ngf-src="qrcode" title="单击图片修改二维码"><br/>
                             </div>
                             <div>
                                 <p class="upload-qrcode">单击上传二维码，图片大小在1M以内</p>
