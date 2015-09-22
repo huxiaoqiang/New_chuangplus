@@ -221,8 +221,8 @@ angular.module('chuangplus.services', []).
                         orig_src.src=image_target.src;
                         //orig_src.width = 360;
                         //image_target.width = 360;
-                        resize_canvas.width = 360;
-                        resize_canvas.height = 360 / orig_src.width * orig_src.height;
+                        //resize_canvas.width = 360;
+                        //resize_canvas.height = 360 / orig_src.width * orig_src.height;
                         // Wrap the image with the container and add resize handles
                         $(image_target).wrap('<div class="resize-container"></div>')
                         .before('<span class="resize-handle resize-handle-nw"></span>')
