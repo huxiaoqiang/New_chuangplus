@@ -2775,13 +2775,13 @@ form.financing_add input {
   width: 99%;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .description {
-  min-height: 150px;
+  min-height: 50px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .description p {
   font-size: 14px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .company-description {
-  min-height: 150px;
+  min-height: 50px;
   width: 100%;
   background-color: white;
   border: 1px solid #e1e0e2;
@@ -2808,11 +2808,14 @@ form.financing_add input {
 }
 #container #company-detail .col-md-8 .detail .left-block .company .team-member .member .avatar {
   float: left;
+  height: 60px;
+  width: 60px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .team-member .member .avatar img {
   border-radius: 3px;
   border: 1px solid #d8d8d8;
-  height: 60px;
+  height: 100%;
+  width: 100%;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .team-member .member .member-description {
   float: left;
@@ -2835,6 +2838,11 @@ form.financing_add input {
   width: 370px;
   float: left;
   font-size: 12px;
+}
+#container #company-detail .col-md-8 .detail .left-block .company .team-member .member .member-intro p {
+  height: 60px;
+  width: 100%;
+  overflow-y: scroll;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .team-member .member .member-intro .m_introduction p {
   margin-bottom: 2px;

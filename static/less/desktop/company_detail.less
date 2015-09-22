@@ -205,13 +205,13 @@
               width: 99%;
             }
             .description{
-              min-height: 150px;
+              min-height: 50px;
               p{
                 font-size: 14px;
               }
             }
             .company-description{
-              min-height: 150px;
+              min-height: 50px;
               width: 100%;
               background-color: white;
               border: 1px solid #e1e0e2;
@@ -239,11 +239,14 @@
                 height: 80px;
                 .avatar{
                   float: left;
+                  height: 60px;
+                  width: 60px;
                   img{
                     border-radius: 3px;
                     border: 1px solid #d8d8d8;
                     //width: 60px;
-                    height: 60px;
+                    height: 100%;
+                    width: 100%;
                   }
                 }
                 .member-description{
@@ -268,11 +271,19 @@
                   width: 370px;
                   float: left;
                   font-size: 12px;
+
+                  p{
+                    height: 60px;
+                    width: 100%;
+                    overflow-y: scroll;
+
+                  }
                   .m_introduction{
                     p{
                       margin-bottom: 2px;
                       font-size: 12px;
                     }
+
                   }
                 }
               }
