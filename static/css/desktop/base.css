@@ -3217,6 +3217,9 @@ form.financing_add input {
 #container #first-step .info1 .left-info .input-group .col-sm-9 .change_tab .upload-img:hover {
   color: #98769E;
 }
+#container #first-step .info1 .left-info .input-group .col-sm-9 .upload-logo {
+  width: 160px;
+}
 #container #first-step .info1 .left-info .input-group .col-sm-9 input {
   width: 90%;
   height: 32px;

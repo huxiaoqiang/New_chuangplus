@@ -2289,8 +2289,12 @@ angular.module('chuangplus.controllers', []).
                     console.log(data.error.message);
                     $scope.error = $errMsg.format_error('',data.error);
                 }
-            });
-        };
+            }).error(function(data, status, headers, config){
+                    if(status == 413){
+                         $scope.error = $errMsg.format_error("上传图片失败，文件过大",{code:'-1'});
+                    }
+                });
+        }
         $scope.get_delete_index = function($index){
             $scope.delete_index = $index;
             $('#delete_financing').modal('show');
