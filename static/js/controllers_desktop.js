@@ -2069,7 +2069,7 @@ angular.module('chuangplus.controllers', []).
                 crop_canvas.height = height;
                 
                 crop_canvas.getContext('2d').drawImage(image_target, left, top, width, height, 0, 0, width, height);
-                window.open(crop_canvas.toDataURL("image/png"));
+                //window.open(crop_canvas.toDataURL("image/png"));
                 var dataURL=crop_canvas.toDataURL();
                 // dataURL 的格式为 “data:image/png;base64,****”,逗号之前都是一些说明性的文字，我们只需要逗号之后的就行了
                 var data=dataURL.split(',')[1];
@@ -2085,6 +2085,7 @@ angular.module('chuangplus.controllers', []).
 //                document.getElementById('#logo-preview').src="/api/file/"+ $scope.companyinfo.logo_id+ "/download"; 
                 //window.open(crop_canvas.toDataURL("image/png"));
                 $scope.upload(blob,category);
+                $('#logo-preview').attr('ng-src',crop_canvas.toDataURL("image/png"));
                 $scope.resize_area = false;
                 //location.reload();
                 //$('#img_preview').attr('ngf-src',crop_canvas.toDataURL("image/png"));
