@@ -44,16 +44,19 @@
                         </div>
                          <div class="line"> </div>
                         <div class="item-info info-3">
-                            <p class="position_number">在招职位数：[[company.position_number]]</p>
-                            <div class="position_tags" >
-                                <span class="tags" ng-repeat="position_type in company.position_type_value">[[position_type]]</span>
+                            <div class="vertical-center">
+                                <p class="position_number">在招职位数：[[company.position_number]]</p>
+                                <div class="position_tags" >
+                                    <span class="tags" ng-repeat="position_type in company.position_type_value">[[position_type]]</span>
+                                </div>
                             </div>
                         </div>
                          <div class="line"></div>
                         <div class="item-info info-3">
-                            
-                            <div class="welfare_tags">
-                                <div class="tags" ng-repeat="tag in company.welfare_tags">[[tag]]</div>
+                            <div class="vertical-center">
+                                <div class="welfare_tags">
+                                    <div class="tags" ng-repeat="tag in company.welfare_tags">[[tag]]</div>
+                                </div>
                             </div>
                            
                         </div>
