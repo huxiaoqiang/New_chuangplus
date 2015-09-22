@@ -193,6 +193,7 @@ angular.module('chuangplus.services', []).
             'cancel' : function(scope, src)
             {
                 $('.img-upload-preview').attr('src',src);
+                scope.resize_area = false;
                 //$('.resize-image').attr('src',src);
             },
             'startUpload' : function(file,file_t,category,scope)
