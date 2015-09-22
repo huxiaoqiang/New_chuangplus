@@ -1956,17 +1956,17 @@ angular.module('chuangplus.controllers', []).
                   height = event_state.container_height - (mouse.y - event_state.container_top);
                   left = mouse.x;
                   top = mouse.y;
-                  if(constrain || e.shiftKey){
+                  //if(constrain || e.shiftKey){
                     top = mouse.y - ((width / orig_src.width * orig_src.height) - height);
-                  }
+                  //}
                 } else if($(event_state.evnt.target).hasClass('resize-handle-ne') ){
                   width = mouse.x - event_state.container_left;
                   height = event_state.container_height - (mouse.y - event_state.container_top);
                   left = event_state.container_left;
                   top = mouse.y;
-                  if(constrain || e.shiftKey){
+                  //if(constrain || e.shiftKey){
                     top = mouse.y - ((width / orig_src.width * orig_src.height) - height);
-                  }
+                  //}
                 }
                 
                 // Optionally maintain aspect ratio
