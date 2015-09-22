@@ -9,9 +9,9 @@ angular.module('chuangplus.controllers', []).
         $scope.username = $user.username();
         $scope.myInterval = 3000;
         $scope.slides1 = [
-            {image:"/static/image/logo/banner1.jpg"},
-            {image:"/static/image/logo/banner2.jpg"},
-            {image:"/static/image/logo/banner3.jpg"}
+            {image:"/static/image/logo/banner-1.jpg"},
+            {image:"/static/image/logo/banner-2.jpg"},
+            {image:"/static/image/logo/banner-3.jpg"}
         ];
         $scope.slides2 = [
             {image:"/static/image/logo/banner1.jpg"},

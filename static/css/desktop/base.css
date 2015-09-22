@@ -7,7 +7,7 @@ header #header {
 }
 header #header .header-head {
   background-color: #8f4e96;
-  height: 3px;
+  height: 1px;
 }
 header #header .navbar {
   margin-bottom: 0px;
@@ -718,6 +718,7 @@ body > #wrap {
 #container #pisition-list .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-1 .submit-time {
   width: 100%;
   height: 17px;
+  clear: left;
 }
 #container #pisition-list .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-1 .submit-time p {
   font-size: 12px;
@@ -1636,6 +1637,7 @@ form.financing_add input {
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-1 .submit-time {
   width: 100%;
   height: 17px;
+  clear: left;
 }
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-1 .submit-time p {
   font-size: 12px;
