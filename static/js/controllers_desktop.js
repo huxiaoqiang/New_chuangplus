@@ -1499,7 +1499,7 @@ angular.module('chuangplus.controllers', []).
         $scope.company_id = $routeParams.company_id;
         $scope.position_list = {};
         $scope.delete_position = function(index){
-            $http.post(urls.api+"/position/"+$scope.position_list[index]['_id']['$oid']+"/delete").
+            $http.get(urls.api+"/position/"+$scope.position_list[index]['_id']['$oid']+"/delete").
               success(function(data){
                     if(data.error.code == 1){
                         $scope.get_position_list();
