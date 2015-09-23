@@ -720,7 +720,7 @@ def update_position(request,position_id):
         return HttpResponse(json.dumps(re),content_type = 'application/json')
 
     try:
-        end_time = datetime.strptime(et,'%Y-%m-%d %H:%M:%S')
+        end_time = datetime.strptime(et,'%Y-%m-%d')
         assert end_time > datetime.now()
     except (ValueError):
         re['error'] = error(217,'Invaild end time format!')
