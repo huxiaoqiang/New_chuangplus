@@ -1523,9 +1523,10 @@ angular.module('chuangplus.controllers', []).
                         setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
                     $scope.disable_submit = false;
-                })
+                });
         };
         $scope.set_position = function(){
+            $scope.disable_submit = true;
             $csrf.set_csrf($scope.position);
             if($scope.position.end_time != ''){
                 $scope.position.end_time = $filter('date')($scope.position.end_time, 'yyyy-MM-dd');
@@ -1540,7 +1541,9 @@ angular.module('chuangplus.controllers', []).
                         $scope.error = $errMsg.format_error('',data.error);
                         setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
-                })
+                    $scope.disable_submit = false;
+                });
+
         };
         $scope.get_position_detail = function(){
             $http.get(urls.api+"/position/"+$scope.position_id+"/get").
@@ -1636,9 +1639,7 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.get_company_list();
         //控制左边筛选框的位置
-        $("window").scroll(function() {
-            console.log('aaaaaaa');
-        });
+
     }]).
     controller('DT_CompanyDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errorMsg){
