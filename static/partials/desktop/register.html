@@ -35,12 +35,13 @@
                     <div class="input-group">
                         <input name="invitation_code" type="text" class="form-control" placeholder="企业邀请码" ng-model="reg_info.invitation_code" ng-blur="check_invitation_code()" required >
                     </div>
-                    <span ng-show="!ic_check.exist" class="err-msg">
+<!--                    <span ng-show="!ic_check.exist" class="err-msg">
                         <i class="icon-warning-sign"></i>错误的邀请码
                     </span>
                     <span ng-show="ic_check.used" class="err-msg">
                         <i class="icon-warning-sign"></i>邀请码已验证过，现已失效
                     </span>
+-->
                 </div>
 
                 <div class="form-group" ng-if="reg_info.role==1">

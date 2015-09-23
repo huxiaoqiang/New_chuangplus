@@ -1307,7 +1307,6 @@ angular.module('chuangplus.controllers', []).
                     $scope.position.company.position_type_value[i] = $scope.position_type[$scope.position.company.position_type[i]];
                     console.log( $scope.position_type[$scope.position.company.position_type[i]]);
                 }
-
             }
             else{
                 console.log(data.error.message)
@@ -1352,7 +1351,7 @@ angular.module('chuangplus.controllers', []).
             }
         }
         else{
-            console.log(data.error).message;
+            console.log(data.error.message);
         }
     });
     
