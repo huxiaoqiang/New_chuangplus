@@ -271,9 +271,9 @@ def get_company_position_list(request,company_id):
 def delete_position(request,position_id):
     re = dict()
     try:
-        assert request.method == "POST"
+        assert request.method == "GET"
     except:
-        re['error'] = error(2, 'error, need post!')
+        re['error'] = error(3, 'error, need get')
         return HttpResponse(json.dumps(re), content_type = 'application/json')
 
     try:
