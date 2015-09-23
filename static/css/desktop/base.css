@@ -2528,6 +2528,15 @@ form.financing_add input {
   /* position: fixed; */
   top: 90px;
   border-radius: 4px;
+  padding-top: 10px;
+}
+#container #company_list .col-md-4 .search-tab .search-item {
+  text-align: center;
+  padding: 5px 15px;
+}
+#container #company_list .col-md-4 .search-tab .search-item p {
+  background-color: rgba(191, 191, 191, 0.1);
+  cursor: pointer;
 }
 #container #company_list .col-md-8 {
   width: 750px;
