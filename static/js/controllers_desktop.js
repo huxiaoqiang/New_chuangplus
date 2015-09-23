@@ -37,11 +37,11 @@ angular.module('chuangplus.controllers', []).
                 if($scope.not_in_search)
                     $scope.search = false;
             }
-            setTimeout(leave,300);
+            setTimeout(leave,1000);
         };
         $scope.search_mouseout = function(){
             $scope.not_in_search = true;
-            $scope.timeout_id = setTimeout($scope.hide_search,300);
+            $scope.timeout_id = setTimeout($scope.hide_search,1000);
         };
         $scope.hide_search = function(){
             $scope.$apply(function(){
