@@ -20,13 +20,13 @@ header #header .navbar .navbar-header {
 }
 header #header .navbar .navbar-header #head-logo {
   margin-top: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
   width: 240px;
   float: left;
 }
 header #header .navbar .navbar-header #head-logo img {
   width: 100%;
-  padding-top: 8px;
+  padding-top: 6px;
   margin-left: 15px;
 }
 header #header .navbar .navbar-item.not-login {
@@ -2437,12 +2437,12 @@ form.financing_add input {
 #container #position-detail .position-dscrpt .dscrpt-title .img-button span .img-1 {
   margin-top: -2px;
 }
-#container #position-detail .position-dscrpt .dscrpt-title .txt {
+#container #position-detail .position-dscrpt .txt {
   width: 100%;
   float: left;
   margin-top: 10px;
 }
-#container #position-detail .position-dscrpt .dscrpt-title .txt .description {
+#container #position-detail .position-dscrpt .txt .description {
   min-height: 180px;
   width: 100%;
   margin-bottom: 20px;
@@ -2451,15 +2451,15 @@ form.financing_add input {
   border-radius: 4px;
   padding: 10px 10px;
 }
-#container #position-detail .position-dscrpt .dscrpt-title .txt .description p {
+#container #position-detail .position-dscrpt .txt .description p {
   font-size: 16px;
   color: #707070;
 }
-#container #position-detail .position-dscrpt .dscrpt-title .txt .description .value {
+#container #position-detail .position-dscrpt .txt .description .value {
   margin-top: 15px;
   min-height: 50px;
 }
-#container #position-detail .position-dscrpt .dscrpt-title .txt .description .value p {
+#container #position-detail .position-dscrpt .txt .description .value p {
   font-size: 14px;
 }
 #container #position-detail .position-dscrpt .map {
@@ -2535,7 +2535,7 @@ form.financing_add input {
   width: 210px;
 }
 #container #company_list .col-md-4 .search-tab {
-  width: 200px;
+  width: 192px;
   background-color: white;
   height: 600px;
   box-shadow: 2px 2px 7px 2px #dfdfdf;
@@ -2879,7 +2879,7 @@ form.financing_add input {
   cursor: pointer;
 }
 #container #company-detail .col-md-8 .detail .left-block .header .tab {
-  margin: 0;
+  margin-right: -4px;
   padding: 5px 20px 5px 20px;
   border: solid;
   border-color: rgba(143, 78, 150, 0.1);

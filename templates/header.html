@@ -1,10 +1,10 @@
-<header ng-controller="DT_HeaderCtrl" xmlns="http://www.w3.org/1999/html">
+<header ng-controller="DT_HeaderCtrl">
     <div id="header">
         <div class="header-head"></div>
         <nav class="navbar">
             <div class="navbar-header">
                <div id="head-logo">
-                   <a href="/" ng-click="homepage_active()"><img src="/static/image/logo/headerlogo-01.png"></a>
+                   <a href="/" ng-click="homepage_active()"><img src="/static/image/logo/headerlogo_1.png"></a>
                </div>
             {% if not user.is_authenticated%}
               <ul class="nav navbar-nav navbar-item not-login" ng-init="homepage=true">
@@ -57,7 +57,7 @@
             <ul class="header-item">
                    <li class="item log_register">
                        <img src="/static/image/icon/login-01.png">
-                       <a ng-click="login()">登录</a>&nbsp;·&nbsp;<a ng-click="register()">注册</a>
+                       <a ng-click="login()">登录</a>·<a ng-click="register()">注册</a>
                    </li>
 
                <li class="item" on-mouseover="scan_mouseover()" on-mouseout="scan=false">

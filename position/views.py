@@ -54,7 +54,7 @@ def if_legal(str,enter = False):
         raise ValueError,c
     return True
 
-#@user_permission('login')
+@user_permission('login')
 def create_position(request):
     re = dict()
     cpn = Companyinfo()
@@ -271,9 +271,9 @@ def get_company_position_list(request,company_id):
 def delete_position(request,position_id):
     re = dict()
     try:
-        assert request.method == "POST"
+        assert request.method == "GET"
     except:
-        re['error'] = error(2, 'error, need post!')
+        re['error'] = error(3, 'error, need get')
         return HttpResponse(json.dumps(re), content_type = 'application/json')
 
     try:
@@ -590,7 +590,7 @@ def search_position(request):
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
 
-#@user_permission("login")
+@user_permission("login")
 def get_position_with_company(request,position_id):
     re = dict()
     if request.method == "GET":
@@ -720,7 +720,7 @@ def update_position(request,position_id):
         return HttpResponse(json.dumps(re),content_type = 'application/json')
 
     try:
-        end_time = datetime.strptime(et,'%Y-%m-%d %H:%M:%S')
+        end_time = datetime.strptime(et,'%Y-%m-%d')
         assert end_time > datetime.now()
     except (ValueError):
         re['error'] = error(217,'Invaild end time format!')
@@ -732,7 +732,7 @@ def update_position(request,position_id):
     
     try:
         assert len(position_description) in range(0,500)
-        if_legal(position_description,False)
+        #if_legal(position_description,False)
     except (AssertionError):
         re['error'] = error(219,'The length of description is too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
@@ -745,7 +745,7 @@ def update_position(request,position_id):
     
     try:
         assert len(position_request) in range(0,500)
-        if_legal(position_request,False)
+        #if_legal(position_request,False)
     except (AssertionError):
         re['error'] = error(221,'The length of request is too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
@@ -817,7 +817,6 @@ def update_position(request,position_id):
     
     posi.name = name
     posi.position_type = position_type
-    posi.work_city = work_city
     posi.work_address = work_address
     posi.end_time = end_time
     posi.position_description = position_description
