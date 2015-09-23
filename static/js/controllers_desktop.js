@@ -37,11 +37,11 @@ angular.module('chuangplus.controllers', []).
                 if($scope.not_in_search)
                     $scope.search = false;
             }
-            setTimeout(leave,1500);
+            setTimeout(leave,300);
         };
         $scope.search_mouseout = function(){
             $scope.not_in_search = true;
-            $scope.timeout_id = setTimeout($scope.hide_search,1500);
+            $scope.timeout_id = setTimeout($scope.hide_search,300);
         };
         $scope.hide_search = function(){
             $scope.$apply(function(){
@@ -379,6 +379,17 @@ angular.module('chuangplus.controllers', []).
             'functions':"职能",
             'others':"其他"
             };
+        $scope.field_type={
+            'social':"社交",
+            'e-commerce':"电子商务",
+            'education':"教育",
+            'health_medical':"健康医疗",
+            'culture_creativity':"文化创意",
+            'living_consumption':"生活消费",
+            'hardware':"硬件",
+            '020':"O2O",
+            'others':"其他"
+        };
         $scope.get_positions = function(){
             $http.get(urls.api+"/account/userinfo/position/submit/list").
                 success(function(data){
@@ -386,6 +397,7 @@ angular.module('chuangplus.controllers', []).
                         $scope.positions = data.data;
                         for(var i = 0; i < $scope.positions.length; i ++){
                             $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
+                            $scope.positions[i].company.field_type = $scope.field_type[$scope.positions[i].company.field];
                             if($scope.positions[i].company.scale == 0){
                                 $scope.positions[i].company.scale_value = "初创";
                             }
@@ -1215,6 +1227,7 @@ angular.module('chuangplus.controllers', []).
     controller('DT_PositionDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_PositionDetailCtrl');
         $scope.role = $user.role();
+        $scope.username = $user.username();
         $scope.position_id = $routeParams.position_id;
         $scope.img2_src = "/static/image/icon/weixin-01.png";
         $scope.position_type = {
@@ -1627,6 +1640,7 @@ angular.module('chuangplus.controllers', []).
         console.log('DT_CompanyDetailCtrl');
         $scope.company_id = $routeParams.company_id;
         $scope.role = $user.role();
+        $scope.username = $user.username();
                                        console.log($scope.role);
         $scope.company = {};
         $scope.member_list = {};
