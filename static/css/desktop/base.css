@@ -2433,7 +2433,7 @@ form.financing_add input {
   width: 100%;
   margin-bottom: 20px;
   background-color: white;
-  border: 1px solid #bfbfbf;
+  box-shadow: 2px 2px 7px 2px #e1e0e2;
   border-radius: 4px;
   padding: 10px 10px;
 }
@@ -2904,7 +2904,7 @@ form.financing_add input {
   margin-bottom: 25px;
   width: 100%;
   background-color: white;
-  border: 1px solid #e1e0e2;
+  box-shadow: 2px 2px 7px 2px #e1e0e2;
   border-radius: 4px;
   padding: 10px 10px;
 }
