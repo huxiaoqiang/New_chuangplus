@@ -58,7 +58,7 @@ def upload_file(request):
                     mylist[LenOfMylist - 1] = 'big'
                     mylist.append(Last)
                     new_name = '.'
-                    new_name.join(mylist)
+                    new_name = new_name.join(mylist)
                     img.save(new_name)
                     img = Image.open(f.name)
                     img.thumbnail(sizeSmall)
@@ -68,7 +68,7 @@ def upload_file(request):
                     mylist[LenOfMylist - 1] = 'small'
                     mylist.append(Last)
                     new_name = '.'
-                    new_name.join(mylist)
+                    new_name = new_name.join(mylist)
                     img.save(new_name)  
                     
                 except DatabaseError:
@@ -106,7 +106,7 @@ def upload_file(request):
                         mylist[LenOfMylist - 1] = 'big'
                         mylist.append(Last)
                         new_name = '.'
-                        new_name.join(mylist)
+                        new_name = new_name.join(mylist)
                         img.save(new_name)
                         img = Image.open(f.name)
                         img.thumbnail(sizeSmall)
@@ -116,7 +116,7 @@ def upload_file(request):
                         mylist[LenOfMylist - 1] = 'small'
                         mylist.append(Last)
                         new_name = '.'
-                        new_name.join(mylist)
+                        new_name = new_name.join(mylist)
                         img.save(new_name)
                         
                     except DatabaseError:
