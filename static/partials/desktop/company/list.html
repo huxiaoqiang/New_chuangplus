@@ -1,13 +1,15 @@
 <div id="container">
     <div id="company_list">
         <div class="col-md-4">
+            <div class="search-tab">
 
+            </div>
         </div>
         <div class="col-md-8">
             <div ng-show="loading" class="loading">
                 <img src="/static/image/icon/loading.gif">
             </div>
-            <div  ng-show="!loading">
+            <div ng-show="!loading">
                 <ul ng-repeat="company in company_list">
                 <a href="/company/[[company._id.$oid]]/detail">
                 <li>

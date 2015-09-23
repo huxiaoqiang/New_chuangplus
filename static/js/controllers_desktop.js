@@ -1635,6 +1635,10 @@ angular.module('chuangplus.controllers', []).
             });
         };
         $scope.get_company_list();
+        //控制左边筛选框的位置
+        $("window").scroll(function() {
+            console.log('aaaaaaa');
+        });
     }]).
     controller('DT_CompanyDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errorMsg){

@@ -2517,6 +2517,18 @@ form.financing_add input {
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   margin-top: 30px;
 }
+#container #company_list .col-md-4 {
+  width: 210px;
+}
+#container #company_list .col-md-4 .search-tab {
+  width: 200px;
+  background-color: white;
+  height: 600px;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
+  /* position: fixed; */
+  top: 90px;
+  border-radius: 4px;
+}
 #container #company_list .col-md-8 {
   width: 750px;
   min-height: 500px;
