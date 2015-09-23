@@ -679,7 +679,6 @@ def update_position(request,position_id):
     
     name = request.POST.get('name','')
     position_type = request.POST.get('position_type','')
-    work_city = request.POST.get('work_city','')
     work_address = request.POST.get('work_address','')
     et = request.POST.get('end_time','')
     position_description = request.POST.get('position_description','')
@@ -709,21 +708,7 @@ def update_position(request,position_id):
     except (AssertionError):
         re['error'] = error(212,'Invaild position type')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
-    
-    try:
-        assert len(work_city) in range(1,50)
-        if_legal(work_city,False)
-    except (AssertionError):
-        re['error'] = error(213,'Work city is too short or too long!')
-        return HttpResponse(json.dumps(re),content_type = 'application/json')
-    except (UnicodeDecodeError,ValueError):
-        re['error'] = error(214,'Illeage character found in work city!')
-        return HttpResponse(json.dumps(re),content_type = 'application/json')
-    except:
-        re['error'] = error(299,'Unknown error!')
-        return HttpResponse(json.dumps(re),content_type = 'application/json')
 
-    
     try:
         assert len(work_address) in range(1,100)
         if_legal(work_address,False)
