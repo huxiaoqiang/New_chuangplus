@@ -1343,7 +1343,7 @@ angular.module('chuangplus.controllers', []).
         success(function(data){
             if(data.error.code == 1){
                 $scope.financing_list = data.data;
-                for(var i=0;$scope.financing_list.length;i++){
+                for(var i=0;i<$scope.financing_list.length;i++){
                     $scope.financing_list[i].stage_value = $scope.stage[$scope.financing_list[i].stage];
                     $scope.financing_list[i].amount_value = $scope.amount[$scope.financing_list[i].amount];
                 }
