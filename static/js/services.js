@@ -452,6 +452,7 @@ angular.module('chuangplus.services', []).
                         scope.upload(blob,file_t,category);
                         $('.img-upload-preview').attr('src',crop_canvas.toDataURL("image/png"));
                         scope.resize_area = false;
+                        scope.cancel_upload = false;
                         //location.reload();
                         //$('#img_preview').attr('ngf-src',crop_canvas.toDataURL("image/png"));
                         

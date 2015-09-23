@@ -2058,8 +2058,13 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.cancelUpload = function()
         {
-            $imgResize.cancel($scope,"/api/file/"+$scope.companyinfo.logo_id+ "/download");
+            //$imgResize.cancel($scope,"/api/file/"+$scope.member_add.m_avatar_id+ "/download");
+            //if($scope.cancel_upload == undefined)
+            if($scope.cancel_upload != false)
+                $scope.cancel_upload = true;
+//            $scope.cancel_upload = undefined;
             $scope.resize_area = false;
+            //alert($scope.cancel_upload);
         };
         $scope.startUpload = function(file,category)
         {
@@ -2439,8 +2444,13 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.cancelUpload = function()
         {
-            $imgResize.cancel($scope,"/api/file/"+$scope.companyinfo.logo_id+ "/download");
+            //$imgResize.cancel($scope,"/api/file/"+$scope.member_add.m_avatar_id+ "/download");
+            //if($scope.cancel_upload == undefined)
+            if($scope.cancel_upload != false)
+                $scope.cancel_upload = true;
+//            $scope.cancel_upload = undefined;
             $scope.resize_area = false;
+            //alert($scope.cancel_upload);
         };
         $scope.startUpload = function(file,category)
         {
