@@ -281,8 +281,8 @@ def check_userinfo_all_complete(request):
     re = dict()
     if request.method == "GET":
         u = Userinfo.objects.get(username=request.user.username)
-        if u.position_type and u.work_city\
-        and u.cellphone and u.university\
+        #if u.position_type and u.work_city\
+        if u.cellphone and u.university\
         and u.major and u.grade\
         and u.gender and u.work_days and u.description\
         and u.resume_id and u.real_name and u.resume_name:
@@ -301,8 +301,8 @@ def check_userinfo_complete(request):
     re = dict()
     if request.method == "GET":
         u = Userinfo.objects.get(username=request.user.username)
-        if u.position_type and u.work_city\
-        and u.cellphone and u.university\
+        #if u.position_type and u.work_city\
+        if u.cellphone and u.university\
         and u.major and u.grade\
         and u.gender and u.work_days and u.description\
         and u.real_name:
