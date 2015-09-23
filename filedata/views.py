@@ -49,7 +49,7 @@ def upload_file(request):
                 f.description = description
                 try:
                     f.save()
-                    
+                    '''
                     img = Image.open(f.name)
                     img.thumbnail(sizeBig)
                     mylist = f.name.split('.')
@@ -70,7 +70,7 @@ def upload_file(request):
                     new_name = '.'
                     new_name = new_name.join(mylist)
                     img.save(new_name)  
-                    
+                    '''
                 except DatabaseError:
                     re['error'] = error(250,'Database error: Failed to get companyinfo')
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -98,6 +98,7 @@ def upload_file(request):
                     f.description = description
                     try:
                         f.save()
+                        '''
                         img = Image.open(f.name)
                         img.thumbnail(sizeBig)
                         mylist = f.name.split('.')
@@ -118,7 +119,7 @@ def upload_file(request):
                         new_name = '.'
                         new_name = new_name.join(mylist)
                         img.save(new_name)
-                        
+                        '''
                     except DatabaseError:
                         re['error'] = error(250,'Database error: Failed to save file!')
                         return HttpResponse(json.dumps(re), content_type = 'application/json')
