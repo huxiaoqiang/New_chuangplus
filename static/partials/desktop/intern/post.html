@@ -10,33 +10,80 @@
             </div>
 	    </div>
         <div class="col-md-8">
-            <ul ng-repeat="position in positions">
-                <a href="/position/[[position._id.$oid]]/detail">
-                <li>
-                    <div class="post-list-item">
-                        <div class="item-pic">
-                            <img class="company-pic" src="/api/file/[[position.company.logo_id]]/download"  alt="图片"></img>
-                        </div>
-                        <div class="item-info">
-                            <div class="position-info">
-                                <p class="position">[[position.position_type_value]]|[[position.name]]</p>
-                                <p class="hire">职位在招</p>
-                                <p class="check">HR待处理</p>
+            <div ng-show="loading" class="loading">
+                <img src="/static/image/icon/loading.gif">
+            </div>
+            <div ng-show="!loading">
+                <ul ng-repeat="position in positions">
+                    <a href="/position/[[position._id.$oid]]/detail">
+                    <li>
+                        <div class="favor-list-item">
+                            <div class="middle-block">
+                                <div class="info">
+                                    <div class="item-info info-1">
+                                        <div class="vertical-center">
+                                            <p class="position">[[position.position_type_value]]|[[position.name]]</p>
+                                            <div class="position-tags">
+                                                <span class="tags">[[position.days_per_week]]天/周</span>
+                                                <span class="tags">[[position.salary_min]]k-[[position.salary_max]]k</span>
+                                            </div>
+                                            <div class="submit-time">
+                                                <p>发布时间：[[position.release_time.$date |date :'yyyy-MM-dd']]</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="line"></div>
+                                    <div class="item-info info-4">
+                                        <div class="vertical-center">
+                                            <div class="tags" ng-repeat="tag in position.company.welfare_tags">[[tag]]</div>
+                                        </div>
+                                    </div>
+                                    <div class="line"></div>
+                                    <div class="item-info info-2">
+                                        <div class="vertical-center">
+                                            <p class="company">[[position.company.abbreviation]]</p>
+                                            <p class="company-discrpt">&nbsp;&nbsp;[[position.company.brief_introduction]]</p>
+                                            <p class="auth">[[position.company.auth_organization]]</p>
+                                        </div>
+                                    </div>
+                                    <div class="item-info info-3">
+                                        <div class="vertical-center">
+                                            <div class="label-1" ng-show="position.company.field != null">
+                                                <img src="/static/image/icon/111-01.png">
+                                                <p>[[position.company.field_type]]</p>
+                                            </div>
+                                            <div class="label-1" ng-show="position.company.scale != null">
+                                                <img src="/static/image/icon/222-01.png">
+                                                <p>[[position.company.scale_value]]</p>
+                                            </div>
+                                            <div class="label-1" ng-show="position.company.city != null">
+                                                <img src="/static/image/icon/333-01.png">
+                                                <p class="last-p">[[position.company.city]]</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="item-pic">
+                                        <div class="vertical-center">
+                                            <img src="/api/file/[[position.company.logo_id]]/download" class="company-pic" alt="图片">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <p class="company">[[position.company.abbreviation]]</p>
-                            <p class="company-discrpt">[[position.company.brief_introduction]]</p>
-                            <div class="item-label">
-                                <p class="label">[[position.days_per_week]]天/周</p>
-                                <p class="label">[[position.salary_min]]k-[[position.salary_max]]k</p>
-                                <p class="label">创业服务</p>
-                                <p class="label">[[position.company.scale_value]]</p>
-                                <p class="label">[[position.company.city]]</p>
-                            </div>
-                            <p class="submit-time">发布时间:[[position.release_time.$date |date :'yyyy-MM-dd HH:mm:ss']]</p>
+
                         </div>
-                    </div>
-                </li>
-            </ul>
+                        <div class="right-side">
+                            <b class="tips status">职位关闭</b>
+                            <b class="tips done">职位在招</b>
+                            <b class="tips status">HR待处理</b>
+                            <b class="tips done">HR已处理</b>
+                        </div>
+                    </li>
+                    </a>
+                </ul>
+                <page ng-show="task.pageCount!=0" num-pages="task.pageCount" current-page="task.currentPage" on-select-page="selectPage(page)">
+                </page>
+            </div>
         </div>
     </div>
 </div>

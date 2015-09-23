@@ -64,6 +64,7 @@ header #header .navbar .navbar-item.login {
 header #header .navbar .navbar-item.login li {
   text-align: center;
   width: 20%;
+  height: 100%;
 }
 header #header .navbar .navbar-item.login li a {
   color: #707070;
@@ -75,6 +76,7 @@ header #header .navbar .navbar-item.login li a {
 header #header .navbar .navbar-item.login li a:hover {
   color: #8f4e96;
   background-color: white;
+  height: 100%;
 }
 header #header .navbar .navbar-item.login li a:focus {
   background-color: white;
@@ -104,6 +106,9 @@ header #header .navbar .navbar-item.login li.dropdown .dropdown-menu a:hover {
 }
 header #header .navbar .navbar-item.login li.dropdown .dropdown-toggle {
   font-size: 0.9em;
+}
+header #header .navbar .navbar-item.login li.dropdown .dropdown-toggle:focus {
+  font-weight: 100;
 }
 header #header .navbar .navbar-item.login li.dropdown.open {
   height: 58px;
@@ -1240,10 +1245,13 @@ form.financing_add input {
   width: 100%;
   height: 100%;
   font-size: 1em;
-  color: #000000;
+  color: #bfbfbf;
 }
 #container #userinfo .info-form .tabs li.active {
   background-color: #FFFFFF;
+}
+#container #userinfo .info-form .tabs li.active a {
+  color: #000000;
 }
 #container #userinfo .info-form .tab-pane {
   padding: 2em;
@@ -1932,7 +1940,7 @@ form.financing_add input {
   display: block;
 }
 #container #intern-post-list {
-  font-family: "微软雅黑";
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   padding-top: 5%;
 }
 #container #intern-post-list .tips {
@@ -1974,98 +1982,190 @@ form.financing_add input {
   width: 30px;
 }
 #container #intern-post-list .col-md-8 {
-  margin-top: 10px;
+  width: 100%;
+  float: left;
+  padding-right: 0;
+}
+#container #intern-post-list .col-md-8 .loading {
+  width: 100%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  text-align: center;
+}
+#container #intern-post-list .col-md-8 a {
+  text-decoration: none;
 }
 #container #intern-post-list .col-md-8 ul li {
   list-style-type: none;
+  margin-bottom: 15px;
+  height: 120px;
+  width: 100%;
 }
-#container #intern-post-list .col-md-8 ul li .post-list-item {
-  margin-top: 10px;
-  border: 1px solid#8E8E8E;
-  width: 900px;
-  height: 200px;
-  padding: 10px 10px 10px 10px;
-}
-#container #intern-post-list .col-md-8 ul li .post-list-item .item-pic {
+#container #intern-post-list .col-md-8 ul li .favor-list-item {
+  width: 80%;
+  height: 100%;
+  padding: 10px 10px 10px 15px;
+  background-color: #ffffff;
+  border: 1px solid #bfbfbf;
+  border-radius: 4px;
   float: left;
-  width: 180px;
-  height: 180px;
 }
-#container #intern-post-list .col-md-8 ul li .post-list-item .item-pic .company-pic {
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block {
   width: 100%;
   height: 100%;
 }
-#container #intern-post-list .col-md-8 ul li .post-list-item .item-info {
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .item-pic {
   float: left;
-  margin-left: 20px;
-  width: 640px;
-  height: 200px;
+  width: 90px;
+  display: table;
+  height: 100%;
 }
-#container #intern-post-list .col-md-8 ul li .post-list-item .item-info .position-info {
-  height: 35px;
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .item-pic img {
+  width: 90px;
+  height: 90px;
 }
-#container #intern-post-list .col-md-8 ul li .post-list-item .item-info .position-info .position {
-  font-size: 1.2em;
-  float: left;
-  width: 300px;
-  height: 35px;
-  color: #8c5d90;
-  border-bottom: 1px solid#8E8E8E;
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info {
+  width: 100%;
+  height: 100%;
 }
-#container #intern-post-list .col-md-8 ul li .post-list-item .item-info .position-info .hire {
-  background-color: #8c5d90;
-  float: left;
-  margin-left: 150px;
-  color: white;
-  height: 30px;
-  width: 80px;
-  border-radius: 0.3em;
-  border: 1px solid#8E8E8E;
-  text-align: center;
-  padding: 5px 0 0 0;
-}
-#container #intern-post-list .col-md-8 ul li .post-list-item .item-info .position-info .check {
-  float: right;
-  margin-left: 20px;
-  background-color: white;
-  color: #8E8E8E;
-  height: 30px;
-  width: 80px;
-  border-radius: 0.3em;
-  border: 1px solid#8E8E8E;
-  text-align: center;
-  padding: 5px 0 0 0;
-}
-#container #intern-post-list .col-md-8 ul li .post-list-item .item-info .company {
-  font-size: 1.3em;
-  margin-top: 10px;
-}
-#container #intern-post-list .col-md-8 ul li .post-list-item .item-info .company-discrpt {
-  font-size: 16px;
-  color: #8E8E8E;
-}
-#container #intern-post-list .col-md-8 ul li .post-list-item .item-info .item-label {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  height: 30px;
-}
-#container #intern-post-list .col-md-8 ul li .post-list-item .item-info .item-label .label {
-  width: 80px;
-  height: 30px;
-  float: left;
-  border: 1px solid#8E8E8E;
-  background-color: #F0F0F0;
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info .tags {
+  border-radius: 10px;
+  padding: 0 8px 0 8px;
+  background-color: rgba(143, 78, 150, 0.1);
+  color: #707070;
   font-size: 12px;
-  border-radius: 0.3em;
-  margin-right: 10px;
+  margin-right: 5px;
+  float: left;
+  margin-bottom: 5px;
+  text-align: center;
+  font-weight: 100;
+}
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info .line {
+  width: 1px;
+  height: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  float: left;
+  border-left: 1px solid #aaaaaa;
+}
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info p {
+  margin-bottom: 0;
+}
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-1 {
+  width: 180px;
+  text-align: center;
+  padding: 0 15px 0 15px;
+}
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-1 p {
+  color: black;
+  font-size: 1.1em;
+}
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-1 .position-tags {
+  margin-top: 10px;
+  width: 100%;
+  padding-left: 18px;
+  height: 22px;
+  text-align: center;
+}
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-1 .submit-time {
+  width: 100%;
+  height: 17px;
+  clear: left;
+}
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-1 .submit-time p {
+  font-size: 12px;
+  color: #707070;
+}
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-2 {
+  width: 140px;
+  padding: 0 15px 0 15px;
+  text-align: center;
+}
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-2 .company {
+  font-size: 1.1em;
   color: black;
   text-align: center;
-  line-height: 30px;
-  padding: 1px 0 5px 0;
 }
-#container #intern-post-list .col-md-8 ul li .post-list-item .item-info .submit-time {
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-2 .company-discrpt {
+  color: #707070;
   font-size: 12px;
-  color: #8E8E8E;
+  text-align: center;
+}
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-2 .auth {
+  font-size: 12px;
+  color: #8f4e96;
+}
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-3 {
+  width: 105px;
+  padding-left: 15px;
+}
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-4 {
+  padding: 0 15px 0 20px;
+  width: 173px;
+}
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-4 .tags {
+  width: 64px;
+}
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info .item-info {
+  float: left;
+  height: 100%;
+  display: table;
+}
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info .vertical-center {
+  display: table-cell;
+  vertical-align: middle;
+}
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info .label-1 img {
+  width: 13px;
+  height: 13px;
+  float: left;
+  margin-right: 5px;
+  margin-top: 2px;
+}
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info .label-1 p {
+  color: #707070;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+#container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info .label-1 .last-p {
+  margin-bottom: 0;
+}
+#container #intern-post-list .col-md-8 ul.pagination {
+  float: right;
+}
+#container #intern-post-list .col-md-8 ul.pagination li {
+  border: none;
+}
+#container #intern-post-list .col-md-8 ul.pagination li a {
+  cursor: pointer;
+}
+#container #intern-post-list .col-md-8 ul.pagination li a span {
+  color: #707070;
+}
+#container #intern-post-list .col-md-8 .pagination > .active > a {
+  background-color: #8f4e96;
+  border-color: #98769E;
+}
+#container #intern-post-list .col-md-8 .right-side {
+  float: left;
+  width: 10%;
+}
+#container #intern-post-list .col-md-8 .right-side b {
+  width: 100px;
+  height: 27px;
+  display: inline-block;
+  font-size: 12px;
+  vertical-align: text-bottom;
+  border-radius: 0;
+  color: white;
+  padding: 5px 0 0 5px;
+  font-weight: 100;
+}
+#container #intern-post-list .col-md-8 .right-side .tips.status {
+  background: url("/static/image/icon/greytag.png");
+}
+#container #intern-post-list .col-md-8 .right-side .tips.done {
+  background: url("/static/image/icon/xinzengbiaoqian.png");
 }
 #container #position_manage .position_list {
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
@@ -2370,6 +2470,7 @@ form.financing_add input {
   padding: 5px 50px;
   height: 30px;
   margin-right: 20px;
+  cursor: pointer;
 }
 #container #position-detail .col-md-4 {
   float: right;
@@ -2432,7 +2533,7 @@ form.financing_add input {
 #container #company_list .col-md-8 ul li {
   list-style-type: none;
   background-color: #FFFFFF;
-  border: 1px solid#bfbfbf;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
   border-radius: 4px;
   margin-bottom: 15px;
   height: 130px;
@@ -2598,7 +2699,7 @@ form.financing_add input {
 #container #company-detail .col-md-8 .company-info {
   margin-top: 0px;
   background-color: #FFFFFF;
-  border: 1px solid#bfbfbf;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
   border-radius: 4px;
   margin-bottom: 15px;
   height: 105px;
@@ -2794,7 +2895,7 @@ form.financing_add input {
   min-height: 50px;
   width: 100%;
   background-color: white;
-  border: 1px solid #e1e0e2;
+  box-shadow: 2px 2px 7px 2px #e1e0e2;
   border-radius: 4px;
   padding: 10px 10px;
   margin-bottom: 25px;
@@ -2849,6 +2950,8 @@ form.financing_add input {
 }
 #container #company-detail .col-md-8 .detail .left-block .company .team-member .member .member-intro p {
   width: 100%;
+  overflow-y: scroll;
+  line-height: 20px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .team-member .member .member-intro .m_introduction p {
   margin-bottom: 2px;
@@ -3081,58 +3184,61 @@ form.financing_add input {
   filter: alpha(opacity=80);
   opicaty: 50;
 }
-#container #account .ui.form.segment {
+#container #account .info-form {
   margin: 0 auto;
   padding: 0em;
   background-color: #FFFFFF;
-  border-radius: 0;
+  border-radius: 6px;
+  border: 1px solid #bfbfbf;
   width: 430px;
 }
-#container #account .ui.form.segment .nav.nav-tabs {
+#container #account .info-form .tabs {
   border: 0;
-  padding: 5px 5px 0 5px;
+  padding: 5px 10px 0 10px;
+  width: 100%;
 }
-#container #account .ui.form.segment .nav.nav-tabs li {
+#container #account .info-form .tabs li {
+  list-style: none;
+  float: left;
   width: 50%;
-  height: 35px;
+  height: 25px;
   text-align: center;
+  line-height: 25px;
   border-radius: 0;
   background-color: #EFEFEF;
-  filter: alpha(opacity=80);
-  opicaty: 50;
 }
-#container #account .ui.form.segment .nav.nav-tabs li .active {
-  background-color: #FFFFFF;
-}
-#container #account .ui.form.segment .nav.nav-tabs li a {
+#container #account .info-form .tabs li a {
+  text-decoration: none;
+  text-align: center;
   border-radius: 0;
   width: 100%;
   height: 100%;
   font-size: 1em;
-  font-weight: bold;
+  color: #bfbfbf;
+}
+#container #account .info-form .tabs li.active {
+  background-color: #FFFFFF;
+}
+#container #account .info-form .tabs li.active a {
   color: #000000;
 }
-#container #account .ui.form.segment .nav.nav-tabs li a:hover {
-  background-color: white;
-}
-#container #account .ui.form.segment .tab-pane {
+#container #account .info-form .tab-pane {
   padding: 2em;
 }
-#container #account .ui.form.segment .tab-pane .form-horizontal .form-group {
+#container #account .info-form .tab-pane .form-horizontal .form-group {
   margin-left: 0;
   margin-right: 0;
 }
-#container #account .ui.form.segment .tab-pane .form-horizontal .form-group input {
-  border-radius: 0;
+#container #account .info-form .tab-pane .form-horizontal .form-group input {
+  border-radius: 6px;
   width: 374px;
-  border: 1px solid #8F4E96;
   font-size: 1em;
 }
-#container #account .ui.form.segment .tab-pane .form-horizontal .btn.btn-primary {
+#container #account .info-form .tab-pane .form-horizontal .btn.btn-primary {
   width: 374px;
   margin-top: 15px;
   border: 0;
-  border-radius: 0;
+  border-radius: 6px;
   background-color: #8F4E96;
   color: white;
   font-size: 1em;
