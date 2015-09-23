@@ -4041,6 +4041,9 @@ body > #wrap_no_header_footer #main-container {
 #container #company_resume .col-sm-9 .submit_list .submit_item .basic-info {
   margin-top: 10px;
 }
+#container #company_resume .col-sm-9 .submit_list .submit_item.active {
+  background-color: rgba(243, 243, 243, 0.53);
+}
 #container #company_resume .col-sm-9 .submit_list .submit_item:hover {
   background-color: rgba(243, 243, 243, 0.53);
 }
