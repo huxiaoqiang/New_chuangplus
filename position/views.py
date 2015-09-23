@@ -817,7 +817,6 @@ def update_position(request,position_id):
     
     posi.name = name
     posi.position_type = position_type
-    posi.work_city = work_city
     posi.work_address = work_address
     posi.end_time = end_time
     posi.position_description = position_description
