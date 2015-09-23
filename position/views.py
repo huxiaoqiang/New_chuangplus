@@ -622,7 +622,7 @@ def get_position_with_company(request,position_id):
         re['error'] = error(2,'error, need get!')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
-@user_permission("login")
+#@user_permission("login")
 def get_position(request,position_id):
     re = dict()
     if request.method == "GET":
@@ -637,7 +637,7 @@ def get_position(request,position_id):
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
 
-@user_permission("login")
+#@user_permission("login")
 def update_position(request,position_id):
     re = dict()
     try:
@@ -732,7 +732,7 @@ def update_position(request,position_id):
     
     try:
         assert len(position_description) in range(0,500)
-        if_legal(position_description,False)
+        #if_legal(position_description,False)
     except (AssertionError):
         re['error'] = error(219,'The length of description is too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
@@ -745,7 +745,7 @@ def update_position(request,position_id):
     
     try:
         assert len(position_request) in range(0,500)
-        if_legal(position_request,False)
+        #if_legal(position_request,False)
     except (AssertionError):
         re['error'] = error(221,'The length of request is too long!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
