@@ -56,6 +56,9 @@ angular.module('chuangplus.directives', []).
             templateUrl : "/static/partials/desktop/directive_templates/myText.html" ,
             link : function(scope,elem,attr){
                 scope.$watch('text',function(value){
+                    if(value == undefined){
+                        return;
+                    }
                     scope.texts = value.split('\n');
                     var timestamp = Date.parse(new Date());
                     for(var i=0;i<scope.texts.length;i++){
