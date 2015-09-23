@@ -196,7 +196,7 @@ header .shadow {
   background: -webkit-linear-gradient(top, #e1e1e1 -50%, #f0f0f0 100%);
   background: -o-linear-gradient(top, #e1e1e1 -50%, #f0f0f0 100%);
   background: -ms-linear-gradient(top, #e1e1e1 -50%, #f0f0f0 100%);
-  background-color: linear-gradient(to bottom, #e1e1e1 -50%, #f0f0f0 100%);
+  background: linear-gradient(to bottom, #e1e1e1 -50%, #f0f0f0 100%);
   height: 60px;
   margin-top: -3px;
   border: solid #cecece;
@@ -395,10 +395,13 @@ body > #wrap {
   width: 100%;
   height: 100%;
   font-size: 1em;
-  color: #000000;
+  color: #BFBFBF;
 }
 #container #register .register-form .tabs li.active {
   background-color: #FFFFFF;
+}
+#container #register .register-form .tabs li.active a {
+  color: #000000;
 }
 #container #register .register-form #reg_form {
   padding: 25px 20px 15px 20px;
@@ -477,8 +480,8 @@ body > #wrap {
   opicaty: 50;
 }
 #container #information .txt {
-  color: black；
-            margin: 0 auto;
+  color: black;
+  margin: 0 auto;
   margin-top: 10px;
   text-align: center;
 }
@@ -2811,7 +2814,6 @@ form.financing_add input {
   border-radius: 3px;
   margin-bottom: 15px;
   width: 100%;
-  height: 80px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .team-member .member .avatar {
   float: left;
@@ -2821,8 +2823,7 @@ form.financing_add input {
 #container #company-detail .col-md-8 .detail .left-block .company .team-member .member .avatar img {
   border-radius: 3px;
   border: 1px solid #d8d8d8;
-  height: 100%;
-  width: 100%;
+  width: 60px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .team-member .member .member-description {
   float: left;
@@ -2847,9 +2848,7 @@ form.financing_add input {
   font-size: 12px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .team-member .member .member-intro p {
-  height: 60px;
   width: 100%;
-  overflow-y: scroll;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .team-member .member .member-intro .m_introduction p {
   margin-bottom: 2px;
@@ -3784,7 +3783,7 @@ form.financing_add input {
   background: -webkit-linear-gradient(top, #e1e1e1 -50%, #f0f0f0 100%);
   background: -o-linear-gradient(top, #e1e1e1 -50%, #f0f0f0 100%);
   background: -ms-linear-gradient(top, #e1e1e1 -50%, #f0f0f0 100%);
-  background-color: linear-gradient(to bottom, #e1e1e1 -50%, #f0f0f0 100%);
+  background: linear-gradient(to bottom, #e1e1e1 -50%, #f0f0f0 100%);
   height: 150px;
 }
 * {
@@ -3848,7 +3847,7 @@ body > #wrap_no_header_footer #main-container {
   background: -webkit-linear-gradient(top, #f0f0f0 0%, #d3d3d3 100%);
   background: -o-linear-gradient(top, #f0f0f0 0%, #d3d3d3 100%);
   background: -ms-linear-gradient(top, #f0f0f0 0%, #d3d3d3 100%);
-  background-color: linear-gradient(to bottom, #f0f0f0 0%, #d3d3d3 100%);
+  background: linear-gradient(to bottom, #f0f0f0 0%, #d3d3d3 100%);
   height: 200px;
   position: absolute;
   bottom: 0px;
@@ -3992,8 +3991,8 @@ body > #wrap_no_header_footer #main-container {
   left: 110px;
 }
 .resize-component {
-  position: absolute;
-  z-index: 1000;
+  position: fixed;
+  z-index: 100000;
   background-color: rgba(88, 88, 88, 0.96);
   top: 110px;
   /* bottom: 0; */
@@ -4104,7 +4103,19 @@ body > #wrap_no_header_footer #main-container {
 .btn-crop {
   position: absolute;
   vertical-align: bottom;
-  right: 5px;
+  right: 62px;
+  bottom: 5px;
+  padding: 6px 10px;
+  z-index: 999;
+  background-color: #de3c50;
+  border: none;
+  border-radius: 5px;
+  color: #FFF;
+}
+.btn-resize-cancel {
+  position: absolute;
+  vertical-align: bottom;
+  right: 8px;
   bottom: 5px;
   padding: 6px 10px;
   z-index: 999;

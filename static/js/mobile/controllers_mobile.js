@@ -220,7 +220,7 @@ angular.module('chuangplus_mobile.controllers', [])
             else
                 submitparam += '?page=' + $scope.pagenow;
 
-            $http.get(urls.api+"/account/company/list" + $scope.filter_params).
+            $http.get(urls.api+"/account/company/list" + submitparam).
                 success(function(data){
                     if(data.error.code == 1){
                         var newdata = data.data;
@@ -237,7 +237,7 @@ angular.module('chuangplus_mobile.controllers', [])
                                 newdata[i].position_type_value[j] = $scope.position_type[newdata[i].position_type[j]];
                         
                         }
-                        $scope.company_list.concat(newdata);
+                        $scope.company_list = $scope.company_list.concat(newdata);
                         $scope.pagenow ++;
                     }
                 });

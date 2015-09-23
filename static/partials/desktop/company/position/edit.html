@@ -112,7 +112,8 @@
                         <textarea required ng-model="position.position_request"></textarea>
                     </div>
                 </div>
-                <input type="submit" value="完成提交" class="next-button btn" ng-disabled="disable_submit">
+                <input ng-show="position_id=='new'" type="submit" value="完成提交" class="next-button btn" ng-disabled="disable_submit">
+                <input ng-show="position_id!='new'" type="submit" value="完成修改" class="next-button btn" ng-disabled="set_position">
                 <div id="err-msg" ng-show="error.show"  ng-class="error.class">[[error.message]]</div>
             </div>
         </form>

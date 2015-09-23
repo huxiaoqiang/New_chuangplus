@@ -190,28 +190,28 @@ angular.module('chuangplus.services', []).
     }]).
     service('ImgResizeService', [ function(){
         return{
-            'cancle' : function(scope, src)
+            'cancel' : function(scope, src)
             {
-                scope.resize_area = false;
                 $('.img-upload-preview').attr('src',src);
+                scope.resize_area = false;
                 //$('.resize-image').attr('src',src);
             },
             'startUpload' : function(file,file_t,category,scope)
             {
                 var resize = function(file,file_t,category)
                 {
-                    scope.resize_area = true;
                     var resizeableImage = function(image_target) {
                   // Some variable and settings
                       var $container,
                           orig_src = new Image(),
                           image_target = $(image_target).get(0),
                           event_state = {},
+                          is_sized = false,
                           constrain = false,
                           min_width = 60, // Change as required
                           min_height = 60,
-                          max_width = 500, // Change as required
-                          max_height = 400,
+                          max_width = 11500, // Change as required
+                          max_height = 11400,
                           resize_canvas = document.createElement('canvas');
                         
 
@@ -220,7 +220,11 @@ angular.module('chuangplus.services', []).
                         // When resizing, we will always use this copy of the original as the base
                         orig_src.src=image_target.src;
                         //orig_src.width = 360;
-                        //image_target.width = 360;
+                        image_target.width = 360;
+//                        image_target.naturalHeight = 360 / orig_src.width * orig_src.height;
+//                        image_target.naturalWidth = 360;
+                          // Without this Firefox will not re-calculate the the image dimensions until drag end
+                          
                         //resize_canvas.width = 360;
                         //resize_canvas.height = 360 / orig_src.width * orig_src.height;
                         // Wrap the image with the container and add resize handles
@@ -233,6 +237,14 @@ angular.module('chuangplus.services', []).
                         // Assign the container to a variable
                         $container =  $(image_target).parent('.resize-container');
 
+                        $('.resize-image').attr('width','360');
+
+
+                        //var a = resizeImage(360, 360 / orig_src.width * orig_src.height) + Math.random();  
+                        //$container.offset({'left': 10, 'top': 20});
+                        //$('.resize-image').attr('width','');
+                        //image_target.width = 360;
+                        //$container.offset({'left': left, 'top': top});
                         // Add events
                         $container.on('mousedown touchstart', '.resize-handle', startResize);
                         $container.on('mousedown touchstart', 'img', startMoving);
@@ -317,6 +329,8 @@ angular.module('chuangplus.services', []).
 
                         if(width > min_width && height > min_height && width < max_width && height < max_height){
                           // To improve performance you might limit how often resizeImage() is called
+                          $('.resize-image').attr('width','');
+                          is_sized = true;
                           resizeImage(width, height);  
                           // Without this Firefox will not re-calculate the the image dimensions until drag end
                           $container.offset({'left': left, 'top': top});
@@ -377,7 +391,8 @@ angular.module('chuangplus.services', []).
                           width = width * ratio;
                           height = height * ratio;
                           // To improve performance you might limit how often resizeImage() is called
-                          resizeImage(width, height);
+                          var x = resizeImage(width, height) + Math.random();
+
                         }
                       };
 
@@ -408,6 +423,15 @@ angular.module('chuangplus.services', []).
                         crop_canvas = document.createElement('canvas');
                         crop_canvas.width = width;
                         crop_canvas.height = height;
+
+                        if(! is_sized)
+                        {
+                            resize_canvas.width = 360;
+                            resize_canvas.height = 360 / orig_src.width * orig_src.height;
+                            resize_canvas.getContext('2d').drawImage(image_target, 0, 0, 360, 360 / orig_src.width * orig_src.height);   
+                            $(image_target).attr('src', resize_canvas.toDataURL("image/png"));    
+                        } 
+                        
                         
                         crop_canvas.getContext('2d').drawImage(image_target, left, top, width, height, 0, 0, width, height);
                         //window.open(crop_canvas.toDataURL("image/png"));
@@ -428,6 +452,7 @@ angular.module('chuangplus.services', []).
                         scope.upload(blob,file_t,category);
                         $('.img-upload-preview').attr('src',crop_canvas.toDataURL("image/png"));
                         scope.resize_area = false;
+                        scope.cancel_upload = false;
                         //location.reload();
                         //$('#img_preview').attr('ngf-src',crop_canvas.toDataURL("image/png"));
                         
@@ -444,14 +469,18 @@ angular.module('chuangplus.services', []).
                     return false;
                 if(!/image\/\w+/.test(file.type)){ 
                     alert("文件必须为图片！"); 
+                    scope.resize_area = false;
                     return false; 
                 } 
+
+                $("#resize-box").html('<img class="resize-image" id="image-preview" ngf-src="logo" alt="image for resizing">');
                 var reader = new FileReader(); 
                 reader.readAsDataURL(file); 
                 reader.onload = function(e){ 
                     $('.resize-image').attr('src',this.result);
                     resize(file,file_t,category);
-                } 
+                } ;
+                return true;
             }
         };
     }])
