@@ -25,13 +25,23 @@ angular.module('chuangplus.controllers', []).
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$location,$header){
         console.log('DT_HeaderCtrl');
         $scope.company_id = '';
+        $scope.not_in_search = true;
         $scope.username = $user.username();
         $scope.scan_mouseover = function(){
             $scope.scan=true;
             $scope.search=false;
         };
+        $scope.out_search_icon = function(){
+            var leave = function()
+            {
+                if($scope.not_in_search)
+                    $scope.search = false;
+            }
+            setTimeout(leave,1500);
+        };
         $scope.search_mouseout = function(){
-            $scope.timeout_id = setTimeout($scope.hide_search,3000);
+            $scope.not_in_search = true;
+            $scope.timeout_id = setTimeout($scope.hide_search,1500);
         };
         $scope.hide_search = function(){
             $scope.$apply(function(){
@@ -39,8 +49,9 @@ angular.module('chuangplus.controllers', []).
             });
         };
         $scope.search_mouseover = function(){
-          $scope.search=true;
-          clearTimeout($scope.timeout_id);
+            $scope.not_in_search = false;
+            $scope.search=true;
+            clearTimeout($scope.timeout_id);
         };
         $scope.hide_search = function(){
             $scope.$apply(function(){
