@@ -2,7 +2,7 @@
     margin: 0 auto;
     display: block;
     #intern-post-list{
-        font-family: "微软雅黑";
+        font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
         padding-top: 5%;
 .tips{
 width: 50%;
@@ -46,103 +46,198 @@ width: 30px;
 }
 }
         .col-md-8{
-            margin-top: 10px;
-            ul li{
-                list-style-type:none;
-
-                .post-list-item{
-
-                    margin-top: 10px;
-                    border: 1px solid#8E8E8E;
-                    width: 900px;
-                    height: 200px;
-                    padding: 10px 10px 10px 10px;
-                    .item-pic{
-                        float: left;
-                        width: 180px;
-                        height: 180px;
-                        .company-pic{
-                            width: 100%;
-                            height: 100%;
-                        }
+      width: 100%;
+      float: left;
+      padding-right: 0;
+      .loading{
+        width: 100%;
+        margin: 0 auto;
+        background-color: #ffffff;
+        text-align: center;
+      }
+      a{
+        text-decoration: none;
+      }
+      ul li{
+        list-style-type:none;
+        
+        margin-bottom: 15px;
+        height: 120px;
+        width: 100%;
+        .favor-list-item{
+            width: 80%;
+            height: 100%;
+            padding:10px 10px 10px 15px;
+            background-color: #ffffff;
+        border: 1px solid #bfbfbf;
+        border-radius: 4px;
+        float: left;
+            .middle-block{
+              width: 100%;
+              height: 100%;
+              .item-pic{
+                float: left;
+                width: 90px;
+                display: table;
+                height: 100%;
+                img{
+                    width: 90px;
+                    height: 90px;
                     }
-                    .item-info{
-                        float: left;
-                        margin-left: 20px;
-                        width: 640px;
-                        height: 200px;
-                        .position-info{
-
-
-                            height: 35px;
-                            .position{
-                                font-size: 1.2em;
-                                float: left;
-                                width: 300px;
-                                height: 35px;
-                                color: rgb(140, 93, 144);
-                                border-bottom: 1px solid#8E8E8E;
-                            }
-                            .hire{
-                                background-color: rgb(140, 93, 144);
-                                float: left;
-                                margin-left: 150px;
-                                color: white;
-                                height: 30px;
-                                width: 80px;
-                                border-radius: 0.3em;
-                                border: 1px solid#8E8E8E;
-                                text-align: center;
-                                padding: 5px 0 0 0;
-                            }
-                            .check{
-                                float: right;
-                                margin-left: 20px;
-                                background-color:  white;
-                                color: #8E8E8E;
-                                height: 30px;
-                                width: 80px;
-                                border-radius: 0.3em;
-                                border: 1px solid#8E8E8E;
-                                text-align: center;
-                                padding: 5px 0 0 0;
-                            }
+                }
+                .info{
+                  width: 100%;
+                  height: 100%;
+                .tags{
+                    border-radius: 10px;
+                    padding: 0 8px 0 8px;
+                    background-color: rgba(143,78,150,0.1);
+                    color: #707070;
+                    font-size: 12px;
+                    margin-right: 5px;
+                    float: left;
+                    margin-bottom: 5px;
+                    text-align: center;
+                    font-weight: 100;
+                  }
+                  .line{
+                    width: 1px;
+                    height: 50px;
+                    margin-top: 20px;
+                    margin-bottom: 20px;
+                    float: left;
+                    border-left: 1px solid #aaaaaa;
+                  }
+                  p{
+                      margin-bottom: 0;
+                  }
+                  .item-info.info-1{
+                      width: 180px;
+                      text-align: center;
+                      padding: 0 15px 0 15px;
+                      p{
+                          color: black;
+                          font-size: 1.1em;
+                      }
+                      .position-tags{
+                        margin-top: 10px;
+                        width: 100%;
+                        padding-left: 18px;
+                        height: 22px;
+                        text-align: center;
+                      }
+                      .submit-time{
+                        width: 100%;
+                        height: 17px;
+                        clear: left;
+                        p{
+                          font-size: 12px;
+                          color: #707070;
                         }
+                      }
+                    }
+                    .item-info.info-2{
+                        width: 140px;
+                        padding: 0 15px 0 15px;
+                        text-align: center;
+
                         .company{
-                            font-size: 1.3em;
-                            margin-top: 10px;
+                            font-size: 1.1em;
+                            color: black;
+                            text-align: center;
                         }
                         .company-discrpt{
-                            font-size: 16px;
-                            color: #8E8E8E;
-                        }
-                        .item-label{
-                            margin-top: 10px;
-                            margin-bottom: 10px;
-                            height: 30px;
-                            .label{
-                                width: 80px;
-                                height: 30px;
-                                float: left;
-                                border: 1px solid#8E8E8E;
-                                background-color: #F0F0F0;
-                                font-size: 12px;
-                                border-radius: 0.3em;
-                                margin-right: 10px;
-                                color: black;
-                                text-align: center;
-                                line-height: 30px;
-                                padding: 1px 0 5px 0;
-                            }
-                        }
-                        .submit-time{
+                            color: #707070;
                             font-size: 12px;
-                            color: #8E8E8E;
+                            text-align: center;
                         }
+                        .auth{
+                          font-size: 12px;
+                          color: #8f4e96;
+                        }
+                    }
+                    .item-info.info-3{
+                      width: 105px;
+                      padding-left: 15px;
+                    }
+                    .item-info.info-4{
+                        padding:0 15px 0 20px;
+                        width: 173px;
+                        .tags{
+                          width: 64px;
+                        }
+                      }
+                      .item-info{
+                          float: left;
+                          height: 100%;
+                          display: table;
+                      }
+                      .vertical-center{
+                          display: table-cell;
+                          vertical-align: middle;
+                      }
+                      .label-1{
+                         img{
+                            width: 13px;
+                            height: 13px;
+                            float: left;
+                            margin-right: 5px;
+                            margin-top: 2px;
+                        }
+                        p{
+                            color: #707070;
+                            font-size: 12px;
+                            margin-bottom: 5px;
+                        }
+                        .last-p{
+                          margin-bottom: 0;
+                        }
+                      }
                     }
                 }
             }
         }
+      ul.pagination{
+        float: right;
+
+        li{
+          border: none;
+          a{
+            cursor: pointer;
+            span{
+              color: #707070;
+            }
+          }
+          }
+        }
+      .pagination>.active>a{
+        background-color: #8f4e96;
+        border-color: #98769E;
+      }
+      .right-side{
+                float: left;
+                width: 10%;
+                b{
+                    width: 100px;
+                    height: 27px;
+                    display: inline-block;
+                    font-size: 12px;
+                    vertical-align: text-bottom;
+                    border-radius: 0;
+                    color: white;
+                    //text-align: center;
+                   
+                    padding: 5px 0 0 5px;
+                    font-weight: 100;
+                }
+                .tips.status{
+                    background: url("/static/image/icon/greytag.png");
+                }
+                .tips.done{
+                    background:url("/static/image/icon/xinzengbiaoqian.png");
+                }
+              }
+    }
     }
 
 }
