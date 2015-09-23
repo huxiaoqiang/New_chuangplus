@@ -20,13 +20,13 @@ header #header .navbar .navbar-header {
 }
 header #header .navbar .navbar-header #head-logo {
   margin-top: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
   width: 240px;
   float: left;
 }
 header #header .navbar .navbar-header #head-logo img {
   width: 100%;
-  padding-top: 8px;
+  padding-top: 6px;
   margin-left: 15px;
 }
 header #header .navbar .navbar-item.not-login {
