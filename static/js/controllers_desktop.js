@@ -147,10 +147,12 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.login_user = function(){
             $csrf.set_csrf($scope.login_info);
+            $scope.submit_loading = true;
             $http.post(urls.api+"/account/login", $.param($scope.login_info)).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.error = $errMsg.format_error("登录成功",data.error);
+                        $scope.submit_loading = false;
                         setTimeout(function(){window.location.href='/'},1000);
                     }
                     else{

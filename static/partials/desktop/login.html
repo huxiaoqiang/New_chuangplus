@@ -24,7 +24,8 @@
                     <img ng-src='[[captcha_url]]' id="captcha_img" alt="验证码">
                     <a ng-click="refresh()" class="fresh"><i class="icon-repeat icon-large"></i></a>
                 </div>
-                <button id="login_button">登录</button>
+                <button id="login_button">登录 <i ng-show="submit_loading" class="fa fa-spinner fa-spin"></i></button>
+
                 <br/>
                 <div id="options">
                     <a href="/password/forgetpwd" class="findpwd">忘记密码？</a>
