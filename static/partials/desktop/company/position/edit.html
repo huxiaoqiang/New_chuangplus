@@ -113,7 +113,7 @@
                     </div>
                 </div>
                 <input ng-show="position_id=='new'" type="submit" value="完成提交" class="next-button btn" ng-disabled="disable_submit">
-                <input ng-show="position_id!='new'" type="submit" value="完成修改" class="next-button btn" ng-disabled="set_position">
+                <input ng-show="position_id!='new'" type="submit" value="完成修改" class="next-button btn" ng-disabled="disable_submit">
                 <div id="err-msg" ng-show="error.show"  ng-class="error.class">[[error.message]]</div>
             </div>
         </form>

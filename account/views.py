@@ -281,8 +281,8 @@ def check_userinfo_all_complete(request):
     re = dict()
     if request.method == "GET":
         u = Userinfo.objects.get(username=request.user.username)
-        if u.position_type and u.work_city\
-        and u.cellphone and u.university\
+        #if u.position_type and u.work_city\
+        if u.cellphone and u.university\
         and u.major and u.grade\
         and u.gender and u.work_days and u.description\
         and u.resume_id and u.real_name and u.resume_name:
@@ -296,13 +296,13 @@ def check_userinfo_all_complete(request):
         re["error"] = error(3,"error,need GET!")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-@user_permission('login')
+user_permission('login')
 def check_userinfo_complete(request):
     re = dict()
     if request.method == "GET":
         u = Userinfo.objects.get(username=request.user.username)
-        if u.position_type and u.work_city\
-        and u.cellphone and u.university\
+        #if u.position_type and u.work_city\
+        if u.cellphone and u.university\
         and u.major and u.grade\
         and u.gender and u.work_days and u.description\
         and u.real_name:
@@ -1035,14 +1035,15 @@ def get_company_list(request):
         companies_re = json.loads(companies.to_json())
         for cpn in companies_re:
             position_type = []
-            for p in cpn['positions']:
-                try:
-                    position = Position.objects.get(id=p['$oid'])
-                except DoesNotExist:
-                    re['error'] = error(260,'Position does not exist')
-                    return HttpResponse(json.dumps(re), content_type = 'application/json')
-                if position.position_type not in position_type:
-                    position_type.append(position.position_type)
+            if len(cpn['positions']) != 0:
+                for p in cpn['positions']:
+                    try:
+                        position = Position.objects.get(id=p['$oid'])
+                    except DoesNotExist:
+                        re['error'] = error(260,'Position does not exist')
+                        return HttpResponse(json.dumps(re), content_type = 'application/json')
+                    if position.position_type not in position_type:
+                        position_type.append(position.position_type)
             cpn['position_type'] = position_type
         re['error'] = error(1, "get company list successfully")
         re['data'] = companies_re

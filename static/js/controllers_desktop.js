@@ -245,7 +245,7 @@ angular.module('chuangplus.controllers', []).
                     success(function(data){
                         if(data.error.code == 1){
                             $scope.error = $errMsg.format_error("注册成功",data.error);
-                            setTimeout(function(){window.location.href='/'},1500);
+                            setTimeout(function(){window.location.href='/intern/information'},1500);
                         }
                         else{
                             $scope.error = $errMsg.format_error("",data.error);
@@ -1367,34 +1367,34 @@ angular.module('chuangplus.controllers', []).
                     if($scope.userinfo.resume_id != undefined && $scope.userinfo.resume_id != null)
                     {
                         $scope.submitResume.resume_choice = 1;
-                $scope.resume_submitted = true;
+                        $scope.resume_submitted = true;
                         console.log("here");
-            }
-            else{
-            $scope.resume_submitted = false;
-            }
-        }
-        else{
-            console.log(data.error.message);
-        }
-    });
+                    }
+                    else{
+                        $scope.resume_submitted = false;
+                    }
+                 }
+                else{
+                    console.log(data.error.message);
+                }
+            });
     
     $http.get(urls.api+"/position/"+$scope.position_id+"/check_submit").
             success(function(data){
                 if(data.error.code == 1){
                     if(data.exist == true){
                         $scope.submit_value = "已投递";
-                        $scope.resume_submitted = true;
+                        $scope.post_submitted = true;
             }
             else{
             $scope.submit_value = "投递简历";
+            $scope.post_submitted = false;
             }
         }
         else{
             console.log(data.error.message);
         }
     });
-
 	$scope.post = function(){
 	    if($scope.favor_exist == false){
 		$scope.submitFavor = {};
@@ -1421,6 +1421,18 @@ angular.module('chuangplus.controllers', []).
 		
 	};
 	    
+    $scope.check_userinfo = function(){
+        $http.get(urls.api+"/account/userinfo/check").
+            success(function(data){
+                
+                    if(data.complete == true)
+                        $scope.userinfo_complete = true;
+                    else
+                        $scope.userinfo_complete = false;
+               
+            
+        });
+    };
 	$scope.submit = function(){
 	    if($scope.resume_submitted == true){
 	    	$scope.submitResume.resume_choice = 1;
@@ -1434,6 +1446,7 @@ angular.module('chuangplus.controllers', []).
             	success(function(data){
            	    if(data.error.code == 1){
                		$scope.submit_value = "已投递";
+                    $scope.post_submitted = true;
             	    }
                     else{
                		console.log(data.error.message);
@@ -1442,10 +1455,11 @@ angular.module('chuangplus.controllers', []).
     };
     
     $scope.complete_resume = function(){
-         setTimeout(function(){window.location.href='/intern/resume/view'},2000);
+         setTimeout(function(){window.location.href='/intern/resume/view'},300);
          $('#myModal').modal('hide');       
 
     };
+    $scope.check_userinfo();
     }]).
     controller('DT_FeedbackCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_FeedbackCtrl');
@@ -1462,11 +1476,11 @@ angular.module('chuangplus.controllers', []).
           success(function(data){
             if (data.error.code == 1){
               console.log("Set information successfully!");
-              alert("个人信息设置成功");
-              setTimeout(function(){window.location.href='/'},2000);
+              //alert("个人信息设置成功");
+              setTimeout(function(){window.location.href='/'},100);
             }
             else{
-              alert(data.error.message);
+              console.log(data.error.message);
             }
           });
       };
@@ -1484,6 +1498,17 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.company_id = $routeParams.company_id;
         $scope.position_list = {};
+        $scope.delete_position = function(index){
+            $http.get(urls.api+"/position/"+$scope.position_list[index]['_id']['$oid']+"/delete").
+              success(function(data){
+                    if(data.error.code == 1){
+                        $scope.get_position_list();
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                    }
+                });
+        };
         $scope.get_position_list = function(){
             $http.get(urls.api+"/position/company/"+$scope.company_id+"/list").
                 success(function(data){
@@ -1506,6 +1531,14 @@ angular.module('chuangplus.controllers', []).
         $scope.company_id = $routeParams.company_id;
         $scope.position_id = $routeParams.position_id;
         $scope.submit_position = function(){
+            if($scope.position_id == 'new'){
+                $scope.create_position();
+            }
+            else{
+                $scope.set_position();
+            }
+        }
+        $scope.create_position = function(){
             $scope.disable_submit = true;
             $csrf.set_csrf($scope.position);
             if($scope.position.end_time != ''){
@@ -1523,9 +1556,10 @@ angular.module('chuangplus.controllers', []).
                         setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
                     $scope.disable_submit = false;
-                })
+                });
         };
         $scope.set_position = function(){
+            $scope.disable_submit = true;
             $csrf.set_csrf($scope.position);
             if($scope.position.end_time != ''){
                 $scope.position.end_time = $filter('date')($scope.position.end_time, 'yyyy-MM-dd');
@@ -1540,7 +1574,9 @@ angular.module('chuangplus.controllers', []).
                         $scope.error = $errMsg.format_error('',data.error);
                         setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
-                })
+                    $scope.disable_submit = false;
+                });
+
         };
         $scope.get_position_detail = function(){
             $http.get(urls.api+"/position/"+$scope.position_id+"/get").
@@ -1635,6 +1671,8 @@ angular.module('chuangplus.controllers', []).
             });
         };
         $scope.get_company_list();
+        //控制左边筛选框的位置
+
     }]).
     controller('DT_CompanyDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errorMsg){

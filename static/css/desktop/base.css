@@ -20,13 +20,13 @@ header #header .navbar .navbar-header {
 }
 header #header .navbar .navbar-header #head-logo {
   margin-top: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
   width: 240px;
   float: left;
 }
 header #header .navbar .navbar-header #head-logo img {
   width: 100%;
-  padding-top: 8px;
+  padding-top: 6px;
   margin-left: 15px;
 }
 header #header .navbar .navbar-item.not-login {
@@ -502,6 +502,13 @@ body > #wrap {
   padding: 15px 20px 20px 20px;
 }
 #container #information .information-form #info_form input {
+  border: 1px solid #e1e0e2;
+  border-radius: 6px;
+  width: 380px;
+  height: 30px;
+  outline: none;
+}
+#container #information .information-form #info_form select {
   border: 1px solid #e1e0e2;
   border-radius: 6px;
   width: 380px;
@@ -1265,6 +1272,11 @@ form.financing_add input {
   width: 374px;
   font-size: 1em;
 }
+#container #userinfo .info-form .tab-pane .form-horizontal .form-group select {
+  border-radius: 6px;
+  width: 374px;
+  font-size: 1em;
+}
 #container #userinfo .info-form .tab-pane .form-horizontal .btn.btn-primary {
   width: 374px;
   margin-top: 15px;
@@ -1482,12 +1494,14 @@ form.financing_add input {
   background-color: #98769E;
 }
 #container .no-resume-info {
-  width: 80%;
-  background-color: rgba(225, 224, 226, 0.4);
-  height: 300px;
+  width: 50%;
+  background-color: white;
+  height: 200px;
   margin: 0 auto;
-  margin-top: 15%;
-  padding-top: 125px;
+  margin-top: 10%;
+  border-radius: 4px;
+  padding: 60px 48px;
+  border: 1px solid #bfbfbf;
 }
 #container .no-resume-info p {
   text-align: center;
@@ -2220,9 +2234,9 @@ form.financing_add input {
   height: 105px;
   padding: 5px 5px 5px 5px;
   background-color: white;
-  border: 1px solid #bfbfbf;
   border-radius: 4px;
   margin-top: 20px;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
 }
 #container #position-detail .col-md-9 .position-info p {
   margin: 0;
@@ -2516,6 +2530,27 @@ form.financing_add input {
 #container #company_list {
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   margin-top: 30px;
+}
+#container #company_list .col-md-4 {
+  width: 210px;
+}
+#container #company_list .col-md-4 .search-tab {
+  width: 200px;
+  background-color: white;
+  height: 600px;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
+  /* position: fixed; */
+  top: 90px;
+  border-radius: 4px;
+  padding-top: 10px;
+}
+#container #company_list .col-md-4 .search-tab .search-item {
+  text-align: center;
+  padding: 5px 15px;
+}
+#container #company_list .col-md-4 .search-tab .search-item p {
+  background-color: rgba(191, 191, 191, 0.1);
+  cursor: pointer;
 }
 #container #company_list .col-md-8 {
   width: 750px;
