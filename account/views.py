@@ -1154,7 +1154,7 @@ def search_submit_intern(request):
         processed = request.GET.get('processed','')
         try:
             company = Companyinfo.objects.get(username=request.user.username)
-            #company = Companyinfo.objects.get(username='chuangplus')
+            #company = Companyinfo.objects.get(username='tsinghuachuangplus')
         except:
             re["error"] = error(105,"company does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -1205,7 +1205,7 @@ def search_submit_intern(request):
             userinfo = json.loads(u.to_json())
             p = json.loads(item.position.to_json())
             userinfo['position_name'] = item.position.name
-            userinfo['position_id'] = p["_id"]["$oid"]
+            userinfo['position_id'] = p['_id']['$oid']
             userinfo['process'] = item.processed
             user_list.append(userinfo)
         re['error'] = error(1,'succeed ')
