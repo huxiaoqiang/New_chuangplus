@@ -1527,6 +1527,8 @@ form.financing_add input {
   width: 100%;
   height: 100%;
   padding: 10% 10%;
+  border: 1px solid #bfbfbf;
+  border-radius: 4px;
 }
 #container #favor-position-list .block .inner p {
   text-align: center;
@@ -1742,6 +1744,8 @@ form.financing_add input {
   width: 100%;
   height: 100%;
   padding: 10% 10%;
+  border: 1px solid #bfbfbf;
+  border-radius: 4px;
 }
 #container #favor-company-list .tips .inner p {
   text-align: center;
@@ -1943,6 +1947,8 @@ form.financing_add input {
   width: 100%;
   height: 100%;
   padding: 10% 10%;
+  border: 1px solid #bfbfbf;
+  border-radius: 4px;
 }
 #container #intern-post-list .tips .inner p {
   text-align: center;
@@ -2782,6 +2788,7 @@ form.financing_add input {
 }
 #container #company-detail .col-md-8 .detail .left-block .company .description p {
   font-size: 14px;
+  line-height: 24px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company .company-description {
   min-height: 50px;
