@@ -666,6 +666,7 @@ body > #wrap {
   text-decoration: none;
 }
 #container #pisition-list .col-md-8 ul li {
+  position: relative;
   list-style-type: none;
   background-color: #ffffff;
   box-shadow: 2px 2px 7px 2px #dfdfdf;
@@ -715,6 +716,21 @@ body > #wrap {
   margin-bottom: 20px;
   float: left;
   border-left: 1px solid #aaaaaa;
+}
+#container #pisition-list .col-md-8 ul li .favor-list-item .middle-block .info .line-img1 {
+  height: 130px;
+  float: left;
+  top: 0;
+  position: absolute;
+  opacity: 0.6;
+}
+#container #pisition-list .col-md-8 ul li .favor-list-item .middle-block .info .line-img2 {
+  height: 130px;
+  float: left;
+  top: 0;
+  position: absolute;
+  right: 362px;
+  opacity: 0.6;
 }
 #container #pisition-list .col-md-8 ul li .favor-list-item .middle-block .info p {
   margin-bottom: 0;
@@ -2566,6 +2582,7 @@ form.financing_add input {
   text-decoration: none;
 }
 #container #company_list .col-md-8 ul li {
+  position: relative;
   list-style-type: none;
   background-color: #FFFFFF;
   box-shadow: 2px 2px 7px 2px #dfdfdf;
@@ -2617,6 +2634,21 @@ form.financing_add input {
   margin-bottom: 10px;
   float: left;
   border-left: 1px solid #aaaaaa;
+}
+#container #company_list .col-md-8 ul li .company-info .bottom-side .info .line-img1 {
+  height: 130px;
+  float: left;
+  top: 0;
+  position: absolute;
+  opacity: 0.6;
+}
+#container #company_list .col-md-8 ul li .company-info .bottom-side .info .line-img2 {
+  height: 130px;
+  float: left;
+  top: 0;
+  position: absolute;
+  right: 200px;
+  opacity: 0.6;
 }
 #container #company_list .col-md-8 ul li .company-info .bottom-side .info .item-info.info-1 {
   width: 125px;
@@ -4040,6 +4072,9 @@ body > #wrap_no_header_footer #main-container {
 }
 #container #company_resume .col-sm-9 .submit_list .submit_item .basic-info {
   margin-top: 10px;
+}
+#container #company_resume .col-sm-9 .submit_list .submit_item.active {
+  background-color: rgba(243, 243, 243, 0.53);
 }
 #container #company_resume .col-sm-9 .submit_list .submit_item:hover {
   background-color: rgba(243, 243, 243, 0.53);

@@ -711,6 +711,7 @@ angular.module('chuangplus.controllers', []).
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyResumeCtrl');
         $scope.company_id = $routeParams.company_id;
+        //$scope.active_index = null;
         $scope.submit_list = [];
         $scope.chosed_index = -1;
         $scope.position_type = {
@@ -816,6 +817,7 @@ angular.module('chuangplus.controllers', []).
             }
             else{
                 if($scope.chosed_index == index){
+                    $scope.chosed_index = -1;
                     $scope.toggle_show();
                 }
                 else{
@@ -845,6 +847,21 @@ angular.module('chuangplus.controllers', []).
                 $scope.show_right_bar = true;
             }
         };
+        //$scope.close = false;
+        $(document).on("click",function(e){
+            console.log($(e.target).attr('id')!="header" && $(e.target).attr('id')!="submit_div");
+            //console.log($("#header"));
+            console.log($(e.target).attr('id'));
+            if($(e.target).attr('id')!="header" && $(e.target).attr('id')!="submit_div"){
+               
+                if($('#sideToggle').attr("checked") == "checked"){
+                $('#sideToggle').attr('checked',false);
+                $scope.show_right_bar = false;
+                $('aside').css({width:"0px"});
+            }
+                $scope.chosed_index = -1;
+            }
+        });
     }]).
 //    controller('DT_CompanyInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','Upload','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, Upload,$errMsg){
 //        console.log('DT_CompanyInfoCtrl');
