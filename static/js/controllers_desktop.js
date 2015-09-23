@@ -1506,6 +1506,14 @@ angular.module('chuangplus.controllers', []).
         $scope.company_id = $routeParams.company_id;
         $scope.position_id = $routeParams.position_id;
         $scope.submit_position = function(){
+            if($scope.position_id == 'new'){
+                $scope.create_position();
+            }
+            else{
+                $scope.set_position();
+            }
+        }
+        $scope.create_position = function(){
             $scope.disable_submit = true;
             $csrf.set_csrf($scope.position);
             if($scope.position.end_time != ''){
