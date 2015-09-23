@@ -1035,7 +1035,7 @@ def get_company_list(request):
         companies_re = json.loads(companies.to_json())
         for cpn in companies_re:
             position_type = []
-            if cpn['positions'].length != 0:
+            if len(cpn['positions']) != 0:
                 for p in cpn['positions']:
                     try:
                         position = Position.objects.get(id=p['$oid'])
