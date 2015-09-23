@@ -26,7 +26,8 @@ class Userinfo(Document):
     university = StringField(max_length=100)
     major = StringField(max_length=100)
     description = StringField(max_length=200)
-    grade = StringField(max_length=30)
+    #1,2,3,4 undergraduate 11 12 13 master 21 22 23 24 25 doctor
+    grade = IntField()
     gender = IntField()  #0 is woman 1 is man
     work_days = IntField()
     position_type = ListField(StringField(max_length=30,choices=TYPE))
