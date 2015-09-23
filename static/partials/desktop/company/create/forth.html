@@ -13,12 +13,8 @@
                 <div class="overlay-inner">
                 </div>
             </div>
-            <div id="resize-box">
-              <img class="resize-image" id='image-preview' ngf-src="logo" alt="image for resizing">
-            </div>
-
+            <img class="resize-image" id='image-preview' ngf-src="logo" alt="image for resizing">
             <button class="btn-crop js-crop">确认修改<img class="icon-crop" src="/static/lib/imageresize/img/crop.svg"></button>
-            <button class="btn-resize-cancel" ng-click="cancelUpload()">取消</button>
           </div>
         </div>
 
@@ -69,11 +65,11 @@
            <div class="member-info-card">
                <a ng-click="cancer_add()"><img class="delete" src="/static/image/icon/delete-01.png"></a>
 
-               
-               <div ng-model="avatar"  ngf-select="startUpload($file,'memberavatar','[[member_number]]')">
-                    <img class="upload-img img-upload-preview" ng-show="(avatar==null && member_add.hasOwnProperty('m_avatar_id') || avatar!=null) && cancel_upload == false" src="/api/file/[[member_add.m_avatar_id]]/download">
-                    <div ng-show="cancel_upload != false || (avatar==null && !member_add.hasOwnProperty('m_avatar_id'))" class="avatar-origin">点击上传头像</div>
-              </div>
+               <div ng-model="avatar"  ngf-select="upload($file,'memberavatar','[[member_number]]')">
+                    <img class="upload-img " ng-show="avatar==null && member_add.hasOwnProperty('m_avatar_id')" src="/api/file/[[member_add.m_avatar_id]]/download">
+                    <div ng-show="avatar==null && !member_add.hasOwnProperty('m_avatar_id')" class="avatar-origin">点击上传头像</div>
+                    <img class="upload-img " ng-show="avatar!=null" ngf-src="avatar" title="单击图片上传头像"><br/>
+                </div>
 <!--
                <div ng-if="!member_add.hasOwnProperty('m_avatar_id')" ng-model="avatar" ngf-select="upload($file,'memberavatar',[[member_number]])" class="avatar-origin">点击上传图像</div>
 
