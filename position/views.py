@@ -54,7 +54,7 @@ def if_legal(str,enter = False):
         raise ValueError,c
     return True
 
-#@user_permission('login')
+@user_permission('login')
 def create_position(request):
     re = dict()
     cpn = Companyinfo()
@@ -590,7 +590,7 @@ def search_position(request):
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
 
-#@user_permission("login")
+@user_permission("login")
 def get_position_with_company(request,position_id):
     re = dict()
     if request.method == "GET":
@@ -622,7 +622,7 @@ def get_position_with_company(request,position_id):
         re['error'] = error(2,'error, need get!')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
-#@user_permission("login")
+@user_permission("login")
 def get_position(request,position_id):
     re = dict()
     if request.method == "GET":
@@ -637,7 +637,7 @@ def get_position(request,position_id):
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
 
-#@user_permission("login")
+@user_permission("login")
 def update_position(request,position_id):
     re = dict()
     try:
