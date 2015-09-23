@@ -2452,7 +2452,7 @@ angular.module('chuangplus.controllers', []).
             $scope.resize_area = false;
             //alert($scope.cancel_upload);
         };
-        $scope.startUpload = function(file,category)
+        $scope.startUpload = function(file,file_t,category)
         {
             if(file != null && file != undefined)
             {
@@ -2461,7 +2461,7 @@ angular.module('chuangplus.controllers', []).
                     return false; 
                 } 
 //                alert('here');
-                $imgResize.startUpload(file,category,'',$scope);
+                $imgResize.startUpload(file,file_t,category,$scope);
                 $scope.resize_area = true;
                 //alert('true');   
             }
