@@ -277,7 +277,7 @@ def set_userinfo(request):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission('login')
-def check_userinfo_complete(request):
+def check_userinfo_all_complete(request):
     re = dict()
     if request.method == "GET":
         u = Userinfo.objects.get(username=request.user.username)
@@ -292,6 +292,26 @@ def check_userinfo_complete(request):
             u.info_complete = False
             re["complete"] = 'False' 
         u.save() 
+    else:
+        re["error"] = error(3,"error,need GET!")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+@user_permission('login')
+def check_userinfo_complete(request):
+    re = dict()
+    if request.method == "GET":
+        u = Userinfo.objects.get(username=request.user.username)
+        if u.position_type and u.work_city\
+        and u.cellphone and u.university\
+        and u.major and u.grade\
+        and u.gender and u.work_days and u.description\
+        and u.real_name:
+            u.info_complete = True
+            re["complete"] = 'True'
+        else:
+            u.info_complete = False
+            re["complete"] = 'False'
+        u.save()
     else:
         re["error"] = error(3,"error,need GET!")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
