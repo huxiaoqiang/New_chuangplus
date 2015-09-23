@@ -2535,7 +2535,7 @@ form.financing_add input {
   width: 210px;
 }
 #container #company_list .col-md-4 .search-tab {
-  width: 200px;
+  width: 192px;
   background-color: white;
   height: 600px;
   box-shadow: 2px 2px 7px 2px #dfdfdf;
@@ -2879,7 +2879,7 @@ form.financing_add input {
   cursor: pointer;
 }
 #container #company-detail .col-md-8 .detail .left-block .header .tab {
-  margin: 0;
+  margin-right: -4px;
   padding: 5px 20px 5px 20px;
   border: solid;
   border-color: rgba(143, 78, 150, 0.1);
