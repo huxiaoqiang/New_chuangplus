@@ -25,13 +25,23 @@ angular.module('chuangplus.controllers', []).
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$location,$header){
         console.log('DT_HeaderCtrl');
         $scope.company_id = '';
+        $scope.not_in_search = true;
         $scope.username = $user.username();
         $scope.scan_mouseover = function(){
             $scope.scan=true;
             $scope.search=false;
         };
+        $scope.out_search_icon = function(){
+            var leave = function()
+            {
+                if($scope.not_in_search)
+                    $scope.search = false;
+            }
+            setTimeout(leave,1000);
+        };
         $scope.search_mouseout = function(){
-            $scope.timeout_id = setTimeout($scope.hide_search,300);
+            $scope.not_in_search = true;
+            $scope.timeout_id = setTimeout($scope.hide_search,1000);
         };
         $scope.hide_search = function(){
             $scope.$apply(function(){
@@ -39,8 +49,9 @@ angular.module('chuangplus.controllers', []).
             });
         };
         $scope.search_mouseover = function(){
-          $scope.search=true;
-          clearTimeout($scope.timeout_id);
+            $scope.not_in_search = false;
+            $scope.search=true;
+            clearTimeout($scope.timeout_id);
         };
         $scope.hide_search = function(){
             $scope.$apply(function(){
@@ -1332,7 +1343,7 @@ angular.module('chuangplus.controllers', []).
         success(function(data){
             if(data.error.code == 1){
                 $scope.financing_list = data.data;
-                for(var i=0;$scope.financing_list.length;i++){
+                for(var i=0;i<$scope.financing_list.length;i++){
                     $scope.financing_list[i].stage_value = $scope.stage[$scope.financing_list[i].stage];
                     $scope.financing_list[i].amount_value = $scope.amount[$scope.financing_list[i].amount];
                 }
@@ -1509,6 +1520,14 @@ angular.module('chuangplus.controllers', []).
         $scope.company_id = $routeParams.company_id;
         $scope.position_id = $routeParams.position_id;
         $scope.submit_position = function(){
+            if($scope.position_id == 'new'){
+                $scope.create_position();
+            }
+            else{
+                $scope.set_position();
+            }
+        }
+        $scope.create_position = function(){
             $scope.disable_submit = true;
             $csrf.set_csrf($scope.position);
             if($scope.position.end_time != ''){
@@ -1526,9 +1545,10 @@ angular.module('chuangplus.controllers', []).
                         setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
                     $scope.disable_submit = false;
-                })
+                });
         };
         $scope.set_position = function(){
+            $scope.disable_submit = true;
             $csrf.set_csrf($scope.position);
             if($scope.position.end_time != ''){
                 $scope.position.end_time = $filter('date')($scope.position.end_time, 'yyyy-MM-dd');
@@ -1543,7 +1563,9 @@ angular.module('chuangplus.controllers', []).
                         $scope.error = $errMsg.format_error('',data.error);
                         setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
-                })
+                    $scope.disable_submit = false;
+                });
+
         };
         $scope.get_position_detail = function(){
             $http.get(urls.api+"/position/"+$scope.position_id+"/get").
@@ -1638,8 +1660,11 @@ angular.module('chuangplus.controllers', []).
             });
         };
         $scope.get_company_list();
+        //控制左边筛选框的位置
+
     }]).
-    controller('DT_CompanyDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_CompanyDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService',
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errorMsg){
         console.log('DT_CompanyDetailCtrl');
         $scope.company_id = $routeParams.company_id;
         $scope.role = $user.role();
@@ -1772,7 +1797,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                 if(data.error.code == 1){
                     $scope.financing_list = data.data;
-                    for(var i=0;$scope.financing_list.length;i++){
+                    for(var i=0;i<$scope.financing_list.length;i++){
                         $scope.financing_list[i].stage_value = $scope.stage[$scope.financing_list[i].stage];
                         $scope.financing_list[i].amount_value = $scope.amount[$scope.financing_list[i].amount];
                     }

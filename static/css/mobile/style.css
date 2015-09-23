@@ -9,10 +9,6 @@ body {
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   overflow-x: hidden;
 }
-.scrollable-content {
-  position: absolute;
-  padding-bottom: 50px;
-}
 @media (min-width: 992px) {
   .has-sidebar-left .app,
   .sidebar-left-in .app {

@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^password/set$',views.set_password, name='set_password'),
     url(r'^userinfo/get$',views.get_userinfo, name='get_userinfo'),
     url(r'^userinfo/set$',views.set_userinfo, name='set_userinfo'),
+    url(r'^userinfo/checkall$',views.check_userinfo_all_complete, name='check_userinfo_all_complete'),
     url(r'^userinfo/check$',views.check_userinfo_complete, name='check_userinfo_complete'),
     url(r'^userinfo/position/favor/list$',views.get_position_favor,name='get_position_favor'),
     url(r'^userinfo/position/favor/submitall$',views.submitall,name='submitall'),

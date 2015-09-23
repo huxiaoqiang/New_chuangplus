@@ -277,12 +277,12 @@ def set_userinfo(request):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission('login')
-def check_userinfo_complete(request):
+def check_userinfo_all_complete(request):
     re = dict()
     if request.method == "GET":
         u = Userinfo.objects.get(username=request.user.username)
-        if u.position_type and u.work_city\
-        and u.cellphone and u.university\
+        #if u.position_type and u.work_city\
+        if u.cellphone and u.university\
         and u.major and u.grade\
         and u.gender and u.work_days and u.description\
         and u.resume_id and u.real_name and u.resume_name:
@@ -292,6 +292,26 @@ def check_userinfo_complete(request):
             u.info_complete = False
             re["complete"] = 'False' 
         u.save() 
+    else:
+        re["error"] = error(3,"error,need GET!")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+user_permission('login')
+def check_userinfo_complete(request):
+    re = dict()
+    if request.method == "GET":
+        u = Userinfo.objects.get(username=request.user.username)
+        #if u.position_type and u.work_city\
+        if u.cellphone and u.university\
+        and u.major and u.grade\
+        and u.gender and u.work_days and u.description\
+        and u.real_name:
+            u.info_complete = True
+            re["complete"] = 'True'
+        else:
+            u.info_complete = False
+            re["complete"] = 'False'
+        u.save()
     else:
         re["error"] = error(3,"error,need GET!")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -1154,7 +1174,7 @@ def search_submit_intern(request):
         processed = request.GET.get('processed','')
         try:
             company = Companyinfo.objects.get(username=request.user.username)
-            #company = Companyinfo.objects.get(username='chuangplus')
+            #company = Companyinfo.objects.get(username='tsinghuachuangplus')
         except:
             re["error"] = error(105,"company does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -1205,7 +1225,7 @@ def search_submit_intern(request):
             userinfo = json.loads(u.to_json())
             p = json.loads(item.position.to_json())
             userinfo['position_name'] = item.position.name
-            userinfo['position_id'] = p["_id"]["$oid"]
+            userinfo['position_id'] = p['_id']['$oid']
             userinfo['process'] = item.processed
             user_list.append(userinfo)
         re['error'] = error(1,'succeed ')
