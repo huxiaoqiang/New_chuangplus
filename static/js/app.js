@@ -71,7 +71,7 @@ angular.module('chuangplus', [
 
         $routeProvider.when('/company/:company_id/no', {templateUrl: urls.part_desktop + '/company/create/no.html', controller: 'DT_CompanyNoCtrl', title: '尚无公司信息'});
         $routeProvider.when('/company/:company_id/create/first', {templateUrl: urls.part_desktop + '/company/create/first.html', controller: 'DT_CompanyFirstCtrl', title: '创建公司·步骤一'});
-        $routeProvider.when('/company/:company_id/create/test', {templateUrl: urls.part_desktop + '/company/create/1.html', controller: 'DT_CompanyTestCtrl', title: '创建公司·步骤一'});
+        $routeProvider.when('/company/:company_id/create/test', {templateUrl: urls.part_desktop + '/company/create/1.html', controller: 'DT_CompanyForthCtrl', title: '创建公司·步骤一'});
         $routeProvider.when('/company/:company_id/create/second', {templateUrl: urls.part_desktop + '/company/create/second.html', controller: 'DT_CompanySecondCtrl', title: '创建公司·步骤二'});
         $routeProvider.when('/company/:company_id/create/third', {templateUrl: urls.part_desktop + '/company/create/third.html', controller: 'DT_CompanyThirdCtrl', title: '创建公司·步骤三'});
         $routeProvider.when('/company/:company_id/create/forth', {templateUrl: urls.part_desktop + '/company/create/forth.html', controller: 'DT_CompanyForthCtrl', title: '创建公司·步骤四'});

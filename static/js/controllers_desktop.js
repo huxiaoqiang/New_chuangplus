@@ -2389,7 +2389,8 @@ angular.module('chuangplus.controllers', []).
                 });
         };
     }]).
-    controller('DT_CompanyForthCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
+    controller('DT_CompanyForthCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload','ImgResizeService',
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload, $imgResize){
         console.log('DT_CompanyForthCtrl');
         $scope.company_id = $routeParams.company_id;
 
@@ -2445,6 +2446,26 @@ angular.module('chuangplus.controllers', []).
                         $scope.error = $errMsg.format_error('',data.error);
                     }
                 });
+        };
+        $scope.cancelUpload = function()
+        {
+            $imgResize.cancel($scope,"/api/file/"+$scope.companyinfo.logo_id+ "/download");
+            $scope.resize_area = false;
+        };
+        $scope.startUpload = function(file,category)
+        {
+            if(file != null && file != undefined)
+            {
+                if(!/image\/\w+/.test(file.type)){ 
+                    alert("文件必须为图片！"); 
+                    return false; 
+                } 
+//                alert('here');
+                $imgResize.startUpload(file,category,'',$scope);
+                $scope.resize_area = true;
+                //alert('true');   
+            }
+            file = null;
         };
         $scope.delete_modal = function(index){
             $scope.delete_index = index;
