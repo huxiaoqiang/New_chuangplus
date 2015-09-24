@@ -590,7 +590,7 @@ def search_position(request):
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
 
-@user_permission("login")
+
 def get_position_with_company(request,position_id):
     re = dict()
     if request.method == "GET":
