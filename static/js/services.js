@@ -480,7 +480,6 @@ angular.module('chuangplus.services', []).
                     $('.resize-image').attr('src',this.result);
                     resize(file,file_t,category);
                 };
-                scope.get_member_list();
                 return true;
             }
         };
