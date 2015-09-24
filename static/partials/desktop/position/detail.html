@@ -118,7 +118,7 @@
         <div class="position-dscrpt">
             <div class="dscrpt-title">
                 <span>职位描述</span>
-                
+            </div>
                 <div class="img-button" ng-show="role==0 && username!=null">
                     <span ng-click="post()" ng-mouseover="change_in()" ng-mouseout="change_out()" ng-model="post_value">
                         <img class="img-1" src="[[img_src]]" >[[post_value]]
@@ -147,7 +147,7 @@
                         
                 </div>
                 <div style="clear:both"></div>
-            </div>
+            
 <!--            <div class="map">
                 <img>
             </div>
@@ -156,9 +156,9 @@
         </div>
         
         <div class="submit_favor" ng-show="role==0 && username!=null">
-            <span class="item" ng-show="(resume_submitted && userinfo_complete)||post_submitted"ng-click="submit()" ng-model="submit_value">[[submit_value]]</span>
-            <span class="item" ng-show="!resume_submitted && !post_submitted && userinfo_complete" data-toggle="modal" data-target="#myModal">[[submit_value]]</span>
-            <span class="item" ng-show="!userinfo_complete && !resume_submitted && !post_submitted" data-toggle="modal" data-target="#myModal2">[[submit_value]]</span>
+            <span class="item" ng-show="(resume_submitted&&userinfo_complete) ||post_submitted"ng-click="submit()" ng-model="submit_value">[[submit_value]]</span>
+            <span class="item" ng-show="!resume_submitted && userinfo_complete && !post_submitted" data-toggle="modal" data-target="#myModal">[[submit_value]]</span>
+            <span class="item" ng-show="!resume_submitted && !userinfo_complete && !post_submitted" data-toggle="modal" data-target="#myModal2">[[submit_value]]</span>
         </div>
     </div>
 </div>

@@ -147,10 +147,12 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.login_user = function(){
             $csrf.set_csrf($scope.login_info);
+            $scope.submit_loading = true;
             $http.post(urls.api+"/account/login", $.param($scope.login_info)).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.error = $errMsg.format_error("登录成功",data.error);
+                        $scope.submit_loading = false;
                         setTimeout(function(){window.location.href='/'},1000);
                     }
                     else{
@@ -709,6 +711,7 @@ angular.module('chuangplus.controllers', []).
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyResumeCtrl');
         $scope.company_id = $routeParams.company_id;
+        //$scope.active_index = null;
         $scope.submit_list = [];
         $scope.chosed_index = -1;
         $scope.position_type = {
@@ -814,6 +817,7 @@ angular.module('chuangplus.controllers', []).
             }
             else{
                 if($scope.chosed_index == index){
+                    $scope.chosed_index = -1;
                     $scope.toggle_show();
                 }
                 else{
@@ -843,6 +847,21 @@ angular.module('chuangplus.controllers', []).
                 $scope.show_right_bar = true;
             }
         };
+        //$scope.close = false;
+        $(document).on("click",function(e){
+            console.log($(e.target).attr('id')!="header" && $(e.target).attr('id')!="submit_div");
+            //console.log($("#header"));
+            console.log($(e.target).attr('id'));
+            if($(e.target).attr('id')!="header" && $(e.target).attr('id')!="submit_div"){
+               
+                if($('#sideToggle').attr("checked") == "checked"){
+                $('#sideToggle').attr('checked',false);
+                $scope.show_right_bar = false;
+                $('aside').css({width:"0px"});
+            }
+                $scope.chosed_index = -1;
+            }
+        });
     }]).
 //    controller('DT_CompanyInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','Upload','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, Upload,$errMsg){
 //        console.log('DT_CompanyInfoCtrl');

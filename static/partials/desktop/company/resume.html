@@ -25,7 +25,7 @@
         </div>
     </div>
 </aside>
-<div id="container">
+<div id="container" >
     <div id="company_resume">
         <div class="col-sm-9">
             <div class="head-button">
@@ -37,9 +37,9 @@
                 <div ng-show="submit_list.length == 0" class="no_submit">
                     [[marked_words]]
                 </div>
-                <div ng-show="submit_list.length != 0">
-                    <div ng-repeat="user in submit_list" class="submit_item" ng-click="view_detail($index)">
-                        <div>
+                <div ng-show="submit_list.length != 0" >
+                    <div id="submit_div" ng-repeat="user in submit_list" class="submit_item" ng-click="view_detail($index)" ng-class="{'active': ($index==chosed_index)}">
+                        <div id="submit_div">
                             <span class="real_name">[[user.real_name]]</span>&nbsp;&nbsp;&nbsp;&nbsp;<br/>
                             应聘岗位：<span class="position_name">[[user.position_name]]</span><br/>
                         </div>
