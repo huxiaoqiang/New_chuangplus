@@ -1639,7 +1639,7 @@ angular.module('chuangplus.controllers', []).
             'culture_creativity':"文化创意",
             'living_consumption':"生活消费",
             'hardware':"硬件",
-            '020':"O2O",
+            'O2O':"O2O",
             'others':"其他"
         };
         $scope.task = {
