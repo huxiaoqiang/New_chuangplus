@@ -1685,7 +1685,7 @@ angular.module('chuangplus.controllers', []).
         $scope.get_company_list();
         //控制左边筛选框的位置
         $scope.field = false;
-        $scope.scale = false;
+        $scope.scale_show = false;
         $scope.auth = false;
         $scope.show_field = function(){
             $(".company-field").css({height:"200px"});
@@ -1701,7 +1701,7 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.hide_scale = function(){
             $(".company-scale").css({height:"40px"});
-            $scope.scale = false;
+            $scope.scale_show = false;
         };
         $scope.show_auth = function(){
             $(".company-auth").css({height:"500px"});
