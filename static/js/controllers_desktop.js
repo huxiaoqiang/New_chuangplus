@@ -852,7 +852,7 @@ angular.module('chuangplus.controllers', []).
             //console.log($(e.target).attr('id')!="header" && $(e.target).attr('id')!="submit_div");
             //console.log($("#header"));
             //console.log($(e.target).attr('id'));
-            if($(e.target).attr('id')!="header" && $(e.target).attr('id')!="submit_div"){
+            if($(e.target).attr('id')!="header" && $(e.target).attr('id')!="submit_div" && $(e.target).attr('className')!="resume_name"){
                
                 $scope.view_detail($scope.chosed_index);
                 

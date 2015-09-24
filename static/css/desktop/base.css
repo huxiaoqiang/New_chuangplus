@@ -2260,7 +2260,7 @@ form.financing_add input {
 #container #position-detail .col-md-9 .position-info .vertical-center {
   display: table-cell;
   vertical-align: middle;
-  padding: 0 10px 0 15px;
+  padding: 0 10px 0 10px;
 }
 #container #position-detail .col-md-9 .position-info .line {
   width: 1px;
@@ -2311,19 +2311,27 @@ form.financing_add input {
   float: left;
   display: table;
   height: 100%;
-  padding: 0 5px 0 5px;
+  padding: 0 10px 0 10px;
 }
 #container #position-detail .col-md-9 .position-info .item-label .vertical-center {
   padding-top: 5px;
 }
+#container #position-detail .col-md-9 .position-info .item-label .tags {
+  margin-right: 0;
+  margin-bottom: 5px;
+}
 #container #position-detail .col-md-9 .position-info .item-label.label-1 {
   width: 183px;
 }
+#container #position-detail .col-md-9 .position-info .item-label.label-1 .vertical-center {
+  padding-right: 0;
+}
 #container #position-detail .col-md-9 .position-info .item-label.label-1 .tags {
   width: 64px;
+  margin-right: 10px;
 }
 #container #position-detail .col-md-9 .position-info .item-label.label-2 {
-  width: 120px;
+  width: 130px;
 }
 #container #position-detail .col-md-9 .position-info .item-label.label-2 img {
   width: 13px;
@@ -2338,7 +2346,7 @@ form.financing_add input {
   margin-bottom: 5px;
 }
 #container #position-detail .col-md-9 .position-info .item-label.label-3 {
-  width: 170px;
+  width: 180px;
 }
 #container #position-detail .col-md-9 .position-info .item-label.label-3 p {
   font-size: 12px;
@@ -2353,23 +2361,29 @@ form.financing_add input {
   margin-right: 5px;
   margin-bottom: 5px;
 }
-#container #position-detail .col-md-9 .position-info .position-addr {
+#container #position-detail .col-md-9 .position-info .addr-img {
   float: left;
   height: 100%;
   display: table;
-  width: 180px;
+  width: 30px;
 }
-#container #position-detail .col-md-9 .position-info .position-addr img {
-  height: 30%;
-  padding: 5px 5px 5px 5px;
-  float: left;
+#container #position-detail .col-md-9 .position-info .addr-img .vertical-center {
+  padding-right: 0;
 }
-#container #position-detail .col-md-9 .position-info .position-addr .addr {
+#container #position-detail .col-md-9 .position-info .addr-img img {
+  height: 20px;
+}
+#container #position-detail .col-md-9 .position-info .addr {
+  height: 100%;
+  display: table;
   float: left;
   font-size: 12px;
-  width: 121px;
+  width: 150px;
 }
-#container #position-detail .col-md-9 .position-info .position-addr .addr p {
+#container #position-detail .col-md-9 .position-info .addr .vertical-center {
+  padding-left: 10px;
+}
+#container #position-detail .col-md-9 .position-info .addr p {
   margin-bottom: 0;
 }
 #container #position-detail .col-md-9 .position-info .position-state {
@@ -2423,11 +2437,13 @@ form.financing_add input {
   color: #98769E;
 }
 #container #position-detail .position-dscrpt {
-  width: 100%;
+  width: 80%;
   margin-top: 20px;
+  float: left;
+  padding: 0 15px 0 15px;
 }
 #container #position-detail .position-dscrpt .dscrpt-title {
-  width: 60%;
+  width: 100%;
   height: 35px;
 }
 #container #position-detail .position-dscrpt .dscrpt-title span {
@@ -2491,6 +2507,8 @@ form.financing_add input {
 #container #position-detail .submit_favor {
   float: left;
   margin-top: 10px;
+  width: 80%;
+  padding-left: 15px;
 }
 #container #position-detail .submit_favor span {
   background-color: #8f4e96;

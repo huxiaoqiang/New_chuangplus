@@ -44,15 +44,18 @@
                         </div>
                     </div>
                     <div class="line"></div>
-                    <div class="position-addr">
+                    <div class="addr-img">
                         <div class="vertical-center">
                             <img src="/static/image/icon/333-01.png">
-                            <div class="addr">
-                                <p>[[position.work_city]]</p>
-                                <p>[[position.work_address]]</p>
-                            </div>
                         </div>
                     </div>
+                    <div class="addr">
+                        <div class="vertical-center">
+                            <p>[[position.work_city]]</p>
+                            <p>[[position.work_address]]</p>
+                        </div>
+                    </div>
+                        
                     <div class="position-state">
                         <div class="vertical-center">
                             <p>[[position.status_value]]</p>
@@ -67,58 +70,58 @@
             
             <div class="position-info">
                 <div class="top-block">
-                <div class="company-logo">
-                    <img src="/api/file/[[position.company.logo_id]]/download" alt="公司logo" title="公司logo">
-                </div>
-                <div class="position-name">
-                    <div class="vertical-center">
-                        <p class="name">[[position.company.abbreviation]]</p>
-                        <p class="brief_introduction">[[position.company.brief_introduction]]</p>
-                        <p class="auth">[[position.company.auth_organization]]</p>
+                    <div class="company-logo">
+                        <img src="/api/file/[[position.company.logo_id]]/download" alt="公司logo" title="公司logo">
                     </div>
-                </div>
-                <div class="item-label label-2">
-                    <div class="vertical-center">
-                        <div class="label-1" ng-show="position.company.field != null">
-                            <img src="/static/image/icon/111-01.png">
-                            <p>[[position.company.field_type]]</p>
-                        </div>
-                        <div class="label-1" ng-show="position.company.scale != null">
-                            <img src="/static/image/icon/222-01.png">
-                            <p>[[position.company.scale_value]]</p>
-                        </div>
-                        <div class="label-1" ng-show="position.company.city != null">
-                            <img src="/static/image/icon/333-01.png">
-                            <p class="last-p">[[position.company.city]]</p>
+                    <div class="position-name">
+                        <div class="vertical-center">
+                            <p class="name">[[position.company.abbreviation]]</p>
+                            <p class="brief_introduction">[[position.company.brief_introduction]]</p>
+                            <p class="auth">[[position.company.auth_organization]]</p>
                         </div>
                     </div>
-                </div>
-                <div class="line"></div>
-                <div class="item-label label-3">
-                    <div class="vertical-center">
-                        <p class="position_number">在招职位数：[[position.company.position_number]]</p>
-                        <div class="position_tags" >
-                            <span class="tags" ng-repeat="position_type in position.company.position_type_value">[[position_type]]</span>
-                            <div style="clear:both"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skip-btn">
-                    <div class="vertical-center">
-                        <a ng-click="skip()">
-                            <div>
-                                查看公司详情 >
+                    <div class="item-label label-2">
+                        <div class="vertical-center">
+                            <div class="label-1" ng-show="position.company.field != null">
+                                <img src="/static/image/icon/111-01.png">
+                                <p>[[position.company.field_type]]</p>
                             </div>
-                        </a>
+                            <div class="label-1" ng-show="position.company.scale != null">
+                                <img src="/static/image/icon/222-01.png">
+                                <p>[[position.company.scale_value]]</p>
+                            </div>
+                            <div class="label-1" ng-show="position.company.city != null">
+                                <img src="/static/image/icon/333-01.png">
+                                <p class="last-p">[[position.company.city]]</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="item-label label-3">
+                        <div class="vertical-center">
+                            <p class="position_number">在招职位数：[[position.company.position_number]]</p>
+                            <div class="position_tags" >
+                                <span class="tags" ng-repeat="position_type in position.company.position_type_value">[[position_type]]</span>
+                                <div style="clear:both"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skip-btn">
+                        <div class="vertical-center">
+                            <a ng-click="skip()">
+                                <div>
+                                    查看公司详情 >
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-            
+        </div>   
         <div class="position-dscrpt">
             <div class="dscrpt-title">
                 <span>职位描述</span>
-            </div>
+            
                 <div class="img-button" ng-show="role==0 && username!=null">
                     <span ng-click="post()" ng-mouseover="change_in()" ng-mouseout="change_out()" ng-model="post_value">
                         <img class="img-1" src="[[img_src]]" >[[post_value]]
@@ -128,31 +131,30 @@
                     </span>
                     
                 </div>
-                
-                <div class="txt">
-                    <div class="description">
-                        <p>工作内容</p>
+            </div>
+            <div class="txt">
+                <div class="description">
+                    <p>工作内容</p>
                             
-                        <div class="value">
-                            <my-text text="position.position_description"></my-text>
-                        </div>
+                    <div class="value">
+                        <my-text text="position.position_description"></my-text>
                     </div>
-                    <div class="description">
-                        <p>能力要求</p>
-                            
-                        <div class="value">
-                            <my-text text="position.position_request"></my-text>
-                        </div>
-                    </div>
-                        
                 </div>
-                <div style="clear:both"></div>
+                <div class="description">
+                    <p>能力要求</p>
+                            
+                    <div class="value">
+                        <my-text text="position.position_request"></my-text>
+                    </div>
+                </div>
+                        
+            </div>
+            <div style="clear:both"></div>
             
 <!--            <div class="map">
                 <img>
             </div>
 -->
-            <div style="clear:both"></div>
         </div>
         
         <div class="submit_favor" ng-show="role==0 && username!=null">
