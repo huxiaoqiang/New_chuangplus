@@ -17,11 +17,44 @@ display: block;
             padding-top: 10px;
             .search-item{
               text-align: center;
-
+              transition: height 1s;
+              -moz-transition: height 1s;	/* Firefox 4 */
+              -webkit-transition: height 1s;	/* Safari 和 Chrome */
+              -o-transition: height 1s;	/* Opera */
               padding: 5px 15px;
               p{
                 background-color: rgba(191, 191, 191, 0.1);
                 cursor: pointer;
+              }
+              input[type=checkbox]{
+                  cursor: pointer;
+                  display: none;
+              }
+              input[type=checkbox]:checked + .checkbox-label{
+                  background-color: #8f4e96;
+                  padding: 2px;
+                  color: white;
+                  border-radius: 4px;
+                }
+                label.checkbox-label{
+                  cursor: pointer;
+                  text-align: left;
+                }
+                label.checkbox-label:hover{
+                  background-color: rgba(143, 78, 150, 0.11);
+                  border-radius: 4px;
+                }
+              .field-list{
+                background-color: rgba(191, 191, 191, 0.1);
+                td{
+                 width: 80px;
+                }
+              }
+              .scale-list{
+                background-color: rgba(191, 191, 191, 0.1);
+              }
+              .organization-list{
+                background-color: rgba(191, 191, 191, 0.1);
               }
             }
           }
@@ -32,8 +65,11 @@ display: block;
           .loading{
             width: 100%;
             margin: 0 auto;
+            padding-top: 128px;
             background-color: #ffffff;
             text-align: center;
+            height: 600px;
+            box-shadow: 2px 2px 7px 2px #dfdfdf;
           }
           a{
             text-decoration: none;
@@ -218,6 +254,7 @@ display: block;
           }
           ul.pagination{
             float: right;
+            box-shadow: 2px 2px 7px 2px #dfdfdf;
             li{
               border: none;
               a{

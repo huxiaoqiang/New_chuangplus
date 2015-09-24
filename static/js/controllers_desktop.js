@@ -1630,11 +1630,7 @@ angular.module('chuangplus.controllers', []).
             'functions':"职能",
             'others':"其他"
         };
-        $scope.scale = {
-            0:"初创",
-            1:"快速发展",
-            2:"成熟"
-        };
+        $scope.scale = ["初创","快速发展","成熟"];
         $scope.field_type={
             'social':"社交",
             'e-commerce':"电子商务",
@@ -1688,7 +1684,33 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.get_company_list();
         //控制左边筛选框的位置
-
+        $scope.field = false;
+        $scope.scale = false;
+        $scope.auth = false;
+        $scope.show_field = function(){
+            $(".company-field").css({height:"200px"});
+            $scope.field = true;
+        };
+        $scope.hide_field = function(){
+            $(".company-field").css({height:"40px"});
+            $scope.field = false;
+        };
+        $scope.show_scale = function(){
+            $(".company-scale").css({height:"130px"});
+            $scope.scale = true;
+        };
+        $scope.hide_scale = function(){
+            $(".company-scale").css({height:"40px"});
+            $scope.scale = false;
+        };
+        $scope.show_auth = function(){
+            $(".company-auth").css({height:"500px"});
+            $scope.auth = true;
+        };
+        $scope.hide_auth = function(){
+            $(".company-auth").css({height:"40px"});
+            $scope.auth = false;
+        };
     }]).
     controller('DT_CompanyDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errorMsg){
@@ -2221,10 +2243,12 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.add_member = function(){
             $scope.edit = false;
+            $scope.member_number = $scope.member_list.length;
             $('#addMember').modal('show');
         };
         $scope.edit_member = function(index){
             var mem = {};
+            $scope.member_number = index;
             mem.m_avatar_id = $scope.member_list[index].m_avatar_id;
             mem.m_introduction = $scope.member_list[index].m_introduction;
             mem.m_name = $scope.member_list[index].m_name;
@@ -2540,7 +2564,7 @@ angular.module('chuangplus.controllers', []).
                     alert("文件必须为图片！"); 
                     return false; 
                 } 
-//                alert('here');
+                alert('here');
                 $imgResize.startUpload(file,file_t,category,$scope);
                 $scope.resize_area = true;
                 //alert('true');   
