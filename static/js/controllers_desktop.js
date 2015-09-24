@@ -2179,6 +2179,7 @@ angular.module('chuangplus.controllers', []).
 //                alert('here');
                 $imgResize.startUpload(file,category,'',$scope);
                 $scope.resize_area = true;
+                $scope.get_member_list();
                 //alert('true');   
             }
             file = null;
