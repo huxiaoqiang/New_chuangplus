@@ -1439,7 +1439,6 @@ angular.module('chuangplus.controllers', []).
 	    }
 		
 	};
-	    
     $scope.check_userinfo = function(){
         $http.get(urls.api+"/account/userinfo/check").
             success(function(data){
@@ -1475,8 +1474,7 @@ angular.module('chuangplus.controllers', []).
     
     $scope.complete_resume = function(){
          setTimeout(function(){window.location.href='/intern/resume/view'},300);
-         $('#myModal').modal('hide');       
-
+         $('#myModal').modal('hide');
     };
     $scope.check_userinfo();
     }]).
