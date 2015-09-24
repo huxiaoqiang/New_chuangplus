@@ -1615,7 +1615,7 @@ form.financing_add input {
 #container #favor-position-list .col-sm-4 .col-md-8 ul li {
   list-style-type: none;
   background-color: #ffffff;
-  border: 1px solid #bfbfbf;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
   border-radius: 4px;
   margin-bottom: 15px;
   height: 120px;
@@ -1827,9 +1827,9 @@ form.financing_add input {
   width: 100%;
 }
 #container #favor-company-list .col-md-8 ul li .company-info {
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
   margin-top: 0px;
   background-color: #FFFFFF;
-  border: 1px solid#bfbfbf;
   border-radius: 4px;
   padding: 10px 10px 20px 10px;
   width: 90%;
@@ -1872,6 +1872,12 @@ form.financing_add input {
   margin-bottom: 10px;
   float: left;
   border-left: 1px solid #aaaaaa;
+}
+#container #favor-company-list .col-md-8 ul li .company-info .bottom-side .info .line-img {
+  float: left;
+  height: 120px;
+  opacity: 0.6;
+  margin-top: -25px;
 }
 #container #favor-company-list .col-md-8 ul li .company-info .bottom-side .info .item-info.info-1 {
   width: 180px;
@@ -1922,8 +1928,8 @@ form.financing_add input {
 #container #favor-company-list .col-md-8 ul li .company-info .bottom-side .info .item-info .position_number {
   font-size: 1.1em;
   color: black;
-  text-align: left;
-  margin-left: 23px;
+  text-align: center;
+  width: 100%;
   margin-bottom: 5px;
 }
 #container #favor-company-list .col-md-8 ul li .company-info .bottom-side .info .item-info .position_tags {
@@ -2045,7 +2051,7 @@ form.financing_add input {
   height: 100%;
   padding: 10px 10px 10px 15px;
   background-color: #ffffff;
-  border: 1px solid #bfbfbf;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
   border-radius: 4px;
   float: left;
 }
