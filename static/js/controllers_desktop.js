@@ -515,7 +515,7 @@ angular.module('chuangplus.controllers', []).
                         {
                             $scope.submitResume.resume_choice = 1;
                             $scope.resume_submitted = true;
-                            console.log("here");
+//                            console.log("here");
                         }
                         else{
                             $scope.resume_submitted = false;
@@ -2560,11 +2560,11 @@ angular.module('chuangplus.controllers', []).
         {
             if(file != null && file != undefined)
             {
-                if(!/image\/\w+/.test(file.type)){ 
+                if(!/image\/\w+/.test(file.type)){
                     alert("文件必须为图片！"); 
                     return false; 
                 } 
-                alert('here');
+                //alert('here');
                 $imgResize.startUpload(file,file_t,category,$scope);
                 $scope.resize_area = true;
                 //alert('true');   
