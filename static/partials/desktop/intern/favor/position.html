@@ -39,13 +39,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="line"></div>
+                                    <img class="line-img" src="/static/image/icon/shadowline1.png">
                                     <div class="item-info info-4">
                                         <div class="vertical-center">
                                             <div class="tags" ng-repeat="tag in position.company.welfare_tags">[[tag]]</div>
                                         </div>
                                     </div>
-                                    <div class="line"></div>
+                                    <img class="line-img" src="/static/image/icon/shadowline2.png">
                                     <div class="item-pic">
                                         <div class="vertical-center">
                                             <img src="/api/file/[[position.company.logo_id]]/download" class="company-pic" alt="图片">
@@ -72,13 +72,6 @@
                                                 <img src="/static/image/icon/333-01.png">
                                                 <p class="last-p">[[position.company.city]]</p>
                                             </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="item-button">
-				                        <div class="vertical-center">
-                                            <button type="button" ng-show="position.resume_submitted || (!position.resume_submitted && resume_submitted)" ng-click="submit($index) " class="btn btn-submit" >[[position.submit_value]]</button>
-				                            <button type="button" ng-click="param($index)"ng-show="!(position.resume_submitted || (!position.resume_submiited && resume_submitted))" data-toggle="modal" data-target="#myModal2" class="btn btn-submit">[[position.submit_value]]</button>
                                         </div>
                                     </div>
                                 </div>

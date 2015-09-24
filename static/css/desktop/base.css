@@ -1631,10 +1631,10 @@ form.financing_add input {
 }
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .item-pic {
   float: left;
-  width: 130px;
+  width: 150px;
   display: table;
   height: 100%;
-  padding: 0 20px 0 20px;
+  padding: 0 25px 0 35px;
 }
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .item-pic img {
   width: 90px;
@@ -1658,11 +1658,17 @@ form.financing_add input {
 }
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .info .line {
   width: 1px;
-  height: 50px;
+  height: 130px;
   margin-top: 20px;
   margin-bottom: 20px;
   float: left;
   border-left: 1px solid #aaaaaa;
+}
+#container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .info .line-img {
+  float: left;
+  height: 130px;
+  opacity: 0.6;
+  margin-top: -15px;
 }
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .info p {
   margin-bottom: 0;
@@ -1679,7 +1685,7 @@ form.financing_add input {
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-1 .position-tags {
   margin-top: 10px;
   width: 100%;
-  padding: 0 21px 0 31px;
+  padding: 0 20px 0 20px;
   height: 22px;
   text-align: center;
 }
@@ -1693,8 +1699,8 @@ form.financing_add input {
   color: #707070;
 }
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-2 {
-  width: 130px;
-  padding: 0 15px 0 5px;
+  width: 160px;
+  padding: 0 25px 0 25px;
   text-align: center;
 }
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-2 .company {
@@ -1712,12 +1718,15 @@ form.financing_add input {
   color: #8f4e96;
 }
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-3 {
-  width: 70px;
-  padding-left: 15px;
+  width: 120px;
+  padding-left: 25px;
+}
+#container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-3 p {
+  text-align: left;
 }
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-4 {
-  padding: 0 15px 0 15px;
-  width: 190px;
+  padding: 0 10px 0 10px;
+  width: 180px;
 }
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-4 .tags {
   width: 64px;
