@@ -2632,9 +2632,11 @@ angular.module('chuangplus.controllers', []).
         $scope.add_member = function(){
             $scope.edit = false;
             $('#addMember').modal('show');
+            $scope.member_number = $scope.member_list.length;
         };
         $scope.edit_member = function(index){
             var mem = {};
+            $scope.member_number = index;
             mem.m_avatar_id = $scope.member_list[index].m_avatar_id;
             mem.m_introduction = $scope.member_list[index].m_introduction;
             mem.m_name = $scope.member_list[index].m_name;
