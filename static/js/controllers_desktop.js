@@ -1672,7 +1672,7 @@ angular.module('chuangplus.controllers', []).
                         $scope.company_list[i].field_type = $scope.field_type[$scope.company_list[i].field];
                         $scope.company_list[i].position_type_value = {};
                         for(var j = 0; j < $scope.company_list[i].position_type.length; j ++){
-                        $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
+                            $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
                         }
                     }
                 }
@@ -1897,6 +1897,205 @@ angular.module('chuangplus.controllers', []).
     controller('DT_ResizeImgCtrl', ['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         //$rootScope.loading = false;
+    }]).
+    controller('DT_CompanyTestCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload','ImgResizeService',
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload, $imgResize){
+        console.log('DT_CompanyForthCtrl');
+        $scope.company_id = $routeParams.company_id;
+
+        $scope.add_member_flag = false;
+        $scope.member_add = {};
+        $scope.company_id = $routeParams.company_id;
+        $scope.member_list = [];
+        $scope.show_member_card = function(){
+            $scope.add_member_flag = true;
+        };
+        $scope.get_member_list = function(){
+            $http.get(urls.api+"/account/member/"+$scope.company_id+"/list").
+            success(function(data){
+                if(data.error.code == 1){
+                    $scope.member_list = data.data;
+                    $scope.member_number = data.data.length;
+                }
+                else{
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
+        $scope.get_member_list();
+        $scope.cancer_add = function(){
+            $scope.add_member_flag = false;
+            $scope.member_add = {};
+            $('#addMember').modal('hide');
+            $scope.avatar = null;
+        };
+        $scope.save_member = function(){
+            if(!$scope.member_add.hasOwnProperty('m_avatar_id')){
+                $scope.error = $errMsg.format_error("请上传成员头像",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            $csrf.set_csrf($scope.member_add);
+            var request_url;
+            if($scope.edit == false){
+                request_url = urls.api+'/account/member/create';
+            }
+            else{
+                request_url = urls.api+'/account/member/'+$scope.member_list[$scope.index]._id['$oid']+'/set';
+            }
+            $http.post(request_url,$.param($scope.member_add)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.get_member_list();
+                        $scope.member_add = {};
+                        $scope.avatar = undefined;
+                        $('#addMember').modal('hide');
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                    }
+                });
+        };
+//        $scope.cancel_upload = false;
+        $scope.cancelUpload = function()
+        {
+            //$imgResize.cancel($scope,"/api/file/"+$scope.member_add.m_avatar_id+ "/download");
+            //if($scope.cancel_upload == undefined)
+//            $scope.cancel_upload = true;
+//            $scope.cancel_upload = undefined;
+            $scope.avatar = null;
+            $scope.resize_area = false;
+            //alert($scope.cancel_upload);
+        };
+        $scope.startUpload = function(file,file_t,category)
+        {
+            if(file != null && file != undefined)
+            {
+                if(!/image\/\w+/.test(file.type)){
+                    alert("文件必须为图片！");
+                    return false;
+                }
+                //alert('here');
+                $imgResize.startUpload(file,file_t,category,$scope);
+                $scope.resize_area = true;
+            }
+            file = null;
+        };
+        $scope.delete_modal = function(index){
+            $scope.delete_index = index;
+            $('#delete_member').modal('show');
+        };
+        $scope.delete_member = function(index){
+            var param = {
+                "csrfmiddlewaretoken" : $csrf.val()
+            };
+            $http.post(urls.api+"/account/member/"+$scope.member_list[index]._id.$oid+"/delete", $.param(param)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $http.post(urls.api+"/file/" + $scope.member_list[index].m_avatar_id + "/delete", $.param(param)).
+                            success(function(data){
+                                if(data.error.code == 1){
+                                    $scope.get_member_list();
+                                    $('#delete_member').modal('hide');
+                                }
+                                else{
+                                    $scope.error = $errMsg.format_error('',data.error);
+                                }
+                            });
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                    }
+                });
+        };
+        $scope.upload = function(file,file_t,category){
+            var param = {
+               "file_type": file_t,
+               "description": $scope.company_id + file_t,
+               "category": $scope.company_id + '_'+category
+            };
+            var headers = {
+                   'X-CSRFToken': $csrf.val(),
+                   'Content-Type': file.type
+               };
+            Upload.upload({
+               url:urls.api+'/file/upload',
+               data: param,
+               headers:headers,
+               file: file
+            }).
+            progress(function(evt){
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                $scope.progress= 'progress: ' + progressPercentage + '% ' + evt.config.file.name;
+                console.log($scope.progress);
+            }).
+            success(function(data, status, headers, config){
+                if(data.error.code == 1){
+                    $scope.member_add.m_avatar_id = data.data;
+                }
+                else{
+                    console.log(data.error.message);
+                    $scope.error = $errMsg.format_error('',data.error);
+                }
+            });
+        };
+        $scope.add_member = function(){
+            $scope.edit = false;
+            $('#addMember').modal('show');
+            $scope.member_number = $scope.member_list.length;
+        };
+        $scope.edit_member = function(index){
+            var mem = {};
+            $scope.member_number = index;
+            mem.m_avatar_id = $scope.member_list[index].m_avatar_id;
+            mem.m_introduction = $scope.member_list[index].m_introduction;
+            mem.m_name = $scope.member_list[index].m_name;
+            mem.m_position = $scope.member_list[index].m_position;
+            $scope.member_add = mem;
+            $('#addMember').modal('show');
+            $scope.edit = true;
+            $scope.index = index;
+        };
+        $scope.pre_step = function(){
+            window.location.href = '/company/'+$scope.company_id+'/create/third';
+        };
+
+        $scope.get_company_info = function(){
+            $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
+                success(function(data){
+                    if(data.error.code == 1){
+                            $scope.companyinfo = data.data;
+                        }
+                });
+        };
+        $scope.get_company_info();
+
+        $scope.next_step = function(){
+            if(!$scope.companyinfo.hasOwnProperty('team_description')){
+                $scope.error = $errMsg.format_error("请填写团队介绍",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            else if($scope.member_number == 0){
+                $scope.error = $errMsg.format_error("请至少上传一个团队成员的信息",{code:"-1"});
+                setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                return;
+            }
+            $scope.companyinfo.info_complete = true;
+            $csrf.set_csrf($scope.companyinfo);
+            $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.error = $errMsg.format_error("创建公司信息成功",data.error);
+                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                        window.location.href = '/';
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error('',data.error);
+                        setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
+                    }
+                });
+        };
     }]).
     controller('DT_CompanyFirstCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload','ImgResizeService',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload, $imgResize){
@@ -2346,13 +2545,14 @@ angular.module('chuangplus.controllers', []).
                     }
                 });
         };
+//        $scope.cancel_upload = false;
         $scope.cancelUpload = function()
         {
             //$imgResize.cancel($scope,"/api/file/"+$scope.member_add.m_avatar_id+ "/download");
             //if($scope.cancel_upload == undefined)
-            if($scope.cancel_upload != false)
-                $scope.cancel_upload = true;
+//            $scope.cancel_upload = true;
 //            $scope.cancel_upload = undefined;
+            $scope.avatar = null;
             $scope.resize_area = false;
             //alert($scope.cancel_upload);
         };
