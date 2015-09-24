@@ -1239,7 +1239,8 @@ angular.module('chuangplus.controllers', []).
 //                });
 //        };
 //    }]).
-    controller('DT_PositionDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_PositionDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService',
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_PositionDetailCtrl');
         $scope.role = $user.role();
         $scope.username = $user.username();
@@ -1472,7 +1473,9 @@ angular.module('chuangplus.controllers', []).
          setTimeout(function(){window.location.href='/intern/resume/view'},300);
          $('#myModal').modal('hide');
     };
-    $scope.check_userinfo();
+    if($user.username()&&$user.role()==0){
+         $scope.check_userinfo();
+    }
     }]).
     controller('DT_FeedbackCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_FeedbackCtrl');
