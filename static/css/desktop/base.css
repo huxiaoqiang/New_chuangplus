@@ -294,7 +294,7 @@ body > #wrap {
   padding: 0em;
   background-color: #FFFFFF;
   width: 420px;
-  border: 1px solid #bfbfbf;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
 }
 #container #login .login-form #login_form {
   padding: 25px 20px 15px 20px;
@@ -374,7 +374,7 @@ body > #wrap {
   background-color: #FFFFFF;
   border-radius: 6px;
   width: 420px;
-  border: 1px solid #bfbfbf;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
 }
 #container #register .register-form .tabs {
   border: 0;
@@ -4454,4 +4454,13 @@ ul.pagination li {
 }
 #warp-side > label:hover {
   background: #000;
+}
+.form-control:focus {
+  border-color: #98769E;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(143, 78, 150, 0.1);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(143, 78, 150, 0.3);
+  border-color: #8f4e96;
+}
+.form-control:hover {
+  border-color: #98769E;
 }
