@@ -86,7 +86,7 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.show_filter = function(id)
         {
             //$("#filter-content"+id).slideDown("normal");
-            $("#filter-content"+id).show();
+            //$("#filter-content"+id).show();
             $("#filter-content"+id).animate({top:90},"200");
             //$scope.filter_show = true;
         };
@@ -94,7 +94,7 @@ angular.module('chuangplus_mobile.controllers', [])
         {
             //$("#filter-content"+id).slideUp("fast");
             $("#filter-content"+id).animate({top:(-400)},"200");
-            $("#filter-content"+id).hide();
+            //setTimeout($("#filter-content"+id).hide(),400);
             //$scope.filter_show = false;
         };
         $scope.submit_filter = function(id)
@@ -336,7 +336,7 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.show_filter = function(id)
         {
             //$("#filter-content"+id).slideDown("normal");
-            $("#filter-content"+id).show();
+            //$("#filter-content"+id).show();
             $("#filter-content"+id).animate({top:90},"200");
             //$scope.filter_show = true;
         };
@@ -344,7 +344,7 @@ angular.module('chuangplus_mobile.controllers', [])
         {
             //$("#filter-content"+id).slideUp("fast");
             $("#filter-content"+id).animate({top:(-400)},"200");
-            $("#filter-content"+id).hide();
+            //setTimeout($("#filter-content"+id).hide(),300);
             //$scope.filter_show = false;
         };
         $scope.submit_filter = function(id)

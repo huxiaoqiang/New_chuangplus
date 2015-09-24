@@ -5,16 +5,20 @@ from app.common_api import user_permission,error
 from account.models import Member,Companyinfo,Userinfo
 from datetime import datetime
 from django.db import DatabaseError
-import json
-import re
 from PIL import Image
+import json
+import shutil
+import io
+import re
+import os
+import cStringIO
 # Create your views here.
 #todo:to be  moditied and tested
 @user_permission('login')
 def upload_file(request):
     re = dict()
-    sizeBig = (100,100)
-    sizeSmall = (50,50)
+    sizeBig = (128,128)
+    ##sizeSmall = (50,50)
     if request.method == 'POST':
         data = request.POST.get('data','')
         data_dict = eval(data)
@@ -30,7 +34,15 @@ def upload_file(request):
             if file_obj.size > 10000000:
                 re['error'] = error(15,"File size is bigger than 10M!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
+            ##image_data = file_obj['content']
+            ##tup = tempfile.mkstemp()
+
+            ##fl = open('big.png')
             if file_type in["memberavatar","CEOavatar"]:
+                image = Image.open(file_obj)
+                image.thumbnail(sizeBig)
+                image.save("big.png")
+                file_obj2 = open('big.png','rb')
                 try:
                     id = category.split('_')[0]
                     companyinfo = Companyinfo.objects.get(id=id)
@@ -41,42 +53,29 @@ def upload_file(request):
                     f = File.objects.get(file_type = file_type,category = category)
                 except:
                     f = File(file_type = file_type,category = category)
-                    f.value.put(file_obj.read(), content_type = file_obj.content_type)
+                    f.value.put(file_obj2.read(), content_type = file_obj.content_type)
                 else:
-                    f.value.replace(file_obj.read(), content_type = file_obj.content_type)
+                    f.value.replace(file_obj2.read(), content_type = file_obj.content_type)
                 f.name = file_obj.name
                 ##print "f.name " + f.name
                 f.description = description
                 try:
                     f.save()
-                    '''
-                    img = Image.open(f.name)
-                    img.thumbnail(sizeBig)
-                    mylist = f.name.split('.')
-                    LenOfMylist = len(mylist)
-                    Last = mylist[LenOfMylist - 1]
-                    mylist[LenOfMylist - 1] = 'big'
-                    mylist.append(Last)
-                    new_name = '.'
-                    new_name = new_name.join(mylist)
-                    img.save(new_name)
-                    img = Image.open(f.name)
-                    img.thumbnail(sizeSmall)
-                    mylist = f.name.split('.')
-                    LenOfMylist = len(mylist)
-                    Last = mylist[LenOfMylist - 1]
-                    mylist[LenOfMylist - 1] = 'small'
-                    mylist.append(Last)
-                    new_name = '.'
-                    new_name = new_name.join(mylist)
-                    img.save(new_name)  
-                    '''
                 except DatabaseError:
                     re['error'] = error(250,'Database error: Failed to get companyinfo')
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
                 re['error'] = error(1,"file upload successfully")
                 re['data'] = str(f.id)
+                file_obj2.close()
+                try:
+                    os.remove('big.png')
+                except:
+                    pass
             elif file_type in['qrcode','logo']:
+                image = Image.open(file_obj)
+                image.thumbnail(sizeBig)
+                image.save("big.png")
+                file_obj2 = open('big.png','rb')
                 try:
                     id = category.split('_')[0]
                     companyinfo = Companyinfo.objects.get(id=id)
@@ -91,42 +90,23 @@ def upload_file(request):
                         f = File.objects.get(file_type = file_type, category = category)
                     except:
                         f = File(file_type = file_type,category = category)
-                        f.value.put(file_obj.read(),content_type = file_obj.content_type)
+                        f.value.put(file_obj2.read(),content_type = file_obj.content_type)
                     else:
-                        f.value.replace(file_obj.read(), content_type = file_obj.content_type)
+                        f.value.replace(file_obj2.read(), content_type = file_obj.content_type)
                     f.name = file_obj.name
                     f.description = description
                     try:
                         f.save()
-                        '''
-                        img = Image.open(f.name)
-                        img.thumbnail(sizeBig)
-                        mylist = f.name.split('.')
-                        LenOfMylist = len(mylist)
-                        Last = mylist[LenOfMylist - 1]
-                        mylist[LenOfMylist - 1] = 'big'
-                        mylist.append(Last)
-                        new_name = '.'
-                        new_name = new_name.join(mylist)
-                        img.save(new_name)
-                        img = Image.open(f.name)
-                        img.thumbnail(sizeSmall)
-                        mylist = f.name.split('.')
-                        LenOfMylist = len(mylist)
-                        Last = mylist[LenOfMylist - 1]
-                        mylist[LenOfMylist - 1] = 'small'
-                        mylist.append(Last)
-                        new_name = '.'
-                        new_name = new_name.join(mylist)
-                        img.save(new_name)
-                        '''
                     except DatabaseError:
                         re['error'] = error(250,'Database error: Failed to save file!')
                         return HttpResponse(json.dumps(re), content_type = 'application/json')
 
                     re['error'] = error(1, 'file upload successfully')
                     re['data'] = str(f.id)
-
+                    try:
+                        os.remove('big.png')
+                    except:
+                        pass
             elif file_type == 'resume':
                 username = request.user.username
                 try:
@@ -159,6 +139,7 @@ def upload_file(request):
                     re['data'] = str(f.id)
         else:
             re['error'] = error(19,'File is empty,fail to upload file')
+            
     else:
         re['error'] = error(2,"error, need POST")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
