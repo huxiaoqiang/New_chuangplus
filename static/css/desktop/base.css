@@ -1615,7 +1615,7 @@ form.financing_add input {
 #container #favor-position-list .col-sm-4 .col-md-8 ul li {
   list-style-type: none;
   background-color: #ffffff;
-  border: 1px solid #bfbfbf;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
   border-radius: 4px;
   margin-bottom: 15px;
   height: 120px;
@@ -1631,10 +1631,10 @@ form.financing_add input {
 }
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .item-pic {
   float: left;
-  width: 130px;
+  width: 150px;
   display: table;
   height: 100%;
-  padding: 0 20px 0 20px;
+  padding: 0 25px 0 35px;
 }
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .item-pic img {
   width: 90px;
@@ -1658,11 +1658,17 @@ form.financing_add input {
 }
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .info .line {
   width: 1px;
-  height: 50px;
+  height: 130px;
   margin-top: 20px;
   margin-bottom: 20px;
   float: left;
   border-left: 1px solid #aaaaaa;
+}
+#container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .info .line-img {
+  float: left;
+  height: 130px;
+  opacity: 0.6;
+  margin-top: -15px;
 }
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .info p {
   margin-bottom: 0;
@@ -1679,7 +1685,7 @@ form.financing_add input {
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-1 .position-tags {
   margin-top: 10px;
   width: 100%;
-  padding: 0 21px 0 31px;
+  padding: 0 20px 0 20px;
   height: 22px;
   text-align: center;
 }
@@ -1693,8 +1699,8 @@ form.financing_add input {
   color: #707070;
 }
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-2 {
-  width: 130px;
-  padding: 0 15px 0 5px;
+  width: 160px;
+  padding: 0 25px 0 25px;
   text-align: center;
 }
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-2 .company {
@@ -1712,12 +1718,15 @@ form.financing_add input {
   color: #8f4e96;
 }
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-3 {
-  width: 70px;
-  padding-left: 15px;
+  width: 120px;
+  padding-left: 25px;
+}
+#container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-3 p {
+  text-align: left;
 }
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-4 {
-  padding: 0 15px 0 15px;
-  width: 190px;
+  padding: 0 10px 0 10px;
+  width: 180px;
 }
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item .middle-block .info .item-info.info-4 .tags {
   width: 64px;
@@ -1818,9 +1827,9 @@ form.financing_add input {
   width: 100%;
 }
 #container #favor-company-list .col-md-8 ul li .company-info {
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
   margin-top: 0px;
   background-color: #FFFFFF;
-  border: 1px solid#bfbfbf;
   border-radius: 4px;
   padding: 10px 10px 20px 10px;
   width: 90%;
@@ -1863,6 +1872,12 @@ form.financing_add input {
   margin-bottom: 10px;
   float: left;
   border-left: 1px solid #aaaaaa;
+}
+#container #favor-company-list .col-md-8 ul li .company-info .bottom-side .info .line-img {
+  float: left;
+  height: 120px;
+  opacity: 0.6;
+  margin-top: -25px;
 }
 #container #favor-company-list .col-md-8 ul li .company-info .bottom-side .info .item-info.info-1 {
   width: 180px;
@@ -1913,8 +1928,8 @@ form.financing_add input {
 #container #favor-company-list .col-md-8 ul li .company-info .bottom-side .info .item-info .position_number {
   font-size: 1.1em;
   color: black;
-  text-align: left;
-  margin-left: 23px;
+  text-align: center;
+  width: 100%;
   margin-bottom: 5px;
 }
 #container #favor-company-list .col-md-8 ul li .company-info .bottom-side .info .item-info .position_tags {
@@ -2036,7 +2051,7 @@ form.financing_add input {
   height: 100%;
   padding: 10px 10px 10px 15px;
   background-color: #ffffff;
-  border: 1px solid #bfbfbf;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
   border-radius: 4px;
   float: left;
 }
@@ -2260,7 +2275,7 @@ form.financing_add input {
 #container #position-detail .col-md-9 .position-info .vertical-center {
   display: table-cell;
   vertical-align: middle;
-  padding: 0 10px 0 15px;
+  padding: 0 10px 0 10px;
 }
 #container #position-detail .col-md-9 .position-info .line {
   width: 1px;
@@ -2311,19 +2326,27 @@ form.financing_add input {
   float: left;
   display: table;
   height: 100%;
-  padding: 0 5px 0 5px;
+  padding: 0 10px 0 10px;
 }
 #container #position-detail .col-md-9 .position-info .item-label .vertical-center {
   padding-top: 5px;
 }
+#container #position-detail .col-md-9 .position-info .item-label .tags {
+  margin-right: 0;
+  margin-bottom: 5px;
+}
 #container #position-detail .col-md-9 .position-info .item-label.label-1 {
   width: 183px;
 }
+#container #position-detail .col-md-9 .position-info .item-label.label-1 .vertical-center {
+  padding-right: 0;
+}
 #container #position-detail .col-md-9 .position-info .item-label.label-1 .tags {
   width: 64px;
+  margin-right: 10px;
 }
 #container #position-detail .col-md-9 .position-info .item-label.label-2 {
-  width: 120px;
+  width: 130px;
 }
 #container #position-detail .col-md-9 .position-info .item-label.label-2 img {
   width: 13px;
@@ -2338,7 +2361,7 @@ form.financing_add input {
   margin-bottom: 5px;
 }
 #container #position-detail .col-md-9 .position-info .item-label.label-3 {
-  width: 170px;
+  width: 180px;
 }
 #container #position-detail .col-md-9 .position-info .item-label.label-3 p {
   font-size: 12px;
@@ -2353,23 +2376,29 @@ form.financing_add input {
   margin-right: 5px;
   margin-bottom: 5px;
 }
-#container #position-detail .col-md-9 .position-info .position-addr {
+#container #position-detail .col-md-9 .position-info .addr-img {
   float: left;
   height: 100%;
   display: table;
-  width: 180px;
+  width: 30px;
 }
-#container #position-detail .col-md-9 .position-info .position-addr img {
-  height: 30%;
-  padding: 5px 5px 5px 5px;
-  float: left;
+#container #position-detail .col-md-9 .position-info .addr-img .vertical-center {
+  padding-right: 0;
 }
-#container #position-detail .col-md-9 .position-info .position-addr .addr {
+#container #position-detail .col-md-9 .position-info .addr-img img {
+  height: 20px;
+}
+#container #position-detail .col-md-9 .position-info .addr {
+  height: 100%;
+  display: table;
   float: left;
   font-size: 12px;
-  width: 121px;
+  width: 150px;
 }
-#container #position-detail .col-md-9 .position-info .position-addr .addr p {
+#container #position-detail .col-md-9 .position-info .addr .vertical-center {
+  padding-left: 10px;
+}
+#container #position-detail .col-md-9 .position-info .addr p {
   margin-bottom: 0;
 }
 #container #position-detail .col-md-9 .position-info .position-state {
@@ -2423,11 +2452,13 @@ form.financing_add input {
   color: #98769E;
 }
 #container #position-detail .position-dscrpt {
-  width: 100%;
+  width: 80%;
   margin-top: 20px;
+  float: left;
+  padding: 0 15px 0 15px;
 }
 #container #position-detail .position-dscrpt .dscrpt-title {
-  width: 60%;
+  width: 100%;
   height: 35px;
 }
 #container #position-detail .position-dscrpt .dscrpt-title span {
@@ -2491,6 +2522,8 @@ form.financing_add input {
 #container #position-detail .submit_favor {
   float: left;
   margin-top: 10px;
+  width: 80%;
+  padding-left: 15px;
 }
 #container #position-detail .submit_favor span {
   background-color: #8f4e96;
