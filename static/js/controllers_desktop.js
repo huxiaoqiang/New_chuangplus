@@ -849,17 +849,13 @@ angular.module('chuangplus.controllers', []).
         };
         //$scope.close = false;
         $(document).on("click",function(e){
-            console.log($(e.target).attr('id')!="header" && $(e.target).attr('id')!="submit_div");
+            //console.log($(e.target).attr('id')!="header" && $(e.target).attr('id')!="submit_div");
             //console.log($("#header"));
-            console.log($(e.target).attr('id'));
+            //console.log($(e.target).attr('id'));
             if($(e.target).attr('id')!="header" && $(e.target).attr('id')!="submit_div"){
                
-                if($('#sideToggle').attr("checked") == "checked"){
-                $('#sideToggle').attr('checked',false);
-                $scope.show_right_bar = false;
-                $('aside').css({width:"0px"});
-            }
-                $scope.chosed_index = -1;
+                $scope.view_detail($scope.chosed_index);
+                
             }
         });
     }]).
