@@ -467,19 +467,19 @@ angular.module('chuangplus.services', []).
 
                 if (file == undefined || file == null || file == '') 
                     return false;
-                if(!/image\/\w+/.test(file.type)){ 
+                if(!/image\/\w+/.test(file.type)){
                     alert("文件必须为图片！"); 
                     scope.resize_area = false;
                     return false; 
-                } 
+                }
 
                 $("#resize-box").html('<img class="resize-image" id="image-preview" ngf-src="logo" alt="image for resizing">');
-                var reader = new FileReader(); 
+                var reader = new FileReader();
                 reader.readAsDataURL(file); 
-                reader.onload = function(e){ 
+                reader.onload = function(e){
                     $('.resize-image').attr('src',this.result);
                     resize(file,file_t,category);
-                } ;
+                };
                 return true;
             }
         };

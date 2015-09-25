@@ -1,18 +1,65 @@
-<div id="container">
+<div id="container" xmlns="http://www.w3.org/1999/html">
     <div id="company_list">
         <div class="col-md-4">
-<!--            <div class="search-tab">
-                <div class="search-item company-field">
+             <div class="search-tab">
+                <div class="search-item company-field" on-mouseover="show_field()" on-mouseout="hide_field()">
                     <p>行业领域<i class="icon-angle-down"></i></p>
+                    <div class="field-list" ng-show="field">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><a href="#" ng-class="{active:param.field == 'social'}" ng-click="choose('social')">社交</a></td>
+                                    <td><a href="#" ng-class="{active:param.field == 'e-commerce'}" ng-click="choose('e-commerce')">电子商务</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#" ng-class="{active:param.field == 'hardware'}" ng-click="choose('hardware')">硬件</a></td>
+                                    <td><a href="#" ng-class="{active:param.field == 'health_medical'}" ng-click="choose('health_medical')">健康医疗</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#" ng-class="{active:param.field == 'O2O'}" ng-click="choose('O2O')">O2O</a></td>
+                                    <td><a href="#" ng-class="{active:param.field == 'culture_creativity'}" ng-click="choose('culture_creativity')">文化创意</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#" ng-class="{active:param.field == 'education'}" ng-click="choose('education')">教育</a></td>
+                                    <td><a href="#" ng-class="{active:param.field == 'living_consumption'}" ng-click="choose('living_consumption')">生活消费</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#" ng-class="{active:param.field == 'others'}" ng-click="choose('others')">其他</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="search-item company-scale">
+                <div style="clear: both"></div>
+                <div class="search-item company-scale"  on-mouseover="show_scale()" on-mouseout="hide_scale()">
                     <p>规模|融资论述<i class="icon-angle-down"></i></p>
+                    <div class="scale-list" ng-show="scale_show">
+                        <a href="#" ng-class="{active:param.scale == 0}" ng-click="choose_scale(0)">初创（未融资/种子天使）</a><br>
+                        <a href="#" ng-class="{active:param.scale == 1}" ng-click="choose_scale(1)">成长（A轮/B轮）</a><br>
+                        <a href="#" ng-class="{active:param.scale == 2}" ng-click="choose_scale(2)">成熟（C轮以上/上市）</a><br>
+                    </div>
                 </div>
-                <div class="search-item company-auth">
+                 <div style="clear: both"></div>
+                <div class="search-item company-auth" on-mouseover="show_auth()" on-mouseout="hide_auth()">
                     <p>投资机构认证<i class="icon-angle-down"></i></p>
+                    <div class="organization-list" ng-show="auth">
+                        <input type="checkbox" id="checkbox21" ng-model="param.auth_organization.a1"><label class="checkbox-label" for="checkbox21">源码资本</label><br/>
+                        <input type="checkbox" id="checkbox22" ng-model="param.auth_organization.a2"><label class="checkbox-label" for="checkbox22">创业邦</label><br/>
+                        <input type="checkbox" id="checkbox23" ng-model="param.auth_organization.a3"><label class="checkbox-label" for="checkbox23">创新工场</label><br/>
+                        <input type="checkbox" id="checkbox24" ng-model="param.auth_organization.a4"><label class="checkbox-label" for="checkbox24">高榕资本</label><br/>
+                        <input type="checkbox" id="checkbox25" ng-model="param.auth_organization.a5"><label class="checkbox-label" for="checkbox25">京东JD+开放孵化器</label><br/>
+                        <input type="checkbox" id="checkbox26" ng-model="param.auth_organization.a6"><label class="checkbox-label" for="checkbox26">险峰华兴</label><br/>
+                        <input type="checkbox" id="checkbox27" ng-model="param.auth_organization.a7"><label class="checkbox-label" for="checkbox27">经纬创投</label><br/>
+                        <input type="checkbox" id="checkbox28" ng-model="param.auth_organization.a8"><label class="checkbox-label" for="checkbox28">泰有投资</label><br/>
+                        <input type="checkbox" id="checkbox29" ng-model="param.auth_organization.a9"><label class="checkbox-label" for="checkbox29">Pre-Angle</label><br/>
+                        <input type="checkbox" id="checkbox30" ng-model="param.auth_organization.a10"><label class="checkbox-label" for="checkbox30">洪泰基金</label><br/>
+                        <input type="checkbox" id="checkbox31" ng-model="param.auth_organization.a11"><label class="checkbox-label" for="checkbox31">清流资本</label><br/>
+                        <input type="checkbox" id="checkbox32" ng-model="param.auth_organization.a12"><label class="checkbox-label" for="checkbox32">启迪创业孵化器</label><br/>
+                        <input type="checkbox" id="checkbox33" ng-model="param.auth_organization.a13"><label class="checkbox-label" for="checkbox33">PNP China</label><br/>
+                        <input type="checkbox" id="checkbox34" ng-model="param.auth_organization.a14"><label class="checkbox-label" for="checkbox34">清华同方孵化器</label><br/>
+                    </div>
                 </div>
             </div>
-            -->
         </div>
         <div class="col-md-8">
             <div ng-show="loading" class="loading">
@@ -79,7 +126,7 @@
                 </li>
                 </a>
             </ul>
-            <page ng-show="task.pageCount!=1" num-pages="task.pageCount" current-page="task.currentPage" on-select-page="selectPage(page)">
+            <page ng-show="param.pageCount!=1" num-pages="param.pageCount" current-page="param.currentPage" on-select-page="selectPage(page)">
             </page>
             </div>
         </div>

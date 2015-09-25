@@ -18,7 +18,10 @@
                     <textarea ng-model="companyinfo.product_description" required></textarea>
                 </div>
             <input type="button" class="pre-button btn" value="上一步" ng-click="pre_step()">
-            <input type="submit" class="next-button btn" value="下一步">
+            <div class="next-area">
+                <input type="submit" value="下一步" class="btn" >
+                <i  class='fa fa-spinner fa-spin' ng-show="submit_loading"></i>
+            </div>
             </div>
         </form>
     </div>

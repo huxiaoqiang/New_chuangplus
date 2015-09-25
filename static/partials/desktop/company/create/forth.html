@@ -53,7 +53,10 @@
                 <div style="clear: both"></div>
             </div>
             <input type="button" class="pre-button btn" value="上一步" ng-click="pre_step()">
-            <input type="submit" class="next-button btn" value="完成提交">
+            <div class="next-area">
+                <input type="submit" value="完成提交" class="btn" >
+                <i  class='fa fa-spinner fa-spin' ng-show="submit_loading"></i>
+            </div>
             </form>
         </div>
     </div>
@@ -68,12 +71,11 @@
        <form class="member_add form-horizontal" name="memberAddForm" ng-submit="save_member()">
            <div class="member-info-card">
                <a ng-click="cancer_add()"><img class="delete" src="/static/image/icon/delete-01.png"></a>
-
-               
-               <div ng-model="avatar"  ngf-select="startUpload($file,'memberavatar','[[member_number]]')">
-                    <img class="upload-img img-upload-preview" ng-show="(avatar==null && member_add.hasOwnProperty('m_avatar_id') || avatar!=null) && cancel_upload == false" src="/api/file/[[member_add.m_avatar_id]]/download">
-                    <div ng-show="cancel_upload != false || (avatar==null && !member_add.hasOwnProperty('m_avatar_id'))" class="avatar-origin">点击上传头像</div>
-              </div>
+               <div ng-model="avatar" ngf-select="startUpload($file,'memberavatar','[[member_number]]')" ngf-resize="{width: 100, height: 100}" ngf-keep="false">
+                    <img class="upload-img img-upload-preview" ng-show="avatar==null && member_add.hasOwnProperty('m_avatar_id')" src="/api/file/[[member_add.m_avatar_id]]/download">
+                    <div ng-show="avatar==null && !member_add.hasOwnProperty('m_avatar_id')" class="avatar-origin">点击上传头像</div>
+                    <img class="upload-img img-upload-preview" ng-show="avatar!=null" ngf-src="avatar[0]">
+               </div>
 <!--
                <div ng-if="!member_add.hasOwnProperty('m_avatar_id')" ng-model="avatar" ngf-select="upload($file,'memberavatar',[[member_number]])" class="avatar-origin">点击上传图像</div>
 

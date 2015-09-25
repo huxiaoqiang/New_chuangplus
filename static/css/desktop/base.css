@@ -1218,6 +1218,33 @@ form.financing_add input {
   outline: none;
   border: 1px solid #e1e0e2;
 }
+#container #edit_position .form-position .next-area {
+  position: absolute;
+  bottom: -60px;
+  left: 41.5%;
+  width: 150px;
+  color: white;
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  outline-width: 1px;
+  border-radius: 4px;
+}
+#container #edit_position .form-position .next-area .submit-loading {
+  width: 90% !important;
+}
+#container #edit_position .form-position .next-area i {
+  position: absolute;
+  color: white;
+  right: 36px;
+  top: 9px;
+  font-size: 15px;
+}
+#container #edit_position .form-position .next-area input {
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  width: 100%;
+  height: 100%;
+}
 #container #edit_position .form-position .next-button {
   position: absolute;
   bottom: -60px;
@@ -2579,6 +2606,8 @@ form.financing_add input {
 #container #company_list {
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   margin-top: 30px;
+  min-width: 960px;
+  display: -webkit-box;
 }
 #container #company_list .col-md-4 {
   width: 210px;
@@ -2595,11 +2624,78 @@ form.financing_add input {
 }
 #container #company_list .col-md-4 .search-tab .search-item {
   text-align: center;
+  transition: height 1s;
+  -moz-transition: height 1s;
+  /* Firefox 4 */
+  -webkit-transition: height 1s;
+  /* Safari 和 Chrome */
+  -o-transition: height 1s;
+  /* Opera */
   padding: 5px 15px;
 }
 #container #company_list .col-md-4 .search-tab .search-item p {
   background-color: rgba(191, 191, 191, 0.1);
   cursor: pointer;
+}
+#container #company_list .col-md-4 .search-tab .search-item input[type=checkbox] {
+  cursor: pointer;
+  display: none;
+}
+#container #company_list .col-md-4 .search-tab .search-item input[type=checkbox]:checked + .checkbox-label {
+  background-color: #8f4e96;
+  padding: 2px;
+  color: white;
+  border-radius: 4px;
+}
+#container #company_list .col-md-4 .search-tab .search-item label.checkbox-label {
+  cursor: pointer;
+  text-align: left;
+}
+#container #company_list .col-md-4 .search-tab .search-item label.checkbox-label:hover {
+  background-color: rgba(143, 78, 150, 0.11);
+  border-radius: 4px;
+}
+#container #company_list .col-md-4 .search-tab .search-item .field-list {
+  background-color: rgba(191, 191, 191, 0.1);
+}
+#container #company_list .col-md-4 .search-tab .search-item .field-list table tbody tr td {
+  width: 80px;
+}
+#container #company_list .col-md-4 .search-tab .search-item .field-list table tbody tr td a {
+  text-decoration: none;
+  color: #000000;
+}
+#container #company_list .col-md-4 .search-tab .search-item .field-list table tbody tr td a.active {
+  background-color: #8f4e96;
+  color: white;
+  border-radius: 4px;
+}
+#container #company_list .col-md-4 .search-tab .search-item .field-list table tbody tr td a.active:hover {
+  color: white;
+}
+#container #company_list .col-md-4 .search-tab .search-item .field-list table tbody tr td a:hover {
+  color: #8f4e96;
+}
+#container #company_list .col-md-4 .search-tab .search-item .scale-list {
+  background-color: rgba(191, 191, 191, 0.1);
+}
+#container #company_list .col-md-4 .search-tab .search-item .scale-list a {
+  text-decoration: none;
+  color: #000000;
+}
+#container #company_list .col-md-4 .search-tab .search-item .scale-list a.active {
+  background-color: #8f4e96;
+  color: white;
+  border-radius: 4px;
+}
+#container #company_list .col-md-4 .search-tab .search-item .scale-list a.active:hover {
+  color: white;
+}
+#container #company_list .col-md-4 .search-tab .search-item .scale-list a:hover {
+  color: #8f4e96;
+}
+#container #company_list .col-md-4 .search-tab .search-item .organization-list {
+  background-color: rgba(191, 191, 191, 0.1);
 }
 #container #company_list .col-md-8 {
   width: 750px;
@@ -2608,8 +2704,11 @@ form.financing_add input {
 #container #company_list .col-md-8 .loading {
   width: 100%;
   margin: 0 auto;
+  padding-top: 128px;
   background-color: #ffffff;
   text-align: center;
+  height: 600px;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
 }
 #container #company_list .col-md-8 a {
   text-decoration: none;
@@ -2774,6 +2873,7 @@ form.financing_add input {
 }
 #container #company_list .col-md-8 ul.pagination {
   float: right;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
 }
 #container #company_list .col-md-8 ul.pagination li {
   border: none;
@@ -3175,7 +3275,6 @@ form.financing_add input {
 }
 #container #company-detail .col-md-4 .qrcode {
   width: 200px;
-  height: 200px;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -3558,6 +3657,30 @@ form.financing_add input {
   position: absolute;
   bottom: 0px;
 }
+#container #first-step .info1 .next-area {
+  position: absolute;
+  bottom: -60px;
+  left: 41.5%;
+  width: 150px;
+  color: white;
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  outline-width: 1px;
+  border-radius: 4px;
+}
+#container #first-step .info1 .next-area i {
+  position: absolute;
+  color: white;
+  right: 38px;
+  top: 9px;
+  font-size: 15px;
+}
+#container #first-step .info1 .next-area input {
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  width: 100%;
+  height: 100%;
+}
 #container #first-step .info1 input.next-button {
   position: absolute;
   bottom: -60px;
@@ -3672,6 +3795,33 @@ form.financing_add input {
   width: 20px;
   height: 20px;
 }
+#container #second-step .info2 .right-info .next-area {
+  position: absolute;
+  bottom: -60px;
+  left: 0;
+  width: 150px;
+  color: white;
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  outline-width: 1px;
+  border-radius: 4px;
+}
+#container #second-step .info2 .right-info .next-area .submit-loading {
+  width: 93% !important;
+}
+#container #second-step .info2 .right-info .next-area i {
+  position: absolute;
+  color: white;
+  right: 35px;
+  top: 7px;
+  font-size: 18px;
+}
+#container #second-step .info2 .right-info .next-area input {
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  width: 100%;
+  height: 100%;
+}
 #container #second-step .info2 .right-info input.next-button {
   position: absolute;
   bottom: -60px;
@@ -3718,6 +3868,33 @@ form.financing_add input {
   color: white;
   left: 30%;
   background-color: #707070;
+}
+#container #third-step .info3 .next-area {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  width: 150px;
+  color: white;
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  outline-width: 1px;
+  border-radius: 4px;
+}
+#container #third-step .info3 .next-area .submit-loading {
+  width: 93% !important;
+}
+#container #third-step .info3 .next-area i {
+  position: absolute;
+  color: white;
+  right: 35px;
+  top: 7px;
+  font-size: 18px;
+}
+#container #third-step .info3 .next-area input {
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  width: 100%;
+  height: 100%;
 }
 #container #third-step .info3 input.next-button {
   position: absolute;
@@ -3778,6 +3955,33 @@ form.financing_add input {
   background-color: #8f4e96;
   outline-color: #98769E;
   outline-width: 1px;
+}
+#container #forth-step .info4 .next-area {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  width: 150px;
+  color: white;
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  outline-width: 1px;
+  border-radius: 4px;
+}
+#container #forth-step .info4 .next-area .submit-loading {
+  width: 93% !important;
+}
+#container #forth-step .info4 .next-area i {
+  position: absolute;
+  color: white;
+  right: 28px;
+  top: 7px;
+  font-size: 18px;
+}
+#container #forth-step .info4 .next-area input {
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  width: 100%;
+  height: 100%;
 }
 #container #forth-step .info4 .add-member img {
   height: 20px;
