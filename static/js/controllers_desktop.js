@@ -1642,15 +1642,36 @@ angular.module('chuangplus.controllers', []).
             'O2O':"O2O",
             'others':"其他"
         };
-        $scope.task = {
+        $scope.param = {
+            field:"",
             pageCount: 1,
             currentPage: 1
         };
+        $scope.scale_change = true;
+        $scope.field_change = true;
+        $scope.choose = function(field){
+            if($scope.param.field == field){
+                $scope.field_change = false;
+            }
+            else{
+                $scope.field_change = true;
+                $scope.param.field = field;
+            }
+            $scope.get_company_list($scope.param);
+        };
+        $scope.choose_scale = function(scale){
+            if($scope.param.scale == scale){
+                $scope.scale_change = false;
+            }
+            else{
+                $scope.param.scale = scale;
+                $scope.scale_change = true;
+            }
+            $scope.get_company_list($scope.param);
+        };
         $scope.selectPage = function(page){
-            var param = {
-                'page':page
-            };
-            $scope.get_company_list(param);
+            $scope.param.page = page;
+            $scope.get_company_list($scope.param);
         };
         $scope.get_company_list = function(data){
             $scope.loading = true;
@@ -1658,12 +1679,24 @@ angular.module('chuangplus.controllers', []).
             if(data != null){
                 param = '?';
                 if(data.hasOwnProperty('page')){
-                    param += "page=" + data.page;
+                    if($scope.scale_change && $scope.field_change)
+                        param += "page=" + 1;
+                    else
+                        param += "page=" + data.page;
+                }
+                if(data.hasOwnProperty('field')){
+                    param += "&field=" + data.field;
+                }
+                if(data.hasOwnProperty('scale')){
+                    param += "&scale=" + data.scale;
+                }
+                if(data.hasOwnProperty('auth_organization')){
+
                 }
             }
             $http.get(urls.api+"/account/company/list"+param).
                 success(function(data){
-                $scope.task.pageCount = data.page_number;
+                $scope.param.pageCount = data.page_number;
                 if(data.error.code == 1){
                     $scope.company_list = data.data;
                     for(var i=0;i<$scope.company_list.length;i++){
@@ -1697,7 +1730,7 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.show_scale = function(){
             $(".company-scale").css({height:"130px"});
-            $scope.scale = true;
+            $scope.scale_show = true;
         };
         $scope.hide_scale = function(){
             $(".company-scale").css({height:"40px"});
@@ -1718,7 +1751,7 @@ angular.module('chuangplus.controllers', []).
         $scope.company_id = $routeParams.company_id;
         $scope.role = $user.role();
         $scope.username = $user.username();
-                                       console.log($scope.role);
+        console.log($scope.role);
         $scope.company = {};
         $scope.member_list = {};
         $scope.tab1 = true;
@@ -1747,7 +1780,7 @@ angular.module('chuangplus.controllers', []).
             'culture_creativity':"文化创意",
             'living_consumption':"生活消费",
             'hardware':"硬件",
-            '020':"O2O",
+            'O2O':"O2O",
             'others':"其他"
         };
 
@@ -1959,13 +1992,8 @@ angular.module('chuangplus.controllers', []).
 //        $scope.cancel_upload = false;
         $scope.cancelUpload = function()
         {
-            //$imgResize.cancel($scope,"/api/file/"+$scope.member_add.m_avatar_id+ "/download");
-            //if($scope.cancel_upload == undefined)
-//            $scope.cancel_upload = true;
-//            $scope.cancel_upload = undefined;
             $scope.avatar = null;
             $scope.resize_area = false;
-            //alert($scope.cancel_upload);
         };
         $scope.startUpload = function(file,file_t,category)
         {

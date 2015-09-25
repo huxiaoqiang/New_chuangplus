@@ -26,6 +26,7 @@ display: block;
                 background-color: rgba(191, 191, 191, 0.1);
                 cursor: pointer;
               }
+
               input[type=checkbox]{
                   cursor: pointer;
                   display: none;
@@ -46,12 +47,48 @@ display: block;
                 }
               .field-list{
                 background-color: rgba(191, 191, 191, 0.1);
-                td{
-                 width: 80px;
+                table{
+                  tbody{
+                    tr{
+                      td{
+                       width: 80px;
+                       a{
+                         text-decoration:none;
+                         color: #000000;
+                       }
+                       a.active{
+                        background-color: #8f4e96;
+                        color: white;
+                        border-radius: 4px;
+                       }
+                       a.active:hover{
+                        color: white;
+                       }
+                       a:hover{
+                         color: #8f4e96;
+                       }
+                      }
+                    }
+                  }
                 }
               }
               .scale-list{
                 background-color: rgba(191, 191, 191, 0.1);
+                 a{
+                   text-decoration:none;
+                   color: #000000;
+                 }
+                 a.active{
+                  background-color: #8f4e96;
+                  color: white;
+                  border-radius: 4px;
+                 }
+                 a.active:hover{
+                  color: white;
+                 }
+                 a:hover{
+                   color: #8f4e96;
+                 }
               }
               .organization-list{
                 background-color: rgba(191, 191, 191, 0.1);
