@@ -11,6 +11,7 @@ body {
 }
 .scrollable-content {
   position: absolute;
+  padding-bottom: 50px;
 }
 @media (min-width: 992px) {
   .has-sidebar-left .app,
@@ -604,7 +605,6 @@ a:hover {
   background-repeat: repeat-x;
 }
 .filter-content {
-  display: none;
   top: -1000px;
   z-index: 1000;
   width: 100%;

@@ -1699,7 +1699,7 @@ angular.module('chuangplus.controllers', []).
         $scope.company_id = $routeParams.company_id;
         $scope.role = $user.role();
         $scope.username = $user.username();
-                                       console.log($scope.role);
+        console.log($scope.role);
         $scope.company = {};
         $scope.member_list = {};
         $scope.tab1 = true;
