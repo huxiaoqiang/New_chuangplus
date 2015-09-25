@@ -112,8 +112,14 @@
                         <textarea required ng-model="position.position_request"></textarea>
                     </div>
                 </div>
-                <input ng-show="position_id=='new'" type="submit" value="完成提交" class="next-button btn" ng-disabled="disable_submit">
-                <input ng-show="position_id!='new'" type="submit" value="完成修改" class="next-button btn" ng-disabled="disable_submit">
+<!--
+                <button ng-show="position_id=='new'" type="submit" class="next-button btn" onclick="document.positionInfoForm.submit();" ng-disabled="disable_submit">完成提交 <i ng-show='submit_loading' class='fa fa-spinner fa-spin'></i></button>
+-->
+                <div class="next-area">
+                    <input ng-show="position_id=='new'" type="submit" value="完成提交" ng-class="{'submit-loading':submit_loading}" class="btn" ng-disabled="disable_submit">
+                    <input ng-show="position_id!='new'" type="submit" value="完成修改" ng-class="{'submit-loading':submit_loading}"class="btn" ng-disabled="disable_submit">
+                    <i  class='fa fa-spinner fa-spin' ng-show="submit_loading"></i>
+                </div>
                 <div id="err-msg" ng-show="error.show"  ng-class="error.class">[[error.message]]</div>
             </div>
         </form>

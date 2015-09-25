@@ -126,7 +126,10 @@
                     </div>
                 </div>
             </div>
-            <input type="submit" class="next-button btn" value="下一步">
+            <div class="next-area">
+                <input type="submit" value="下一步" ng-class="{'submit-loading':submit_loading}" class="btn" >
+                <i  class='fa fa-spinner fa-spin' ng-show="submit_loading"></i>
+            </div>
             <div id="err-msg" ng-show="error.show"  ng-class="error.class">[[error.message]]</div>
         </div>
         </form>
