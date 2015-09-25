@@ -2,9 +2,9 @@
     <div id="company_list">
         <div class="col-md-4">
              <div class="search-tab">
-                <div class="search-item company-field" on-mouseover="show_field()" on-mouseout="hide_field()">
+                <div class="search-item company-field" >
                     <p>行业领域<i class="icon-angle-down"></i></p>
-                    <div class="field-list" ng-show="field">
+                    <div class="field-list">
                         <table>
                             <tbody>
                                 <tr>
@@ -31,18 +31,18 @@
                     </div>
                 </div>
                 <div style="clear: both"></div>
-                <div class="search-item company-scale"  on-mouseover="show_scale()" on-mouseout="hide_scale()">
+                <div class="search-item company-scale"  >
                     <p>规模|融资论述<i class="icon-angle-down"></i></p>
-                    <div class="scale-list" ng-show="scale_show">
+                    <div class="scale-list">
                         <a href="#" ng-class="{active:param.scale == 0}" ng-click="choose_scale(0)">初创（未融资/种子天使）</a><br>
                         <a href="#" ng-class="{active:param.scale == 1}" ng-click="choose_scale(1)">成长（A轮/B轮）</a><br>
                         <a href="#" ng-class="{active:param.scale == 2}" ng-click="choose_scale(2)">成熟（C轮以上/上市）</a><br>
                     </div>
                 </div>
                  <div style="clear: both"></div>
-                <div class="search-item company-auth" on-mouseover="show_auth()" on-mouseout="hide_auth()">
+                <div class="search-item company-auth" >
                     <p>投资机构认证<i class="icon-angle-down"></i></p>
-                    <div class="organization-list" ng-show="auth">
+                    <div class="organization-list" >
                         <input type="checkbox" id="checkbox21" ng-model="param.auth_organization.a1"><label class="checkbox-label" for="checkbox21">源码资本</label><br/>
                         <input type="checkbox" id="checkbox22" ng-model="param.auth_organization.a2"><label class="checkbox-label" for="checkbox22">创业邦</label><br/>
                         <input type="checkbox" id="checkbox23" ng-model="param.auth_organization.a3"><label class="checkbox-label" for="checkbox23">创新工场</label><br/>
