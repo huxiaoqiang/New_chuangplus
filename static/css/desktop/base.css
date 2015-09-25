@@ -2656,11 +2656,41 @@ form.financing_add input {
 #container #company_list .col-md-4 .search-tab .search-item .field-list {
   background-color: rgba(191, 191, 191, 0.1);
 }
-#container #company_list .col-md-4 .search-tab .search-item .field-list td {
+#container #company_list .col-md-4 .search-tab .search-item .field-list table tbody tr td {
   width: 80px;
+}
+#container #company_list .col-md-4 .search-tab .search-item .field-list table tbody tr td a {
+  text-decoration: none;
+  color: #000000;
+}
+#container #company_list .col-md-4 .search-tab .search-item .field-list table tbody tr td a.active {
+  background-color: #8f4e96;
+  color: white;
+  border-radius: 4px;
+}
+#container #company_list .col-md-4 .search-tab .search-item .field-list table tbody tr td a.active:hover {
+  color: white;
+}
+#container #company_list .col-md-4 .search-tab .search-item .field-list table tbody tr td a:hover {
+  color: #8f4e96;
 }
 #container #company_list .col-md-4 .search-tab .search-item .scale-list {
   background-color: rgba(191, 191, 191, 0.1);
+}
+#container #company_list .col-md-4 .search-tab .search-item .scale-list a {
+  text-decoration: none;
+  color: #000000;
+}
+#container #company_list .col-md-4 .search-tab .search-item .scale-list a.active {
+  background-color: #8f4e96;
+  color: white;
+  border-radius: 4px;
+}
+#container #company_list .col-md-4 .search-tab .search-item .scale-list a.active:hover {
+  color: white;
+}
+#container #company_list .col-md-4 .search-tab .search-item .scale-list a:hover {
+  color: #8f4e96;
 }
 #container #company_list .col-md-4 .search-tab .search-item .organization-list {
   background-color: rgba(191, 191, 191, 0.1);
