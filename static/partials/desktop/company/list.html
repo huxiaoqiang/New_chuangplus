@@ -26,6 +26,9 @@
                                 <tr>
                                     <td><a href="#" ng-class="{active:param.field == 'others'}" ng-click="choose('others')">其他</a></td>
                                 </tr>
+                                <tr>
+                                    <td><a href="#" ng-class="{active:param.field == null}" ng-click="choose(null)">全选</a></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -37,6 +40,7 @@
                         <a href="#" ng-class="{active:param.scale == 0}" ng-click="choose_scale(0)">初创（未融资/种子天使）</a><br>
                         <a href="#" ng-class="{active:param.scale == 1}" ng-click="choose_scale(1)">成长（A轮/B轮）</a><br>
                         <a href="#" ng-class="{active:param.scale == 2}" ng-click="choose_scale(2)">成熟（C轮以上/上市）</a><br>
+                        <a href="#" ng-class="{active:param.scale == null}" ng-click="choose_scale(null)">全选</a><br>
                     </div>
                 </div>
                  <div style="clear: both"></div>
