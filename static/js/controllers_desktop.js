@@ -7,6 +7,7 @@ angular.module('chuangplus.controllers', []).
         console.log('HomepageCtrl');
         $scope.role = $user.role();
         $scope.username = $user.username();
+        $scope.company_id='';
         $scope.myInterval = 3000;
         $scope.slides1 = [
             {image:"/static/image/logo/banner-1.jpg"},
@@ -20,6 +21,21 @@ angular.module('chuangplus.controllers', []).
         ];
         $scope.scan = false;
         $scope.search = false;
+        $scope.get_company_info = function(){
+            $http.get(urls.api+"/account/company/detail").
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.company_id = data.data._id.$oid;
+                        if(data.data.abbreviation != null){
+                            $scope.url = '/company/'+$scope.company_id+'/create/first';
+                        }
+                        else{
+                            $scope.url = '/company/'+$scope.company_id+'/no';
+                        }
+                    }
+                });
+        };
+        $scope.get_company_info();
     }]).
     controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','$location','HeaderService',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$location,$header){
