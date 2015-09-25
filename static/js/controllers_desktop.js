@@ -1667,12 +1667,12 @@ angular.module('chuangplus.controllers', []).
             'others':"其他"
         };
         $scope.param = {
-            field:"",
+            field: null,
             pageCount: 1,
             currentPage: 1
         };
-        $scope.scale_change = true;
-        $scope.field_change = true;
+        $scope.scale_change = false;
+        $scope.field_change = false;
         $scope.choose = function(field){
             if($scope.param.field == field){
                 $scope.field_change = false;
@@ -1703,21 +1703,28 @@ angular.module('chuangplus.controllers', []).
             if(data != null){
                 param = '?';
                 if(data.hasOwnProperty('page')){
-                    if($scope.scale_change && $scope.field_change)
+                    if($scope.scale_change || $scope.field_change)
+                    {
+                        $scope.scale_change = false;
+                        $scope.field_change = false;
                         param += "page=" + 1;
+                        $scope.param.currentPage = 1;
+                    }
                     else
                         param += "page=" + data.page;
                 }
-                if(data.hasOwnProperty('field')){
+                if(data.field != undefined && data.field != null){
                     param += "&field=" + data.field;
                 }
-                if(data.hasOwnProperty('scale')){
+                if(data.scale != undefined && data.scale != null){
                     param += "&scale=" + data.scale;
                 }
                 if(data.hasOwnProperty('auth_organization')){
 
                 }
             }
+            else
+                $scope.selectPage(1);
             $http.get(urls.api+"/account/company/list"+param).
                 success(function(data){
                 $scope.param.pageCount = data.page_number;
@@ -1745,29 +1752,37 @@ angular.module('chuangplus.controllers', []).
         $scope.scale_show = false;
         $scope.auth = false;
         $scope.show_field = function(){
-            $(".company-field").css({height:"200px"});
+            $(".field-list").slideDown("fast");
             $scope.field = true;
         };
         $scope.hide_field = function(){
-            $(".company-field").css({height:"40px"});
+            $(".field-list").slideUp("fast");
             $scope.field = false;
         };
+        $(".company-field").mouseenter($scope.show_field);
+        $(".company-field").mouseleave($scope.hide_field);
+
         $scope.show_scale = function(){
-            $(".company-scale").css({height:"130px"});
+            $(".scale-list").slideDown("fast");
             $scope.scale_show = true;
         };
         $scope.hide_scale = function(){
-            $(".company-scale").css({height:"40px"});
+            $(".scale-list").slideUp("fast");
             $scope.scale_show = false;
         };
+        $(".company-scale").mouseenter($scope.show_scale);
+        $(".company-scale").mouseleave($scope.hide_scale);
+
         $scope.show_auth = function(){
-            $(".company-auth").css({height:"500px"});
+            $(".organization-list").slideDown("fast");
             $scope.auth = true;
         };
         $scope.hide_auth = function(){
-            $(".company-auth").css({height:"40px"});
+            $(".organization-list").slideUp("fast");
             $scope.auth = false;
         };
+        $(".company-auth").mouseenter($scope.show_auth);
+        $(".company-auth").mouseleave($scope.hide_auth);
     }]).
     controller('DT_CompanyDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errorMsg){

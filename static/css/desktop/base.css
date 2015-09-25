@@ -2636,6 +2636,7 @@ form.financing_add input {
 #container #company_list .col-md-4 .search-tab .search-item p {
   background-color: rgba(191, 191, 191, 0.1);
   cursor: pointer;
+  margin-bottom: 5px;
 }
 #container #company_list .col-md-4 .search-tab .search-item input[type=checkbox] {
   cursor: pointer;
@@ -2656,6 +2657,9 @@ form.financing_add input {
   border-radius: 4px;
 }
 #container #company_list .col-md-4 .search-tab .search-item .field-list {
+  display: none;
+  padding-bottom: 10px;
+  padding-top: 10px;
   background-color: rgba(191, 191, 191, 0.1);
 }
 #container #company_list .col-md-4 .search-tab .search-item .field-list table tbody tr td {
@@ -2678,6 +2682,9 @@ form.financing_add input {
 }
 #container #company_list .col-md-4 .search-tab .search-item .scale-list {
   background-color: rgba(191, 191, 191, 0.1);
+  padding-bottom: 10px;
+  padding-top: 10px;
+  display: none;
 }
 #container #company_list .col-md-4 .search-tab .search-item .scale-list a {
   text-decoration: none;
@@ -2695,6 +2702,9 @@ form.financing_add input {
   color: #8f4e96;
 }
 #container #company_list .col-md-4 .search-tab .search-item .organization-list {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  display: none;
   background-color: rgba(191, 191, 191, 0.1);
 }
 #container #company_list .col-md-8 {
