@@ -152,7 +152,6 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.error = $errMsg.format_error("登录成功",data.error);
-                        $scope.submit_loading = false;
                         setTimeout(function(){window.location.href='/'},1000);
                     }
                     else{
@@ -161,6 +160,7 @@ angular.module('chuangplus.controllers', []).
                             $errMsg.remove_error($scope.error);
                         },2000);
                     }
+                    $scope.submit_loading = false;
                 });
         };
         $scope.refresh();
@@ -218,6 +218,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $csrf.set_csrf($scope.reg_info);
+                        $scope.submit_loading = true;
                         $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
                             success(function(data){
                                 if(data.error.code == 1){
@@ -234,6 +235,7 @@ angular.module('chuangplus.controllers', []).
                                     $scope.error = $errMsg.format_error("",data.error);
                                     setTimeout($scope.hide_error,2000);
                                 }
+                                $scope.submit_loading = false;
                         });
                     }
                     else{
@@ -243,6 +245,7 @@ angular.module('chuangplus.controllers', []).
             }
             else{
                 $csrf.set_csrf($scope.reg_info);
+                $scope.submit_loading = true;
                 $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
                     success(function(data){
                         if(data.error.code == 1){
@@ -253,6 +256,7 @@ angular.module('chuangplus.controllers', []).
                             $scope.error = $errMsg.format_error("",data.error);
                             setTimeout($scope.hide_error,2000);
                         }
+                        $scope.submit_loading = false;
                 });
             }
         };
@@ -1560,6 +1564,7 @@ angular.module('chuangplus.controllers', []).
             if($scope.position.end_time != ''){
                 $scope.position.end_time = $filter('date')($scope.position.end_time, 'yyyy-MM-dd');
             }
+            $scope.submit_loading = true;
             $http.post(urls.api+"/position/create", $.param($scope.position)).
                 success(function(data){
                     if(data.error.code == 1){
@@ -1572,6 +1577,7 @@ angular.module('chuangplus.controllers', []).
                         setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
                     $scope.disable_submit = false;
+                    $scope.submit_loading = false;
                 });
         };
         $scope.set_position = function(){
@@ -1580,6 +1586,7 @@ angular.module('chuangplus.controllers', []).
             if($scope.position.end_time != ''){
                 $scope.position.end_time = $filter('date')($scope.position.end_time, 'yyyy-MM-dd');
             }
+            $scope.submit_loading = true;
             $http.post(urls.api+"/position/"+$scope.position_id+"/set", $.param($scope.position)).
                 success(function(data){
                     if(data.error.code == 1){
@@ -1591,6 +1598,7 @@ angular.module('chuangplus.controllers', []).
                         setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
                     $scope.disable_submit = false;
+                    $scope.submit_loading = false;
                 });
 
         };
@@ -2283,6 +2291,7 @@ angular.module('chuangplus.controllers', []).
             }
             $scope.companyinfo.welfare_tags = $scope.companyinfo.welfare_tags.substring(0,$scope.companyinfo.welfare_tags.length-1);
             $csrf.set_csrf($scope.companyinfo);
+            $scope.submit_loading = true;
                 $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
                 success(function(data){
                     if(data.error.code == 1){
@@ -2294,6 +2303,7 @@ angular.module('chuangplus.controllers', []).
                         $scope.error = $errMsg.format_error('',data.error);
                         setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
+                    $scope.submit_loading = false;
                 });
         };
         $scope.get_company_info();
