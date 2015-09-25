@@ -2606,6 +2606,8 @@ form.financing_add input {
 #container #company_list {
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   margin-top: 30px;
+  min-width: 960px;
+  display: -webkit-box;
 }
 #container #company_list .col-md-4 {
   width: 210px;
@@ -3665,9 +3667,6 @@ form.financing_add input {
   outline-color: #98769E;
   outline-width: 1px;
   border-radius: 4px;
-}
-#container #first-step .info1 .next-area .submit-loading {
-  width: 93% !important;
 }
 #container #first-step .info1 .next-area i {
   position: absolute;
