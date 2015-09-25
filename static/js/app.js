@@ -47,6 +47,7 @@ angular.module('chuangplus', [
         $routeProvider.when('/password/set', {templateUrl: urls.part_desktop + '/password/set.html', controller: 'DT_SetPwdCtrl', title: '设置密码'});
         $routeProvider.when('/password/finish', {templateUrl: urls.part_desktop + '/password/finish.html', controller: 'DT_FinishPwdCtrl', title: '完成密码找回'});
 
+        $routeProvider.when('/admin/manager',{templateUrl: urls.part_admin + '/manager.html', controller: 'DT_ManagerCtrl', title: '管理员页面'});
         //intern user
         $routeProvider.when('/intern/information', {templateUrl: urls.part_desktop + '/intern/information.html', controller: 'DT_InformationCtrl', title: 'InformationPage'});
         //$routeProvider.when('/intern/enter', {templateUrl: urls.part_desktop + '/intern/enter.html', controller: 'DT_InternEnterCtrl', title: 'EnterPage'});

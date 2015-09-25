@@ -1,0 +1,45 @@
+<div id="container">
+	<div id="manager">
+        <div class="col-md-8">
+		<ul ng-repeat="company in company_list">
+                <a href="/company/[[company._id.$oid]]/detail">
+                <li>
+                    <div class="company-info">
+                        <div class="auth" >
+                            <p>[[company.auth_organization]]</p>
+                        </div>
+                        <div class="bottom-side">
+                        
+                        <div class="item-pic">
+                            <img src="/api/file/[[company.logo_id]]/download" class="company-pic" alt="图片">
+                                </div>
+                        <div class="info">
+                            
+                        <div class="item-info info-1">
+                            <div class="vertical-center">
+                            <p class="abbreviation">[[company.abbreviation]]</p>
+                            <p class="brief_introduction">[[company.brief_introduction]]</p>
+                            </div>
+                        </div>
+                        <div class="item-info info-2">
+                            <div class="vertical-center">
+                            <p class="index">融资情况：</p>
+                            <div ng-if="financing_list.length!=0">
+                                <p class="txt"ng-repeat="financing in company.financing_list">[[financing.stage_value]]&nbsp;&nbsp;[[financing.organization]]&nbsp;&nbsp;[[financing.amount_value]]</p>
+                            </div>
+                            <div ng-if="financing_list.length==0">
+                                <p class="txt">公司暂未融资</p>
+                            </div>
+                        </div>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                </li>
+                </a>
+            </ul>
+            <page ng-show="param.pageCount!=1" num-pages="param.pageCount" current-page="param.currentPage" on-select-page="selectPage(page)">
+            </page>
+        </div>
+	</div>
+</div>

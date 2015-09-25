@@ -4556,6 +4556,195 @@ body > #wrap_no_header_footer #main-container {
   vertical-align: middle;
   margin-left: 8px;
 }
+#container {
+  margin: 0 auto;
+  display: block;
+}
+#container #manager {
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  margin-top: 30px;
+  min-width: 960px;
+  display: -webkit-box;
+}
+#container #manager .col-md-8 {
+  width: 750px;
+  min-height: 500px;
+}
+#container #manager .col-md-8 ul li {
+  position: relative;
+  list-style-type: none;
+  background-color: #FFFFFF;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  height: 130px;
+}
+#container #manager .col-md-8 ul li .company-info {
+  margin-top: 0px;
+  padding: 20px 10px 20px 15px;
+  width: 100%;
+  height: 130px;
+}
+#container #manager .col-md-8 ul li .company-info .auth {
+  text-align: right;
+  width: 100%;
+  height: 15px;
+  float: left;
+}
+#container #manager .col-md-8 ul li .company-info .auth p {
+  font-size: 12px;
+  color: #8f4e96;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side {
+  width: 100%;
+  height: 90px;
+  float: left;
+  margin-top: -15px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .item-pic {
+  float: left;
+  width: 90px;
+  height: 90px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .item-pic .company-pic {
+  width: 100%;
+  height: 100%;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info {
+  width: 600px;
+  float: left;
+  padding: 10px 0 10px 0;
+  height: 90px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .line {
+  width: 1px;
+  height: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  float: left;
+  border-left: 1px solid #aaaaaa;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .line-img1 {
+  height: 130px;
+  float: left;
+  top: 0;
+  position: absolute;
+  opacity: 0.6;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .line-img2 {
+  height: 130px;
+  float: left;
+  top: 0;
+  position: absolute;
+  right: 200px;
+  opacity: 0.6;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info.info-1 {
+  width: 125px;
+  text-align: center;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info.info-1 p {
+  width: 100%;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info.info-2 {
+  width: 105px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info.info-3 {
+  width: 175px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .vertical-center {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0 10px 0 15px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info {
+  float: left;
+  height: 100%;
+  display: table;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info .abbreviation {
+  font-size: 1.3em;
+  color: black;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info .brief_introduction {
+  color: #707070;
+  font-size: 12px;
+  margin-top: -10px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info .label-1 img {
+  width: 11px;
+  height: 11px;
+  float: left;
+  margin-right: 5px;
+  margin-top: 2px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info .label-1 p {
+  color: #707070;
+  font-size: 10px;
+  margin-bottom: 5px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info .label-1 .last-p {
+  margin-bottom: 0;
+  float: left;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info .position_number {
+  font-size: 1.1em;
+  color: black;
+  text-align: left;
+  margin-left: 23px;
+  margin-bottom: 5px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info .position_tags {
+  margin: 0 auto;
+  margin-top: 0;
+  margin-left: 23px;
+  width: 135px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info .position_tags .tags {
+  width: 40px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .welfare_tags {
+  width: 138px;
+  float: left;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .welfare_tags .tags {
+  width: 64px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .tags {
+  border-radius: 10px;
+  padding: 0 8px 0 8px;
+  background-color: rgba(143, 78, 150, 0.1);
+  color: #707070;
+  font-size: 12px;
+  margin-right: 5px;
+  float: left;
+  margin-bottom: 5px;
+  text-align: center;
+}
+#container #manager .col-md-8 ul li .company-info:hover {
+  background-color: rgba(243, 243, 243, 0.53);
+}
+#container #manager .col-md-8 ul.pagination {
+  float: right;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
+}
+#container #manager .col-md-8 ul.pagination li {
+  border: none;
+}
+#container #manager .col-md-8 ul.pagination li a {
+  cursor: pointer;
+}
+#container #manager .col-md-8 ul.pagination li a span {
+  color: #707070;
+}
+#container #manager .col-md-8 .pagination > .active > a {
+  background-color: #8f4e96;
+  border-color: #98769E;
+}
 body {
   background-color: #f0f0f0;
 }
