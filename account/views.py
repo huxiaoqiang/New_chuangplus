@@ -296,7 +296,7 @@ def check_userinfo_all_complete(request):
         re["error"] = error(3,"error,need GET!")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-user_permission('login')
+@user_permission('login')
 def check_userinfo_complete(request):
     re = dict()
     if request.method == "GET":
@@ -1167,15 +1167,15 @@ def get_submit_list_intern(request,position_id):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 TYPE = ('technology','product','design','operate','marketing','functions','others')
-@user_permission('login')
+#user_permission('login')
 def search_submit_intern(request):
     re = dict()
     if request.method == 'GET':
         type = request.GET.get('position_type', '')
         processed = request.GET.get('processed','')
         try:
-            company = Companyinfo.objects.get(username=request.user.username)
-            #company = Companyinfo.objects.get(username='tsinghuachuangplus')
+            #company = Companyinfo.objects.get(username=request.user.username)
+            company = Companyinfo.objects.get(username='tsinghuachuangplus')
         except:
             re["error"] = error(105,"company does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')

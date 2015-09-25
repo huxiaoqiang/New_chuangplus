@@ -19,7 +19,7 @@
             .vertical-center{
                 display: table-cell;
                 vertical-align: middle;
-                padding: 0 10px 0 15px;
+                padding: 0 10px 0 10px;
             }
             .line{
                 width: 1px;
@@ -71,19 +71,27 @@
                 float: left;
                 display: table;
                 height: 100%;
-                padding: 0 5px 0 5px;
+                padding: 0 10px 0 10px;
                 .vertical-center{
                     padding-top: 5px;
+                }
+                .tags{
+                    margin-right: 0;
+                    margin-bottom: 5px;
                 }
             }
             .item-label.label-1{
                 width: 183px;
+                .vertical-center{
+                    padding-right: 0;
+                }
                 .tags{
                     width: 64px;
+                    margin-right: 10px;
                 }
             }
             .item-label.label-2{
-                width: 120px;
+                width: 130px;
                 img{
                     width: 13px;
                     height: 13px;
@@ -99,7 +107,7 @@
                 }
             }
             .item-label.label-3{
-                width: 170px;
+                width: 180px;
                 p{
                     font-size: 12px;
                     color: #707070;
@@ -114,25 +122,32 @@
                     }
                 }
             }
-            .position-addr{
-                float: left;
+            .addr-img{
+                float:left;
                 height: 100%;
                 display: table;
-                width: 180px;
-                img{
-                    height: 30%;
-                    padding: 5px 5px 5px 5px;
-                    float: left;
+                width: 30px;
+                .vertical-center{
+                    padding-right: 0;
                 }
-                .addr{
-                    float: left;
-                    font-size: 12px;
-                    width:121px;
-                    p{
-                        margin-bottom: 0;
-                    }
+                img{
+                    height: 20px;
                 }
             }
+            .addr{
+                height: 100%;
+                display: table;
+                float: left;
+                font-size: 12px;
+                width:150px;
+                .vertical-center{
+                    padding-left: 10px; 
+                }
+                p{
+                    margin-bottom: 0;
+                }
+            }
+            
             .position-state{
                 float: right;
                 display: table;
@@ -188,10 +203,12 @@
         }
     }
     .position-dscrpt{
-        width: 100%;
+        width: 80%;
         margin-top: 20px;
+        float: left;
+        padding: 0 15px 0 15px;
         .dscrpt-title{
-            width: 60%;
+            width: 100%;
             height: 35px;
             span{
                 font-size: 16px;
@@ -262,6 +279,8 @@
     .submit_favor{
         float: left;
         margin-top: 10px;
+        width: 80%;
+        padding-left: 15px;
         span{
             background-color: #8f4e96;
             border-radius: 4px;
