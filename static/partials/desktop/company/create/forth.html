@@ -53,7 +53,10 @@
                 <div style="clear: both"></div>
             </div>
             <input type="button" class="pre-button btn" value="上一步" ng-click="pre_step()">
-            <input type="submit" class="next-button btn" value="完成提交">
+            <div class="next-area">
+                <input type="submit" value="完成提交" class="btn" >
+                <i  class='fa fa-spinner fa-spin' ng-show="submi_loading"></i>
+            </div>
             </form>
         </div>
     </div>

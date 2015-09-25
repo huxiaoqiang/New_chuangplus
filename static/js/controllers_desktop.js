@@ -2441,6 +2441,7 @@ angular.module('chuangplus.controllers', []).
                 return;
             }
              $csrf.set_csrf($scope.companyinfo);
+             $scope.submit_loading = true;
                 $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
                 success(function(data){
                     if(data.error.code == 1){
@@ -2452,6 +2453,7 @@ angular.module('chuangplus.controllers', []).
                         $scope.error = $errMsg.format_error('',data.error);
                         setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
+                    $scope.submit_loading = false;
                 });
         };
 
@@ -2483,6 +2485,7 @@ angular.module('chuangplus.controllers', []).
                 return;
             }
              $csrf.set_csrf($scope.companyinfo);
+             $scope.submit_loading = true;
                 $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
                 success(function(data){
                     if(data.error.code == 1){
@@ -2494,6 +2497,7 @@ angular.module('chuangplus.controllers', []).
                         $scope.error = $errMsg.format_error('',data.error);
                         setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
+                    $scope.submit_loading = false;
                 });
         };
     }]).
@@ -2681,6 +2685,7 @@ angular.module('chuangplus.controllers', []).
                 return;
             }
             $scope.companyinfo.info_complete = true;
+            $scope.submit_loading = true;
             $csrf.set_csrf($scope.companyinfo);
             $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
                 success(function(data){
@@ -2693,6 +2698,7 @@ angular.module('chuangplus.controllers', []).
                         $scope.error = $errMsg.format_error('',data.error);
                         setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
+                    $scope.submit_loading = false;
                 });
         };
     }]).
