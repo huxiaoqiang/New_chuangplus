@@ -378,9 +378,42 @@ angular.module('chuangplus.controllers', []).
       };
       $scope.refresh();
     }]).
-    controller('DT_SetPwdCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','$cookieStore', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $cookieStore){
+    controller('DT_SetPwdCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','$cookieStore','ErrorService',
+      function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $cookieStore,$errMsg){
       console.log('DT_SetPwdCtrl');
       $scope.email = $cookieStore.get("email");
+      $scope.pass_verify = false;
+      $scope.check_correct_code = function(){
+        var param = {
+            'input_code': $scope.set.verifycode,
+            "csrfmiddlewaretoken" : $csrf.val()
+        };
+        $http.post(urls.api+"/account/verifycode", $.param(param)).
+            success(function(data){
+                $scope.pass_verify = data.pass_verify;
+                return data.pass_verify;
+            });
+      };
+      $scope.setpwd = function(){
+        if($scope.pass_verify==false){
+            $scope.error = $errMsg.format_error("邮箱验证码错误",{code:"-1"});
+            return;
+        }
+        var param = {
+           'input_code': $scope.set.verifycode,
+            "csrfmiddlewaretoken" : $csrf.val(),
+            "email" : $scope.email
+        };
+        $http.post(urls.api+"/account/password/set_withcode").
+          success(function(data){
+              if(data.error.code == 1){
+                  window.location.href="/password/finish";
+              }
+              else{
+                  $scope.error = $errMsg.format_error("",data.error);
+              }
+            });
+      };
     }]).
     controller('DT_FinishPwdCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_FinishPwdCtrl');
