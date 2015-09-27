@@ -699,11 +699,11 @@ body > #wrap {
 }
 #container #pisition-list .col-md-8 ul li .favor-list-item .middle-block .info .tags {
   border-radius: 10px;
-  padding: 0 8px 0 8px;
+  padding: 0 8px 0 6px;
   background-color: rgba(143, 78, 150, 0.1);
   color: #707070;
   font-size: 12px;
-  margin-right: 5px;
+  margin-right: 1px;
   float: left;
   margin-bottom: 5px;
   text-align: center;
@@ -1124,7 +1124,7 @@ form.financing_add input {
 #container #edit_position .datepicker {
   position: absolute;
   width: 17%;
-  top: 405px;
+  top: 306px;
   left: 259px;
 }
 #container #edit_position .form-position {
