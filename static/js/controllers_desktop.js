@@ -1615,6 +1615,7 @@ angular.module('chuangplus.controllers', []).
                     }
                 });
             };
+        $scope.get_company_info();
         $scope.submit_position = function(){
             if($scope.position_id == 'new'){
                 $scope.create_position();
