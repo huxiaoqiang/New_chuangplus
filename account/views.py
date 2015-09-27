@@ -940,7 +940,7 @@ def send_email(request):
             return HttpResponse(json.dumps(re), content_type = 'application/json')
 
         try:
-            Userinfo.objects.get(email = email)
+            User.objects.get(email = email)
         except:
             re['error'] = error(103, "user does not exist")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
