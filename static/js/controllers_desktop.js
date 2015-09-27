@@ -400,11 +400,11 @@ angular.module('chuangplus.controllers', []).
             return;
         }
         var param = {
-           'input_code': $scope.set.verifycode,
+           "input_code": $scope.set.verifycode,
             "csrfmiddlewaretoken" : $csrf.val(),
             "email" : $scope.email
         };
-        $http.post(urls.api+"/account/password/set_withcode").
+        $http.post(urls.api+"/account/password/set_withcode", $.param(param)).
           success(function(data){
               if(data.error.code == 1){
                   window.location.href="/password/finish";
