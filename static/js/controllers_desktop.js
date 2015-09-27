@@ -1603,6 +1603,18 @@ angular.module('chuangplus.controllers', []).
         console.log('DT_CompanyPositionEditCtrl');
         $scope.company_id = $routeParams.company_id;
         $scope.position_id = $routeParams.position_id;
+        $scope.get_company_info = function(){
+            $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.companyinfo = data.data;
+                        if($scope.companyinfo.info_complete == false){
+                            $scope.error = $errMsg.format_error("公司信息不完整，不能发布职位",{code:"-1"});
+                            setTimeout(function(){window.location.href="/company/"+$scope.company_id+"/create/first"},2000);
+                        }
+                    }
+                });
+            };
         $scope.submit_position = function(){
             if($scope.position_id == 'new'){
                 $scope.create_position();
