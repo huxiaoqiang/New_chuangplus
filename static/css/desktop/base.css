@@ -2606,6 +2606,8 @@ form.financing_add input {
 #container #company_list {
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   margin-top: 30px;
+  min-width: 960px;
+  display: -webkit-box;
 }
 #container #company_list .col-md-4 {
   width: 210px;
@@ -2634,6 +2636,7 @@ form.financing_add input {
 #container #company_list .col-md-4 .search-tab .search-item p {
   background-color: rgba(191, 191, 191, 0.1);
   cursor: pointer;
+  margin-bottom: 5px;
 }
 #container #company_list .col-md-4 .search-tab .search-item input[type=checkbox] {
   cursor: pointer;
@@ -2654,6 +2657,9 @@ form.financing_add input {
   border-radius: 4px;
 }
 #container #company_list .col-md-4 .search-tab .search-item .field-list {
+  display: none;
+  padding-bottom: 10px;
+  padding-top: 10px;
   background-color: rgba(191, 191, 191, 0.1);
 }
 #container #company_list .col-md-4 .search-tab .search-item .field-list table tbody tr td {
@@ -2676,6 +2682,9 @@ form.financing_add input {
 }
 #container #company_list .col-md-4 .search-tab .search-item .scale-list {
   background-color: rgba(191, 191, 191, 0.1);
+  padding-bottom: 10px;
+  padding-top: 10px;
+  display: none;
 }
 #container #company_list .col-md-4 .search-tab .search-item .scale-list a {
   text-decoration: none;
@@ -2693,6 +2702,9 @@ form.financing_add input {
   color: #8f4e96;
 }
 #container #company_list .col-md-4 .search-tab .search-item .organization-list {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  display: none;
   background-color: rgba(191, 191, 191, 0.1);
 }
 #container #company_list .col-md-8 {
@@ -3666,13 +3678,10 @@ form.financing_add input {
   outline-width: 1px;
   border-radius: 4px;
 }
-#container #first-step .info1 .next-area .submit-loading {
-  width: 93% !important;
-}
 #container #first-step .info1 .next-area i {
   position: absolute;
   color: white;
-  right: 39px;
+  right: 38px;
   top: 9px;
   font-size: 15px;
 }
@@ -3796,6 +3805,33 @@ form.financing_add input {
   width: 20px;
   height: 20px;
 }
+#container #second-step .info2 .right-info .next-area {
+  position: absolute;
+  bottom: -60px;
+  left: 0;
+  width: 150px;
+  color: white;
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  outline-width: 1px;
+  border-radius: 4px;
+}
+#container #second-step .info2 .right-info .next-area .submit-loading {
+  width: 93% !important;
+}
+#container #second-step .info2 .right-info .next-area i {
+  position: absolute;
+  color: white;
+  right: 35px;
+  top: 7px;
+  font-size: 18px;
+}
+#container #second-step .info2 .right-info .next-area input {
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  width: 100%;
+  height: 100%;
+}
 #container #second-step .info2 .right-info input.next-button {
   position: absolute;
   bottom: -60px;
@@ -3842,6 +3878,33 @@ form.financing_add input {
   color: white;
   left: 30%;
   background-color: #707070;
+}
+#container #third-step .info3 .next-area {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  width: 150px;
+  color: white;
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  outline-width: 1px;
+  border-radius: 4px;
+}
+#container #third-step .info3 .next-area .submit-loading {
+  width: 93% !important;
+}
+#container #third-step .info3 .next-area i {
+  position: absolute;
+  color: white;
+  right: 35px;
+  top: 7px;
+  font-size: 18px;
+}
+#container #third-step .info3 .next-area input {
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  width: 100%;
+  height: 100%;
 }
 #container #third-step .info3 input.next-button {
   position: absolute;
@@ -3902,6 +3965,33 @@ form.financing_add input {
   background-color: #8f4e96;
   outline-color: #98769E;
   outline-width: 1px;
+}
+#container #forth-step .info4 .next-area {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  width: 150px;
+  color: white;
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  outline-width: 1px;
+  border-radius: 4px;
+}
+#container #forth-step .info4 .next-area .submit-loading {
+  width: 93% !important;
+}
+#container #forth-step .info4 .next-area i {
+  position: absolute;
+  color: white;
+  right: 28px;
+  top: 7px;
+  font-size: 18px;
+}
+#container #forth-step .info4 .next-area input {
+  background-color: #8f4e96;
+  outline-color: #98769E;
+  width: 100%;
+  height: 100%;
 }
 #container #forth-step .info4 .add-member img {
   height: 20px;
@@ -4475,6 +4565,195 @@ body > #wrap_no_header_footer #main-container {
 .btn-crop img {
   vertical-align: middle;
   margin-left: 8px;
+}
+#container {
+  margin: 0 auto;
+  display: block;
+}
+#container #manager {
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  margin-top: 30px;
+  min-width: 960px;
+  display: -webkit-box;
+}
+#container #manager .col-md-8 {
+  width: 750px;
+  min-height: 500px;
+}
+#container #manager .col-md-8 ul li {
+  position: relative;
+  list-style-type: none;
+  background-color: #FFFFFF;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  height: 130px;
+}
+#container #manager .col-md-8 ul li .company-info {
+  margin-top: 0px;
+  padding: 20px 10px 20px 15px;
+  width: 100%;
+  height: 130px;
+}
+#container #manager .col-md-8 ul li .company-info .auth {
+  text-align: right;
+  width: 100%;
+  height: 15px;
+  float: left;
+}
+#container #manager .col-md-8 ul li .company-info .auth p {
+  font-size: 12px;
+  color: #8f4e96;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side {
+  width: 100%;
+  height: 90px;
+  float: left;
+  margin-top: -15px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .item-pic {
+  float: left;
+  width: 90px;
+  height: 90px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .item-pic .company-pic {
+  width: 100%;
+  height: 100%;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info {
+  width: 600px;
+  float: left;
+  padding: 10px 0 10px 0;
+  height: 90px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .line {
+  width: 1px;
+  height: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  float: left;
+  border-left: 1px solid #aaaaaa;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .line-img1 {
+  height: 130px;
+  float: left;
+  top: 0;
+  position: absolute;
+  opacity: 0.6;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .line-img2 {
+  height: 130px;
+  float: left;
+  top: 0;
+  position: absolute;
+  right: 200px;
+  opacity: 0.6;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info.info-1 {
+  width: 125px;
+  text-align: center;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info.info-1 p {
+  width: 100%;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info.info-2 {
+  width: 105px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info.info-3 {
+  width: 175px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .vertical-center {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0 10px 0 15px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info {
+  float: left;
+  height: 100%;
+  display: table;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info .abbreviation {
+  font-size: 1.3em;
+  color: black;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info .brief_introduction {
+  color: #707070;
+  font-size: 12px;
+  margin-top: -10px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info .label-1 img {
+  width: 11px;
+  height: 11px;
+  float: left;
+  margin-right: 5px;
+  margin-top: 2px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info .label-1 p {
+  color: #707070;
+  font-size: 10px;
+  margin-bottom: 5px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info .label-1 .last-p {
+  margin-bottom: 0;
+  float: left;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info .position_number {
+  font-size: 1.1em;
+  color: black;
+  text-align: left;
+  margin-left: 23px;
+  margin-bottom: 5px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info .position_tags {
+  margin: 0 auto;
+  margin-top: 0;
+  margin-left: 23px;
+  width: 135px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info .position_tags .tags {
+  width: 40px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .welfare_tags {
+  width: 138px;
+  float: left;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .welfare_tags .tags {
+  width: 64px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .tags {
+  border-radius: 10px;
+  padding: 0 8px 0 8px;
+  background-color: rgba(143, 78, 150, 0.1);
+  color: #707070;
+  font-size: 12px;
+  margin-right: 5px;
+  float: left;
+  margin-bottom: 5px;
+  text-align: center;
+}
+#container #manager .col-md-8 ul li .company-info:hover {
+  background-color: rgba(243, 243, 243, 0.53);
+}
+#container #manager .col-md-8 ul.pagination {
+  float: right;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
+}
+#container #manager .col-md-8 ul.pagination li {
+  border: none;
+}
+#container #manager .col-md-8 ul.pagination li a {
+  cursor: pointer;
+}
+#container #manager .col-md-8 ul.pagination li a span {
+  color: #707070;
+}
+#container #manager .col-md-8 .pagination > .active > a {
+  background-color: #8f4e96;
+  border-color: #98769E;
 }
 body {
   background-color: #f0f0f0;

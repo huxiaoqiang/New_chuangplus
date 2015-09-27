@@ -7,6 +7,7 @@ angular.module('chuangplus.controllers', []).
         console.log('HomepageCtrl');
         $scope.role = $user.role();
         $scope.username = $user.username();
+        $scope.company_id='';
         $scope.myInterval = 3000;
         $scope.slides1 = [
             {image:"/static/image/logo/banner-1.jpg"},
@@ -20,6 +21,21 @@ angular.module('chuangplus.controllers', []).
         ];
         $scope.scan = false;
         $scope.search = false;
+        $scope.get_company_info = function(){
+            $http.get(urls.api+"/account/company/detail").
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.company_id = data.data._id.$oid;
+                        if(data.data.abbreviation != null){
+                            $scope.url = '/company/'+$scope.company_id+'/create/first';
+                        }
+                        else{
+                            $scope.url = '/company/'+$scope.company_id+'/no';
+                        }
+                    }
+                });
+        };
+        $scope.get_company_info();
     }]).
     controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','$location','HeaderService',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$location,$header){
@@ -1651,12 +1667,12 @@ angular.module('chuangplus.controllers', []).
             'others':"其他"
         };
         $scope.param = {
-            field:"",
+            field: null,
             pageCount: 1,
             currentPage: 1
         };
-        $scope.scale_change = true;
-        $scope.field_change = true;
+        $scope.scale_change = false;
+        $scope.field_change = false;
         $scope.choose = function(field){
             if($scope.param.field == field){
                 $scope.field_change = false;
@@ -1687,21 +1703,28 @@ angular.module('chuangplus.controllers', []).
             if(data != null){
                 param = '?';
                 if(data.hasOwnProperty('page')){
-                    if($scope.scale_change && $scope.field_change)
+                    if($scope.scale_change || $scope.field_change)
+                    {
+                        $scope.scale_change = false;
+                        $scope.field_change = false;
                         param += "page=" + 1;
+                        $scope.param.currentPage = 1;
+                    }
                     else
                         param += "page=" + data.page;
                 }
-                if(data.hasOwnProperty('field')){
+                if(data.field != undefined && data.field != null){
                     param += "&field=" + data.field;
                 }
-                if(data.hasOwnProperty('scale')){
+                if(data.scale != undefined && data.scale != null){
                     param += "&scale=" + data.scale;
                 }
                 if(data.hasOwnProperty('auth_organization')){
 
                 }
             }
+            else
+                $scope.selectPage(1);
             $http.get(urls.api+"/account/company/list"+param).
                 success(function(data){
                 $scope.param.pageCount = data.page_number;
@@ -1729,29 +1752,37 @@ angular.module('chuangplus.controllers', []).
         $scope.scale_show = false;
         $scope.auth = false;
         $scope.show_field = function(){
-            $(".company-field").css({height:"200px"});
+            $(".field-list").slideDown("fast");
             $scope.field = true;
         };
         $scope.hide_field = function(){
-            $(".company-field").css({height:"40px"});
+            $(".field-list").slideUp("fast");
             $scope.field = false;
         };
+        $(".company-field").mouseenter($scope.show_field);
+        $(".company-field").mouseleave($scope.hide_field);
+
         $scope.show_scale = function(){
-            $(".company-scale").css({height:"130px"});
+            $(".scale-list").slideDown("fast");
             $scope.scale_show = true;
         };
         $scope.hide_scale = function(){
-            $(".company-scale").css({height:"40px"});
+            $(".scale-list").slideUp("fast");
             $scope.scale_show = false;
         };
+        $(".company-scale").mouseenter($scope.show_scale);
+        $(".company-scale").mouseleave($scope.hide_scale);
+
         $scope.show_auth = function(){
-            $(".company-auth").css({height:"500px"});
+            $(".organization-list").slideDown("fast");
             $scope.auth = true;
         };
         $scope.hide_auth = function(){
-            $(".company-auth").css({height:"40px"});
+            $(".organization-list").slideUp("fast");
             $scope.auth = false;
         };
+        $(".company-auth").mouseenter($scope.show_auth);
+        $(".company-auth").mouseleave($scope.hide_auth);
     }]).
     controller('DT_CompanyDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errorMsg){
@@ -2469,6 +2500,7 @@ angular.module('chuangplus.controllers', []).
                 return;
             }
              $csrf.set_csrf($scope.companyinfo);
+             $scope.submit_loading = true;
                 $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
                 success(function(data){
                     if(data.error.code == 1){
@@ -2480,6 +2512,7 @@ angular.module('chuangplus.controllers', []).
                         $scope.error = $errMsg.format_error('',data.error);
                         setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
+                    $scope.submit_loading = false;
                 });
         };
 
@@ -2511,6 +2544,7 @@ angular.module('chuangplus.controllers', []).
                 return;
             }
              $csrf.set_csrf($scope.companyinfo);
+             $scope.submit_loading = true;
                 $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
                 success(function(data){
                     if(data.error.code == 1){
@@ -2522,6 +2556,7 @@ angular.module('chuangplus.controllers', []).
                         $scope.error = $errMsg.format_error('',data.error);
                         setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
+                    $scope.submit_loading = false;
                 });
         };
     }]).
@@ -2709,6 +2744,7 @@ angular.module('chuangplus.controllers', []).
                 return;
             }
             $scope.companyinfo.info_complete = true;
+            $scope.submit_loading = true;
             $csrf.set_csrf($scope.companyinfo);
             $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
                 success(function(data){
@@ -2721,6 +2757,7 @@ angular.module('chuangplus.controllers', []).
                         $scope.error = $errMsg.format_error('',data.error);
                         setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
+                    $scope.submit_loading = false;
                 });
         };
     }]).
@@ -2885,6 +2922,162 @@ angular.module('chuangplus.controllers', []).
         $scope.Enter_Xiniu = function(){
             window.location.href = '/';
         }
+    }]).
+    controller('DT_ManagerCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+        console.log('DT_ManagerCtrl');
+        $scope.company_list = {};
+        $scope.position_type = {
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+        };
+        $scope.scale = ["初创","快速发展","成熟"];
+        $scope.field_type={
+            'social':"社交",
+            'e-commerce':"电子商务",
+            'education':"教育",
+            'health_medical':"健康医疗",
+            'culture_creativity':"文化创意",
+            'living_consumption':"生活消费",
+            'hardware':"硬件",
+            'O2O':"O2O",
+            'others':"其他"
+        };
+        $scope.stage = {
+            "seed" :"种子轮",
+            "angel":"天使轮",
+            "A":"A轮",
+            "B":"B轮",
+            "C":"C轮",
+            "D_plus":"D及以上轮"
+        };
+        $scope.amount = {
+            "ten":"十万级",
+            "hundred":"百万级",
+            "thousand":"千万级",
+            "thousand_plus":"亿级"
+        };
+        $scope.param = {
+            field:"",
+            pageCount: 1,
+            currentPage: 1
+        };
+        $scope.scale_change = true;
+        $scope.field_change = true;
+        $scope.choose = function(field){
+            if($scope.param.field == field){
+                $scope.field_change = false;
+            }
+            else{
+                $scope.field_change = true;
+                $scope.param.field = field;
+            }
+            $scope.get_company_list($scope.param);
+        };
+        $scope.choose_scale = function(scale){
+            if($scope.param.scale == scale){
+                $scope.scale_change = false;
+            }
+            else{
+                $scope.param.scale = scale;
+                $scope.scale_change = true;
+            }
+            $scope.get_company_list($scope.param);
+        };
+        $scope.selectPage = function(page){
+            $scope.param.page = page;
+            $scope.get_company_list($scope.param);
+        };
+        $scope.get_company_list = function(data){
+            $scope.loading = true;
+            var param = '';
+            if(data != null){
+                param = '?';
+                if(data.hasOwnProperty('page')){
+                    if($scope.scale_change && $scope.field_change)
+                        param += "page=" + 1;
+                    else
+                        param += "page=" + data.page;
+                }
+                if(data.hasOwnProperty('field')){
+                    param += "&field=" + data.field;
+                }
+                if(data.hasOwnProperty('scale')){
+                    param += "&scale=" + data.scale;
+                }
+                if(data.hasOwnProperty('auth_organization')){
+
+                }
+            }
+            $http.get(urls.api+"/account/company/list"+param).
+                success(function(data){
+                $scope.param.pageCount = data.page_number;
+                if(data.error.code == 1){
+                    $scope.company_list = data.data;
+                    for(var i=0;i<$scope.company_list.length;i++){
+                        $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
+                        $scope.company_list[i].scale_value = $scope.scale[$scope.company_list[i].scale];
+                        $scope.company_list[i].field_type = $scope.field_type[$scope.company_list[i].field];
+                        $scope.company_list[i].position_type_value = {};
+                        for(var j = 0; j < $scope.company_list[i].position_type.length; j ++){
+                            $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
+                        }
+                        /*$http.get(urls.api+"/account/financing/"+$scope.company_list[i]._id.$oid+"/list").
+                        success(function(data){
+                            if(data.error.code == 1){
+                                $scope.financing_list = data.data;
+                                $scope.company_list[i].financing_list = {};
+                                for(var j=0;j<$scope.financing_list.length;j++){
+                                    $scope.company_list[i].financing_list[j].stage_value = $scope.stage[$scope.financing_list[j].stage];
+                                    $scope.company_list[i].financing_list[j].amount_value = $scope.amount[$scope.financing_list[j].amount];
+                                }
+                            }
+                            else{
+                                $scope.error = $errMsg.format_error('',data.error);
+                            }
+                        });*/
+                    }
+                }
+                else{
+                     $scope.error = $errMsg.format_error('',data.error);
+                }
+                $scope.loading = false;
+            });
+        };
+        $scope.get_company_list();
+        //控制左边筛选框的位置
+        $scope.field = false;
+        $scope.scale_show = false;
+        $scope.auth = false;
+        $scope.show_field = function(){
+            $(".company-field").css({height:"200px"});
+            $scope.field = true;
+        };
+        $scope.hide_field = function(){
+            $(".company-field").css({height:"40px"});
+            $scope.field = false;
+        };
+        $scope.show_scale = function(){
+            $(".company-scale").css({height:"130px"});
+            $scope.scale_show = true;
+        };
+        $scope.hide_scale = function(){
+            $(".company-scale").css({height:"40px"});
+            $scope.scale_show = false;
+        };
+        $scope.show_auth = function(){
+            $(".company-auth").css({height:"500px"});
+            $scope.auth = true;
+        };
+        $scope.hide_auth = function(){
+            $(".company-auth").css({height:"40px"});
+            $scope.auth = false;
+        };
+
     }]).
     controller('DT_CompanyAccountCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', 'ErrorService',function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $errMsg){
         console.log('DT_CompanyAccountCtrl');
