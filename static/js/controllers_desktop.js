@@ -855,8 +855,8 @@ angular.module('chuangplus.controllers', []).
             $scope.get_submit_list();
         };
         $scope.processe = function(index){
-            if($scope.submit_list[index].process == true){
-                return
+            if($scope.submit_list[index].processed == true){
+                return;
             }
             $http.get(urls.api+"/account/company/"+ $scope.submit_list[index].position_id+"/user/"+$scope.submit_list[index].username+"/process").
                 success(function(data){
