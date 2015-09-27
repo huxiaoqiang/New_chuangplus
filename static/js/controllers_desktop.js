@@ -345,8 +345,7 @@ angular.module('chuangplus.controllers', []).
                     window.location.href = '/password/set';
                 }
                 else{
-                    alert(data.error.message);
-                    setTimeout(function(){location.href='/password/findpwd'},2000);
+                    $scope.error = $errMsg.format_error("",data.error);
                 }
             });
       };
@@ -399,10 +398,15 @@ angular.module('chuangplus.controllers', []).
             $scope.error = $errMsg.format_error("邮箱验证码错误",{code:"-1"});
             return;
         }
+        if($scope.set.password!=$scope.set.repassword){
+            $scope.error = $errMsg.format_error("两次输入密码不一致",{code:"-1"});
+            return;
+        }
         var param = {
            "input_code": $scope.set.verifycode,
             "csrfmiddlewaretoken" : $csrf.val(),
-            "email" : $scope.email
+            "email" : $scope.email,
+            "new_password" : $scope.set.password
         };
         $http.post(urls.api+"/account/password/set_withcode", $.param(param)).
           success(function(data){

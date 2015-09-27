@@ -222,6 +222,7 @@ def set_password_verifycode(request):
         input_code = request.POST.get('input_code', '')
         correct_code = request.session['correct_code']
         email = request.POST.get('email', '')
+        new_password = request.POST.get('new_password', '')
         if correct_code == '':
             re['error'] = error(271,"Email code is out of work")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -229,7 +230,6 @@ def set_password_verifycode(request):
             re['error'] = error(270,'Email code error')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-        new_password = request.POST.get('new_password', '')
         user = User.objects.get(email = email)
         if user is not None and user.is_active:
             user.set_password(new_password)
