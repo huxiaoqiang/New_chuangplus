@@ -32,9 +32,10 @@
                     <div class="line"></div>
                     <div class="item-label" >
                         <div class="vertical-center">
-                            <span class="tags">[[position.days_per_week]]天/周</span>
-                            <span class="tags">[[position.salary_min]]k-[[position.salary_max]]k</span>
-                            <span class="tags">至少[[position.internship_time]]个月</span>
+                            <span class="tags" ng-if="position.part_or_full_time==0">实习[[position.days_per_week]]天/周</span>
+                            <span class="tags" ng-if="position.part_or_full_time==1">全职</span>
+                            <span class="tags" >[[position.salary_min]]k-[[position.salary_max]]k</span>
+                            <span class="tags" ng-if="position.part_or_full_time==0">至少[[position.internship_time]]个月</span>
                         </div>
                     </div>
                     <div class="line"></div>
