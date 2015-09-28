@@ -9,6 +9,8 @@ from django.core.mail import send_mail
 from random import randint
 from bson.objectid import ObjectId
 from django.db.models import Q
+import urllib2,urllib2
+import json
 import traceback
 
 # Create your views here.
@@ -17,6 +19,7 @@ from position.models import *
 from app.common_api import check_email
 
 POSITIONS_PER_PAGE = 10
+url = "http://student.tsinghua.edu.cn/api/login"
 def register(request):
     re=dict()
     if request.method == "POST":
@@ -148,7 +151,49 @@ def check_email_exist(request):
         re['error'] = error(2,"error, need POST!")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-#login
+#login by tsinghua
+def login_by_tsinghua(request):
+    re = dict()
+    if request.method=="POST":
+
+        #Validate the captcha
+        session_captcha = request.session.get('captcha', '')
+        request_captcha = request.POST.get('captcha','')
+
+        if session_captcha == '' or request_captcha == '':
+            re['error'] = error(99,"Need captcha!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+        if session_captcha.upper() != request_captcha.upper():
+            re['error'] = error(101,'Captcha error!')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        username = request.POST.get('username','')
+        password = request.POST.get('password','')
+        if username == '' or password == '':
+            re['error'] = error(111,'username or password is empty!')
+            return HttpResponse(json.dumps(re),content_type = 'application/json')
+        data = {}
+        data['username'] = username
+        data['password'] = password
+        req = urllib2.Request(url,json.dumps(data))
+        conn = urllib2.urlopen(req)
+        map = json.loads(content)
+        is_succeed = map['error']['message']
+        if is_succed == "login success.":
+           # request.session['role'] = 0
+            re['error'] = error(1,'login succeed!')
+            re['role'] = 0
+            resp = HttpResponse(json.dumps(re),content_type = 'application/json')
+            #resp.set_cookie('username',username)
+            #resp.set_cookie('role',requeset.session['role'])
+            return resp
+        else:
+            re['error'] = error(108, 'username or password error!')
+    else:
+        re['error'] = error(2,'error,need post!')
+    return HttpResponse(json.dumps(re),content_type = 'application/json')
+        
+#login  
 def login(request):
     re = dict()
     if request.method=="POST":
@@ -177,7 +222,6 @@ def login(request):
             user = User.objects.get(username=username)
             request.session['role'] = 1 if user.is_staff else 0
             re['error'] = error(1, 'login succeed!')
-            #re['status'] = request.session['status']
             re['role'] = request.session['role']
             resp = HttpResponse(json.dumps(re), content_type = 'application/json')
             resp.set_cookie('username', username)
