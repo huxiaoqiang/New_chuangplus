@@ -1761,8 +1761,13 @@ angular.module('chuangplus.controllers', []).
                         param += "page=" + 1;
                         $scope.param.currentPage = 1;
                     }
+                    else if(data.page == 0)
+                        param += "page=1";
                     else
-                        param += "page=" + data.page;
+                        param += "page="+data.page;
+                }
+                else{
+                    param += "page=" + 1;
                 }
                 if(data.field != undefined && data.field != null){
                     param += "&field=" + data.field;
@@ -1774,8 +1779,6 @@ angular.module('chuangplus.controllers', []).
 
                 }
             }
-            else
-                $scope.selectPage(1);
             $http.get(urls.api+"/account/company/list"+param).
                 success(function(data){
                 $scope.param.pageCount = data.page_number;
@@ -1797,7 +1800,7 @@ angular.module('chuangplus.controllers', []).
                 $scope.loading = false;
             });
         };
-        $scope.get_company_list();
+        $scope.selectPage(1);
         //控制左边筛选框的位置
         $scope.field = false;
         $scope.scale_show = false;
