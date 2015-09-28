@@ -35,7 +35,7 @@ def upload_file(request):
                 re['error'] = error(15,"File size is bigger than 10M!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             if file_type in["memberavatar"]:
-                id = data['avatar_id']
+                avatar_id = data['avatar_id']
                 image = Image.open(file_obj)
                 #image.thumbnail(sizeBig)
                 image.save("original.png")
@@ -67,10 +67,7 @@ def upload_file(request):
                     re['error'] = error(16,'Company does not exist,fail to upload member avatar')
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
                 try:
-                    f = File.objects(id=id).get()
-                    file_obj_tmp = f.value
-                    img_tmp = Image.open(file_obj_tmp)
-                    img_tmp.save(category+'.png')
+                    f = File.objects.get(id = avatar_id)
                     f.value.replace(file_obj3.read(), content_type = file_obj.content_type)
                 except:
                     f = File(file_type = file_type,category = category)
