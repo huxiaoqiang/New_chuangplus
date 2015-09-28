@@ -636,20 +636,76 @@ body > #wrap {
 }
 #container #pisition-list .col-sm-4 {
   width: 210px;
-  float: left;
-  padding: 0 0 0 0;
 }
-#container #pisition-list .col-sm-4 .panel.panel-info {
-  border-color: #772B84;
-  margin-bottom: 10px;
+#container #pisition-list .col-sm-4 .search-tab {
+  width: 192px;
+  background-color: white;
+  height: 600px;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
+  top: 90px;
+  border-radius: 4px;
+  padding-top: 10px;
 }
-#container #pisition-list .col-sm-4 .panel.panel-info .panel-heading {
+#container #pisition-list .col-sm-4 .search-tab .search-item {
+  text-align: center;
+  transition: height 1s;
+  -moz-transition: height 1s;
+  -webkit-transition: height 1s;
+  -o-transition: height 1s;
+  padding: 5px 15px;
+}
+#container #pisition-list .col-sm-4 .search-tab .search-item p {
+  background-color: rgba(191, 191, 191, 0.1);
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+#container #pisition-list .col-sm-4 .search-tab .search-item .field-list {
+  display: none;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background-color: rgba(191, 191, 191, 0.1);
+}
+#container #pisition-list .col-sm-4 .search-tab .search-item .field-list table tbody tr td {
+  width: 80px;
+}
+#container #pisition-list .col-sm-4 .search-tab .search-item .field-list table tbody tr td a {
+  text-decoration: none;
+  color: #000000;
+}
+#container #pisition-list .col-sm-4 .search-tab .search-item .field-list table tbody tr td a.active {
+  background-color: #8f4e96;
   color: white;
-  background-color: #98679E;
-  border-color: #B73BB7;
+  border-radius: 4px;
 }
-#container #pisition-list .col-sm-4 .panel.panel-info .panel-body table td {
-  width: 10%;
+#container #pisition-list .col-sm-4 .search-tab .search-item .field-list table tbody tr td a.active:hover {
+  color: white;
+}
+#container #pisition-list .col-sm-4 .search-tab .search-item .field-list table tbody tr td a:hover {
+  color: #8f4e96;
+}
+#container #pisition-list .col-sm-4 .search-tab .search-item .type-list {
+  display: none;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background-color: rgba(191, 191, 191, 0.1);
+}
+#container #pisition-list .col-sm-4 .search-tab .search-item .type-list table tbody tr td {
+  width: 80px;
+}
+#container #pisition-list .col-sm-4 .search-tab .search-item .type-list table tbody tr td a {
+  text-decoration: none;
+  color: #000000;
+}
+#container #pisition-list .col-sm-4 .search-tab .search-item .type-list table tbody tr td a.active {
+  background-color: #8f4e96;
+  color: white;
+  border-radius: 4px;
+}
+#container #pisition-list .col-sm-4 .search-tab .search-item .type-list table tbody tr td a.active:hover {
+  color: white;
+}
+#container #pisition-list .col-sm-4 .search-tab .search-item .type-list table tbody tr td a:hover {
+  color: #8f4e96;
 }
 #container #pisition-list .col-md-8 {
   width: 750px;
@@ -658,6 +714,9 @@ body > #wrap {
 }
 #container #pisition-list .col-md-8 .loading {
   width: 100%;
+  height: 600px;
+  background-color: white;
+  padding-top: 128px;
   margin: 0 auto;
   background-color: #ffffff;
   text-align: center;

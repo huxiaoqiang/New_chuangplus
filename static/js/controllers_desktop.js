@@ -2868,11 +2868,45 @@ angular.module('chuangplus.controllers', []).
             '020':"O2O",
             'others':"其他"
         };
-        $scope.task = {
+        $scope.positions = {};
+        $scope.param = {
+            field: null,
             pageCount: 1,
             currentPage: 1
         };
-        $scope.positions = {};
+        $scope.scale_change = false;
+        $scope.field_change = false;
+        $scope.choose = function(field){
+            if($scope.param.field == field){
+                $scope.field_change = false;
+            }
+            else{
+                $scope.field_change = true;
+                $scope.param.field = field;
+            }
+            $scope.get_company_list($scope.param);
+        };
+        $scope.show_field = function(){
+            $(".field-list").slideDown("fast");
+            $scope.field = true;
+        };
+        $scope.hide_field = function(){
+            $(".field-list").slideUp("fast");
+            $scope.field = false;
+        };
+        $(".company-field").mouseenter($scope.show_field);
+        $(".company-field").mouseleave($scope.hide_field);
+
+        $scope.show_type = function(){
+            $(".type-list").slideDown("fast");
+            $scope.field = true;
+        };
+        $scope.hide_type = function(){
+            $(".type-list").slideUp("fast");
+            $scope.field = false;
+        };
+        $(".position-type").mouseenter($scope.show_type);
+        $(".position-type").mouseleave($scope.hide_type);
         $scope.selectPage = function(page){
             var param = {
                 'page':page
@@ -2893,7 +2927,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.positions = data.positions;
-                        $scope.task.pageCount = data.page_number;
+                        $scope.param.pageCount = data.page_number;
                         for(var i=0; i<$scope.positions.length;i++){
                             $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
                             $scope.positions[i].company.field_type = $scope.field_type[$scope.positions[i].company.field];
