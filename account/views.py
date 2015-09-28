@@ -1378,13 +1378,13 @@ def get_image_list(request):
                 category = cpn['_id']['$oid']+"_logo"
                 for logo in File.objects.filter(file_type='logo',category=category):
                     empty = False
-                    zip_logo.writestr('%s.jpg' % cpn.abbreviation, logo.value.read())
+                    zip_logo.writestr('%s.jpg' % cpn['abbreviation'], logo.value.read())
                 zip_logo.close()
                 if not empty:
-                    zip_company.writestr('%s.zip' % cpn.abbreviation, f_logo.getvalue())
+                    zip_company.writestr('%s.zip' % cpn['abbreviation'], f_logo.getvalue())
         zip_company.close()
-        mail = EmailMessage('[创+]logo%s', 'support@chuangplus.com', ['1459234485@qq.com']);
-        mail.attach('%s.zip' % company.abbreviation, f_company.getvalue(), 'application/zip')
+        mail = EmailMessage('[创+]logo%s', 'support@chuangplus.com', ['1459234485@qq.com'])
+        mail.attach('%s.zip' % 'logo', f_company.getvalue(), 'application/zip')
         mail.send()
         re['error'] = error(1,"Send success")
         return HttpResponse(json.dumps(re), content_type = 'application/json')
