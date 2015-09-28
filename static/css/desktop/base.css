@@ -814,16 +814,20 @@ body > #wrap {
 #container #pisition-list .col-md-8 ul li .favor-list-item .middle-block .info .label-1 .last-p {
   margin-bottom: 0;
 }
-#container #pisition-list .col-md-8 ul.pagination li {
+#container #pisition-list .col-md-8 .page {
+  margin: 0 auto;
+  text-align: center;
+}
+#container #pisition-list .col-md-8 .page ul.pagination li {
   border: none;
 }
-#container #pisition-list .col-md-8 ul.pagination li a {
+#container #pisition-list .col-md-8 .page ul.pagination li a {
   cursor: pointer;
 }
-#container #pisition-list .col-md-8 ul.pagination li a span {
+#container #pisition-list .col-md-8 .page ul.pagination li a span {
   color: #707070;
 }
-#container #pisition-list .col-md-8 .pagination > .active > a {
+#container #pisition-list .col-md-8 .page .pagination > .active > a {
   background-color: #8f4e96;
   border-color: #98769E;
 }
