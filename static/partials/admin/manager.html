@@ -1,9 +1,14 @@
 <div id="container">
 	<div id="manager">
         <div class="col-md-8">
-		<ul ng-repeat="company in company_list">
-                <a href="/company/[[company._id.$oid]]/detail">
+            <div ng-show="loading" class="loading">
+                <img src="/static/image/icon/loading.gif">
+            </div>
+            <div ng-show="!loading">
+		      <ul ng-repeat="company in company_list">
+                
                 <li>
+                    <a href="/company/[[company._id.$oid]]/detail">
                     <div class="company-info">
                         <div class="auth" >
                             <p>[[company.auth_organization]]</p>
@@ -34,12 +39,21 @@
                             </div>
                         </div>
                     </div>
+                    </div>
+                    </a>
+                    <div class="edit">
+                        <div class="vertical-center">
+                            <input type="text">
+                            <button>修改</button>
                         </div>
+                    </div>
                 </li>
-                </a>
+                
+                <div style="clear:both"></div>
             </ul>
             <page ng-show="param.pageCount!=1" num-pages="param.pageCount" current-page="param.currentPage" on-select-page="selectPage(page)">
             </page>
         </div>
+    </div>
 	</div>
 </div>
