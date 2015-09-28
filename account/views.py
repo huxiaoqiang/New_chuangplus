@@ -17,6 +17,10 @@ import traceback
 from .models import *
 from position.models import *
 from app.common_api import check_email
+from django.core.mail import EmailMessage
+from StringIO import StringIO
+import zipfile
+
 
 POSITIONS_PER_PAGE = 10
 url = "http://student.tsinghua.edu.cn/api/login"
@@ -1359,4 +1363,31 @@ def search_submit_intern(request):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 def get_image_list(request):
-    pass
+    re = dict()
+    if request.method == 'GET':
+        company = Companyinfo.objects.all()
+
+        f_company = StringIO()
+        zip_company = zipfile.ZipFile(f_company, 'w', zipfile.ZIP_DEFLATED)
+
+        for cpn in company:
+            if hasattr(cpn, 'logo_id'):
+                f_logo = StringIO()
+                zip_logo = zipfile.ZipFile(f_logo, 'w', zipfile.ZIP_DEFLATED)
+                empty = True
+                category = cpn.id+"_logo"
+                for logo in File.objects.filter(file_type='logo',category=category):
+                    empty = False
+                    zip_logo.writestr('%s.jpg' % cpn.abbreviation, logo.value.read())
+                zip_logo.close()
+                if not empty:
+                    zip_company.writestr('%s.zip' % cpn.abbreviation, f_logo.getvalue())
+        zip_company.close()
+        mail = EmailMessage('[创+]logo%s', 'support@chuangplus.com', ['1459234485@qq.com']);
+        mail.attach('%s.zip' % company.abbreviation, f_company.getvalue(), 'application/zip')
+        mail.send()
+        re['error'] = error(1,"Send success")
+        return HttpResponse(json.dumps(re), content_type = 'application/json')
+    else:
+        re['error'] = error(3,"Error, need GET")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
