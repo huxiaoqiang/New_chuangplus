@@ -54,7 +54,7 @@
                         <a ng-click="edit_member($index)"><img src="/static/image/icon/pencil-01.png"></a>
                     </div>
                     <div class="avatar_img">
-                        <img ng-src="/api/file/[[member.m_avatar_id]]/download">
+                        <img id="avatar_show_[[$index]]" src="/api/file/[[member.m_avatar_id]]/download">
                     </div>
                     <br/>
                     <div class="intro">
