@@ -2027,11 +2027,44 @@ angular.module('chuangplus.controllers', []).
     controller('DT_CompanyTestCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload','ImgResizeService',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload, $imgResize){
         console.log('DT_CompanyTestCtrl');
+        $scope.cancelUpload = function()
+        {
+            //$imgResize.cancel($scope,"/api/file/"+$scope.member_add.m_avatar_id+ "/download");
+            //if($scope.cancel_upload == undefined)
+//            $scope.cancel_upload = true;
+//            $scope.cancel_upload = undefined;
+            $scope.avatar = null;
+            $scope.resize_area = false;
+            //alert($scope.cancel_upload);
+        };
+        $scope.startUpload = function(file_t,category)
+        {
+            /*
+            if(file != null && file != undefined)
+            {
+                if(!/image\/\w+/.test(file.type)){
+                    alert("文件必须为图片！"); 
+                    return false; 
+                } 
+                //alert('here');
+                $imgResize.startUpload(file,file_t,category,$scope);
+                $scope.resize_area = true;
+            }*/
+            alert($scope.resImageDataURI);
+            var data=$scope.resImageDataURI.split(',')[1];
+            data=window.atob(data);
+            var ia = new Uint8Array(data.length);
+            for (var i = 0; i < data.length; i++) {
+                ia[i] = data.charCodeAt(i);
+            };
+            // canvas.toDataURL 返回的默认格式就是 image/png
+            var blob=new Blob([ia], {type:"image/png"});
+            $scope.upload(blob,file_t,category);
+            $scope.resize_area = false;
+        };
         $scope.company_id = $routeParams.company_id;
-
         $scope.add_member_flag = false;
         $scope.member_add = {};
-        $scope.company_id = $routeParams.company_id;
         $scope.member_list = [];
         $scope.show_member_card = function(){
             $scope.add_member_flag = true;
@@ -2081,41 +2114,6 @@ angular.module('chuangplus.controllers', []).
                         $scope.error = $errMsg.format_error('',data.error);
                     }
                 });
-        };
-//        $scope.cancel_upload = false;
-        $scope.cancelUpload = function()
-        {
-            //$imgResize.cancel($scope,"/api/file/"+$scope.member_add.m_avatar_id+ "/download");
-            //if($scope.cancel_upload == undefined)
-//            $scope.cancel_upload = true;
-//            $scope.cancel_upload = undefined;
-            $scope.avatar = null;
-            $scope.resize_area = false;
-            //alert($scope.cancel_upload);
-        };
-        $scope.startUpload = function(file_t,category)
-        {
-            /*
-            if(file != null && file != undefined)
-            {
-                if(!/image\/\w+/.test(file.type)){
-                    alert("文件必须为图片！"); 
-                    return false; 
-                } 
-                //alert('here');
-                $imgResize.startUpload(file,file_t,category,$scope);
-                $scope.resize_area = true;
-            }*/
-            alert($scope.resImageDataURI);
-            var data=$scope.resImageDataURI.split(',')[1];
-            data=window.atob(data);
-            var ia = new Uint8Array(data.length);
-            for (var i = 0; i < data.length; i++) {
-                ia[i] = data.charCodeAt(i);
-            };
-            // canvas.toDataURL 返回的默认格式就是 image/png
-            var blob=new Blob([ia], {type:"image/png"});
-            $scope.upload(blob,file_t,category);
         };
         $scope.delete_modal = function(index){
             $scope.delete_index = index;
@@ -2679,7 +2677,6 @@ angular.module('chuangplus.controllers', []).
         $scope.company_id = $routeParams.company_id;
         $scope.add_member_flag = false;
         $scope.member_add = {};
-        $scope.company_id = $routeParams.company_id;
         $scope.member_list = [];
         $scope.show_member_card = function(){
             $scope.add_member_flag = true;
