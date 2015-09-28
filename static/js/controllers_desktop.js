@@ -2059,6 +2059,7 @@ angular.module('chuangplus.controllers', []).
             var blob=new Blob([ia], {type:"image/png"});
             $scope.upload(blob,file_t,category);
             $('.upload-img').attr('src',$scope.resImageDataURI);
+            $('#avatar_show_'+category).attr('src',$scope.resImageDataURI);
             $scope.resize_area = false;
         };
         $scope.company_id = $routeParams.company_id;
