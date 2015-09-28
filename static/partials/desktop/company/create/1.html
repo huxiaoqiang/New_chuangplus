@@ -7,26 +7,27 @@
             <div class="item"><span class="text">第四步</span></div>
         </div>
 
+        <input type="file" id="fileInput" style="display: none;"/>
         <div ng-show="resize_area">
           <div class="resize-component">
             <div id="resize-box">
-
-  <div class="cropArea" >
-    <img-crop image="imageDataURI"
-              result-image="$parent.resImageDataURI"
-              change-on-fly="false"
-              area-type="circle"
-              area-min-size="100"
-              result-image-format="image/png"
-              result-image-quality="1"
-              result-image-size="160"
-              on-change="onChange($dataURI)"
-              on-load-begin="onLoadBegin()"
-              on-load-done="onLoadDone()"
-              on-load-error="onLoadError()"
-    >
-  </img-crop>
-  </div>
+            <div class="cropArea" >
+                <img-crop image="imageDataURI"
+                          result-image="resImageDataURI"
+                          change-on-fly="false"
+                          area-type="circle"
+                          area-min-size="100"
+                          result-image-format="image/png"
+                          result-image-quality="1"
+                          result-image-size="160"
+                          on-change="onChange($dataURI)"
+                          on-load-begin="onLoadBegin()"
+                          on-load-done="onLoadDone()"
+                          on-load-error="onLoadError()"
+                >
+              </img-crop>
+              </div>
+  
             </div>
 
             <button class="btn-crop js-crop" ng-click="startUpload('memberavatar','[[member_number]]')">确认修改<img class="icon-crop" src="/static/lib/imageresize/img/crop.svg"></button>
@@ -84,8 +85,7 @@
            <div class="member-info-card">
                <a ng-click="cancer_add()"><img class="delete" src="/static/image/icon/delete-01.png"></a>
                <div ng-model="avatar" ng-click="test()" >
-                    <input type="file" id="fileInput" style="display: none;"/>
-                    <img class="upload-img img-upload-preview" ng-show="avatar==null && member_add.hasOwnProperty('m_avatar_id')" src="/api/file/[[member_add.m_avatar_id]]/download">
+                    <img class="upload-img" ng-show="avatar==null && member_add.hasOwnProperty('m_avatar_id')" src="/api/file/[[member_add.m_avatar_id]]/download">
                     <div ng-show="avatar==null && !member_add.hasOwnProperty('m_avatar_id')" class="avatar-origin">点击上传头像</div>
                     <img class="upload-img" ng-show="avatar!=null" ngf-src="[[resImageDataURI]]">
                </div>
@@ -133,13 +133,6 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
 
   <style>
     .cropArea {
