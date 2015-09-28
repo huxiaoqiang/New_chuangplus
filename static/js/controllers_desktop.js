@@ -2033,7 +2033,6 @@ angular.module('chuangplus.controllers', []).
             //if($scope.cancel_upload == undefined)
 //            $scope.cancel_upload = true;
 //            $scope.cancel_upload = undefined;
-            $scope.avatar = null;
             $scope.resize_area = false;
             //alert($scope.cancel_upload);
         };
@@ -2050,7 +2049,6 @@ angular.module('chuangplus.controllers', []).
                 $imgResize.startUpload(file,file_t,category,$scope);
                 $scope.resize_area = true;
             }*/
-            alert($scope.resImageDataURI);
             var data=$scope.resImageDataURI.split(',')[1];
             data=window.atob(data);
             var ia = new Uint8Array(data.length);
@@ -2060,6 +2058,7 @@ angular.module('chuangplus.controllers', []).
             // canvas.toDataURL 返回的默认格式就是 image/png
             var blob=new Blob([ia], {type:"image/png"});
             $scope.upload(blob,file_t,category);
+            $('.upload-img').attr('src',$scope.resImageDataURI);
             $scope.resize_area = false;
         };
         $scope.company_id = $routeParams.company_id;
