@@ -1052,6 +1052,58 @@ def verify_code(request):
         re['error'] = error(2, 'Error, need POST!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+
+#@user_permission('login')
+def get_company_list_admin(request):
+    re = dict()
+    if request.method == 'GET':
+        status = request.GET.get('status', '')
+        info_complete = request.GET.get('info_complete','')
+        is_auth = request.GET.get('is_auth','')
+        companies = Companyinfo.objects()
+        if status != '':
+            status = bool(status)
+            companies = companies.filter(status = status)
+
+        if info_complete != '':
+            info_complete = bool(info_complete)
+            companies = companies.filter(info_complete = info_complete)
+        if is_auth != '':
+            is_auth = bool(is_auth)
+            companies = companies.filter(is_auth = is_auth)
+
+        page = 1
+        if "page" in request.GET.keys():
+            if len(request.GET["page"]) > 0:
+                try:
+                    page = int(request.GET["page"])
+                    assert page > 0
+                except (ValueError,AssertionError):
+                    re['error'] = error(200,"Invaild request!")
+                    return HttpResponse(json.dumps(re), content_type = 'application/json')
+                except:
+                    re['error'] = error(299,'Unknown Error!')
+                    return HttpResponse(json.dumps(re),content_type = 'application/json')
+
+        orderValue = "id"
+        companies.order_by(orderValue)
+        shang = companies.count() / POSITIONS_PER_PAGE
+        yushu = 1 if companies.count() % POSITIONS_PER_PAGE else 0
+        page_number =  shang + yushu
+        companies = companies[(page - 1) * POSITIONS_PER_PAGE: page * POSITIONS_PER_PAGE]
+
+        companies_re = json.loads(companies.to_json())
+        for i in range(0,len(companies_re)):
+            financings = companies[i].financings
+            for j in range(0,len(financings)):
+                financings[j] = json.loads(financings[j].to_json())
+            companies_re[i]["financing"] = financings
+        re['data'] = companies_re
+        re['page_number'] = page_number
+    else:
+        re['error'] = error(3,'Error, need GET')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
 def get_company_list(request):
     re = dict()
     if request.method == 'GET':
@@ -1100,7 +1152,6 @@ def get_company_list(request):
         page_number =  shang + yushu
         companies = companies[(page - 1) * POSITIONS_PER_PAGE: page * POSITIONS_PER_PAGE]
 
-
         companies_re = json.loads(companies.to_json())
         for cpn in companies_re:
             position_type = []
@@ -1117,7 +1168,6 @@ def get_company_list(request):
         re['error'] = error(1, "get company list successfully")
         re['data'] = companies_re
         re['page_number'] = page_number
-        re['page'] = page
     else:
         re['error'] = error(2, 'error, need GET!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')

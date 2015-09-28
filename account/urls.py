@@ -51,6 +51,7 @@ urlpatterns = [
     url(r'^company/(?P<position_id>.*?)/submit/list', views.get_submit_list_intern, name='get_submit_list'),
     url(r'^company/submit/search', views.search_submit_intern, name='search_submit_intern'),
 
+    url(r'^admin/company/list', views.get_company_list_admin, name='get_company_list_admin'),
 ]
 
 #urlpatterns = format_suffix_patterns(urlpatterns)
