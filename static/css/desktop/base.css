@@ -700,11 +700,11 @@ body > #wrap {
 }
 #container #pisition-list .col-md-8 ul li .favor-list-item .middle-block .info .tags {
   border-radius: 10px;
-  padding: 0 8px 0 8px;
+  padding: 0 8px 0 6px;
   background-color: rgba(143, 78, 150, 0.1);
   color: #707070;
   font-size: 12px;
-  margin-right: 5px;
+  margin-right: 1px;
   float: left;
   margin-bottom: 5px;
   text-align: center;
@@ -815,19 +815,20 @@ body > #wrap {
 #container #pisition-list .col-md-8 ul li .favor-list-item .middle-block .info .label-1 .last-p {
   margin-bottom: 0;
 }
-#container #pisition-list .col-md-8 ul.pagination {
-  float: right;
+#container #pisition-list .col-md-8 .page {
+  margin: 0 auto;
+  text-align: center;
 }
-#container #pisition-list .col-md-8 ul.pagination li {
+#container #pisition-list .col-md-8 .page ul.pagination li {
   border: none;
 }
-#container #pisition-list .col-md-8 ul.pagination li a {
+#container #pisition-list .col-md-8 .page ul.pagination li a {
   cursor: pointer;
 }
-#container #pisition-list .col-md-8 ul.pagination li a span {
+#container #pisition-list .col-md-8 .page ul.pagination li a span {
   color: #707070;
 }
-#container #pisition-list .col-md-8 .pagination > .active > a {
+#container #pisition-list .col-md-8 .page .pagination > .active > a {
   background-color: #8f4e96;
   border-color: #98769E;
 }
@@ -1125,7 +1126,7 @@ form.financing_add input {
 #container #edit_position .datepicker {
   position: absolute;
   width: 17%;
-  top: 405px;
+  top: 306px;
   left: 259px;
 }
 #container #edit_position .form-position {
@@ -2203,9 +2204,6 @@ form.financing_add input {
 #container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info .label-1 .last-p {
   margin-bottom: 0;
 }
-#container #intern-post-list .col-md-8 ul.pagination {
-  float: right;
-}
 #container #intern-post-list .col-md-8 ul.pagination li {
   border: none;
 }
@@ -2724,6 +2722,16 @@ form.financing_add input {
 #container #company_list .col-md-8 a {
   text-decoration: none;
 }
+#container #company_list .col-md-8 .no-company-found {
+  background-color: white;
+  height: 600px;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 18px;
+  color: #bfbfbf;
+  padding-top: 240px;
+}
 #container #company_list .col-md-8 ul li {
   position: relative;
   list-style-type: none;
@@ -2882,17 +2890,20 @@ form.financing_add input {
 #container #company_list .col-md-8 ul li .company-info:hover {
   background-color: rgba(243, 243, 243, 0.53);
 }
-#container #company_list .col-md-8 ul.pagination {
-  float: right;
+#container #company_list .col-md-8 .page {
+  margin: 0 auto;
+  text-align: center;
+}
+#container #company_list .col-md-8 .page ul.pagination {
   box-shadow: 2px 2px 7px 2px #dfdfdf;
 }
-#container #company_list .col-md-8 ul.pagination li {
+#container #company_list .col-md-8 .page ul.pagination li {
   border: none;
 }
-#container #company_list .col-md-8 ul.pagination li a {
+#container #company_list .col-md-8 .page ul.pagination li a {
   cursor: pointer;
 }
-#container #company_list .col-md-8 ul.pagination li a span {
+#container #company_list .col-md-8 .page ul.pagination li a span {
   color: #707070;
 }
 #container #company_list .col-md-8 .pagination > .active > a {
@@ -3098,6 +3109,13 @@ form.financing_add input {
 #container #company-detail .col-md-8 .detail .left-block .company .description {
   min-height: 50px;
 }
+#container #company-detail .col-md-8 .detail .left-block .company .description ul.mytext {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+#container #company-detail .col-md-8 .detail .left-block .company .description ul.mytext li {
+  letter-spacing: 1px;
+}
 #container #company-detail .col-md-8 .detail .left-block .company .description p {
   font-size: 14px;
   line-height: 24px;
@@ -3191,8 +3209,9 @@ form.financing_add input {
   border: solid 1px#bfbfbf;
   border-width: 0px 0px 1px 0px;
   padding-bottom: 2px;
-  width: 98%;
+  width: 95%;
   margin-bottom: 10px;
+  margin-left: 10px;
 }
 #container #company-detail .col-md-8 .detail .left-block .position {
   margin-top: 24px;
@@ -3203,11 +3222,11 @@ form.financing_add input {
   width: 100%;
   height: 100px;
   border-radius: 6px;
-  border: solid 1px #bfbfbf;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
 }
 #container #company-detail .col-md-8 .detail .left-block .position .no-position p.no-position-intro {
   text-align: center;
-  margin-top: 38px;
+  padding-top: 38px;
   font-size: 18px;
   color: #707070;
 }
@@ -4718,7 +4737,6 @@ body > #wrap_no_header_footer #main-container {
   float: left;
 }
 #container #manager .col-md-8 ul.pagination {
-  float: right;
   box-shadow: 2px 2px 7px 2px #dfdfdf;
 }
 #container #manager .col-md-8 ul.pagination li {
@@ -4783,9 +4801,6 @@ input.form-control.ng-invalid.ng-dirty {
   margin-right: auto;
   border-radius: 0;
   width: 200px;
-}
-ul.pagination {
-  float: right;
 }
 ul.pagination li {
   border: none;

@@ -345,8 +345,7 @@ angular.module('chuangplus.controllers', []).
                     window.location.href = '/password/set';
                 }
                 else{
-                    alert(data.error.message);
-                    setTimeout(function(){location.href='/password/findpwd'},2000);
+                    $scope.error = $errMsg.format_error("",data.error);
                 }
             });
       };
@@ -378,9 +377,47 @@ angular.module('chuangplus.controllers', []).
       };
       $scope.refresh();
     }]).
-    controller('DT_SetPwdCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','$cookieStore', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $cookieStore){
+    controller('DT_SetPwdCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','$cookieStore','ErrorService',
+      function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $cookieStore,$errMsg){
       console.log('DT_SetPwdCtrl');
       $scope.email = $cookieStore.get("email");
+      $scope.pass_verify = false;
+      $scope.check_correct_code = function(){
+        var param = {
+            'input_code': $scope.set.verifycode,
+            "csrfmiddlewaretoken" : $csrf.val()
+        };
+        $http.post(urls.api+"/account/verifycode", $.param(param)).
+            success(function(data){
+                $scope.pass_verify = data.pass_verify;
+                return data.pass_verify;
+            });
+      };
+      $scope.setpwd = function(){
+        if($scope.pass_verify==false){
+            $scope.error = $errMsg.format_error("邮箱验证码错误",{code:"-1"});
+            return;
+        }
+        if($scope.set.password!=$scope.set.repassword){
+            $scope.error = $errMsg.format_error("两次输入密码不一致",{code:"-1"});
+            return;
+        }
+        var param = {
+           "input_code": $scope.set.verifycode,
+            "csrfmiddlewaretoken" : $csrf.val(),
+            "email" : $scope.email,
+            "new_password" : $scope.set.password
+        };
+        $http.post(urls.api+"/account/password/set_withcode", $.param(param)).
+          success(function(data){
+              if(data.error.code == 1){
+                  window.location.href="/password/finish";
+              }
+              else{
+                  $scope.error = $errMsg.format_error("",data.error);
+              }
+            });
+      };
     }]).
     controller('DT_FinishPwdCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_FinishPwdCtrl');
@@ -818,8 +855,8 @@ angular.module('chuangplus.controllers', []).
             $scope.get_submit_list();
         };
         $scope.processe = function(index){
-            if($scope.submit_list[index].process == true){
-                return
+            if($scope.submit_list[index].processed == true){
+                return;
             }
             $http.get(urls.api+"/account/company/"+ $scope.submit_list[index].position_id+"/user/"+$scope.submit_list[index].username+"/process").
                 success(function(data){
@@ -1566,6 +1603,19 @@ angular.module('chuangplus.controllers', []).
         console.log('DT_CompanyPositionEditCtrl');
         $scope.company_id = $routeParams.company_id;
         $scope.position_id = $routeParams.position_id;
+        $scope.get_company_info = function(){
+            $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.companyinfo = data.data;
+                        if($scope.companyinfo.info_complete == false){
+                            $scope.error = $errMsg.format_error("公司信息不完整，不能发布职位",{code:"-1"});
+                            setTimeout(function(){window.location.href="/company/"+$scope.company_id+"/create/first"},2000);
+                        }
+                    }
+                });
+            };
+        $scope.get_company_info();
         $scope.submit_position = function(){
             if($scope.position_id == 'new'){
                 $scope.create_position();
@@ -1696,6 +1746,7 @@ angular.module('chuangplus.controllers', []).
         $scope.selectPage = function(page){
             $scope.param.page = page;
             $scope.get_company_list($scope.param);
+            window.scrollTo(0,0);
         };
         $scope.get_company_list = function(data){
             $scope.loading = true;
@@ -1710,8 +1761,13 @@ angular.module('chuangplus.controllers', []).
                         param += "page=" + 1;
                         $scope.param.currentPage = 1;
                     }
+                    else if(data.page == 0)
+                        param += "page=1";
                     else
-                        param += "page=" + data.page;
+                        param += "page="+data.page;
+                }
+                else{
+                    param += "page=" + 1;
                 }
                 if(data.field != undefined && data.field != null){
                     param += "&field=" + data.field;
@@ -1723,8 +1779,6 @@ angular.module('chuangplus.controllers', []).
 
                 }
             }
-            else
-                $scope.selectPage(1);
             $http.get(urls.api+"/account/company/list"+param).
                 success(function(data){
                 $scope.param.pageCount = data.page_number;
@@ -1746,7 +1800,7 @@ angular.module('chuangplus.controllers', []).
                 $scope.loading = false;
             });
         };
-        $scope.get_company_list();
+        $scope.selectPage(1);
         //控制左边筛选框的位置
         $scope.field = false;
         $scope.scale_show = false;
@@ -2823,6 +2877,7 @@ angular.module('chuangplus.controllers', []).
             var param = {
                 'page':page
             };
+            window.scrollTo(0,0);
             $scope.get_positions(param);
         };
         $scope.get_positions = function(data){

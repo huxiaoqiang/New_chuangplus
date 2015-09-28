@@ -70,67 +70,70 @@
                 <img src="/static/image/icon/loading.gif">
             </div>
             <div ng-show="!loading">
+                <div class="no-company-found" ng-show="param.pageCount==0">
+                         暂无信息！
+                </div>
+                <div ng-show="param.pageCount>0">
                 <ul ng-repeat="company in company_list">
-                <a href="/company/[[company._id.$oid]]/detail">
-                <li>
-                    <div class="company-info">
-                        <div class="auth" >
-                            <p>[[company.auth_organization]]</p>
-                        </div>
-                        <div class="bottom-side">
-                        
-                        <div class="item-pic">
-                            <img src="/api/file/[[company.logo_id]]/download" class="company-pic" alt="图片">
+                    <a href="/company/[[company._id.$oid]]/detail">
+                        <li>
+                            <div class="company-info">
+                                <div class="auth" >
+                                    <p>[[company.auth_organization]]</p>
                                 </div>
-                        <div class="info">
-                            
-                        <div class="item-info info-1">
-                            <div class="vertical-center">
-                            <p class="abbreviation">[[company.abbreviation]]</p>
-                            <p class="brief_introduction">[[company.brief_introduction]]</p>
-                            </div>
-                        </div>
-                        <div class="item-info info-2">
-                            <div class="vertical-center">
-                            <div class="label-1" ng-show="company.field != null">
-                                <img src="/static/image/icon/111-01.png">
-                                <p>[[company.field_type]]</p>
-                            </div>
-                            <div class="label-1" ng-show="company.scale != null">
-                                <img src="/static/image/icon/222-01.png">
-                                <p>[[company.scale_value]]</p>
-                            </div>
-                            <div class="label-1" ng-show="company.city != null">
-                                <img src="/static/image/icon/333-01.png">
-                                <p class="last-p">[[company.city]]</p>
-                            </div>
-                            </div>
-                        </div>
-                         <img class="line-img1" src='/static/image/icon/shadowline1.png'>
-                        <div class="item-info info-3">
-                            <div class="vertical-center">
-                                <p class="position_number">在招职位数：[[company.position_number]]</p>
-                                <div class="position_tags" >
-                                    <span class="tags" ng-repeat="position_type in company.position_type_value">[[position_type]]</span>
+                                <div class="bottom-side">
+
+                                <div class="item-pic">
+                                    <img src="/api/file/[[company.logo_id]]/download" class="company-pic" alt="图片">
+                                        </div>
+                                <div class="info">
+                                    <div class="item-info info-1">
+                                        <div class="vertical-center">
+                                        <p class="abbreviation">[[company.abbreviation]]</p>
+                                        <p class="brief_introduction">[[company.brief_introduction]]</p>
+                                        </div>
+                                    </div>
+                                    <div class="item-info info-2">
+                                        <div class="vertical-center">
+                                        <div class="label-1" ng-show="company.field != null">
+                                            <img src="/static/image/icon/111-01.png">
+                                            <p>[[company.field_type]]</p>
+                                        </div>
+                                        <div class="label-1" ng-show="company.scale != null">
+                                            <img src="/static/image/icon/222-01.png">
+                                            <p>[[company.scale_value]]</p>
+                                        </div>
+                                        <div class="label-1" ng-show="company.city != null">
+                                            <img src="/static/image/icon/333-01.png">
+                                            <p class="last-p">[[company.city]]</p>
+                                        </div>
+                                        </div>
+                                    </div>
+                                     <img class="line-img1" src='/static/image/icon/shadowline1.png'>
+                                    <div class="item-info info-3">
+                                        <div class="vertical-center">
+                                            <p class="position_number">在招职位数：[[company.position_number]]</p>
+                                            <div class="position_tags" >
+                                                <span class="tags" ng-repeat="position_type in company.position_type_value">[[position_type]]</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <img class="line-img2" src='/static/image/icon/shadowline2.png'>
+                                    <div class="item-info info-3">
+                                        <div class="vertical-center">
+                                            <div class="welfare_tags">
+                                                <div class="tags" ng-repeat="tag in company.welfare_tags">[[tag]]</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 </div>
                             </div>
-                        </div>
-                         <img class="line-img2" src='/static/image/icon/shadowline2.png'>
-                        <div class="item-info info-3">
-                            <div class="vertical-center">
-                                <div class="welfare_tags">
-                                    <div class="tags" ng-repeat="tag in company.welfare_tags">[[tag]]</div>
-                                </div>
-                            </div>
-                           
-                        </div>
-                        </div>
-                    </div>
-                        </div>
-                </li>
-                </a>
-            </ul>
-            <page ng-show="param.pageCount!=1" num-pages="param.pageCount" current-page="param.currentPage" on-select-page="selectPage(page)">
+                        </li>
+                    </a>
+                </ul>
+                </div>
+            <page class="page" ng-show="param.pageCount>1" num-pages="param.pageCount" current-page="param.currentPage" on-select-page="selectPage(page)">
             </page>
             </div>
         </div>

@@ -93,7 +93,8 @@
                                         <div class="vertical-center">
                                             <p class="position">[[position.position_type_value]]|[[position.name]]</p>
                                             <div class="position-tags">
-                                                <span class="tags">[[position.days_per_week]]天/周</span>
+                                                <span class="tags" ng-if="position.part_or_full_time==0">实习[[position.days_per_week]]天/周</span>
+                                                <span class="tags" ng-if="position.part_or_full_time==1">全职</span>
                                                 <span class="tags">[[position.salary_min]]k-[[position.salary_max]]k</span>
                                             </div>
                                             <div class="submit-time">
@@ -144,7 +145,7 @@
                     </li>
                     </a>
                 </ul>
-                <page ng-show="task.pageCount!=0" num-pages="task.pageCount" current-page="task.currentPage" on-select-page="selectPage(page)">
+                <page class="page" ng-show="task.pageCount!=0" num-pages="task.pageCount" current-page="task.currentPage" on-select-page="selectPage(page)">
                 </page>
             </div>
         </div>
