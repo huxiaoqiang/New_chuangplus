@@ -7,7 +7,7 @@
             <div class="item"><span class="text">第四步</span></div>
         </div>
 
-        <div ng-controller="DT_ResizeImgCtrl" ng-show="resize_area">
+        <div ng-show="resize_area">
           <div class="resize-component">
             <div id="resize-box">
 
@@ -87,7 +87,7 @@
                     <input type="file" id="fileInput" style="display: none;"/>
                     <img class="upload-img img-upload-preview" ng-show="avatar==null && member_add.hasOwnProperty('m_avatar_id')" src="/api/file/[[member_add.m_avatar_id]]/download">
                     <div ng-show="avatar==null && !member_add.hasOwnProperty('m_avatar_id')" class="avatar-origin">点击上传头像</div>
-                    <img class="upload-img img-upload-preview" ng-show="avatar!=null" ngf-src="avatar[0]">
+                    <img class="upload-img" ng-show="avatar!=null" ngf-src="[[resImageDataURI]]">
                </div>
 <!--
                <div ng-if="!member_add.hasOwnProperty('m_avatar_id')" ng-model="avatar" ngf-select="upload($file,'memberavatar',[[member_number]])" class="avatar-origin">点击上传图像</div>
@@ -150,22 +150,3 @@
       height:400px;
     }
   </style>
-<div >
-  <form ng-show="enableCrop">
-    <label for="fileInput">Select Image:</label>
-    
-    <button type="reset">Clear</button>
-  </form>
-  <div>
-    <button ng-click="imageDataURI=''">Reset Image</button>
-  </div>
-
-
-  <div style="text-align:center">
-    <h3>Result</h3>
-    <div>
-      <img ng-src="[[resImageDataURI]]" />
-    </div>
-  </div>
-
-</div>

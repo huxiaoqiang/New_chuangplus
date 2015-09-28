@@ -7,12 +7,11 @@
  *
  * Generated at Wednesday, December 3rd, 2014, 3:54:12 PM
  */
-(function() {
 'use strict';
 
-var crop = angular.module('ngImgCrop', []);
+var ngImgCrop = angular.module('ngImgCrop', []);
 
-crop.factory('cropAreaCircle', ['cropArea', function(CropArea) {
+ngImgCrop.factory('cropAreaCircle', ['cropArea', function(CropArea) {
   var CropAreaCircle = function() {
     CropArea.apply(this, arguments);
 
@@ -163,7 +162,7 @@ crop.factory('cropAreaCircle', ['cropArea', function(CropArea) {
 
 
 
-crop.factory('cropAreaSquare', ['cropArea', function(CropArea) {
+ngImgCrop.factory('cropAreaSquare', ['cropArea', function(CropArea) {
   var CropAreaSquare = function() {
     CropArea.apply(this, arguments);
 
@@ -376,7 +375,7 @@ crop.factory('cropAreaSquare', ['cropArea', function(CropArea) {
   return CropAreaSquare;
 }]);
 
-crop.factory('cropArea', ['cropCanvas', function(CropCanvas) {
+ngImgCrop.factory('cropArea', ['cropCanvas', function(CropCanvas) {
   var CropArea = function(ctx, events) {
     this._ctx=ctx;
     this._events=events;
@@ -461,7 +460,7 @@ crop.factory('cropArea', ['cropCanvas', function(CropCanvas) {
   return CropArea;
 }]);
 
-crop.factory('cropCanvas', [function() {
+ngImgCrop.factory('cropCanvas', [function() {
   // Shape = Array of [x,y]; [0, 0] - center
   var shapeArrowNW=[[-0.5,-2],[-3,-4.5],[-0.5,-7],[-7,-7],[-7,-0.5],[-4.5,-3],[-2,-0.5]];
   var shapeArrowNE=[[0.5,-2],[3,-4.5],[0.5,-7],[7,-7],[7,-0.5],[4.5,-3],[2,-0.5]];
@@ -593,7 +592,7 @@ crop.factory('cropCanvas', [function() {
  * EXIF service is based on the exif-js library (https://github.com/jseidelin/exif-js)
  */
 
-crop.service('cropEXIF', [function() {
+ngImgCrop.service('cropEXIF', [function() {
   var debug = false;
 
   var ExifTags = this.Tags = {
@@ -1368,7 +1367,7 @@ crop.service('cropEXIF', [function() {
   }
 }]);
 
-crop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', 'cropEXIF', function($document, CropAreaCircle, CropAreaSquare, cropEXIF) {
+ngImgCrop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', 'cropEXIF', function($document, CropAreaCircle, CropAreaSquare, cropEXIF) {
   /* STATIC FUNCTIONS */
 
   // Get Element's Offset
@@ -1734,7 +1733,7 @@ crop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', 'crop
 }]);
 
 
-crop.factory('cropPubSub', [function() {
+ngImgCrop.factory('cropPubSub', [function() {
   return function() {
     var events = {};
     // Subscribe
@@ -1757,7 +1756,7 @@ crop.factory('cropPubSub', [function() {
   };
 }]);
 
-crop.directive('imgCrop', ['$timeout', 'cropHost', 'cropPubSub', function($timeout, CropHost, CropPubSub) {
+ngImgCrop.directive('imgCrop', ['$timeout', 'cropHost', 'cropPubSub', function($timeout, CropHost, CropPubSub) {
   return {
     restrict: 'E',
     scope: {
@@ -1876,4 +1875,3 @@ crop.directive('imgCrop', ['$timeout', 'cropHost', 'cropPubSub', function($timeo
     }
   };
 }]);
-}());
