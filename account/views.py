@@ -1386,7 +1386,7 @@ def get_image_list(request):
                 if not empty:
                     zip_company.writestr('%s.zip' % cpn['abbreviation'], f_logo.getvalue())
         zip_company.close()
-        mail = EmailMessage('[创+]logo%s', 'support@chuangplus.com', ['1459234485@qq.com'])
+        mail = EmailMessage('[创+]logo', 'support@chuangplus.com', ['1459234485@qq.com'])
         mail.attach('%s.zip' % 'logo', f_company.getvalue(), 'application/zip')
         mail.send()
         re['error'] = error(1,"Send success")
