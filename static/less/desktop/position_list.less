@@ -66,11 +66,11 @@
                   height: 100%;
                 .tags{
                     border-radius: 10px;
-                    padding: 0 8px 0 8px;
+                    padding: 0 8px 0 6px;
                     background-color: rgba(143,78,150,0.1);
                     color: #707070;
                     font-size: 12px;
-                    margin-right: 5px;
+                    margin-right: 1px;
                     float: left;
                     margin-bottom: 5px;
                     text-align: center;
@@ -190,22 +190,24 @@
                 }
             }
         }
-      ul.pagination{
-        float: right;
-
-        li{
-          border: none;
-          a{
-            cursor: pointer;
-            span{
-              color: #707070;
+      .page{
+        margin: 0 auto;
+        text-align: center;
+        ul.pagination{
+          li{
+            border: none;
+            a{
+              cursor: pointer;
+              span{
+                color: #707070;
+              }
+            }
             }
           }
-          }
+        .pagination>.active>a{
+          background-color: #8f4e96;
+          border-color: #98769E;
         }
-      .pagination>.active>a{
-        background-color: #8f4e96;
-        border-color: #98769E;
       }
     }
   }

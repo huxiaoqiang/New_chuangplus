@@ -216,6 +216,31 @@ def set_password(request):
         re['error'] = error(2, 'error,need get')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+def set_password_verifycode(request):
+    re = dict()
+    if request.method == 'POST':
+        input_code = request.POST.get('input_code', '')
+        correct_code = request.session['correct_code']
+        email = request.POST.get('email', '')
+        new_password = request.POST.get('new_password', '')
+        if correct_code == '':
+            re['error'] = error(271,"Email code is out of work")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        if input_code != correct_code:
+            re['error'] = error(270,'Email code error')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+        user = User.objects.get(email = email)
+        if user is not None and user.is_active:
+            user.set_password(new_password)
+            user.save()
+            re['error'] = error(1, 'settings OK')
+        else:
+            re['error'] = error(117, 'password error')
+    else:
+        re['error'] = error(2, 'error,need get')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
 @user_permission('login')
 def get_userinfo(request):
     re = dict()
@@ -940,7 +965,7 @@ def send_email(request):
             return HttpResponse(json.dumps(re), content_type = 'application/json')
 
         try:
-            Userinfo.objects.get(email = email)
+            User.objects.get(email = email)
         except:
             re['error'] = error(103, "user does not exist")
             return HttpResponse(json.dumps(re), content_type = 'application/json')

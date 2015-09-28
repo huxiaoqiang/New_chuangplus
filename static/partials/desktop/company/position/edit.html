@@ -61,6 +61,24 @@
                     </div>
                     <div class="input-group">
                         <div class="col-sm-6">
+                            <label>薪资（填写整数，单位k）</label></br>
+                            <span class="salary">
+                                <input name="salary_min" type="text" class="form-control" ng-model="position.salary_min" required>
+                            </span>
+                            <span class="k1">&nbsp;K</span>
+                            <span class="to">&nbsp;—&nbsp;</span>
+                            <span class="salary">
+                                <input name="salary_min" type="text" class="form-control" ng-model="position.salary_max" required>
+                            </span>
+                            <span class="k">&nbsp;K</span>
+                        </div>
+                        <div class="col-sm-6">
+                          <label>招聘截止时间</label>
+                        </div>
+                    </div>
+                    <div style="clear: both"></div>
+                    <div class="input-group" ng-if="position.part_or_full_time==0">
+                        <div class="col-sm-6">
                             <label>最少工作天数/周</label></br>
                               <table>
                                 <tbody>
@@ -75,30 +93,11 @@
                                     </tr>
                                 </tbody>
                             </table>
-
                         </div>
-                        <div class="col-sm-6">
-                            <label>薪资（填写整数，单位k）</label></br>
-                            <span class="salary">
-                                <input name="salary_min" type="text" class="form-control" ng-model="position.salary_min" required>
-                            </span>
-                            <span class="k1">&nbsp;K</span>
-                            <span class="to">&nbsp;—&nbsp;</span>
-                            <span class="salary">
-                                <input name="salary_min" type="text" class="form-control" ng-model="position.salary_max" required>
-                            </span>
-                            <span class="k">&nbsp;K</span>
-                        </div>
-                    </div>
-                    <div style="clear: both"></div>
-                    <div class="input-group">
                         <div class="col-sm-6">
                             <label>至少工作月数（请填写整数）</label>
                             <div><input class="form-control month_input" ng-model="position.internship_time" required></div>
                             <span class="month">个月</span>
-                        </div>
-                        <div class="col-sm-6">
-                          <label>招聘截止时间</label>
                         </div>
                     </div>
                 </div>
