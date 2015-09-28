@@ -86,10 +86,11 @@ header{
              border-width: 0px 0px 0px 0px;
            }
          }
-        li.dropdown{
+        li.dropmenu{
           height: 58px;
           .dropdown-menu{
             min-width: 100px;
+            display: none;
             a{
               font-size: 1em;
               padding-bottom: 3px;
@@ -100,15 +101,15 @@ header{
               border-width: 0px 0px 0px 3px;
             }
           }
-          .dropdown-toggle{
+          .drop-toggle{
             font-size: 0.9em;
           }
-          .dropdown-toggle:focus{
+          .drop-toggle:focus{
             font-weight: 100;
           }
         }
-      li.dropdown.open{
-        height: 58px;
+      li.dropmenu:hover ul{
+        display: block;
       }
     }
     .header-item{

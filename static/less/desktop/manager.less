@@ -9,20 +9,36 @@ display: block;
         .col-md-8{
           width: 750px;
           min-height: 500px;
+          .loading{
+            width: 100%;
+            margin: 0 auto;
+            padding-top: 128px;
+            background-color: #ffffff;
+            text-align: center;
+            height: 600px;
+            box-shadow: 2px 2px 7px 2px #dfdfdf;
+          }
         	ul li{
               position: relative;
               list-style-type:none;
-              background-color: #FFFFFF;
-              //border: 1px solid #bfbfbf;    
-              box-shadow: 2px 2px 7px 2px #dfdfdf;
-              border-radius: 4px;
               margin-bottom: 15px;
               height: 130px;
+              width: 100%;
+              float: left;
+              .vertical-center{
+                              display: table-cell;
+                              vertical-align: middle;
+                              padding: 0 10px 0 15px;
+                          }
               .company-info{
                   margin-top: 0px;
-
+                  float: left;
                   padding: 20px 10px 20px 15px;
-                  width: 100%;
+                  width: 80%;
+                  background-color: #FFFFFF;
+              //border: 1px solid #bfbfbf;    
+                  box-shadow: 2px 2px 7px 2px #dfdfdf;
+                  border-radius: 4px;
                   height: 130px;
                   .auth{
 
@@ -53,7 +69,7 @@ display: block;
                       }
 
                       .info{
-                          width: 600px;
+                          width: 450px;
                           float: left;
                           padding: 10px 0 10px 0;
                           height: 90px;
@@ -93,17 +109,13 @@ display: block;
                               }
                           }
                           .item-info.info-2{
-                              width: 105px;
+                              width: 320px;
                           }
                           .item-info.info-3{
 
                               width: 175px;
                           }
-                          .vertical-center{
-                              display: table-cell;
-                              vertical-align: middle;
-                              padding: 0 10px 0 15px;
-                          }
+                          
                           .item-info{
 
                               float: left;
@@ -119,78 +131,40 @@ display: block;
                                   font-size: 12px;
                                   margin-top: -10px;
                               }
-                              .label-1{
+                            }
 
-                                  img{
-                                      width: 11px;
-                                      height: 11px;
-                                      float: left;
-                                      margin-right: 5px;
-                                      margin-top: 2px;
-                                  }
-                                  p{
-                                      color: #707070;
-
-                                      font-size: 10px;
-                                      margin-bottom: 5px;
-                                  }
-                                  .last-p{
-                                      margin-bottom: 0;
-                                      float: left;
-                                  }
-                              }
-                              .position_number{
-                                  font-size: 1.1em;
-                                  color: black;
-                                  text-align: left;
-                                  margin-left: 23px;
-                                  margin-bottom: 5px;
-
-                              }
-                              .position_tags{
-                                  margin: 0 auto;
-                                  margin-top: 0;
-                                  margin-left: 23px;
-                                  width: 135px;
-                                  .tags{
-                                      width: 40px;
-                                  }
-
-                              }
-
-                          }
-                          .welfare_tags{
-                              width: 138px;
-                              float: left;
-                              margin-left: 20px;
-                              margin-top: 5px;
-                              .tags{
-                                  width: 64px;
-                              }
-                          }
-                          .tags{
-                              border-radius: 10px;
-                              padding: 0 8px 0 8px;
-                              background-color: rgba(143,78,150,0.1);
-                              color: #707070;
-                              font-size: 12px;
-                              margin-right: 5px;
-                              float: left;
-                              margin-bottom: 5px;
-                              text-align: center;
-                          }
-
-                      }
-                  }
+                        }
+                    }
               }
               .company-info:hover{
                 background-color: rgba(243, 243, 243, 0.53);
               }
+              .edit{
+                width: 20%;
+                height: 100%;
+                float: left;
+                display: table;
+                input{
+                width: 100%;
+                height: 20px;
+                margin-right: 10px;
+                float: left;
+                margin-bottom: 20px;
+              }
+              button{
+                width: 100%;
+                height: 20px;
+                float: left;
+              }
+              }
+              
           }
           ul.pagination{
             box-shadow: 2px 2px 7px 2px #dfdfdf;
+
             li{
               border: none;
+              float: none;
               a{
                 cursor: pointer;
                 span{

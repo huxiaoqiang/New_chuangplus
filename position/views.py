@@ -320,7 +320,7 @@ def search_position(request):
     #    return HttpResponse(json.dumps(re), content_type = 'application/json')
     
     qs = Position.objects.all()
-
+    ##cpn = Companyinfo.objects.all()
     if "id" in request.GET.keys():
         if len(request.GET["id"]) > 0:
             try:
@@ -374,24 +374,24 @@ def search_position(request):
                 return HttpResponse(json.dumps(re),content_type = 'application/json')
 
     ##todo: tobe tested
-    #if "fields" in request.GET.keys():
-    #    if len(request.GET["fields"]) > 0:
-    #        try:
-    #            fields = request.GET["fields"]
-    #            fields = fields.split(',')
-    #            for field in fields:
-    #                assert field in FIELD
-    #            qs = qs.filter(company__field__in = fields)
-    #
-    #        except (AssertionError,ValueError,UnicodeDecodeError):
-    #            re['error'] = error(238,"Invaild search type!")
-    #            return HttpResponse(json.dumps(re), content_type = 'application/json')
-    #        except (DatabaseError):
-    #            re['error'] = error(251,"Database error: Failed to search!")
-    #            return HttpResponse(json.dumps(re), content_type = 'application/json')
-    #        except:
-    #            re['error'] = error(299,'Unknown Error!')
-    #            return HttpResponse(json.dumps(re),content_type = 'application/json')
+    if "fields" in request.GET.keys():
+        if len(request.GET["fields"]) > 0:
+            try:
+                fields = request.GET["fields"]
+                fields = fields.split(',')
+                for field in fields:
+                    assert field in FIELD
+                cmp = Companyinfo.objects(field__in = fields).all()
+                qs = Position.objects(company__in = cmp).all()  
+            except (AssertionError,ValueError,UnicodeDecodeError):
+                re['error'] = error(238,"Invaild search type!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            except (DatabaseError):
+                re['error'] = error(251,"Database error: Failed to search!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            except:
+                re['error'] = error(299,'Unknown Error!')
+                return HttpResponse(json.dumps(re),content_type = 'application/json')
 
     ##single
     #if "type" in request.GET.keys():
