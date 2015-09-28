@@ -17,7 +17,7 @@ import cStringIO
 @user_permission('login')
 def upload_file(request):
     re = dict()
-    sizeBig = (128,128)
+    sizeBig = (256,256)
     ##sizeSmall = (50,50)
     if request.method == 'POST':
         data = request.POST.get('data','')
