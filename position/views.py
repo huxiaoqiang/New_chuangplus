@@ -383,7 +383,6 @@ def search_position(request):
                     assert field in FIELD
                 cmp = Companyinfo.objects(field__in = fields).all()
                 qs = Position.objects(company__in = cmp).all()  
-                #qs = Companyinfo.objects(field__in = fields).all()
             except (AssertionError,ValueError,UnicodeDecodeError):
                 re['error'] = error(238,"Invaild search type!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
