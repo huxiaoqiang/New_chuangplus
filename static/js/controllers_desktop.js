@@ -2146,7 +2146,7 @@ angular.module('chuangplus.controllers', []).
             var param = {
                "file_type": file_t,
                "description": $scope.company_id + file_t,
-               "category": $scope.company_id + '_'+category
+               "category": $scope.company_id + '_'+$scope.member_number
             };
             var headers = {
                    'X-CSRFToken': $csrf.val(),
