@@ -2147,7 +2147,7 @@ angular.module('chuangplus.controllers', []).
                "file_type": file_t,
                "description": $scope.company_id + file_t,
                "category": $scope.company_id + '_'+$scope.member_number,
-               "avatar_id" : $scope.member_add
+               "avatar_id" : $scope.member_add.m_avatar_id
             };
             var headers = {
                    'X-CSRFToken': $csrf.val(),
@@ -2259,7 +2259,7 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.test = function(){
             $("#fileInput").click();
-            $scope.resize_area = true;
+
         };
         var handleFileSelect=function(evt) {
           var file=evt.currentTarget.files[0];
@@ -2270,6 +2270,7 @@ angular.module('chuangplus.controllers', []).
             });
           };
           reader.readAsDataURL(file);
+            $scope.resize_area = true;
         };
         angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
         $scope.$watch('resImageDataURI',function(){
