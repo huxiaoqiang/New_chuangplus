@@ -46,7 +46,7 @@ def upload_file(request):
                     f_original = File(file_type = file_type,category = category2)
                     f_original.value.put(file_obj2.read(),content_type = file_obj.content_type)
                 else:
-                    f_original.replace(file_obj2.read(),content_type = file_obj.content_type)
+                    f_original.value.replace(file_obj2.read(),content_type = file_obj.content_type)
                 f_original.name = file_obj.name
                 f_original.description = description
                 try:
