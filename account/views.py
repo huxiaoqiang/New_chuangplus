@@ -1378,7 +1378,10 @@ def get_image_list(request):
                 category = cpn['_id']['$oid']+"_logo"
                 for logo in File.objects.filter(file_type='logo',category=category):
                     empty = False
-                    zip_logo.writestr('%s.jpg' % cpn['abbreviation'], logo.value.read())
+                    if cpn.has_key('abbreviation'):
+                        zip_logo.writestr('%s.jpg' % cpn['abbreviation'], logo.value.read())
+                    else:
+                        zip_logo.writestr('%s.jpg' % 'null', logo.value.read())
                 zip_logo.close()
                 if not empty:
                     zip_company.writestr('%s.zip' % cpn['abbreviation'], f_logo.getvalue())
