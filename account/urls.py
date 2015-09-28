@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^checkemail$', views.check_email_exist, name='check_email_exist'),
     url(r'^login$',views.login, name='login'),
     url(r'^logout$',views.logout, name='logout'),
-
+    url(r'^login_by_tsinghua$',views.login_by_tsinghua, name = 'login_by_tsinghua'),
     url(r'^password/set$',views.set_password, name='set_password'),
     url(r'^password/set_withcode$',views.set_password_verifycode, name='set_password_verifycode'),
     url(r'^userinfo/get$',views.get_userinfo, name='get_userinfo'),

@@ -9,6 +9,8 @@ from django.core.mail import send_mail
 from random import randint
 from bson.objectid import ObjectId
 from django.db.models import Q
+import urllib2,urllib2
+import json
 import traceback
 
 # Create your views here.
@@ -17,6 +19,7 @@ from position.models import *
 from app.common_api import check_email
 
 POSITIONS_PER_PAGE = 10
+url = "http://student.tsinghua.edu.cn/api/login"
 def register(request):
     re=dict()
     if request.method == "POST":
@@ -148,7 +151,50 @@ def check_email_exist(request):
         re['error'] = error(2,"error, need POST!")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-#login
+#login by tsinghua
+def login_by_tsinghua(request):
+    re = dict()
+    if request.method=="POST":
+
+        #Validate the captcha
+        session_captcha = request.session.get('captcha', '')
+        request_captcha = request.POST.get('captcha','')
+
+        if session_captcha == '' or request_captcha == '':
+            re['error'] = error(99,"Need captcha!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+        if session_captcha.upper() != request_captcha.upper():
+            re['error'] = error(101,'Captcha error!')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        username = request.POST.get('username','')
+        password = request.POST.get('password','')
+        if username == '' or password == '':
+            re['error'] = error(111,'username or password is empty!')
+            return HttpResponse(json.dumps(re),content_type = 'application/json')
+        data = {}
+        data['username'] = username
+        data['password'] = password
+        req = urllib2.Request(url,json.dumps(data))
+        conn = urllib2.urlopen(req)
+        content = conn.read()
+        map = json.loads(content)
+        is_succeed = map['error']['message']
+        if is_succed == "login success.":
+            request.session['role'] = 0
+            re['error'] = error(1,'login succeed!')
+            re['role'] = 0
+            resp = HttpResponse(json.dumps(re),content_type = 'application/json')
+            resp.set_cookie('username',username)
+            resp.set_cookie('role',requeset.session['role'])
+            return resp
+        else:
+            re['error'] = error(108, 'username or password error!')
+    else:
+        re['error'] = error(2,'error,need post!')
+    return HttpResponse(json.dumps(re),content_type = 'application/json')
+        
+#login  
 def login(request):
     re = dict()
     if request.method=="POST":
@@ -177,7 +223,6 @@ def login(request):
             user = User.objects.get(username=username)
             request.session['role'] = 1 if user.is_staff else 0
             re['error'] = error(1, 'login succeed!')
-            #re['status'] = request.session['status']
             re['role'] = request.session['role']
             resp = HttpResponse(json.dumps(re), content_type = 'application/json')
             resp.set_cookie('username', username)
@@ -1008,58 +1053,6 @@ def verify_code(request):
         re['error'] = error(2, 'Error, need POST!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-
-#@user_permission('login')
-def get_company_list_admin(request):
-    re = dict()
-    if request.method == 'GET':
-        status = request.GET.get('status', '')
-        info_complete = request.GET.get('info_complete','')
-        is_auth = request.GET.get('is_auth','')
-        companies = Companyinfo.objects()
-        if status != '':
-            status = bool(status)
-            companies = companies.filter(status = status)
-
-        if info_complete != '':
-            info_complete = bool(info_complete)
-            companies = companies.filter(info_complete = info_complete)
-        if is_auth != '':
-            is_auth = bool(is_auth)
-            companies = companies.filter(is_auth = is_auth)
-
-        page = 1
-        if "page" in request.GET.keys():
-            if len(request.GET["page"]) > 0:
-                try:
-                    page = int(request.GET["page"])
-                    assert page > 0
-                except (ValueError,AssertionError):
-                    re['error'] = error(200,"Invaild request!")
-                    return HttpResponse(json.dumps(re), content_type = 'application/json')
-                except:
-                    re['error'] = error(299,'Unknown Error!')
-                    return HttpResponse(json.dumps(re),content_type = 'application/json')
-
-        orderValue = "id"
-        companies.order_by(orderValue)
-        shang = companies.count() / POSITIONS_PER_PAGE
-        yushu = 1 if companies.count() % POSITIONS_PER_PAGE else 0
-        page_number =  shang + yushu
-        companies = companies[(page - 1) * POSITIONS_PER_PAGE: page * POSITIONS_PER_PAGE]
-
-        companies_re = json.loads(companies.to_json())
-        for i in range(0,len(companies_re)):
-            financings = companies[i].financings
-            for j in range(0,len(financings)):
-                financings[j] = json.loads(financings[j].to_json())
-            companies_re[i]["financing"] = financings
-        re['data'] = companies_re
-        re['page_number'] = page_number
-    else:
-        re['error'] = error(3,'Error, need GET')
-    return HttpResponse(json.dumps(re), content_type = 'application/json')
-
 def get_company_list(request):
     re = dict()
     if request.method == 'GET':
@@ -1108,6 +1101,7 @@ def get_company_list(request):
         page_number =  shang + yushu
         companies = companies[(page - 1) * POSITIONS_PER_PAGE: page * POSITIONS_PER_PAGE]
 
+
         companies_re = json.loads(companies.to_json())
         for cpn in companies_re:
             position_type = []
@@ -1124,6 +1118,7 @@ def get_company_list(request):
         re['error'] = error(1, "get company list successfully")
         re['data'] = companies_re
         re['page_number'] = page_number
+        re['page'] = page
     else:
         re['error'] = error(2, 'error, need GET!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')

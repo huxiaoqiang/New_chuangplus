@@ -1,4 +1,3 @@
-<!--<p>a<i class="fa fa-spinner fa-spin"></i>aa</p>-->
 <div id="container" xmlns="http://www.w3.org/1999/html">
     <div id="forth-step">
         <div class="head">
@@ -8,17 +7,29 @@
             <div class="item"><span class="text">第四步</span></div>
         </div>
 
-        <div ng-controller="DT_ResizeImgCtrl" ng-show="resize_area">
+        <div ng-show="resize_area">
           <div class="resize-component">
-            <div class="overlay">
-                <div class="overlay-inner">
-                </div>
-            </div>
             <div id="resize-box">
-              <img class="resize-image" id='image-preview' ngf-src="logo" alt="image for resizing">
+
+  <div class="cropArea" >
+    <img-crop image="imageDataURI"
+              result-image="$parent.resImageDataURI"
+              change-on-fly="false"
+              area-type="circle"
+              area-min-size="100"
+              result-image-format="image/png"
+              result-image-quality="1"
+              result-image-size="160"
+              on-change="onChange($dataURI)"
+              on-load-begin="onLoadBegin()"
+              on-load-done="onLoadDone()"
+              on-load-error="onLoadError()"
+    >
+  </img-crop>
+  </div>
             </div>
 
-            <button class="btn-crop js-crop">确认修改<img class="icon-crop" src="/static/lib/imageresize/img/crop.svg"></button>
+            <button class="btn-crop js-crop" ng-click="startUpload('memberavatar','[[member_number]]')">确认修改<img class="icon-crop" src="/static/lib/imageresize/img/crop.svg"></button>
             <button class="btn-resize-cancel" ng-click="cancelUpload()">取消</button>
           </div>
         </div>
@@ -54,7 +65,10 @@
                 <div style="clear: both"></div>
             </div>
             <input type="button" class="pre-button btn" value="上一步" ng-click="pre_step()">
-            <input type="submit" class="next-button btn" value="完成提交">
+            <div class="next-area">
+                <input type="submit" value="完成提交" class="btn" >
+                <i  class='fa fa-spinner fa-spin' ng-show="submit_loading"></i>
+            </div>
             </form>
         </div>
     </div>
@@ -69,10 +83,11 @@
        <form class="member_add form-horizontal" name="memberAddForm" ng-submit="save_member()">
            <div class="member-info-card">
                <a ng-click="cancer_add()"><img class="delete" src="/static/image/icon/delete-01.png"></a>
-               <div ng-model="avatar" ngf-select="startUpload($file,'memberavatar','[[member_number]]')" ngf-resize="{width: 100, height: 100}" ngf-keep="false">
+               <div ng-model="avatar" ng-click="test()" >
+                    <input type="file" id="fileInput" style="display: none;"/>
                     <img class="upload-img img-upload-preview" ng-show="avatar==null && member_add.hasOwnProperty('m_avatar_id')" src="/api/file/[[member_add.m_avatar_id]]/download">
                     <div ng-show="avatar==null && !member_add.hasOwnProperty('m_avatar_id')" class="avatar-origin">点击上传头像</div>
-                    <img class="upload-img img-upload-preview" ng-show="avatar!=null" ngf-src="avatar[0]">
+                    <img class="upload-img" ng-show="avatar!=null" ngf-src="[[resImageDataURI]]">
                </div>
 <!--
                <div ng-if="!member_add.hasOwnProperty('m_avatar_id')" ng-model="avatar" ngf-select="upload($file,'memberavatar',[[member_number]])" class="avatar-origin">点击上传图像</div>
@@ -118,3 +133,20 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+  <style>
+    .cropArea {
+      background: inherit;
+      margin: auto;
+      overflow: hidden;
+      width:500px;
+      height:400px;
+    }
+  </style>

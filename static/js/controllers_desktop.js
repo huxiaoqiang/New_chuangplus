@@ -2026,7 +2026,7 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_CompanyTestCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload','ImgResizeService',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload, $imgResize){
-        console.log('DT_CompanyForthCtrl');
+        console.log('DT_CompanyTestCtrl');
         $scope.company_id = $routeParams.company_id;
 
         $scope.add_member_flag = false;
@@ -2085,22 +2085,36 @@ angular.module('chuangplus.controllers', []).
 //        $scope.cancel_upload = false;
         $scope.cancelUpload = function()
         {
+            //$imgResize.cancel($scope,"/api/file/"+$scope.member_add.m_avatar_id+ "/download");
+            //if($scope.cancel_upload == undefined)
+//            $scope.cancel_upload = true;
+//            $scope.cancel_upload = undefined;
             $scope.avatar = null;
             $scope.resize_area = false;
+            //alert($scope.cancel_upload);
         };
-        $scope.startUpload = function(file,file_t,category)
+        $scope.startUpload = function(file_t,category)
         {
+            /*
             if(file != null && file != undefined)
             {
                 if(!/image\/\w+/.test(file.type)){
-                    alert("文件必须为图片！");
-                    return false;
-                }
+                    alert("文件必须为图片！"); 
+                    return false; 
+                } 
                 //alert('here');
                 $imgResize.startUpload(file,file_t,category,$scope);
                 $scope.resize_area = true;
-            }
-            file = null;
+            }*/
+            var data=$scope.resImageDataURI.split(',')[1];
+            data=window.atob(data);
+            var ia = new Uint8Array(data.length);
+            for (var i = 0; i < data.length; i++) {
+                ia[i] = data.charCodeAt(i);
+            };
+            // canvas.toDataURL 返回的默认格式就是 image/png
+            var blob=new Blob([ia], {type:"image/png"});
+            $scope.upload(blob,file_t,category);
         };
         $scope.delete_modal = function(index){
             $scope.delete_index = index;
@@ -2203,6 +2217,7 @@ angular.module('chuangplus.controllers', []).
                 return;
             }
             $scope.companyinfo.info_complete = true;
+            $scope.submit_loading = true;
             $csrf.set_csrf($scope.companyinfo);
             $http.post(urls.api+"/account/company/"+$scope.company_id+"/set", $.param($scope.companyinfo)).
                 success(function(data){
@@ -2215,8 +2230,51 @@ angular.module('chuangplus.controllers', []).
                         $scope.error = $errMsg.format_error('',data.error);
                         setTimeout(function(){$errMsg.remove_error($scope.error)},2000);
                     }
+                    $scope.submit_loading = false;
                 });
         };
+
+
+
+        $scope.type='circle';
+        $scope.imageDataURI='';
+        $scope.resImageDataURI='';
+        $scope.resImgFormat='image/png';
+        $scope.resImgQuality=1;
+        $scope.selMinSize=100;
+        $scope.enableCrop=true;
+        $scope.resImgSize=160;
+        //$scope.aspectRatio=1.2;
+        $scope.onChange=function($dataURI) {
+          console.log('onChange fired');
+        };
+        $scope.onLoadBegin=function() {
+          console.log('onLoadBegin fired');
+        };
+        $scope.onLoadDone=function() {
+          console.log('onLoadDone fired');
+        };
+        $scope.onLoadError=function() {
+          console.log('onLoadError fired');
+        };
+        $scope.test = function(){
+            $("#fileInput").click();
+            $scope.resize_area = true;
+        };
+        var handleFileSelect=function(evt) {
+          var file=evt.currentTarget.files[0];
+          var reader = new FileReader();
+          reader.onload = function (evt) {
+            $scope.$apply(function($scope){
+              $scope.imageDataURI=evt.target.result;
+            });
+          };
+          reader.readAsDataURL(file);
+        };
+        angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+        $scope.$watch('resImageDataURI',function(){
+          //console.log('Res image', $scope.resImageDataURI);
+        });
     }]).
     controller('DT_CompanyFirstCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload','ImgResizeService',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload, $imgResize){
