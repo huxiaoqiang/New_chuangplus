@@ -1358,3 +1358,5 @@ def search_submit_intern(request):
         re['error'] = error(3,'Error,need GET')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+def get_image_list(request):
+    pass
