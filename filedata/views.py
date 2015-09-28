@@ -17,7 +17,7 @@ import cStringIO
 @user_permission('login')
 def upload_file(request):
     re = dict()
-    sizeBig = (128,128)
+    sizeBig = (256,256)
     ##sizeSmall = (50,50)
     if request.method == 'POST':
         data = request.POST.get('data','')
@@ -34,15 +34,30 @@ def upload_file(request):
             if file_obj.size > 10000000:
                 re['error'] = error(15,"File size is bigger than 10M!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
-            ##image_data = file_obj['content']
-            ##tup = tempfile.mkstemp()
-
-            ##fl = open('big.png')
             if file_type in["memberavatar","CEOavatar"]:
                 image = Image.open(file_obj)
-                image.thumbnail(sizeBig)
-                image.save("big.png")
-                file_obj2 = open('big.png','rb')
+                #image.thumbnail(sizeBig)
+                image.save("original.png")
+                file_obj2 = open('original.png','rb')
+                category2 = category + "_original"
+                try:
+                    f_original = File.objects.get(file_type = file_type,category = category2)
+                except:
+                    f_original = File(file_type = file_type,category = category2)
+                    f_original.value.put(file_obj2.read(),content_type = file_obj.content_type)
+                else:
+                    f_original.replace(file_obj2.read(),content_type = file_obj.content_type)
+                f_original.name = file_obj.name
+                f_orignal.description = description
+                try:
+                    f_original.save()
+                except:
+                    re['error'] = error(250,'Database error: Failed to get companyinfo')
+                    return HttpResponse(json.dumps(re), content_type = 'application/json')
+                img = Image.open("original.png")
+                img.thumbnail(sizeBig)
+                img.save("thumb.png")
+                file_obj3 = open("thumb.png","rb")
                 try:
                     id = category.split('_')[0]
                     companyinfo = Companyinfo.objects.get(id=id)
@@ -53,9 +68,9 @@ def upload_file(request):
                     f = File.objects.get(file_type = file_type,category = category)
                 except:
                     f = File(file_type = file_type,category = category)
-                    f.value.put(file_obj2.read(), content_type = file_obj.content_type)
+                    f.value.put(file_obj3.read(), content_type = file_obj.content_type)
                 else:
-                    f.value.replace(file_obj2.read(), content_type = file_obj.content_type)
+                    f.value.replace(file_obj3.read(), content_type = file_obj.content_type)
                 f.name = file_obj.name
                 ##print "f.name " + f.name
                 f.description = description
@@ -73,9 +88,28 @@ def upload_file(request):
                     pass
             elif file_type in['qrcode','logo']:
                 image = Image.open(file_obj)
-                image.thumbnail(sizeBig)
-                image.save("big.png")
-                file_obj2 = open('big.png','rb')
+                image.save("original.png")
+                file_obj2 = open('original.png','rb')
+                category2 = category + "_original"
+                try:
+                    f_original = File.objects.get(file_type = file_type,category = category2)
+                except:
+                    f_original = File(file_type = file_type,category = category2)
+                    f_original.value.put(file_obj2.read(),content_type = file_obj.content_type)
+                else:
+                    f_original.value.replace(file_obj2.read(),content_type = file_obj.content_type)
+                f_original.name = file_obj.name
+                f_original.description = description
+               
+                try:
+                    f_original.save()
+                except DatabaseError:
+                    re['error'] = error(250,'Database error: Failed to save file!')
+                    return HttpResponse(json.dumps(re),content_type = 'application/json')
+                img = Image.open("original.png")
+                img.thumbnail(sizeBig)
+                img.save("thumb.png")
+                file_obj3 = open("thumb.png","rb")
                 try:
                     id = category.split('_')[0]
                     companyinfo = Companyinfo.objects.get(id=id)
@@ -90,9 +124,9 @@ def upload_file(request):
                         f = File.objects.get(file_type = file_type, category = category)
                     except:
                         f = File(file_type = file_type,category = category)
-                        f.value.put(file_obj2.read(),content_type = file_obj.content_type)
+                        f.value.put(file_obj3.read(),content_type = file_obj.content_type)
                     else:
-                        f.value.replace(file_obj2.read(), content_type = file_obj.content_type)
+                        f.value.replace(file_obj3.read(), content_type = file_obj.content_type)
                     f.name = file_obj.name
                     f.description = description
                     try:
