@@ -2106,7 +2106,15 @@ angular.module('chuangplus.controllers', []).
                 $imgResize.startUpload(file,file_t,category,$scope);
                 $scope.resize_area = true;
             }*/
-            $scope.upload($scope.resImageDataURI,file_t,category);
+            var data=$scope.resImageDataURI.split(',')[1];
+            data=window.atob(data);
+            var ia = new Uint8Array(data.length);
+            for (var i = 0; i < data.length; i++) {
+                ia[i] = data.charCodeAt(i);
+            };
+            // canvas.toDataURL 返回的默认格式就是 image/png
+            var blob=new Blob([ia], {type:"image/png"});
+            $scope.upload(blob,file_t,category);
         };
         $scope.delete_modal = function(index){
             $scope.delete_index = index;
