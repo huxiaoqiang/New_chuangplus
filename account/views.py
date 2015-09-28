@@ -1371,7 +1371,7 @@ def get_image_list(request):
         zip_company = zipfile.ZipFile(f_company, 'w', zipfile.ZIP_DEFLATED)
 
         for cpn in company:
-            if cpn.has_key('logo_id'):
+            if hasattr(cpn, 'logo_id'):
                 f_logo = StringIO()
                 zip_logo = zipfile.ZipFile(f_logo, 'w', zipfile.ZIP_DEFLATED)
                 empty = True
