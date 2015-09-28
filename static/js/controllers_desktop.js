@@ -2618,7 +2618,6 @@ angular.module('chuangplus.controllers', []).
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload, $imgResize){
         console.log('DT_CompanyForthCtrl');
         $scope.company_id = $routeParams.company_id;
-
         $scope.add_member_flag = false;
         $scope.member_add = {};
         $scope.company_id = $routeParams.company_id;
@@ -2690,7 +2689,7 @@ angular.module('chuangplus.controllers', []).
                 if(!/image\/\w+/.test(file.type)){
                     alert("文件必须为图片！"); 
                     return false; 
-                } 
+                }
                 //alert('here');
                 $imgResize.startUpload(file,file_t,category,$scope);
                 $scope.resize_area = true;
