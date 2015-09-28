@@ -1038,7 +1038,7 @@ def send_email(request):
             send_mail('[创+]找回密码', '您找回密码的验证码为：%s。\n请在10分钟内输入验证码进行下一步操作。如非您本人操作，请忽略此邮件。' % correct_code, 'support@chuangplus.com', [email])
             re['error'] = error(1, 'Success!')
         except:
-            re['error'] = error(2, 'Email sending failed')
+            re['error'] = error(300, 'Email sending failed')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
     else:
         re['error'] = error(2, 'Error, need POST!')
@@ -1378,15 +1378,21 @@ def get_image_list(request):
                 category = cpn['_id']['$oid']+"_logo"
                 for logo in File.objects.filter(file_type='logo',category=category):
                     empty = False
-                    zip_logo.writestr('%s.jpg' % cpn.abbreviation, logo.value.read())
+                    if cpn.has_key('abbreviation'):
+                        zip_logo.writestr('%s.jpg' % cpn['abbreviation'], logo.value.read())
+                    else:
+                        zip_logo.writestr('%s.jpg' % 'null', logo.value.read())
                 zip_logo.close()
                 if not empty:
-                    zip_company.writestr('%s.zip' % cpn.abbreviation, f_logo.getvalue())
+                    zip_company.writestr('%s.zip' % cpn['abbreviation'], f_logo.getvalue())
         zip_company.close()
-        mail = EmailMessage('[创+]logo%s', 'support@chuangplus.com', ['1459234485@qq.com']);
-        mail.attach('%s.zip' % company.abbreviation, f_company.getvalue(), 'application/zip')
-        mail.send()
-        re['error'] = error(1,"Send success")
+        mail = EmailMessage('[创+]logo','正文', 'support@chuangplus.com', ['1459234485@qq.com'])
+        mail.attach('%s.zip' % 'logo', f_company.getvalue(), 'application/zip')
+        try:
+            mail.send()
+            re['error'] = error(1,"Send success")
+        except:
+            re['error'] = error(300,"Send Error")
         return HttpResponse(json.dumps(re), content_type = 'application/json')
     else:
         re['error'] = error(3,"Error, need GET")
