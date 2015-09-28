@@ -1746,6 +1746,7 @@ angular.module('chuangplus.controllers', []).
         $scope.selectPage = function(page){
             $scope.param.page = page;
             $scope.get_company_list($scope.param);
+            window.scrollTo(0,0);
         };
         $scope.get_company_list = function(data){
             $scope.loading = true;
@@ -2873,6 +2874,7 @@ angular.module('chuangplus.controllers', []).
             var param = {
                 'page':page
             };
+            window.scrollTo(0,0);
             $scope.get_positions(param);
         };
         $scope.get_positions = function(data){
