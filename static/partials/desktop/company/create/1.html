@@ -85,7 +85,7 @@
            <div class="member-info-card">
                <a ng-click="cancer_add()"><img class="delete" src="/static/image/icon/delete-01.png"></a>
                <div ng-model="avatar" ng-click="test()" >
-                    <img class="upload-img" src="/api/file/[[member_add.m_avatar_id]]/download">
+                    <img class="upload-img" ng-show="avatar!=null || member_add.hasOwnProperty('m_avatar_id')" src="/api/file/[[member_add.m_avatar_id]]/download">
                     <div ng-show="avatar==null && !member_add.hasOwnProperty('m_avatar_id')" class="avatar-origin">点击上传头像</div>
                </div>
 <!--
