@@ -30,7 +30,7 @@
 
                     {% if role == 1 %}
                    
-                        <ul class="menu" ng-class = "{'active':header.resume}" ng-click="user_active()" ng-show="drop">
+                        <ul class="dropdown-menu" ng-class = "{'active':header.resume}" ng-click="user_active()" ng-show="drop">
                            <li><a ng-href=[[url]]>编辑公司信息</a></li>
                            <li><a href="/company/[[company_id]]/position/new/edit">发布岗位</a></li>
                            <li><a href="/company/[[company_id]]/position/manage">管理职位</a></li>
@@ -48,7 +48,7 @@
                         </ul>
                     {% elif role == -1 %}
                     
-                        <ul class="menu" ng-show="drop">
+                        <ul class="dropdown-menu" ng-show="drop">
                            <li><a href="#">管理公司</a></li>
                            <li><a href="#">管理实习生</a></li>
                            <li><a ng-click="logout()">退出登录</a></li>
