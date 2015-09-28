@@ -1,5 +1,10 @@
 <div>
   <ul class="pagination">
+      <li>
+      <a ng-click="selectPage(1)">
+        <span>首页</span>
+      </a>
+    </li>
     <li ng-class="{disabled : noPrevious()}">
       <a ng-click="selectPrevious()" aria-label="Previous">
         <span>上一页</span>
@@ -11,6 +16,11 @@
     <li ng-class="{disabled : noNext()}">
       <a ng-click="selectNext()" aria-label="Next">
         <span>下一页</span>
+      </a>
+    </li>
+    <li>
+      <a ng-click="selectPage(numPages)">
+        <span>尾页</span>
       </a>
     </li>
   </ul>
