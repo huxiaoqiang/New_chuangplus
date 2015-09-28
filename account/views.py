@@ -177,16 +177,16 @@ def login_by_tsinghua(request):
         data['password'] = password
         req = urllib2.Request(url,json.dumps(data))
         conn = urllib2.urlopen(req)
-        map = json.loads(content)
         content = conn.read()
+        map = json.loads(content)
         is_succeed = map['error']['message']
         if is_succed == "login success.":
-           # request.session['role'] = 0
+            request.session['role'] = 0
             re['error'] = error(1,'login succeed!')
             re['role'] = 0
             resp = HttpResponse(json.dumps(re),content_type = 'application/json')
-            #resp.set_cookie('username',username)
-            #resp.set_cookie('role',requeset.session['role'])
+            resp.set_cookie('username',username)
+            resp.set_cookie('role',requeset.session['role'])
             return resp
         else:
             re['error'] = error(108, 'username or password error!')
