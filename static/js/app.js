@@ -8,7 +8,6 @@ angular.module('chuangplus', [
     'ui.bootstrap',
     'ngCookies',
     'ngFileUpload',
-    'ngImgCrop',
     'ngScrollTo',
     'angular-google-analytics',
     'chuangplus.filters',
