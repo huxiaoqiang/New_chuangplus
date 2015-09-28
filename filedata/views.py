@@ -48,12 +48,13 @@ def upload_file(request):
                 else:
                     f_original.replace(file_obj2.read(),content_type = file_obj.content_type)
                 f_original.name = file_obj.name
-                f_orignal.description = description
+                f_original.description = description
                 try:
                     f_original.save()
                 except:
                     re['error'] = error(250,'Database error: Failed to get companyinfo')
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
+                #file_obj2.close()
                 img = Image.open("original.png")
                 img.thumbnail(sizeBig)
                 img.save("thumb.png")
@@ -79,9 +80,10 @@ def upload_file(request):
                 except DatabaseError:
                     re['error'] = error(250,'Database error: Failed to get companyinfo')
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
+                file_obj3.close()
                 re['error'] = error(1,"file upload successfully")
                 re['data'] = str(f.id)
-                file_obj2.close()
+                #file_obj2.close()
                 try:
                     os.remove('big.png')
                 except:
@@ -106,6 +108,7 @@ def upload_file(request):
                 except DatabaseError:
                     re['error'] = error(250,'Database error: Failed to save file!')
                     return HttpResponse(json.dumps(re),content_type = 'application/json')
+                #file_obj2.close()
                 img = Image.open("original.png")
                 img.thumbnail(sizeBig)
                 img.save("thumb.png")
@@ -134,13 +137,9 @@ def upload_file(request):
                     except DatabaseError:
                         re['error'] = error(250,'Database error: Failed to save file!')
                         return HttpResponse(json.dumps(re), content_type = 'application/json')
-
+                    #file_obj3.close()
                     re['error'] = error(1, 'file upload successfully')
                     re['data'] = str(f.id)
-                    try:
-                        os.remove('big.png')
-                    except:
-                        pass
             elif file_type == 'resume':
                 username = request.user.username
                 try:
