@@ -1366,16 +1366,16 @@ def get_image_list(request):
     re = dict()
     if request.method == 'GET':
         company = Companyinfo.objects.all()
-
+        company = json.loads(company.to_json())
         f_company = StringIO()
         zip_company = zipfile.ZipFile(f_company, 'w', zipfile.ZIP_DEFLATED)
 
         for cpn in company:
-            if hasattr(cpn, 'logo_id'):
+            if cpn.has_key('logo_id'):
                 f_logo = StringIO()
                 zip_logo = zipfile.ZipFile(f_logo, 'w', zipfile.ZIP_DEFLATED)
                 empty = True
-                category = cpn.id+"_logo"
+                category = cpn['_id']['$oid']+"_logo"
                 for logo in File.objects.filter(file_type='logo',category=category):
                     empty = False
                     zip_logo.writestr('%s.jpg' % cpn.abbreviation, logo.value.read())
