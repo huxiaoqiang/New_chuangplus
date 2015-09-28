@@ -814,9 +814,6 @@ body > #wrap {
 #container #pisition-list .col-md-8 ul li .favor-list-item .middle-block .info .label-1 .last-p {
   margin-bottom: 0;
 }
-#container #pisition-list .col-md-8 ul.pagination {
-  float: right;
-}
 #container #pisition-list .col-md-8 ul.pagination li {
   border: none;
 }
@@ -2202,9 +2199,6 @@ form.financing_add input {
 #container #intern-post-list .col-md-8 ul li .favor-list-item .middle-block .info .label-1 .last-p {
   margin-bottom: 0;
 }
-#container #intern-post-list .col-md-8 ul.pagination {
-  float: right;
-}
 #container #intern-post-list .col-md-8 ul.pagination li {
   border: none;
 }
@@ -2881,17 +2875,20 @@ form.financing_add input {
 #container #company_list .col-md-8 ul li .company-info:hover {
   background-color: rgba(243, 243, 243, 0.53);
 }
-#container #company_list .col-md-8 ul.pagination {
-  float: right;
+#container #company_list .col-md-8 .page {
+  margin: 0 auto;
+  text-align: center;
+}
+#container #company_list .col-md-8 .page ul.pagination {
   box-shadow: 2px 2px 7px 2px #dfdfdf;
 }
-#container #company_list .col-md-8 ul.pagination li {
+#container #company_list .col-md-8 .page ul.pagination li {
   border: none;
 }
-#container #company_list .col-md-8 ul.pagination li a {
+#container #company_list .col-md-8 .page ul.pagination li a {
   cursor: pointer;
 }
-#container #company_list .col-md-8 ul.pagination li a span {
+#container #company_list .col-md-8 .page ul.pagination li a span {
   color: #707070;
 }
 #container #company_list .col-md-8 .pagination > .active > a {
@@ -4739,7 +4736,6 @@ body > #wrap_no_header_footer #main-container {
   background-color: rgba(243, 243, 243, 0.53);
 }
 #container #manager .col-md-8 ul.pagination {
-  float: right;
   box-shadow: 2px 2px 7px 2px #dfdfdf;
 }
 #container #manager .col-md-8 ul.pagination li {
@@ -4803,9 +4799,6 @@ input.form-control.ng-invalid.ng-dirty {
   margin-right: auto;
   border-radius: 0;
   width: 200px;
-}
-ul.pagination {
-  float: right;
 }
 ul.pagination li {
   border: none;
