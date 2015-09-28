@@ -2106,6 +2106,7 @@ angular.module('chuangplus.controllers', []).
                 $imgResize.startUpload(file,file_t,category,$scope);
                 $scope.resize_area = true;
             }*/
+            alert($scope.resImageDataURI);
             var data=$scope.resImageDataURI.split(',')[1];
             data=window.atob(data);
             var ia = new Uint8Array(data.length);
