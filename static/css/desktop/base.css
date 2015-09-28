@@ -4129,6 +4129,7 @@ form.financing_add input {
   border: solid 1px #e1e0e2;
   margin: 0 auto;
   margin-top: 25px;
+  margin-bottom: 10px;
   text-align: center;
   line-height: 112px;
   color: #bfbfbf;
@@ -4451,13 +4452,14 @@ body > #wrap_no_header_footer #main-container {
   position: fixed;
   z-index: 100000;
   background-color: rgba(88, 88, 88, 0.96);
-  top: 110px;
+  box-shadow: 2px 2px 3px 4px rgba(88, 88, 88, 0.96);
+  top: 120px;
   /* bottom: 0; */
   left: 0;
   right: 0;
   margin: 0 auto;
   overflow: hidden;
-  width: 500px;
+  width: 550px;
   height: 400px;
 }
 .resize-container {
@@ -4564,9 +4566,9 @@ body > #wrap_no_header_footer #main-container {
   bottom: 5px;
   padding: 6px 10px;
   z-index: 999;
-  background-color: #de3c50;
+  background-color: #8f4e96;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   color: #FFF;
 }
 .btn-resize-cancel {
@@ -4576,9 +4578,9 @@ body > #wrap_no_header_footer #main-container {
   bottom: 5px;
   padding: 6px 10px;
   z-index: 999;
-  background-color: #de3c50;
+  background-color: #8f4e96;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   color: #FFF;
 }
 .btn-crop img {
