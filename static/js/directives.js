@@ -84,14 +84,31 @@ angular.module('chuangplus.directives', []).
             replace : true,
             templateUrl : '/static/partials/desktop/directive_templates/pagination.html',
             link : function(scope){
-                scope.$watch('numPages',function(value){
-                   scope.pages = [];
-                   for(var i=1;i<=value;i++){
+                scope.update = function(){
+                    scope.pages = [];
+                    var start = 1;
+                    //更新列表
+                    if (scope.currentPage > 4) 
+                        start = scope.currentPage - 3;
+                    for(var i=start;i<=start + 6 && i <= scope.pageNum ;i++){
                        scope.pages.push(i);
-                   }
-                   if(scope.currentPage > value){
-                       scope.selectPage(value);
-                   }
+                    }
+                };
+                scope.$watch('numPages',function(value){
+                scope.pages = [];
+                scope.pageNum = value;
+                var start = 1;
+                //更新列表
+                if (scope.currentPage > 4) 
+                {
+                    start = scope.currentPage - 3;
+                }
+                for(var i=start;i<=start + 6 && i <= scope.pageNum ;i++){
+                   scope.pages.push(i);
+                }
+                if(scope.currentPage > value){
+                   scope.selectPage(value);
+                }
                 });
                 scope.isActive = function(page){
                     return scope.currentPage == page;
@@ -100,16 +117,19 @@ angular.module('chuangplus.directives', []).
                     if(! scope.isActive(page)){
                         scope.currentPage = page;
                         scope.onSelectPage({page:page});
+                        scope.update();
                     }
                 };
                 scope.selectNext = function(){
                     if( !scope.noNext()){
                         scope.selectPage(scope.currentPage+1);
+                        scope.update();
                     }
                 };
                 scope.selectPrevious = function(){
                     if( !scope.noPrevious()){
                         scope.selectPage(scope.currentPage-1);
+                        scope.update();
                     }
                 };
                 scope.noPrevious = function(){
