@@ -35,7 +35,8 @@ def upload_file(request):
                 re['error'] = error(15,"File size is bigger than 10M!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             if file_type in["memberavatar"]:
-                id = data['avatar_id']
+                if data_dict.has_key('avatar_id'):
+                    avatar_id = data_dict['avatar_id']
                 image = Image.open(file_obj)
                 #image.thumbnail(sizeBig)
                 image.save("original.png")
@@ -67,10 +68,7 @@ def upload_file(request):
                     re['error'] = error(16,'Company does not exist,fail to upload member avatar')
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
                 try:
-                    f = File.objects(id=id).get()
-                    file_obj_tmp = f.value
-                    img_tmp = Image.open(file_obj_tmp)
-                    img_tmp.save(category+'.png')
+                    f = File.objects.get(id = avatar_id)
                     f.value.replace(file_obj3.read(), content_type = file_obj.content_type)
                 except:
                     f = File(file_type = file_type,category = category)
@@ -212,17 +210,24 @@ def delete_file(request,file_id):
         else:
             category  = f.category
             id = category.split('_')[0]
-            index = category.split('_')[1]
-            list = File.object(description__contains = id).all()
+            l  = category.split('_')[1]
+            #print l
+            index = int(l)
+            list = File.objects(description__contains = id).all()
             for i in list:
-                if i.type in ["memberavatar","CEOavatar"]:
+                if i.file_type in ["memberavatar","CEOavatar"]:
                     category_list = i.category.split('_')
                     index2 = category_list[1]
-                    if index2 > index:
-                        category_list[1] = index2 - 1
-                    category2 = category_list.join('_')
-                    i.category = category2
-                    i.save()
+                    #print (index,index2)
+                    try:
+                        index_avatar = int(index2)
+                        if index_avatar > index:
+                            category_list[1] = str(index_avatar - 1)
+                        category2 = '_'.join(category_list)
+                        i.category = category2
+                        i.save()
+                    except:
+                        pass
             f.value.delete()
             f.delete()
             #if f.file_type == 'memberavatar':
