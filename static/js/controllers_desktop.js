@@ -2034,6 +2034,7 @@ angular.module('chuangplus.controllers', []).
 //            $scope.cancel_upload = true;
 //            $scope.cancel_upload = undefined;
             $scope.resize_area = false;
+            $scope.imageDataURI='233333';
             //alert($scope.cancel_upload);
         };
         $scope.startUpload = function(file_t,category)
