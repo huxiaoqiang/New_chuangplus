@@ -2034,7 +2034,6 @@ angular.module('chuangplus.controllers', []).
 //            $scope.cancel_upload = true;
 //            $scope.cancel_upload = undefined;
             $scope.resize_area = false;
-            $scope.imageDataURI='233333';
             //alert($scope.cancel_upload);
         };
         $scope.startUpload = function(file_t,category)
@@ -2059,10 +2058,9 @@ angular.module('chuangplus.controllers', []).
             // canvas.toDataURL 返回的默认格式就是 image/png
             var blob=new Blob([ia], {type:"image/png"});
             //$scope.upload(blob,file_t,category);
-            $scope.avatar = '23336666';
             $('.upload-img').attr('src',$scope.resImageDataURI);
             $('#avatar_show_'+$scope.member_number).attr('src',$scope.resImageDataURI);
-            $scope.imageDataURI='233333';
+            $scope.avatar = '66666';
             $scope.resize_area = false;
         };
         $scope.company_id = $routeParams.company_id;
@@ -2262,24 +2260,35 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.test = function(){
             $("#fileInput").click();
+            if(document.querySelector('#fileInput').value != '')
+                $scope.resize_area = true;
         };
+        $scope.check = function(){
+            alert($scope.imageDataURI);
+        }
         var handleFileSelect=function(evt) {
           var file=evt.currentTarget.files[0];
           var reader = new FileReader();
           reader.onload = function (evt) {
             $scope.$apply(function($scope){
               $scope.imageDataURI=evt.target.result;
+              $scope.resize_area = true;
             });
           };
-          reader.readAsDataURL(file);
+        if(file != undefined)
+            reader.readAsDataURL(file);
+        else
+            $scope.$apply(function($scope){
+              $scope.resize_area = false;
+            });
+                
         };
         angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
-        $scope.$watch('imageDataURI',function(){
-            if($scope.imageDataURI == '233333')
-                return;
+        $scope.$watch('imageDataURI',function(newValue,oldValue, scope){
           //console.log('Res image', $scope.resImageDataURI);
-          if (!$scope.resize_area && document.querySelector('#fileInput').value != '') 
-            $scope.resize_area = true;
+          //if(newValue != '' && document.querySelector('#fileInput').value != '')
+            //$scope.resize_area = true;
+
         });
     }]).
     controller('DT_CompanyFirstCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload','ImgResizeService',

@@ -76,12 +76,14 @@
 <div id="err-msg" ng-show="error.show"  ng-class="error.class">[[error.message]]</div>
 
 <!-- Modal -->
+            
 <div class="modal fade" id="addMember" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
        <form class="member_add form-horizontal" name="memberAddForm" ng-submit="save_member()">
            <div class="member-info-card">
+            <button ng-click="check()">ffffff</button>
                <input type="file" id="fileInput" style="display: none;"/>
                <a ng-click="cancer_add()"><img class="delete" src="/static/image/icon/delete-01.png"></a>
                <div ng-model="avatar" ng-click="test()" >
