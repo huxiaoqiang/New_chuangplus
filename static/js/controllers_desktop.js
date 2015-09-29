@@ -2057,9 +2057,11 @@ angular.module('chuangplus.controllers', []).
             };
             // canvas.toDataURL 返回的默认格式就是 image/png
             var blob=new Blob([ia], {type:"image/png"});
-            $scope.upload(blob,file_t,category);
+            //$scope.upload(blob,file_t,category);
+            $scope.avatar = '23336666';
             $('.upload-img').attr('src',$scope.resImageDataURI);
             $('#avatar_show_'+$scope.member_number).attr('src',$scope.resImageDataURI);
+            $scope.imageDataURI='233333';
             $scope.resize_area = false;
         };
         $scope.company_id = $routeParams.company_id;
@@ -2259,7 +2261,6 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.test = function(){
             $("#fileInput").click();
-
         };
         var handleFileSelect=function(evt) {
           var file=evt.currentTarget.files[0];
@@ -2270,11 +2271,14 @@ angular.module('chuangplus.controllers', []).
             });
           };
           reader.readAsDataURL(file);
-            $scope.resize_area = true;
         };
         angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
-        $scope.$watch('resImageDataURI',function(){
+        $scope.$watch('imageDataURI',function(){
+            if($scope.imageDataURI == '233333')
+                return;
           //console.log('Res image', $scope.resImageDataURI);
+          if (!$scope.resize_area && document.querySelector('#fileInput').value != '') 
+            $scope.resize_area = true;
         });
     }]).
     controller('DT_CompanyFirstCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload','ImgResizeService',
@@ -2902,6 +2906,8 @@ angular.module('chuangplus.controllers', []).
                 'marketing':true,
                 'functions':true,
                 'others':true
+
+                
             },
             "salary": ''
         };
