@@ -2334,8 +2334,10 @@ angular.module('chuangplus.controllers', []).
         ];
         $scope.cancelUpload = function()
         {
-            $('.img-upload-preview').src("/api/file/"+$scope.companyinfo.logo_id+ "/download");
-            $scope.resize_area = false;
+            $('.img-upload-preview').attr('src',"/api/file/"+$scope.companyinfo.logo_id+ "/download");
+            $scope.$apply(function($scope){
+              $scope.resize_area = false;
+            });
         };
 
         $scope.imageDataURI='';
