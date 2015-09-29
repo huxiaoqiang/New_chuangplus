@@ -1389,6 +1389,8 @@ angular.module('chuangplus.controllers', []).
                 $scope.position.company.field_type = $scope.field_type[$scope.position.company.field];
                 $scope.position.company.scale_value = $scope.scale[$scope.position.company.scale];
                 $scope.position.company.position_number = $scope.position.company.positions.length;
+                if($scope.position.company.homepage.indexOf("http://") == -1 && $scope.position.company.homepage.indexOf("https://") == -1)
+                    $scope.position.company.homepage = "http://" + $scope.position.company.homepage;
                 if($scope.position.status == "open")
                 {
                     $scope.position.status_value = "职位在招";
