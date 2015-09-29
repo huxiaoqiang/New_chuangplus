@@ -34,11 +34,14 @@ def upload_file(request):
             if file_obj.size > 10000000:
                 re['error'] = error(15,"File size is bigger than 10M!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
-            if file_type in["memberavatar","CEOavatar"]:
+            if file_type in["memberavatar",'CEOavatar']:
+                if data_dict.has_key('avatar_id'):
+                    avatar_id = data_dict['avatar_id']
                 image = Image.open(file_obj)
                 #image.thumbnail(sizeBig)
-                image.save("original.png")
-                file_obj2 = open('original.png','rb')
+                original_name = category+"old.png"
+                image.save(original_name)
+                file_obj2 = open(original_name,'rb')
                 category2 = category + "_original"
                 try:
                     f_original = File.objects.get(file_type = file_type,category = category2)
@@ -46,18 +49,28 @@ def upload_file(request):
                     f_original = File(file_type = file_type,category = category2)
                     f_original.value.put(file_obj2.read(),content_type = file_obj.content_type)
                 else:
-                    f_original.replace(file_obj2.read(),content_type = file_obj.content_type)
+                    f_original.value.replace(file_obj2.read(),content_type = file_obj.content_type)
                 f_original.name = file_obj.name
-                f_orignal.description = description
+                f_original.description = description
                 try:
                     f_original.save()
                 except:
                     re['error'] = error(250,'Database error: Failed to get companyinfo')
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
-                img = Image.open("original.png")
+                #file_obj2.close()
+                img = Image.open(original_name)
                 img.thumbnail(sizeBig)
-                img.save("thumb.png")
-                file_obj3 = open("thumb.png","rb")
+                thumb_name = category + "new.png"
+                img.save(thumb_name)
+                file_obj3 = open(thumb_name,"rb")
+                try:
+                    file_obj2.close()
+                except:
+                    print "file_obj2 close error!"
+                try:
+                    os.remove(original_name)
+                except:
+                    print "delete original error!"
                 try:
                     id = category.split('_')[0]
                     companyinfo = Companyinfo.objects.get(id=id)
@@ -65,12 +78,11 @@ def upload_file(request):
                     re['error'] = error(16,'Company does not exist,fail to upload member avatar')
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
                 try:
-                    f = File.objects.get(file_type = file_type,category = category)
+                    f = File.objects.get(id = avatar_id)
+                    f.value.replace(file_obj3.read(), content_type = file_obj.content_type)
                 except:
                     f = File(file_type = file_type,category = category)
                     f.value.put(file_obj3.read(), content_type = file_obj.content_type)
-                else:
-                    f.value.replace(file_obj3.read(), content_type = file_obj.content_type)
                 f.name = file_obj.name
                 ##print "f.name " + f.name
                 f.description = description
@@ -81,15 +93,20 @@ def upload_file(request):
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
                 re['error'] = error(1,"file upload successfully")
                 re['data'] = str(f.id)
-                file_obj2.close()
+                #file_obj2.close()
                 try:
-                    os.remove('big.png')
+                    file_obj3.close()
                 except:
-                    pass
+                    print "close file_obj3 error!"
+                try:
+                    os.remove(thumb_name)
+                except:
+                    print "delete thumb_name error!"
             elif file_type in['qrcode','logo']:
                 image = Image.open(file_obj)
-                image.save("original.png")
-                file_obj2 = open('original.png','rb')
+                original_name = category + "old.png"
+                image.save(original_name)
+                file_obj2 = open(original_name,'rb')
                 category2 = category + "_original"
                 try:
                     f_original = File.objects.get(file_type = file_type,category = category2)
@@ -106,10 +123,20 @@ def upload_file(request):
                 except DatabaseError:
                     re['error'] = error(250,'Database error: Failed to save file!')
                     return HttpResponse(json.dumps(re),content_type = 'application/json')
-                img = Image.open("original.png")
+                #file_obj2.close()
+                img = Image.open(original_name)
                 img.thumbnail(sizeBig)
-                img.save("thumb.png")
-                file_obj3 = open("thumb.png","rb")
+                thumb_name = category+"new.png"
+                img.save(thumb_name)
+                file_obj3 = open(thumb_name,"rb")
+                try:
+                    file_obj2.close()
+                except:
+                    print "close file_obj2 error!"
+                try:
+                    os.remove(original_name)
+                except:
+                    print "remove original error!"
                 try:
                     id = category.split('_')[0]
                     companyinfo = Companyinfo.objects.get(id=id)
@@ -130,17 +157,21 @@ def upload_file(request):
                     f.name = file_obj.name
                     f.description = description
                     try:
+                        file_obj3.close()
+                    except:
+                        print "close file_obj3 error!"
+                    try:
+                        os.remove(thumb_name)
+                    except:
+                        print "remove thumb error!"
+                    try:
                         f.save()
                     except DatabaseError:
                         re['error'] = error(250,'Database error: Failed to save file!')
                         return HttpResponse(json.dumps(re), content_type = 'application/json')
-
+                    #file_obj3.close()
                     re['error'] = error(1, 'file upload successfully')
                     re['data'] = str(f.id)
-                    try:
-                        os.remove('big.png')
-                    except:
-                        pass
             elif file_type == 'resume':
                 username = request.user.username
                 try:
@@ -208,6 +239,26 @@ def delete_file(request,file_id):
         except:
             re['error'] = error(31,'File does not exist, fail to delete the file')
         else:
+            category  = f.category
+            id = category.split('_')[0]
+            l  = category.split('_')[1]
+            #print l
+            index = int(l)
+            list = File.objects(description__contains = id).all()
+            for i in list:
+                if i.file_type in ["memberavatar","CEOavatar"]:
+                    category_list = i.category.split('_')
+                    index2 = category_list[1]
+                    #print (index,index2)
+                    try:
+                        index_avatar = int(index2)
+                        if index_avatar > index:
+                            category_list[1] = str(index_avatar - 1)
+                        category2 = '_'.join(category_list)
+                        i.category = category2
+                        i.save()
+                    except:
+                        pass
             f.value.delete()
             f.delete()
             #if f.file_type == 'memberavatar':

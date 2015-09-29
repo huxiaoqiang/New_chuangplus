@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^checkemail$', views.check_email_exist, name='check_email_exist'),
     url(r'^login$',views.login, name='login'),
     url(r'^logout$',views.logout, name='logout'),
-
+    url(r'^login_by_tsinghua$',views.login_by_tsinghua, name = 'login_by_tsinghua'),
     url(r'^password/set$',views.set_password, name='set_password'),
     url(r'^password/set_withcode$',views.set_password_verifycode, name='set_password_verifycode'),
     url(r'^userinfo/get$',views.get_userinfo, name='get_userinfo'),
@@ -51,6 +51,8 @@ urlpatterns = [
     url(r'^company/(?P<position_id>.*?)/submit/list', views.get_submit_list_intern, name='get_submit_list'),
     url(r'^company/submit/search', views.search_submit_intern, name='search_submit_intern'),
 
+    url(r'^admin/company/list', views.get_company_list_admin, name='get_company_list_admin'),
+    url(r'^admin/image/list', views.get_image_list, name='get_image_list'),
 ]
 
 #urlpatterns = format_suffix_patterns(urlpatterns)
