@@ -330,7 +330,7 @@ body > #wrap {
   text-decoration: none;
   font-size: 16px;
   line-height: 16px;
-  padding-left: 3px;
+  padding-left: 4px;
 }
 #container #login .login-form #login_form .fresh .icon-repeat.icon-large {
   margin-left: 7px;
@@ -442,11 +442,15 @@ body > #wrap {
 #container #register .register-form #reg_form #captcha_img {
   margin-left: 13px;
   height: 30px;
+  width: 80px;
 }
 #container #register .register-form #reg_form .fresh {
   cursor: pointer;
   color: #cccccc;
   text-decoration: none;
+  font-size: 16px;
+  line-height: 16px;
+  padding-left: 4px;
 }
 #container #register .register-form #reg_form .fresh .icon-repeat.icon-large {
   margin-left: 7px;
