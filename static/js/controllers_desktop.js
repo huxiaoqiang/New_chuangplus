@@ -2027,42 +2027,7 @@ angular.module('chuangplus.controllers', []).
     controller('DT_CompanyTestCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload','ImgResizeService',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload, $imgResize){
         console.log('DT_CompanyTestCtrl');
-        $scope.cancelUpload = function()
-        {
-            //$imgResize.cancel($scope,"/api/file/"+$scope.member_add.m_avatar_id+ "/download");
-            //if($scope.cancel_upload == undefined)
-//            $scope.cancel_upload = true;
-//            $scope.cancel_upload = undefined;
-            $scope.resize_area = false;
-            //alert($scope.cancel_upload);
-        };
-        $scope.startUpload = function(file_t,category)
-        {
-            /*
-            if(file != null && file != undefined)
-            {
-                if(!/image\/\w+/.test(file.type)){
-                    alert("文件必须为图片！"); 
-                    return false; 
-                } 
-                //alert('here');
-                $imgResize.startUpload(file,file_t,category,$scope);
-                $scope.resize_area = true;
-            }*/
-            var data=$scope.resImageDataURI.split(',')[1];
-            data=window.atob(data);
-            var ia = new Uint8Array(data.length);
-            for (var i = 0; i < data.length; i++) {
-                ia[i] = data.charCodeAt(i);
-            };
-            // canvas.toDataURL 返回的默认格式就是 image/png
-            var blob=new Blob([ia], {type:"image/png"});
-            //$scope.upload(blob,file_t,category);
-            $('.upload-img').attr('src',$scope.resImageDataURI);
-            $('#avatar_show_'+$scope.member_number).attr('src',$scope.resImageDataURI);
-            $scope.avatar = '66666';
-            $scope.resize_area = false;
-        };
+        
         $scope.company_id = $routeParams.company_id;
         $scope.add_member_flag = false;
         $scope.member_add = {};
@@ -2246,6 +2211,42 @@ angular.module('chuangplus.controllers', []).
         $scope.enableCrop=true;
         $scope.resImgSize=160;
         //$scope.aspectRatio=1.2;
+        $scope.cancelUpload = function()
+        {
+            //$imgResize.cancel($scope,"/api/file/"+$scope.member_add.m_avatar_id+ "/download");
+            //if($scope.cancel_upload == undefined)
+//            $scope.cancel_upload = true;
+//            $scope.cancel_upload = undefined;
+            $scope.resize_area = false;
+            //alert($scope.cancel_upload);
+        };
+        $scope.startUpload = function(file_t,category)
+        {
+            /*
+            if(file != null && file != undefined)
+            {
+                if(!/image\/\w+/.test(file.type)){
+                    alert("文件必须为图片！"); 
+                    return false; 
+                } 
+                //alert('here');
+                $imgResize.startUpload(file,file_t,category,$scope);
+                $scope.resize_area = true;
+            }*/
+            var data=$scope.resImageDataURI.split(',')[1];
+            data=window.atob(data);
+            var ia = new Uint8Array(data.length);
+            for (var i = 0; i < data.length; i++) {
+                ia[i] = data.charCodeAt(i);
+            };
+            // canvas.toDataURL 返回的默认格式就是 image/png
+            var blob=new Blob([ia], {type:"image/png"});
+            //$scope.upload(blob,file_t,category);
+            $('.upload-img').attr('src',$scope.resImageDataURI);
+            $('#avatar_show_'+$scope.member_number).attr('src',$scope.resImageDataURI);
+            $scope.avatar = '66666';
+            $scope.resize_area = false;
+        };
         $scope.onChange=function($dataURI) {
           console.log('onChange fired');
         };
@@ -2284,15 +2285,15 @@ angular.module('chuangplus.controllers', []).
                 
         };
         angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
-        $scope.$watch('imageDataURI',function(newValue,oldValue, scope){
+        //$scope.$watch('imageDataURI',function(newValue,oldValue, scope){
           //console.log('Res image', $scope.resImageDataURI);
           //if(newValue != '' && document.querySelector('#fileInput').value != '')
             //$scope.resize_area = true;
 
-        });
+        //});
     }]).
-    controller('DT_CompanyFirstCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload','ImgResizeService',
-        function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload, $imgResize){
+    controller('DT_CompanyFirstCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload',
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_CompanyFirstCtrl');
         $scope.company_id = $routeParams.company_id;
         $scope.companyinfo = {};
@@ -2333,24 +2334,65 @@ angular.module('chuangplus.controllers', []).
         ];
         $scope.cancelUpload = function()
         {
-            $imgResize.cancel($scope,"/api/file/"+$scope.companyinfo.logo_id+ "/download");
+            $('.img-upload-preview').src("/api/file/"+$scope.companyinfo.logo_id+ "/download");
             $scope.resize_area = false;
         };
-        $scope.startUpload = function(file,category)
+
+        $scope.imageDataURI='';
+        $scope.resImageDataURI='';
+        $scope.resImgFormat='image/png';
+        $scope.resImgQuality=1;
+        $scope.selMinSize=100;
+        $scope.enableCrop=true;
+        $scope.resImgSize=160;
+        //$scope.aspectRatio=1.2;
+        $scope.startUpload = function(file_t,category)
         {
-            if(file != null && file != undefined)
-            {
-                if(!/image\/\w+/.test(file.type)){ 
-                    alert("文件必须为图片！"); 
-                    return false; 
-                } 
-//                alert('here');
-                $imgResize.startUpload(file,category,'',$scope);
-                $scope.resize_area = true;
-                //alert('true');   
-            }
-            file = null;
+            var data=$scope.resImageDataURI.split(',')[1];
+            data=window.atob(data);
+            var ia = new Uint8Array(data.length);
+            for (var i = 0; i < data.length; i++) {
+                ia[i] = data.charCodeAt(i);
+            };
+            // canvas.toDataURL 返回的默认格式就是 image/png
+            var blob=new Blob([ia], {type:"image/png"});
+            $scope.logo = '6666';
+            $scope.upload(blob,file_t,category);
+            $('.upload-img').attr('src',$scope.resImageDataURI);
+            $scope.resize_area = false;
         };
+        $scope.test = function(){
+            $("#fileInput").click();
+            if(document.querySelector('#fileInput').value != '')
+                $scope.resize_area = true;
+        };
+        $scope.check = function(){
+            alert($scope.imageDataURI);
+        }
+        var handleFileSelect=function(evt) {
+          var file=evt.currentTarget.files[0];
+          var reader = new FileReader();
+          reader.onload = function (evt) {
+            $scope.$apply(function($scope){
+              $scope.imageDataURI=evt.target.result;
+              $scope.resize_area = true;
+            });
+          };
+        if(file != undefined)
+            reader.readAsDataURL(file);
+        else
+            $scope.$apply(function($scope){
+              $scope.resize_area = false;
+            });
+                
+        };
+        angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+        //$scope.$watch('imageDataURI',function(newValue,oldValue, scope){
+          //console.log('Res image', $scope.resImageDataURI);
+          //if(newValue != '' && document.querySelector('#fileInput').value != '')
+            //$scope.resize_area = true;
+
+        //});
         $scope.get_company_info = function(){
             $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
                 success(function(data){
