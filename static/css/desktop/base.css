@@ -89,6 +89,9 @@ header #header .navbar .navbar-item.login li.active {
 header #header .navbar .navbar-item.login li.active a:hover {
   border-width: 0px 0px 0px 0px;
 }
+header #header .navbar .navbar-item.login li.active a:focus {
+  weight: 100;
+}
 header #header .navbar .navbar-item.login li.dropmenu {
   height: 58px;
 }
