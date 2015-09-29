@@ -2947,7 +2947,7 @@ angular.module('chuangplus.controllers', []).
             };
             // canvas.toDataURL 返回的默认格式就是 image/png
             var blob=new Blob([ia], {type:"image/png"});
-            //$scope.upload(blob,file_t,category);
+            $scope.upload(blob,file_t,category);
             $('.upload-img').attr('src',$scope.resImageDataURI);
             $('#avatar_show_'+$scope.member_number).attr('src',$scope.resImageDataURI);
             $scope.avatar = '66666';
