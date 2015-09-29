@@ -78,10 +78,6 @@ header #header .navbar .navbar-item.login li a:hover {
   background-color: white;
   height: 100%;
 }
-header #header .navbar .navbar-item.login li a:focus {
-  background-color: white;
-  font-weight: bold;
-}
 header #header .navbar .navbar-item.login li.active {
   border: solid #8f4e96;
   border-width: 0px 0px 3px 0px;
@@ -4794,6 +4790,11 @@ img-crop canvas {
 }
 #container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info.info-2 {
   width: 320px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info.info-2 .vertical-center div {
+  overflow-y: scroll;
+  width: 100%;
+  height: 100%;
 }
 #container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info.info-3 {
   width: 175px;
