@@ -2785,31 +2785,6 @@ angular.module('chuangplus.controllers', []).
                     }
                 });
         };
-//        $scope.cancel_upload = false;
-        $scope.cancelUpload = function()
-        {
-            //$imgResize.cancel($scope,"/api/file/"+$scope.member_add.m_avatar_id+ "/download");
-            //if($scope.cancel_upload == undefined)
-//            $scope.cancel_upload = true;
-//            $scope.cancel_upload = undefined;
-            $scope.avatar = null;
-            $scope.resize_area = false;
-            //alert($scope.cancel_upload);
-        };
-        $scope.startUpload = function(file,file_t,category)
-        {
-            if(file != null && file != undefined)
-            {
-                if(!/image\/\w+/.test(file.type)){
-                    alert("文件必须为图片！"); 
-                    return false; 
-                }
-                //alert('here');
-                $imgResize.startUpload(file,file_t,category,$scope);
-                $scope.resize_area = true;
-            }
-            file = null;
-        };
         $scope.delete_modal = function(index){
             $scope.delete_index = index;
             $('#delete_member').modal('show');
@@ -2841,7 +2816,8 @@ angular.module('chuangplus.controllers', []).
             var param = {
                "file_type": file_t,
                "description": $scope.company_id + file_t,
-               "category": $scope.company_id + '_'+category
+               "category": $scope.company_id + '_'+$scope.member_number,
+               "avatar_id" : $scope.member_add.m_avatar_id
             };
             var headers = {
                    'X-CSRFToken': $csrf.val(),
@@ -2927,6 +2903,80 @@ angular.module('chuangplus.controllers', []).
                     $scope.submit_loading = false;
                 });
         };
+
+
+
+        $scope.type='circle';
+        $scope.imageDataURI='';
+        $scope.resImageDataURI='';
+        $scope.resImgFormat='image/png';
+        $scope.resImgQuality=1;
+        $scope.selMinSize=100;
+        $scope.enableCrop=true;
+        $scope.resImgSize=160;
+        //$scope.aspectRatio=1.2;
+        $scope.cancelUpload = function()
+        {
+            //$imgResize.cancel($scope,"/api/file/"+$scope.member_add.m_avatar_id+ "/download");
+            //if($scope.cancel_upload == undefined)
+//            $scope.cancel_upload = true;
+//            $scope.cancel_upload = undefined;
+            $scope.resize_area = false;
+            //alert($scope.cancel_upload);
+        };
+        $scope.startUpload = function(file_t,category)
+        {
+            /*
+            if(file != null && file != undefined)
+            {
+                if(!/image\/\w+/.test(file.type)){
+                    alert("文件必须为图片！"); 
+                    return false; 
+                } 
+                //alert('here');
+                $imgResize.startUpload(file,file_t,category,$scope);
+                $scope.resize_area = true;
+            }*/
+            var data=$scope.resImageDataURI.split(',')[1];
+            data=window.atob(data);
+            var ia = new Uint8Array(data.length);
+            for (var i = 0; i < data.length; i++) {
+                ia[i] = data.charCodeAt(i);
+            };
+            // canvas.toDataURL 返回的默认格式就是 image/png
+            var blob=new Blob([ia], {type:"image/png"});
+            //$scope.upload(blob,file_t,category);
+            $('.upload-img').attr('src',$scope.resImageDataURI);
+            $('#avatar_show_'+$scope.member_number).attr('src',$scope.resImageDataURI);
+            $scope.avatar = '66666';
+            $scope.resize_area = false;
+        };
+        $scope.test = function(){
+            $("#fileInput").click();
+            if(document.querySelector('#fileInput').value != '')
+                $scope.resize_area = true;
+        };
+        $scope.check = function(){
+            alert($scope.imageDataURI);
+        }
+        var handleFileSelect=function(evt) {
+          var file=evt.currentTarget.files[0];
+          var reader = new FileReader();
+          reader.onload = function (evt) {
+            $scope.$apply(function($scope){
+              $scope.imageDataURI=evt.target.result;
+              $scope.resize_area = true;
+            });
+          };
+        if(file != undefined)
+            reader.readAsDataURL(file);
+        else
+            $scope.$apply(function($scope){
+              $scope.resize_area = false;
+            });
+                
+        };
+        angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
     }]).
     controller('DT_PositionListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_PositionListCtrl');
