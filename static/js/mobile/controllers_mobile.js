@@ -459,11 +459,14 @@ angular.module('chuangplus_mobile.controllers', [])
                             $scope.positions[i].company.scale_value = "成熟";
                         }
                     }
-                    
                 }
                 $rootScope.loading = false;
             });
         };
+        $scope.reset_search = function(){
+            if($scope.search_name == '')
+                $scope.submit_search();
+        }
         $scope.submit_search = function()
         {
 
@@ -1073,27 +1076,28 @@ angular.module('chuangplus_mobile.controllers', [])
                         console.log(data);
                         if(data.error.code == 1){
                             console.log("登陆成功");
+                                        window.location.href = urls.mobile_index;
 
 
-
+/*
                             $scope.user_info = {};
                             $http.get(urls.api+"/account/userinfo/get").
                                 success(function(udata){
                                 if(udata.error.code == 1){
                                     if( udata.data.major != undefined &&
                                         udata.data.university != undefined)
-                                        window.location.href=urls.mobile_index;
+                                        window.location.href = urls.mobile_index;
                                     else
                                     {
                                         console.log('需要填写信息');
-                                        window.location.href='/mobile/info';
+                                        window.location.href = '/mobile/info';
                                     }
                                 }
                                 else
                                     $notice.show($errMsg.format_error("",udata.error).message);
                             });
 
-
+*/
 
                         }
                         else
