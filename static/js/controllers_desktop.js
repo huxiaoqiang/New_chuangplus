@@ -3272,7 +3272,7 @@ angular.module('chuangplus.controllers', []).
             }
             else
                 $scope.selectPage(1);
-            $http.get(urls.api+"/account/admin/company/list"+param).
+                $http.get(urls.api+"/account/admin/company/list"+param).
                 success(function(data){
                 $scope.param.pageCount = data.page_number;
                 
