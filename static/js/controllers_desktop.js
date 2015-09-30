@@ -1378,7 +1378,6 @@ angular.module('chuangplus.controllers', []).
         };
     $scope.skip = function(){
         window.location.href = "/company/" + $scope.company_id + "/detail";
-
     };
     $scope.get_position_detail = function(){
         $http.get(urls.api+"/position/"+ $scope.position_id +"/get_with_company").
@@ -1432,43 +1431,43 @@ angular.module('chuangplus.controllers', []).
     $scope.get_position_detail();
                                        
     $scope.userinfo = {};
-        $http.get(urls.api + "/account/userinfo/get").
-            success(function(data){
-                if(data.error.code == 1){
-                    $scope.userinfo = data.data;
-                    $scope.submitResume = {};
-                    $scope.submitResume.position_id = $scope.position_id;
-                    console.log($scope.userinfo.resume_id);
-                    if($scope.userinfo.resume_id != undefined && $scope.userinfo.resume_id != null)
-                    {
-                        $scope.submitResume.resume_choice = 1;
-                        $scope.resume_submitted = true;
-                        console.log("here");
-                    }
-                    else{
-                        $scope.resume_submitted = false;
-                    }
-                 }
-                else{
-                    console.log(data.error.message);
+    $http.get(urls.api + "/account/userinfo/get").
+        success(function(data){
+            if(data.error.code == 1){
+                $scope.userinfo = data.data;
+                $scope.submitResume = {};
+                $scope.submitResume.position_id = $scope.position_id;
+                console.log($scope.userinfo.resume_id);
+                if($scope.userinfo.resume_id != undefined && $scope.userinfo.resume_id != null)
+                {
+                    $scope.submitResume.resume_choice = 1;
+                    $scope.resume_submitted = true;
+                    console.log("here");
                 }
-            });
+                else{
+                    $scope.resume_submitted = false;
+                }
+             }
+            else{
+                console.log(data.error.message);
+            }
+        });
     
     $http.get(urls.api+"/position/"+$scope.position_id+"/check_submit").
-            success(function(data){
-                if(data.error.code == 1){
-                    if(data.exist == true){
-                        $scope.submit_value = "已投递";
-                        $scope.post_submitted = true;
-            }
-            else{
-            $scope.submit_value = "投递简历";
-            $scope.post_submitted = false;
-            }
+        success(function(data){
+            if(data.error.code == 1){
+                if(data.exist == true){
+                    $scope.submit_value = "已投递";
+                    $scope.post_submitted = true;
         }
         else{
-            console.log(data.error.message);
+        $scope.submit_value = "投递简历";
+        $scope.post_submitted = false;
         }
+    }
+    else{
+        console.log(data.error.message);
+    }
     });
 	$scope.post = function(){
 	    if($scope.favor_exist == false){
@@ -1498,13 +1497,10 @@ angular.module('chuangplus.controllers', []).
     $scope.check_userinfo = function(){
         $http.get(urls.api+"/account/userinfo/check").
             success(function(data){
-                
-                    if(data.complete == true)
-                        $scope.userinfo_complete = true;
-                    else
-                        $scope.userinfo_complete = false;
-               
-            
+                if(data.complete == true)
+                    $scope.userinfo_complete = true;
+                else
+                    $scope.userinfo_complete = false;
         });
     };
 	$scope.submit = function(){
