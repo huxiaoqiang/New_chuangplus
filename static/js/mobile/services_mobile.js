@@ -115,7 +115,7 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
             }
         };
     }]).
-    service('UserService', ['urls', '$http', '$cookies', function(urls, $http, $cookies){
+    service('UserService', ['urls', '$http', '$cookies', '$location', function(urls, $http, $cookies, $location){
         var user = {};
         // $.get(urls.api + '/user/status', function(data){
         //     user = data;
@@ -129,11 +129,11 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
         if($cookies.role){
             user.role = $cookies.role;
         }
-        if(user.username == undefined)
-        {
-            window.location.href='/mobile/login';
-            return;
-        }
+        //alert(user.username);
+        //if(user.username == undefined && $location.path() != '/mobile/login' && $location.path() != '/mobile/register')
+        //{
+        //   window.location.href='/mobile/login';
+        //}
         return {
             'check_login' : function(){
                 if(user.username == undefined)
