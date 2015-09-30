@@ -17,9 +17,6 @@ body {
   background: url('/static/image/icon/3d-purple.png');
   background-repeat: repeat-x;
 }
-.navbar-absolute-bottom {
-  position: fixed;
-}
 @media (min-width: 992px) {
   .has-sidebar-left .app,
   .sidebar-left-in .app {
