@@ -1045,14 +1045,6 @@ angular.module('chuangplus_mobile.controllers', [])
             
         }
 
-        $scope.user_info = {};
-        $http.get(urls.api+"/account/userinfo/get").
-            success(function(data){
-            if(data.error.code == 1){
-                $scope.user_info = data.data;
-            }
-        });
-
         $scope.login_user = function(){
             if($scope.is_captcha_ok == 1)
             {
@@ -1063,6 +1055,9 @@ angular.module('chuangplus_mobile.controllers', [])
                         console.log(data);
                         if(data.error.code == 1){
                             console.log("登陆成功");
+
+
+
                             $scope.user_info = {};
                             $http.get(urls.api+"/account/userinfo/get").
                                 success(function(udata){
@@ -1079,6 +1074,9 @@ angular.module('chuangplus_mobile.controllers', [])
                                 else
                                     $notice.show($errMsg.format_error("",udata.error).message);
                             });
+
+
+
                         }
                         else
                         {
