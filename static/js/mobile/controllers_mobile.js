@@ -1076,7 +1076,7 @@ angular.module('chuangplus_mobile.controllers', [])
                         console.log(data);
                         if(data.error.code == 1){
                             console.log("登陆成功");
-                                        window.location.href = urls.mobile_index;
+                            window.location.href = urls.mobile_index;
 
 
 /*

@@ -135,6 +135,24 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
         //   window.location.href='/mobile/login';
         //}
         return {
+            'check_info' : function(){
+                if(user.username != undefined)
+                {
+                    $http.get(urls.api+"/account/userinfo/get").
+                        success(function(udata){
+                        if(udata.error.code == 1){
+                            if( udata.data.major == undefined ||
+                                udata.data.university == undefined)
+                            {
+                                console.log('需要填写信息');
+                                window.location.href='/mobile/info';
+                            }
+                        }
+                        else
+                            $notice.show($errMsg.format_error("",udata.error).message);
+                    });
+                }
+            }
             'check_login' : function(){
                 if(user.username == undefined)
                 {
