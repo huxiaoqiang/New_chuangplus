@@ -79,7 +79,8 @@ var app = angular.module('chuangplus_mobile', [
             window.location.href='/mobile/login';
             return;
         }*/
-        $user.check_info();
+        if($location.path() != '/mobile/info')
+            $user.check_info();
         $rootScope.loading = true;
         //console.log('route begin change');
     });
