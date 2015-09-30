@@ -83,17 +83,22 @@ angular.module('chuangplus_mobile.controllers', [])
             });
         };
         $scope.get_company_list();
+        $scope.filter_now = -1;
         $scope.show_filter = function(id)
         {
             //$("#filter-content"+id).slideDown("normal");
             //$("#filter-content"+id).show();
+
+            $scope.hide_filter(3-id);
             $("#filter-content"+id).animate({top:90},"200");
+            $scope.filter_now = id;
             //$scope.filter_show = true;
         };
         $scope.hide_filter = function(id)
         {
             //$("#filter-content"+id).slideUp("fast");
             $("#filter-content"+id).animate({top:(-400)},"200");
+            $scope.filter_now = -1;
             //setTimeout($("#filter-content"+id).hide(),400);
             //$scope.filter_show = false;
         };
@@ -333,10 +338,16 @@ angular.module('chuangplus_mobile.controllers', [])
                 });
         };
         $scope.get_positions();
+        $scope.filter_now = -1;
         $scope.show_filter = function(id)
         {
             //$("#filter-content"+id).slideDown("normal");
             //$("#filter-content"+id).show();
+            for (var i = 4; i >= 1; i--) {
+                if (i != id) 
+                    $scope.hide_filter(i);
+            }   
+            $scope.filter_now = id;
             $("#filter-content"+id).animate({top:90},"200");
             //$scope.filter_show = true;
         };
@@ -344,6 +355,7 @@ angular.module('chuangplus_mobile.controllers', [])
         {
             //$("#filter-content"+id).slideUp("fast");
             $("#filter-content"+id).animate({top:(-400)},"200");
+            $scope.filter_now = -1;
             //setTimeout($("#filter-content"+id).hide(),300);
             //$scope.filter_show = false;
         };
@@ -721,7 +733,10 @@ angular.module('chuangplus_mobile.controllers', [])
                     $scope.company.position_type_value = {};
                     for(var i=0;i<$scope.company.position_type.length;i++)
                         $scope.company.position_type_value[i] = $scope.position_type[$scope.company.position_type[i]];
-                        
+                    
+                    if($scope.company.homepage.indexOf("http://") == -1 && $scope.company.homepage.indexOf("https://") == -1)
+                        $scope.company.homepage = "http://" + $scope.company.homepage;
+                
 
                     $http.get(urls.api+"/account/financing/" + $scope.company_id + "/list").
                         success(function(fdata){
@@ -861,7 +876,6 @@ angular.module('chuangplus_mobile.controllers', [])
                 $scope.position.field_value = $scope.cfield[$scope.position.company.field];
                 $scope.position.position_type_value = $scope.position_type[$scope.position.position_type];
                 $scope.position.position_number = $scope.position.company.positions.length;
-                console.log($scope.position.position_number);
 
                 $http.get(urls.api+"/account/company/"+ $scope.position.company._id.$oid +"/detail_with_positions").
                     success(function(data){
@@ -1031,14 +1045,6 @@ angular.module('chuangplus_mobile.controllers', [])
             
         }
 
-        $scope.user_info = {};
-        $http.get(urls.api+"/account/userinfo/get").
-            success(function(data){
-            if(data.error.code == 1){
-                $scope.user_info = data.data;
-            }
-        });
-
         $scope.login_user = function(){
             if($scope.is_captcha_ok == 1)
             {
@@ -1049,6 +1055,9 @@ angular.module('chuangplus_mobile.controllers', [])
                         console.log(data);
                         if(data.error.code == 1){
                             console.log("登陆成功");
+
+
+
                             $scope.user_info = {};
                             $http.get(urls.api+"/account/userinfo/get").
                                 success(function(udata){
@@ -1065,6 +1074,9 @@ angular.module('chuangplus_mobile.controllers', [])
                                 else
                                     $notice.show($errMsg.format_error("",udata.error).message);
                             });
+
+
+
                         }
                         else
                         {

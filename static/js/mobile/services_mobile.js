@@ -129,6 +129,11 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
         if($cookies.role){
             user.role = $cookies.role;
         }
+        if(user.username == undefined)
+        {
+            window.location.href='/mobile/login';
+            return;
+        }
         return {
             'check_login' : function(){
                 if(user.username == undefined)

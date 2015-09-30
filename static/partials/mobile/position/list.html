@@ -32,7 +32,7 @@
                         <label><input type="radio" name="work-time" value="7" ng-model="filter.workdays"/>7天</label> 
                     </div>
                 </div>
-                <a class="panel-radius btn-b-pur filter-btn" ng-click="submit_filter(1)">筛选</a>
+                <a class="panel-radius btn-b-pur filter-btn" ng-click="submit_filter(1)">确定</a>
                 <a class="panel-radius btn-b-pur filter-btn-last info-input" ng-click="hide_filter(1)">返回</a>
             </div>
         </div>
@@ -54,7 +54,7 @@
                         K
                     </div>
                 </div>
-                <a class="panel-radius btn-b-pur filter-btn" ng-click="submit_filter(2)">筛选</a>
+                <a class="panel-radius btn-b-pur filter-btn" ng-click="submit_filter(2)">确定</a>
                 <a class="panel-radius btn-b-pur filter-btn-last info-input" ng-click="hide_filter(2)">返回</a>
             </div>
         </div>
@@ -97,7 +97,7 @@
                         <label><input type="checkbox"  ng-model="filter.field.others" />其它</label> 
                     </div>
                 </div>
-                <a class="panel-radius btn-b-pur filter-btn" ng-click="submit_filter(3)">筛选</a>
+                <a class="panel-radius btn-b-pur filter-btn" ng-click="submit_filter(3)">确定</a>
                 <a class="panel-radius btn-b-pur filter-btn-last info-input" ng-click="hide_filter(3)">返回</a>
             </div>
         </div>
@@ -135,7 +135,7 @@
                     </div>
 
                 </div>
-                <a class="panel-radius btn-b-pur filter-btn" ng-click="submit_filter(4)">筛选</a>
+                <a class="panel-radius btn-b-pur filter-btn" ng-click="submit_filter(4)">确定</a>
                 <a class="panel-radius btn-b-pur filter-btn-last info-input" ng-click="hide_filter(4)">返回</a>
             </div>
 
@@ -144,10 +144,10 @@
         <div id="list-content" ng-show="!filter_show">
             <div class="require-bar">
                 <div class="requires">
-                    <div class="require-box elem-width-4" ng-click="show_filter(1)">[[workdays_notice]] <i class="fa fa-caret-down"></i></div>
-                    <div class="require-box elem-width-4" ng-click="show_filter(2)">[[salary_notice]] <i class="fa fa-caret-down"></i></div>
-                    <div class="require-box elem-width-4" ng-click="show_filter(3)">[[filed_notice]] <i class="fa fa-caret-down"></i></div>
-                    <div class="require-box elem-width-4" ng-click="show_filter(4)">[[type_notice]] <i class="fa fa-caret-down"></i></div>
+                    <div class="require-box elem-width-4" ng-click="show_filter(1)">[[workdays_notice]] <i class="fa" ng-class="{'fa-caret-down':filter_now != 1, 'fa-caret-up':filter_now == 1}"></i></div>
+                    <div class="require-box elem-width-4" ng-click="show_filter(2)">[[salary_notice]] <i class="fa "ng-class="{'fa-caret-down':filter_now != 2, 'fa-caret-up':filter_now == 2}"></i></div>
+                    <div class="require-box elem-width-4" ng-click="show_filter(3)">[[filed_notice]] <i class="fa" ng-class="{'fa-caret-down':filter_now != 3, 'fa-caret-up':filter_now == 3}"></i></div>
+                    <div class="require-box elem-width-4" ng-click="show_filter(4)">[[type_notice]] <i class="fa" ng-class="{'fa-caret-down':filter_now != 4, 'fa-caret-up':filter_now == 4}"></i></div>
                 </div>
                 <!--
                     <div class="require-btn" ng-click="show_filter()">&nbsp;</div>

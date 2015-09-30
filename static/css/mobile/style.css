@@ -240,13 +240,13 @@ a:hover {
   left: 0;
 }
 .login-header {
-  height: 210px;
+  height: 170px;
   text-align: center;
   margin-bottom: 5px;
 }
 .login-header .logo {
   width: 180px;
-  margin-top: 8px;
+  margin-top: 58px;
 }
 .login-header .name {
   margin-top: 12px;
@@ -987,13 +987,13 @@ a:hover {
   display: block;
 }
 .upload-header {
-  height: 210px;
+  height: 170px;
   text-align: center;
   margin-bottom: 45px;
   display: block;
 }
 .upload-header .logo {
-  margin-top: 8px;
+  margin-top: 58px;
   display: block;
   margin-bottom: 15px;
 }
