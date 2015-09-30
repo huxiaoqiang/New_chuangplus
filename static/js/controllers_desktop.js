@@ -3276,7 +3276,24 @@ angular.module('chuangplus.controllers', []).
             }
             else
                 $scope.selectPage(1);
-            $http.get(urls.api+"/account/company/list"+param).
+            $http.get(urls.api+"/account/admin/company/list"+param).
+                success(function(data){
+                $scope.param.pageCount = data.page_number;
+                
+                    $scope.company_list = data.data;
+                    for(var i=0;i<$scope.company_list.length;i++){
+                        $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
+                        $scope.company_list[i].scale_value = $scope.scale[$scope.company_list[i].scale];
+                        $scope.company_list[i].field_type = $scope.field_type[$scope.company_list[i].field];
+                        $scope.company_list[i].position_type_value = {};
+                        for(var j=0; j<$scope.company_list[i].financing.length; j++){
+                        $scope.company_list[i].financing[j].stage_value = $scope.stage[$scope.company_list[i].financing[j].stage];
+                        $scope.company_list[i].financing[j].amount_value = $scope.amount[$scope.company_list[i].financing[j].amount];
+                        }
+                    }
+                $scope.loading = false;
+            });
+            /*$http.get(urls.api+"/account/admin/company/list").
                 success(function(data){
                 $scope.param.pageCount = data.page_number;
                 if(data.error.code == 1){
@@ -3286,6 +3303,8 @@ angular.module('chuangplus.controllers', []).
                         $scope.company_list[i].scale_value = $scope.scale[$scope.company_list[i].scale];
                         $scope.company_list[i].field_type = $scope.field_type[$scope.company_list[i].field];
                         $scope.company_list[i].position_type_value = {};
+                        $scope.company_list[i].financing_list = {};
+                        $scope.company_list[i].financing_list = $scope.company_list[i].financing;
                         for(var j = 0; j < $scope.company_list[i].position_type.length; j ++){
                             $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
                         }
@@ -3295,7 +3314,7 @@ angular.module('chuangplus.controllers', []).
                      $scope.error = $errMsg.format_error('',data.error);
                 }
                 $scope.loading = false;
-            });
+            });*/
         };
         $scope.get_company_list();
 
