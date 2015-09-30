@@ -103,10 +103,6 @@ body
     background: url('/static/image/icon/3d-purple.png');
     background-repeat: repeat-x;
 }
-.navbar-absolute-bottom
-{
-    position: fixed;
-}
 @media (min-width: 992px)
 {
     .has-sidebar-left .app, .sidebar-left-in .app {
@@ -566,11 +562,20 @@ a:hover
 .search-btn
 {
     position: absolute;
-    right: 15px;
+    right: 17px;
     top: @cl-padding-ver;
     font-size: 17px;
     color: @mid-gray;
     line-height: 33px;
+}
+.search-btn:hover
+{
+    text-decoration: none;
+    color: @mid-gray;
+}
+.search-btn i
+{
+    margin-right: 2px;
 }
 /*
 
