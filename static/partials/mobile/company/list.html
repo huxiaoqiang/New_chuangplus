@@ -4,6 +4,9 @@
             <div class="logo sidebar-toggle" ui-toggle="uiSidebarLeft">
                     <i class="fa fa-bars" style="color: white;"></i>
             </div>
+            <a class="right-btn" href="/mobile/index" >
+                    <i class="fa fa-home"></i>
+            </a>
             <div ng-include="'/static/partials/mobile/partials/sidebar-left.html'" ></div>
             <div class="header"> 犀牛·帮你找实习</div>
         </div>    
@@ -74,7 +77,7 @@
                         </div>
                     -->
                     <div class="filter-elem filter-single-line">
-                        <label><input name="comp-scale" type="radio" ng-model="filter.scale" value="" />无要求</label> 
+                        <label><input name="comp-scale" type="radio" ng-model="filter.scale" value="-1" />无要求</label> 
                     </div>
                     <div class="filter-elem filter-single-line">
                         <label><input name="comp-scale" type="radio" ng-model="filter.scale" value="0" />初创（未融资/种子轮/天使轮）</label> 
@@ -183,7 +186,8 @@
                     </a>
                 </div>
                 <a class="load-more-btn" ng-click="load_more_item()" ng-show="pagenow > 0">
-                    点击加载更多
+                    <div ng-show="!more_loading">点击加载更多</div>
+                    <div ng-show="more_loading">正在加载 <i class="fa fa-spinner fa-spin" ></i><div>
                 </a>
                 <div class="no-more-btn" ng-show="pagenow <= 0">
                     没有更多了

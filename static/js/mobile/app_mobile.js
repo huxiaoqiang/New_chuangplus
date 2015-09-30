@@ -68,11 +68,19 @@ var app = angular.module('chuangplus_mobile', [
     }]);
 
 
-  app.run(['$rootScope', '$location', function($rootScope, $location){
+  app.run(['$rootScope', '$location', 'UserService', function($rootScope, $location, $user){
     $rootScope.$on('$routeChangeStart', function(){
-        $rootScope.loading = true;
+        
         //alert('route begin change');
-        console.log('route begin change');
+        //alert($location.path() + " " + $user.username());
+        /*
+        if($user.username() == undefined && $location.path() != '/mobile/login' && $location.path() != '/mobile/register')
+        {
+            window.location.href='/mobile/login';
+            return;
+        }*/
+        $rootScope.loading = true;
+        //console.log('route begin change');
     });
     $rootScope.$on('$routeChangeSuccess', function(){
         

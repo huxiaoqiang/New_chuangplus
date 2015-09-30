@@ -13,6 +13,13 @@ body {
   position: absolute;
   padding-bottom: 50px;
 }
+.nav-bar-absolute-top {
+  background: url('/static/image/icon/3d-purple.png');
+  background-repeat: repeat-x;
+}
+.navbar-absolute-bottom {
+  position: fixed;
+}
 @media (min-width: 992px) {
   .has-sidebar-left .app,
   .sidebar-left-in .app {
@@ -53,7 +60,7 @@ body {
 }
 .sidebar-toggle {
   color: white !important;
-  font-size: 22px !important;
+  font-size: 21px !important;
 }
 .no-margin {
   margin: 0 0 0 0 !important;
@@ -291,9 +298,21 @@ a:hover {
 }
 .header-bar .logo {
   float: left;
+  font-weight: 500;
   position: absolute;
+  line-height: 30px;
   height: 30px;
   margin: 10px 10px 10px 15px;
+}
+.header-bar .right-btn {
+  right: 0px;
+  font-size: 24px;
+  position: absolute;
+  font-weight: 500;
+  color: white;
+  line-height: 30px;
+  height: 30px;
+  margin: 10px 15px 10px 10px;
 }
 .require-bar {
   display: block;

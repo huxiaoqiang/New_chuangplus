@@ -103,6 +103,10 @@ body
     background: url('/static/image/icon/3d-purple.png');
     background-repeat: repeat-x;
 }
+.navbar-absolute-bottom
+{
+    position: fixed;
+}
 @media (min-width: 992px)
 {
     .has-sidebar-left .app, .sidebar-left-in .app {
@@ -146,7 +150,7 @@ body
 .sidebar-toggle
 {
     color: white !important; 
-    font-size: 22px !important;
+    font-size: 21px !important;
 }
 .no-margin
 {
@@ -454,9 +458,22 @@ a:hover
 .header-bar .logo
 {
     float: left;
+    font-weight: 500;
     position: absolute;
+    line-height: @cl-header-hgt - @cl-header-logo-mgn *2;
     height: @cl-header-hgt - @cl-header-logo-mgn *2;
     margin: @cl-header-logo-mgn @cl-header-logo-mgn @cl-header-logo-mgn @cl-header-logo-mgn + 5px ;
+}
+.header-bar .right-btn
+{
+    right: 0px;
+    font-size: 24px;
+    position: absolute;
+    font-weight: 500;
+    color: white;
+    line-height: 30px;
+    height: @cl-header-hgt - @cl-header-logo-mgn *2;
+    margin: @cl-header-logo-mgn @cl-header-logo-mgn + 5px @cl-header-logo-mgn @cl-header-logo-mgn  ;
 }
 
 .require-bar
