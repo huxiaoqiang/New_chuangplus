@@ -78,16 +78,15 @@ header #header .navbar .navbar-item.login li a:hover {
   background-color: white;
   height: 100%;
 }
-header #header .navbar .navbar-item.login li a:focus {
-  background-color: white;
-  font-weight: bold;
-}
 header #header .navbar .navbar-item.login li.active {
   border: solid #8f4e96;
   border-width: 0px 0px 3px 0px;
 }
 header #header .navbar .navbar-item.login li.active a:hover {
   border-width: 0px 0px 0px 0px;
+}
+header #header .navbar .navbar-item.login li.active a:focus {
+  weight: 100;
 }
 header #header .navbar .navbar-item.login li.dropmenu {
   height: 58px;
@@ -322,11 +321,15 @@ body > #wrap {
 #container #login .login-form #login_form #captcha_img {
   margin-left: 13px;
   height: 30px;
+  width: 80px;
 }
 #container #login .login-form #login_form .fresh {
   cursor: pointer;
   color: #cccccc;
   text-decoration: none;
+  font-size: 16px;
+  line-height: 16px;
+  padding-left: 4px;
 }
 #container #login .login-form #login_form .fresh .icon-repeat.icon-large {
   margin-left: 7px;
@@ -438,11 +441,15 @@ body > #wrap {
 #container #register .register-form #reg_form #captcha_img {
   margin-left: 13px;
   height: 30px;
+  width: 80px;
 }
 #container #register .register-form #reg_form .fresh {
   cursor: pointer;
   color: #cccccc;
   text-decoration: none;
+  font-size: 16px;
+  line-height: 16px;
+  padding-left: 4px;
 }
 #container #register .register-form #reg_form .fresh .icon-repeat.icon-large {
   margin-left: 7px;
@@ -4508,6 +4515,13 @@ body > #wrap_no_header_footer #main-container {
   top: 30px;
   left: 110px;
 }
+.cropArea {
+  background: inherit;
+  margin: auto;
+  overflow: hidden;
+  width: 500px;
+  height: 400px;
+}
 /* line 1, ../../source/scss/ng-img-crop.scss */
 img-crop {
   width: 100%;
@@ -4776,6 +4790,11 @@ img-crop canvas {
 }
 #container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info.info-2 {
   width: 320px;
+}
+#container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info.info-2 .vertical-center div {
+  overflow-y: scroll;
+  width: 100%;
+  height: 100%;
 }
 #container #manager .col-md-8 ul li .company-info .bottom-side .info .item-info.info-3 {
   width: 175px;

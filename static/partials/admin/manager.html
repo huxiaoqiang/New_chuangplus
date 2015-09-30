@@ -28,9 +28,8 @@
                         </div>
                         <div class="item-info info-2">
                             <div class="vertical-center">
-                            <p class="index">融资情况：</p>
                             <div ng-if="financing_list.length!=0">
-                                <p class="txt"ng-repeat="financing in company.financing_list">[[financing.stage_value]]&nbsp;&nbsp;[[financing.organization]]&nbsp;&nbsp;[[financing.amount_value]]</p>
+                                <p class="txt"ng-repeat="financing in company.financing">[[financing.stage_value]]&nbsp;&nbsp;[[financing.organization]]&nbsp;&nbsp;[[financing.amount_value]]</p>
                             </div>
                             <div ng-if="financing_list.length==0">
                                 <p class="txt">公司暂未融资</p>

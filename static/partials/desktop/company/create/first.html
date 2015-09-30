@@ -9,17 +9,26 @@
         </div>
         <div style="clear:both;"></div>
 
-        <div ng-controller="DT_ResizeImgCtrl" ng-show="resize_area">
+        <div ng-show="resize_area">
+          <input type="file" id="fileInput" style="display: none;"/>
           <div class="resize-component">
-            <div class="overlay">
-                <div class="overlay-inner">
-                </div>
-            </div>
             <div id="resize-box">
-              <img class="resize-image" id='image-preview' ngf-src="logo" alt="image for resizing">
+            <div class="cropArea" >
+                <img-crop image="imageDataURI"
+                          result-image="resImageDataURI"
+                          change-on-fly="false"
+                          area-type="square"
+                          area-min-size="100"
+                          result-image-format="image/png"
+                          result-image-quality="1"
+                          result-image-size="160"
+                >
+              </img-crop>
+              </div>
+  
             </div>
 
-            <button class="btn-crop js-crop">确认修改<img class="icon-crop" src="/static/lib/imageresize/img/crop.svg"></button>
+            <button class="btn-crop js-crop" ng-click="startUpload('logo','')">修改<img class="icon-crop" src="/static/lib/imageresize/img/crop.svg"></button>
             <button class="btn-resize-cancel" ng-click="cancelUpload()">取消</button>
           </div>
         </div>
@@ -48,7 +57,7 @@
                         <label>公司logo</label>
                     </div>
                     <div class="col-sm-9">
-                      <div class="change_tab" ng-model="logo"  ngf-select="startUpload($file,'logo')">
+                      <div class="change_tab" ng-model="logo"  ng-click="test()">
                         <img class="img-upload-preview" ng-show="(logo==null && companyinfo.logo_id != undefined) || logo != null" ng-src="/api/file/[[companyinfo.logo_id]]/download" title="点击图片修改logo"><br/>
                         <div class="upload-img "  ng-show="logo==null && companyinfo.logo_id == undefined" >点击上传logo</div>
                         <!--<img class="img-upload-preview" ng-show="logo!=null" ngf-src="logo" title="点击上传logo"><br/>-->

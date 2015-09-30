@@ -7,17 +7,26 @@
             <div class="item"><span class="text">第四步</span></div>
         </div>
 
-        <div ng-controller="DT_ResizeImgCtrl" ng-show="resize_area">
+        <div ng-show="resize_area">
+          <input type="file" id="fileInput" style="display: none;"/>
           <div class="resize-component">
-            <div class="overlay">
-                <div class="overlay-inner">
-                </div>
-            </div>
             <div id="resize-box">
-              <img class="resize-image" id='image-preview' ngf-src="logo" alt="image for resizing">
+            <div class="cropArea" >
+                <img-crop image="imageDataURI"
+                          result-image="resImageDataURI"
+                          change-on-fly="false"
+                          area-type="circle"
+                          area-min-size="100"
+                          result-image-format="image/png"
+                          result-image-quality="1"
+                          result-image-size="160"
+                >
+              </img-crop>
+              </div>
+  
             </div>
 
-            <button class="btn-crop js-crop">确认修改<img class="icon-crop" src="/static/lib/imageresize/img/crop.svg"></button>
+            <button class="btn-crop js-crop" ng-click="startUpload('memberavatar','[[member_number]]')">确认修改<img class="icon-crop" src="/static/lib/imageresize/img/crop.svg"></button>
             <button class="btn-resize-cancel" ng-click="cancelUpload()">取消</button>
           </div>
         </div>
@@ -41,7 +50,7 @@
                         <a ng-click="edit_member($index)"><img src="/static/image/icon/pencil-01.png"></a>
                     </div>
                     <div class="avatar_img">
-                        <img src="/api/file/[[member.m_avatar_id]]/download">
+                        <img id="avatar_show_[[$index]]" src="/api/file/[[member.m_avatar_id]]/download">
                     </div>
                     <br/>
                     <div class="intro">
@@ -64,6 +73,7 @@
 <div id="err-msg" ng-show="error.show"  ng-class="error.class">[[error.message]]</div>
 
 <!-- Modal -->
+            
 <div class="modal fade" id="addMember" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -71,10 +81,9 @@
        <form class="member_add form-horizontal" name="memberAddForm" ng-submit="save_member()">
            <div class="member-info-card">
                <a ng-click="cancer_add()"><img class="delete" src="/static/image/icon/delete-01.png"></a>
-               <div ng-model="avatar" ngf-select="startUpload($file,'memberavatar','[[member_number]]')" ngf-resize="{width: 100, height: 100}" ngf-keep="false">
-                    <img class="upload-img img-upload-preview" ng-show="avatar==null && member_add.hasOwnProperty('m_avatar_id')" src="/api/file/[[member_add.m_avatar_id]]/download">
+               <div ng-model="avatar" ng-click="test()" >
+                    <img class="upload-img" ng-show="avatar!=null || member_add.hasOwnProperty('m_avatar_id')" src="/api/file/[[member_add.m_avatar_id]]/download">
                     <div ng-show="avatar==null && !member_add.hasOwnProperty('m_avatar_id')" class="avatar-origin">点击上传头像</div>
-                    <img class="upload-img img-upload-preview" ng-show="avatar!=null" ngf-src="avatar[0]">
                </div>
 <!--
                <div ng-if="!member_add.hasOwnProperty('m_avatar_id')" ng-model="avatar" ngf-select="upload($file,'memberavatar',[[member_number]])" class="avatar-origin">点击上传图像</div>
@@ -114,8 +123,8 @@
       </div>
       <div style="clear:both;"></div>
       <div class="modal-footer">
-        <input type="button" class="btn cancer-button" data-dismiss="modal" value="取消">
         <button type="button"class="btn save-button" ng-click="delete_member(delete_index)">确定</button>
+        <input type="button" class="btn cancer-button" data-dismiss="modal" value="取消">
       </div>
     </div>
   </div>

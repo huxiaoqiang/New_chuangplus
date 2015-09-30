@@ -1389,6 +1389,8 @@ angular.module('chuangplus.controllers', []).
                 $scope.position.company.field_type = $scope.field_type[$scope.position.company.field];
                 $scope.position.company.scale_value = $scope.scale[$scope.position.company.scale];
                 $scope.position.company.position_number = $scope.position.company.positions.length;
+                if($scope.position.company.homepage.indexOf("http://") == -1 && $scope.position.company.homepage.indexOf("https://") == -1)
+                    $scope.position.company.homepage = "http://" + $scope.position.company.homepage;
                 if($scope.position.status == "open")
                 {
                     $scope.position.status_value = "职位在招";
@@ -1938,7 +1940,8 @@ angular.module('chuangplus.controllers', []).
                 console.log(headers('Content-Type'));
                 if(data.error.code == 1){
                     $scope.company = data.data;
-
+                    if($scope.company.homepage.indexOf("http://") == -1 && $scope.company.homepage.indexOf("https://") == -1)
+                        $scope.company.homepage = "http://" + $scope.company.homepage;
                     $scope.company.position_number = $scope.company.positions.length;
                     $scope.company.scale_value = $scope.scale[$scope.company.scale];
                     $scope.company.field_type = $scope.field_type[$scope.company.field];
@@ -2027,41 +2030,7 @@ angular.module('chuangplus.controllers', []).
     controller('DT_CompanyTestCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload','ImgResizeService',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload, $imgResize){
         console.log('DT_CompanyTestCtrl');
-        $scope.cancelUpload = function()
-        {
-            //$imgResize.cancel($scope,"/api/file/"+$scope.member_add.m_avatar_id+ "/download");
-            //if($scope.cancel_upload == undefined)
-//            $scope.cancel_upload = true;
-//            $scope.cancel_upload = undefined;
-            $scope.resize_area = false;
-            //alert($scope.cancel_upload);
-        };
-        $scope.startUpload = function(file_t,category)
-        {
-            /*
-            if(file != null && file != undefined)
-            {
-                if(!/image\/\w+/.test(file.type)){
-                    alert("文件必须为图片！"); 
-                    return false; 
-                } 
-                //alert('here');
-                $imgResize.startUpload(file,file_t,category,$scope);
-                $scope.resize_area = true;
-            }*/
-            var data=$scope.resImageDataURI.split(',')[1];
-            data=window.atob(data);
-            var ia = new Uint8Array(data.length);
-            for (var i = 0; i < data.length; i++) {
-                ia[i] = data.charCodeAt(i);
-            };
-            // canvas.toDataURL 返回的默认格式就是 image/png
-            var blob=new Blob([ia], {type:"image/png"});
-            $scope.upload(blob,file_t,category);
-            $('.upload-img').attr('src',$scope.resImageDataURI);
-            $('#avatar_show_'+$scope.member_number).attr('src',$scope.resImageDataURI);
-            $scope.resize_area = false;
-        };
+        
         $scope.company_id = $routeParams.company_id;
         $scope.add_member_flag = false;
         $scope.member_add = {};
@@ -2245,6 +2214,42 @@ angular.module('chuangplus.controllers', []).
         $scope.enableCrop=true;
         $scope.resImgSize=160;
         //$scope.aspectRatio=1.2;
+        $scope.cancelUpload = function()
+        {
+            //$imgResize.cancel($scope,"/api/file/"+$scope.member_add.m_avatar_id+ "/download");
+            //if($scope.cancel_upload == undefined)
+//            $scope.cancel_upload = true;
+//            $scope.cancel_upload = undefined;
+            $scope.resize_area = false;
+            //alert($scope.cancel_upload);
+        };
+        $scope.startUpload = function(file_t,category)
+        {
+            /*
+            if(file != null && file != undefined)
+            {
+                if(!/image\/\w+/.test(file.type)){
+                    alert("文件必须为图片！"); 
+                    return false; 
+                } 
+                //alert('here');
+                $imgResize.startUpload(file,file_t,category,$scope);
+                $scope.resize_area = true;
+            }*/
+            var data=$scope.resImageDataURI.split(',')[1];
+            data=window.atob(data);
+            var ia = new Uint8Array(data.length);
+            for (var i = 0; i < data.length; i++) {
+                ia[i] = data.charCodeAt(i);
+            };
+            // canvas.toDataURL 返回的默认格式就是 image/png
+            var blob=new Blob([ia], {type:"image/png"});
+            //$scope.upload(blob,file_t,category);
+            $('.upload-img').attr('src',$scope.resImageDataURI);
+            $('#avatar_show_'+$scope.member_number).attr('src',$scope.resImageDataURI);
+            $scope.avatar = '66666';
+            $scope.resize_area = false;
+        };
         $scope.onChange=function($dataURI) {
           console.log('onChange fired');
         };
@@ -2259,26 +2264,39 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.test = function(){
             $("#fileInput").click();
-
+            if(document.querySelector('#fileInput').value != '')
+                $scope.resize_area = true;
         };
+        $scope.check = function(){
+            alert($scope.imageDataURI);
+        }
         var handleFileSelect=function(evt) {
           var file=evt.currentTarget.files[0];
           var reader = new FileReader();
           reader.onload = function (evt) {
             $scope.$apply(function($scope){
               $scope.imageDataURI=evt.target.result;
+              $scope.resize_area = true;
             });
           };
-          reader.readAsDataURL(file);
-            $scope.resize_area = true;
+        if(file != undefined)
+            reader.readAsDataURL(file);
+        else
+            $scope.$apply(function($scope){
+              $scope.resize_area = false;
+            });
+                
         };
         angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
-        $scope.$watch('resImageDataURI',function(){
+        //$scope.$watch('imageDataURI',function(newValue,oldValue, scope){
           //console.log('Res image', $scope.resImageDataURI);
-        });
+          //if(newValue != '' && document.querySelector('#fileInput').value != '')
+            //$scope.resize_area = true;
+
+        //});
     }]).
-    controller('DT_CompanyFirstCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload','ImgResizeService',
-        function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload, $imgResize){
+    controller('DT_CompanyFirstCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload',
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         console.log('DT_CompanyFirstCtrl');
         $scope.company_id = $routeParams.company_id;
         $scope.companyinfo = {};
@@ -2319,24 +2337,64 @@ angular.module('chuangplus.controllers', []).
         ];
         $scope.cancelUpload = function()
         {
-            $imgResize.cancel($scope,"/api/file/"+$scope.companyinfo.logo_id+ "/download");
+              $scope.resize_area = false;
+        };
+
+        $scope.imageDataURI='';
+        $scope.resImageDataURI='';
+        $scope.resImgFormat='image/png';
+        $scope.resImgQuality=1;
+        $scope.selMinSize=100;
+        $scope.enableCrop=true;
+        $scope.resImgSize=160;
+        //$scope.aspectRatio=1.2;
+        $scope.startUpload = function(file_t,category)
+        {
+            var data=$scope.resImageDataURI.split(',')[1];
+            data=window.atob(data);
+            var ia = new Uint8Array(data.length);
+            for (var i = 0; i < data.length; i++) {
+                ia[i] = data.charCodeAt(i);
+            };
+            // canvas.toDataURL 返回的默认格式就是 image/png
+            var blob=new Blob([ia], {type:"image/png"});
+            $scope.logo = '6666';
+            $scope.upload(blob,file_t,category);
+            $('.upload-img').attr('src',$scope.resImageDataURI);
             $scope.resize_area = false;
         };
-        $scope.startUpload = function(file,category)
-        {
-            if(file != null && file != undefined)
-            {
-                if(!/image\/\w+/.test(file.type)){ 
-                    alert("文件必须为图片！"); 
-                    return false; 
-                } 
-//                alert('here');
-                $imgResize.startUpload(file,category,'',$scope);
+        $scope.test = function(){
+            $("#fileInput").click();
+            if(document.querySelector('#fileInput').value != '')
                 $scope.resize_area = true;
-                //alert('true');   
-            }
-            file = null;
         };
+        $scope.check = function(){
+            alert($scope.imageDataURI);
+        }
+        var handleFileSelect=function(evt) {
+          var file=evt.currentTarget.files[0];
+          var reader = new FileReader();
+          reader.onload = function (evt) {
+            $scope.$apply(function($scope){
+              $scope.imageDataURI=evt.target.result;
+              $scope.resize_area = true;
+            });
+          };
+        if(file != undefined)
+            reader.readAsDataURL(file);
+        else
+            $scope.$apply(function($scope){
+              $scope.resize_area = false;
+            });
+                
+        };
+        angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+        //$scope.$watch('imageDataURI',function(newValue,oldValue, scope){
+          //console.log('Res image', $scope.resImageDataURI);
+          //if(newValue != '' && document.querySelector('#fileInput').value != '')
+            //$scope.resize_area = true;
+
+        //});
         $scope.get_company_info = function(){
             $http.get(urls.api+"/account/company/"+$scope.company_id+"/detail").
                 success(function(data){
@@ -2729,31 +2787,6 @@ angular.module('chuangplus.controllers', []).
                     }
                 });
         };
-//        $scope.cancel_upload = false;
-        $scope.cancelUpload = function()
-        {
-            //$imgResize.cancel($scope,"/api/file/"+$scope.member_add.m_avatar_id+ "/download");
-            //if($scope.cancel_upload == undefined)
-//            $scope.cancel_upload = true;
-//            $scope.cancel_upload = undefined;
-            $scope.avatar = null;
-            $scope.resize_area = false;
-            //alert($scope.cancel_upload);
-        };
-        $scope.startUpload = function(file,file_t,category)
-        {
-            if(file != null && file != undefined)
-            {
-                if(!/image\/\w+/.test(file.type)){
-                    alert("文件必须为图片！"); 
-                    return false; 
-                }
-                //alert('here');
-                $imgResize.startUpload(file,file_t,category,$scope);
-                $scope.resize_area = true;
-            }
-            file = null;
-        };
         $scope.delete_modal = function(index){
             $scope.delete_index = index;
             $('#delete_member').modal('show');
@@ -2785,7 +2818,8 @@ angular.module('chuangplus.controllers', []).
             var param = {
                "file_type": file_t,
                "description": $scope.company_id + file_t,
-               "category": $scope.company_id + '_'+category
+               "category": $scope.company_id + '_'+$scope.member_number,
+               "avatar_id" : $scope.member_add.m_avatar_id
             };
             var headers = {
                    'X-CSRFToken': $csrf.val(),
@@ -2871,6 +2905,80 @@ angular.module('chuangplus.controllers', []).
                     $scope.submit_loading = false;
                 });
         };
+
+
+
+        $scope.type='circle';
+        $scope.imageDataURI='';
+        $scope.resImageDataURI='';
+        $scope.resImgFormat='image/png';
+        $scope.resImgQuality=1;
+        $scope.selMinSize=100;
+        $scope.enableCrop=true;
+        $scope.resImgSize=160;
+        //$scope.aspectRatio=1.2;
+        $scope.cancelUpload = function()
+        {
+            //$imgResize.cancel($scope,"/api/file/"+$scope.member_add.m_avatar_id+ "/download");
+            //if($scope.cancel_upload == undefined)
+//            $scope.cancel_upload = true;
+//            $scope.cancel_upload = undefined;
+            $scope.resize_area = false;
+            //alert($scope.cancel_upload);
+        };
+        $scope.startUpload = function(file_t,category)
+        {
+            /*
+            if(file != null && file != undefined)
+            {
+                if(!/image\/\w+/.test(file.type)){
+                    alert("文件必须为图片！"); 
+                    return false; 
+                } 
+                //alert('here');
+                $imgResize.startUpload(file,file_t,category,$scope);
+                $scope.resize_area = true;
+            }*/
+            var data=$scope.resImageDataURI.split(',')[1];
+            data=window.atob(data);
+            var ia = new Uint8Array(data.length);
+            for (var i = 0; i < data.length; i++) {
+                ia[i] = data.charCodeAt(i);
+            };
+            // canvas.toDataURL 返回的默认格式就是 image/png
+            var blob=new Blob([ia], {type:"image/png"});
+            $scope.upload(blob,file_t,category);
+            $('.upload-img').attr('src',$scope.resImageDataURI);
+            $('#avatar_show_'+$scope.member_number).attr('src',$scope.resImageDataURI);
+            $scope.avatar = '66666';
+            $scope.resize_area = false;
+        };
+        $scope.test = function(){
+            $("#fileInput").click();
+            if(document.querySelector('#fileInput').value != '')
+                $scope.resize_area = true;
+        };
+        $scope.check = function(){
+            alert($scope.imageDataURI);
+        }
+        var handleFileSelect=function(evt) {
+          var file=evt.currentTarget.files[0];
+          var reader = new FileReader();
+          reader.onload = function (evt) {
+            $scope.$apply(function($scope){
+              $scope.imageDataURI=evt.target.result;
+              $scope.resize_area = true;
+            });
+          };
+        if(file != undefined)
+            reader.readAsDataURL(file);
+        else
+            $scope.$apply(function($scope){
+              $scope.resize_area = false;
+            });
+                
+        };
+        angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
     }]).
     controller('DT_PositionListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_PositionListCtrl');
@@ -2902,6 +3010,8 @@ angular.module('chuangplus.controllers', []).
                 'marketing':true,
                 'functions':true,
                 'others':true
+
+                
             },
             "salary": ''
         };
@@ -3166,7 +3276,24 @@ angular.module('chuangplus.controllers', []).
             }
             else
                 $scope.selectPage(1);
-            $http.get(urls.api+"/account/company/list"+param).
+            $http.get(urls.api+"/account/admin/company/list"+param).
+                success(function(data){
+                $scope.param.pageCount = data.page_number;
+                
+                    $scope.company_list = data.data;
+                    for(var i=0;i<$scope.company_list.length;i++){
+                        $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
+                        $scope.company_list[i].scale_value = $scope.scale[$scope.company_list[i].scale];
+                        $scope.company_list[i].field_type = $scope.field_type[$scope.company_list[i].field];
+                        $scope.company_list[i].position_type_value = {};
+                        for(var j=0; j<$scope.company_list[i].financing.length; j++){
+                        $scope.company_list[i].financing[j].stage_value = $scope.stage[$scope.company_list[i].financing[j].stage];
+                        $scope.company_list[i].financing[j].amount_value = $scope.amount[$scope.company_list[i].financing[j].amount];
+                        }
+                    }
+                $scope.loading = false;
+            });
+            /*$http.get(urls.api+"/account/admin/company/list").
                 success(function(data){
                 $scope.param.pageCount = data.page_number;
                 if(data.error.code == 1){
@@ -3176,6 +3303,8 @@ angular.module('chuangplus.controllers', []).
                         $scope.company_list[i].scale_value = $scope.scale[$scope.company_list[i].scale];
                         $scope.company_list[i].field_type = $scope.field_type[$scope.company_list[i].field];
                         $scope.company_list[i].position_type_value = {};
+                        $scope.company_list[i].financing_list = {};
+                        $scope.company_list[i].financing_list = $scope.company_list[i].financing;
                         for(var j = 0; j < $scope.company_list[i].position_type.length; j ++){
                             $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
                         }
@@ -3185,7 +3314,7 @@ angular.module('chuangplus.controllers', []).
                      $scope.error = $errMsg.format_error('',data.error);
                 }
                 $scope.loading = false;
-            });
+            });*/
         };
         $scope.get_company_list();
 

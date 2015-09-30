@@ -34,12 +34,14 @@ def upload_file(request):
             if file_obj.size > 10000000:
                 re['error'] = error(15,"File size is bigger than 10M!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
-            if file_type in["memberavatar"]:
-                avatar_id = data['avatar_id']
+            if file_type in["memberavatar",'CEOavatar']:
+                if data_dict.has_key('avatar_id'):
+                    avatar_id = data_dict['avatar_id']
                 image = Image.open(file_obj)
                 #image.thumbnail(sizeBig)
-                image.save("original.png")
-                file_obj2 = open('original.png','rb')
+                original_name = category+"old.png"
+                image.save(original_name)
+                file_obj2 = open(original_name,'rb')
                 category2 = category + "_original"
                 try:
                     f_original = File.objects.get(file_type = file_type,category = category2)
@@ -56,10 +58,19 @@ def upload_file(request):
                     re['error'] = error(250,'Database error: Failed to get companyinfo')
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
                 #file_obj2.close()
-                img = Image.open("original.png")
+                img = Image.open(original_name)
                 img.thumbnail(sizeBig)
-                img.save("thumb.png")
-                file_obj3 = open("thumb.png","rb")
+                thumb_name = category + "new.png"
+                img.save(thumb_name)
+                file_obj3 = open(thumb_name,"rb")
+                try:
+                    file_obj2.close()
+                except:
+                    print "file_obj2 close error!"
+                try:
+                    os.remove(original_name)
+                except:
+                    print "delete original error!"
                 try:
                     id = category.split('_')[0]
                     companyinfo = Companyinfo.objects.get(id=id)
@@ -80,18 +91,22 @@ def upload_file(request):
                 except DatabaseError:
                     re['error'] = error(250,'Database error: Failed to get companyinfo')
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
-                file_obj3.close()
                 re['error'] = error(1,"file upload successfully")
                 re['data'] = str(f.id)
                 #file_obj2.close()
                 try:
-                    os.remove('big.png')
+                    file_obj3.close()
                 except:
-                    pass
+                    print "close file_obj3 error!"
+                try:
+                    os.remove(thumb_name)
+                except:
+                    print "delete thumb_name error!"
             elif file_type in['qrcode','logo']:
                 image = Image.open(file_obj)
-                image.save("original.png")
-                file_obj2 = open('original.png','rb')
+                original_name = category + "old.png"
+                image.save(original_name)
+                file_obj2 = open(original_name,'rb')
                 category2 = category + "_original"
                 try:
                     f_original = File.objects.get(file_type = file_type,category = category2)
@@ -109,10 +124,19 @@ def upload_file(request):
                     re['error'] = error(250,'Database error: Failed to save file!')
                     return HttpResponse(json.dumps(re),content_type = 'application/json')
                 #file_obj2.close()
-                img = Image.open("original.png")
+                img = Image.open(original_name)
                 img.thumbnail(sizeBig)
-                img.save("thumb.png")
-                file_obj3 = open("thumb.png","rb")
+                thumb_name = category+"new.png"
+                img.save(thumb_name)
+                file_obj3 = open(thumb_name,"rb")
+                try:
+                    file_obj2.close()
+                except:
+                    print "close file_obj2 error!"
+                try:
+                    os.remove(original_name)
+                except:
+                    print "remove original error!"
                 try:
                     id = category.split('_')[0]
                     companyinfo = Companyinfo.objects.get(id=id)
@@ -132,6 +156,14 @@ def upload_file(request):
                         f.value.replace(file_obj3.read(), content_type = file_obj.content_type)
                     f.name = file_obj.name
                     f.description = description
+                    try:
+                        file_obj3.close()
+                    except:
+                        print "close file_obj3 error!"
+                    try:
+                        os.remove(thumb_name)
+                    except:
+                        print "remove thumb error!"
                     try:
                         f.save()
                     except DatabaseError:
@@ -209,17 +241,24 @@ def delete_file(request,file_id):
         else:
             category  = f.category
             id = category.split('_')[0]
-            index = category.split('_')[1]
-            list = File.object(description__contains = id).all()
+            l  = category.split('_')[1]
+            #print l
+            index = int(l)
+            list = File.objects(description__contains = id).all()
             for i in list:
-                if i.type in ["memberavatar","CEOavatar"]:
+                if i.file_type in ["memberavatar","CEOavatar"]:
                     category_list = i.category.split('_')
                     index2 = category_list[1]
-                    if index2 > index:
-                        category_list[1] = index2 - 1
-                    category2 = category_list.join('_')
-                    i.category = category2
-                    i.save()
+                    #print (index,index2)
+                    try:
+                        index_avatar = int(index2)
+                        if index_avatar > index:
+                            category_list[1] = str(index_avatar - 1)
+                        category2 = '_'.join(category_list)
+                        i.category = category2
+                        i.save()
+                    except:
+                        pass
             f.value.delete()
             f.delete()
             #if f.file_type == 'memberavatar':
