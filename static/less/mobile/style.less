@@ -21,11 +21,11 @@
 
 
 //login.html
-@login-part2:   210px;
+@login-part2:   170px;
 @login-part3:   30px;
 @login-logo-size:   180px;
 @login-btn-mag :   18px;
-@login-logo-top:    8px;
+@login-logo-top:    58px;
 @login-header-top:  12px;
 
 //info.html
@@ -98,6 +98,11 @@ body
     position: absolute;
     padding-bottom: 50px;
 }
+.nav-bar-absolute-top
+{
+    background: url('/static/image/icon/3d-purple.png');
+    background-repeat: repeat-x;
+}
 @media (min-width: 992px)
 {
     .has-sidebar-left .app, .sidebar-left-in .app {
@@ -141,7 +146,7 @@ body
 .sidebar-toggle
 {
     color: white !important; 
-    font-size: 22px !important;
+    font-size: 21px !important;
 }
 .no-margin
 {
@@ -449,9 +454,22 @@ a:hover
 .header-bar .logo
 {
     float: left;
+    font-weight: 500;
     position: absolute;
+    line-height: @cl-header-hgt - @cl-header-logo-mgn *2;
     height: @cl-header-hgt - @cl-header-logo-mgn *2;
     margin: @cl-header-logo-mgn @cl-header-logo-mgn @cl-header-logo-mgn @cl-header-logo-mgn + 5px ;
+}
+.header-bar .right-btn
+{
+    right: 0px;
+    font-size: 24px;
+    position: absolute;
+    font-weight: 500;
+    color: white;
+    line-height: 30px;
+    height: @cl-header-hgt - @cl-header-logo-mgn *2;
+    margin: @cl-header-logo-mgn @cl-header-logo-mgn + 5px @cl-header-logo-mgn @cl-header-logo-mgn  ;
 }
 
 .require-bar
@@ -544,11 +562,20 @@ a:hover
 .search-btn
 {
     position: absolute;
-    right: 15px;
+    right: 17px;
     top: @cl-padding-ver;
     font-size: 17px;
     color: @mid-gray;
     line-height: 33px;
+}
+.search-btn:hover
+{
+    text-decoration: none;
+    color: @mid-gray;
+}
+.search-btn i
+{
+    margin-right: 2px;
 }
 /*
 

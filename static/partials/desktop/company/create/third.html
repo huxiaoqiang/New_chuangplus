@@ -11,11 +11,11 @@
             <div class="info3">
                 <div>
                     <label>公司简介</label><br/>
-                    <textarea ng-model="companyinfo.company_description" required></textarea>
+                    <textarea ng-model="companyinfo.company_description" maxlength="3000" required></textarea>
                 </div>
                 <div>
                     <label>产品/服务简介</label><br/>
-                    <textarea ng-model="companyinfo.product_description" required></textarea>
+                    <textarea ng-model="companyinfo.product_description" maxlength="3000" required></textarea>
                 </div>
             <input type="button" class="pre-button btn" value="上一步" ng-click="pre_step()">
             <div class="next-area">

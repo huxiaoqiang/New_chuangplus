@@ -61,9 +61,9 @@ class Companyinfo(Document):
     welfare_tags = ListField(StringField(max_length=18))
     product_link = URLField()
     brief_introduction = StringField(max_length=100)
-    company_description = StringField(max_length=1000)
-    product_description = StringField(max_length=1000)
-    team_description = StringField(max_length=1000)
+    company_description = StringField(max_length=3000)
+    product_description = StringField(max_length=3000)
+    team_description = StringField(max_length=5000)
     slogan = StringField(max_length=50)
     status = BooleanField(default=False) # if the company is accepted by the admin
     is_auth = BooleanField(default=False)
