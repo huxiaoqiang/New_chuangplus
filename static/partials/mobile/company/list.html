@@ -9,8 +9,8 @@
         </div>    
         <div class="require-bar">
             <div class="requires">
-                <div class="require-box elem-width-2" ng-click="show_filter(1)">[[filed_notice]] <i class="fa fa-caret-down"></i></div>
-                <div class="require-box elem-width-2" ng-click="show_filter(2)">[[scale_notice]] <i class="fa fa-caret-down"></i></div>
+                <div class="require-box elem-width-2" ng-click="show_filter(1)">[[filed_notice]] <i class="fa" ng-class="{'fa-caret-down':filter_now != 1, 'fa-caret-up':filter_now == 1}"></i></div>
+                <div class="require-box elem-width-2" ng-click="show_filter(2)">[[scale_notice]] <i class="fa" ng-class="{'fa-caret-down':filter_now != 2, 'fa-caret-up':filter_now == 2}"></i></div>
                 <!--
                     <div class="require-box">红杉资本认证</div>
                 -->
@@ -58,7 +58,7 @@
                         <label><input type="checkbox"  ng-model="filter.field.others" />其它</label> 
                     </div>
                 </div>
-                <a class="panel-radius btn-b-pur filter-btn" ng-click="submit_filter(1)">筛选</a>
+                <a class="panel-radius btn-b-pur filter-btn" ng-click="submit_filter(1)">确定</a>
                 <a class="panel-radius btn-b-pur filter-btn-last info-input" ng-click="hide_filter(1)">返回</a>
             </div>
         </div>
@@ -113,7 +113,7 @@
                     </div>
 
                 </div>
-                <a class="panel-radius btn-b-pur filter-btn" ng-click="submit_filter(2)">筛选</a>
+                <a class="panel-radius btn-b-pur filter-btn" ng-click="submit_filter(2)">确定</a>
                 <a class="panel-radius btn-b-pur filter-btn-last info-input" ng-click="hide_filter(2)">返回</a>
             </div>
 

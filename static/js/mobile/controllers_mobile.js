@@ -83,17 +83,22 @@ angular.module('chuangplus_mobile.controllers', [])
             });
         };
         $scope.get_company_list();
+        $scope.filter_now = -1;
         $scope.show_filter = function(id)
         {
             //$("#filter-content"+id).slideDown("normal");
             //$("#filter-content"+id).show();
+
+            $scope.hide_filter(3-id);
             $("#filter-content"+id).animate({top:90},"200");
+            $scope.filter_now = id;
             //$scope.filter_show = true;
         };
         $scope.hide_filter = function(id)
         {
             //$("#filter-content"+id).slideUp("fast");
             $("#filter-content"+id).animate({top:(-400)},"200");
+            $scope.filter_now = -1;
             //setTimeout($("#filter-content"+id).hide(),400);
             //$scope.filter_show = false;
         };
@@ -333,10 +338,16 @@ angular.module('chuangplus_mobile.controllers', [])
                 });
         };
         $scope.get_positions();
+        $scope.filter_now = -1;
         $scope.show_filter = function(id)
         {
             //$("#filter-content"+id).slideDown("normal");
             //$("#filter-content"+id).show();
+            for (var i = 4; i >= 1; i--) {
+                if (i != id) 
+                    $scope.hide_filter(i);
+            }   
+            $scope.filter_now = id;
             $("#filter-content"+id).animate({top:90},"200");
             //$scope.filter_show = true;
         };
@@ -344,6 +355,7 @@ angular.module('chuangplus_mobile.controllers', [])
         {
             //$("#filter-content"+id).slideUp("fast");
             $("#filter-content"+id).animate({top:(-400)},"200");
+            $scope.filter_now = -1;
             //setTimeout($("#filter-content"+id).hide(),300);
             //$scope.filter_show = false;
         };
