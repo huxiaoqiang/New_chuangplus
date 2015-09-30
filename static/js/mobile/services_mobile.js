@@ -152,7 +152,7 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
                             $notice.show($errMsg.format_error("",udata.error).message);
                     });
                 }
-            }
+            },
             'check_login' : function(){
                 if(user.username == undefined)
                 {
