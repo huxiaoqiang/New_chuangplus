@@ -42,13 +42,16 @@
                             </span>
                         </div>
                         <div class="comp-desc-list">
-                            <span class="comp-desc-tag">
-                                [[position.days_per_week]]天/周
+                            <span class="comp-desc-tag" ng-if="position.part_or_full_time == 0">
+                                实习[[position.days_per_week]]天/周
+                            </span>
+                            <span class="comp-desc-tag" ng-if="position.part_or_full_time == 1">
+                                全职
                             </span>
                             <span class="comp-desc-tag">
                                 [[position.salary_min]]K-[[position.salary_max]]K
                             </span>
-                            <span class="comp-desc-tag">
+                            <span class="comp-desc-tag" ng-if="position.part_or_full_time == 0 && position.internship_time != 0">
                                 至少工作[[position.internship_time]]个月
                             </span>
                         </div>

@@ -733,7 +733,10 @@ angular.module('chuangplus_mobile.controllers', [])
                     $scope.company.position_type_value = {};
                     for(var i=0;i<$scope.company.position_type.length;i++)
                         $scope.company.position_type_value[i] = $scope.position_type[$scope.company.position_type[i]];
-                        
+                    
+                    if($scope.company.homepage.indexOf("http://") == -1 && $scope.company.homepage.indexOf("https://") == -1)
+                        $scope.company.homepage = "http://" + $scope.company.homepage;
+                
 
                     $http.get(urls.api+"/account/financing/" + $scope.company_id + "/list").
                         success(function(fdata){
@@ -873,7 +876,6 @@ angular.module('chuangplus_mobile.controllers', [])
                 $scope.position.field_value = $scope.cfield[$scope.position.company.field];
                 $scope.position.position_type_value = $scope.position_type[$scope.position.position_type];
                 $scope.position.position_number = $scope.position.company.positions.length;
-                console.log($scope.position.position_number);
 
                 $http.get(urls.api+"/account/company/"+ $scope.position.company._id.$oid +"/detail_with_positions").
                     success(function(data){
