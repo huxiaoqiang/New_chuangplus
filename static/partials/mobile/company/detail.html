@@ -101,13 +101,13 @@
                 <my-text text="company.team_description" ></my-text>
             </span>
             <div class="member-block" ng-repeat="member in member_list">
+                <div class="desc-subtitle relative-center">
                 <img class="desc-img" src="/api/file/[[member.m_avatar_id]]/download" alt="成员头像">
-                <div class="desc-subtitle">
                     [[member.m_name]] <br> [[member.m_position]]
                 </div>
-                <span class="stuff_desc">
+                <div class="stuff_desc relative-center">
                     [[member.m_introduction]]
-                </span>
+                </div>
             </div>
         </div>
 

@@ -740,6 +740,11 @@ a:hover {
 .comp-map .addr {
   margin-left: 22px;
 }
+.relative-center {
+  margin: auto;
+  top: 0;
+  bottom: 0;
+}
 .detail-desc {
   padding-top: 15px;
   display: block;
@@ -751,7 +756,11 @@ a:hover {
 }
 .detail-desc .desc-block .member-block {
   margin-top: 10px;
+  min-height: 100px;
   display: inline-block;
+  border: 1px solid #b5b5b5;
+  border-radius: 4px;
+  padding: 20px;
 }
 .detail-desc .desc-block .desc-title {
   color: black;
@@ -847,12 +856,11 @@ a:hover {
 }
 .desc-subtitle {
   color: black;
-  width: 50px;
+  width: 90px;
   padding-bottom: 10px;
   font-size: 15px;
   float: left;
-  text-align: left;
-  margin-top: 20px;
+  text-align: center;
   margin-right: 4px;
 }
 .desc-img {
@@ -862,6 +870,7 @@ a:hover {
   border-radius: 40px;
   border: #dcdcdc solid 1px;
   margin-right: 8px;
+  margin-bottom: 4px;
 }
 .desc-content {
   display: -webkit-box;
@@ -871,8 +880,6 @@ a:hover {
   color: #707070;
   display: -webkit-box;
   border-radius: 3px;
-  border: 1px solid #dcdcdc;
-  padding: 5px;
 }
 .comp-posi-list {
   background-color: #dcdcdc;
