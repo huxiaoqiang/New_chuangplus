@@ -9,7 +9,7 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.company_list = {};
         $scope.filter_show = false;
         $scope.pagenow = 2;
-        $scope.filter_params = '';
+        $scope.filter_params = "";
         $scope.filed_notice = '行业/领域';
         $scope.scale_notice = '公司规模';
         $scope.stage = {
@@ -106,13 +106,13 @@ angular.module('chuangplus_mobile.controllers', [])
         {
             $scope.filed_notice = '行业/领域';
             $scope.scale_notice = '公司规模';
-            $scope.filter_params = '';
+            $scope.filter_params = "";
             //?field=others&scale=0&name=科技
 
             for (var ele in $scope.filter.field) {
                 if($scope.filter.field[ele] == true)
                 {
-                    if($scope.filter_params == '')
+                    if($scope.filter_params == "")
                     {
                         $scope.filed_notice = $scope.cfield[ele];
                         $scope.filter_params = '?field=' + ele;
@@ -121,19 +121,19 @@ angular.module('chuangplus_mobile.controllers', [])
                         $scope.filter_params += ','+ele;
                 }
             }
-            if($scope.filter.scale != '-1' && $scope.filter.scale != '')
+            if($scope.filter.scale != '-1' && $scope.filter.scale != "")
             {
                 $scope.scale_notice = $scope.stage[$scope.filter.scale];
-                if($scope.filter_params != '')
+                if($scope.filter_params != "")
                     $scope.filter_params += '&scale=' + $scope.filter.scale;
                 else
                     $scope.filter_params += '?scale=' + $scope.filter.scale;
             }
 
-            var submitparam = '';
-            if($scope.search_name == '' || $scope.search_name == undefined)
+            var submitparam = "";
+            if($scope.search_name == "" || $scope.search_name == undefined)
                 submitparam = $scope.filter_params;
-            else if($scope.filter_params == '')
+            else if($scope.filter_params == "")
                 submitparam = $scope.filter_params + "?text=" + $scope.search_name;
             else
                 submitparam = $scope.filter_params + "&text=" + $scope.search_name;
@@ -145,6 +145,8 @@ angular.module('chuangplus_mobile.controllers', [])
                 if(data.error.code == 1){
                     $scope.company_list = data.data;
                     console.log(data);
+                    if (data.page == data.page_number) 
+                        $scope.pagenow = -23333;
                     for(var i=0;i<$scope.company_list.length;i++){
                         $scope.company_list[i].scale_value = $scope.stage[$scope.company_list[i].scale];
                         $scope.company_list[i].field_value = $scope.cfield[$scope.company_list[i].field];
@@ -162,13 +164,13 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $scope.submit_search = function()
         {
-            if ($scope.search_name != '' && $scope.search_name != undefined) 
+            if ($scope.search_name != "" && $scope.search_name != undefined) 
             {
                 //$scope.search_name.replace(' ','+');
-                var submitparam = '';
-                if($scope.search_name == '' || $scope.search_name == undefined)
+                var submitparam = "";
+                if($scope.search_name == "" || $scope.search_name == undefined)
                     submitparam = $scope.filter_params;
-                else if($scope.filter_params == '')
+                else if($scope.filter_params == "")
                     submitparam = $scope.filter_params + "?text=" + $scope.search_name;
                 else
                     submitparam = $scope.filter_params + "&text=" + $scope.search_name;
@@ -178,6 +180,8 @@ angular.module('chuangplus_mobile.controllers', [])
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.company_list = data.data;
+                        if (data.page == data.page_number) 
+                            $scope.pagenow = -23333;
                         for(var i=0;i<$scope.company_list.length;i++){
                             $scope.company_list[i].scale_value = $scope.stage[$scope.company_list[i].scale];
                             $scope.company_list[i].field_value = $scope.cfield[$scope.company_list[i].field];
@@ -200,6 +204,8 @@ angular.module('chuangplus_mobile.controllers', [])
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.company_list = data.data;
+                        if (data.page == data.page_number) 
+                            $scope.pagenow = -23333;
                         for(var i=0;i<$scope.company_list.length;i++){
                             $scope.company_list[i].scale_value = $scope.stage[$scope.company_list[i].scale];
                             $scope.company_list[i].field_value = $scope.cfield[$scope.company_list[i].field];
@@ -221,14 +227,21 @@ angular.module('chuangplus_mobile.controllers', [])
         {
             if($scope.pagenow < 0)
                 return;
-            var submitparam = '';
-            if($scope.filter_params == '')
-                if($scope.search_name != '' && $scope.search_name != undefined)
+            var submitparam = "";
+            if($scope.filter_params == "")
+            {
+                if($scope.search_name != "" && $scope.search_name != undefined)
                     submitparam = "?text=" + $scope.search_name;
+            }
             else
-                if($scope.search_name != '' && $scope.search_name != undefined)
+            {
+                if($scope.search_name != "" && $scope.search_name != undefined)
                     submitparam = $scope.filter_params + "&text=" + $scope.search_name;
-            if(submitparam != '')
+                else
+                    submitparam = $scope.filter_params;
+            }
+
+            if(submitparam != "")
                 submitparam += '&page=' + $scope.pagenow;
             else
                 submitparam += '?page=' + $scope.pagenow;
@@ -269,7 +282,7 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.filed_notice = '行业/领域';
         $scope.type_notice = '职位类型';
         
-        $scope.filter_params = '';
+        $scope.filter_params = null;
         $scope.position_type = {
             "technology":"技术",
             'product':"产品",
@@ -301,7 +314,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 'functions':false,
                 'others':false
             },
-            "salary": ''
+            "salary": ""
         };
         $scope.cfield = {
                 'social':'社交',
@@ -371,7 +384,7 @@ angular.module('chuangplus_mobile.controllers', [])
         {
 
             var isSelected = false;
-            $scope.filter_params = '';
+            $scope.filter_params = null;
             $scope.workdays_notice = '工作时间';
             $scope.salary_notice = '月薪下限';
             $scope.filed_notice = '行业/领域';
@@ -381,7 +394,7 @@ angular.module('chuangplus_mobile.controllers', [])
             for (var ele in $scope.filter.field) 
                 if($scope.filter.field[ele] == true)
                 {
-                    if($scope.filter_params == '')
+                    if($scope.filter_params == null)
                     {
                         $scope.filed_notice = $scope.cfield[ele];
                         $scope.filter_params = '?fields=' + ele;
@@ -392,7 +405,7 @@ angular.module('chuangplus_mobile.controllers', [])
 
             if($scope.filter.workdays != 0)
             {
-                if($scope.filter_params == '')
+                if($scope.filter_params == null)
                     $scope.filter_params += '?min_workdays' + $scope.filter.workdays;
                 else
                     $scope.filter_params += '&min_workday=' + $scope.filter.workdays;
@@ -405,7 +418,7 @@ angular.module('chuangplus_mobile.controllers', [])
             for (var ele in $scope.filter.type) {
                 if($scope.filter.type[ele] == true)
                 {
-                    if($scope.filter_params == '')
+                    if($scope.filter_params == null)
                     {
                         $scope.filter_params = '?types=' + ele;
                         $scope.type_notice = $scope.position_type[ele];
@@ -422,9 +435,9 @@ angular.module('chuangplus_mobile.controllers', [])
             }
 
             
-            if($scope.filter.salary != '' && $scope.filter.salary != undefined)
+            if($scope.filter.salary != "" && $scope.filter.salary != undefined)
             {
-                if($scope.filter_params != '')
+                if($scope.filter_params != null)
                     $scope.filter_params += '&salary_min=' + $scope.filter.salary;
                 else
                     $scope.filter_params += '?salary_min=' + $scope.filter.salary;
@@ -432,10 +445,10 @@ angular.module('chuangplus_mobile.controllers', [])
             }
 
 
-            var submitparam = '';
-            if($scope.search_name == '' || $scope.search_name == undefined)
+            var submitparam = "";
+            if($scope.search_name == null || $scope.search_name == undefined)
                 submitparam = $scope.filter_params;
-            else if($scope.filter_params == '')
+            else if($scope.filter_params == null)
                 submitparam = "?name=" + $scope.search_name;
             else
                 submitparam = $scope.filter_params + "&name=" + $scope.search_name;
@@ -446,6 +459,8 @@ angular.module('chuangplus_mobile.controllers', [])
             success(function(data){
                 if(data.error.code == 1){
                     $scope.positions = data.positions;
+                    if (data.page == data.page_number) 
+                        $scope.pagenow = -23333;
                     for(var i=0; i<$scope.positions.length;i++){
                         $scope.positions[i].field_value = $scope.cfield[$scope.positions[i].company.field];
                         $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
@@ -459,19 +474,22 @@ angular.module('chuangplus_mobile.controllers', [])
                             $scope.positions[i].company.scale_value = "成熟";
                         }
                     }
-                    
                 }
                 $rootScope.loading = false;
             });
         };
+        $scope.reset_search = function(){
+            if($scope.search_name == "")
+                $scope.submit_search();
+        }
         $scope.submit_search = function()
         {
 
-            if ($scope.search_name != '' && $scope.search_name != undefined) 
+            if ($scope.search_name != "" && $scope.search_name != undefined) 
             {
                 //$scope.search_name.replace(' ','+');
-                var submitparam = '';
-                if($scope.filter_params == '')
+                var submitparam = "";
+                if($scope.filter_params == "")
                     submitparam = "?name=" + $scope.search_name;
                 else
                     submitparam = $scope.filter_params + "&name=" + $scope.search_name;
@@ -482,6 +500,8 @@ angular.module('chuangplus_mobile.controllers', [])
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.positions = data.positions;
+                        if (data.page == data.page_number) 
+                            $scope.pagenow = -23333;
                         for(var i=0; i<$scope.positions.length;i++){
                             $scope.positions[i].field_value = $scope.cfield[$scope.positions[i].company.field];
                             $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
@@ -506,6 +526,8 @@ angular.module('chuangplus_mobile.controllers', [])
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.positions = data.positions;
+                        if (data.page == data.page_number) 
+                            $scope.pagenow = -23333;
                         for(var i=0; i<$scope.positions.length;i++){
                             $scope.positions[i].field_value = $scope.cfield[$scope.positions[i].company.field];
                             $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
@@ -530,14 +552,20 @@ angular.module('chuangplus_mobile.controllers', [])
         {
             if($scope.pagenow < 0)
                 return;
-            var submitparam = '';
-            if($scope.filter_params == '')
-                if($scope.search_name != '' && $scope.search_name != undefined)
+            var submitparam = "";
+            if($scope.filter_params == null)
+            {
+                if($scope.search_name != "" && $scope.search_name != undefined)
                     submitparam = "?name=" + $scope.search_name;
+            }
             else
-                if($scope.search_name != '' && $scope.search_name != undefined)
+            {
+                if($scope.search_name != "" && $scope.search_name != undefined)
                     submitparam = $scope.filter_params + "&name=" + $scope.search_name;
-            if(submitparam != '')
+                else
+                    submitparam = $scope.filter_params;
+            }
+            if(submitparam != "")
                 submitparam += '&page=' + $scope.pagenow;
             else
                 submitparam += '?page=' + $scope.pagenow;
@@ -969,7 +997,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     $scope.submitResume.position_id = $scope.position_id;
                     console.log($scope.userinfo.resume_id);
 
-                    if($scope.userinfo.real_name != undefined && $scope.userinfo.real_name != null && $scope.userinfo.real_name != '')
+                    if($scope.userinfo.real_name != undefined && $scope.userinfo.real_name != null && $scope.userinfo.real_name != "")
                         $scope.resume_compelete = true;
                     else
                         $scope.resume_compelete = false;
@@ -1009,7 +1037,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     success(function(data){
                         if(data.error.code == 1){
                             $scope.submit_value = "已投递";
-                            $notice.show("已投递");
+                            $notice.show("投递成功");
                         }
                             else{
                             $notice.show($errMsg.format_error("",data.error).message);
@@ -1073,27 +1101,28 @@ angular.module('chuangplus_mobile.controllers', [])
                         console.log(data);
                         if(data.error.code == 1){
                             console.log("登陆成功");
+                            window.location.href = urls.mobile_index;
 
 
-
+/*
                             $scope.user_info = {};
                             $http.get(urls.api+"/account/userinfo/get").
                                 success(function(udata){
                                 if(udata.error.code == 1){
                                     if( udata.data.major != undefined &&
                                         udata.data.university != undefined)
-                                        window.location.href=urls.mobile_index;
+                                        window.location.href = urls.mobile_index;
                                     else
                                     {
                                         console.log('需要填写信息');
-                                        window.location.href='/mobile/info';
+                                        window.location.href = '/mobile/info';
                                     }
                                 }
                                 else
                                     $notice.show($errMsg.format_error("",udata.error).message);
                             });
 
-
+*/
 
                         }
                         else
@@ -1294,7 +1323,7 @@ angular.module('chuangplus_mobile.controllers', [])
                         $scope.submitResume = {};
                         $scope.submitResume.position_id = $scope.position_id;
                         console.log($scope.userinfo.resume_id);
-                        if($scope.userinfo.real_name != undefined && $scope.userinfo.real_name != null && $scope.userinfo.real_name != '')
+                        if($scope.userinfo.real_name != undefined && $scope.userinfo.real_name != null && $scope.userinfo.real_name != "")
                             $scope.resume_compelete = true;
                         else
                             $scope.resume_compelete = false;
@@ -1390,7 +1419,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     success(function(data){
                         if(data.error.code == 1){
                             $scope.submit_value = "已投递";
-                            $notice.show("已全部投递");
+                            $notice.show("全部投递成功");
                             for(var i = 0; i < $scope.positions.length; i ++){
                                 $scope.positions[i].resume_submitted = true;
                             }
@@ -1474,7 +1503,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 }
                 }
                 else{
-                    $scope.error = $errMsg.format_error('',data.error);
+                    $scope.error = $errMsg.format_error("",data.error);
                 }
                 $rootScope.loading = false;
             });
@@ -1560,7 +1589,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 }
                 else{
                     console.log(data.error.message);
-                    $scope.error = $errMsg.format_error('',data.error);
+                    $scope.error = $errMsg.format_error("",data.error);
                 }
             });
         };
@@ -1654,7 +1683,7 @@ angular.module('chuangplus_mobile.controllers', [])
 
         console.log($user.username());
 
-        $scope.is_login = ($user.username() != undefined && $user.username() != '');
+        $scope.is_login = ($user.username() != undefined && $user.username() != "");
         $scope.username = $user.username();
         $scope.logout = function(){
             console.log("logout");
