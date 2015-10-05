@@ -76,7 +76,7 @@ var app = angular.module('chuangplus_mobile', [
         
         if($user.username() == undefined && $location.path() != '/mobile/login' && $location.path() != '/mobile/register')
         {
-            window.location.href='/mobile/login';
+        //    window.location.href='/mobile/login';
             return;
         }
         //if($location.path() != '/mobile/info')
