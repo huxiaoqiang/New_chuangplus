@@ -1037,7 +1037,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     success(function(data){
                         if(data.error.code == 1){
                             $scope.submit_value = "已投递";
-                            $notice.show("已投递");
+                            $notice.show("投递成功");
                         }
                             else{
                             $notice.show($errMsg.format_error("",data.error).message);
@@ -1419,7 +1419,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     success(function(data){
                         if(data.error.code == 1){
                             $scope.submit_value = "已投递";
-                            $notice.show("已全部投递");
+                            $notice.show("全部投递成功");
                             for(var i = 0; i < $scope.positions.length; i ++){
                                 $scope.positions[i].resume_submitted = true;
                             }
