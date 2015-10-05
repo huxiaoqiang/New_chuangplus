@@ -282,7 +282,7 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.filed_notice = '行业/领域';
         $scope.type_notice = '职位类型';
         
-        $scope.filter_params = "";
+        $scope.filter_params = null;
         $scope.position_type = {
             "technology":"技术",
             'product':"产品",
@@ -384,7 +384,7 @@ angular.module('chuangplus_mobile.controllers', [])
         {
 
             var isSelected = false;
-            $scope.filter_params = "";
+            $scope.filter_params = null;
             $scope.workdays_notice = '工作时间';
             $scope.salary_notice = '月薪下限';
             $scope.filed_notice = '行业/领域';
@@ -394,7 +394,7 @@ angular.module('chuangplus_mobile.controllers', [])
             for (var ele in $scope.filter.field) 
                 if($scope.filter.field[ele] == true)
                 {
-                    if($scope.filter_params == "")
+                    if($scope.filter_params == null)
                     {
                         $scope.filed_notice = $scope.cfield[ele];
                         $scope.filter_params = '?fields=' + ele;
@@ -405,7 +405,7 @@ angular.module('chuangplus_mobile.controllers', [])
 
             if($scope.filter.workdays != 0)
             {
-                if($scope.filter_params == "")
+                if($scope.filter_params == null)
                     $scope.filter_params += '?min_workdays' + $scope.filter.workdays;
                 else
                     $scope.filter_params += '&min_workday=' + $scope.filter.workdays;
@@ -418,7 +418,7 @@ angular.module('chuangplus_mobile.controllers', [])
             for (var ele in $scope.filter.type) {
                 if($scope.filter.type[ele] == true)
                 {
-                    if($scope.filter_params == "")
+                    if($scope.filter_params == null)
                     {
                         $scope.filter_params = '?types=' + ele;
                         $scope.type_notice = $scope.position_type[ele];
@@ -437,7 +437,7 @@ angular.module('chuangplus_mobile.controllers', [])
             
             if($scope.filter.salary != "" && $scope.filter.salary != undefined)
             {
-                if($scope.filter_params != "")
+                if($scope.filter_params != null)
                     $scope.filter_params += '&salary_min=' + $scope.filter.salary;
                 else
                     $scope.filter_params += '?salary_min=' + $scope.filter.salary;
@@ -446,9 +446,9 @@ angular.module('chuangplus_mobile.controllers', [])
 
 
             var submitparam = "";
-            if($scope.search_name == "" || $scope.search_name == undefined)
+            if($scope.search_name == null || $scope.search_name == undefined)
                 submitparam = $scope.filter_params;
-            else if($scope.filter_params == "")
+            else if($scope.filter_params == null)
                 submitparam = "?name=" + $scope.search_name;
             else
                 submitparam = $scope.filter_params + "&name=" + $scope.search_name;
@@ -553,14 +553,18 @@ angular.module('chuangplus_mobile.controllers', [])
             if($scope.pagenow < 0)
                 return;
             var submitparam = "";
-            if($scope.filter_params == "")
+            if($scope.filter_params == null)
+            {
                 if($scope.search_name != "" && $scope.search_name != undefined)
                     submitparam = "?name=" + $scope.search_name;
+            }
             else
+            {
                 if($scope.search_name != "" && $scope.search_name != undefined)
                     submitparam = $scope.filter_params + "&name=" + $scope.search_name;
                 else
                     submitparam = $scope.filter_params;
+            }
             if(submitparam != "")
                 submitparam += '&page=' + $scope.pagenow;
             else
