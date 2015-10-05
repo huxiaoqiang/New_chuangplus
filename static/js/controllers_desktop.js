@@ -449,6 +449,7 @@ angular.module('chuangplus.controllers', []).
             '020':"O2O",
             'others':"其他"
         };
+        
         $scope.get_positions = function(){
             $http.get(urls.api+"/account/userinfo/position/submit/list").
                 success(function(data){
@@ -1524,7 +1525,7 @@ angular.module('chuangplus.controllers', []).
     };
     
     $scope.complete_resume = function(){
-         setTimeout(function(){window.location.href='/intern/resume/view'},300);
+         setTimeout(function(){window.location.href='/intern/resume/edit'},300);
          $('#myModal').modal('hide');
     };
     if($user.username()&&$user.role()==0){
