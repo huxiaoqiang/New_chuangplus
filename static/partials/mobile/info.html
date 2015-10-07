@@ -14,19 +14,20 @@
         </span>
 
         <div class="panel-group-bot info-input purple-border">
-              <select class="elem-width-full">
-                <option value="">年级</option>
-                <option value="11">本科1年级</option>
-                <option value="12">本科2年级</option>
-                <option value="13">本科3年级</option>
-                <option value="14">本科4年级</option>
-                <option value="15">本科5年级</option>
-                <option value="21">硕士1年级</option>
-                <option value="23">硕士2年级</option>
-                <option value="22">硕士3年级</option>
-                <option value="31">博士1年级</option>
-                <option value="32">博士2年级</option>
-                <option value="33">博士高年级</option>
+              <select class="elem-width-full" ng-model="user_info.grade">
+                  <option value="" selected="true" disabled="true">请选择所在年级</option>
+                  <option value="1">本科一年级</option>
+                  <option value="2">本科二年级</option>
+                  <option value="3">本科三年级</option>
+                  <option value="4">本科四年级</option>
+                  <option value="11">研究生一年级</option>
+                  <option value="12">研究生二年级</option>
+                  <option value="13">研究生三年级</option>
+                  <option value="21">博士一年级</option>
+                  <option value="22">博士二年级</option>
+                  <option value="23">博士三年级</option>
+                  <option value="24">博士四年级</option>
+                  <option value="25">博士五年级</option>
               </select>
         </div>
       </div>
