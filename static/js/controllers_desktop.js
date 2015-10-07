@@ -909,7 +909,7 @@ angular.module('chuangplus.controllers', []).
             //console.log($(e.target).attr('id')!="header" && $(e.target).attr('id')!="submit_div");
             //console.log($("#header"));
             //console.log($(e.target).attr('id'));
-            if($(e.target).attr('id')!="header" && $(e.target).attr('id')!="show_intern_info" && $(e.target).attr('id')!="submit_div" && $(e.target).attr('className')!="resume_name"){
+            if($(e.target).attr('class')!="view" && $(e.target).attr('class')!="resume" && $(e.target).attr('id')!="header" && $(e.target).attr('id')!="show_intern_info" && $(e.target).attr('id')!="submit_div" && $(e.target).attr('className')!="resume_name"){
                 $scope.view_detail($scope.chosed_index);
             }
         });
