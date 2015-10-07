@@ -1103,7 +1103,8 @@ angular.module('chuangplus_mobile.controllers', [])
         }
 
         $scope.login_user = function(){
-            if($scope.check_captcha() == true)
+            console.log($scope.is_captcha_ok);
+            if($scope.is_captcha_ok == 1)
             {
                 $csrf.set_csrf($scope.login_info);
                 console.log($scope.login_info);
