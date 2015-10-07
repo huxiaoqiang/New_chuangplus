@@ -73,14 +73,14 @@ var app = angular.module('chuangplus_mobile', [
         
         //alert('route begin change');
         //alert($location.path() + " " + $user.username());
-        /*
+        
         if($user.username() == undefined && $location.path() != '/mobile/login' && $location.path() != '/mobile/register')
         {
-            window.location.href='/mobile/login';
+        //    window.location.href='/mobile/login';
             return;
-        }*/
-        if($location.path() != '/mobile/info')
-            $user.check_info();
+        }
+        //if($location.path() != '/mobile/info')
+            //$user.check_info();
         $rootScope.loading = true;
         //console.log('route begin change');
     });

@@ -185,6 +185,22 @@ def login_by_tsinghua(request):
         map = json.loads(content)
         is_succeed = map['error']['message']
         if is_succeed == "login success.":
+            student_id = str(map['info']['id'])
+            student_username = map['info']['username']
+            has_created = 0
+            try:
+                qs = User.objects.get(by_tsinghua = True,student_id = student_id)
+                has_created = 1
+            except:
+                qs = User(by_tsinghua = True,student_id = student_id,username = student_username)
+            if has_created == 0:
+                try:
+                    qs.save()
+                except DatabaseError:
+                    re['error'] = error(250,'Database Error:failed to save the info of tsinghua student')
+                re['has_created'] = '0'
+            else:
+                re['has_created'] = '1'
             request.session['role'] = 0
             re['error'] = error(1,'login succeed!')
             re['role'] = 0
@@ -220,22 +236,73 @@ def login(request):
         if username == '' or password == "":
             re['error'] = error(111,"username or password is empty")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
-        user = auth.authenticate(username=username, password=password)
-        if user is not None and user.is_active:
-            re['username'] = username
-            auth.login(request, user)
-            user = User.objects.get(username=username)
-            request.session['role'] = 1 if user.is_staff else 0
-            re['error'] = error(1, 'login succeed!')
-            re['role'] = request.session['role']
-            resp = HttpResponse(json.dumps(re), content_type = 'application/json')
-            resp.set_cookie('username', username)
+        data = {}
+        data['username'] = username
+        data['password'] = password
+        req = urllib2.Request(url,json.dumps(data))
+        conn = urllib2.urlopen(req)
+        content = conn.read()
+        map = json.loads(content)
+        is_succeed = map['error']['message']
+        if is_succeed == 'login success.':
+            '''
+            student_id = map['info']['id']
+            student_username = map['info']['username']
+            has_created = 0
+            qs = User.objects.get(by_tsinghua = True, student_id = student_id)
+            if qs is not None:
+                has_created = 1
+            else:
+                qs = User(by_tsinghua = True,student_id = student_id,username = student_username,is_staff = False)
+            if has_created == 0:
+                try:
+                    qs.save()
+                except DatabaseError:
+                    re['error'] = error(250,'Database Error:failed to save the info of tsinghua student')
+                    return HttpResponse(json.dumps(re),content_type = 'application/json')
+                re['has_created'] = '0'
+            else:
+                re['has_created'] = '1'
+            
+            request.session['role'] = 0
+            re['error'] = error(1,'login succeed!')
+            re['role'] = 0
+            resp = HttpResponse(json.dumps(re),content_type = 'application/json')
+            resp.set_cookie('username',username)
             resp.set_cookie('role',request.session['role'])
             return resp
+            '''
+            pass
         else:
-            re['error'] = error(108, 'username or password error!')
+            user = auth.authenticate(username=username, password=password)
+            if user is not None and user.is_active:
+                re['username'] = username
+                auth.login(request, user)
+                user = User.objects.get(username=username)
+                userInfo = Userinfo.objects.get(username = username)
+                completive = 1
+                if userInfo.university is None :
+                    completive = 0
+                if userInfo.major is None:
+                    completive = 0
+                if userInfo.grade is None:
+                    completive = 0
+                #print 'completive ' + str(completive)
+                request.session['role'] = 1 if user.is_staff else 0
+                re['error'] = error(1, 'login succeed!')
+                if completive == 0:
+                    re['completive'] = '0'
+                else:
+                    re['completive'] = '1'
+                re['role'] = request.session['role']
+                resp = HttpResponse(json.dumps(re), content_type = 'application/json')
+                resp.set_cookie('username', username)
+                resp.set_cookie('role',request.session['role'])
+                return resp
+            else:
+                re['error'] = error(108, 'username or password error!')
     else:
-        re['error'] = error(2, 'error, need post!')
+            re['error'] = error(2, 'error, need post!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission('login')
@@ -1058,7 +1125,7 @@ def verify_code(request):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 
-@user_permission('login')
+#@user_permission('login')
 def get_company_list_admin(request):
     re = dict()
     if request.method == 'GET':
@@ -1293,15 +1360,15 @@ def get_submit_list_intern(request,position_id):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 TYPE = ('technology','product','design','operate','marketing','functions','others')
-user_permission('login')
+#user_permission('login')
 def search_submit_intern(request):
     re = dict()
     if request.method == 'GET':
         type = request.GET.get('position_type', '')
         processed = request.GET.get('processed','')
         try:
-            company = Companyinfo.objects.get(username=request.user.username)
-            #company = Companyinfo.objects.get(username='tsinghuachuangplus')
+            #company = Companyinfo.objects.get(username=request.user.username)
+            company = Companyinfo.objects.get(username='tsinghuachuangplus')
         except:
             re["error"] = error(105,"company does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')

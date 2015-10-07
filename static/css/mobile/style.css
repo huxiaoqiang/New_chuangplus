@@ -740,6 +740,11 @@ a:hover {
 .comp-map .addr {
   margin-left: 22px;
 }
+.relative-center {
+  margin: auto;
+  top: 0;
+  bottom: 0;
+}
 .detail-desc {
   padding-top: 15px;
   display: block;
@@ -747,11 +752,16 @@ a:hover {
 }
 .detail-desc .desc-block {
   margin-bottom: 25px;
-  overflow: auto;
 }
 .detail-desc .desc-block .member-block {
   margin-top: 10px;
+  position: relative;
+  min-height: 170px;
+  width: 100%;
   display: inline-block;
+  border: 1px solid #b5b5b5;
+  border-radius: 4px;
+  padding: 20px;
 }
 .detail-desc .desc-block .desc-title {
   color: black;
@@ -823,7 +833,7 @@ a:hover {
   height: 26px;
   color: #707070;
 }
-.comp-listbox table td {
+.comp-listbox table .title {
   overflow: hidden;
   white-space: nowrap;
   word-break: keep-all;
@@ -832,9 +842,27 @@ a:hover {
 .comp-listbox table {
   font-size: 12px;
 }
+.comp-listbox tr:last-of-type .fi-cond item {
+  display: block;
+  height: 14px;
+}
 .fi-cond {
-  float: left;
-  width: 28%;
+  display: table;
+}
+.fi-cond title {
+  display: block;
+  color: #966497;
+  font-size: 13px;
+}
+.fi-cond border {
+  border-top: 1px solid #dcdcdc;
+  display: -webkit-box;
+  width: 123px;
+  margin: 1px 0 2px 0;
+}
+.fi-cond item {
+  height: 23px;
+  display: block;
 }
 .comp-full-name {
   font-size: 16px;
@@ -847,13 +875,13 @@ a:hover {
 }
 .desc-subtitle {
   color: black;
-  width: 50px;
+  height: 125px;
+  width: 90px;
   padding-bottom: 10px;
-  font-size: 15px;
+  font-size: 13px;
   float: left;
-  text-align: left;
-  margin-top: 20px;
-  margin-right: 4px;
+  text-align: center;
+  margin-right: 9px;
 }
 .desc-img {
   width: 80px;
@@ -862,6 +890,7 @@ a:hover {
   border-radius: 40px;
   border: #dcdcdc solid 1px;
   margin-right: 8px;
+  margin-bottom: 4px;
 }
 .desc-content {
   display: -webkit-box;
@@ -871,8 +900,11 @@ a:hover {
   color: #707070;
   display: -webkit-box;
   border-radius: 3px;
-  border: 1px solid #dcdcdc;
-  padding: 5px;
+}
+.stuff_desc p {
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
 }
 .comp-posi-list {
   background-color: #dcdcdc;
