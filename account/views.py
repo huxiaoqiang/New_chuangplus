@@ -1323,7 +1323,7 @@ def process_single(request,position_id,username):
             re['error'] = error(103,'User dose not exist')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         try:
-            up = UserPosition.objects(position=position,user=user,processed=False)
+            up = UserPosition.objects.get(position=position,user=user,processed=False)
         except DoesNotExist:
             re['error'] = error(268,'No Userposition relation to process')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
