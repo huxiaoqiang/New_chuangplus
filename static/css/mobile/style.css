@@ -833,18 +833,35 @@ a:hover {
   height: 26px;
   color: #707070;
 }
-.comp-listbox table td {
+.comp-listbox table .title {
   overflow: hidden;
-  white-space: nowrap;
   word-break: keep-all;
   vertical-align: -webkit-baseline-middle;
 }
 .comp-listbox table {
   font-size: 12px;
 }
+.comp-listbox tr:last-of-type .fi-cond item {
+  display: block;
+  height: 14px;
+}
 .fi-cond {
-  float: left;
-  width: 28%;
+  display: table;
+}
+.fi-cond title {
+  display: block;
+  color: #966497;
+  font-size: 13px;
+}
+.fi-cond border {
+  border-top: 1px solid #dcdcdc;
+  display: -webkit-box;
+  width: 123px;
+  margin: 1px 0 2px 0;
+}
+.fi-cond item {
+  height: 23px;
+  display: block;
 }
 .comp-full-name {
   font-size: 16px;

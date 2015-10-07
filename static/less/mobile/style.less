@@ -1103,10 +1103,10 @@ a:hover
     color: @dark-gray;
 }
 
-.comp-listbox table td
+.comp-listbox table .title
 {
     overflow: hidden;
-    white-space:nowrap;
+//    white-space:nowrap;
     word-break: keep-all;
     vertical-align: -webkit-baseline-middle;
 }
@@ -1114,11 +1114,32 @@ a:hover
 {
     font-size: 12px;
 }
-
+.comp-listbox tr:last-of-type .fi-cond item
+{
+    display: block;
+    height: 14px;
+}
 .fi-cond
 {
-    float: left;
-    width: 28%;
+    display: table;
+}
+.fi-cond title
+{
+    display: block;
+    color: @std-purple;
+    font-size: 13px;
+}
+.fi-cond border
+{
+    border-top: 1px solid @lit-gray;
+    display: -webkit-box;
+    width: 123px;
+    margin: 1px 0 2px 0;
+}
+.fi-cond item
+{
+    height: 23px;
+    display: block;
 }
 
 .comp-full-name

@@ -54,23 +54,33 @@
             <div class="slash"></div>
             <table >
                 <tr>
-                    <td>相关链接：</td>
+                    <td class="title">相关链接：</td>
                     <td> <a target="_blank" href="[[company.homepage]]"> [[company.homepage]] </a> </td>
                 </tr>
                 <tr>
-                    <td>融资经历：</td>
+                    <td class="title">融资经历：</td>
                     <td style="width: 100%;"> 
-                        <div ng-repeat="fi in company.financing_data">
-                            <div class="fi-cond"> [[fi.scale_value]] </div>
-                            <div class="fi-cond"> [[fi.organization]]</div>
-                            <div class="fi-cond"> [[fi.amount_value]]</div>
-                        </div>
+                        
                         <div ng-if="company.financing_number == 0">
                             <div class="fi-cond">该公司尚未融资</div>
                         </div>
                     </td>
                 </tr>
+                <tr ng-repeat="fi in company.financing_data">
+                    <td colspan="2">
+                        <div class="fi-cond"> 
+                            <title>
+                                [[fi.scale_value]] / [[fi.amount_value]]
+                            </title>
+                            <border></border>
+                            <item>
+                                [[fi.organization]]
+                            </item>
+                        </div>
+                    </td>
+                </tr>
             </table>
+            
         </div>
     </div>
 
