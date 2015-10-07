@@ -1089,11 +1089,13 @@ angular.module('chuangplus_mobile.controllers', [])
                         $notice.show('验证码错误');
                         $('#captcha-pass').hide();
                         $scope.is_captcha_ok = 0;
+                        return false;
                     }
                     else
                     {
                         $('#captcha-pass').show();
                         $scope.is_captcha_ok = 1;
+                        return true;
                     }
 
                 });
@@ -1101,7 +1103,7 @@ angular.module('chuangplus_mobile.controllers', [])
         }
 
         $scope.login_user = function(){
-            if($scope.is_captcha_ok == 1)
+            if($scope.check_captcha() == true)
             {
                 $csrf.set_csrf($scope.login_info);
                 console.log($scope.login_info);
