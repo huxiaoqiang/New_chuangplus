@@ -61,6 +61,9 @@ angular.module('chuangplus.directives', []).
                     }
                     scope.texts = value.split('\n');
                     var timestamp = Date.parse(new Date());
+                    if(elem.children() != []){
+                        elem.empty();
+                    }
                     for(var i=0;i<scope.texts.length;i++){
                         if(scope.texts[i]!=''){
                             elem.append("<li>"+scope.texts[i]+"</li>");
