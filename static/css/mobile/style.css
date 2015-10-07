@@ -994,7 +994,7 @@ a:hover {
   width: 40px;
 }
 .info-update {
-  background-color: #dcdcdc;
+  background-color: white;
   height: 100%;
 }
 .info-block {
@@ -1006,15 +1006,15 @@ a:hover {
   padding-bottom: 30px;
 }
 .info-block-title {
-  color: #d4abd3;
+  color: #966497;
   margin-bottom: 15px;
   font-size: 18px;
   font-weight: 700;
 }
 .lit-p-bg {
-  background-color: #d4abd3;
+  background-color: #966497;
   color: white;
-  border-color: #d4abd3;
+  border-color: #966497;
 }
 .lit-gray-t-border {
   border-left: 1px solid #ffffff;
