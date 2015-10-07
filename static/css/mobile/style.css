@@ -216,7 +216,7 @@ a:hover {
 .notice-bar {
   height: 50px;
   width: 100%;
-  background-color: red;
+  background-color: rgba(255, 10, 10, 0.9);
   z-index: 10000000;
   position: fixed;
   top: 0;
