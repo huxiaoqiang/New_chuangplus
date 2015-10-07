@@ -1664,6 +1664,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     .success(function(data){
                     if(data.error.code == 1){
                         $notice.show("修改信息成功");
+                        setTimeout(window.location.href="/mobile/home",500);
                     }
                     else{
                         $notice.show($errMsg.format_error("",data.error).message);
@@ -1682,6 +1683,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     console.log(data.message);
                     if(data.error.code == 1){
                         $notice.show("修改密码成功");
+                        setTimeout(window.location.href="/mobile/home",500);
                     }
                     else{
 
