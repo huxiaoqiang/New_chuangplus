@@ -88,7 +88,11 @@ angular.module('chuangplus_mobile.controllers', [])
         {
             //$("#filter-content"+id).slideDown("normal");
             //$("#filter-content"+id).show();
-
+            if ($scope.filter_now == id) 
+            {
+                hide_filter(id);
+                return;   
+            }
             $scope.hide_filter(3-id);
             $("#filter-content"+id).animate({top:90},"200");
             $scope.filter_now = id;
@@ -364,6 +368,11 @@ angular.module('chuangplus_mobile.controllers', [])
         {
             //$("#filter-content"+id).slideDown("normal");
             //$("#filter-content"+id).show();
+            if ($scope.filter_now == id) 
+            {
+                hide_filter(id);
+                return;   
+            }
             for (var i = 4; i >= 1; i--) {
                 if (i != id) 
                     $scope.hide_filter(i);
