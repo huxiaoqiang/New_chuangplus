@@ -42,20 +42,20 @@
         <div class="panel-list">
             <div class="info-block-title">基本信息</div>
 
-            <span class="panel-group-top info-input">
+            <span class="panel-group-top info-input purple-border">
             <input class="panel-elem elem-width-full" type="email" ng-model="user_info.email" placeholder="请输入邮箱" required>
             </span>
 
-            <span class="panel-group-mid info-input">
+            <span class="panel-group-mid info-input purple-border">
               <input class="panel-elem elem-width-full" type="text" ng-model="user_info.university" placeholder="学校" required>
             </span>
 
-            <span class="panel-group-mid info-input">
+            <span class="panel-group-mid info-input purple-border">
               <input class="panel-elem elem-width-full" type="text" ng-model="user_info.major" placeholder="专业" required>
             </span>
 
-            <div class="panel-group-bot info-input">
-              <select class="panel-elem-full">
+            <div class="panel-group-bot info-input purple-border">
+              <select class="panel-elem-full" ng-model="user_info.grade">
                   <option value="" selected="true" disabled="true">请选择所在年级</option>
                   <option value="1">本科一年级</option>
                   <option value="2">本科二年级</option>
