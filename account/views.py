@@ -279,7 +279,7 @@ def login(request):
                 re['username'] = username
                 auth.login(request, user)
                 user = User.objects.get(username=username)
-                if user.is_staff == 0:
+                if not user.is_staff:
                     userInfo = Userinfo.objects.get(username = username)
                     completive = 1
                     if userInfo.university is None :
