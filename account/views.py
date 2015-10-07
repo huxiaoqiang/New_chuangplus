@@ -279,21 +279,22 @@ def login(request):
                 re['username'] = username
                 auth.login(request, user)
                 user = User.objects.get(username=username)
-                userInfo = Userinfo.objects.get(username = username)
-                completive = 1
-                if userInfo.university is None :
-                    completive = 0
-                if userInfo.major is None:
-                    completive = 0
-                if userInfo.grade is None:
-                    completive = 0
+                if user.is_staff == 0:
+                    userInfo = Userinfo.objects.get(username = username)
+                    completive = 1
+                    if userInfo.university is None :
+                        completive = 0
+                    if userInfo.major is None:
+                        completive = 0
+                    if userInfo.grade is None:
+                        completive = 0
+                    if completive == 0:
+                        re['completive'] = '0'
+                    else:
+                        re['completive'] = '1'
                 #print 'completive ' + str(completive)
                 request.session['role'] = 1 if user.is_staff else 0
                 re['error'] = error(1, 'login succeed!')
-                if completive == 0:
-                    re['completive'] = '0'
-                else:
-                    re['completive'] = '1'
                 re['role'] = request.session['role']
                 resp = HttpResponse(json.dumps(re), content_type = 'application/json')
                 resp.set_cookie('username', username)
