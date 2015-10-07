@@ -9,6 +9,14 @@
                 <div class="header"> 我的投递</div>
             </div> 
 
+            <a ng-show="positions.length == 0" class="empty-block" href="/mobile/position/list">
+                <div class="empty-title">
+                    你还没有投递任何岗位
+                    快去职位列表看看吧
+                </div>
+                <img class="empty-pic" src="/static/image/mobile/arrow-01.png"> 
+            </a>
+
             <div class="comp-list">
                 <a class="comp-listbox" href="/mobile/position/detail/[[position._id.$oid]]" ng-repeat="position in positions">
                     <img class="comp-prev-img" src="/api/file/[[position.company.logo_id]]/download">

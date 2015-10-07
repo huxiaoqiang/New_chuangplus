@@ -62,9 +62,13 @@
 
                     </div>
                 </div>
-                <div ng-if="positions.length == 0">
-                    <p>你还没有收藏任何职位，快到<a href="/mobile/position/list" style="text-decoration: underline; color: blue;">职位列表</a>看看吧</p>
-                </div>
+                <a ng-if="positions.length == 0" class="empty-block" href="/mobile/position/list">
+                    <div class="empty-title">
+                        你还没有收藏任何职位
+                        快去职位列表看看吧
+                    </div>
+                    <img class="empty-pic" src="/static/image/mobile/arrow-01.png"> 
+                </a>
             </div>
         </div>
     </div>

@@ -1273,11 +1273,32 @@ a:hover
     z-index: 100;
     background-color: #e66665;
 }
+.empty-block
+{
+    z-index: 1000;
+    position: fixed;
+    height: 102px;
+    width: 170px;
+    text-align: center;
+    top: 0;left: 0;bottom: 0;right: 0;
+    margin: auto;
+    background: @lit-gray;
+    padding: 10px 10px 0 10px;
+    border-radius: 5px;
+    .empty-title
+    {
+        color: @std-purple;
+    }
+    .empty-pic
+    {
+        width: 40px;
+    }
+}
 
 //infoupdate.html
 .info-update
 {
-    background-color: @std-purple;
+    background-color: white;
     height: 100%;
 }
 .info-block

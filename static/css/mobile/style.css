@@ -972,8 +972,29 @@ a:hover {
   z-index: 100;
   background-color: #e66665;
 }
+.empty-block {
+  z-index: 1000;
+  position: fixed;
+  height: 102px;
+  width: 170px;
+  text-align: center;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  background: #dcdcdc;
+  padding: 10px 10px 0 10px;
+  border-radius: 5px;
+}
+.empty-block .empty-title {
+  color: #966497;
+}
+.empty-block .empty-pic {
+  width: 40px;
+}
 .info-update {
-  background-color: #966497;
+  background-color: white;
   height: 100%;
 }
 .info-block {

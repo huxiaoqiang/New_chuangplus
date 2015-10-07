@@ -43,9 +43,20 @@
                         </div>
                     </div>
                 </a>
+
+                <a ng-if="company_list.length == 0" class="empty-block" href="/mobile/index">
+                    <div class="empty-title">
+                        你还没有收藏任何公司
+                        快去公司列表看看吧
+                    </div>
+                    <img class="empty-pic" src="/static/image/mobile/arrow-01.png"> 
+                </a>
+
+                <!--
                 <div ng-if="company_list.length == 0">
                     <p>你还没有收藏任何公司，快到<a href="/mobile/index" style="text-decoration: underline; color: blue;">公司列表</a>看看吧</p>
                 </div>
+                -->
             </div>
         </div>
     </div>
