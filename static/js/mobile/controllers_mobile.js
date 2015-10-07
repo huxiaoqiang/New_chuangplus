@@ -1289,7 +1289,8 @@ angular.module('chuangplus_mobile.controllers', [])
                 $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
                     success(function(data){
                         if(data.error.code == 1){
-                            window.location.href='/mobile/info';
+                            $notice.show("注册成功，跳转填写个人信息");
+                            setTimeout(window.location.href='/mobile/info',1000);
                         }
                         else{
                             $notice.show($errMsg.format_error("",data.error).message);
