@@ -681,6 +681,7 @@ angular.module('chuangplus.controllers', []).
               success(function(data){
                 if(data.error.code == 1){
                     $scope.intern_info = data.data;
+                    $scope.have_resume_info = false;
                     if($scope.intern_info.real_name != undefined){
                         $scope.have_resume_info = true;
                     }
