@@ -76,8 +76,8 @@
                         <div class="right-side">
                             <b class="tips status" ng-if="position.status == 'closed'">职位关闭</b>
                             <b class="tips done"  ng-if="position.status == 'open'">职位在招</b>
-                            <b class="tips status">HR待处理</b>
-                            <b class="tips done">HR已处理</b>
+                            <b class="tips status" ng-if="position.processed==false">HR待处理</b>
+                            <b class="tips done" ng-if="position.processed==true">HR已处理</b>
                         </div>
                     </li>
                     </a>
