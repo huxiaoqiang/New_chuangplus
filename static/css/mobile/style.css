@@ -713,14 +713,14 @@ a:hover {
   margin: 10px 0 0px 0;
 }
 .posi-detail .detail-name {
-  font-size: 23px;
+  font-size: 19px;
 }
 .comp-map {
   padding: 8px 20px 8px 20px;
   background-color: white;
   margin-top: 2px;
   color: #707070;
-  font-size: 18px;
+  font-size: 16px;
   position: relative;
 }
 .comp-map .icon {
@@ -738,7 +738,7 @@ a:hover {
   font-size: 26px;
 }
 .comp-map .addr {
-  margin-left: 22px;
+  margin-left: px;
 }
 .relative-center {
   margin: auto;
