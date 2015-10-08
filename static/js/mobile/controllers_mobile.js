@@ -565,7 +565,6 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $scope.submit_filter = function(id)
         {
-<<<<<<< HEAD
             var isSelected = false;
             $scope.workdays_notice = '工作时间';
             $scope.salary_notice = '月薪下限';
