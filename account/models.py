@@ -16,10 +16,11 @@ except ImportError:
 #Userinfo
 TYPE = ('technology','product','design','operate','marketing','functions','others')
 class Userinfo(Document):
+    is_info = BooleanField(default=False)
     user = ReferenceField(User,required=True)
     username = StringField(max_length=30,required=True)
     user_avatar_id = StringField(max_length=30)
-    email = EmailField(required=True)
+    email = EmailField()
     real_name = StringField(max_length=20)
     work_city = StringField(max_length=100)
     cellphone = StringField(max_length=20)
