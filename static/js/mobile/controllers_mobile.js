@@ -9,6 +9,7 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.company_list = {};
         $scope.filter_show = false;
         $scope.pagenow = 2;
+        $scope.is_login = $user.is_login();
         $scope.filter_params = "";
         $scope.filed_notice = '行业/领域';
         $scope.scale_notice = '公司规模';
@@ -402,7 +403,6 @@ angular.module('chuangplus_mobile.controllers', [])
                     $scope.filter.field[ele] = !now.all;
                 else
                     $scope.filter.type[ele] = !now.all;
-                
             }
         };
         $scope.refresh_params = function(){
@@ -1292,40 +1292,38 @@ angular.module('chuangplus_mobile.controllers', [])
             {
                 $csrf.set_csrf($scope.login_info);
                 console.log($scope.login_info);
+
+                if($scope.is_tsinghua != true)
                 $http.post(urls.api+"/account/login", $.param($scope.login_info)).
                     success(function(data){
                         console.log(data);
                         if(data.error.code == 1){
-                            console.log("登陆成功");
-                            window.location.href = urls.mobile_index;
-
-
-/*
-                            $scope.user_info = {};
-                            $http.get(urls.api+"/account/userinfo/get").
-                                success(function(udata){
-                                if(udata.error.code == 1){
-                                    if( udata.data.major != undefined &&
-                                        udata.data.university != undefined)
-                                        window.location.href = urls.mobile_index;
-                                    else
-                                    {
-                                        console.log('需要填写信息');
-                                        window.location.href = '/mobile/info';
-                                    }
-                                }
-                                else
-                                    $notice.show($errMsg.format_error("",udata.error).message);
-                            });
-
-*/
-
+                            if(data.completive == 1)
+                                window.location.href = urls.mobile_index;
+                            else
+                                window.location.href = '/mobile/info';
                         }
                         else
                         {
                             $notice.show($errMsg.format_error("",data.error).message);
                         }
-                    });
+                });
+                else
+                $http.post(urls.api+"/account/login_by_tsinghua", $.param($scope.login_info)).
+                    success(function(data){
+                        console.log(data);
+                        if(data.error.code == 1){
+                            if(data.completive == 1)
+                                window.location.href = urls.mobile_index;
+                            else
+                                window.location.href = '/mobile/info';
+                        }
+                        else
+                        {
+                            $notice.show($errMsg.format_error("",data.error).message);
+                        }
+                });
+
             }
         };
         $scope.refresh_captcha();

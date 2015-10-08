@@ -65,13 +65,8 @@ var app = angular.module('chuangplus_mobile', [
   app.run(['$rootScope', '$location', 'UserService', function($rootScope, $location, $user){
     $rootScope.$on('$routeChangeSuccess', function(event, current, previous){
             $rootScope.title = current.$$route.title;
-
         });
     $rootScope.$on('$routeChangeStart', function(){
-        
-        //alert('route begin change');
-        //alert($location.path() + " " + $user.username());
-        
         if($user.username() == undefined && $location.path() != '/mobile/login' && $location.path() != '/mobile/register')
         {
             window.location.href='/mobile/login';
