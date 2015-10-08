@@ -64,6 +64,7 @@ var app = angular.module('chuangplus_mobile', [
         //Configure header title of the page
         $rootScope.$on('$routeChangeSuccess', function(event, current, previous){
             $rootScope.title = current.$$route.title;
+
         });
     }]);
 

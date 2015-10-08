@@ -756,12 +756,12 @@ a:hover {
 .detail-desc .desc-block .member-block {
   margin-top: 10px;
   position: relative;
-  min-height: 170px;
+  min-height: 160px;
   width: 100%;
   display: inline-block;
   border: 1px solid #b5b5b5;
   border-radius: 4px;
-  padding: 20px;
+  padding: 15px 20px;
 }
 .detail-desc .desc-block .desc-title {
   color: black;

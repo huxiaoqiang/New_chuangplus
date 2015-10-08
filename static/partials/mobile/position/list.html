@@ -1,5 +1,5 @@
 <div class="main-content scrollable" ng-controller="MB_PositionListCtrl">
-<div class="scrollable-content">
+<div class="scrollable-content" id='scrollable-content'>
         <div class="header-bar">
             <div class="logo sidebar-toggle" ui-toggle="uiSidebarLeft">
                     <i class="fa fa-bars" style="color: white;"></i>
@@ -159,13 +159,13 @@
 
             <div class="search-bar">
                 <form ng-submit="submit_search()">
-                      <input class=" search-input form-control" type="text" ng-model="search_name" placeholder="输入关键词进行搜索">
+                      <input class=" search-input form-control" type="text" ng-model="filter.search_name" placeholder="输入关键词进行搜索">
                       <a class="search-btn" ng-click="submit_search()"><i class="fa fa-search"></i>搜索</a>
                 </form>
             </div>
 
             <div class="comp-list" >
-                <div ng-repeat="position in positions">
+                <div ng-repeat="position in positions" on-finish-render-filters>
                     <a class="comp-listbox" ng-href="/mobile/position/detail/[[position._id.$oid]]" >
                         <img class="comp-prev-img" ng-src="/api/file/[[position.company.logo_id]]/download">
                         <img class="comp-more-info-arrow" src="/static/image/icon/jiantou.png">

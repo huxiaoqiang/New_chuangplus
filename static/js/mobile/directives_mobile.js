@@ -8,7 +8,19 @@ angular.module('chuangplus_mobile.directives', []).
             elm.text(version);
         };
     }]).
-    directive('onBlur', function(safeApply) {
+    directive('onFinishRenderFilters', function ($timeout) {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attr) {
+                if (scope.$last === true) {
+                    $timeout(function() {
+                        scope.$emit('ngRepeatFinished');
+                    });
+                }
+            }
+        };
+    })
+    .directive('onBlur', function(safeApply) {
       return {
         restrict : 'A',
         link : function(scope, elm, attrs) {
