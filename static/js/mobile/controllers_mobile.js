@@ -19,7 +19,7 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $scope.cfield = {
                 'social':'社交',
-                'e_commerce':'电子商务',
+                'e-commerce':'电子商务',
                 'education':'教育',
                 'health_medical':'健康医疗',
                 'culture_creativity':'文化创意',
@@ -49,7 +49,7 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.filter = {
             "field":{
                 'social':false,
-                'e_commerce':false,
+                'e-commerce':false,
                 'education':false,
                 'health_medical':false,
                 'culture_creativity':false,
@@ -364,7 +364,7 @@ angular.module('chuangplus_mobile.controllers', [])
             "workdays": 0,
             "field":{
                 'social':false,
-                'e_commerce':false,
+                'e-commerce':false,
                 'education':false,
                 'health_medical':false,
                 'culture_creativity':false,
@@ -387,7 +387,7 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $scope.cfield = {
                 'social':'社交',
-                'e_commerce':'电子商务',
+                'e-commerce':'电子商务',
                 'education':'教育',
                 'health_medical':'健康医疗',
                 'culture_creativity':'文化创意',
@@ -741,6 +741,7 @@ angular.module('chuangplus_mobile.controllers', [])
                         $scope.positions = $scope.positions.concat(newdata);
                         $scope.pagenow ++;
                         $rootScope.position_list_page = $scope.pagenow;
+                        $rootScope.position_list_response = $scope.positions;
                         $rootScope.position_list_filter = $scope.filter;
                     }
                     $scope.more_loading = false;
@@ -784,7 +785,7 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $scope.cfield = {
                 'social':'社交',
-                'e_commerce':'电子商务',
+                'e-commerce':'电子商务',
                 'education':'教育',
                 'health_medical':'健康医疗',
                 'culture_creativity':'文化创意',
@@ -894,7 +895,7 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $scope.cfield = {
                 'social':'社交',
-                'e_commerce':'电子商务',
+                'e-commerce':'电子商务',
                 'education':'教育',
                 'health_medical':'健康医疗',
                 'culture_creativity':'文化创意',
@@ -1053,7 +1054,7 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $scope.cfield = {
                 'social':'社交',
-                'e_commerce':'电子商务',
+                'e-commerce':'电子商务',
                 'education':'教育',
                 'health_medical':'健康医疗',
                 'culture_creativity':'文化创意',
@@ -1467,7 +1468,7 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $scope.cfield = {
                 'social':'社交',
-                'e_commerce':'电子商务',
+                'e-commerce':'电子商务',
                 'education':'教育',
                 'health_medical':'健康医疗',
                 'culture_creativity':'文化创意',
@@ -1639,7 +1640,7 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $scope.cfield = {
                 'social':'社交',
-                'e_commerce':'电子商务',
+                'e-commerce':'电子商务',
                 'education':'教育',
                 'health_medical':'健康医疗',
                 'culture_creativity':'文化创意',
@@ -1919,7 +1920,7 @@ angular.module('chuangplus_mobile.controllers', [])
             }; 
         $scope.cfield = {
                 'social':'社交',
-                'e_commerce':'电子商务',
+                'e-commerce':'电子商务',
                 'education':'教育',
                 'health_medical':'健康医疗',
                 'culture_creativity':'文化创意',
