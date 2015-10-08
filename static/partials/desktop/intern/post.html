@@ -24,7 +24,8 @@
                                         <div class="vertical-center">
                                             <p class="position">[[position.position_type_value]]|[[position.name]]</p>
                                             <div class="position-tags">
-                                                <span class="tags">[[position.days_per_week]]天/周</span>
+                                                <span class="tags" ng-if="position.part_or_full_time==0">实习[[position.days_per_week]]天/周</span>
+                                                <span class="tags" ng-if="position.part_or_full_time==1">全职</span>
                                                 <span class="tags">[[position.salary_min]]k-[[position.salary_max]]k</span>
                                             </div>
                                             <div class="submit-time">
@@ -73,8 +74,8 @@
 
                         </div>
                         <div class="right-side">
-                            <b class="tips status">职位关闭</b>
-                            <b class="tips done">职位在招</b>
+                            <b class="tips status" ng-if="position.status == 'closed'">职位关闭</b>
+                            <b class="tips done"  ng-if="position.status == 'open'">职位在招</b>
                             <b class="tips status">HR待处理</b>
                             <b class="tips done">HR已处理</b>
                         </div>

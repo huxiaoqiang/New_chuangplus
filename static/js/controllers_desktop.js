@@ -449,12 +449,16 @@ angular.module('chuangplus.controllers', []).
             '020':"O2O",
             'others':"其他"
         };
-        
+        $scope.task = {
+            'pageCount' : 1,
+            'currentPage' : 1
+        };
         $scope.get_positions = function(){
             $http.get(urls.api+"/account/userinfo/position/submit/list").
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.positions = data.data;
+                        $scope.task.pageCount = data.page_number;
                         for(var i = 0; i < $scope.positions.length; i ++){
                             $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
                             $scope.positions[i].company.field_type = $scope.field_type[$scope.positions[i].company.field];
@@ -909,10 +913,8 @@ angular.module('chuangplus.controllers', []).
             //console.log($(e.target).attr('id')!="header" && $(e.target).attr('id')!="submit_div");
             //console.log($("#header"));
             //console.log($(e.target).attr('id'));
-            if($(e.target).attr('id')!="header" && $(e.target).attr('id')!="submit_div" && $(e.target).attr('className')!="resume_name"){
-               
+            if($(e.target).attr('className')!="view" && $(e.target).attr('className')!="resume" && $(e.target).attr('id')!="header" && $(e.target).attr('id')!="show_intern_info" && $(e.target).attr('id')!="submit_div" && $(e.target).attr('className')!="resume_name"){
                 $scope.view_detail($scope.chosed_index);
-                
             }
         });
     }]).
@@ -1497,7 +1499,7 @@ angular.module('chuangplus.controllers', []).
     $scope.check_userinfo = function(){
         $http.get(urls.api+"/account/userinfo/check").
             success(function(data){
-                if(data.complete == true)
+                if(data.complete == "True")
                     $scope.userinfo_complete = true;
                 else
                     $scope.userinfo_complete = false;

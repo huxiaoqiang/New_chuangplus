@@ -144,9 +144,6 @@
                                 <span ng-if="position.part_or_full_time==1">全职</span>
                                 <span>[[position.salary_min]]k~[[position.salary_max]]k</span>
                             </div>
-                            <div class="tags">
-                                <span ng-repeat="tag in company.welfare_tags">[[tag]]</span>
-                            </div>
                             <div class="time">发布时间:
                             [[position.release_time.$date |date :'yyyy-MM-dd']]
                             </div>

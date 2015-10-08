@@ -675,6 +675,26 @@ def get_position_submit(request):
             re['error'] = error(265,'User does not submit any position')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+        page = 1
+        if "page" in request.GET.keys():
+            if len(request.GET["page"]) > 0:
+                try:
+                    page = int(request.GET["page"])
+                    assert page > 0
+                except (ValueError,AssertionError):
+                    re['error'] = error(200,"Invaild request!")
+                    return HttpResponse(json.dumps(re), content_type = 'application/json')
+                except:
+                    re['error'] = error(299,'Unknown Error!')
+                    return HttpResponse(json.dumps(re),content_type = 'application/json')
+
+        orderValue = "id"
+        up.order_by(orderValue)
+        shang = up.count() / POSITIONS_PER_PAGE
+        yushu = 1 if up.count() % POSITIONS_PER_PAGE else 0
+        page_number =  shang + yushu
+        up = up[(page - 1) * POSITIONS_PER_PAGE: page * POSITIONS_PER_PAGE]
+
         position_submit_list = []
         for item in up:
             try:
@@ -688,10 +708,13 @@ def get_position_submit(request):
             except DoesNotExist:
                 re['error'] = error(105,"Companyinfo does not exist!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
+
             position_re['company'] = json.loads(company.to_json())
             position_re['processed'] = item.processed
             position_submit_list.append(position_re)
+
         re['data'] = position_submit_list
+        re['page_number'] = page_number
         re['error'] = error(1,"Get submitted position list successfully")
     else:
         re['error'] = error(3,"Error, need GET")
@@ -1361,15 +1384,15 @@ def get_submit_list_intern(request,position_id):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 TYPE = ('technology','product','design','operate','marketing','functions','others')
-#user_permission('login')
+user_permission('login')
 def search_submit_intern(request):
     re = dict()
     if request.method == 'GET':
         type = request.GET.get('position_type', '')
         processed = request.GET.get('processed','')
         try:
-            #company = Companyinfo.objects.get(username=request.user.username)
-            company = Companyinfo.objects.get(username='tsinghuachuangplus')
+            company = Companyinfo.objects.get(username=request.user.username)
+            #company = Companyinfo.objects.get(username='tsinghuachuangplus')
         except:
             re["error"] = error(105,"company does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
