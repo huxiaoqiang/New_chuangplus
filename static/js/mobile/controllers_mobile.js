@@ -58,7 +58,8 @@ angular.module('chuangplus_mobile.controllers', [])
                 'O2O':false,
                 'others':false
             },
-            "scale": '-1'
+            "scale": '-1',
+            search_name : ""
             //,"csrfmiddlewaretoken" : $csrf.val()
         };
         $scope.get_company_list = function(){
@@ -78,16 +79,28 @@ angular.module('chuangplus_mobile.controllers', [])
                         for(var j=0;j<$scope.company_list[i].position_type.length;j++)
                             $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
                     }
-                    $rootScope.loading = false;
+                    $rootScope.company_list_page = $scope.pagenow;
+                    $rootScope.company_list_filter = $scope.filter;
+                    $rootScope.company_list_response = $scope.company_list;
                 }
+                $rootScope.loading = false;
             });
         };
-        $scope.get_company_list();
+        if($rootScope.company_list_response != undefined)
+        {
+            $rootScope.loading = false;
+            $scope.company_list = $rootScope.company_list_response;
+            $scope.pagenow = $rootScope.company_list_page;
+            $scope.filter = $rootScope.company_list_filter;
+        }
+        else
+            $scope.get_company_list();
         $scope.filter_now = -1;
         $scope.show_filter = function(id)
         {
             //$("#filter-content"+id).slideDown("normal");
             //$("#filter-content"+id).show();
+
             if ($scope.filter_now == id) 
             {
                 $scope.hide_filter(id);
@@ -135,15 +148,17 @@ angular.module('chuangplus_mobile.controllers', [])
             }
 
             var submitparam = "";
-            if($scope.search_name == "" || $scope.search_name == undefined)
+            if($scope.filter.search_name == "" || $scope.filter.search_name == undefined)
                 submitparam = $scope.filter_params;
             else if($scope.filter_params == "")
-                submitparam = $scope.filter_params + "?text=" + $scope.search_name;
+                submitparam = $scope.filter_params + "?text=" + $scope.filter.search_name;
             else
-                submitparam = $scope.filter_params + "&text=" + $scope.search_name;
+                submitparam = $scope.filter_params + "&text=" + $scope.filter.search_name;
 
             $scope.hide_filter(id);
             $rootScope.loading = true;
+            $rootScope.company_param = submitparam;
+
             $http.get(urls.api+"/account/company/list" + submitparam).
             success(function(data){
                 if(data.error.code == 1){
@@ -162,22 +177,48 @@ angular.module('chuangplus_mobile.controllers', [])
                             $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
                     
                     }
+                    $rootScope.company_list_page = $scope.pagenow;
+                    $rootScope.company_list_filter = $scope.filter;
+                    $rootScope.company_list_response = $scope.company_list;
                 }
                 $rootScope.loading = false;
             });
         };
         $scope.submit_search = function()
         {
-            if ($scope.search_name != "" && $scope.search_name != undefined) 
+            if ($scope.filter.search_name != "" && $scope.filter.search_name != undefined) 
             {
-                //$scope.search_name.replace(' ','+');
-                var submitparam = "";
-                if($scope.search_name == "" || $scope.search_name == undefined)
-                    submitparam = $scope.filter_params;
-                else if($scope.filter_params == "")
-                    submitparam = $scope.filter_params + "?text=" + $scope.search_name;
-                else
-                    submitparam = $scope.filter_params + "&text=" + $scope.search_name;
+                //$scope.filter.search_name.replace(' ','+');
+                var submitparam = "";            
+                $scope.filter_params = "";
+                //?field=others&scale=0&name=科技
+
+                for (var ele in $scope.filter.field) {
+                    if($scope.filter.field[ele] == true)
+                    {
+                        if($scope.filter_params == "")
+                        {
+                            $scope.filed_notice = $scope.cfield[ele];
+                            $scope.filter_params = '?field=' + ele;
+                        }
+                        else
+                            $scope.filter_params += ','+ele;
+                    }
+                }
+                if($scope.filter.scale != '-1' && $scope.filter.scale != "")
+                {
+                    $scope.scale_notice = $scope.stage[$scope.filter.scale];
+                    if($scope.filter_params != "")
+                        $scope.filter_params += '&scale=' + $scope.filter.scale;
+                    else
+                        $scope.filter_params += '?scale=' + $scope.filter.scale;
+                }
+                    if($scope.filter.search_name == "" || $scope.filter.search_name == undefined)
+                        submitparam = $scope.filter_params;
+                    else if($scope.filter_params == "")
+                        submitparam = $scope.filter_params + "?text=" + $scope.filter.search_name;
+                    else
+                        submitparam = $scope.filter_params + "&text=" + $scope.filter.search_name;
             
                 $rootScope.loading = true;
                 $http.get(urls.api+"/account/company/list" + submitparam).
@@ -197,6 +238,9 @@ angular.module('chuangplus_mobile.controllers', [])
                                 $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
                         
                         }
+                        $rootScope.company_list_page = $scope.pagenow;
+                        $rootScope.company_list_filter = $scope.filter;
+                        $rootScope.company_list_response = $scope.company_list;
                     }
                     $rootScope.loading = false;
                 });
@@ -221,6 +265,9 @@ angular.module('chuangplus_mobile.controllers', [])
                                 $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
                         
                         }
+                        $rootScope.company_list_page = $scope.pagenow;
+                        $rootScope.company_list_filter = $scope.filter;
+                        $rootScope.company_list_response = $scope.company_list;
                     }
                     $rootScope.loading = false;
                 });
@@ -234,13 +281,13 @@ angular.module('chuangplus_mobile.controllers', [])
             var submitparam = "";
             if($scope.filter_params == "")
             {
-                if($scope.search_name != "" && $scope.search_name != undefined)
-                    submitparam = "?text=" + $scope.search_name;
+                if($scope.filter.search_name != "" && $scope.filter.search_name != undefined)
+                    submitparam = "?text=" + $scope.filter.search_name;
             }
             else
             {
-                if($scope.search_name != "" && $scope.search_name != undefined)
-                    submitparam = $scope.filter_params + "&text=" + $scope.search_name;
+                if($scope.filter.search_name != "" && $scope.filter.search_name != undefined)
+                    submitparam = $scope.filter_params + "&text=" + $scope.filter.search_name;
                 else
                     submitparam = $scope.filter_params;
             }
@@ -251,6 +298,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 submitparam += '?page=' + $scope.pagenow;
 
             $scope.more_loading = true;
+            $scope.first_load = false;
             $http.get(urls.api+"/account/company/list" + submitparam).
                 success(function(data){
                     if(data.error.code == 1){
@@ -269,11 +317,27 @@ angular.module('chuangplus_mobile.controllers', [])
                         
                         }
                         $scope.company_list = $scope.company_list.concat(newdata);
+                        $rootScope.company_list_response = $scope.company_list;
+                        $rootScope.company_list_filter = $scope.filter;
                         $scope.pagenow ++;
+                        $rootScope.company_list_page = $scope.pagenow;
                     }
                     $scope.more_loading = false;
                 });
         };
+        $scope.first_load = true;
+        document.getElementById('scrollable-content').onscroll = function record_position(){
+            $rootScope.company_list_position = document.getElementById('scrollable-content').scrollTop;
+        };
+
+        $scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
+          //下面是在table render完成后执行的js
+          //alert('finish');
+            if($rootScope.company_list_response != undefined && $scope.first_load)
+            {
+                document.getElementById('scrollable-content').scrollTop = $rootScope.company_list_position;
+             }
+        });
     }])
     .controller('MB_PositionListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
     function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
@@ -318,6 +382,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 'functions':false,
                 'others':false
             },
+            "search_name" : "",
             "salary": ""
         };
         $scope.cfield = {
@@ -331,10 +396,6 @@ angular.module('chuangplus_mobile.controllers', [])
                 'O2O':'O2O',
                 'others':'其它'
         };
-        $scope.testLoading = function()
-        {
-            $rootScope.loading = !$rootScope.loading;
-        }
         $scope.get_positions = function(){
             $http.get(urls.api+"/position/search").
                 success(function(data){
@@ -355,6 +416,9 @@ angular.module('chuangplus_mobile.controllers', [])
                                 $scope.positions[i].company.scale_value = "成熟";
                             }
                         }
+                        $rootScope.position_list_page = $scope.pagenow;
+                        $rootScope.position_list_filter = $scope.filter;
+                        $rootScope.position_list_response = $scope.positions;
                     }
                     else{
                         console.log(data.error.message);
@@ -362,7 +426,15 @@ angular.module('chuangplus_mobile.controllers', [])
                     $rootScope.loading = false;
                 });
         };
-        $scope.get_positions();
+        if($rootScope.position_list_response != undefined)
+        {
+            $rootScope.loading = false;
+            $scope.positions = $rootScope.position_list_response;
+            $scope.pagenow = $rootScope.position_list_page;
+            $scope.filter        =      $rootScope.position_list_filter;
+        }
+        else
+            $scope.get_positions();
         $scope.filter_now = -1;
         $scope.show_filter = function(id)
         {
@@ -393,11 +465,11 @@ angular.module('chuangplus_mobile.controllers', [])
         {
 
             var isSelected = false;
-            $scope.filter_params = null;
             $scope.workdays_notice = '工作时间';
             $scope.salary_notice = '月薪下限';
             $scope.filed_notice = '行业/领域';
             $scope.type_notice = '职位类型';
+            $scope.filter_params = null;
 
             //?field=others&scale=0&name=科技
             for (var ele in $scope.filter.field) 
@@ -455,12 +527,12 @@ angular.module('chuangplus_mobile.controllers', [])
 
 
             var submitparam = "";
-            if($scope.search_name == null || $scope.search_name == undefined)
+            if($scope.filter.search_name == null || $scope.filter.search_name == undefined)
                 submitparam = $scope.filter_params;
             else if($scope.filter_params == null)
-                submitparam = "?name=" + $scope.search_name;
+                submitparam = "?name=" + $scope.filter.search_name;
             else
-                submitparam = $scope.filter_params + "&name=" + $scope.search_name;
+                submitparam = $scope.filter_params + "&name=" + $scope.filter.search_name;
 
             $scope.hide_filter(id);
             $rootScope.loading = true;
@@ -483,25 +555,84 @@ angular.module('chuangplus_mobile.controllers', [])
                             $scope.positions[i].company.scale_value = "成熟";
                         }
                     }
+                    $rootScope.position_list_page = $scope.pagenow;
+                    $rootScope.position_list_filter = $scope.filter;
+                    $rootScope.position_list_response = $scope.positions;
                 }
                 $rootScope.loading = false;
             });
         };
         $scope.reset_search = function(){
-            if($scope.search_name == "")
+            if($scope.filter.search_name == "")
                 $scope.submit_search();
         }
         $scope.submit_search = function()
         {
 
-            if ($scope.search_name != "" && $scope.search_name != undefined) 
+            if ($scope.filter.search_name != "" && $scope.filter.search_name != undefined) 
             {
-                //$scope.search_name.replace(' ','+');
-                var submitparam = "";
-                if($scope.filter_params == "")
-                    submitparam = "?name=" + $scope.search_name;
+                //$scope.filter.search_name.replace(' ','+');
+            $scope.filter_params = null;
+            var isSelected = false;
+
+            //?field=others&scale=0&name=科技
+            for (var ele in $scope.filter.field) 
+                if($scope.filter.field[ele] == true)
+                {
+                    if($scope.filter_params == null)
+                    {
+                        $scope.filed_notice = $scope.cfield[ele];
+                        $scope.filter_params = '?fields=' + ele;
+                    }
+                    else
+                        $scope.filter_params += ','+ele;
+                }
+
+            if($scope.filter.workdays != 0)
+            {
+                if($scope.filter_params == null)
+                    $scope.filter_params += '?min_workdays' + $scope.filter.workdays;
                 else
-                    submitparam = $scope.filter_params + "&name=" + $scope.search_name;
+                    $scope.filter_params += '&min_workday=' + $scope.filter.workdays;
+                $scope.workdays_notice = '每周' + $scope.filter.workdays + '天';
+            }
+            else
+                $scope.workdays_notice = '弹性时间';
+
+            isSelected = false;
+            for (var ele in $scope.filter.type) {
+                if($scope.filter.type[ele] == true)
+                {
+                    if($scope.filter_params == null)
+                    {
+                        $scope.filter_params = '?types=' + ele;
+                        $scope.type_notice = $scope.position_type[ele];
+                    }
+                    else if (!isSelected) 
+                    {
+                        $scope.filter_params = '&types=' + ele;
+                        $scope.type_notice = $scope.position_type[ele];
+                    }
+                    else
+                        $scope.filter_params += ','+ele;
+                    isSelected = true;
+                }
+            }
+
+            
+            if($scope.filter.salary != "" && $scope.filter.salary != undefined)
+            {
+                if($scope.filter_params != null)
+                    $scope.filter_params += '&salary_min=' + $scope.filter.salary;
+                else
+                    $scope.filter_params += '?salary_min=' + $scope.filter.salary;
+                $scope.salary_notice = $scope.filter.salary + 'K';
+            }
+                var submitparam = "";
+                if($scope.filter_params == null)
+                    submitparam = "?name=" + $scope.filter.search_name;
+                else
+                    submitparam = $scope.filter_params + "&name=" + $scope.filter.search_name;
             
 
                 $rootScope.loading = true;
@@ -524,6 +655,9 @@ angular.module('chuangplus_mobile.controllers', [])
                                 $scope.positions[i].company.scale_value = "成熟";
                             }
                         }
+                        $rootScope.position_list_response = $scope.positions;
+                        $rootScope.position_list_page = $scope.pagenow;
+                        $rootScope.position_list_filter = $scope.filter;
                     }
                     $rootScope.loading = false;
                 });
@@ -550,6 +684,9 @@ angular.module('chuangplus_mobile.controllers', [])
                                 $scope.positions[i].company.scale_value = "成熟";
                             }
                         }
+                        $rootScope.position_list_page = $scope.pagenow;
+                        $rootScope.position_list_response = $scope.positions;
+                        $rootScope.position_list_filter = $scope.filter;
                     }
                     $rootScope.loading = false;
                 });
@@ -564,13 +701,13 @@ angular.module('chuangplus_mobile.controllers', [])
             var submitparam = "";
             if($scope.filter_params == null)
             {
-                if($scope.search_name != "" && $scope.search_name != undefined)
-                    submitparam = "?name=" + $scope.search_name;
+                if($scope.filter.search_name != "" && $scope.filter.search_name != undefined)
+                    submitparam = "?name=" + $scope.filter.search_name;
             }
             else
             {
-                if($scope.search_name != "" && $scope.search_name != undefined)
-                    submitparam = $scope.filter_params + "&name=" + $scope.search_name;
+                if($scope.filter.search_name != "" && $scope.filter.search_name != undefined)
+                    submitparam = $scope.filter_params + "&name=" + $scope.filter.search_name;
                 else
                     submitparam = $scope.filter_params;
             }
@@ -580,6 +717,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 submitparam += '?page=' + $scope.pagenow;
 
             $scope.more_loading = true;
+            $scope.first_load = false;
             $http.get(urls.api+"/position/search" + submitparam).
                 success(function(data){
                     if(data.error.code == 1){
@@ -602,11 +740,24 @@ angular.module('chuangplus_mobile.controllers', [])
                         }
                         $scope.positions = $scope.positions.concat(newdata);
                         $scope.pagenow ++;
+                        $rootScope.position_list_page = $scope.pagenow;
+                        $rootScope.position_list_filter = $scope.filter;
                     }
                     $scope.more_loading = false;
             });
 
         };
+        $scope.first_load = true;
+        document.getElementById('scrollable-content').onscroll = function record_position(){
+            $rootScope.position_list_position = document.getElementById('scrollable-content').scrollTop;
+        };
+
+        $scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
+            if($rootScope.position_list_response != undefined && $scope.first_load)
+            {
+                document.getElementById('scrollable-content').scrollTop = $rootScope.position_list_position;
+             }
+        });
     }])
     .controller('MB_PositionFilterCtrl', ['$scope', '$http', 'urls', '$routeParams',
          function($scope, $http, urls, $routeParams) {
@@ -1045,7 +1196,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 $http.post(urls.api + "/position/"+$scope.position_id+"/submit", $.param($scope.submitResume)).
                     success(function(data){
                         if(data.error.code == 1){
-                            $scope.submit_value = "已投递";
+                            $scope.is_submit = "已投递";
                             $notice.show("投递成功");
                         }
                             else{
@@ -1289,7 +1440,6 @@ angular.module('chuangplus_mobile.controllers', [])
                 $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
                     success(function(data){
                         if(data.error.code == 1){
-                            $notice.show("注册成功，跳转填写个人信息");
                             setTimeout(window.location.href='/mobile/info',1000);
                         }
                         else{
@@ -1538,11 +1688,11 @@ angular.module('chuangplus_mobile.controllers', [])
                     if($scope.intern_info.resume_name != undefined && $scope.intern_info.resume_id != undefined){
                         $scope.filename = $scope.intern_info.resume_name;
                     }
-                    $rootScope.loading = false;
                 }
                 else{
                     $scope.error = $errMsg.format_error("",data.error);
                 }
+                $rootScope.loading = false;
               });
         };
         $scope.get_intern_info();

@@ -320,6 +320,10 @@ a:hover
 {
     width: 33%;
 }
+.elem-width-32
+{
+    width: 66%;
+}
 
 .elem-width-43
 {
@@ -967,7 +971,8 @@ a:hover
 }
 .posi-detail .detail-name
 {
-    font-size: @cl-header-fsize;
+    font-size: 19px;
+    line-height: 22px;
 }
 
 .comp-map
@@ -976,7 +981,7 @@ a:hover
     background-color: white;
     margin-top: 2px;
     color: @dark-gray;
-    font-size: 18px;
+    font-size: 16px;
     position: relative;
 }
 .comp-map .icon
@@ -1006,6 +1011,10 @@ a:hover
     top: 0;
     bottom: 0;
 }
+ul
+{
+    padding: 0;
+}
 .detail-desc
 {
     padding-top: 15px;
@@ -1014,18 +1023,18 @@ a:hover
 }
 .detail-desc .desc-block
 {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 .detail-desc .desc-block .member-block
 {
     margin-top: 10px;
     position: relative;
-    min-height: 170px;
+    min-height: 160px;
     width: 100%;
     display: inline-block;
     border: 1px solid @mid-gray;
     border-radius: 4px;
-    padding: 20px;
+    padding: 15px 20px;
 }
 .detail-desc .desc-block .desc-title
 {
@@ -1077,27 +1086,34 @@ a:hover
     display: block;
     position: relative;
     left: 104px; 
+    padding-right: 12px;
     width:64%;
 }
 .comp-more-info
 {
     margin: auto;
     position: absolute;
-    top: 0; bottom: 0; right: 10px;
+    top: 0; bottom: 0; right: 25px;
     font-size: 14px;
-    height: 26px;
+    height: 40px;
     color: @dark-gray;
 }
 .comp-more-info img
 {
     height: 30px;
     margin-left: 1px;
+    padding-left: 3px;
+    padding-right: 10px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
 }
 .comp-more-info-arrow
 {
     margin: auto;
     position: absolute;
-    top: 0; bottom: 0; right: 15px;
+    top: 0; bottom: 0; right: 12px;
     font-size: 16px;
     height: 26px;
     color: @dark-gray;

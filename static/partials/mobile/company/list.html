@@ -1,5 +1,5 @@
 <div class="main-content scrollable" ng-controller="MB_CompanyListCtrl">
-    <div class="scrollable-content">
+    <div id="scrollable-content" class="scrollable-content">
         <div class="header-bar">
             <div class="logo sidebar-toggle" ui-toggle="uiSidebarLeft">
                     <i class="fa fa-bars" style="color: white;"></i>
@@ -8,7 +8,7 @@
                     <i class="fa fa-home"></i>
             </a>
             <div ng-include="'/static/partials/mobile/partials/sidebar-left.html'" ></div>
-            <div class="header"> 犀牛·帮你找实习</div>
+            <div class="header">犀牛·帮你找实习</div>
         </div>    
         <div class="require-bar">
             <div class="requires">
@@ -126,7 +126,7 @@
 
             <div class="search-bar">
                 <form ng-submit="submit_search()">
-                      <input class=" search-input form-control" type="text" ng-model="search_name" placeholder="输入关键词进行搜索">
+                      <input class=" search-input form-control" type="text" ng-model="filter.search_name" placeholder="输入关键词进行搜索">
                       <a class="search-btn" ng-click="submit_search()"><i class="fa fa-search"></i>搜索</a>
                 </form>
             </div>
@@ -155,7 +155,7 @@
                         </li>
                         </a>
                 -->
-                <div ng-repeat="company in company_list">   
+                <div ng-repeat="company in company_list" on-finish-render-filters>   
                     <a class="comp-listbox" ng-href="/mobile/company/detail/[[company._id.$oid]]"> <!-- /[[company._id.$oid]] -->
                         <img class="comp-prev-img" src="/api/file/[[company.logo_id]]/download">
                         <img class="comp-more-info-arrow" src="/static/image/icon/jiantou.png">
@@ -201,7 +201,7 @@
     
 <div class="navbar navbar-app navbar-absolute-bottom">
     <a class="nav-bar-3 "  ng-href="/mobile/position/list" >职位</a>
-    <a class="nav-bar-3 bg-3d-purple" ng-href="/mobile/index">公司</a>
+    <a class="nav-bar-3 bg-3d-purple" >公司</a>
     <a class="nav-bar-3 " ng-href="/mobile/home" >个人中心</a>
 </div>
 
