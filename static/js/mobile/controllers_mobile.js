@@ -1368,6 +1368,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     success(function(data){
                         console.log(data);
                         if(data.error.code == 1){
+                            $rootScope.is_tsinghua = false;
                             if(data.completive == 1)
                                 window.location.href = urls.mobile_index;
                             else
@@ -1383,6 +1384,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     success(function(data){
                         console.log(data);
                         if(data.error.code == 1){
+                            $rootScope.is_tsinghua = true;
                             if(data.completive == 1)
                                 window.location.href = urls.mobile_index;
                             else
@@ -1971,11 +1973,8 @@ angular.module('chuangplus_mobile.controllers', [])
             window.location.href='/mobile/login';
         $scope.info = {};
         $scope.user_info = {};
-        $scope.is_tsinghua = false;
+        $scope.is_tsinghua_local = $rootScope.is_tsinghua;
         $scope.info.username = $user.username();
-
-        if($location.search().tsinghua == 1)
-            $scope.is_tsinghua = true; 
 
         $http.get(urls.api+"/account/userinfo/get").
             success(function(data){
@@ -1986,7 +1985,7 @@ angular.module('chuangplus_mobile.controllers', [])
         });
 
         $scope.update_info = function(){
-            if($scope.is_tsinghua)
+            if($rootScope.is_tsinghua)
             {
                 if( $scope.user_info.major != undefined &&
                     $scope.user_info.university != undefined &&

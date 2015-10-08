@@ -165,6 +165,7 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
             'check_login' : function(){
                 if(user.username == undefined)
                 {
+                    window.location.href='/mobile/login';
                     //window.location.href='/mobile/login';
                     return;
                 }
