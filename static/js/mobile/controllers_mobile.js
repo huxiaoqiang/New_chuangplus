@@ -1438,7 +1438,6 @@ angular.module('chuangplus_mobile.controllers', [])
                 $http.post(urls.api+"/account/register", $.param($scope.reg_info)).
                     success(function(data){
                         if(data.error.code == 1){
-                            $notice.show("注册成功，跳转填写个人信息");
                             setTimeout(window.location.href='/mobile/info',1000);
                         }
                         else{
@@ -1687,11 +1686,11 @@ angular.module('chuangplus_mobile.controllers', [])
                     if($scope.intern_info.resume_name != undefined && $scope.intern_info.resume_id != undefined){
                         $scope.filename = $scope.intern_info.resume_name;
                     }
-                    $rootScope.loading = false;
                 }
                 else{
                     $scope.error = $errMsg.format_error("",data.error);
                 }
+                $rootScope.loading = false;
               });
         };
         $scope.get_intern_info();
