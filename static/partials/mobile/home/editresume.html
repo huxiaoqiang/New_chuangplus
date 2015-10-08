@@ -25,10 +25,9 @@
           <span class="panel-group-mid lit-gray-border">
             <div class="panel-elem elem-width-4 panel-title font-color-g">性别</div>
             <div class="panel-width-43 panel-select">
-                  <select ng-model="intern_info.gender" required>
-                    <option value="1" ng-select="intern_info.gender='1'">男</option>
-                    <option value="0" ng-select="intern_info.gender='0'">女</option>
-                  </select>
+              
+              <label style="line-height: 34px; margin-right: 60px;"><input name="sex" type="radio" ng-model="intern_info.gender" value="1" required/> 男</label> 
+              <label><input name="sex" type="radio" ng-model="intern_info.gender" value="0" /> 女</label> 
                 </div>
           </span>
           <span class="panel-group-mid lit-gray-border">
