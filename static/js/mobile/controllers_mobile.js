@@ -1969,20 +1969,22 @@ angular.module('chuangplus_mobile.controllers', [])
     .controller('MB_UserInfoEditCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope', '$location',
     function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope, $location ) {
         console.log('MB_UserInfoEditCtrl');
+        
         if($user.username == undefined)
             window.location.href='/mobile/login';
         $scope.info = {};
         $scope.user_info = {};
-        $scope.is_tsinghua_local = $rootScope.is_tsinghua;
         $scope.info.username = $user.username();
 
         $http.get(urls.api+"/account/userinfo/get").
             success(function(data){
             if(data.error.code == 1){
+                $rootScope.is_tsinghua = data.is_info;
                 $scope.user_info = data.data;
                 $rootScope.loading = false;
             }
         });
+        $scope.is_tsinghua_local = $rootScope.is_tsinghua;
 
         $scope.update_info = function(){
             if($rootScope.is_tsinghua)

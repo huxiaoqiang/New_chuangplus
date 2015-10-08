@@ -72,7 +72,7 @@ var app = angular.module('chuangplus_mobile', [
             window.location.href='/mobile/login';
             return;
         }
-        if($location.path() != '/mobile/info')
+        if($location.path() != '/mobile/info' && $location.path() != '/mobile/loin' && $location.path() != '/mobile/register')
             $user.check_info();
         $rootScope.loading = true;
         //console.log('route begin change');
