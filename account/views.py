@@ -185,22 +185,54 @@ def login_by_tsinghua(request):
         map = json.loads(content)
         is_succeed = map['error']['message']
         if is_succeed == "login success.":
-            student_id = str(map['info']['id'])
-            student_username = map['info']['username']
-            has_created = 0
             try:
-                qs = User.objects.get(by_tsinghua = True,student_id = student_id)
-                has_created = 1
-            except:
-                qs = User(by_tsinghua = True,student_id = student_id,username = student_username)
-            if has_created == 0:
+                finduser = Userinfo.objects.get(username=username)
+                if finduser.is_info == False:
+                    re['error'] = error(273,'username exist!')
+                    HttpResponse(json.dumps(re), content_type = 'application/json')
+                else:
+                    completive = 1
+                    if finduser.university is None :
+                        completive = 0
+                    if finduser.major is None:
+                        completive = 0
+                    if finduser.grade is None:
+                        completive = 0
+                    if finduser.email is None:
+                        completive = 0
+                    if completive == 0:
+                        re['completive'] = '0'
+                    else:
+                        re['completive'] = '1'
+            except DoesNotExist:
+                reguser = User.create_user(username=username, password=password)
+                userinfo = Userinfo(username=username,user=reguser)
+                userinfo.is_info = True
+                userinfo.date_joined = datetime_now()
+                userinfo.update_time = datetime_now()
+                userinfo.save(force_insert=True)
+            #student_id = str(map['info']['id'])
+            #student_username = map['info']['username']
+            #has_created = 0
+            #try:
+            #    qs = User.objects.get(by_tsinghua = True,student_id = student_id)
+            #    has_created = 1
+            #except:
+            #    qs = User(by_tsinghua = True,student_id = student_id,username = student_username)
+            #if has_created == 0:
+            #    try:
+            #        qs.save()
+            #    except DatabaseError:
+            #        re['error'] = error(250,'Database Error:failed to save the info of tsinghua student')
+            #    re['has_created'] = '0'
+            #else:
+            #    re['has_created'] = '1'
+            user = auth.authenticate(username=username, password=password)
+            if user is not None and user.is_active:
                 try:
-                    qs.save()
-                except DatabaseError:
-                    re['error'] = error(250,'Database Error:failed to save the info of tsinghua student')
-                re['has_created'] = '0'
-            else:
-                re['has_created'] = '1'
+                    auth.login(request, user)
+                except:
+                    re['error'] = error(272,'login error')
             request.session['role'] = 0
             re['error'] = error(1,'login succeed!')
             re['role'] = 0
@@ -214,7 +246,7 @@ def login_by_tsinghua(request):
         re['error'] = error(2,'error,need post!')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
         
-#login  
+
 def login(request):
     re = dict()
     if request.method=="POST":
@@ -244,8 +276,9 @@ def login(request):
         content = conn.read()
         map = json.loads(content)
         is_succeed = map['error']['message']
+        '''
         if is_succeed == 'login success.':
-            '''
+
             student_id = map['info']['id']
             student_username = map['info']['username']
             has_created = 0
@@ -271,42 +304,42 @@ def login(request):
             resp.set_cookie('username',username)
             resp.set_cookie('role',request.session['role'])
             return resp
-            '''
+
             pass
         else:
-            user = auth.authenticate(username=username, password=password)
-            if user is not None and user.is_active:
-                re['username'] = username
-                auth.login(request, user)
-                user = User.objects.get(username=username)
-                if not user.is_staff:
-                    userInfo = Userinfo.objects.get(username = username)
-                    completive = 1
-                    if userInfo.university is None :
-                        completive = 0
-                    if userInfo.major is None:
-                        completive = 0
-                    if userInfo.grade is None:
-                        completive = 0
-                    if completive == 0:
-                        re['completive'] = '0'
-                    else:
-                        re['completive'] = '1'
-                #print 'completive ' + str(completive)
-                request.session['role'] = 1 if user.is_staff else 0
-                re['error'] = error(1, 'login succeed!')
-                re['role'] = request.session['role']
-                resp = HttpResponse(json.dumps(re), content_type = 'application/json')
-                resp.set_cookie('username', username)
-                resp.set_cookie('role',request.session['role'])
-                return resp
-            else:
-                re['error'] = error(108, 'username or password error!')
+        '''
+        user = auth.authenticate(username=username, password=password)
+        if user is not None and user.is_active:
+            re['username'] = username
+            auth.login(request, user)
+            user = User.objects.get(username=username)
+            if not user.is_staff:
+                userInfo = Userinfo.objects.get(username = username)
+                completive = 1
+                if userInfo.university is None :
+                    completive = 0
+                if userInfo.major is None:
+                    completive = 0
+                if userInfo.grade is None:
+                    completive = 0
+                if completive == 0:
+                    re['completive'] = '0'
+                else:
+                    re['completive'] = '1'
+            #print 'completive ' + str(completive)
+            request.session['role'] = 1 if user.is_staff else 0
+            re['error'] = error(1, 'login succeed!')
+            re['role'] = request.session['role']
+            resp = HttpResponse(json.dumps(re), content_type = 'application/json')
+            resp.set_cookie('username', username)
+            resp.set_cookie('role',request.session['role'])
+            return resp
+        else:
+            re['error'] = error(108, 'username or password error!')
     else:
             re['error'] = error(2, 'error, need post!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-@user_permission('login')
 def logout(request):
     auth.logout(request)
     re = dict()
