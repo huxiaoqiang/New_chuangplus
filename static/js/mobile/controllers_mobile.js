@@ -1372,7 +1372,7 @@ angular.module('chuangplus_mobile.controllers', [])
                             if(data.completive == 1)
                                 window.location.href = urls.mobile_index;
                             else
-                                window.location.href = '/mobile/info?tsinghua=0';
+                                window.location.href = '/mobile/info';
                         }
                         else
                         {
@@ -1388,7 +1388,7 @@ angular.module('chuangplus_mobile.controllers', [])
                             if(data.completive == 1)
                                 window.location.href = urls.mobile_index;
                             else
-                                window.location.href = '/mobile/info?tsinghua=1';
+                                window.location.href = '/mobile/info';
                         }
                         else
                         {
@@ -1981,10 +1981,12 @@ angular.module('chuangplus_mobile.controllers', [])
             if(data.error.code == 1){
                 $rootScope.is_tsinghua = data.data.is_info;
                 $scope.user_info = data.data;
+                $rootScope.is_tsinghua = true;
                 $rootScope.loading = false;
             }
         });
         $scope.is_tsinghua_local = $rootScope.is_tsinghua;
+        
 
         $scope.update_info = function(){
             if($rootScope.is_tsinghua)
