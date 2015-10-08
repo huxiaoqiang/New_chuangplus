@@ -62,6 +62,11 @@ angular.module('chuangplus_mobile.controllers', [])
             search_name : ""
             //,"csrfmiddlewaretoken" : $csrf.val()
         };
+        $scope.filter_all = function (id) {
+            for (var ele in $scope.filter.field) 
+                $scope.filter.field[ele] = !$scope.filter.field.all;
+        
+        };
         $scope.get_company_list = function(){
             $http.get(urls.api+"/account/company/list").
                 success(function(data){
@@ -385,6 +390,20 @@ angular.module('chuangplus_mobile.controllers', [])
                 'hardware':'硬件',
                 'O2O':'O2O',
                 'others':'其它'
+        };
+        $scope.filter_all = function (id) {
+            var now;
+            if(id == 3)
+                now = $scope.filter.field;
+            else
+                now = $scope.filter.type;
+            for (var ele in now) {
+                if(id == 3)
+                    $scope.filter.field[ele] = !now.all;
+                else
+                    $scope.filter.type[ele] = !now.all;
+                
+            }
         };
         $scope.refresh_params = function(){
 
