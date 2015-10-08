@@ -36,6 +36,7 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
             'code20':'要下载的文件不存在',
             'code30':'没有删除文件的权限',
             'code31':'文件不存在，删除失败',
+            'code98':"验证码已经失效，请刷新验证码重试",
             'code99':"需要验证码",
             'code100':'没有权限 ',
             'code101':'验证码错误',
@@ -52,7 +53,9 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
             'code114':'您是实习生，请到实习生页面登录',
             'code115':'邮箱已经被注册',
             'code116':'邮箱格式不正确',
+            'code117':'密码错误',
             'code120':'简历不存在',
+            'code121':'融资信息不存在',
             'code210':'职位名太长或者太短',
             'code211':'职位名中包含非法字符',
             'code212':'非法的职位类别',
@@ -63,13 +66,14 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
             'code217':'非法的时间形式',
             'code218':'截止时间不能早于发布时间',
             'code219':'职位描述长度超出限度',
-            'code220':'职位描述总包含非法字符',
+            'code220':'职位描述包含非法字符',
             'code221':'职位要求长度超出限度 ',
             'code222':'职位描述中包含非法字符 ',
             'code223':'每周工作时间选择错误，在1到7之间 ',
             'code224':'实习时间错误，应该是一个非负整数 ',
             'code225':'薪资最低值填写错误',
             'code226':'薪资最高值填写错误',
+            'code227':'薪资上限应该大于薪酬下限',
             'code228':'职位状态错误',
             'code231':'错误的搜索值：id',
             'code232':'错误的搜索值：城市',
@@ -91,6 +95,11 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
             'code266':"已经投递了该职位",
             'code267':'没有实习生投递该职位',
             'code268':'没有岗位消息要处理',
+            'code269':'邀请码错误，请联系创加获取邀请码',
+            'code270':'邮箱验证码错误',
+            'code271':'邮箱验证码失效，请重新发送邮箱验证码',
+            'code272':"登录错误",
+            'code273':"您的info用户名已经被注册，请去普通登录页登录",
             'code299':'未知错误'
         };
         return {
@@ -115,7 +124,7 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
             }
         };
     }]).
-    service('UserService', ['urls', '$http', '$cookies', '$location', function(urls, $http, $cookies, $location){
+    service('UserService', ['urls', '$http', '$cookies', '$location', '$rootScope', function(urls, $http, $cookies, $location, $rootScope){
         var user = {};
         // $.get(urls.api + '/user/status', function(data){
         //     user = data;
@@ -141,8 +150,8 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
                     $http.get(urls.api+"/account/userinfo/get").
                         success(function(udata){
                         if(udata.error.code == 1){
-                            if( udata.data.major == undefined ||
-                                udata.data.university == undefined)
+                            $rootScope.is_tsinghua = udata.is_info;
+                            if(!udata.data.info_complete)
                             {
                                 console.log('需要填写信息');
                                 window.location.href='/mobile/info';
@@ -156,7 +165,7 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
             'check_login' : function(){
                 if(user.username == undefined)
                 {
-                    window.location.href='/mobile/login';
+                    //window.location.href='/mobile/login';
                     return;
                 }
                 $http.get(urls.api+"/account/userinfo/get").
