@@ -60,16 +60,13 @@ var app = angular.module('chuangplus_mobile', [
         $routeProvider.otherwise({redirectTo: '/'});
         
 }]);
-    app.run(['$location', '$rootScope', function($location, $rootScope){
-        //Configure header title of the page
-        $rootScope.$on('$routeChangeSuccess', function(event, current, previous){
-            $rootScope.title = current.$$route.title;
-
-        });
-    }]);
 
 
   app.run(['$rootScope', '$location', 'UserService', function($rootScope, $location, $user){
+    $rootScope.$on('$routeChangeSuccess', function(event, current, previous){
+            $rootScope.title = current.$$route.title;
+
+        });
     $rootScope.$on('$routeChangeStart', function(){
         
         //alert('route begin change');
@@ -84,9 +81,6 @@ var app = angular.module('chuangplus_mobile', [
             $user.check_info();
         $rootScope.loading = true;
         //console.log('route begin change');
-    });
-    $rootScope.$on('$routeChangeSuccess', function(){
-        
     });
 }]);
 
