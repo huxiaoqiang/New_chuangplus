@@ -458,6 +458,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.positions = data.data;
+                        $scope.task.pageCount = data.page_number;
                         for(var i = 0; i < $scope.positions.length; i ++){
                             $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
                             $scope.positions[i].company.field_type = $scope.field_type[$scope.positions[i].company.field];
