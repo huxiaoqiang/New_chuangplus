@@ -88,6 +88,7 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         if($rootScope.company_list_response != undefined)
         {
+            $rootScope.loading = false;
             $scope.company_list = $rootScope.company_list_response;
             $scope.pagenow = $rootScope.company_list_page;
             $scope.filter = $rootScope.company_list_filter;
@@ -427,6 +428,7 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         if($rootScope.position_list_response != undefined)
         {
+            $rootScope.loading = false;
             $scope.positions = $rootScope.position_list_response;
             $scope.pagenow = $rootScope.position_list_page;
             $scope.filter        =      $rootScope.position_list_filter;
@@ -1194,7 +1196,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 $http.post(urls.api + "/position/"+$scope.position_id+"/submit", $.param($scope.submitResume)).
                     success(function(data){
                         if(data.error.code == 1){
-                            $scope.submit_value = "已投递";
+                            $scope.is_submit = "已投递";
                             $notice.show("投递成功");
                         }
                             else{
