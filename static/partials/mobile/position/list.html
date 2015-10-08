@@ -72,6 +72,9 @@
                             <label><input type="checkbox" value="1" />没有要求</label> 
                         </div>
                     -->
+                    <div class="filter-elem filter-single-line">
+                        <label><input type="checkbox" ng-click="filter_all(3)" ng-model="filter.field.all"/>全选</label> 
+                    </div>
                     <div class="filter-elem">
                         <label><input type="checkbox" ng-model="filter.field.social" />社交</label> 
                     </div>
@@ -115,6 +118,9 @@
                             <label><input type="checkbox" value="1" />没有要求</label> 
                         </div>
                     -->
+                    <div class="filter-elem filter-single-line">
+                        <label><input type="checkbox" ng-click="filter_all(4)" ng-model="filter.type.all"/>全选</label> 
+                    </div>
                     <div class="filter-elem">
                         <label><input type="checkbox" ng-model="filter.type.technology" />技术</label> 
                     </div>
@@ -179,8 +185,11 @@
                             <div class="comp-desc">[[position.company.brief_introduction]]</div>
 
                             <div class="comp-desc-list">
-                                <span class="comp-desc-tag">
-                                    [[position.days_per_week]]天/周
+                                <span class="comp-desc-tag" ng-if="position.part_or_full_time == 0">
+                                    实习[[position.days_per_week]]天/周
+                                </span>
+                                <span class="comp-desc-tag" ng-if="position.part_or_full_time == 1">
+                                    全职
                                 </span>
                                 <span class="comp-desc-tag">
                                     [[position.salary_min]]K-[[position.salary_max]]K
