@@ -673,7 +673,6 @@ angular.module('chuangplus.controllers', []).
     controller('DT_InternResumeViewCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         $scope.filename = "无简历附件";
         $scope.intern_info = {};
-        $scope.have_resume_info = false;
         $scope.edit_resume = function(){
             window.location.href = "/intern/resume/edit";
         };
@@ -682,6 +681,7 @@ angular.module('chuangplus.controllers', []).
               success(function(data){
                 if(data.error.code == 1){
                     $scope.intern_info = data.data;
+                    $scope.have_resume_info = false;
                     if($scope.intern_info.real_name != undefined){
                         $scope.have_resume_info = true;
                     }
