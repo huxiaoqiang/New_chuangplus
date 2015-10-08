@@ -167,8 +167,8 @@
             <div class="comp-list" >
                 <div ng-repeat="position in positions" on-finish-render-filters>
                     <a class="comp-listbox" ng-href="/mobile/position/detail/[[position._id.$oid]]" >
-                        <img class="comp-prev-img" ng-src="/api/file/[[position.company.logo_id]]/download">
                         <img class="comp-more-info-arrow" src="/static/image/icon/jiantou.png">
+                        <img class="comp-prev-img" ng-src="/api/file/[[position.company.logo_id]]/download">
                         <div class="comp-list-info-block">
                             <div ng-if="position.company.is_auth" class="comp-auth">[[position.company.auth_organization]]认证</div>
                             <div class="comp-name">[[position.position_type_value]] | [[position.name]]</div>
