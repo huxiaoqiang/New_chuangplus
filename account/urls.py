@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^password/set_withcode$',views.set_password_verifycode, name='set_password_verifycode'),
     url(r'^userinfo/get$',views.get_userinfo, name='get_userinfo'),
     url(r'^userinfo/set$',views.set_userinfo, name='set_userinfo'),
+    url(r'^userinfo/set_by_tsinghua$',views.set_userinfo_by_tsinghua, name='set_userinfo_by_tsinghua'),
     url(r'^userinfo/checkall$',views.check_userinfo_all_complete, name='check_userinfo_all_complete'),
     url(r'^userinfo/check$',views.check_userinfo_complete, name='check_userinfo_complete'),
     url(r'^userinfo/position/favor/list$',views.get_position_favor,name='get_position_favor'),

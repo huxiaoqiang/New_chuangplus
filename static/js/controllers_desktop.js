@@ -1693,7 +1693,8 @@ angular.module('chuangplus.controllers', []).
             $scope.title = "编辑职位";
         }
     }]).
-    controller('DT_CompanyListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
+    controller('DT_CompanyListCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', '$rootScope',
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $errMsg, $rootScope){
         console.log('DT_CompanyListCtrl');
         $scope.company_list = {};
         $scope.position_type = {
@@ -1794,6 +1795,7 @@ angular.module('chuangplus.controllers', []).
                             $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
                         }
                     }
+
                 }
                 else{
                      $scope.error = $errMsg.format_error('',data.error);
@@ -1802,6 +1804,16 @@ angular.module('chuangplus.controllers', []).
             });
         };
         $scope.selectPage(1);
+//        if($rootScope.company_list_response != undefined){
+//            $rootScope.loading = false;
+//            $scope.company_list = $rootScope.company_list_response;
+//            $scope.pagenow = $rootScope.company_list_page;
+//            $scope.param = $rootScope.company_list_param;
+//        }
+//        else{
+//            $scope.get_company_list();
+//        }
+
         //控制左边筛选框的位置
         $scope.field = false;
         $scope.scale_show = false;
