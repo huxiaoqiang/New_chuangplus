@@ -49,7 +49,7 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.filter = {
             "field":{
                 'social':false,
-                'e-commerce':false,
+                'e_commerce':false,
                 'education':false,
                 'health_medical':false,
                 'culture_creativity':false,
@@ -98,12 +98,23 @@ angular.module('chuangplus_mobile.controllers', [])
                 {
                     if($scope.filter_params == "")
                     {
-                        $scope.filed_notice = $scope.cfield[ele];
-                        $scope.filter_params = '?field=' + ele;
+                        if(ele == 'e_commerce')
+                        {
+                            $scope.filter_params = '?field=e-commerce';
+                            $scope.filed_notice = '电子商务';
+                        }
+                        else
+                        {
+                            $scope.filter_params = '?field=' + ele;
+                            $scope.filed_notice = $scope.cfield[ele];
+                        }
                     }
                     else
                     {
-                        $scope.filter_params += ','+ele;
+                        if(ele == 'e_commerce')
+                            $scope.filter_params += ',e-commerce';
+                        else
+                            $scope.filter_params += ','+ele;
                         if($scope.filed_notice.indexOf("等") == -1)
                             $scope.filed_notice += ' 等 ';
                     }
@@ -329,7 +340,7 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.filed_notice = '行业/领域';
         $scope.type_notice = '职位类型';
         
-        $scope.filter_params = null;
+        $scope.filter_params = "";
         $scope.position_type = {
             "technology":"技术",
             'product':"产品",
@@ -343,7 +354,7 @@ angular.module('chuangplus_mobile.controllers', [])
             "workdays": 0,
             "field":{
                 'social':false,
-                'e-commerce':false,
+                'e_commerce':false,
                 'education':false,
                 'health_medical':false,
                 'culture_creativity':false,
@@ -382,20 +393,31 @@ angular.module('chuangplus_mobile.controllers', [])
             $scope.filed_notice = '行业/领域';
             $scope.type_notice = '职位类型';
             var isSelected = false;
-            $scope.filter_params = null;
+            $scope.filter_params = "";
 
             //?field=others&scale=0&name=科技
             for (var ele in $scope.filter.field) 
                 if($scope.filter.field[ele] == true)
                 {
-                    if($scope.filter_params == null)
+                    if($scope.filter_params == "")
                     {
-                        $scope.filed_notice = $scope.cfield[ele];
-                        $scope.filter_params = '?fields=' + ele;
+                        if(ele == 'e_commerce')
+                        {
+                            $scope.filter_params = '?field=e-commerce';
+                            $scope.filed_notice = '电子商务';
+                        }
+                        else
+                        {
+                            $scope.filter_params = '?field=' + ele;
+                            $scope.filed_notice = $scope.cfield[ele];
+                        }
                     }
                     else 
                     {
-                        $scope.filter_params += ','+ele;
+                        if(ele == 'e_commerce')
+                            $scope.filter_params += ',e-commerce';
+                        else
+                            $scope.filter_params += ','+ele;
                         if($scope.filed_notice.indexOf("等") == -1)
                             $scope.filed_notice += ' 等 '; 
                     }
@@ -403,7 +425,7 @@ angular.module('chuangplus_mobile.controllers', [])
 
             if($scope.filter.workdays != 0)
             {
-                if($scope.filter_params == null)
+                if($scope.filter_params == "")
                     $scope.filter_params += '?min_workdays' + $scope.filter.workdays;
                 else
                     $scope.filter_params += '&min_workday=' + $scope.filter.workdays;
@@ -416,7 +438,7 @@ angular.module('chuangplus_mobile.controllers', [])
             for (var ele in $scope.filter.type) {
                 if($scope.filter.type[ele] == true)
                 {
-                    if($scope.filter_params == null)
+                    if($scope.filter_params == "")
                     {
                         $scope.filter_params = '?types=' + ele;
                         $scope.type_notice = $scope.position_type[ele];
@@ -439,7 +461,7 @@ angular.module('chuangplus_mobile.controllers', [])
             
             if($scope.filter.salary != "" && $scope.filter.salary != undefined)
             {
-                if($scope.filter_params != null)
+                if($scope.filter_params != "")
                     $scope.filter_params += '&salary_min=' + $scope.filter.salary;
                 else
                     $scope.filter_params += '?salary_min=' + $scope.filter.salary;
@@ -448,9 +470,9 @@ angular.module('chuangplus_mobile.controllers', [])
 
 
             var submitparam = "";
-            if($scope.filter.search_name == null || $scope.filter.search_name == undefined || $scope.filter.search_name == "")
+            if($scope.filter.search_name == undefined || $scope.filter.search_name == "")
                 submitparam = $scope.filter_params;
-            else if($scope.filter_params == null)
+            else if($scope.filter_params == "")
                 submitparam = "?name=" + $scope.filter.search_name;
             else
                 submitparam = $scope.filter_params + "&name=" + $scope.filter.search_name;
@@ -563,14 +585,14 @@ angular.module('chuangplus_mobile.controllers', [])
             if ($scope.filter.search_name != "" && $scope.filter.search_name != undefined) 
             {
                 //$scope.filter.search_name.replace(' ','+');
-            $scope.filter_params = null;
+            $scope.filter_params = "";
             var isSelected = false;
 
             //?field=others&scale=0&name=科技
             for (var ele in $scope.filter.field) 
                 if($scope.filter.field[ele] == true)
                 {
-                    if($scope.filter_params == null)
+                    if($scope.filter_params == "")
                     {
                         $scope.filed_notice = $scope.cfield[ele];
                         $scope.filter_params = '?fields=' + ele;
@@ -581,7 +603,7 @@ angular.module('chuangplus_mobile.controllers', [])
 
             if($scope.filter.workdays != 0)
             {
-                if($scope.filter_params == null)
+                if($scope.filter_params == "")
                     $scope.filter_params += '?min_workdays' + $scope.filter.workdays;
                 else
                     $scope.filter_params += '&min_workday=' + $scope.filter.workdays;
@@ -594,7 +616,7 @@ angular.module('chuangplus_mobile.controllers', [])
             for (var ele in $scope.filter.type) {
                 if($scope.filter.type[ele] == true)
                 {
-                    if($scope.filter_params == null)
+                    if($scope.filter_params == "")
                     {
                         $scope.filter_params = '?types=' + ele;
                         $scope.type_notice = $scope.position_type[ele];
@@ -613,14 +635,14 @@ angular.module('chuangplus_mobile.controllers', [])
             
             if($scope.filter.salary != "" && $scope.filter.salary != undefined)
             {
-                if($scope.filter_params != null)
+                if($scope.filter_params != "")
                     $scope.filter_params += '&salary_min=' + $scope.filter.salary;
                 else
                     $scope.filter_params += '?salary_min=' + $scope.filter.salary;
                 $scope.salary_notice = $scope.filter.salary + 'K';
             }
                 var submitparam = "";
-                if($scope.filter_params == null)
+                if($scope.filter_params == "")
                     submitparam = "?name=" + $scope.filter.search_name;
                 else
                     submitparam = $scope.filter_params + "&name=" + $scope.filter.search_name;
@@ -690,7 +712,7 @@ angular.module('chuangplus_mobile.controllers', [])
             if($scope.pagenow < 0)
                 return;
             var submitparam = "";
-            if($scope.filter_params == null)
+            if($scope.filter_params == "")
             {
                 if($scope.filter.search_name != "" && $scope.filter.search_name != undefined)
                     submitparam = "?name=" + $scope.filter.search_name;
