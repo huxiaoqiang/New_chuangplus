@@ -154,7 +154,7 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
                             if( udata.data.major == undefined ||
                                 udata.data.university == undefined ||
                                 udata.data.grade == undefined ||
-                                ($rootScope.is_tsinghua && udata.data.email != undefined))
+                                ($rootScope.is_tsinghua && udata.data.email == undefined))
                             {
                                 console.log('需要填写信息');
                                 window.location.href='/mobile/info';
