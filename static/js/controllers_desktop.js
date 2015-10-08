@@ -1499,7 +1499,7 @@ angular.module('chuangplus.controllers', []).
     $scope.check_userinfo = function(){
         $http.get(urls.api+"/account/userinfo/check").
             success(function(data){
-                if(data.complete == true)
+                if(data.complete == "True")
                     $scope.userinfo_complete = true;
                 else
                     $scope.userinfo_complete = false;
