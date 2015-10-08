@@ -211,6 +211,7 @@ def login_by_tsinghua(request):
                 userinfo.date_joined = datetime_now()
                 userinfo.update_time = datetime_now()
                 userinfo.save(force_insert=True)
+                re['completive'] = '0'
             #student_id = str(map['info']['id'])
             #student_username = map['info']['username']
             #has_created = 0
@@ -404,6 +405,45 @@ def get_userinfo(request):
         re['error'] = error(1, 'get succeed')
     else:
         re['error'] = error(2, 'error, need get')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+
+@user_permission('login')
+def set_userinfo_by_tsinghua(request):
+    re = dict()
+    if request.method == 'POST':
+        u = Userinfo.objects.get(username=request.user.username)
+        email = request.POST.get('email', u.email)
+        if check_email(email) != True:
+            re['error'] = error(116,'email is not legal')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        try:
+            find_user_email = User.objects.get(email=email)
+            if find_user_email is not None:
+                re['error'] = error(115,"Email has been registed")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+        except:
+            u.email = email
+        request.user.email = u.email
+        try:
+            request.user.save()
+        except:
+            re['error'] = error(250, 'Database error: Failed to save')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        u.university = request.POST.get('university', u.university)
+        u.major = request.POST.get('major', u.major)
+        u.grade = request.POST.get('grade', u.grade)
+        u.update_time = datetime_now()
+        try:
+            u.save()
+        except:
+            re['error'] = error(250, 'Database error: Failed to save')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+        re['userinfo'] = json.loads(u.to_json())
+        re['error'] = error(1, 'updated successfully')
+    else:
+        re['error'] = error(2, 'error，need post')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission('login')
