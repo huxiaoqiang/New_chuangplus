@@ -194,6 +194,9 @@ a:hover {
 .elem-width-3 {
   width: 33%;
 }
+.elem-width-32 {
+  width: 66%;
+}
 .elem-width-43 {
   width: 75% !important;
 }
