@@ -449,7 +449,10 @@ angular.module('chuangplus.controllers', []).
             '020':"O2O",
             'others':"其他"
         };
-        
+        $scope.task = {
+            'pageCount' : 1,
+            'currentPage' : 1
+        };
         $scope.get_positions = function(){
             $http.get(urls.api+"/account/userinfo/position/submit/list").
                 success(function(data){
