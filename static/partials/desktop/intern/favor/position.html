@@ -11,14 +11,9 @@
 	</div>
         <div class="col-sm-4" ng-show="positions.length > 0">
             <div class="col-md-9">
-                            <input type="button" class="btn btn-primary" ng-show="resume_submitted" ng-click="submit_all()" value="一键全部投递">
-			    <input type="button" class="btn btn-primary" ng-show="!resume_submitted" data-toggle="modal" data-target="#myModal1" value="一键全部投递"> 
-                                
-                        
-                            <input type="button" class="btn btn-primary" value="清除失效岗位">
-                                
-            
-           
+                <input type="button" class="btn btn-primary" ng-show="resume_submitted" ng-click="submit_all()" value="一键全部投递">
+			    <input type="button" class="btn btn-primary" ng-show="!resume_submitted" data-toggle="modal" data-target="#myModal1" value="一键全部投递">
+                <input type="button" class="btn btn-primary" value="清除失效岗位">
             </div>
             <div class="col-md-8">
                 <ul ng-repeat="position in positions">
@@ -31,7 +26,8 @@
                                         <div class="vertical-center">
                                             <p class="position">[[position.position_type_value]]|[[position.name]]</p>
                                             <div class="position-tags">
-                                                <span class="tags">[[position.days_per_week]]天/周</span>
+                                                <span class="tags" ng-if="position.part_or_full_time==0">实习[[position.days_per_week]]天/周</span>
+                                                <span class="tags" ng-if="position.part_or_full_time==1">全职</span>
                                                 <span class="tags">[[position.salary_min]]k-[[position.salary_max]]k</span>
                                             </div>
                                             <div class="submit-time">
@@ -48,14 +44,14 @@
                                     <img class="line-img" src="/static/image/icon/shadowline2.png">
                                     <div class="item-pic">
                                         <div class="vertical-center">
-                                            <img src="/api/file/[[position.company.logo_id]]/download" class="company-pic" alt="图片">
+                                            <img src="/api/file/[[position.company.logo_id]]/download" class="company-pic" alt="公司logo">
                                         </div>
                                     </div>
                                     <div class="item-info info-2">
                                         <div class="vertical-center">
                                             <p class="company">[[position.company.abbreviation]]</p>
                                             <p class="company-discrpt">&nbsp;&nbsp;[[position.company.brief_introduction]]</p>
-                                            <p class="auth">v[[position.company.auth_organization]]红杉资本认证</p>
+                                            <p class="auth">[[position.company.auth_organization]]</p>
                                         </div>
                                     </div>
                                     <div class="item-info info-3">
