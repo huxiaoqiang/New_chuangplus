@@ -1371,7 +1371,7 @@ angular.module('chuangplus_mobile.controllers', [])
                             if(data.completive == 1)
                                 window.location.href = urls.mobile_index;
                             else
-                                window.location.href = '/mobile/info';
+                                window.location.href = '/mobile/info?tsinghua=0';
                         }
                         else
                         {
@@ -1386,7 +1386,7 @@ angular.module('chuangplus_mobile.controllers', [])
                             if(data.completive == 1)
                                 window.location.href = urls.mobile_index;
                             else
-                                window.location.href = '/mobile/info';
+                                window.location.href = '/mobile/info?tsinghua=1';
                         }
                         else
                         {
@@ -1968,10 +1968,14 @@ angular.module('chuangplus_mobile.controllers', [])
     function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
         console.log('MB_UserInfoEditCtrl');
         if($user.username == undefined)
-            window.location.href='/mobile/notlogin';
+            window.location.href='/mobile/login';
         $scope.info = {};
         $scope.user_info = {};
+        $scope.is_tsinghua = false;
         $scope.info.username = $user.username();
+
+        if($location.search().tsinghua == 1)
+            $scope.is_tsinghua = true; 
 
         $http.get(urls.api+"/account/userinfo/get").
             success(function(data){
@@ -1982,22 +1986,47 @@ angular.module('chuangplus_mobile.controllers', [])
         });
 
         $scope.update_info = function(){
-            if( $scope.user_info.major != undefined &&
-                $scope.user_info.university != undefined)
+            if($scope.is_tsinghua)
             {
-                $csrf.set_csrf($scope.user_info);
-                $http.post(urls.api+"/account/userinfo/set", $.param($scope.user_info))
-                    .success(function(data){
-                    if(data.error.code == 1){
-                        window.location.href=urls.mobile_index;
-                    }
-                    else{
-                        $notice.show($errMsg.format_error("",data.error).message);
-                    }
-                });
+                if( $scope.user_info.major != undefined &&
+                    $scope.user_info.university != undefined &&
+                    $scope.user_info.grade != undefined && 
+                    $scope.user_info.email != undefined)
+                {
+                    $csrf.set_csrf($scope.user_info);
+                    $http.post(urls.api+"/account/userinfo/set_by_tsinghua", $.param($scope.user_info))
+                        .success(function(data){
+                        if(data.error.code == 1){
+                            window.location.href=urls.mobile_index;
+                        }
+                        else{
+                            $notice.show($errMsg.format_error("",data.error).message);
+                        }
+                    });
+                }
+                else
+                    $notice.show("请填写合法的信息");
             }
             else
-                $notice.show("请填写合法的信息");
+            {
+                if( $scope.user_info.major != undefined &&
+                    $scope.user_info.university != undefined &&
+                    $scope.user_info.grade != undefined)
+                {
+                    $csrf.set_csrf($scope.user_info);
+                    $http.post(urls.api+"/account/userinfo/set", $.param($scope.user_info))
+                        .success(function(data){
+                        if(data.error.code == 1){
+                            window.location.href=urls.mobile_index;
+                        }
+                        else{
+                            $notice.show($errMsg.format_error("",data.error).message);
+                        }
+                    });
+                }
+                else
+                    $notice.show("请填写合法的信息");
+            }
         };
     }])
     .controller('MB_PostListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',

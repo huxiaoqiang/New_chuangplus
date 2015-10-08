@@ -14,8 +14,12 @@
           <input class="panel-elem elem-width-full" type="text" ng-model="user_info.major" placeholder="专业" required>
         </span>
 
+        <span ng-if="is_tsinghua" class="panel-group-mid info-input purple-border">
+          <input class="panel-elem elem-width-full" type="text" ng-model="user_info.email" placeholder="专业" required>
+        </span>
+
         <div class="panel-group-bot info-input purple-border">
-              <select class="elem-width-full" ng-model="user_info.grade">
+              <select class="elem-width-full" ng-model="user_info.grade" required>
                   <option value="" selected="true" disabled="true">请选择所在年级</option>
                   <option value="1">本科一年级</option>
                   <option value="2">本科二年级</option>
