@@ -66,9 +66,24 @@ angular.module('chuangplus_mobile.directives', []).
             scope : {text : '='},
             replace : true,
             templateUrl : "/static/partials/desktop/directive_templates/myText.html" ,
-            link : function(scope){
+            link : function(scope,elem,attr){
                 scope.$watch('text',function(value){
+                    if(value == undefined){
+                        return;
+                    }
                     scope.texts = value.split('\n');
+                    var timestamp = Date.parse(new Date());
+                    if(elem.children() != []){
+                        elem.empty();
+                    }
+                    for(var i=0;i<scope.texts.length;i++){
+                        if(scope.texts[i]!=''){
+                            elem.append("<li>"+scope.texts[i]+"</li>");
+                        }
+                        else{
+                            elem.append("</br>");
+                        }
+                    }
                 });
             }
         }

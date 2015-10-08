@@ -745,13 +745,16 @@ a:hover {
   top: 0;
   bottom: 0;
 }
+ul {
+  padding: 0;
+}
 .detail-desc {
   padding-top: 15px;
   display: block;
   background-color: white;
 }
 .detail-desc .desc-block {
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
 .detail-desc .desc-block .member-block {
   margin-top: 10px;
