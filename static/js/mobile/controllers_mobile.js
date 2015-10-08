@@ -431,7 +431,7 @@ angular.module('chuangplus_mobile.controllers', [])
             $rootScope.loading = false;
             $scope.positions = $rootScope.position_list_response;
             $scope.pagenow = $rootScope.position_list_page;
-            $scope.filter        =      $rootScope.position_list_filter;
+            $scope.filter = $rootScope.position_list_filter;
         }
         else
             $scope.get_positions();
@@ -463,7 +463,6 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $scope.submit_filter = function(id)
         {
-
             var isSelected = false;
             $scope.workdays_notice = '工作时间';
             $scope.salary_notice = '月薪下限';
