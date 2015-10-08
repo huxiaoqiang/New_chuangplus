@@ -150,8 +150,11 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
                     $http.get(urls.api+"/account/userinfo/get").
                         success(function(udata){
                         if(udata.error.code == 1){
-                            $rootScope.is_tsinghua = udata.is_info;
-                            if(!udata.data.info_complete)
+                            $rootScope.is_tsinghua = udata.data.is_info;
+                            if( udata.data.major == undefined ||
+                                udata.data.university == undefined ||
+                                udata.data.grade == undefined ||
+                                ($rootScope.is_tsinghua && udata.data.email != undefined))
                             {
                                 console.log('需要填写信息');
                                 window.location.href='/mobile/info';
@@ -166,7 +169,6 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
                 if(user.username == undefined)
                 {
                     window.location.href='/mobile/login';
-                    //window.location.href='/mobile/login';
                     return;
                 }
                 $http.get(urls.api+"/account/userinfo/get").
