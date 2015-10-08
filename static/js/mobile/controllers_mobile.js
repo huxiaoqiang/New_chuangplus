@@ -423,7 +423,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     }
                     else if (!isSelected) 
                     {
-                        $scope.filter_params = '&types=' + ele;
+                        $scope.filter_params += '&types=' + ele;
                         $scope.type_notice = $scope.position_type[ele];
                     }
                     else
@@ -448,7 +448,7 @@ angular.module('chuangplus_mobile.controllers', [])
 
 
             var submitparam = "";
-            if($scope.filter.search_name == null || $scope.filter.search_name == undefined)
+            if($scope.filter.search_name == null || $scope.filter.search_name == undefined || $scope.filter.search_name == "")
                 submitparam = $scope.filter_params;
             else if($scope.filter_params == null)
                 submitparam = "?name=" + $scope.filter.search_name;
