@@ -636,9 +636,7 @@ angular.module('chuangplus_mobile.controllers', [])
             else
                 submitparam = $scope.filter_params + "&name=" + $scope.filter.search_name;
 
-=======
             var submitparam = $scope.refresh_params();
->>>>>>> df6d2b31769ba88f5531a23c3382ee466f3731b0
             $scope.hide_filter(id);
             $rootScope.loading = true;
             $http.get(urls.api+"/position/search" + submitparam).
