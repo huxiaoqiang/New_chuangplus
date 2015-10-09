@@ -606,6 +606,7 @@ def set_companyinfo(request,company_id):
         c.qrcode_id = request.POST.get('qrcode_id', c.qrcode_id)
         c.logo_id = request.POST.get('logo_id',c.logo_id)
         c.hr_cellphone = request.POST.get('hr_cellphone',c.hr_cellphone)
+
         welfare_tags = request.POST.get('welfare_tags', '')
         if welfare_tags != '':
             c.welfare_tags = welfare_tags.split(',') 
@@ -617,6 +618,9 @@ def set_companyinfo(request,company_id):
         c.product_description = request.POST.get('product_description', c.product_description)
         c.team_description = request.POST.get('team_description', c.team_description)
         c.slogan = request.POST.get('slogan', c.slogan)
+        scale = request.POST.get('scale',c.scale)
+        if scale != '':
+            c.scale = scale
         info_complete = request.POST.get('info_complete', False)
         if info_complete != 'false':
             c.info_complete = True
@@ -911,9 +915,11 @@ def auth_company(request,company_id):
             
             try:
                 companyinfo.save()
+                re['error'] = error(1,'Auth succeed!')
             except DatabaseError:
                 re['error'] = error(250,'Database error: Failed to get companyinfo')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
+
         else:
             re['error'] = error(110, 'Permission denied, no permission to change ')
     else:
@@ -1269,6 +1275,26 @@ def get_company_list_admin(request):
             companies_re[i]["financing"] = financings
         re['data'] = companies_re
         re['page_number'] = page_number
+        re['error'] = error(1,"succeed")
+    else:
+        re['error'] = error(3,'Error, need GET')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+def get_company_with_financing(request,company_id):
+    re = dict()
+    if request.method == 'GET':
+        try:
+            company = Companyinfo.objects.get(id=company_id)
+        except DoesNotExist:
+            re['error'] = error(105,"companyinfo dose not exist!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        company_re = json.loads(company.to_json())
+        financings = company.financings
+        for j in range(0,len(financings)):
+            financings[j] = json.loads(financings[j].to_json())
+        company_re["financing"] = financings
+        re["data"] = company_re
+        re['error'] = error(1,"succeed")
     else:
         re['error'] = error(3,'Error, need GET')
     return HttpResponse(json.dumps(re), content_type = 'application/json')

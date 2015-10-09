@@ -3190,7 +3190,8 @@ angular.module('chuangplus.controllers', []).
             window.location.href = '/';
         }
     }]).
-    controller('DT_ManagerCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_ManagerCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService',
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_ManagerCtrl');
         $scope.company_list = {};
         $scope.position_type = {
@@ -3328,46 +3329,33 @@ angular.module('chuangplus.controllers', []).
             });*/
         };
         $scope.get_company_list();
-
-        //控制左边筛选框的位置
-        $scope.field = false;
-        $scope.scale_show = false;
-        $scope.auth = false;
-        $scope.show_field = function(){
-            $(".field-list").slideDown("fast");
-            $scope.field = true;
+        $scope.auth = function(index){
+            var param = {
+                'auth_organization':$scope.company_list[index].auth_organization
+            };
+            $csrf.set_csrf(param);
+            $http.post(urls.api+"/account/company/"+ $scope.company_list[index]._id.$oid+"/auth", $.param(param)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $http.get(urls.api+"/account/admin/company/"+$scope.company_list[index]._id.$oid+"/detail_with_financing").
+                            success(function(data1){
+                                if(data1.error.code == 1){
+                                    $scope.company_list[index] = data1.data;
+                                    $scope.error = $errMsg.format_error("认证成功",data1.error);
+                                }
+                                else{
+                                    $scope.error = $errMsg.format_error("",data1.error);
+                                }
+                            });
+                    }
+                    else{
+                        $scope.error = $errMsg.format_error("",data.error);
+                    }
+                });
         };
-        $scope.hide_field = function(){
-            $(".field-list").slideUp("fast");
-            $scope.field = false;
-        };
-        $(".company-field").mouseenter($scope.show_field);
-        $(".company-field").mouseleave($scope.hide_field);
-
-        $scope.show_scale = function(){
-            $(".scale-list").slideDown("fast");
-            $scope.scale_show = true;
-        };
-        $scope.hide_scale = function(){
-            $(".scale-list").slideUp("fast");
-            $scope.scale_show = false;
-        };
-        $(".company-scale").mouseenter($scope.show_scale);
-        $(".company-scale").mouseleave($scope.hide_scale);
-
-        $scope.show_auth = function(){
-            $(".organization-list").slideDown("fast");
-            $scope.auth = true;
-        };
-        $scope.hide_auth = function(){
-            $(".organization-list").slideUp("fast");
-            $scope.auth = false;
-        };
-        $(".company-auth").mouseenter($scope.show_auth);
-        $(".company-auth").mouseleave($scope.hide_auth);
-
     }]).
-    controller('DT_CompanyAccountCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', 'ErrorService',function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $errMsg){
+    controller('DT_CompanyAccountCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', 'ErrorService',
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $errMsg){
         console.log('DT_CompanyAccountCtrl');
         $scope.info = {};
         $scope.user_info = {};
