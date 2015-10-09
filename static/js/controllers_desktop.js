@@ -3190,8 +3190,8 @@ angular.module('chuangplus.controllers', []).
             window.location.href = '/';
         }
     }]).
-    controller('DT_ManagerCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService',
-        function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_ManagerCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService',
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_ManagerCtrl');
         $scope.company_list = {};
         $scope.position_type = {
