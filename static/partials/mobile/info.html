@@ -6,7 +6,11 @@
       <div class="panel-list">
         <div class="info-block-title">注册成功，请填写基本信息</div>
 
-        <span class="panel-group-top info-input purple-border">
+        <span ng-if="is_tsinghua" class="panel-group-top info-input purple-border">
+          <input class="panel-elem elem-width-full" type="text" ng-model="user_info.university" value="清华大学" required>
+        </span>
+
+        <span ng-if="!is_tsinghua" class="panel-group-top info-input purple-border">
           <input class="panel-elem elem-width-full" type="text" ng-model="user_info.university" placeholder="学校" required>
         </span>
 
