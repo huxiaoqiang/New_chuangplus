@@ -53,7 +53,7 @@ urlpatterns = [
     url(r'^company/submit/search', views.search_submit_intern, name='search_submit_intern'),
 
     url(r'^admin/company/list', views.get_company_list_admin, name='get_company_list_admin'),
-    url(r'^admin/company/detail_with_financing', views.get_company_with_financing, name='get_company_with_financing'),
+    url(r'^admin/company/(?P<company_id>.*?)/detail_with_financing', views.get_company_with_financing, name='get_company_with_financing'),
     url(r'^admin/image/list', views.get_image_list, name='get_image_list'),
 ]
 
