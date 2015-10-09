@@ -606,6 +606,7 @@ def set_companyinfo(request,company_id):
         c.qrcode_id = request.POST.get('qrcode_id', c.qrcode_id)
         c.logo_id = request.POST.get('logo_id',c.logo_id)
         c.hr_cellphone = request.POST.get('hr_cellphone',c.hr_cellphone)
+
         welfare_tags = request.POST.get('welfare_tags', '')
         if welfare_tags != '':
             c.welfare_tags = welfare_tags.split(',') 
@@ -617,6 +618,9 @@ def set_companyinfo(request,company_id):
         c.product_description = request.POST.get('product_description', c.product_description)
         c.team_description = request.POST.get('team_description', c.team_description)
         c.slogan = request.POST.get('slogan', c.slogan)
+        scale = request.POST.get('scale',c.scale)
+        if scale != '':
+            c.scale = scale
         info_complete = request.POST.get('info_complete', False)
         if info_complete != 'false':
             c.info_complete = True
