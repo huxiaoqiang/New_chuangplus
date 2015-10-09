@@ -48,6 +48,7 @@ urlpatterns = [
     url(r'^company/(?P<company_id>.*?)/like', views.user_like_company, name='user_like_company'),
     url(r'^company/(?P<company_id>.*?)/unlike', views.user_unlike_company, name='user_unlike_company'),
     url(r'^company/(?P<position_id>.*?)/user/(?P<username>.*?)/process', views.process_single, name='process_single'),
+#    url(r'^company/(?P<position_id>.*?)/user/(?P<username>.*?)/interst', views.interest_single, name='interest_single'),
     url(r'^company/(?P<position_id>.*?)/process', views.process_position, name='process_position'),
     url(r'^company/(?P<position_id>.*?)/submit/list', views.get_submit_list_intern, name='get_submit_list'),
     url(r'^company/submit/search', views.search_submit_intern, name='search_submit_intern'),

@@ -104,6 +104,21 @@ display: block;
                 padding-top: 10px;
                 display: none;
                 background-color: rgba(191, 191, 191, 0.1);
+                 a{
+                   text-decoration:none;
+                   color: #000000;
+                 }
+                 a.active{
+                  background-color: #8f4e96;
+                  color: white;
+                  border-radius: 4px;
+                 }
+                 a.active:hover{
+                  color: white;
+                 }
+                 a:hover{
+                   color: #8f4e96;
+                 }
               }
             }
           }
@@ -149,11 +164,11 @@ display: block;
                   width: 100%;
                   height: 130px;
                   .auth{
-
                       text-align: right;
                       width: 100%;
-                      height: 15px;
+                      height: 25px;
                       float: left;
+                      margin-top: -10px;
                       p{
 
                           font-size: 12px;

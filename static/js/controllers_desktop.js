@@ -1725,6 +1725,8 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.scale_change = false;
         $scope.field_change = false;
+        $scope.auth_organization_change = false;
+
         $scope.choose = function(field){
             if($scope.param.field == field){
                 $scope.field_change = false;
@@ -1745,6 +1747,16 @@ angular.module('chuangplus.controllers', []).
             }
             $scope.get_company_list($scope.param);
         };
+        $scope.choose_auth_organization = function(auth_organization){
+            if($scope.param.auth_organization == auth_organization){
+                $scope.auth_organization_change = false;
+            }
+            else{
+                $scope.param.auth_organization = auth_organization;
+                $scope.auth_organization_change = true;
+            }
+            $scope.get_company_list($scope.param);
+        };
         $scope.selectPage = function(page){
             $scope.param.page = page;
             $scope.get_company_list($scope.param);
@@ -1756,10 +1768,11 @@ angular.module('chuangplus.controllers', []).
             if(data != null){
                 param = '?';
                 if(data.hasOwnProperty('page')){
-                    if($scope.scale_change || $scope.field_change)
+                    if($scope.scale_change || $scope.field_change || $scope.auth_organization_change)
                     {
                         $scope.scale_change = false;
                         $scope.field_change = false;
+                        $scope.auth_organization_change = false;
                         param += "page=" + 1;
                         $scope.param.currentPage = 1;
                     }
@@ -1777,8 +1790,8 @@ angular.module('chuangplus.controllers', []).
                 if(data.scale != undefined && data.scale != null){
                     param += "&scale=" + data.scale;
                 }
-                if(data.hasOwnProperty('auth_organization')){
-
+                if(data.hasOwnProperty('auth_organization') && data.auth_organization != null){
+                    param += "&auth_organization=" + data.auth_organization;
                 }
             }
             $http.get(urls.api+"/account/company/list"+param).
