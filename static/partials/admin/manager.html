@@ -42,12 +42,12 @@
                     </a>
                     <div class="edit">
                         <div class="vertical-center">
-                            <input type="text">
-                            <button>修改</button>
+                            <input type="text" ng-model="company.auth_organization">
+                            <button ng-click="auth($index)">确认投资机构</button>
                         </div>
                     </div>
                 </li>
-                
+                <p>认证的投资机构： [[company.auth_organization]]</p>
                 <div style="clear:both"></div>
             </ul>
             <page ng-show="param.pageCount!=1" num-pages="param.pageCount" current-page="param.currentPage" on-select-page="selectPage(page)">
