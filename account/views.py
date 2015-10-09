@@ -1430,6 +1430,7 @@ def process_position(request,position_id):
         re['error'] = error(2,'Error, need POST')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+
 @user_permission('login')
 def process_single(request,position_id,username):
     re = dict()
