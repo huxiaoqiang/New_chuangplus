@@ -473,11 +473,25 @@ a:hover {
   height: 94px;
   margin-right: 10px;
 }
+@media (max-width: 400px) {
+  .comp-listbox .comp-auth {
+    font-size: 11px;
+    position: absolute;
+    max-width: 80px;
+    top: 10px;
+    right: 10px;
+  }
+}
 .comp-listbox .comp-auth {
-  float: right;
-  margin-top: 10px;
-  margin-right: 20px;
+  /*
+    float: right;
+    margin-top:(@cl-listbox-hgt - @cl-comp-img-size)/2;
+    margin-right: (@cl-listbox-hgt - @cl-comp-img-size);
+    font-size: @cl-comp-desc-fsize;*/
   font-size: 11px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 .comp-listbox .comp-name {
   line-height: 18px;

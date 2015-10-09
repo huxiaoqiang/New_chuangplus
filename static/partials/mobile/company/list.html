@@ -171,10 +171,10 @@
                     <a class="comp-listbox" ng-href="/mobile/company/detail/[[company._id.$oid]]"> <!-- /[[company._id.$oid]] -->
                         <img class="comp-prev-img" src="/api/file/[[company.logo_id]]/download">
                         <img class="comp-more-info-arrow" src="/static/image/icon/jiantou.png">
+                        <div ng-if="company.is_auth" class="comp-auth">[[company.auth_organization]]认证</div>
                         <div class="comp-list-info-block">
                             <div class="comp-name">[[company.abbreviation]]</div>
                             <div class="comp-desc">[[company.brief_introduction]]</div>
-                            <div ng-if="company.is_auth" class="comp-auth">[[company.auth_organization]]认证</div>
                             
                             <div class="comp-desc-list">
                                 <span class="comp-desc-tag">

@@ -155,8 +155,8 @@
                 <div class="requires">
                     <div class="require-box elem-width-4" ng-click="show_filter(1)">[[workdays_notice]] <i class="fa" ng-class="{'fa-caret-down':filter_now != 1, 'fa-caret-up':filter_now == 1}"></i></div>
                     <div class="require-box elem-width-4" ng-click="show_filter(2)">[[salary_notice]] <i class="fa "ng-class="{'fa-caret-down':filter_now != 2, 'fa-caret-up':filter_now == 2}"></i></div>
-                    <div class="require-box elem-width-4" ng-click="show_filter(3)">[[filed_notice]] <i class="fa" ng-class="{'fa-caret-down':filter_now != 3, 'fa-caret-up':filter_now == 3}"></i></div>
-                    <div class="require-box elem-width-4" ng-click="show_filter(4)">[[type_notice]] <i class="fa" ng-class="{'fa-caret-down':filter_now != 4, 'fa-caret-up':filter_now == 4}"></i></div>
+                    <div class="require-box elem-width-2" ng-click="show_filter(3)">[[filed_notice]] <i class="fa" ng-class="{'fa-caret-down':filter_now != 3, 'fa-caret-up':filter_now == 3}"></i></div>
+                    <div class="require-box elem-width-2" ng-click="show_filter(4)">[[type_notice]] <i class="fa" ng-class="{'fa-caret-down':filter_now != 4, 'fa-caret-up':filter_now == 4}"></i></div>
                 </div>
                 <!--
                     <div class="require-btn" ng-click="show_filter()">&nbsp;</div>
@@ -175,8 +175,8 @@
                     <a class="comp-listbox" ng-href="/mobile/position/detail/[[position._id.$oid]]" >
                         <img class="comp-more-info-arrow" src="/static/image/icon/jiantou.png">
                         <img class="comp-prev-img" ng-src="/api/file/[[position.company.logo_id]]/download">
+                        <div ng-if="position.company.is_auth" class="comp-auth">[[position.company.auth_organization]]认证</div>
                         <div class="comp-list-info-block">
-                            <div ng-if="position.company.is_auth" class="comp-auth">[[position.company.auth_organization]]认证</div>
                             <div class="comp-name">[[position.position_type_value]] | [[position.name]]</div>
 
                             <div class="comp-req-list">
