@@ -47,23 +47,24 @@
                 <div class="search-item company-auth" >
                     <p>投资机构认证<i class="icon-angle-down"></i></p>
                     <div class="organization-list" >
-                        <input type="checkbox" id="checkbox21" ng-model="param.auth_organization.a1"><label class="checkbox-label" for="checkbox21">源码资本</label><br/>
-                        <input type="checkbox" id="checkbox22" ng-model="param.auth_organization.a2"><label class="checkbox-label" for="checkbox22">创业邦</label><br/>
-                        <input type="checkbox" id="checkbox23" ng-model="param.auth_organization.a3"><label class="checkbox-label" for="checkbox23">创新工场</label><br/>
-                        <input type="checkbox" id="checkbox24" ng-model="param.auth_organization.a4"><label class="checkbox-label" for="checkbox24">高榕资本</label><br/>
-                        <input type="checkbox" id="checkbox25" ng-model="param.auth_organization.a5"><label class="checkbox-label" for="checkbox25">京东JD+开放孵化器</label><br/>
-                        <input type="checkbox" id="checkbox26" ng-model="param.auth_organization.a6"><label class="checkbox-label" for="checkbox26">险峰华兴</label><br/>
-                        <input type="checkbox" id="checkbox27" ng-model="param.auth_organization.a7"><label class="checkbox-label" for="checkbox27">经纬创投</label><br/>
-                        <input type="checkbox" id="checkbox28" ng-model="param.auth_organization.a8"><label class="checkbox-label" for="checkbox28">泰有基金</label><br/>
-                        <input type="checkbox" id="checkbox29" ng-model="param.auth_organization.a9"><label class="checkbox-label" for="checkbox29">Pre-Angle</label><br/>
-                        <input type="checkbox" id="checkbox30" ng-model="param.auth_organization.a10"><label class="checkbox-label" for="checkbox30">洪泰基金</label><br/>
-                        <input type="checkbox" id="checkbox31" ng-model="param.auth_organization.a11"><label class="checkbox-label" for="checkbox31">清流资本</label><br/>
-                        <input type="checkbox" id="checkbox32" ng-model="param.auth_organization.a12"><label class="checkbox-label" for="checkbox32">启迪创业孵化器</label><br/>
-                        <input type="checkbox" id="checkbox33" ng-model="param.auth_organization.a13"><label class="checkbox-label" for="checkbox33">Plug and Play China</label><br/>
-                        <input type="checkbox" id="checkbox34" ng-model="param.auth_organization.a14"><label class="checkbox-label" for="checkbox34">清华同方孵化器</label><br/>
-                        <input type="checkbox" id="checkbox34" ng-model="param.auth_organization.a15"><label class="checkbox-label" for="checkbox35">水木清华校友基金</label><br/>
-                        <input type="checkbox" id="checkbox34" ng-model="param.auth_organization.a16"><label class="checkbox-label" for="checkbox36">红杉资本</label><br/>
-                        <input type="checkbox" id="checkbox34" ng-model="param.auth_organization.a17"><label class="checkbox-label" for="checkbox37">乐搏资本</label><br/>
+                        <a href="#" ng-class="{active:param.auth_organization == null}" ng-click="choose_auth_organization(null)">全选</a><br>
+                        <a href="#" ng-class="{active:param.auth_organization == '源码资本'}" ng-click="choose_auth_organization('源码资本')">源码资本</a><br>
+                        <a href="#" ng-class="{active:param.auth_organization == '创业邦'}" ng-click="choose_auth_organization('创业邦')">创业邦</a><br>
+                        <a href="#" ng-class="{active:param.auth_organization == '创新工场'}" ng-click="choose_auth_organization('创新工场')">创新工场</a><br>
+                        <a href="#" ng-class="{active:param.auth_organization == '高榕资本'}" ng-click="choose_auth_organization('高榕资本')">高榕资本</a><br>
+                        <a href="#" ng-class="{active:param.auth_organization == '京东JD+开放孵化器'}" ng-click="choose_auth_organization('京东JD+开放孵化器')">京东JD+开放孵化器</a><br>
+                        <a href="#" ng-class="{active:param.auth_organization == '险峰华兴'}" ng-click="choose_auth_organization('险峰华兴')">险峰华兴</a><br>
+                        <a href="#" ng-class="{active:param.auth_organization == '经纬创投'}" ng-click="choose_auth_organization('经纬创投')">经纬创投</a><br>
+                        <a href="#" ng-class="{active:param.auth_organization == '泰有基金'}" ng-click="choose_auth_organization('泰有基金')">泰有基金</a><br>
+                        <a href="#" ng-class="{active:param.auth_organization == 'Pre-Angle'}" ng-click="choose_auth_organization('Pre-Angle')">Pre-Angle</a><br>
+                        <a href="#" ng-class="{active:param.auth_organization == '洪泰基金'}" ng-click="choose_auth_organization('洪泰基金')">洪泰基金</a><br>
+                        <a href="#" ng-class="{active:param.auth_organization == '清流资本'}" ng-click="choose_auth_organization('清流资本')">清流资本</a><br>
+                        <a href="#" ng-class="{active:param.auth_organization == '启迪创业孵化器'}" ng-click="choose_auth_organization('启迪创业孵化器')">启迪创业孵化器</a><br>
+                        <a href="#" ng-class="{active:param.auth_organization == 'Plug and Play China'}" ng-click="choose_auth_organization('Plug and Play China')">Plug and Play China</a><br>
+                        <a href="#" ng-class="{active:param.auth_organization == '清华同方孵化器'}" ng-click="choose_auth_organization('清华同方孵化器')">清华同方孵化器</a><br>
+                        <a href="#" ng-class="{active:param.auth_organization == '水木清华校友基金'}" ng-click="choose_auth_organization('水木清华校友基金')">水木清华校友基金</a><br>
+                        <a href="#" ng-class="{active:param.auth_organization == '红杉资本'}" ng-click="choose_auth_organization('红杉资本')">红杉资本</a><br>
+                        <a href="#" ng-class="{active:param.auth_organization == '乐搏资本'}" ng-click="choose_auth_organization('乐搏资本')">乐搏资本</a><br>
                     </div>
                 </div>
             </div>
@@ -82,7 +83,7 @@
                         <li>
                             <div class="company-info">
                                 <div class="auth" >
-                                    <p>[[company.auth_organization]]</p>
+                                    <p ng-if="company.auth_organization!=null">[[company.auth_organization]]认证</p>
                                 </div>
                                 <div class="bottom-side">
 

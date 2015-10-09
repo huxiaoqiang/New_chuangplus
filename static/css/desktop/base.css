@@ -2772,6 +2772,21 @@ form.financing_add input {
   display: none;
   background-color: rgba(191, 191, 191, 0.1);
 }
+#container #company_list .col-md-4 .search-tab .search-item .organization-list a {
+  text-decoration: none;
+  color: #000000;
+}
+#container #company_list .col-md-4 .search-tab .search-item .organization-list a.active {
+  background-color: #8f4e96;
+  color: white;
+  border-radius: 4px;
+}
+#container #company_list .col-md-4 .search-tab .search-item .organization-list a.active:hover {
+  color: white;
+}
+#container #company_list .col-md-4 .search-tab .search-item .organization-list a:hover {
+  color: #8f4e96;
+}
 #container #company_list .col-md-8 {
   width: 750px;
   min-height: 500px;
