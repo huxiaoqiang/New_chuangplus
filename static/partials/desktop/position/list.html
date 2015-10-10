@@ -40,47 +40,36 @@
                         <table>
                             <tbody>
                                 <tr>
-                                    <td><a href="#" ng-class="{active:param.position_type == 'technology'}" ng-click="choose('technology')">技术</a></td>
-                                    <td><a href="#" ng-class="{active:param.position_type == 'design'}" ng-click="choose('design')">设计</a></td>
+                                    <td><a href="#" ng-class="{active:param.type == 'technology'}" ng-click="choose_type('technology')">技术</a></td>
+                                    <td><a href="#" ng-class="{active:param.type == 'design'}" ng-click="choose_type('design')">设计</a></td>
                                 </tr>
                                 <tr>
-                                    <td><a href="#" ng-class="{active:param.position_type == 'operate'}" ng-click="choose('operate')">运营</a></td>
-                                    <td><a href="#" ng-class="{active:param.position_type == 'marketing'}" ng-click="choose('marketing')">市场/销售</a></td>
+                                    <td><a href="#" ng-class="{active:param.type == 'operate'}" ng-click="choose_type('operate')">运营</a></td>
+                                    <td><a href="#" ng-class="{active:param.type == 'marketing'}" ng-click="choose_type('marketing')">市场/销售</a></td>
                                 </tr>
                                 <tr>
-                                    <td><a href="#" ng-class="{active:param.position_type == 'product'}" ng-click="choose('product')">产品</a></td>
-                                    <td><a href="#" ng-class="{active:param.position_type == 'functions'}" ng-click="choose('functions')">职能</a></td>
+                                    <td><a href="#" ng-class="{active:param.type == 'product'}" ng-click="choose_type('product')">产品</a></td>
+                                    <td><a href="#" ng-class="{active:param.type == 'functions'}" ng-click="choose_type('functions')">职能</a></td>
                                 </tr>
                                 <tr>
-                                    <td><a href="#" ng-class="{active:param.position_type == null}" ng-click="choose(null)">全部</a></td>
+                                    <td><a href="#" ng-class="{active:param.type == null}" ng-click="choose_type(null)">全部</a></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div style="clear: both"></div>
-                <div class="search-item position-type"  >
-                    <p>职位类型<i class="icon-angle-down"></i></p>
-                    <div class="type-list">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td><a href="#" ng-class="{active:param.position_type == 'technology'}" ng-click="choose('technology')">技术</a></td>
-                                    <td><a href="#" ng-class="{active:param.position_type == 'design'}" ng-click="choose('design')">设计</a></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#" ng-class="{active:param.position_type == 'operate'}" ng-click="choose('operate')">运营</a></td>
-                                    <td><a href="#" ng-class="{active:param.position_type == 'marketing'}" ng-click="choose('marketing')">市场/销售</a></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#" ng-class="{active:param.position_type == 'product'}" ng-click="choose('product')">产品</a></td>
-                                    <td><a href="#" ng-class="{active:param.position_type == 'functions'}" ng-click="choose('functions')">职能</a></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#" ng-class="{active:param.position_type == null}" ng-click="choose(null)">全部</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div class="search-item salary_set">
+                    <p>月薪下限<i class="icon-angle-down"></i></p>
+                    <div class="salary_min">
+                        <input type="text" class="form-control" placeholder="月薪下限">K
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+                <div class="search-item work_days">
+                    <p>工作时间<i class="icon-angle-down"></i></p>
+                    <div class="work_days_max">
+
                     </div>
                 </div>
                 <div style="clear: both"></div>

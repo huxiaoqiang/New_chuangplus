@@ -715,6 +715,28 @@ body > #wrap {
 #container #pisition-list .col-sm-4 .search-tab .search-item .type-list table tbody tr td a:hover {
   color: #8f4e96;
 }
+#container #pisition-list .col-sm-4 .search-tab .search-item .salary_min {
+  display: none;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background-color: rgba(191, 191, 191, 0.1);
+  height: 50px;
+}
+#container #pisition-list .col-sm-4 .search-tab .search-item .salary_min input {
+  width: 60%;
+  height: 30px;
+  float: left;
+  padding-left: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+#container #pisition-list .col-sm-4 .search-tab .search-item .work_days_max {
+  display: none;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background-color: rgba(191, 191, 191, 0.1);
+  height: 50px;
+}
 #container #pisition-list .col-md-8 {
   width: 750px;
   float: left;

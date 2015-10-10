@@ -3061,7 +3061,7 @@ angular.module('chuangplus.controllers', []).
             'culture_creativity':"文化创意",
             'living_consumption':"生活消费",
             'hardware':"硬件",
-            '020':"O2O",
+            'O2O':"O2O",
             'others':"其他"
         };
         $scope.positions = {};
@@ -3070,7 +3070,6 @@ angular.module('chuangplus.controllers', []).
             pageCount: 1,
             currentPage: 1
         };
-        $scope.scale_change = false;
         $scope.field_change = false;
         $scope.choose = function(field){
             if($scope.param.field == field){
@@ -3095,28 +3094,67 @@ angular.module('chuangplus.controllers', []).
 
         $scope.show_type = function(){
             $(".type-list").slideDown("fast");
-            $scope.field = true;
+            $scope.type = true;
         };
         $scope.hide_type = function(){
             $(".type-list").slideUp("fast");
-            $scope.field = false;
+            $scope.type = false;
         };
         $(".position-type").mouseenter($scope.show_type);
         $(".position-type").mouseleave($scope.hide_type);
+
+        $scope.show_salary = function(){
+            $(".salary_min").slideDown("fast");
+            $scope.salary = true;
+        };
+        $scope.hide_salary = function(){
+            $(".salary_min").slideUp("fast");
+            $scope.salary = false;
+        };
+        $(".salary_set").mouseenter($scope.show_salary);
+        $(".salary_set").mouseleave($scope.hide_salary);
+
+        $scope.show_work_days = function(){
+            $(".work_days_max").slideDown("fast");
+            $scope.work_days = true;
+        };
+        $scope.hide_work_days = function(){
+            $(".work_days_max").slideUp("fast");
+            $scope.work_days = false;
+        };
+        $(".work_days").mouseenter($scope.show_work_days);
+        $(".work_days").mouseleave($scope.hide_work_days);
+
         $scope.selectPage = function(page){
-            var param = {
-                'page':page
-            };
+            $scope.param.page = page;
             window.scrollTo(0,0);
-            $scope.get_positions(param);
+            $scope.get_positions($scope.param);
         };
         $scope.get_positions = function(data){
             $scope.loading = true;
-            var param = '';
+             var param = '';
             if(data != null){
                 param = '?';
                 if(data.hasOwnProperty('page')){
-                    param += "page=" + data.page;
+                    if($scope.field_change)
+                    {
+                        $scope.field_change = false;
+                        param += "page=" + 1;
+                        $scope.param.currentPage = 1;
+                    }
+                    else if(data.page == 0)
+                        param += "page=1";
+                    else
+                        param += "page="+data.page;
+                }
+                else{
+                    param += "page=" + 1;
+                }
+                if(data.field != undefined && data.field != null){
+                    param += "&fields=" + data.field;
+                }
+                if(data.type != undefined && data.type != null){
+                    param += "&types=" + data.type;
                 }
             }
             $http.get(urls.api+"/position/search"+param).
@@ -3145,6 +3183,26 @@ angular.module('chuangplus.controllers', []).
                 });
         };
         $scope.get_positions();
+        $scope.choose = function(field){
+            if($scope.param.field == field){
+                $scope.field_change = false;
+            }
+            else{
+                $scope.field_change = true;
+                $scope.param.field = field;
+            }
+            $scope.get_positions($scope.param);
+        };
+        $scope.choose_type = function(type){
+            if($scope.param.type == type){
+                $scope.type_change = false;
+            }
+            else{
+                $scope.type_change = true;
+                $scope.param.type = type;
+            }
+            $scope.get_positions($scope.param);
+        };
     }]).
 
     controller('DT_UserInfoCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', 'ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $errMsg){
