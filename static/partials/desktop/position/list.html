@@ -58,7 +58,32 @@
                         </table>
                     </div>
                 </div>
-                 <div style="clear: both"></div>
+                <div style="clear: both"></div>
+                <div class="search-item position-type"  >
+                    <p>职位类型<i class="icon-angle-down"></i></p>
+                    <div class="type-list">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><a href="#" ng-class="{active:param.position_type == 'technology'}" ng-click="choose('technology')">技术</a></td>
+                                    <td><a href="#" ng-class="{active:param.position_type == 'design'}" ng-click="choose('design')">设计</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#" ng-class="{active:param.position_type == 'operate'}" ng-click="choose('operate')">运营</a></td>
+                                    <td><a href="#" ng-class="{active:param.position_type == 'marketing'}" ng-click="choose('marketing')">市场/销售</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#" ng-class="{active:param.position_type == 'product'}" ng-click="choose('product')">产品</a></td>
+                                    <td><a href="#" ng-class="{active:param.position_type == 'functions'}" ng-click="choose('functions')">职能</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#" ng-class="{active:param.position_type == null}" ng-click="choose(null)">全部</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
             </div>
       </div>
 
@@ -97,7 +122,7 @@
                                         <div class="vertical-center">
                                             <p class="company">[[position.company.abbreviation]]</p>
                                             <p class="company-discrpt">&nbsp;&nbsp;[[position.company.brief_introduction]]</p>
-                                            <p class="auth">[[position.company.auth_organization]]</p>
+                                            <p class="auth" ng-if="position.company.auth_organization!=null">[[position.company.auth_organization]]认证</p>
                                         </div>
                                     </div>
                                     <div class="item-info info-3">
