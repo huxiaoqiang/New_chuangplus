@@ -1731,7 +1731,9 @@ angular.module('chuangplus.controllers', []).
         $scope.scale_change = false;
         $scope.field_change = false;
         $scope.auth_organization_change = false;
-
+        $scope.filed_choose = "行业领域";
+        $scope.scale_choose = "规模|融资论述";
+        $scope.auth_choose = "投资机构认证";
         $scope.choose = function(field){
             if($scope.param.field == field){
                 $scope.field_change = false;
@@ -1739,6 +1741,10 @@ angular.module('chuangplus.controllers', []).
             else{
                 $scope.field_change = true;
                 $scope.param.field = field;
+                if(field != null)
+                    $scope.filed_choose = $scope.field_type[field];
+                else
+                    $scope.filed_choose = "行业领域";
             }
             $scope.get_company_list($scope.param);
         };
@@ -1749,6 +1755,10 @@ angular.module('chuangplus.controllers', []).
             else{
                 $scope.param.scale = scale;
                 $scope.scale_change = true;
+                if(scale != null)
+                    $scope.scale_choose = $scope.scale[scale];
+                else
+                    $scope.scale_choose = "规模|融资论述";
             }
             $scope.get_company_list($scope.param);
         };
@@ -1759,6 +1769,10 @@ angular.module('chuangplus.controllers', []).
             else{
                 $scope.param.auth_organization = auth_organization;
                 $scope.auth_organization_change = true;
+                if(auth_organization != null)
+                    $scope.auth_choose = auth_organization;
+                else
+                    $scope.auth_choose = "投资机构认证";
             }
             $scope.get_company_list($scope.param);
         };
