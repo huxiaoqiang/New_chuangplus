@@ -441,7 +441,7 @@ def search_position(request):
             except:
                 re['error'] = error(299,'Unknown Error!')
                 return HttpResponse(json.dumps(re),content_type = 'application/json')
-    
+
     if "maxdays" in request.GET.keys():
         if len(request.GET["maxdays"]) > 0:
             try:
