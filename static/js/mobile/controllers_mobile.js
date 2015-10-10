@@ -1996,7 +1996,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 if( $scope.user_info.major != undefined &&
                     $scope.user_info.university != undefined &&
                     $scope.user_info.grade != undefined && 
-                    $scope.user_info.email != undefined)
+                    (($rootScope.is_tsinghua && $scope.user_info.email != undefined) || !$rootScope.is_tsinghua)
                 {
                     $csrf.set_csrf($scope.user_info);
                     $http.post(urls.api+"/account/userinfo/set_by_tsinghua", $.param($scope.user_info))
