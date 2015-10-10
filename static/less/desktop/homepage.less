@@ -9,6 +9,15 @@
           min-height: 420px;
           margin-bottom: 15px;
           .carousel{
+             .carousel-indicators{
+               li{
+                 background-color: #808080;
+               }
+
+               li.active{
+                 background-color: #333333;
+               }
+             }
              .carousel-control.left{
                 filter:alpha(opacity=0);
                 -moz-opacity:0;
@@ -21,6 +30,7 @@
                 -khtml-opacity: 0;
                 opacity: 0;
               }
+
           }
         }
         .company-block{

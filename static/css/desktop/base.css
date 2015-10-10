@@ -3429,6 +3429,12 @@ form.financing_add input {
   min-height: 420px;
   margin-bottom: 15px;
 }
+#container #homepage .slide-block .carousel .carousel-indicators li {
+  background-color: #808080;
+}
+#container #homepage .slide-block .carousel .carousel-indicators li.active {
+  background-color: #333333;
+}
 #container #homepage .slide-block .carousel .carousel-control.left {
   filter: alpha(opacity=0);
   -moz-opacity: 0;
