@@ -13,7 +13,7 @@
             </div> 
             <div class="comp-list">
                 <div class="comp-listbox"  ng-repeat="position in positions" >
-                    <div style="position:relative;" ng-class="{'closed': 'gray-mask', 'open': ''}[position.status]">
+                    <div ng-class="{'closed': 'gray-mask', 'open': ''}[position.status]">
                         <a href="/mobile/position/detail/[[position._id.$oid]]">
                             <img class="comp-prev-img" src="/api/file/[[position.company.logo_id]]/download">
                             <div ng-if="position.company.is_auth" class="comp-auth">[[position.company.auth_organization]]认证</div>

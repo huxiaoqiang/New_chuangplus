@@ -479,7 +479,8 @@ a:hover {
     position: absolute;
     max-width: 80px;
     top: 10px;
-    right: 10px;
+    right: 6px;
+    color: #8F4E96;
   }
 }
 .comp-listbox .comp-auth {
@@ -492,6 +493,7 @@ a:hover {
   position: absolute;
   top: 10px;
   right: 10px;
+  color: #8F4E96;
 }
 .comp-listbox .comp-name {
   line-height: 18px;
@@ -979,7 +981,10 @@ ul {
 }
 .send-resume {
   position: absolute;
-  top: 10px;
+  top: 0;
+  bottom: 0;
+  height: 48px;
+  margin: auto;
   right: 10px;
   text-align: center;
   color: #966497;
