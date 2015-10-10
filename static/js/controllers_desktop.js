@@ -1785,7 +1785,7 @@ angular.module('chuangplus.controllers', []).
                     param += "page=" + 1;
                 }
                 if(data.field != undefined && data.field != null){
-                    param += "&field=" + data.field;
+                    param += "&fields=" + data.field;
                 }
                 if(data.scale != undefined && data.scale != null){
                     param += "&scale=" + data.scale;
