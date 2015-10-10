@@ -336,7 +336,40 @@ def login(request):
             resp.set_cookie('role',request.session['role'])
             return resp
         else:
-            re['error'] = error(108, 'username or password error!')
+            user_login = User.objects.get(email = username)
+            username = ""
+            if user_login is not None:
+                username = user_login.username
+            else:
+                re['error'] = error(108, 'username or password error!')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            user = auth.authenticate(username=username,password=password)
+            if user is not None and user.is_active:
+                re['username'] = user.username
+                auth.login(request,user)
+                user = User.objects.get(username = username)
+                if not user.is_staff:
+                    userInfo = Userinfo.objects.get(username=username)
+                    completive = 1
+                    if userInfo.university is None :
+                        completive = 0
+                    if userInfo.major is None:
+                        completive = 0
+                    if userInfo.grade is None:
+                        completive = 0
+                    if completive == 0:
+                        re['completive'] = '0'
+                    else:
+                        re['completive'] = '1'
+                request.session['role'] = 1 if user.is_staff else 0
+                re['error'] = error(1, 'login succeed!')
+                re['role'] = request.session['role']
+                resp = HttpResponse(json.dumps(re), content_type = 'application/json')
+                resp.set_cookie('username', user.username)
+                resp.set_cookie('role',request.session['role'])
+                return resp
+            else:
+                re['error'] = error(108, 'username or password error!')
     else:
             re['error'] = error(2, 'error, need post!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
