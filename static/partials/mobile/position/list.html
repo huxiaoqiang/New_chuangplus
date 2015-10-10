@@ -175,12 +175,11 @@
                     <a class="comp-listbox" ng-href="/mobile/position/detail/[[position._id.$oid]]" >
                         <img class="comp-more-info-arrow" src="/static/image/icon/jiantou.png">
                         <img class="comp-prev-img" ng-src="/api/file/[[position.company.logo_id]]/download">
-                        <div ng-if="position.company.is_auth" class="comp-auth">[[position.company.auth_organization]]认证</div>
                         <div class="comp-list-info-block">
                             <div class="comp-name">[[position.position_type_value]] | [[position.name]]</div>
 
                             <div class="comp-req-list">
-                                <span class="comp-req-title">[[position.company.abbreviation]]</span>
+                                <div class="comp-req-title">[[position.company.abbreviation]]<span ng-if="position.company.is_auth" style="font-size: 12px;color: #8F4E96;"> | [[position.company.auth_organization]]认证</span></div>
                             </div>
                             <div class="comp-desc">[[position.company.brief_introduction]]</div>
 
