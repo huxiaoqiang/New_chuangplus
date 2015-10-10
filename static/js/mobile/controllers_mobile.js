@@ -1984,6 +1984,7 @@ angular.module('chuangplus_mobile.controllers', [])
                 $scope.user_info.major = data.data.major;
                 $scope.user_info.university = data.data.university;
                 $scope.user_info.grade = data.data.grade;
+                $scope.user_info.email = data.data.email;
                 if ($scope.is_tsinghua_local)
                     $scope.user_info.university = "清华大学";
                 //$rootScope.is_tsinghua = true;
