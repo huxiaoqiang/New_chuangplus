@@ -6,11 +6,11 @@
       <div class="panel-list">
         <div class="info-block-title">注册成功，请填写基本信息</div>
 
-        <span ng-if="is_tsinghua" class="panel-group-top info-input purple-border">
+        <span ng-if="is_tsinghua_local" class="panel-group-top info-input purple-border">
           <input class="panel-elem elem-width-full" type="text" ng-model="user_info.university" value="清华大学" required>
         </span>
 
-        <span ng-if="!is_tsinghua" class="panel-group-top info-input purple-border">
+        <span ng-if="!is_tsinghua_local" class="panel-group-top info-input purple-border">
           <input class="panel-elem elem-width-full" type="text" ng-model="user_info.university" placeholder="学校" required>
         </span>
 
@@ -18,7 +18,7 @@
           <input class="panel-elem elem-width-full" type="text" ng-model="user_info.major" placeholder="专业" required>
         </span>
 
-        <span ng-if="is_tsinghua" class="panel-group-mid info-input purple-border">
+        <span ng-if="is_tsinghua_local" class="panel-group-mid info-input purple-border">
           <input class="panel-elem elem-width-full" type="email" ng-model="user_info.email" placeholder="邮箱" required>
         </span>
 
