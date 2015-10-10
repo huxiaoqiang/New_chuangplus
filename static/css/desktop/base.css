@@ -3429,6 +3429,9 @@ form.financing_add input {
   min-height: 420px;
   margin-bottom: 15px;
 }
+#container #homepage .slide-block .carousel .carousel-inner {
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
+}
 #container #homepage .slide-block .carousel .carousel-indicators li {
   background-color: #808080;
 }
@@ -3494,14 +3497,14 @@ form.financing_add input {
   cursor: pointer;
 }
 #container #homepage .info-block-1 {
-  border: 1px solid #b2b2b2;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
   margin-bottom: 15px;
 }
 #container #homepage .info-block-1 img {
   width: 100%;
 }
 #container #homepage .info-block-2 {
-  border: 1px solid #b2b2b2;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
   margin-bottom: 15px;
 }
 #container #homepage .info-block-2 img {
@@ -3515,8 +3518,10 @@ form.financing_add input {
   width: 158px;
   margin-right: 2px;
   float: left;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
 }
 #container #homepage .img-block .img-2.last {
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
   margin-right: 0;
 }
 #container #homepage .img-block .img-3 {
