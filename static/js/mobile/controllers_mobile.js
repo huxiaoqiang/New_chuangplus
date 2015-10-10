@@ -1980,8 +1980,10 @@ angular.module('chuangplus_mobile.controllers', [])
             success(function(data){
             if(data.error.code == 1){
                 $rootScope.is_tsinghua = data.data.is_info;
-                $scope.user_info = data.data;
-                $rootScope.is_tsinghua = true;
+                $scope.user_info.major = data.data.major;
+                $scope.user_info.university = data.data.university;
+                $scope.user_info.grade = data.data.grade;
+                //$rootScope.is_tsinghua = true;
                 $rootScope.loading = false;
             }
         });
