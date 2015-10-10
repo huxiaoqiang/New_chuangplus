@@ -104,7 +104,31 @@
             padding-bottom: 10px;
             padding-top: 10px;
             background-color: rgba(191, 191, 191, 0.1);
-            height: 50px;
+            height: 100px;
+            table{
+              tbody{
+                tr{
+                  td{
+                   width: 80px;
+                   a{
+                     text-decoration:none;
+                     color: #000000;
+                   }
+                   a.active{
+                    background-color: #8f4e96;
+                    color: white;
+                    border-radius: 4px;
+                   }
+                   a.active:hover{
+                    color: white;
+                   }
+                   a:hover{
+                     color: #8f4e96;
+                   }
+                  }
+                }
+              }
+            }
           }
         }
       }

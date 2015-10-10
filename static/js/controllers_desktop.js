@@ -3072,7 +3072,7 @@ angular.module('chuangplus.controllers', []).
         $scope.filed_choose = "行业领域";
         $scope.type_choose = "职位类型";
         $scope.salary_choose = "月薪下限";
-
+        $scope.workdays_choose = "每周工作时间";
         $scope.field_change = false;
         $scope.choose = function(field){
             if($scope.param.field == field){
@@ -3162,6 +3162,9 @@ angular.module('chuangplus.controllers', []).
                 if(data.salary != undefined && data.salary != ""){
                     param += "&salary_min=" + data.salary;
                 }
+                if(data.workdays != undefined && data.workdays != null){
+                    param += "&workdays=" + data.workdays;
+                }
             }
             $http.get(urls.api+"/position/search"+param).
                 success(function(data){
@@ -3228,6 +3231,24 @@ angular.module('chuangplus.controllers', []).
                     $scope.salary_choose = salary+"K";
                 else
                     $scope.salary_choose = "月薪下限";
+            }
+            $scope.get_positions($scope.param);
+        };
+        $scope.choose_workdays = function(workdays){
+            if($scope.param.workdays == workdays){
+                $scope.workdays_change = false;
+            }
+            else{
+                $scope.workdays_change = true;
+                $scope.param.workdays = workdays;
+                if(workdays!=null){
+                    if(workdays=='0')
+                        $scope.workdays_choose = "灵活时间";
+                    else
+                        $scope.workdays_choose = "每周"+workdays+"天";
+                }
+                else
+                    $scope.workdays_choose = "每周工作时间";
             }
             $scope.get_positions($scope.param);
         };
