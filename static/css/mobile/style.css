@@ -287,6 +287,12 @@ a:hover {
   background: url('/static/image/icon/3d-purple.png');
   background-repeat: repeat-x;
 }
+@media (max-width: 360px) {
+  .header-bar .header {
+    font-size: 18px;
+    line-height: 52px;
+  }
+}
 .header-bar .header {
   width: 50%;
   font-weight: 500;
