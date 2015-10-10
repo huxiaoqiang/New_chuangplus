@@ -1980,6 +1980,7 @@ angular.module('chuangplus_mobile.controllers', [])
             success(function(data){
             if(data.error.code == 1){
                 $rootScope.is_tsinghua = data.data.is_info;
+                $scope.is_tsinghua_local = $rootScope.is_tsinghua;
                 $scope.user_info.major = data.data.major;
                 $scope.user_info.university = data.data.university;
                 $scope.user_info.grade = data.data.grade;
@@ -1987,7 +1988,6 @@ angular.module('chuangplus_mobile.controllers', [])
                 $rootScope.loading = false;
             }
         });
-        $scope.is_tsinghua_local = $rootScope.is_tsinghua;
         
 
         $scope.update_info = function(){
