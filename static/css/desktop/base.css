@@ -2412,6 +2412,7 @@ form.financing_add input {
 #container #position-detail .col-md-9 .position-info .position-name .auth {
   font-size: 12px;
   color: red;
+  margin-top: 5px;
 }
 #container #position-detail .col-md-9 .position-info .item-label {
   width: 120px;

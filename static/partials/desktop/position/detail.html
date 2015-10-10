@@ -78,7 +78,7 @@
                         <div class="vertical-center">
                             <p class="name">[[position.company.abbreviation]]</p>
                             <p class="brief_introduction">[[position.company.brief_introduction]]</p>
-                            <p class="auth">[[position.company.auth_organization]]</p>
+                            <p class="auth" ng-if="position.company.auth_organization!=null">[[position.company.auth_organization]]认证</p>
                         </div>
                     </div>
                     <div class="item-label label-2">
