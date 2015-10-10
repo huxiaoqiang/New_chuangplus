@@ -106,12 +106,12 @@ angular.module('chuangplus_mobile.controllers', [])
                     {
                         if(ele == 'e_commerce')
                         {
-                            $scope.filter_params = '?field=e-commerce';
+                            $scope.filter_params = '?fields=e-commerce';
                             $scope.filed_notice = '电子商务';
                         }
                         else
                         {
-                            $scope.filter_params = '?field=' + ele;
+                            $scope.filter_params = '?fields=' + ele;
                             $scope.filed_notice = $scope.cfield[ele];
                         }
                     }
@@ -422,12 +422,12 @@ angular.module('chuangplus_mobile.controllers', [])
                     {
                         if(ele == 'e_commerce')
                         {
-                            $scope.filter_params = '?field=e-commerce';
+                            $scope.filter_params = '?fields=e-commerce';
                             $scope.filed_notice = '电子商务';
                         }
                         else
                         {
-                            $scope.filter_params = '?field=' + ele;
+                            $scope.filter_params = '?fields=' + ele;
                             $scope.filed_notice = $scope.cfield[ele];
                         }
                     }
@@ -1326,6 +1326,9 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.captcha_url = urls.api+"/captcha/image/";
         $scope.login_info = {};
         $scope.capcha_info = {};
+//        $scope.$apply(function(){
+  //          $rootScope.loading = false;
+    //    });
 
         $scope.refresh_captcha = function(){
             $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
