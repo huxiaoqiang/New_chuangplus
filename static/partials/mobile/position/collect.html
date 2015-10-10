@@ -16,8 +16,8 @@
                     <div ng-class="{'closed': 'gray-mask', 'open': ''}[position.status]">
                         <a href="/mobile/position/detail/[[position._id.$oid]]">
                             <img class="comp-prev-img" src="/api/file/[[position.company.logo_id]]/download">
-                            <div class="comp-list-info-block">
-                                <div ng-if="position.company.is_auth" class="comp-auth">[[position.company.auth_organization]]认证</div>
+                            <div ng-if="position.company.is_auth" class="comp-auth">[[position.company.auth_organization]]认证</div>
+                            <div class="comp-info-block">
                                 <div class="comp-name">[[position.position_type_value]] | [[position.name]]</div>
 
                                 <div class="comp-req-list">

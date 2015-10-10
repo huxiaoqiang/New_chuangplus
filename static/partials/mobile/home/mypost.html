@@ -22,8 +22,8 @@
                     <img class="comp-prev-img" src="/api/file/[[position.company.logo_id]]/download">
                     <div class="posi-close">[[position.position_cond]]</div>
                     <div class="hr-solve">[[position.is_processed]]</div>
+                    <div ng-if="position.company.is_auth" class="comp-auth">[[position.company.auth_organization]]认证</div>
                     <div class="comp-list-info-block">
-                        <div ng-if="position.company.is_auth" class="comp-auth">[[position.company.auth_organization]]认证</div>
                         <div class="comp-name">[[position.position_type_value]] | [[position.name]]</div>
 
                         <div class="comp-req-list">

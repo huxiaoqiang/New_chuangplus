@@ -827,14 +827,13 @@ ul {
   display: block;
   position: relative;
   left: 104px;
-  width: 53%;
+  padding-right: 162px;
 }
 .comp-list-info-block {
   display: block;
   position: relative;
   left: 104px;
-  padding-right: 12px;
-  width: 64%;
+  padding-right: 152px;
 }
 .comp-more-info {
   margin: auto;
