@@ -1303,7 +1303,7 @@ def get_company_list(request):
     re = dict()
     if request.method == 'GET':
         text = request.GET.get('text', '')
-        field = request.GET.get('field', '')
+        fields = request.GET.get('fields', '')
         auth_organization = request.GET.get('auth_organization', '')
         scale = request.GET.get('scale', '')
         status = request.GET.get('status', '')
@@ -1314,9 +1314,9 @@ def get_company_list(request):
             companies = companies.filter(
                 Q(abbreviation__contains = text) |
                 Q(ICregist_name__contains = text))
-        if field != '':
-            field = field.split(',')
-            companies = companies.filter(field__in = field)
+        if fields != '':
+            fields = fields.split(',')
+            companies = companies.filter(field__in = fields)
         if auth_organization != '':
             auth_organization = auth_organization.split(',')
             companies = companies.filter(auth_organization__in = auth_organization)
