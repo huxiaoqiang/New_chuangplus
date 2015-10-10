@@ -237,7 +237,7 @@ a:hover {
 #captcha_img {
   height: 28px;
   position: absolute;
-  right: 10px;
+  right: 6px;
   bottom: 3px;
 }
 #captcha-pass {
