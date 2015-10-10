@@ -212,22 +212,6 @@ def login_by_tsinghua(request):
                 userinfo.update_time = datetime_now()
                 userinfo.save(force_insert=True)
                 re['completive'] = '0'
-            #student_id = str(map['info']['id'])
-            #student_username = map['info']['username']
-            #has_created = 0
-            #try:
-            #    qs = User.objects.get(by_tsinghua = True,student_id = student_id)
-            #    has_created = 1
-            #except:
-            #    qs = User(by_tsinghua = True,student_id = student_id,username = student_username)
-            #if has_created == 0:
-            #    try:
-            #        qs.save()
-            #    except DatabaseError:
-            #        re['error'] = error(250,'Database Error:failed to save the info of tsinghua student')
-            #    re['has_created'] = '0'
-            #else:
-            #    re['has_created'] = '1'
             user = auth.authenticate(username=username, password=password)
             if user is not None and user.is_active:
                 try:
@@ -1621,3 +1605,35 @@ def get_image_list(request):
     else:
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
+    
+
+def get_position_num(request):
+    re = dict()
+    if request.method =="GET":
+        try:
+            count = Position.objects.filter().count()
+        except:
+            re['error'] = error(251,"Database error: Failed to search")
+            return HttpResponse(json.dumps(re),content_type = 'application/json')
+        re['error'] = error(1,"succeed")
+        re['positionNumber'] = count
+
+        #print count
+    else:
+        re['error'] = error(3,'Error,need GET')
+    return HttpResponse(json.dumps(re),content_type = 'application/json')
+    
+def get_company_num(request):
+    re = dict()
+    if request.method == "GET":
+        try:
+            count = Companyinfo.objects.filter().count()
+        except:
+            re['error'] = error(251,"Database error: Failed to search")
+            return HttpResponse(json.dumps(re),content_type = 'application/json')
+        re['error'] = error(1,"succeed")
+        re['companyNumber'] = count
+        #print count
+    else:
+        re['error'] = error(3,'Error,need GET')
+    return HttpResponse(json.dumps(re),content_type = 'application/json')
