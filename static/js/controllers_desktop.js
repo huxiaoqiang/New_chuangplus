@@ -1631,6 +1631,9 @@ angular.module('chuangplus.controllers', []).
             if($scope.position.end_time != ''){
                 $scope.position.end_time = $filter('date')($scope.position.end_time, 'yyyy-MM-dd');
             }
+            if($scope.position.part_or_full_time == 1){
+                $scope.position.days_per_week = 5;
+            }
             $scope.submit_loading = true;
             $http.post(urls.api+"/position/create", $.param($scope.position)).
                 success(function(data){
@@ -1652,6 +1655,9 @@ angular.module('chuangplus.controllers', []).
             $csrf.set_csrf($scope.position);
             if($scope.position.end_time != ''){
                 $scope.position.end_time = $filter('date')($scope.position.end_time, 'yyyy-MM-dd');
+            }
+            if($scope.position.part_or_full_time == 1){
+                $scope.position.days_per_week = 5;
             }
             $scope.submit_loading = true;
             $http.post(urls.api+"/position/"+$scope.position_id+"/set", $.param($scope.position)).
@@ -1808,7 +1814,6 @@ angular.module('chuangplus.controllers', []).
                             $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
                         }
                     }
-
                 }
                 else{
                      $scope.error = $errMsg.format_error('',data.error);
