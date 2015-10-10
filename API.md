@@ -10,6 +10,7 @@ chuangplus项目api文档
 ----------|----------|----------|----------
 id            |primarykey  |          |主键
 username      |StringField |          |
+is_info       |BooleanFiled|          |True:info账号，False不是info账号
 password      |            |          |
 email         |EmailFiedl  |          |
 is_staff      |BooleanFiled|          |True：企业用户，False：个人用户
