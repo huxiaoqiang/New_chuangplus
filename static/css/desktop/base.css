@@ -3424,29 +3424,22 @@ form.financing_add input {
   font-family: "微软雅黑";
   margin-top: 20px;
 }
-#container #homepage .right-block {
-  position: fixed;
-  right: 20px;
-  top: 168px;
-  height: 100%;
-  width: 120px;
-  margin: 0 auto;
-  z-index: 1;
-}
-#container #homepage .right-block .txt {
-  font-size: 1.0em;
-  color: #707070;
-  text-align: center;
-  width: 100%;
-}
-#container #homepage .right-block .img-1 {
-  height: 120px;
-  width: 120px;
-}
 #container #homepage .slide-block {
   height: 420px;
   min-height: 420px;
   margin-bottom: 15px;
+}
+#container #homepage .slide-block .carousel .carousel-control.left {
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  -khtml-opacity: 0;
+  opacity: 0;
+}
+#container #homepage .slide-block .carousel .carousel-control.right {
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  -khtml-opacity: 0;
+  opacity: 0;
 }
 #container #homepage .company-block {
   height: 70px;

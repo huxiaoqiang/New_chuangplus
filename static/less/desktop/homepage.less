@@ -4,29 +4,24 @@
     #homepage{
         font-family:"微软雅黑";
         margin-top: 20px;
-        .right-block{
-            position: fixed;
-            right: 20px;
-            top: 168px;
-            height: 100%;
-            width: 120px;
-            margin: 0 auto;
-            z-index: 1;
-            .txt{
-                font-size: 1.0em;
-                color: #707070;
-                text-align: center;
-                width: 100%;
-            }
-            .img-1{
-                height: 120px;
-                width: 120px;
-            }
-        }
         .slide-block{
-            height: 420px;
-            min-height: 420px;
-            margin-bottom: 15px;
+          height: 420px;
+          min-height: 420px;
+          margin-bottom: 15px;
+          .carousel{
+             .carousel-control.left{
+                filter:alpha(opacity=0);
+                -moz-opacity:0;
+                -khtml-opacity: 0;
+                opacity: 0;
+              }
+              .carousel-control.right{
+                filter:alpha(opacity=0);
+                -moz-opacity:0;
+                -khtml-opacity: 0;
+                opacity: 0;
+              }
+          }
         }
         .company-block{
           height: 70px;
@@ -105,7 +100,6 @@
             .img-3{
                 height: 100%;
                 width: 184px;
-                //border: 1px solid #b2b2b2;
                 float:left;
             }
 
