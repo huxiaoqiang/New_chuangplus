@@ -332,7 +332,7 @@ post userinfo信息，返回错误码和post的用户信息json对象
 获取用户收藏的职位列表(method : get)
 在用户已经登录的状态下，请求处理成功时，返回一个list,list中每一个对象是一个职位
 
-###/api/account/userinfo/position/favor/submitall  （可能存在bug：简历更新）
+###/api/account/userinfo/position/favor/submitall
 向所有还没有投递简历的职位投递简历(method:post)
 返回errorcode
 
