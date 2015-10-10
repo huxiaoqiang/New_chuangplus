@@ -2,7 +2,7 @@
 <html ng-app="chuangplus_mobile">
   <head>
     <meta charset="utf-8" />
-    <title ng-bind="'犀牛 | ' + $root.title">犀牛 | </title>
+    <title id="tttttitle" ng-bind="'犀牛 | ' + $root.title">犀牛实习</title>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -28,6 +28,16 @@
     <link rel="stylesheet" href="/static/css/mobile/style.css"/>
 
 </head>
+    
+    <script type="text/javascript">
+    //alert(navigator.appVersion);
+        if (navigator.appVersion.indexOf("MicroMessenger") != -1) 
+        {
+            //alert('weixin');
+            $("#tttttitle").attr("ng-bind","犀牛实习");
+//            $("#tttttitle").html("");
+        } 
+    </script>
 
     <body class="" ui-prevent-touchmove-defaults>
     <div class="sidebar sidebar-left" ui-yield-to="sidebar-left-ui"></div>

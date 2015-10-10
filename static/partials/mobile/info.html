@@ -1,51 +1,56 @@
-<div ng-controller="MB_UserInfoEditCtrl">
-  <div class="notice-bar no-bar-top">
-    notice
-  </div>
-  <div class="info-input-content">     
-      <div class="panel-list">
-        <div class="info-block-title">注册成功，请填写基本信息</div>
 
-        <span ng-if="is_tsinghua" class="panel-group-top info-input purple-border">
-          <input class="panel-elem elem-width-full" type="text" ng-model="user_info.university" value="清华大学" required>
-        </span>
+<div class="main-content scrollable">
+    <div class="scrollable-content">
+    <div ng-controller="MB_UserInfoEditCtrl">
+      <div class="notice-bar no-bar-top">
+        notice
+      </div>
+      <div class="info-input-content">     
+          <div class="panel-list">
+            <div class="info-block-title">注册成功，请填写基本信息</div>
 
-        <span ng-if="!is_tsinghua" class="panel-group-top info-input purple-border">
-          <input class="panel-elem elem-width-full" type="text" ng-model="user_info.university" placeholder="学校" required>
-        </span>
+            <span ng-if="is_tsinghua_local" class="panel-group-top info-input purple-border">
+              <input class="panel-elem elem-width-full" type="text" ng-model="user_info.university" value="清华大学" required>
+            </span>
 
-        <span class="panel-group-mid info-input purple-border">
-          <input class="panel-elem elem-width-full" type="text" ng-model="user_info.major" placeholder="专业" required>
-        </span>
+            <span ng-if="!is_tsinghua_local" class="panel-group-top info-input purple-border">
+              <input class="panel-elem elem-width-full" type="text" ng-model="user_info.university" placeholder="学校" required>
+            </span>
 
-        <span ng-if="is_tsinghua" class="panel-group-mid info-input purple-border">
-          <input class="panel-elem elem-width-full" type="email" ng-model="user_info.email" placeholder="邮箱" required>
-        </span>
+            <span class="panel-group-mid info-input purple-border">
+              <input class="panel-elem elem-width-full" type="text" ng-model="user_info.major" placeholder="专业" required>
+            </span>
 
-        <div class="panel-group-bot info-input purple-border">
-              <select class="elem-width-full" ng-model="user_info.grade" required>
-                  <option value="" selected="true" disabled="true">请选择所在年级</option>
-                  <option value="1">本科一年级</option>
-                  <option value="2">本科二年级</option>
-                  <option value="3">本科三年级</option>
-                  <option value="4">本科四年级</option>
-                  <option value="5">本科五年级</option>
-                  <option value="11">硕士一年级</option>
-                  <option value="12">硕士二年级</option>
-                  <option value="13">硕士三年级</option>
-                  <option value="21">博士一年级</option>
-                  <option value="22">博士二年级</option>
-                  <option value="23">博士三年级</option>
-                  <option value="24">博士四年级</option>
-                  <option value="25">博士五年级</option>
-              </select>
+            <span ng-if="is_tsinghua_local" class="panel-group-mid info-input purple-border">
+              <input class="panel-elem elem-width-full" type="email" ng-model="user_info.email" placeholder="邮箱" required>
+            </span>
+
+            <div class="panel-group-bot info-input purple-border">
+                  <select class="elem-width-full" ng-model="user_info.grade" required>
+                      <option value="" selected="true" disabled="true">请选择所在年级</option>
+                      <option value="1">本科一年级</option>
+                      <option value="2">本科二年级</option>
+                      <option value="3">本科三年级</option>
+                      <option value="4">本科四年级</option>
+                      <option value="5">本科五年级</option>
+                      <option value="11">硕士一年级</option>
+                      <option value="12">硕士二年级</option>
+                      <option value="13">硕士三年级</option>
+                      <option value="21">博士一年级</option>
+                      <option value="22">博士二年级</option>
+                      <option value="23">博士三年级</option>
+                      <option value="24">博士四年级</option>
+                      <option value="25">博士五年级</option>
+                  </select>
+            </div>
+          </div>
+      </div>
+
+      <div class="info-enter">
+        <div class="panel-list">
+          <a class="panel-radius login-btn" ng-click="update_info()">进入犀牛</a>
         </div>
       </div>
-  </div>
-
-  <div class="info-enter">
-    <div class="panel-list">
-      <a class="panel-radius login-btn" ng-click="update_info()">进入犀牛</a>
     </div>
-  </div>
+</div>
 </div>
