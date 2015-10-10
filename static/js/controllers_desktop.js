@@ -3069,6 +3069,10 @@ angular.module('chuangplus.controllers', []).
             pageCount: 1,
             currentPage: 1
         };
+        $scope.filed_choose = "行业领域";
+        $scope.type_choose = "职位类型";
+        $scope.salary_choose = "月薪下限";
+
         $scope.field_change = false;
         $scope.choose = function(field){
             if($scope.param.field == field){
@@ -3155,6 +3159,9 @@ angular.module('chuangplus.controllers', []).
                 if(data.type != undefined && data.type != null){
                     param += "&types=" + data.type;
                 }
+                if(data.salary != undefined && data.salary != ""){
+                    param += "&salary_min=" + data.salary;
+                }
             }
             $http.get(urls.api+"/position/search"+param).
                 success(function(data){
@@ -3189,6 +3196,10 @@ angular.module('chuangplus.controllers', []).
             else{
                 $scope.field_change = true;
                 $scope.param.field = field;
+                if(field != null)
+                    $scope.filed_choose = $scope.field_type[field];
+                else
+                    $scope.filed_choose = "行业领域";
             }
             $scope.get_positions($scope.param);
         };
@@ -3199,6 +3210,24 @@ angular.module('chuangplus.controllers', []).
             else{
                 $scope.type_change = true;
                 $scope.param.type = type;
+                if(type!=null)
+                    $scope.type_choose = $scope.position_type[type];
+                else
+                    $scope.type_choose = "职位类型";
+            }
+            $scope.get_positions($scope.param);
+        };
+        $scope.choose_salary = function(salary){
+            if($scope.param.salary == salary){
+                $scope.salary_change = false;
+            }
+            else{
+                $scope.salary_change = true;
+                $scope.param.salary = salary;
+                if(salary!='')
+                    $scope.salary_choose = salary+"K";
+                else
+                    $scope.salary_choose = "月薪下限";
             }
             $scope.get_positions($scope.param);
         };
