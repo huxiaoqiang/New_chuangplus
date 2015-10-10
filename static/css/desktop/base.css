@@ -3454,7 +3454,7 @@ form.financing_add input {
   height: 70px;
   margin-bottom: 15px;
   width: 100%;
-  border: 1px solid #b2b2b2;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
 }
 #container #homepage .company-block .company-item {
   float: left;
@@ -3477,7 +3477,7 @@ form.financing_add input {
   height: 70px;
   margin-bottom: 15px;
   width: 100%;
-  border: 1px solid #b2b2b2;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
 }
 #container #homepage .intern-block .intern-item {
   float: left;
