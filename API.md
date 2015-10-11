@@ -462,6 +462,26 @@ post userinfo信息，返回错误码和post的用户信息json对象
   }
 ```
 
+###/api/account/company/count 
+获取公司数量（method:get）
+返回参数
+```
+   {
+	'companyNumber' : 公司数量
+	error
+   }
+```
+
+
+###api/account/position/count
+获取职位数量（method:get）
+返回参数
+```
+   {
+	'positionNumber' : 公司数量
+	error
+   }
+
 ###/api/account/company/(?P<company_id>.*?)/check
 参数为company_id，检查公司信息是否填写完全,返回如下：
 ```javascript
