@@ -56,6 +56,7 @@ urlpatterns = [
     url(r'^admin/company/list', views.get_company_list_admin, name='get_company_list_admin'),
     url(r'^admin/company/(?P<company_id>.*?)/detail_with_financing', views.get_company_with_financing, name='get_company_with_financing'),
     url(r'^admin/image/list', views.get_image_list, name='get_image_list'),
+    url(r'^(?P<query>.*?)/search_count$', views.search_count, name='search_count'),
 ]
 
 #urlpatterns = format_suffix_patterns(urlpatterns)

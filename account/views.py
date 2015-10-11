@@ -1621,3 +1621,38 @@ def get_image_list(request):
     else:
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+
+def search_count(request,query):
+    re = dict()
+    if request.method == "GET":
+        if query != '':
+            try:
+                companies = Companyinfo.objects(Q(abbreviation__contains = query)|Q(ICregist_name__contains = query))
+            except (AssertionError, ValueError, UnicodeDecodeError):
+                re['error'] = error(231,"Invaild search query!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            except (DatabaseError):
+                re['error'] = error(251,"Database error: Failed to search!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            except:
+                re['error'] = error(299,'Unknown Error!')
+                return HttpResponse(json.dumps(re),content_type = 'application/json')
+
+            try:
+                positions = Position.objects(name__contains = query)
+            except (AssertionError, ValueError, UnicodeDecodeError):
+                re['error'] = error(231,"Invaild search name!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            except (DatabaseError):
+                re['error'] = error(251,"Database error: Failed to search!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            except:
+                re['error'] = error(299,'Unknown Error!')
+                return HttpResponse(json.dumps(re),content_type = 'application/json')
+        re['company_count'] = len(companies)
+        re['position_count'] = len(positions)
+        re['error'] = error(1,"succeed!")
+    else:
+        re['error'] = error(3,"Error, need GET")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
