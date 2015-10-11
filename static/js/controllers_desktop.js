@@ -144,13 +144,15 @@ angular.module('chuangplus.controllers', []).
             }
         };
         $scope.choose_header();
+        $scope.search = function(){
+            window.location.href="/search?query="+search_text+"&type=0&page=1";
+        };
     }]).
     controller('DT_NoHeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_NoHeaderCtrl');
         $scope.homepage_active = function(){
             window.location.href = '/';
         };
-
     }]).
     controller('DT_LoginCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_LoginCtrl');
@@ -180,7 +182,46 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.refresh();
     }]).
-    controller('DT_RegisterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
+    controller('DT_SearchCtrl',['$scope', '$http', 'CsrfService', 'urls','$routeParams','ErrorService',
+        function($scope, $http, $csrf, urls,$routeParams,$errMsg){
+            $scope.param = $routeParams;
+            $scope.get_count = function(){
+                $http.get(urls.api+"/account/"+$scope.param.query+"/search_count").
+                  success(function(data){
+                    if(data.error.code=1){
+                        $scope.company_count = data.company_count;
+                        $scope.position_count = data.position_count;
+                    }
+                    else
+                        console.log(data.error.message);
+                  });
+            };
+            $scope.get_count();
+
+            $scope.search_company = function(){
+                var param = "text=" + $scope.param.query + "page="+$scope.param.page;
+                $http.get(urls.api+"/account/company/list"+param).
+                  success(function(data){
+                    if(data.error.code == 1)
+                        $scope.company_list = data.data;
+                    else
+                        console.log(data.error.message);
+                  });
+            };
+            $scope.search_position = function(){
+                var param = "name=" + $scope.param.query + "page="+$scope.param.page;
+                $http.get(urls.api+"/position/search"+param).
+                  success(function(data){
+                    if(data.error.code==1)
+                        $scope.position_list = data.positions;
+                    else
+                        console.log(data.error.message);
+                  });
+            };
+            $scope.search_company();
+    }]).
+    controller('DT_RegisterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService',
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_RegisterCtrl');
         $scope.show_footer = 'false';
         $scope.show_header = 'false';
