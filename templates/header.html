@@ -59,10 +59,10 @@
             {% endif %}
             {% if not user.is_authenticated %}
             <ul class="header-item">
-                   <li class="item log_register">
-                       <img src="/static/image/icon/login-01.png">
-                       <a ng-click="login()">登录</a>·<a ng-click="register()">注册</a>
-                   </li>
+               <li class="item log_register">
+                   <img src="/static/image/icon/login-01.png">
+                   <a ng-click="login()">登录</a>·<a ng-click="register()">注册</a>
+               </li>
 
                <li class="item" on-mouseover="scan_mouseover()" on-mouseout="scan=false">
                    <img src="/static/image/icon/scan-01.png">
@@ -77,8 +77,10 @@
                 <img src="/static/image/logo/erweima-01.png">
             </div>
             <div class="search_input"  on-mouseover="search_mouseover()" on-mouseout="search_mouseout()" ng-show="search">
-                <input type="text" class="form-control" placeholder="搜索公司或职位">
-                <button class="search-btn"><i class="fa fa-search"></i></button>
+                <form name="search_form" ng-submit="search()">
+                    <input type="text" class="form-control" placeholder="搜索公司或职位" ng-model="search_text">
+                    <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
+                </form>
             </div>
             {% endif %}
 
