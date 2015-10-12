@@ -73,7 +73,7 @@ info_complete      |BooleanField|默认：0      |信息是否完整
 positions          |ListField(ReferenceField) |发布的所有职位
 financings         |ListField(ReferenceField) |融资信息
 members            |ListField(ReferenceField) |公司成员信息
-
+index              |IntField    |             |排序序号
 FIELD = ('social','e-commerce','education','health_medical','culture_creativity','living_consumption','hardware','O2O','others')<br/>
 STAGE=('none','seed','angel','A','B','C','D_plus')
 

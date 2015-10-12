@@ -1358,14 +1358,12 @@ def get_company_list(request):
                     re['error'] = error(299,'Unknown Error!')
                     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
-        orderValue = "id"
+        orderValue = "index"
         companies.order_by(orderValue)
         shang = companies.count() / POSITIONS_PER_PAGE
         yushu = 1 if companies.count() % POSITIONS_PER_PAGE else 0
         page_number =  shang + yushu
         companies = companies[(page - 1) * POSITIONS_PER_PAGE: page * POSITIONS_PER_PAGE]
-
-
         companies_re = json.loads(companies.to_json())
         for cpn in companies_re:
             position_type = []
@@ -1798,27 +1796,24 @@ def run_one_times(request):
         qs = Companyinfo.objects.all()
         n = Companyinfo.objects.filter().count()
         item = []
-        for i in range(0,n):
+        for i in range(0,n+1):
             item.append(i)
         random.shuffle(item)
         num = 0
         for i in qs:
-            sort_com = Sortcompany(company = i)
-            l = Position.objects.filter(company = i).count()
-            sort_com.positionNumber = l
-            sort_com.index = item[num]
-            num = num +1
-            sort_com.save()
+            i.index = item[num]
+            i.save()
+            num = num + 1
     else:
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re),content_type="application/json")
 def look_companysort(request):
     re = dict()
     if request.method == "GET":
-        qs = Sortcompany.objects.all()
+        qs = Companyinfo.objects.all()
         data = {}
         for i in qs:
-            data[i.company.abbreviation] = i.index
+            data[i.abbreviation] = i.index
         re['data'] = data
     else:
         re['error'] = error(1,"adfaf")
