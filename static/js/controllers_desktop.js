@@ -144,13 +144,15 @@ angular.module('chuangplus.controllers', []).
             }
         };
         $scope.choose_header();
+        $scope.search = function(){
+            window.location.href="/search?query="+search_text+"&type=0&page=1";
+        };
     }]).
     controller('DT_NoHeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_NoHeaderCtrl');
         $scope.homepage_active = function(){
             window.location.href = '/';
         };
-
     }]).
     controller('DT_LoginCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_LoginCtrl');
@@ -180,7 +182,46 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.refresh();
     }]).
-    controller('DT_RegisterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
+    controller('DT_SearchCtrl',['$scope', '$http', 'CsrfService', 'urls','$routeParams','ErrorService',
+        function($scope, $http, $csrf, urls,$routeParams,$errMsg){
+            $scope.param = $routeParams;
+            $scope.get_count = function(){
+                $http.get(urls.api+"/account/"+$scope.param.query+"/search_count").
+                  success(function(data){
+                    if(data.error.code=1){
+                        $scope.company_count = data.company_count;
+                        $scope.position_count = data.position_count;
+                    }
+                    else
+                        console.log(data.error.message);
+                  });
+            };
+            $scope.get_count();
+
+            $scope.search_company = function(){
+                var param = "text=" + $scope.param.query + "page="+$scope.param.page;
+                $http.get(urls.api+"/account/company/list"+param).
+                  success(function(data){
+                    if(data.error.code == 1)
+                        $scope.company_list = data.data;
+                    else
+                        console.log(data.error.message);
+                  });
+            };
+            $scope.search_position = function(){
+                var param = "name=" + $scope.param.query + "page="+$scope.param.page;
+                $http.get(urls.api+"/position/search"+param).
+                  success(function(data){
+                    if(data.error.code==1)
+                        $scope.position_list = data.positions;
+                    else
+                        console.log(data.error.message);
+                  });
+            };
+            $scope.search_company();
+    }]).
+    controller('DT_RegisterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService',
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_RegisterCtrl');
         $scope.show_footer = 'false';
         $scope.show_header = 'false';
@@ -1731,7 +1772,9 @@ angular.module('chuangplus.controllers', []).
         $scope.scale_change = false;
         $scope.field_change = false;
         $scope.auth_organization_change = false;
-
+        $scope.filed_choose = "行业领域";
+        $scope.scale_choose = "规模|融资论述";
+        $scope.auth_choose = "投资机构认证";
         $scope.choose = function(field){
             if($scope.param.field == field){
                 $scope.field_change = false;
@@ -1739,6 +1782,10 @@ angular.module('chuangplus.controllers', []).
             else{
                 $scope.field_change = true;
                 $scope.param.field = field;
+                if(field != null)
+                    $scope.filed_choose = $scope.field_type[field];
+                else
+                    $scope.filed_choose = "行业领域";
             }
             $scope.get_company_list($scope.param);
         };
@@ -1749,6 +1796,10 @@ angular.module('chuangplus.controllers', []).
             else{
                 $scope.param.scale = scale;
                 $scope.scale_change = true;
+                if(scale != null)
+                    $scope.scale_choose = $scope.scale[scale];
+                else
+                    $scope.scale_choose = "规模|融资论述";
             }
             $scope.get_company_list($scope.param);
         };
@@ -1759,6 +1810,10 @@ angular.module('chuangplus.controllers', []).
             else{
                 $scope.param.auth_organization = auth_organization;
                 $scope.auth_organization_change = true;
+                if(auth_organization != null)
+                    $scope.auth_choose = auth_organization;
+                else
+                    $scope.auth_choose = "投资机构认证";
             }
             $scope.get_company_list($scope.param);
         };
@@ -3069,6 +3124,10 @@ angular.module('chuangplus.controllers', []).
             pageCount: 1,
             currentPage: 1
         };
+        $scope.filed_choose = "行业领域";
+        $scope.type_choose = "职位类型";
+        $scope.salary_choose = "月薪下限";
+        $scope.workdays_choose = "每周工作时间";
         $scope.field_change = false;
         $scope.choose = function(field){
             if($scope.param.field == field){
@@ -3155,6 +3214,12 @@ angular.module('chuangplus.controllers', []).
                 if(data.type != undefined && data.type != null){
                     param += "&types=" + data.type;
                 }
+                if(data.salary != undefined && data.salary != ""){
+                    param += "&salary_min=" + data.salary;
+                }
+                if(data.workdays != undefined && data.workdays != null){
+                    param += "&workdays=" + data.workdays;
+                }
             }
             $http.get(urls.api+"/position/search"+param).
                 success(function(data){
@@ -3189,6 +3254,10 @@ angular.module('chuangplus.controllers', []).
             else{
                 $scope.field_change = true;
                 $scope.param.field = field;
+                if(field != null)
+                    $scope.filed_choose = $scope.field_type[field];
+                else
+                    $scope.filed_choose = "行业领域";
             }
             $scope.get_positions($scope.param);
         };
@@ -3199,6 +3268,42 @@ angular.module('chuangplus.controllers', []).
             else{
                 $scope.type_change = true;
                 $scope.param.type = type;
+                if(type!=null)
+                    $scope.type_choose = $scope.position_type[type];
+                else
+                    $scope.type_choose = "职位类型";
+            }
+            $scope.get_positions($scope.param);
+        };
+        $scope.choose_salary = function(salary){
+            if($scope.param.salary == salary){
+                $scope.salary_change = false;
+            }
+            else{
+                $scope.salary_change = true;
+                $scope.param.salary = salary;
+                if(salary!='')
+                    $scope.salary_choose = salary+"K";
+                else
+                    $scope.salary_choose = "月薪下限";
+            }
+            $scope.get_positions($scope.param);
+        };
+        $scope.choose_workdays = function(workdays){
+            if($scope.param.workdays == workdays){
+                $scope.workdays_change = false;
+            }
+            else{
+                $scope.workdays_change = true;
+                $scope.param.workdays = workdays;
+                if(workdays!=null){
+                    if(workdays=='0')
+                        $scope.workdays_choose = "灵活时间";
+                    else
+                        $scope.workdays_choose = "每周"+workdays+"天";
+                }
+                else
+                    $scope.workdays_choose = "每周工作时间";
             }
             $scope.get_positions($scope.param);
         };

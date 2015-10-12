@@ -332,7 +332,7 @@ post userinfo信息，返回错误码和post的用户信息json对象
 获取用户收藏的职位列表(method : get)
 在用户已经登录的状态下，请求处理成功时，返回一个list,list中每一个对象是一个职位
 
-###/api/account/userinfo/position/favor/submitall  （可能存在bug：简历更新）
+###/api/account/userinfo/position/favor/submitall
 向所有还没有投递简历的职位投递简历(method:post)
 返回errorcode
 
@@ -461,6 +461,26 @@ post userinfo信息，返回错误码和post的用户信息json对象
   "auth_organization" : "" or "auth_organization"  //空表示没有投资机构认证，有表示投资机构认证
   }
 ```
+
+###/api/account/company/count 
+获取公司数量（method:get）
+返回参数
+```
+   {
+	'companyNumber' : 公司数量
+	error
+   }
+```
+
+
+###api/account/position/count
+获取职位数量（method:get）
+返回参数
+```
+   {
+	'positionNumber' : 公司数量
+	error
+   }
 
 ###/api/account/company/(?P<company_id>.*?)/check
 参数为company_id，检查公司信息是否填写完全,返回如下：

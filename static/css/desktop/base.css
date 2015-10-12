@@ -735,7 +735,25 @@ body > #wrap {
   padding-bottom: 10px;
   padding-top: 10px;
   background-color: rgba(191, 191, 191, 0.1);
-  height: 50px;
+  height: 100px;
+}
+#container #pisition-list .col-sm-4 .search-tab .search-item .work_days_max table tbody tr td {
+  width: 80px;
+}
+#container #pisition-list .col-sm-4 .search-tab .search-item .work_days_max table tbody tr td a {
+  text-decoration: none;
+  color: #000000;
+}
+#container #pisition-list .col-sm-4 .search-tab .search-item .work_days_max table tbody tr td a.active {
+  background-color: #8f4e96;
+  color: white;
+  border-radius: 4px;
+}
+#container #pisition-list .col-sm-4 .search-tab .search-item .work_days_max table tbody tr td a.active:hover {
+  color: white;
+}
+#container #pisition-list .col-sm-4 .search-tab .search-item .work_days_max table tbody tr td a:hover {
+  color: #8f4e96;
 }
 #container #pisition-list .col-md-8 {
   width: 750px;
@@ -750,6 +768,16 @@ body > #wrap {
   margin: 0 auto;
   background-color: #ffffff;
   text-align: center;
+}
+#container #pisition-list .col-md-8 .no-position-found {
+  background-color: white;
+  height: 600px;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 18px;
+  color: #bfbfbf;
+  padding-top: 240px;
 }
 #container #pisition-list .col-md-8 a {
   text-decoration: none;
