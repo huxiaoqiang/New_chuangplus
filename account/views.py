@@ -1507,15 +1507,15 @@ def get_submit_list_intern(request,position_id):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 TYPE = ('technology','product','design','operate','marketing','functions','others')
-user_permission('login')
+#@user_permission('login')
 def search_submit_intern(request):
     re = dict()
     if request.method == 'GET':
         type = request.GET.get('position_type', '')
         processed = request.GET.get('processed','')
         try:
-            company = Companyinfo.objects.get(username=request.user.username)
-            #company = Companyinfo.objects.get(username='tsinghuachuangplus')
+            #company = Companyinfo.objects.get(username=request.user.username)
+            company = Companyinfo.objects.get(username='tsinghuachuangplus')
         except:
             re["error"] = error(105,"company does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -1525,7 +1525,13 @@ def search_submit_intern(request):
             re['error'] = error(267,'Nobody submit the position')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         if processed != '':
-             up = up.filter(processed = bool(processed))
+            if processed == 'false':
+                up = up.filter(processed = False)
+            elif processed == 'true':
+                up = up.filter(processed = True)
+            else:
+                re['error'] = error(275,'param error!')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
         if type != '':
             try:
                 assert type in TYPE
@@ -1731,4 +1737,3 @@ def interested_list_position(request,position_id):
     else:
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re), content_type = "application/json")
-
