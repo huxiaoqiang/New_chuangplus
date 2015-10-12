@@ -3199,7 +3199,7 @@ form.financing_add input {
 }
 #container #company-detail .col-md-8 .detail .left-block {
   float: left;
-  width: 610px;
+  width: 698px;
 }
 #container #company-detail .col-md-8 .detail .left-block .header {
   margin-left: 10px;
@@ -3238,7 +3238,6 @@ form.financing_add input {
 }
 #container #company-detail .col-md-8 .detail .left-block .company {
   margin-top: 24px;
-  margin-left: 10px;
 }
 #container #company-detail .col-md-8 .detail .left-block .company p {
   cursor: pointer;
@@ -3422,7 +3421,7 @@ form.financing_add input {
 #container #company-detail .col-md-4 {
   float: right;
   width: 200px;
-  padding: 50px 0 0 0;
+  padding: 36px 0 0 0;
 }
 #container #company-detail .col-md-4 .company-dscrpt {
   width: 200px;

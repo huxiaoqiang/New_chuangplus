@@ -1716,9 +1716,10 @@ def hr_set_interested_user(request,position_id,username):
         re['error'] = error(3,'Error, need GET')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
-def interested_list_position(request,position_id):
+def interested_list_position(request):
     re = dict()
-    if request.method == "GET":
+    if "position_id" in request.GET.keys():
+        position_id = request.GET["position_id"]
         try:
             position = Position.objects.get(id = position_id)
         except (AssertionError, ValueError, UnicodeDecodeError):
@@ -1746,9 +1747,10 @@ def interested_list_position(request,position_id):
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re), content_type = "application/json")
 
-def interested_list_company(request,company_id):
+def interested_list_company(request):
     re = dict()
-    if request.method == "GET":
+    if "company_id" in request.GET.keys():
+        company_id = request.GET["company_id"]
         try:
             company = Companyinfo.objects.get(id = company_id)
         except (AssertionError, ValueError, UnicodeDecodeError):
@@ -1789,4 +1791,12 @@ def interested_list_company(request,company_id):
     else:
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re),content_type="application/json")
-
+'''
+def run_one_times(request):
+    re = dict()
+    if request.method == "GET":
+    
+    else:
+        re['error'] = error(3,"Error, need GET")
+    return d
+'''
