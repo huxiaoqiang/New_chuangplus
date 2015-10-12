@@ -907,6 +907,7 @@ angular.module('chuangplus.controllers', []).
             $scope.param.position_type = $scope.search_params.position_type;
             $scope.get_submit_list();
         };
+
         $scope.view_interested = function(){
             //TODO: back-end url should be fixed
             $scope.param = {
@@ -916,6 +917,7 @@ angular.module('chuangplus.controllers', []).
             $scope.param.position_type = $scope.search_params.position_type;
             $scope.get_submit_list();
         };
+
         $scope.process = function(index){
             if($scope.submit_list[index].process == true){
                 return;
