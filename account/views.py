@@ -1502,7 +1502,7 @@ def get_submit_list_intern(request,position_id):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 TYPE = ('technology','product','design','operate','marketing','functions','others')
-user_permission('login')
+@user_permission('login')
 def search_submit_intern(request):
     re = dict()
     if request.method == 'GET':
@@ -1520,7 +1520,13 @@ def search_submit_intern(request):
             re['error'] = error(267,'Nobody submit the position')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         if processed != '':
-             up = up.filter(processed = bool(processed))
+            if processed == 'false':
+                up = up.filter(processed = False)
+            elif processed == 'true':
+                up = up.filter(processed = True)
+            else:
+                re['error'] = error(275,'param error!')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
         if type != '':
             try:
                 assert type in TYPE
@@ -1697,7 +1703,6 @@ def hr_set_interested_user(request,position_id,username):
     else:
         re['error'] = error(3,'Error, need GET')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
-    
 
 def interested_list_position(request,position_id):
     re = dict()
@@ -1728,7 +1733,7 @@ def interested_list_position(request,position_id):
     else:
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re), content_type = "application/json")
-    
+
 def interested_list_company(request,company_id):
     re = dict()
     if request.method == "GET":
