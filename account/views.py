@@ -324,7 +324,7 @@ def login(request):
             try:
                 user_login = User.objects.get(email = username)
             except DoesNotExist:
-                re['error'] = error(276,"email error!")
+                re['error'] = error(108,"username or password error!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             username = ""
             if user_login is not None:
