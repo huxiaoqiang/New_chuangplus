@@ -915,7 +915,7 @@ angular.module('chuangplus.controllers', []).
             $scope.search_params_position_type = '';
             $scope.get_submit_list();
         };
-        $scope.processe = function(index){
+        $scope.process = function(index){
             if($scope.submit_list[index].process == true){
                 return;
             }
@@ -934,7 +934,7 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.view_detail = function(index){
             $scope.intern_info = $scope.submit_list[index];
-            $scope.processe(index);
+            $scope.process(index);
             if($scope.chosed_index == -1){
                 $scope.chosed_index = index;
                 $scope.toggle_show();
