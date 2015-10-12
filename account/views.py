@@ -1772,4 +1772,4 @@ def interested_list_company(request,company_id):
     else:
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re),content_type="application/json")
-            
+
