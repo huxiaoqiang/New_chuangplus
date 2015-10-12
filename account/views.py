@@ -1502,15 +1502,15 @@ def get_submit_list_intern(request,position_id):
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 TYPE = ('technology','product','design','operate','marketing','functions','others')
-#@user_permission('login')
+@user_permission('login')
 def search_submit_intern(request):
     re = dict()
     if request.method == 'GET':
         type = request.GET.get('position_type', '')
         processed = request.GET.get('processed','')
         try:
-            #company = Companyinfo.objects.get(username=request.user.username)
-            company = Companyinfo.objects.get(username='tsinghuachuangplus')
+            company = Companyinfo.objects.get(username=request.user.username)
+            #company = Companyinfo.objects.get(username='tsinghuachuangplus')
         except:
             re["error"] = error(105,"company does not exist!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -1703,7 +1703,7 @@ def hr_set_interested_user(request,position_id,username):
     else:
         re['error'] = error(3,'Error, need GET')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
-    
+
 def interested_list_position(request,position_id):
     re = dict()
     if request.method == "GET":
