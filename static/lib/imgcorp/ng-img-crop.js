@@ -583,7 +583,11 @@ ngImgCrop.factory('cropCanvas', [function() {
 
       // draw part of original image
       if (size > 0) {
+        if(image.width < image.height)
           ctx.drawImage(image,  xRatio * (xLeft - ctx.canvas.width/2 + ctx.canvas.height/image.height * image.width/2), yTop*yRatio, size*xRatio, size*yRatio, xLeft, yTop, size, size);
+        else
+          ctx.drawImage(image,  xRatio * (xLeft), (yTop- ctx.canvas.height/2 + ctx.canvas.width/image.width * image.height/2)*yRatio, size*xRatio, size*yRatio, xLeft, yTop, size, size);
+        
       }
 
       ctx.beginPath();
@@ -1567,7 +1571,9 @@ ngImgCrop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', 
           ratio = image.height/ctx.canvas.height;
 
         if(image.width>image.height)
-            {}
+        {
+          temp_ctx.drawImage(image, (theArea.getX()-theArea.getSize()/2)*(image.width/ctx.canvas.width)+ (image.width-image.height)/2, (theArea.getY()-theArea.getSize()/2)*(image.width/ctx.canvas.width), theArea.getSize()*(image.width/ctx.canvas.width), theArea.getSize()*(image.width/ctx.canvas.width), 0, 0, resImgSize, resImgSize);
+        }
         else
         {
 //          alert(image.width-image.height);    
