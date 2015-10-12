@@ -688,12 +688,28 @@ post如下字段
 ```
 返回errorcode
 
-###/api/account/api/(?P<position_id>.*?)/(?P<username>.*?)/hr_set_interested
+###/api/account/(?P<position_id>.*?)/(?P<username>.*?)/hr_set_interested
 hr设置对某个简历投递者感兴趣（method:get）
 参数如下
 ```javascript
    {
     "position_id" :职位id
 	"username":  投递简历者的用户名
+   }
+```
+
+###/api/account/(?P<position_id>.*?)/hr_get_interested_by_position
+hr根据职位获取感兴趣的简历投递者(method：get)
+参数如下
+```javascript
+   {
+    "position_id":职位id
+   }
+```
+返回参数
+```
+   {
+	error:
+	data :数据库中userinfo的所有内容 
    }
 ```
