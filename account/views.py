@@ -1450,9 +1450,14 @@ def process_position(request,position_id):
 
 
 @user_permission('login')
-def process_single(request,position_id,username):
+def process_single(request):
     re = dict()
-    if request.method == 'GET':
+    if request.method == 'POST':
+        position_id = request.POST.get('position_id','')
+        username = request.POST.get('username','')
+        if position_id == '' or username == '':
+            re['error'] = error(274,'need post position_id or username')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
         try:
             position = Position.objects.get(id=position_id)
         except DoesNotExist:
@@ -1472,7 +1477,7 @@ def process_single(request,position_id,username):
         up.save()
         re['error'] = error(1,'succeed!')
     else:
-        re['error'] = error(3,'Error, need GET')
+        re['error'] = error(2,'Error, need POST')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission('login')
@@ -1697,6 +1702,7 @@ def hr_set_interested_user(request,position_id,username):
     else:
         re['error'] = error(3,'Error, need GET')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
+<<<<<<< HEAD
     
 
 def interested_list_position(request,position_id):
@@ -1727,3 +1733,5 @@ def interested_list_position(request,position_id):
     else:
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re), content_type = "application/json")
+=======
+>>>>>>> 9ca7537a58d3331045786ac3be0d47ce2bced81e
