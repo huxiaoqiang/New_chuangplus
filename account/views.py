@@ -13,7 +13,7 @@ from django.db.models import Q
 import urllib2,urllib2
 import json
 import traceback
-
+import random
 # Create your views here.
 from .models import *
 from position.models import *
@@ -1508,6 +1508,7 @@ def search_submit_intern(request):
     if request.method == 'GET':
         type = request.GET.get('position_type', '')
         processed = request.GET.get('processed','')
+        interested = request.GET.get('interested','')
         try:
             company = Companyinfo.objects.get(username=request.user.username)
             #company = Companyinfo.objects.get(username='tsinghuachuangplus')
@@ -1527,6 +1528,7 @@ def search_submit_intern(request):
             else:
                 re['error'] = error(275,'param error!')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
+
         if type != '':
             try:
                 assert type in TYPE
@@ -1540,6 +1542,15 @@ def search_submit_intern(request):
                 re['error'] = error(260,'Position does not exist')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             up = up.filter(position__in = positions)
+
+        if interested != '':
+            if interested == 'false':
+                up = up.filter(interested = False)
+            elif interested == 'true':
+                up = up.filter(interested = True)
+            else:
+                re['error'] = error(275,'param error!')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
 
         page = 1
         if "page" in request.GET.keys():
@@ -1569,6 +1580,7 @@ def search_submit_intern(request):
             userinfo['position_name'] = item.position.name
             userinfo['position_id'] = p['_id']['$oid']
             userinfo['process'] = item.processed
+            userinfo['interested'] = item.interested
             user_list.append(userinfo)
         re['error'] = error(1,'succeed ')
         re['data'] = user_list
@@ -1779,12 +1791,35 @@ def interested_list_company(request):
     else:
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re),content_type="application/json")
-'''
+
 def run_one_times(request):
     re = dict()
     if request.method == "GET":
-    
+        qs = Companyinfo.objects.all()
+        n = Companyinfo.objects.filter().count()
+        item = []
+        for i in range(0,n):
+            item.append(i)
+        random.shuffle(item)
+        num = 0
+        for i in qs:
+            sort_com = Sortcompany(company = i)
+            l = Position.objects.filter(company = i).count()
+            sort_com.positionNumber = l
+            sort_com.index = item[num]
+            num = num +1
+            sort_com.save()
     else:
         re['error'] = error(3,"Error, need GET")
-    return d
-'''
+    return HttpResponse(json.dumps(re),content_type="application/json")
+def look_companysort(request):
+    re = dict()
+    if request.method == "GET":
+        qs = Sortcompany.objects.all()
+        data = {}
+        for i in qs:
+            data[i.company.abbreviation] = i.index
+        re['data'] = data
+    else:
+        re['error'] = error(1,"adfaf")
+    return HttpResponse(json.dumps(re),content_type="application/json")

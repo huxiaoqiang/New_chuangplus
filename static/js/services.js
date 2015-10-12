@@ -90,6 +90,7 @@ angular.module('chuangplus.services', []).
             'code271':'邮箱验证码失效，请重新发送邮箱验证码',
             'code272':"登录错误",
             'code273':"您的info用户名已经被注册，请去普通登录页登录",
+            'code275':"参数错误",
             'code299':'未知错误'
         };
         return {

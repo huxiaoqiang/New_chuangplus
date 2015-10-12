@@ -589,8 +589,6 @@ def search_position(request):
     re["error"] = error(1,"Search succeed!")
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
-
-
 def get_position_with_company(request,position_id):
     re = dict()
     if request.method == "GET":
@@ -1067,10 +1065,10 @@ def open_position(request,position_id):
 def test(request):
     re = dict()
     if request.method == "GET":
-        pos = Position.objects.all()
-        data = {}
+        pos = UserPosition.objects.filter(interested =True)
+        data = []
         for i in pos:
-            data[i.name] = str(i.id)
+            data.append(str(i.position.id))
         re['data'] = data
     else:
         re['error'] = error(3,"Error, need Get")
