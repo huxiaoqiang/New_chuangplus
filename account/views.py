@@ -1368,7 +1368,7 @@ def get_company_list(request):
         companies_re = json.loads(companies.to_json())
         for cpn in companies_re:
             position_type = []
-            if len(cpn['positions']) != 0:
+            if 'positions' in cpn and  len(cpn['positions']) != 0:
                 for p in cpn['positions']:
                     try:
                         position = Position.objects.get(id=p['$oid'])
@@ -1377,7 +1377,11 @@ def get_company_list(request):
                         return HttpResponse(json.dumps(re), content_type = 'application/json')
                     if position.position_type not in position_type:
                         position_type.append(position.position_type)
+            else:
+                cpn['positions'] = []
             cpn['position_type'] = position_type
+
+
         re['error'] = error(1, "get company list successfully")
         re['data'] = companies_re
         re['page_number'] = page_number
