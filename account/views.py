@@ -1686,6 +1686,7 @@ def hr_set_interested_user(request,position_id,username):
             position = Position.objects.get(id = position_id)
             user = User.objects.get(username = username)
             up = UserPosition.objects.get(user = user,position = position)
+
             up.interested = True
             up.save()
         except (AssertionError, ValueError, UnicodeDecodeError):
@@ -1701,3 +1702,36 @@ def hr_set_interested_user(request,position_id,username):
     else:
         re['error'] = error(3,'Error, need GET')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
+<<<<<<< HEAD
+    
+
+def interested_list_position(request,position_id):
+    re = dict()
+    if request.method == "GET":
+        try:
+            position = Position.objects.get(id = position_id)
+            up = UserPosition.objects.filter(position = position,interested = True)
+        except (AssertionError, ValueError, UnicodeDecodeError):
+            re['error'] = error(231,"Invaild search name!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        except (DatabaseError):
+            re['error'] = error(251,"Database error: Failed to search!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        except:
+            re['error'] = error(299,'Unknown Error!')
+            return HttpResponse(json.dumps(re),content_type = 'application/json')
+        data = []
+        for i in up:
+            try:
+                userinfo = Userinfo.objects.get(user = i.user)
+                data.append(json.loads(userinfo.to_json()))
+            except DoesNotExist:
+                re['error']  = error(106,"Userinfo does not exist!")
+                return HttpResponse(json.dumps(re),content_type = "application/json")
+        re['data'] = data
+        re['error'] = error(1,"succeed")
+    else:
+        re['error'] = error(3,"Error, need GET")
+    return HttpResponse(json.dumps(re), content_type = "application/json")
+=======
+>>>>>>> 9ca7537a58d3331045786ac3be0d47ce2bced81e
