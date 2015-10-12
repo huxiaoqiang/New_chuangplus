@@ -39,6 +39,7 @@ class UserPosition(Document):
     submit_date = DateTimeField()
     resume_submitted = FileField()
     processed = BooleanField(default=False)
+    interested = BooleanField(default=False)
 
     def __str__(self):
         return self.user.username + '->' + self.position.name

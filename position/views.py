@@ -381,8 +381,8 @@ def search_position(request):
                 fields = fields.split(',')
                 for field in fields:
                     assert field in FIELD
-                cmp = Companyinfo.objects(field__in = fields).all()
-                qs = Position.objects(company__in = cmp).all()  
+                cmp = Companyinfo.objects(field__in = fields)
+                qs = qs.filter(company__in = cmp)
             except (AssertionError,ValueError,UnicodeDecodeError):
                 re['error'] = error(238,"Invaild search type!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -441,7 +441,7 @@ def search_position(request):
             except:
                 re['error'] = error(299,'Unknown Error!')
                 return HttpResponse(json.dumps(re),content_type = 'application/json')
-    
+
     if "maxdays" in request.GET.keys():
         if len(request.GET["maxdays"]) > 0:
             try:

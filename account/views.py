@@ -212,22 +212,6 @@ def login_by_tsinghua(request):
                 userinfo.update_time = datetime_now()
                 userinfo.save(force_insert=True)
                 re['completive'] = '0'
-            #student_id = str(map['info']['id'])
-            #student_username = map['info']['username']
-            #has_created = 0
-            #try:
-            #    qs = User.objects.get(by_tsinghua = True,student_id = student_id)
-            #    has_created = 1
-            #except:
-            #    qs = User(by_tsinghua = True,student_id = student_id,username = student_username)
-            #if has_created == 0:
-            #    try:
-            #        qs.save()
-            #    except DatabaseError:
-            #        re['error'] = error(250,'Database Error:failed to save the info of tsinghua student')
-            #    re['has_created'] = '0'
-            #else:
-            #    re['has_created'] = '1'
             user = auth.authenticate(username=username, password=password)
             if user is not None and user.is_active:
                 try:
@@ -336,7 +320,40 @@ def login(request):
             resp.set_cookie('role',request.session['role'])
             return resp
         else:
-            re['error'] = error(108, 'username or password error!')
+            user_login = User.objects.get(email = username)
+            username = ""
+            if user_login is not None:
+                username = user_login.username
+            else:
+                re['error'] = error(108, 'username or password error!')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            user = auth.authenticate(username=username,password=password)
+            if user is not None and user.is_active:
+                re['username'] = user.username
+                auth.login(request,user)
+                user = User.objects.get(username = username)
+                if not user.is_staff:
+                    userInfo = Userinfo.objects.get(username=username)
+                    completive = 1
+                    if userInfo.university is None :
+                        completive = 0
+                    if userInfo.major is None:
+                        completive = 0
+                    if userInfo.grade is None:
+                        completive = 0
+                    if completive == 0:
+                        re['completive'] = '0'
+                    else:
+                        re['completive'] = '1'
+                request.session['role'] = 1 if user.is_staff else 0
+                re['error'] = error(1, 'login succeed!')
+                re['role'] = request.session['role']
+                resp = HttpResponse(json.dumps(re), content_type = 'application/json')
+                resp.set_cookie('username', user.username)
+                resp.set_cookie('role',request.session['role'])
+                return resp
+            else:
+                re['error'] = error(108, 'username or password error!')
     else:
             re['error'] = error(2, 'error, need post!')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -915,9 +932,11 @@ def auth_company(request,company_id):
             
             try:
                 companyinfo.save()
+                re['error'] = error(1,'Auth succeed!')
             except DatabaseError:
                 re['error'] = error(250,'Database error: Failed to get companyinfo')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
+
         else:
             re['error'] = error(110, 'Permission denied, no permission to change ')
     else:
@@ -1273,6 +1292,26 @@ def get_company_list_admin(request):
             companies_re[i]["financing"] = financings
         re['data'] = companies_re
         re['page_number'] = page_number
+        re['error'] = error(1,"succeed")
+    else:
+        re['error'] = error(3,'Error, need GET')
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+def get_company_with_financing(request,company_id):
+    re = dict()
+    if request.method == 'GET':
+        try:
+            company = Companyinfo.objects.get(id=company_id)
+        except DoesNotExist:
+            re['error'] = error(105,"companyinfo dose not exist!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        company_re = json.loads(company.to_json())
+        financings = company.financings
+        for j in range(0,len(financings)):
+            financings[j] = json.loads(financings[j].to_json())
+        company_re["financing"] = financings
+        re["data"] = company_re
+        re['error'] = error(1,"succeed")
     else:
         re['error'] = error(3,'Error, need GET')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -1281,7 +1320,7 @@ def get_company_list(request):
     re = dict()
     if request.method == 'GET':
         text = request.GET.get('text', '')
-        field = request.GET.get('field', '')
+        fields = request.GET.get('fields', '')
         auth_organization = request.GET.get('auth_organization', '')
         scale = request.GET.get('scale', '')
         status = request.GET.get('status', '')
@@ -1292,9 +1331,9 @@ def get_company_list(request):
             companies = companies.filter(
                 Q(abbreviation__contains = text) |
                 Q(ICregist_name__contains = text))
-        if field != '':
-            field = field.split(',')
-            companies = companies.filter(field__in = field)
+        if fields != '':
+            fields = fields.split(',')
+            companies = companies.filter(field__in = fields)
         if auth_organization != '':
             auth_organization = auth_organization.split(',')
             companies = companies.filter(auth_organization__in = auth_organization)
@@ -1407,6 +1446,7 @@ def process_position(request,position_id):
     else:
         re['error'] = error(2,'Error, need POST')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
+
 
 @user_permission('login')
 def process_single(request,position_id,username):
@@ -1565,3 +1605,68 @@ def get_image_list(request):
     else:
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+def search_count(request,query):
+    re = dict()
+    if request.method == "GET":
+        if query != '':
+            try:
+                companies = Companyinfo.objects(Q(abbreviation__contains = query)|Q(ICregist_name__contains = query))
+            except (AssertionError, ValueError, UnicodeDecodeError):
+                re['error'] = error(231,"Invaild search query!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            except (DatabaseError):
+                re['error'] = error(251,"Database error: Failed to search!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            except:
+                re['error'] = error(299,'Unknown Error!')
+                return HttpResponse(json.dumps(re),content_type = 'application/json')
+
+            try:
+                positions = Position.objects(name__contains = query)
+            except (AssertionError, ValueError, UnicodeDecodeError):
+                re['error'] = error(231,"Invaild search name!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            except (DatabaseError):
+                re['error'] = error(251,"Database error: Failed to search!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            except:
+                re['error'] = error(299,'Unknown Error!')
+                return HttpResponse(json.dumps(re),content_type = 'application/json')
+        re['company_count'] = len(companies)
+        re['position_count'] = len(positions)
+        re['error'] = error(1,"succeed!")
+    else:
+        re['error'] = error(3,"Error, need GET")
+    return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+def get_position_num(request):
+    re = dict()
+    if request.method =="GET":
+        try:
+            count = Position.objects.filter().count()
+        except:
+            re['error'] = error(251,"Database error: Failed to search")
+            return HttpResponse(json.dumps(re),content_type = 'application/json')
+        re['error'] = error(1,"succeed")
+        re['positionNumber'] = count
+
+        #print count
+    else:
+        re['error'] = error(3,'Error,need GET')
+    return HttpResponse(json.dumps(re),content_type = 'application/json')
+    
+def get_company_num(request):
+    re = dict()
+    if request.method == "GET":
+        try:
+            count = Companyinfo.objects.filter().count()
+        except:
+            re['error'] = error(251,"Database error: Failed to search")
+            return HttpResponse(json.dumps(re),content_type = 'application/json')
+        re['error'] = error(1,"succeed")
+        re['companyNumber'] = count
+        #print count
+    else:
+        re['error'] = error(3,'Error,need GET')
+    return HttpResponse(json.dumps(re),content_type = 'application/json')

@@ -84,6 +84,52 @@
               }
             }
           }
+          .salary_min{
+            display: none;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            background-color: rgba(191, 191, 191, 0.1);
+            height: 50px;
+            input{
+              width: 60%;
+              height: 30px;
+              float: left;
+              padding-left: 10px;
+              margin-left: 10px;
+              margin-bottom: 10px;
+            }
+          }
+          .work_days_max{
+            display: none;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            background-color: rgba(191, 191, 191, 0.1);
+            height: 100px;
+            table{
+              tbody{
+                tr{
+                  td{
+                   width: 80px;
+                   a{
+                     text-decoration:none;
+                     color: #000000;
+                   }
+                   a.active{
+                    background-color: #8f4e96;
+                    color: white;
+                    border-radius: 4px;
+                   }
+                   a.active:hover{
+                    color: white;
+                   }
+                   a:hover{
+                     color: #8f4e96;
+                   }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -99,6 +145,16 @@
         margin: 0 auto;
         background-color: #ffffff;
         text-align: center;
+      }
+      .no-position-found{
+        background-color: white;
+        height: 600px;
+        box-shadow: 2px 2px 7px 2px #dfdfdf;
+        border-radius: 6px;
+        text-align: center;
+        font-size: 18px;
+        color: #bfbfbf;
+        padding-top: 240px;
       }
       a{
         text-decoration: none;

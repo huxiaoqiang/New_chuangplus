@@ -3,6 +3,7 @@
 @lit-purple :   rgba(143, 78, 150, 0.08);
 @dark-gray  :   #707070;
 @mid-gray   :   #b5b5b5;
+@white-gray :   #e1e0e2;
 @lit-gray   :   #dcdcdc;
 @lit-purple :   #d4abd3;
 
@@ -374,7 +375,7 @@ a:hover
 {    
     height: 28px;
     position: absolute;
-    right: 10px;
+    right: 6px;
     bottom: 3px;
 }
 #captcha-pass
@@ -420,7 +421,7 @@ a:hover
 
 .info-input-content
 {
-    margin-top: @info-input;
+    margin-top: 40px;
 }
 
 .info-input
@@ -447,19 +448,39 @@ a:hover
     background: url('/static/image/icon/3d-purple.png') ;
     background-repeat: repeat-x;
 }
-.header-bar .header
+@media(max-width : 360px)
 {
-    width: 50%;
-    font-weight: 500;
-    text-align: center;
-    height: @cl-header-hgt;
-    line-height:@cl-header-hgt;
-    color: white;
-    font-size: 20px;
-    overflow: hidden;
-    margin: auto;  
-    position: relative;  
-    left:0; right: 0; 
+    .header-bar .header
+    {
+        width: 50%;
+        font-weight: 500;
+        text-align: center;
+        height: @cl-header-hgt;
+        color: white;
+        overflow: hidden;
+        margin: auto;  
+        position: relative;  
+        left:0; right: 0; 
+        font-size:  18px;
+        line-height: 52px;    
+    }
+}
+@media(min-width : 360px)
+{
+    .header-bar .header
+    {
+        width: 50%;
+        font-weight: 500;
+        text-align: center;
+        height: @cl-header-hgt;
+        line-height:@cl-header-hgt;
+        color: white;
+        font-size: 20px;
+        overflow: hidden;
+        margin: auto;  
+        position: relative;  
+        left:0; right: 0; 
+    }
 }
 .header-bar .logo
 {
@@ -669,16 +690,21 @@ a:hover
     margin-right: (@cl-listbox-hgt - @cl-comp-img-size)/2 ;
 }
 .comp-listbox .comp-auth
-{
+{/*
     float: right;
     margin-top:(@cl-listbox-hgt - @cl-comp-img-size)/2;
     margin-right: (@cl-listbox-hgt - @cl-comp-img-size);
-    font-size: @cl-comp-desc-fsize;
+    font-size: @cl-comp-desc-fsize;*/
+    font-size: 11px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #8F4E96;
 }
 .comp-listbox .comp-name
 {
     line-height: @cl-come-lineh;
-    font-size: @cl-comp-name-fsize;
+    font-size: 15px;
     overflow: hidden;
 }
 .comp-listbox .comp-desc
@@ -1083,17 +1109,16 @@ ul
 {
     display: block;
     position: relative;
-    left: 104px; 
-    width:53%;
+    left: 104px;
+    padding-right: 162px;
 }
 
 .comp-list-info-block
 {
     display: block;
     position: relative;
-    left: 104px; 
-    padding-right: 12px;
-    width:64%;
+    left: 104px;
+    padding-right: 132px;
 }
 .comp-more-info
 {
@@ -1241,7 +1266,7 @@ ul
     margin: auto;
     position: absolute;
     top: 0; bottom: 0; right: 15px;
-    font-size: 14px;
+    font-size: 13px;
     height: 14px;
     color: @dark-gray;
 }
@@ -1267,7 +1292,11 @@ ul
 .send-resume
 {
     position: absolute;
-    top: 10px; right:15px;
+    top: 0;
+    bottom: 0;
+    height: 48px;
+    margin: auto;
+    right: 10px;
     text-align: center;
     color: @std-purple;
 }
@@ -1304,7 +1333,7 @@ ul
     text-align: center;
     top: 0;left: 0;bottom: 0;right: 0;
     margin: auto;
-    background: @lit-gray;
+    background: @white-gray;
     padding: 10px 10px 0 10px;
     border-radius: 5px;
     .empty-title

@@ -237,7 +237,7 @@ a:hover {
 #captcha_img {
   height: 28px;
   position: absolute;
-  right: 10px;
+  right: 6px;
   bottom: 3px;
 }
 #captcha-pass {
@@ -270,7 +270,7 @@ a:hover {
   margin-bottom: 20px;
 }
 .info-input-content {
-  margin-top: 120px;
+  margin-top: 40px;
 }
 .info-input {
   margin-bottom: 20px;
@@ -287,19 +287,37 @@ a:hover {
   background: url('/static/image/icon/3d-purple.png');
   background-repeat: repeat-x;
 }
-.header-bar .header {
-  width: 50%;
-  font-weight: 500;
-  text-align: center;
-  height: 50px;
-  line-height: 50px;
-  color: white;
-  font-size: 20px;
-  overflow: hidden;
-  margin: auto;
-  position: relative;
-  left: 0;
-  right: 0;
+@media (max-width: 360px) {
+  .header-bar .header {
+    width: 50%;
+    font-weight: 500;
+    text-align: center;
+    height: 50px;
+    color: white;
+    overflow: hidden;
+    margin: auto;
+    position: relative;
+    left: 0;
+    right: 0;
+    font-size: 18px;
+    line-height: 52px;
+  }
+}
+@media (min-width: 360px) {
+  .header-bar .header {
+    width: 50%;
+    font-weight: 500;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    color: white;
+    font-size: 20px;
+    overflow: hidden;
+    margin: auto;
+    position: relative;
+    left: 0;
+    right: 0;
+  }
 }
 .header-bar .logo {
   float: left;
@@ -474,14 +492,20 @@ a:hover {
   margin-right: 10px;
 }
 .comp-listbox .comp-auth {
-  float: right;
-  margin-top: 10px;
-  margin-right: 20px;
+  /*
+    float: right;
+    margin-top:(@cl-listbox-hgt - @cl-comp-img-size)/2;
+    margin-right: (@cl-listbox-hgt - @cl-comp-img-size);
+    font-size: @cl-comp-desc-fsize;*/
   font-size: 11px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #8F4E96;
 }
 .comp-listbox .comp-name {
   line-height: 18px;
-  font-size: 17px;
+  font-size: 15px;
   overflow: hidden;
 }
 .comp-listbox .comp-desc {
@@ -813,14 +837,13 @@ ul {
   display: block;
   position: relative;
   left: 104px;
-  width: 53%;
+  padding-right: 162px;
 }
 .comp-list-info-block {
   display: block;
   position: relative;
   left: 104px;
-  padding-right: 12px;
-  width: 64%;
+  padding-right: 132px;
 }
 .comp-more-info {
   margin: auto;
@@ -945,7 +968,7 @@ ul {
   top: 0;
   bottom: 0;
   right: 15px;
-  font-size: 14px;
+  font-size: 13px;
   height: 14px;
   color: #707070;
 }
@@ -966,8 +989,11 @@ ul {
 }
 .send-resume {
   position: absolute;
-  top: 10px;
-  right: 15px;
+  top: 0;
+  bottom: 0;
+  height: 48px;
+  margin: auto;
+  right: 10px;
   text-align: center;
   color: #966497;
 }
@@ -1002,7 +1028,7 @@ ul {
   bottom: 0;
   right: 0;
   margin: auto;
-  background: #dcdcdc;
+  background: #e1e0e2;
   padding: 10px 10px 0 10px;
   border-radius: 5px;
 }

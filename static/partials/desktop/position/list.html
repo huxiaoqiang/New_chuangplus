@@ -3,7 +3,7 @@
       <div class="col-sm-4">
         <div class="search-tab">
                 <div class="search-item company-field" >
-                    <p>行业领域<i class="icon-angle-down"></i></p>
+                    <p>[[filed_choose]]<i class="icon-angle-down"></i></p>
                     <div class="field-list">
                         <table>
                             <tbody>
@@ -35,30 +35,62 @@
                 </div>
                 <div style="clear: both"></div>
                 <div class="search-item position-type"  >
-                    <p>职位类型<i class="icon-angle-down"></i></p>
+                    <p>[[type_choose]]<i class="icon-angle-down"></i></p>
                     <div class="type-list">
                         <table>
                             <tbody>
                                 <tr>
-                                    <td><a href="#" ng-class="{active:param.position_type == 'technology'}" ng-click="choose('technology')">技术</a></td>
-                                    <td><a href="#" ng-class="{active:param.position_type == 'design'}" ng-click="choose('design')">设计</a></td>
+                                    <td><a href="#" ng-class="{active:param.type == 'technology'}" ng-click="choose_type('technology')">技术</a></td>
+                                    <td><a href="#" ng-class="{active:param.type == 'design'}" ng-click="choose_type('design')">设计</a></td>
                                 </tr>
                                 <tr>
-                                    <td><a href="#" ng-class="{active:param.position_type == 'operate'}" ng-click="choose('operate')">运营</a></td>
-                                    <td><a href="#" ng-class="{active:param.position_type == 'marketing'}" ng-click="choose('marketing')">市场/销售</a></td>
+                                    <td><a href="#" ng-class="{active:param.type == 'operate'}" ng-click="choose_type('operate')">运营</a></td>
+                                    <td><a href="#" ng-class="{active:param.type == 'marketing'}" ng-click="choose_type('marketing')">市场/销售</a></td>
                                 </tr>
                                 <tr>
-                                    <td><a href="#" ng-class="{active:param.position_type == 'product'}" ng-click="choose('product')">产品</a></td>
-                                    <td><a href="#" ng-class="{active:param.position_type == 'functions'}" ng-click="choose('functions')">职能</a></td>
+                                    <td><a href="#" ng-class="{active:param.type == 'product'}" ng-click="choose_type('product')">产品</a></td>
+                                    <td><a href="#" ng-class="{active:param.type == 'functions'}" ng-click="choose_type('functions')">职能</a></td>
                                 </tr>
                                 <tr>
-                                    <td><a href="#" ng-class="{active:param.position_type == null}" ng-click="choose(null)">全部</a></td>
+                                    <td><a href="#" ng-class="{active:param.type == null}" ng-click="choose_type(null)">全部</a></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                 <div style="clear: both"></div>
+                <div style="clear: both"></div>
+                <div class="search-item salary_set">
+                    <p>[[salary_choose]]<i class="icon-angle-down"></i></p>
+                    <div class="salary_min">
+                        <input type="number" min="1"   ng-model="salary_min" ng-blur="choose_salary(salary_min)" class="form-control" placeholder="月薪下限">K
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+                <div class="search-item work_days">
+                    <p>[[workdays_choose]]<i class="icon-angle-down"></i></p>
+                    <div class="work_days_max">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><a href="#" ng-class="{active:param.workdays == '2'}" ng-click="choose_workdays('2')">2天</a></td>
+                                    <td><a href="#" ng-class="{active:param.workdays == '3'}" ng-click="choose_workdays('3')">3天</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#" ng-class="{active:param.workdays == '4'}" ng-click="choose_workdays('4')">4天</a></td>
+                                    <td><a href="#" ng-class="{active:param.workdays == '5'}" ng-click="choose_workdays('5')">5天</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#" ng-class="{active:param.workdays == '6'}" ng-click="choose_workdays('6')">6天</a></td>
+                                    <td><a href="#" ng-class="{active:param.workdays == '0'}" ng-click="choose_workdays('0')">灵活时间</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#" ng-class="{active:param.workdays == null}" ng-click="choose_workdays(null)">全部</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
             </div>
       </div>
 
@@ -67,7 +99,11 @@
                 <img src="/static/image/icon/loading.gif">
             </div>
             <div ng-show="!loading">
-                <ul ng-repeat="position in positions">
+                <div class="no-position-found" ng-show="param.pageCount==0">
+                         暂无信息！
+                </div>
+                <div ng-show="param.pageCount>0">
+                    <ul ng-repeat="position in positions">
                     <a href="/position/[[position._id.$oid]]/detail">
                     <li>
                         <div class="favor-list-item">
@@ -97,7 +133,7 @@
                                         <div class="vertical-center">
                                             <p class="company">[[position.company.abbreviation]]</p>
                                             <p class="company-discrpt">&nbsp;&nbsp;[[position.company.brief_introduction]]</p>
-                                            <p class="auth">[[position.company.auth_organization]]</p>
+                                            <p class="auth" ng-if="position.company.auth_organization!=null">[[position.company.auth_organization]]认证</p>
                                         </div>
                                     </div>
                                     <div class="item-info info-3">
@@ -116,7 +152,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="item-pic">
                                         <div class="vertical-center">
                                             <img src="/api/file/[[position.company.logo_id]]/download" class="company-pic" alt="图片">
@@ -124,12 +159,12 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </li>
                     </a>
                 </ul>
-                <page class="page" ng-show="param.pageCount!=0" num-pages="param.pageCount" current-page="param.currentPage" on-select-page="selectPage(page)">
+                </div>
+                <page class="page" ng-show="param.pageCount!=1" num-pages="param.pageCount" current-page="param.currentPage" on-select-page="selectPage(page)">
                 </page>
             </div>
         </div>

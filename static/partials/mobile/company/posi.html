@@ -20,11 +20,9 @@
         <div class="comp-listbox " >
             <img class="comp-title-img" src="/api/file/[[company.logo_id]]/download">
 
-            <div style="display: block;position: relative;left: 104px; width:50%;">
-            <div class="comp-name">[[company.abbreviation]]</div>
+            <div style="display: block;position: relative;left: 104px; padding-right: 111px;">
+            <div class="comp-name">[[company.abbreviation]]<span ng-if="company.is_auth" style="font-size: 12px;color: #8F4E96;"> | [[company.auth_organization]]认证</span></div>
             <div class="comp-desc">[[company.brief_introduction]]</div>
-            <div ng-if="company.is_auth" class="comp-auth">[[company.auth_organization]]认证</div>
-
             <div class="comp-desc-list">
                 <span class="comp-desc-tag">
                     [[company.field_value]]

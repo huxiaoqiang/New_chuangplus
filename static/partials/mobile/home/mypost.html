@@ -23,17 +23,19 @@
                     <div class="posi-close">[[position.position_cond]]</div>
                     <div class="hr-solve">[[position.is_processed]]</div>
                     <div class="comp-list-info-block">
-                        <div ng-if="position.company.is_auth" class="comp-auth">[[position.company.auth_organization]]认证</div>
                         <div class="comp-name">[[position.position_type_value]] | [[position.name]]</div>
 
                         <div class="comp-req-list">
-                            <span class="comp-req-title">[[position.company.abbreviation]]</span>
+                            <span class="comp-req-title">[[position.company.abbreviation]]<span ng-if="position.company.is_auth" style="font-size: 12px;color: #8F4E96;"> | [[position.company.auth_organization]]认证</span></span>
                         </div>
                         <div class="comp-desc">[[position.company.brief_introduction]]</div>
 
                         <div class="comp-desc-list">
-                            <span class="comp-desc-tag">
-                                [[position.days_per_week]]天/周
+                            <span class="comp-desc-tag" ng-if="position.part_or_full_time == 0">
+                                实习[[position.days_per_week]]天/周
+                            </span>
+                            <span class="comp-desc-tag" ng-if="position.part_or_full_time == 1">
+                                全职
                             </span>
                             <span class="comp-desc-tag">
                                 [[position.salary_min]]K-[[position.salary_max]]K
