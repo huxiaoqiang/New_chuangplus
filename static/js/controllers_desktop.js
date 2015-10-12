@@ -859,6 +859,14 @@ angular.module('chuangplus.controllers', []).
             $scope.search_params_position_type = '';
             $scope.get_submit_list();
         };
+        $scope.view_interested = function(){
+            $scope.param = {
+                'page' : 1,
+                'processed':false
+            };
+            $scope.search_params_position_type = '';
+            $scope.get_submit_list();
+        };
         $scope.processe = function(index){
             if($scope.submit_list[index].processed == true){
                 return;

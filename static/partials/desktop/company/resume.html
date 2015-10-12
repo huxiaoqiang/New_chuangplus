@@ -23,6 +23,14 @@
             <div class="no-resume" ng-show="intern_info.resume_id == null">无简历附件</div>
             <div class="resume-name"><a ng-show="intern_info.resume_id != null" ng-href="/api/file/[[intern_info.resume_id]]/download" target="_self">[[intern_info.resume_name]]</a></div>
         </div>
+        <div class="interested">
+            <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 感兴趣
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 不感兴趣
+            </label>
+        </div>
     </div>
 </aside>
 <div id="container" >
@@ -30,7 +38,7 @@
         <div class="col-sm-9">
             <div class="head-button">
                 <input class="btn active" type="button" value="查看未处理" ng-click="view_unprocessed()">
-                <input class="btn" type="button" value="一键下载">
+                <input class="btn active" type="button" value="查看感兴趣" ng-click="view_interested()">
 <!--                <input class="btn" type="button" value="清除不符合条件">-->
             </div>
             <div class="submit_list">
