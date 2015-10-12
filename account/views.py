@@ -1811,7 +1811,6 @@ def run_one_times(request):
             sort_com.save()
     else:
         re['error'] = error(3,"Error, need GET")
-<<<<<<< HEAD
     return HttpResponse(json.dumps(re),content_type="application/json")
 def look_companysort(request):
     re = dict()
@@ -1824,7 +1823,3 @@ def look_companysort(request):
     else:
         re['error'] = error(1,"adfaf")
     return HttpResponse(json.dumps(re),content_type="application/json")
-=======
-    return d
-'''
->>>>>>> 4493b4ce4b3cfe9364e6758eecbc99f799dd9c20
