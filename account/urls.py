@@ -44,7 +44,7 @@ urlpatterns = [
     url(r'^company/(?P<company_id>.*?)/set', views.set_companyinfo, name='set_companyinfo'),
     url(r'^company/(?P<company_id>.*?)/auth', views.auth_company, name='auth_company'),
     url(r'^company/(?P<company_id>.*?)/check', views.check_companyinfo_complete, name='check_companyinfo_complete'),
-
+    url(r'^(?P<position_id>.*?)/(?P<username>.*?)/hr_set_interested$',views.hr_set_interested_user,name='hr_set_interested_user'),
     url(r'^company/(?P<company_id>.*?)/like', views.user_like_company, name='user_like_company'),
     url(r'^company/(?P<company_id>.*?)/unlike', views.user_unlike_company, name='user_unlike_company'),
     url(r'^company/(?P<position_id>.*?)/user/(?P<username>.*?)/process', views.process_single, name='process_single'),

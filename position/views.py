@@ -1064,5 +1064,16 @@ def open_position(request,position_id):
         re['error'] = error(2,'Error, need POST')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+def test(request):
+    re = dict()
+    if request.method == "GET":
+        UP = UserPosition.objects.all()
+        for i in UP:
+            print i.user.username + " " + str(i.position.id)
+    else:
+        re['error'] = error(3,"Error, need Get")
+    return HttpResponse(json.dumps(re),content_type = 'application/json')
+    
+
 #def check_position_status(request):
 
