@@ -321,7 +321,11 @@ def login(request):
             resp.set_cookie('role',request.session['role'])
             return resp
         else:
-            user_login = User.objects.get(email = username)
+            try:
+                user_login = User.objects.get(email = username)
+            except DoesNotExist:
+                re['error'] = error(276,"email error!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
             username = ""
             if user_login is not None:
                 username = user_login.username
