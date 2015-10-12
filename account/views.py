@@ -1702,8 +1702,6 @@ def hr_set_interested_user(request,position_id,username):
     else:
         re['error'] = error(3,'Error, need GET')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
-<<<<<<< HEAD
-    
 
 def interested_list_position(request,position_id):
     re = dict()
@@ -1733,5 +1731,4 @@ def interested_list_position(request,position_id):
     else:
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re), content_type = "application/json")
-=======
->>>>>>> 9ca7537a58d3331045786ac3be0d47ce2bced81e
+
