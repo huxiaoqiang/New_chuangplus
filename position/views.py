@@ -589,8 +589,6 @@ def search_position(request):
     re["error"] = error(1,"Search succeed!")
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
-
-
 def get_position_with_company(request,position_id):
     re = dict()
     if request.method == "GET":
