@@ -908,7 +908,7 @@ angular.module('chuangplus.controllers', []).
                 "position_id":$scope.submit_list[index].position_id
             };
             $csrf.set_csrf(param);
-            $http.get(urls.api+"/account/company/process", $.param(param)).
+            $http.post(urls.api+"/account/company/process", $.param(param)).
                 success(function(data){
                     if(data.error.code == 1){
                         alert($scope.submit_list[index].position_id,$scope.submit_list[index].username);
