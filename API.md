@@ -695,7 +695,7 @@ post如下字段
 ```
 返回errorcode
 
-###/api/account/api/(?P<position_id>.*?)/(?P<username>.*?)/hr_set_interested
+###/api/account/(?P<position_id>.*?)/(?P<username>.*?)/hr_set_interested
 hr设置对某个简历投递者感兴趣（method:get）
 参数如下
 ```javascript
