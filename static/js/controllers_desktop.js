@@ -858,7 +858,8 @@ angular.module('chuangplus.controllers', []).
                 //    param += "position_type=" + param_data.position_type;
                 //}
                 for(var key in param_data) {
-                    param.push(key + '=' + param_data[key]);
+                    if(!(key == 'position_type' && param_data[key] == ""))
+                        param.push(key + '=' + param_data[key]);
                 }
                 param = param.join('&');
                 param = '?' + param;
@@ -901,9 +902,9 @@ angular.module('chuangplus.controllers', []).
         $scope.view_unprocessed = function(){
             $scope.param = {
                 'page' : 1,
-                'processed':false
+                'processed': false
             };
-            $scope.search_params_position_type = '';
+            $scope.param.position_type = $scope.search_params.position_type;
             $scope.get_submit_list();
         };
         $scope.view_interested = function(){
@@ -912,7 +913,7 @@ angular.module('chuangplus.controllers', []).
                 'page' : 1,
                 'interested': true
             };
-            $scope.search_params_position_type = '';
+            $scope.param.position_type = $scope.search_params.position_type;
             $scope.get_submit_list();
         };
         $scope.process = function(index){
@@ -977,8 +978,14 @@ angular.module('chuangplus.controllers', []).
             //console.log($(e.target).attr('id')!="header" && $(e.target).attr('id')!="submit_div");
             //console.log($("#header"));
             //console.log($(e.target).attr('id'));
-            if($(e.target).attr('className')!="view" && $(e.target).attr('className')!="resume" && $(e.target).attr('id')!="header" && $(e.target).attr('id')!="show_intern_info" && $(e.target).attr('id')!="submit_div" && $(e.target).attr('className')!="resume_name"){
+            if($(e.target).attr('className')!="view" && $(e.target).attr('className')!="resume" && $(e.target).attr('id')!="header" && $(e.target).attr('id')!="show_intern_info" && $(e.target).attr('id')!="submit_div" && $(e.target).attr('className')!="resume_name" && $(e.target).attr('id')!="processed" && $(e.target).attr('id')!= "interested"){
                 $scope.view_detail($scope.chosed_index);
+            }
+            else if($(e.target).attr('id') =="processed" && $('#sideToggle').attr("checked") != "checked") {
+                $scope.view_unprocessed();
+            }
+            else if($(e.target).attr('id') == "interested" && $('#sideToggle').attr("checked") != "checked") {
+                $scope.view_interested();
             }
         });
     }]).
