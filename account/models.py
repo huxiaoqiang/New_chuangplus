@@ -76,7 +76,7 @@ class Companyinfo(Document):
     positions = ListField(ReferenceField("position.Position"))
     financings = ListField(ReferenceField("Financing"))
     members = ListField(ReferenceField("Member"))
-
+    index = IntField(default = 100)
     def __str__(self):
         return self.username
 
