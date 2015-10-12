@@ -1067,9 +1067,11 @@ def open_position(request,position_id):
 def test(request):
     re = dict()
     if request.method == "GET":
-        UP = UserPosition.objects.all()
-        for i in UP:
-            print i.user.username + " " + str(i.position.id)
+        pos = Position.objects.all()
+        data = {}
+        for i in pos:
+            data[i.name] = str(i.id)
+        re['data'] = data
     else:
         re['error'] = error(3,"Error, need Get")
     return HttpResponse(json.dumps(re),content_type = 'application/json')

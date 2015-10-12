@@ -1450,14 +1450,9 @@ def process_position(request,position_id):
 
 
 @user_permission('login')
-def process_single(request):
+def process_single(request,position_id,username):
     re = dict()
-    if request.method == 'POST':
-        position_id = request.POST.get('position_id','')
-        username = request.POST.get('username','')
-        if position_id == '' or username == '':
-            re['error'] = error(274,'need post position_id or username')
-            return HttpResponse(json.dumps(re), content_type = 'application/json')
+    if request.method == 'GET':
         try:
             position = Position.objects.get(id=position_id)
         except DoesNotExist:
@@ -1477,7 +1472,7 @@ def process_single(request):
         up.save()
         re['error'] = error(1,'succeed!')
     else:
-        re['error'] = error(2,'Error, need POST')
+        re['error'] = error(3,'Error, need GET')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission('login')
@@ -1708,13 +1703,12 @@ def hr_set_interested_user(request,position_id,username):
     else:
         re['error'] = error(3,'Error, need GET')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
-
+    
 def interested_list_position(request,position_id):
     re = dict()
     if request.method == "GET":
         try:
             position = Position.objects.get(id = position_id)
-            up = UserPosition.objects.filter(position = position,interested = True)
         except (AssertionError, ValueError, UnicodeDecodeError):
             re['error'] = error(231,"Invaild search name!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -1725,15 +1719,62 @@ def interested_list_position(request,position_id):
             re['error'] = error(299,'Unknown Error!')
             return HttpResponse(json.dumps(re),content_type = 'application/json')
         data = []
-        for i in up:
-            try:
-                userinfo = Userinfo.objects.get(user = i.user)
-                data.append(json.loads(userinfo.to_json()))
-            except DoesNotExist:
-                re['error']  = error(106,"Userinfo does not exist!")
-                return HttpResponse(json.dumps(re),content_type = "application/json")
+        up = UserPosition.objects.filter(position = position,interested = True)
+        if up:
+            for i in up:
+                try:
+                    userinfo = Userinfo.objects.get(user = i.user)
+                    data.append(json.loads(userinfo.to_json()))
+                except DoesNotExist:
+                    re['error']  = error(106,"Userinfo does not exist!")
+                    return HttpResponse(json.dumps(re),content_type = "application/json")
         re['data'] = data
         re['error'] = error(1,"succeed")
     else:
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re), content_type = "application/json")
+
+def interested_list_company(request,company_id):
+    re = dict()
+    if request.method == "GET":
+        try:
+            company = Companyinfo.objects.get(id = company_id)
+        except (AssertionError, ValueError, UnicodeDecodeError):
+            re['error'] = error(231,"Invaild search name!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        except (DatabaseError):
+            re['error'] = error(251,"Database error: Failed to search!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        except DoesNotExist:
+            re['error'] = error(150,'DoesNotExist!')
+            return HttpResponse(json.dumps(re),content_type = 'application/json')
+        except:
+            re['error'] = error(299,'Unknown Error')
+            return HttpResponse(json.dumps(re),content_type = 'application/json')
+        data = []
+        try:
+            position = Position.objects.filter(company = company)
+        except (DatabaseError):
+            re['error'] = error(251,"Database error: Failed to search!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        except:
+            re['error'] = error(299,'Unknown Error!')
+            return HttpResponse(json.dumps(re),content_type = 'application/json')
+        if position:
+            for i in position:
+                up = UserPosition.objects.filter(position = i,interested = True)
+                if up:
+                    for j in up:
+                        try:
+                            userinfo = Userinfo.objects.get(user = j.user)
+                        except DoesNotExist:
+                            re['error']  = error(106,"Userinfo does not exist!")
+                            return HttpResponse(json.dumps(re),content_type = "application/json")
+                        data.append(json.loads(userinfo.to_json()))
+        
+        re['error'] = error(1,"succeed")
+        re['data'] = data
+    else:
+        re['error'] = error(3,"Error, need GET")
+    return HttpResponse(json.dumps(re),content_type="application/json")
+
