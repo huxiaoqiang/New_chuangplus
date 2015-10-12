@@ -55,7 +55,7 @@ def upload_file(request):
                 try:
                     f_original.save()
                 except:
-                    re['error'] = error(250,'Database error: Failed to get companyinfo')
+                    re['error'] = error(250,'Database error: Failed to save original file')
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
                 #file_obj2.close()
                 img = Image.open(original_name)
@@ -89,7 +89,7 @@ def upload_file(request):
                 try:
                     f.save()
                 except DatabaseError:
-                    re['error'] = error(250,'Database error: Failed to get companyinfo')
+                    re['error'] = error(250,'Database error: Failed to save file')
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
                 re['error'] = error(1,"file upload successfully")
                 re['data'] = str(f.id)

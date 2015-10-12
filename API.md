@@ -142,7 +142,7 @@ position    |ReferenceField|Position|关联职位
 submit_date |DateTimeField |        |投递日期
 resume_submitted|FileField |        |投递的简历附件
 processed   |BooleanField  |default=False|处理状态，默认是未处理
-
+interested  |BooleanField  |default=False|hr是否感兴趣
 
 ###文件模块filedata
 ####文件表File
@@ -694,3 +694,13 @@ post如下字段
    }
 ```
 返回errorcode
+
+###/api/account/api/(?P<position_id>.*?)/(?P<username>.*?)/hr_set_interested
+hr设置对某个简历投递者感兴趣（method:get）
+参数如下
+```javascript
+   {
+    "position_id" :职位id
+	"username":  投递简历者的用户名
+   }
+```

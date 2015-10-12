@@ -7,6 +7,7 @@ from app.common_api import error,user_permission
 from django.db import DatabaseError
 from django.core.mail import send_mail
 from random import randint
+from position.models import Position,UserPosition
 from bson.objectid import ObjectId
 from django.db.models import Q
 import urllib2,urllib2
@@ -1674,4 +1675,29 @@ def get_company_num(request):
         #print count
     else:
         re['error'] = error(3,'Error,need GET')
+    return HttpResponse(json.dumps(re),content_type = 'application/json')
+
+    
+def hr_set_interested_user(request,position_id,username):
+    re = dict()
+    #print username
+    if request.method == "GET":
+        try:
+            position = Position.objects.get(id = position_id)
+            user = User.objects.get(username = username)
+            up = UserPosition.objects.get(user = user,position = position)
+            up.interested = True
+            up.save()
+        except (AssertionError, ValueError, UnicodeDecodeError):
+            re['error'] = error(231,"Invaild search query!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        except (DatabaseError):
+            re['error'] = error(251,"Database error: Failed to search!")
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        except:
+            re['error'] = error(299,'Unknown Error!')
+            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        re['error'] = error(1,"succeed!")
+    else:
+        re['error'] = error(3,'Error, need GET')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
