@@ -710,7 +710,8 @@ angular.module('chuangplus.controllers', []).
     };
 
     }]).
-    controller('DT_InternResumeViewCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
+    controller('DT_InternResumeViewCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', 
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         $scope.filename = "无简历附件";
         $scope.intern_info = {};
         $scope.edit_resume = function(){
@@ -806,7 +807,7 @@ angular.module('chuangplus.controllers', []).
         };
     }]).
     //company controllers
-    controller('DT_RegEnterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_RegEnterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', 'ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $errMsg){
         console.log('DT_RegEnterCtrl');
     }]).
     controller('DT_CompanyResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService',
@@ -843,19 +844,24 @@ angular.module('chuangplus.controllers', []).
             $scope.show_right_bar = !$scope.show_right_bar;
         };
         $scope.get_submit_list = function(){
-            var param = '';
+            var param = [];
             var param_data = $scope.param;
             if(param_data != null){
-                param = '?';
-                if(param_data.hasOwnProperty('page')){
-                    param += "page=" + param_data.page;
+                //param = '?';
+                //if(param_data.hasOwnProperty('page')){
+                //    param += "page=" + param_data.page;
+                //}
+                //if(param_data.hasOwnProperty('position_type')){
+                //    if(param!='?'){
+                //        param += '&'
+                //    }
+                //    param += "position_type=" + param_data.position_type;
+                //}
+                for(var key in param_data) {
+                    param.push(key + '=' + param_data[key]);
                 }
-                if(param_data.hasOwnProperty('position_type')){
-                    if(param!='?'){
-                        param += '&'
-                    }
-                    param += "position_type=" + param_data.position_type;
-                }
+                param = param.join('&');
+                param = '?' + param;
             }
             $http.get(urls.api+"/account/company/submit/search"+param).
                 success(function(data){
@@ -873,6 +879,7 @@ angular.module('chuangplus.controllers', []).
                     }
                     else{
                         console.log(data.error.message);
+                        // TODO
                         $scope.error = $errMsg.format_error('',data.error);
                     }
                 });
@@ -900,9 +907,10 @@ angular.module('chuangplus.controllers', []).
             $scope.get_submit_list();
         };
         $scope.view_interested = function(){
+            //TODO: back-end url should be fixed
             $scope.param = {
                 'page' : 1,
-                'processed':false
+                'interested': true
             };
             $scope.search_params_position_type = '';
             $scope.get_submit_list();
@@ -959,6 +967,7 @@ angular.module('chuangplus.controllers', []).
         };
         //$scope.close = false;
         $(document).on("click",function(e){
+            //TODO
             //console.log($(e.target).attr('id')!="header" && $(e.target).attr('id')!="submit_div");
             //console.log($("#header"));
             //console.log($(e.target).attr('id'));

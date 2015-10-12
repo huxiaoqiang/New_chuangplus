@@ -21,7 +21,15 @@
             <span class="resume_file">附件：</span>
             <img src="/static/image/logo/fujian-01.png">
             <div class="no-resume" ng-show="intern_info.resume_id == null">无简历附件</div>
-            <div class="resume-name"><a ng-show="intern_info.resume_id != null" ng-href="/api/file/[[intern_info.resume_id]]/download" target="_self">[[intern_info.resume_name]]</a></div>
+            <div class="resume-name">
+                <table style="width: 200px;">
+                    <tr>
+                        <td style="vertical-align:middle;height: 48px;">
+                            <a ng-show="intern_info.resume_id != null" ng-href="/api/file/[[intern_info.resume_id]]/download" target="_self">[[intern_info.resume_name]]</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
         <div class="interested">
             <label class="radio-inline">

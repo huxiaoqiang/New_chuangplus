@@ -1574,8 +1574,17 @@ form.financing_add input {
 }
 #container #userresume .resume .resume-name {
   position: relative;
-  top: -40px;
+  top: 20%;
+  bottom: 20%;
   left: 90px;
+  padding: 2% 0;
+}
+#container #userresume .interested {
+  height: 100px;
+  width: 70%;
+  margin-top: 20px;
+  padding-left: 10px;
+  min-height: 300px;
 }
 #container #userresume .progress {
   width: 50%;
@@ -4562,7 +4571,7 @@ body > #wrap_no_header_footer #main-container {
   min-height: 100px;
 }
 #show_intern_info .resume {
-  width: 70%;
+  width: 360px;
   background-color: white;
   border: solid 1px#c6c6c6;
   border-radius: 6px;
@@ -4585,7 +4594,8 @@ body > #wrap_no_header_footer #main-container {
 }
 #show_intern_info .resume .resume-name {
   position: absolute;
-  top: 30px;
+  top: 20%;
+  bottom: 20%;
   left: 110px;
 }
 .cropArea {
