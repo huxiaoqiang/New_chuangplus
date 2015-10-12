@@ -1067,10 +1067,10 @@ def open_position(request,position_id):
 def test(request):
     re = dict()
     if request.method == "GET":
-        pos = Position.objects.all()
-        data = {}
+        pos = UserPosition.objects.filter(interested =True)
+        data = []
         for i in pos:
-            data[i.name] = str(i.id)
+            data.append(str(i.position.id))
         re['data'] = data
     else:
         re['error'] = error(3,"Error, need Get")

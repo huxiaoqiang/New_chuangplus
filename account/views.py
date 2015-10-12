@@ -13,7 +13,7 @@ from django.db.models import Q
 import urllib2,urllib2
 import json
 import traceback
-
+import random
 # Create your views here.
 from .models import *
 from position.models import *
@@ -1779,12 +1779,35 @@ def interested_list_company(request):
     else:
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re),content_type="application/json")
-'''
+
 def run_one_times(request):
     re = dict()
     if request.method == "GET":
-    
+        qs = Companyinfo.objects.all()
+        n = Companyinfo.objects.filter().count()
+        item = []
+        for i in range(0,n):
+            item.append(i)
+        random.shuffle(item)
+        num = 0
+        for i in qs:
+            sort_com = Sortcompany(company = i)
+            l = Position.objects.filter(company = i).count()
+            sort_com.positionNumber = l
+            sort_com.index = item[num]
+            num = num +1
+            sort_com.save()
     else:
         re['error'] = error(3,"Error, need GET")
-    return d
-'''
+    return HttpResponse(json.dumps(re),content_type="application/json")
+def look_companysort(request):
+    re = dict()
+    if request.method == "GET":
+        qs = Sortcompany.objects.all()
+        data = {}
+        for i in qs:
+            data[i.company.abbreviation] = i.index
+        re['data'] = data
+    else:
+        re['error'] = error(1,"adfaf")
+    return HttpResponse(json.dumps(re),content_type="application/json")
