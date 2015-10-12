@@ -703,4 +703,24 @@ hr设置对某个简历投递者感兴趣（method:get）
     "position_id" :职位id
 	"username":  投递简历者的用户名
    }
+<<<<<<< HEAD
 ```
+
+###/api/account/(?P<position_id>.*?)/hr_get_interested_by_position
+hr根据职位获取感兴趣的简历投递者(method：get)
+参数如下
+```javascript
+   {
+    "position_id":职位id
+   }
+```
+返回参数
+```
+   {
+	error:
+	data :数据库中userinfo的所有内容 
+   }
+```
+=======
+```
+>>>>>>> 9ca7537a58d3331045786ac3be0d47ce2bced81e
