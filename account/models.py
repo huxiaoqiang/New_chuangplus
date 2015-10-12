@@ -80,6 +80,14 @@ class Companyinfo(Document):
     def __str__(self):
         return self.username
 
+class Sortcompany(Document):
+    company = ReferenceField(Companyinfo,required = True)
+    positionNumber = IntField(default=0,required=True)
+    index = IntField(default=100,required=True)
+    
+    def __str__(self):
+        return self.company.username
+
 #project member table
 class Member(Document):
     company = ReferenceField(Companyinfo,required=True)

@@ -77,6 +77,13 @@ members            |ListField(ReferenceField) |公司成员信息
 FIELD = ('social','e-commerce','education','health_medical','culture_creativity','living_consumption','hardware','O2O','others')<br/>
 STAGE=('none','seed','angel','A','B','C','D_plus')
 
+###公司排序表Sortcompany
+字段 类型   修饰    解释
+---------------|--------------|----|----------
+company        |ReferenceField|    |关联的公司
+positionNumber |IntField      |    |招聘岗位数
+sortIndex          |IntField      |    |排序index
+
 
 ####融资信息表Financing
 字段   |类型   |修饰   |解释
