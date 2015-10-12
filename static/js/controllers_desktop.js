@@ -1641,6 +1641,7 @@ angular.module('chuangplus.controllers', []).
             $http.post(urls.api+"/position/"+$scope.position_list[index]['_id']['$oid']+"/close").
               success(function(data){
                 if(data.error.code==1){
+                  console.log('关闭职位成功');
                   $scope.get_position_list();
                 }
                 else{
