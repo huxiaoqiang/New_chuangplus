@@ -1326,7 +1326,7 @@ def get_company_list(request):
         scale = request.GET.get('scale', '')
         status = request.GET.get('status', '')
 
-        companies = Companyinfo.objects(info_complete=True)
+        companies = Companyinfo.objects(info_complete=True).all().order_by('index')
 
         if text != '':
             companies = companies.filter(
@@ -1357,9 +1357,6 @@ def get_company_list(request):
                 except:
                     re['error'] = error(299,'Unknown Error!')
                     return HttpResponse(json.dumps(re),content_type = 'application/json')
-
-        orderValue = "index"
-        companies.order_by(orderValue)
         shang = companies.count() / POSITIONS_PER_PAGE
         yushu = 1 if companies.count() % POSITIONS_PER_PAGE else 0
         page_number =  shang + yushu
@@ -1797,11 +1794,14 @@ def run_one_times(request):
         n = Companyinfo.objects.filter().count()
         item = []
         for i in range(0,n+1):
-            item.append(i)
+            item.append(i+1)
         random.shuffle(item)
         num = 0
         for i in qs:
-            i.index = item[num]
+            if str(i.id) == "5600bb0038d95e5975e54ed7":
+                i.index = 0
+            else:
+                i.index = item[num]
             i.save()
             num = num + 1
     else:
