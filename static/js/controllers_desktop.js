@@ -916,13 +916,19 @@ angular.module('chuangplus.controllers', []).
             $scope.get_submit_list();
         };
         $scope.processe = function(index){
-            if($scope.submit_list[index].processed == true){
+            if($scope.submit_list[index].process == true){
                 return;
             }
-            $http.get(urls.api+"/account/company/"+ $scope.submit_list[index].position_id+"/user/"+$scope.submit_list[index].username+"/process").
+            var param = {
+                "username" : $scope.submit_list[index].username,
+                "position_id":$scope.submit_list[index].position_id
+            };
+            $csrf.set_csrf(param);
+            $http.post(urls.api+"/account/company/process", $.param(param)).
                 success(function(data){
                     if(data.error.code == 1){
                         alert($scope.submit_list[index].position_id,$scope.submit_list[index].username);
+                        console.log("OK");
                     }
                 });
         };

@@ -201,6 +201,7 @@ ngImgCrop.factory('cropAreaSquare', ['cropArea', function(CropArea) {
 
   CropAreaSquare.prototype._calcSquareDimensions=function() {
     var hSize=this._size/2;
+    //alert(this._x-hSize);
     return {
       left: this._x-hSize,
       top: this._y-hSize,
@@ -208,12 +209,12 @@ ngImgCrop.factory('cropAreaSquare', ['cropArea', function(CropArea) {
       bottom: this._y+hSize
     };
   };
-
+  //测试光标是否在移动区域
   CropAreaSquare.prototype._isCoordWithinArea=function(coord) {
     var squareDimensions=this._calcSquareDimensions();
     return (coord[0]>=squareDimensions.left&&coord[0]<=squareDimensions.right&&coord[1]>=squareDimensions.top&&coord[1]<=squareDimensions.bottom);
   };
-
+  //测试光标是否在缩放区域
   CropAreaSquare.prototype._isCoordWithinResizeCtrl=function(coord) {
     var resizeIconsCenterCoords=this._calcSquareCorners();
     var res=-1;
@@ -365,6 +366,7 @@ ngImgCrop.factory('cropAreaSquare', ['cropArea', function(CropArea) {
       this._resizeCtrlIsDragging = -1;
       this._events.trigger('area-resize-end');
     }
+//    alert(this._posDragStartX);
     this._areaIsHover = false;
     this._resizeCtrlIsHover = -1;
 
@@ -448,6 +450,7 @@ ngImgCrop.factory('cropArea', ['cropCanvas', function(CropCanvas) {
 
   CropArea.prototype.draw=function() {
     // draw crop area
+    //alert('deaw');
     this._cropCanvas.drawCropArea(this._image,[this._x,this._y],this._size,this._drawArea);
   };
 
@@ -563,6 +566,12 @@ ngImgCrop.factory('cropCanvas', [function() {
           yRatio=image.height/ctx.canvas.height,
           xLeft=centerCoords[0]-size/2,
           yTop=centerCoords[1]-size/2;
+      if(image.width > image.height)
+        xRatio = yRatio = image.width/ctx.canvas.width;
+      else
+        xRatio = yRatio = image.height/ctx.canvas.height;
+
+
 
       ctx.save();
       ctx.strokeStyle = colors.areaOutline;
@@ -574,7 +583,11 @@ ngImgCrop.factory('cropCanvas', [function() {
 
       // draw part of original image
       if (size > 0) {
-          ctx.drawImage(image, xLeft*xRatio, yTop*yRatio, size*xRatio, size*yRatio, xLeft, yTop, size, size);
+        if(image.width < image.height)
+          ctx.drawImage(image,  xRatio * (xLeft - ctx.canvas.width/2 + ctx.canvas.height/image.height * image.width/2), yTop*yRatio, size*xRatio, size*yRatio, xLeft, yTop, size, size);
+        else
+          ctx.drawImage(image,  xRatio * (xLeft), (yTop- ctx.canvas.height/2 + ctx.canvas.width/image.width * image.height/2)*yRatio, size*xRatio, size*yRatio, xLeft, yTop, size, size);
+        
       }
 
       ctx.beginPath();
@@ -1419,7 +1432,17 @@ ngImgCrop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', 
 
       if(image!==null) {
         // draw source image
-        ctx.drawImage(image, 0, 0, ctx.canvas.width, ctx.canvas.height);
+
+        // draw source image
+        if(image.width>image.height)
+          ctx.drawImage(image, 0, (ctx.canvas.height - ctx.canvas.width/image.width * image.height)/2, ctx.canvas.width, ctx.canvas.width/image.width * image.height);
+        else
+          ctx.drawImage(image, (ctx.canvas.width - ctx.canvas.height/image.height * image.width)/2, 0, ctx.canvas.height/image.height * image.width, ctx.canvas.height);
+
+
+        //ctx.drawImage(image, (Math.max(image.width,ctx.canvas.height) - Math.min(ctx.canvas.width,ctx.canvas.height))/2, 0, ctx.canvas.width, ctx.canvas.height);
+
+//        ctx.drawImage(image, 0, 0, ctx.canvas.width, ctx.canvas.height);
 
         ctx.save();
 
@@ -1456,6 +1479,10 @@ ngImgCrop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', 
           canvasDims[1]=minCanvasDims[1];
           canvasDims[0]=canvasDims[1]*imageRatio;
         }
+        if(canvasDims[0] > canvasDims[1])
+          canvasDims[0] = canvasDims[1];
+        else
+          canvasDims[1] = canvasDims[0];
         elCanvas.prop('width',canvasDims[0]).prop('height',canvasDims[1]).css({'margin-left': -canvasDims[0]/2+'px', 'margin-top': -canvasDims[1]/2+'px'});
 
         theArea.setX(ctx.canvas.width/2);
@@ -1537,7 +1564,21 @@ ngImgCrop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', 
       temp_canvas.width = resImgSize;
       temp_canvas.height = resImgSize;
       if(image!==null){
-        temp_ctx.drawImage(image, (theArea.getX()-theArea.getSize()/2)*(image.width/ctx.canvas.width), (theArea.getY()-theArea.getSize()/2)*(image.height/ctx.canvas.height), theArea.getSize()*(image.width/ctx.canvas.width), theArea.getSize()*(image.height/ctx.canvas.height), 0, 0, resImgSize, resImgSize);
+        var ratio;
+        if(image.width > image.height)
+          ratio = image.width/ctx.canvas.width;
+        else
+          ratio = image.height/ctx.canvas.height;
+
+        if(image.width>image.height)
+        {
+          temp_ctx.drawImage(image, (theArea.getX()-theArea.getSize()/2)*(image.width/ctx.canvas.width)+ (image.width-image.height)/2, (theArea.getY()-theArea.getSize()/2)*(image.width/ctx.canvas.width), theArea.getSize()*(image.width/ctx.canvas.width), theArea.getSize()*(image.width/ctx.canvas.width), 0, 0, resImgSize, resImgSize);
+        }
+        else
+        {
+//          alert(image.width-image.height);    
+          temp_ctx.drawImage(image, (theArea.getX()-theArea.getSize()/2)*(image.height/ctx.canvas.height)+ (image.width-image.height)/2, (theArea.getY()-theArea.getSize()/2)*(image.height/ctx.canvas.height), theArea.getSize()*(image.height/ctx.canvas.height), theArea.getSize()*(image.height/ctx.canvas.height), 0, 0, resImgSize, resImgSize);
+        }
       }
       if (resImgQuality!==null ){
         return temp_canvas.toDataURL(resImgFormat, resImgQuality);
@@ -1561,6 +1602,7 @@ ngImgCrop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', 
             var orientation=cropEXIF.getTag(newImage,'Orientation');
 
             if([3,6,8].indexOf(orientation)>-1) {
+              //alert('fff');
               var canvas = document.createElement("canvas"),
                   ctx=canvas.getContext("2d"),
                   cw = newImage.width, ch = newImage.height, cx = 0, cy = 0, deg=0;

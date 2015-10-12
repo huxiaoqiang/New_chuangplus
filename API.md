@@ -142,7 +142,7 @@ position    |ReferenceField|Position|关联职位
 submit_date |DateTimeField |        |投递日期
 resume_submitted|FileField |        |投递的简历附件
 processed   |BooleanField  |default=False|处理状态，默认是未处理
-
+interested  |BooleanField  |default=False|hr是否感兴趣
 
 ###文件模块filedata
 ####文件表File
@@ -500,8 +500,15 @@ post userinfo信息，返回错误码和post的用户信息json对象
 ###/api/account/company/(?P<position_id>.*?)/process
 position_id，hr批量处理该职位的投递者，将所有投递该职位的投递设为已处理(method : post)
 
-###/api/account/company/(?P<position_id>.*?)/(?P<username>.*?)/process
+###/api/account/company/process_single
 position_id，hr处理username用户对该职位的投递，将状态改为hr已经处理(method : post)
+post"两个字段，position_id和username"
+```javascript
+    {
+        "position_id":"*******",
+        "username":"*******"
+    }
+```
 
 ###/api/account/company/(?P<position_id>.*?)/submit/list
 参数为position_id，获取公司发布的position_id这个职位的所有投递者信息(method : get)
@@ -687,3 +694,13 @@ post如下字段
    }
 ```
 返回errorcode
+
+###/api/account/api/(?P<position_id>.*?)/(?P<username>.*?)/hr_set_interested
+hr设置对某个简历投递者感兴趣（method:get）
+参数如下
+```javascript
+   {
+    "position_id" :职位id
+	"username":  投递简历者的用户名
+   }
+```
