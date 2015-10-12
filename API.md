@@ -10,6 +10,7 @@ chuangplus项目api文档
 ----------|----------|----------|----------
 id            |primarykey  |          |主键
 username      |StringField |          |
+is_info       |BooleanFiled|          |True:info账号，False不是info账号
 password      |            |          |
 email         |EmailFiedl  |          |
 is_staff      |BooleanFiled|          |True：企业用户，False：个人用户
@@ -133,7 +134,7 @@ STATUS = ('open','closed')
 user        |User
 position    |Position
 
-####实习生投递职位表
+####实习生投递职位表UserPosition
 字段   |类型   |修饰   |解释
 ------------|-----------|-----------|-----------
 user        |ReferenceField|User    |关联用户（实习生）
@@ -198,6 +199,26 @@ set_csrf(data)
   }
 ```
 返回同上
+
+###/api/account/login_by_tsinghua
+通过清华info账号登录（methed:post）
+向url post 用户名与密码
+```javascript
+  {
+    "username" : "someone",
+    "password" : "password",
+    "captcha"  : "FCR3",              
+  }
+
+```
+若登录成功则返回
+```
+{
+	"error": {"code":1,"message":"login succeed"},
+	"completive":0 or 1(信息完全)
+	"role" : 0（学生用户） or 1(代表公司用户)
+}
+```
 ###/api/account/login
 用户登录 （method : post）
 向url post用户名和密码
@@ -208,8 +229,20 @@ set_csrf(data)
     "captcha"  : "FCR3",              
   }
 ```
+若登录成功则返回
+```
+{
+	"error": {"code":1,"message":"login succeed"},
+	"completive":0 or 1(信息完全)
+	"role" : 0（学生用户） or 1(代表公司用户)
+}
+```
 ###/api/account/logout
-用户注销 
+用户注销
+返回 
+{
+	"error":{"code":1,"message":"logout successfully!"
+}
 ###/api/account/password/set
 修改密码(method : post)
 向url post密码和新密码（在用户已经登录的条件下）
@@ -219,6 +252,24 @@ set_csrf(data)
     "new_password" : "********"
   }
 ```
+###/api/account/set_withcode
+忘记密码时修改密码(method:post)
+向url post邮箱 邮箱验证码和新密码
+```javascript
+   {
+	"input_code":
+	"email":
+	"new_password":
+   }
+```
+返回
+  errorcode   状态
+	1          成功
+	2          没有post
+	117        数据库错误
+	270        邮箱验证码错误
+	271        邮箱验证码无效
+
 ###/api/account/userinfo/get
 获取实习生用户信息(method : get)
 返回实习生用户信息的json对象和错误码
@@ -243,6 +294,30 @@ post userinfo信息，返回错误码和post的用户信息json对象
   }
 ```
 
+
+###/api/account/userinfo/set_by_tsinghua
+修改清华info账号实习生用户信息(method : post)
+post userinfo信息，返回错误码和post的用户信息json对象
+其中必须要写的字段是：
+```javascript
+  {
+    "email"         : "real_name",
+    "university"    : "university",
+    "major"         : "major",
+    "grade"         : "grade",
+  }
+```
+
+###/api/userinfo/checkall
+判断实习生用户的信息是否填写完全(比下面的函数多检查了简历信息)(method : get)
+返回如下
+```javascript
+  {
+  "error":{}
+  "complete" : "True"(or "False")
+  }
+```
+
 ###/api/account/userinfo/check
 判断实习生用户的信息是否填写完全(method : get)
 返回如下
@@ -256,6 +331,10 @@ post userinfo信息，返回错误码和post的用户信息json对象
 ###/api/account/userinfo/position/favor/list
 获取用户收藏的职位列表(method : get)
 在用户已经登录的状态下，请求处理成功时，返回一个list,list中每一个对象是一个职位
+
+###/api/account/userinfo/position/favor/submitall  （可能存在bug：简历更新）
+向所有还没有投递简历的职位投递简历(method:post)
+返回errorcode
 
 ###/api/account/userinfo/position/submit/list
 获取用户投递的职位列表(method : get)
@@ -278,6 +357,10 @@ post userinfo信息，返回错误码和post的用户信息json对象
 ###/api/account/userinfo/(?P<company_id>.*?)/check_favor_company
 判断用户是否关注了company_id这个公司(method : get)
 返回结果同上
+
+###/api/account/userinfo/remove/closed_position
+移除用户position列表中被关闭的职位(method : post)
+返回errorcode
 
 ###/api/account/sendemail
 “找回密码”时，向用户邮箱发送验证码 (method : post)
@@ -403,6 +486,30 @@ position_id，hr处理username用户对该职位的投递，将状态改为hr已
 ###/api/account/company/(?P<position_id>.*?)/submit/list
 参数为position_id，获取公司发布的position_id这个职位的所有投递者信息(method : get)
 
+###管理员相关admin
+###/api/account/admin/company/list
+获取公司列表(method:get)
+```javascript
+	{
+	"status"
+	"info_complete"
+	"is_auth"
+	"page" :若无则为1
+	}
+```
+返回
+```
+{
+	error : {code :"1",message:"succeed"}
+	'data': 公司信息
+	'page_number':
+}
+```
+###/api/account/admin/company/(?P<company_id>.*?)/detail_with_financing
+通过融资获取公司列表（method:get）
+
+###/api/account/admin/image/list
+通过邮件获得公司logo（method：get）
 
 ##职位相关position
 ###/api/position/create
@@ -438,9 +545,11 @@ position_id，hr处理username用户对该职位的投递，将状态改为hr已
 搜索职位，可以通过如下几个字段去过滤
 ```javascript
   {
+  
   "id"     : "id",
   "name"   : "name",
-  "type"   : "type",
+  "types"   : "type",
+  "fields"   : "fields",
   "work_city" : "work_city",
   "mindays"  : "mindays",
   "maxdays"  : "maxdays",
@@ -474,15 +583,87 @@ position_id，hr处理username用户对该职位的投递，将状态改为hr已
   }
   
 ```
+###/api/position/emailresume
+向公司邮寄昨天到今天投递的简历
+
 
 ###/api/position/(?P<position_id>.*?)/userlikeposition
 用户收藏该职位(method : post)
+参数为position_id
 
 ###/api/position/(?P<position_id>.*?)/userunlikeposition
 用户取消收藏该职位(method : post)
+参数为position_id
 
 ###/api/position/(?P<position_id>.*?)/close
 hr关闭职位(method : post)
+参数为position_id
 
 ###/api/position/(?P<position_id>.*?)/open
 hr开放职位(method : post)
+参数为position_id
+
+###文件处理filedata
+###/api/filedata/upload
+上传文件函数（method:post）
+包括上传公司logo，二维码；创始人头像和简历并生成缩略图(除简历外)
+request.FILES.get来获得文件
+post如下字段
+```javascript
+   {
+   "data" :{"file_type"(文件类型),"category"(flag),
+		    "description"(对文件的描述),
+			"avatar_id"(创始人id 只有在上传头像时才有)}
+   }
+```
+返回参数
+```
+   {
+		"error" : {code: errorcode , message : "some messagae"},
+		"data" : 文件的id
+   }
+```
+
+
+###/api/filedata/(?P<file_id>.*?)/download
+下载文件（method:get）
+参数file_id如下:
+```javascript
+   {
+     "file_id" : 文件id
+   }
+```
+返回
+```
+	文件本身
+   {
+	"filename"(文件名字)
+	"Content-Disposition" : "attachment; filename=\"" + 文件名
+   }
+```
+
+
+###/api/filedata/(?P<file_type>.*?)/(?P<category>.*?)/download_special
+下载某个文件(method: get)
+参数如下
+```javascript
+   {
+	"file_type" : 文件类型
+	"category"  :  文件某个flag(用于和公司关联)
+   }
+```
+返回
+```
+   文件本身
+   {
+    "Content-Disposition" : "attachment; filename=\"" + 文件名
+   }
+###/api/filedata/(?P<file_id>.*?)/delete
+删除某文件(method:get)
+参数如下
+```javascript
+   {
+	"file_id" : 文件id
+   }
+```
+返回errorcode

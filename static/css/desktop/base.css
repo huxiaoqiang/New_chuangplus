@@ -3424,35 +3424,37 @@ form.financing_add input {
   font-family: "微软雅黑";
   margin-top: 20px;
 }
-#container #homepage .right-block {
-  position: fixed;
-  right: 20px;
-  top: 168px;
-  height: 100%;
-  width: 120px;
-  margin: 0 auto;
-  z-index: 1;
-}
-#container #homepage .right-block .txt {
-  font-size: 1.0em;
-  color: #707070;
-  text-align: center;
-  width: 100%;
-}
-#container #homepage .right-block .img-1 {
-  height: 120px;
-  width: 120px;
-}
 #container #homepage .slide-block {
   height: 420px;
   min-height: 420px;
   margin-bottom: 15px;
 }
+#container #homepage .slide-block .carousel .carousel-inner {
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
+}
+#container #homepage .slide-block .carousel .carousel-indicators li {
+  background-color: #808080;
+}
+#container #homepage .slide-block .carousel .carousel-indicators li.active {
+  background-color: #333333;
+}
+#container #homepage .slide-block .carousel .carousel-control.left {
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  -khtml-opacity: 0;
+  opacity: 0;
+}
+#container #homepage .slide-block .carousel .carousel-control.right {
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  -khtml-opacity: 0;
+  opacity: 0;
+}
 #container #homepage .company-block {
   height: 70px;
   margin-bottom: 15px;
   width: 100%;
-  border: 1px solid #b2b2b2;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
 }
 #container #homepage .company-block .company-item {
   float: left;
@@ -3475,7 +3477,7 @@ form.financing_add input {
   height: 70px;
   margin-bottom: 15px;
   width: 100%;
-  border: 1px solid #b2b2b2;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
 }
 #container #homepage .intern-block .intern-item {
   float: left;
@@ -3495,14 +3497,14 @@ form.financing_add input {
   cursor: pointer;
 }
 #container #homepage .info-block-1 {
-  border: 1px solid #b2b2b2;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
   margin-bottom: 15px;
 }
 #container #homepage .info-block-1 img {
   width: 100%;
 }
 #container #homepage .info-block-2 {
-  border: 1px solid #b2b2b2;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
   margin-bottom: 15px;
 }
 #container #homepage .info-block-2 img {
@@ -3516,8 +3518,10 @@ form.financing_add input {
   width: 158px;
   margin-right: 2px;
   float: left;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
 }
 #container #homepage .img-block .img-2.last {
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
   margin-right: 0;
 }
 #container #homepage .img-block .img-3 {

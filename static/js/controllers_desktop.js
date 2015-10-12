@@ -10,14 +10,13 @@ angular.module('chuangplus.controllers', []).
         $scope.company_id='';
         $scope.myInterval = 3000;
         $scope.slides1 = [
-            {image:"/static/image/logo/banner-1.jpg"},
-            {image:"/static/image/logo/banner-2.jpg"},
-            {image:"/static/image/logo/banner-3.jpg"}
+            {image:"/static/image/banner/ceobanner-03.jpg"},
+            {image:"/static/image/banner/ceobanner-04.jpg"},
+            {image:"/static/image/banner/ceobanner-05.jpg"}
         ];
         $scope.slides2 = [
-            {image:"/static/image/logo/banner1.jpg"},
-            {image:"/static/image/logo/banner2.jpg"},
-            {image:"/static/image/logo/banner3.jpg"}
+            {image:"/static/image/banner/banner-01.jpg"},
+            {image:"/static/image/banner/banner-02.jpg"}
         ];
         $scope.scan = false;
         $scope.search = false;
