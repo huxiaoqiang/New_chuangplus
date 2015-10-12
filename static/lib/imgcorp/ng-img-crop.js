@@ -1572,7 +1572,7 @@ ngImgCrop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', 
 
         if(image.width>image.height)
         {
-          temp_ctx.drawImage(image, (theArea.getX()-theArea.getSize()/2)*(image.width/ctx.canvas.width)+ (image.width-image.height)/2, (theArea.getY()-theArea.getSize()/2)*(image.width/ctx.canvas.width), theArea.getSize()*(image.width/ctx.canvas.width), theArea.getSize()*(image.width/ctx.canvas.width), 0, 0, resImgSize, resImgSize);
+          temp_ctx.drawImage(image, (theArea.getX()-theArea.getSize()/2)*(image.width/ctx.canvas.width), (theArea.getY()-theArea.getSize()/2)*(image.width/ctx.canvas.width)+ (image.height-image.width)/2, theArea.getSize()*(image.width/ctx.canvas.width), theArea.getSize()*(image.width/ctx.canvas.width), 0, 0, resImgSize, resImgSize);
         }
         else
         {
