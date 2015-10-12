@@ -1508,6 +1508,7 @@ def search_submit_intern(request):
     if request.method == 'GET':
         type = request.GET.get('position_type', '')
         processed = request.GET.get('processed','')
+        interested = request.GET.get('interested','')
         try:
             company = Companyinfo.objects.get(username=request.user.username)
             #company = Companyinfo.objects.get(username='tsinghuachuangplus')
@@ -1527,6 +1528,7 @@ def search_submit_intern(request):
             else:
                 re['error'] = error(275,'param error!')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
+
         if type != '':
             try:
                 assert type in TYPE
@@ -1540,6 +1542,15 @@ def search_submit_intern(request):
                 re['error'] = error(260,'Position does not exist')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             up = up.filter(position__in = positions)
+
+        if interested != '':
+            if interested == 'false':
+                up = up.filter(interested = False)
+            elif interested == 'true':
+                up = up.filter(interested = True)
+            else:
+                re['error'] = error(275,'param error!')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
 
         page = 1
         if "page" in request.GET.keys():
@@ -1569,6 +1580,7 @@ def search_submit_intern(request):
             userinfo['position_name'] = item.position.name
             userinfo['position_id'] = p['_id']['$oid']
             userinfo['process'] = item.processed
+            userinfo['interested'] = item.interested
             user_list.append(userinfo)
         re['error'] = error(1,'succeed ')
         re['data'] = user_list
