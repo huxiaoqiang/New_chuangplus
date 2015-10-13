@@ -724,13 +724,3 @@ hr根据职位获取感兴趣的简历投递者(method：get)
 =======
 ```
 >>>>>>> 9ca7537a58d3331045786ac3be0d47ce2bced81e
-
-###/api/acount/(?P<company_id>.*?)/hr_get_interested_by_company
-hr获取整个公司的感兴趣的简历投递者(method：get)
-参数如下
-```javascript
-   {
-    company_id :公司id
-   }
-、、、
-返回参数同上

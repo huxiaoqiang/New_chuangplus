@@ -33,10 +33,10 @@
         </div>
         <div class="interested">
             <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked> 感兴趣
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 感兴趣
             </label>
             <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 不感兴趣
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" value="checked"> 不感兴趣
             </label>
         </div>
     </div>
@@ -73,15 +73,15 @@
             <p class="abbreviation">[[companyinfo.abbreviation]]</p>
             <p class="brief_introduction">[[companyinfo.brief_introduction]]</p>
             <p class="position_sum">在招岗位数：[[companyinfo.positions.length]]</p>
-            <select ng-change="change(search_params.position_type)" class="search_params_position_type" ng-model="search_params.position_type">
-                <option value="" ng-select="search_params.position_type=''">全部</option>
-                <option value="technology" ng-select="search_params.position_type='technology'">技术</option>
-                <option value="product" ng-select="search_params.position_type='product'">产品</option>
-                <option value="design" ng-select="search_params.position_type='design'">设计</option>
-                <option value="operate" ng-select="search_params.position_type='operate'">运营</option>
-                <option value="marketing" ng-select="search_params.position_type='marketing'">市场</option>
-                <option value="functions" ng-select="search_params.position_type='functions'">职能</option>
-                <option value="others" ng-select="search_params.position_type='others'">其他</option>
+            <select ng-change="change(filter_chosen.position_type)" class="filter_chosen_position_type" ng-model="filter_chosen.position_type">
+                <option value="" ng-select="filter_chosen.position_type=''">全部</option>
+                <option value="technology" ng-select="filter_chosen.position_type='technology'">技术</option>
+                <option value="product" ng-select="filter_chosen.position_type='product'">产品</option>
+                <option value="design" ng-select="filter_chosen.position_type='design'">设计</option>
+                <option value="operate" ng-select="filter_chosen.position_type='operate'">运营</option>
+                <option value="marketing" ng-select="filter_chosen.position_type='marketing'">市场</option>
+                <option value="functions" ng-select="filter_chosen.position_type='functions'">职能</option>
+                <option value="others" ng-select="filter_chosen.position_type='others'">其他</option>
             </select>
         </div>
     </div>
