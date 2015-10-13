@@ -3317,7 +3317,7 @@ angular.module('chuangplus.controllers', []).
             document.body.scrollTop = $rootScope.position_list_position;
         }
         else
-            $scope.get_positions();
+            $scope.selectPage(1);
 
         
         $scope.choose = function(field){
