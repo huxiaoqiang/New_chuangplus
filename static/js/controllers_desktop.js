@@ -1947,6 +1947,13 @@ angular.module('chuangplus.controllers', []).
         };
         $(".company-auth").mouseenter($scope.show_auth);
         $(".company-auth").mouseleave($scope.hide_auth);
+
+
+        //记录页面情况
+        document.getElementById('main-container').onscroll = function record_position(){
+            $rootScope.company_list_position = document.getElementById('main-container').scrollTop;
+            alert('scroll');
+        };
     }]).
     controller('DT_CompanyDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errorMsg){

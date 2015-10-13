@@ -3,7 +3,7 @@
         <div class="col-md-4">
              <div class="search-tab">
                 <div class="search-item company-field" >
-                    <p>[[filed_choose]]<i class="icon-angle-down"></i></p>
+                    <p ng-model="filed_choose"><i class="icon-angle-down"></i></p>
                     <div class="field-list">
                         <table>
                             <tbody>
@@ -35,7 +35,7 @@
                 </div>
                 <div style="clear: both"></div>
                 <div class="search-item company-scale"  >
-                    <p>[[scale_choose]]<i class="icon-angle-down"></i></p>
+                    <p ng-model="scale_choose"><i class="icon-angle-down"></i></p>
                     <div class="scale-list">
                         <a href="#" ng-class="{active:param.scale == 0}" ng-click="choose_scale(0)">初创（未融资/种子天使）</a><br>
                         <a href="#" ng-class="{active:param.scale == 1}" ng-click="choose_scale(1)">成长（A轮/B轮）</a><br>
@@ -45,7 +45,7 @@
                 </div>
                  <div style="clear: both"></div>
                 <div class="search-item company-auth" >
-                    <p>[[auth_choose]]<i class="icon-angle-down"></i></p>
+                    <p ng-model="auth_choose"><i class="icon-angle-down"></i></p>
                     <div class="organization-list" >
                         <a href="#" ng-class="{active:param.auth_organization == null}" ng-click="choose_auth_organization(null)">全选</a><br>
                         <a href="#" ng-class="{active:param.auth_organization == '源码资本'}" ng-click="choose_auth_organization('源码资本')">源码资本</a><br>
@@ -74,10 +74,10 @@
                 <img src="/static/image/icon/loading.gif">
             </div>
             <div ng-show="!loading">
-                <div class="no-company-found" ng-show="param.pageCount==0">
+                <div class="no-company-found" ng-if="param.pageCount==0">
                          暂无信息！
                 </div>
-                <div ng-show="param.pageCount>0">
+                <div ng-if="param.pageCount>0">
                 <ul ng-repeat="company in company_list">
                     <a href="/company/[[company._id.$oid]]/detail">
                         <li>
