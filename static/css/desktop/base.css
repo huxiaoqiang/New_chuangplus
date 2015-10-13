@@ -3496,6 +3496,8 @@ form.financing_add input {
   margin-bottom: 15px;
   width: 100%;
   box-shadow: 2px 2px 7px 2px #dfdfdf;
+  background: white !important;
+  font-family: 'Lantinghei SC', 'Open Sans', 'Arial', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'STHeiti', 'WenQuanYi Micro Hei', 'SimSun', 'sans-serif';
 }
 #container #homepage .intern-block .intern-item {
   float: left;

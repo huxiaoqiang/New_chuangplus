@@ -13,7 +13,7 @@
             <div class="company-item"><a href="/company/[[company_id]]/resume">处理简历</a></div>
             <div class="company-item"><a href="/company/[[company_id]]/position/manage">管理职位</a></div>
         </div>
-        <div style="font-family: 'Lantinghei SC', 'Open Sans', Arial, 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'STHeiti', 'WenQuanYi Micro Hei', SimSun, sans-serif;' ng-if="role == 0 && username != undefined" class="intern-block">
+        <div ng-if="role == 0 && username != undefined" class="intern-block">
             <div class="intern-item"><a href="/intern/post">我的投递</a></div>
             <div class="intern-item"><a href="/intern/resume/view">我的简历</a></div>
             <div class="intern-item"><a href="/intern/favor/position">我收藏的职位</a></div>
