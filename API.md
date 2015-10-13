@@ -113,7 +113,7 @@ user        |Userinfo
 
 
 ###职位模块position
-####职位表Position
+####职位表Position  (need Modify)
 字段   |类型   |修饰   |解释
 ------------|-----------|-----------|-----------
 id                  |primarykey     |              |
@@ -130,10 +130,20 @@ days_per_week       |IntField       |default=3     |每周工作天数
 internship_time     |IntField       |default=1     |实习时间（月）
 salary_min          |IntField       |default=0     |薪水下限
 salary_max          |IntField       |default=0     |薪水上限
-delivery_number     |IntField       |default=0     |职位已经投递的人数
+index               |IntField       |default=0     |职位的排序序号
+attention_num       |IntField       |default=0     |?????
+part_or_full_time   |IntField       |default=0     |实习还是全职
+submit_number     |IntField       |default=0     |职位已经投递的人数
 status              |Stringfield    |choices=STATUS|职位状态(STATUS见表下)
 TYPE = ('technology','product','design','operate','marketing','functions','others')<br/>
 STATUS = ('open','closed')
+
+###职位排序的参数Sortposition
+字段         | 类型          | 修饰   |解释
+position     |ReferenceField |        |关联职位
+companyIndex |IntField 		 |        |公司的排序序号
+value        |IntField       |        |主要参数   
+
 
 ####实习生和职位收藏关系表UP_Relationship
 字段   |域

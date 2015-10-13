@@ -28,9 +28,16 @@ class Position(Document):
     attention_num = IntField(default=0)
     part_or_full_time = IntField(default=0)
     status = StringField(max_length=15,choices=STATUS,default='open')
-
+    index = IntField(default = 30,required=True)
     def __str__(self):
         return self.name
+
+class SortPosition(Document):
+    position = ReferenceField(Position,required = True)
+    companyIndex = IntField(required = True)
+    value = IntField(required = True)
+    def __str__(self):
+        return self.position.name
 
 class UserPosition(Document):
     company = ReferenceField(Companyinfo)
