@@ -1642,7 +1642,7 @@ angular.module('chuangplus.controllers', []).
         $scope.company_id = $routeParams.company_id;
         $scope.position_list = {};
         $scope.close_position = function(index){
-            $http.post(urls.api+"/position/"+$scope.position_list[index]['_id']['$oid']+"/close").
+            $http.get(urls.api+"/position/"+$scope.position_list[index]['_id']['$oid']+"/close").
               success(function(data){
                 if(data.error.code==1){
                   console.log('关闭职位成功');

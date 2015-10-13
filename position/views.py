@@ -288,30 +288,10 @@ def delete_position(request,position_id):
     except:
         re['error'] = error(299,'Unknown Error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
-    
-    try:
-        assert request.user != None
-        assert request.user.is_staff
-        cpn = Companyinfo.objects.get(user = request.user)
-        assert posi in cpn.position    
-    except:
-        re['error'] = error(100,"Permission denied!")
-    
-    cpn.positions.remove(posi)
-    cpn.save()
-
-    try:
-        posi.delete()
-    except (DatabaseError):
-        re['error'] = error(252,"Database error: Failed to delete!")
-        return HttpResponse(json.dumps(re), content_type = 'application/json')
-    except:
-        re['error'] = error(299,'Unknown Error!')
-        return HttpResponse(json.dumps(re),content_type = 'application/json')
-      
+    posi.status = 'deleted'
+    posi.save()
     re['error'] = error(1,'Delete position succeed!')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
-
 
 def search_position(request):
     re = dict()
@@ -1034,7 +1014,7 @@ def user_unlike_position(request,position_id):
 @user_permission('login')
 def close_position(request,position_id):
     re = dict()
-    if request.method == 'POST':
+    if request.method == 'GET':
         try:
             position = Position.objects.get(id=position_id)
         except DoesNotExist:
@@ -1044,7 +1024,7 @@ def close_position(request,position_id):
         position.save()
         re['error'] = error(1,'succeed!')
     else:
-        re['error'] = error(2,'Error, need POST')
+        re['error'] = error(3,'Error, need GET')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission('login')
