@@ -17,6 +17,7 @@ except ImportError:
 TYPE = ('technology','product','design','operate','marketing','functions','others')
 class Userinfo(Document):
     is_info = BooleanField(default=False)
+    student_id = StringField()
     user = ReferenceField(User,required=True)
     username = StringField(max_length=30,required=True)
     user_avatar_id = StringField(max_length=30)
