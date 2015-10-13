@@ -3,7 +3,7 @@
       <div class="col-sm-4">
         <div class="search-tab">
                 <div class="search-item company-field" >
-                    <p>[[filed_choose]]<i class="icon-angle-down"></i></p>
+                    <p ng-bind="filed_choose"><i class="icon-angle-down"></i></p>
                     <div class="field-list">
                         <table>
                             <tbody>
@@ -35,7 +35,7 @@
                 </div>
                 <div style="clear: both"></div>
                 <div class="search-item position-type"  >
-                    <p>[[type_choose]]<i class="icon-angle-down"></i></p>
+                    <p ng-bind="type_choose"><i class="icon-angle-down"></i></p>
                     <div class="type-list">
                         <table>
                             <tbody>
@@ -60,14 +60,14 @@
                 </div>
                 <div style="clear: both"></div>
                 <div class="search-item salary_set">
-                    <p>[[salary_choose]]<i class="icon-angle-down"></i></p>
+                    <p ng-bind="salary_choose"><i class="icon-angle-down"></i></p>
                     <div class="salary_min">
                         <input type="number" min="1"   ng-model="salary_min" ng-blur="choose_salary(salary_min)" class="form-control" placeholder="月薪下限">K
                     </div>
                 </div>
                 <div style="clear: both"></div>
                 <div class="search-item work_days">
-                    <p>[[workdays_choose]]<i class="icon-angle-down"></i></p>
+                    <p ng-bind="workdays_choose"><i class="icon-angle-down"></i></p>
                     <div class="work_days_max">
                         <table>
                             <tbody>
