@@ -256,11 +256,12 @@ def get_company_position_list(request,company_id):
         return HttpResponse(json.dumps(re), content_type = 'application/json')
     try:
         company = Companyinfo.objects.get(id=company_id)
-        position_list = company.positions
+        #company = Companyinfo.objects.get(username="aldzuba")
     except ObjectDoesNotExist:
         re['error'] = error(249,"Object does not exist")
         return HttpResponse(json.dumps(re), content_type = 'application/json')
-
+    status_re = ['open','closed']
+    position_list = Position.objects.filter(status__in=status_re,company=company)
     datalist = []
     for position in position_list:
         datalist.append(json.loads(position.to_json()))
@@ -301,6 +302,7 @@ def search_position(request):
     #    re['error'] = error(3, 'error, need get!')
     #    return HttpResponse(json.dumps(re), content_type = 'application/json')
     qs = Position.objects.all().order_by('index')
+    qs = qs.filter(status='open')
     ##cpn = Companyinfo.objects.all()
     if "id" in request.GET.keys():
         if len(request.GET["id"]) > 0:

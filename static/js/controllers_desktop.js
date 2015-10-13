@@ -140,7 +140,7 @@ angular.module('chuangplus.controllers', []).
             else if(url.indexOf("resume")>0){
                 $scope.header = $header.resume();
             }
-            else if(url.indexOf("login")>0||url.indexOf("register")>0||url.indexOf("password")>0||url.indexOf("feedback")>0||url.indexOf("about")>0){
+            else if(url.indexOf("login")>0||url.indexOf("register")>0||url.indexOf("password")>0||url.indexOf("intern")>0||url.indexOf("feedback")>0||url.indexOf("about")>0){
                 $scope.header = $header.none();
             }
             else{
@@ -1657,6 +1657,7 @@ angular.module('chuangplus.controllers', []).
             $http.get(urls.api+"/position/"+$scope.position_list[index]['_id']['$oid']+"/delete").
               success(function(data){
                     if(data.error.code == 1){
+                        console.log('删除职位成功');
                         $scope.get_position_list();
                     }
                     else{
