@@ -7,7 +7,7 @@ from app.common_api import error,user_permission
 from django.db import DatabaseError
 from django.core.mail import send_mail
 from random import randint
-from position.models import Position,UserPosition
+from position.models import Position,UserPosition,SortPosition
 from bson.objectid import ObjectId
 from django.db.models import Q
 import urllib2,urllib2
@@ -1804,30 +1804,31 @@ def interested_list_company(request):
 def run_one_times(request):
     re = dict()
     if request.method == "GET":
-        qs = Companyinfo.objects.all()
-        n = Companyinfo.objects.filter().count()
+        qs = Position.objects.all()
+        '''
+        n = Position.objects.filter().count()
         item = []
         for i in range(0,n+1):
             item.append(i+1)
         random.shuffle(item)
         num = 0
+        '''
         for i in qs:
-            if str(i.id) == "5600bb0038d95e5975e54ed7":
-                i.index = 0
-            else:
-                i.index = item[num]
+            sp = SortPosition.objects.get(position = i)
+            i.index = sp.value + int(sp.companyIndex * 0.3)
             i.save()
-            num = num + 1
+            sp.save()
+            #num = num + 1
     else:
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re),content_type="application/json")
-def look_companysort(request):
+def look_position_sort(request):
     re = dict()
     if request.method == "GET":
-        qs = Companyinfo.objects.all()
+        qs = Position.objects.all()
         data = {}
         for i in qs:
-            data[i.abbreviation] = i.index
+            data[i.name] = i.index
         re['data'] = data
     else:
         re['error'] = error(1,"adfaf")
