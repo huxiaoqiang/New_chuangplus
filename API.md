@@ -10,7 +10,6 @@ chuangplus项目api文档
 ----------|----------|----------|----------
 id            |primarykey  |          |主键
 username      |StringField |          |
-is_info       |BooleanFiled|          |True:info账号，False不是info账号
 password      |            |          |
 email         |EmailFiedl  |          |
 is_staff      |BooleanFiled|          |True：企业用户，False：个人用户
@@ -19,7 +18,9 @@ is_staff      |BooleanFiled|          |True：企业用户，False：个人用�
 字段   |类型   |修饰   |解释
 ----------|----------|----------|----------
 id            |primarykey  |          |主键
-user          |ReferenceField|关联数据  |对应的user
+is_info       |BooleanField|          |True:info账号，False不是info账号
+student_id    |stringField |          |清华学生账号
+user          |ReferenceField|关联数据|对应的user
 username      |StringField |同User中  |用户名
 email         |EmailFiele  |同User中  |邮箱
 real_name     |StringField |          |真实姓名
