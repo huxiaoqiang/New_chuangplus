@@ -100,10 +100,13 @@ MEDIA_ROOT = 'media/'
 from mongoengine import connect
 connect('chuangplus', host='123.56.88.173', port=27017, username='chuangplus', password='THUcj2014')
 
-# add session
+#############
+# SESSTIONS #
+#############
 SESSION_ENGINE = 'mongoengine.django.sessions'
 SESSION_SERIALIZER = 'mongoengine.django.sessions.BSONSerializer'
-#SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_COOKIE_AGE = 60*2
+
 
 # add authentication
 AUTHENTICATION_BACKENDS = (
