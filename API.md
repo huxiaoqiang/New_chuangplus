@@ -19,7 +19,6 @@ is_staff      |BooleanFiled|          |True：企业用户，False：个人用�
 ----------|----------|----------|----------
 id            |primarykey  |          |主键
 is_info       |BooleanField|          |True:info账号，False不是info账号
-student_id    |stringField |          |清华学生账号
 user          |ReferenceField|关联数据|对应的user
 username      |StringField |同User中  |用户名
 email         |EmailFiele  |同User中  |邮箱
@@ -236,6 +235,16 @@ set_csrf(data)
 	"completive":0 or 1(信息完全)
 	"role" : 0（学生用户） or 1(代表公司用户)
 }
+如果是用户名被占用则返回
+```
+   {
+   'completive' : 
+   'student_id' :学号
+   'occupation' :被占用，恒为'1'
+   'role' : 0
+   'error':
+   }
+```
 ```
 ###/api/account/login
 用户登录 （method : post）
@@ -752,3 +761,24 @@ hr获取整个公司的感兴趣的简历投递者(method：get)
    }
 、、、
 返回参数同上
+
+###/api/acount/userinfo/set_username_by_tsinghua
+设置被占用的用户名(method:POST)
+参数如下：
+```javascript
+   {
+   student_id : 学号
+   username : 设置的用户名(希望post之前检查一下是否唯一)
+   email ：邮箱(希望post之前检查一下是否唯一)
+   university:
+   major:
+   grade:
+   }
+```
+返回值
+```javascript
+   {
+	role : 0
+	errorcode
+   }
+```

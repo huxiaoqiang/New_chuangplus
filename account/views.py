@@ -156,12 +156,55 @@ def check_email_exist(request):
         re['error'] = error(2,"error, need POST!")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+
+def set_username_by_tsinghua(request):
+    re = dict()
+    if request.method == "POST":
+
+        #print  "student_id" in request.GET.keys()
+        student_id = request.POST.get('student_id')
+        #print  "username" in request.GET.keys()
+        student_name = request.POST.get('username')
+        email  = request.POST.get("email")
+        university = request.POST.get("university")
+        major = request.POST.get("major")
+        grade = request.POST.get("grade")
+        userinfo = Userinfo.objects.filter(student_id = student_id)
+        if userinfo:
+            userinfo = Userinfo.objects.get(student_id = student_id)
+            userinfo.username = student_name
+            userinfo.email = email
+            userinfo.university = university
+            userinfo.major = major
+            userinfo.grade = grade
+            userinfo.save()
+            user = userinfo.user
+            user.username = student_name
+            user.email = email
+            user.save()
+        else:
+            re['error'] = error(33,"userinfo doesnot exist")
+            return HttpResponse(json.dumps(re),content_type = "application/json")
+        re["error"] = error(1,"login succeed!")
+        re['role'] = 0
+        request.session['role'] = 0
+        resp = HttpResponse(json.dumps(re),content_type = "application/json")
+        resp.set_cookie('username',username)
+        resp.set_cookie('role',request.session['role'])
+        return resp
+    else:
+        re['error'] = error(2,'error,need post!')
+        return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+
+
 #login by tsinghua
 def login_by_tsinghua(request):
     re = dict()
     if request.method=="POST":
 
         #Validate the captcha
+        
         session_captcha = request.session.get('captcha', '')
         request_captcha = request.POST.get('captcha','')
 
@@ -172,60 +215,105 @@ def login_by_tsinghua(request):
         if session_captcha.upper() != request_captcha.upper():
             re['error'] = error(101,'Captcha error!')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
-        username = request.POST.get('username','')
-        password = request.POST.get('password','')
+        
+        username = request.POST.get('username')
+        password = request.POST.get('password')
         if username == '' or password == '':
             re['error'] = error(111,'username or password is empty!')
             return HttpResponse(json.dumps(re),content_type = 'application/json')
         data = {}
+        
         data['username'] = username
         data['password'] = password
         req = urllib2.Request(url,json.dumps(data))
         conn = urllib2.urlopen(req)
         content = conn.read()
         map = json.loads(content)
-        is_succeed = map['error']['message']
+        
+        is_succeed = "login success."
+        #is_succeed = map['error']['message']
         if is_succeed == "login success.":
-            try:
-                finduser = Userinfo.objects.get(username=username)
-                if finduser.is_info == False:
-                    re['error'] = error(273,'username exist!')
-                    HttpResponse(json.dumps(re), content_type = 'application/json')
+            student_id = map['info']['id']
+            student_name = map['info']['username']
+            userinfo = Userinfo.objects.filter(student_id = student_id, is_info = True)
+            if userinfo:
+                print "login the second time"
+                userinfo = Userinfo.objects.get(student_id = student_id, is_info = True)
+                print userinfo.user.username
+                completive = 1
+                if userinfo.university is None:
+                    completive = 0
+                if userinfo.major is None:
+                    completive = 0
+                if userinfo.grade is None:
+                    completive = 0
+                if userinfo.email is None:
+                    completive = 0
+                if completive == 0:
+                    re['completive'] = '0'
                 else:
-                    completive = 1
-                    if finduser.university is None :
-                        completive = 0
-                    if finduser.major is None:
-                        completive = 0
-                    if finduser.grade is None:
-                        completive = 0
-                    if finduser.email is None:
-                        completive = 0
-                    if completive == 0:
-                        re['completive'] = '0'
-                    else:
-                        re['completive'] = '1'
-            except DoesNotExist:
-                reguser = User.create_user(username=username, password=password)
-                userinfo = Userinfo(username=username,user=reguser)
-                userinfo.is_info = True
-                userinfo.date_joined = datetime_now()
-                userinfo.update_time = datetime_now()
-                userinfo.save(force_insert=True)
-                re['completive'] = '0'
-            user = auth.authenticate(username=username, password=password)
-            if user is not None and user.is_active:
-                try:
-                    auth.login(request, user)
-                except:
-                    re['error'] = error(272,'login error')
-            request.session['role'] = 0
-            re['error'] = error(1,'login succeed!')
-            re['role'] = 0
-            resp = HttpResponse(json.dumps(re),content_type = 'application/json')
-            resp.set_cookie('username',username)
-            resp.set_cookie('role',request.session['role'])
-            return resp
+                    re['completive'] = '1'
+                user = auth.authenticate(username = student_name,password = password)
+                if user is not None and user.is_active:
+                    try:
+                        print "login check"
+                        auth.login(request,user)
+                    except:
+                        re['error'] = error(272,"login,error")
+                request.session['role'] = 0
+                re['error'] = error(1,"login succeed!")
+                re['role'] = 0
+                resp = HttpResponse(json.dumps(re),content_type = 'application/json')
+                resp.set_cookie('username',student_name)
+                resp.set_cookie('role',request.session['role'])
+                return resp
+            else:
+                user_old = User.objects.filter(username = student_name)
+                if user_old:#username is occupied
+                    print "chutu"
+                    re['occupation'] = '1'
+                    flag = str(random.randint(0,100))
+                    reguser = User.create_user(username = 'occupation' + flag,password = password)
+                    reguser.is_staff = False
+                    reguser.save()
+                    reguserinfo = Userinfo(user = reguser,is_info = True)
+                    reguserinfo.username = 'occupation' + flag
+                    reguserinfo.student_id = student_id
+                    reguserinfo.data_joined = datetime_now()
+                    reguserinfo.update_time = datetime_now()
+                    reguserinfo.save(force_insert = True)
+                    re['completive'] = '0'
+                    re['student_id'] = student_id
+                    re['error'] = error(32,"username is occupied")
+                    re['role'] = 0
+                    resp = HttpResponse(json.dumps(re),content_type = "application/json")
+                    return resp
+                else:
+                    print "hello,new"
+                    reguser = User.create_user(username = student_name,password = password)
+                    reguser.is_staff = False
+                    reguser.save()
+                    reguserinfo = Userinfo(username = student_name,user = reguser)
+                    reguserinfo.student_id = student_id
+                    reguserinfo.is_info = True
+                    reguserinfo.data_joined = datetime_now()
+                    reguserinfo.update_time = datetime_now()
+                    reguserinfo.save(force_insert = True)
+                    re['completive'] = '0'
+                    user = auth.authenticate(username = student_name,password = password)
+                    if user is not None and user.is_active:
+                        try:
+                            auth.login(request,user)
+                        except:
+                            re["error"] = error(272,"login error!")
+                            return HttpResponse(json.dumps(re),content_type = "application/json")
+                    request.session['role'] = 0
+                    re['error'] = error(1,"login,succeed!")
+                    re['role'] = 0
+                    resp = HttpResponse(json.dumps(re),content_type = "application/json")
+                    resp.set_cookie('username',student_name)
+                    resp.set_cookie('role',request.session['role'])
+                    return resp
         else:
             re['error'] = error(108, 'username or password error!')
     else:
