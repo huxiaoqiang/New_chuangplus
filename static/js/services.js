@@ -492,13 +492,13 @@ angular.module('chuangplus.services', []).
     }])
     .service('UserService', ['urls', '$http', '$cookies', function(urls, $http, $cookies){
         var user = {};
-        if($cookies.username && $cookies.sessionid){
+        if($cookies.username){
             user.username = $cookies.username;
         }
         if($cookies.id){
             user.id = $cookies.id;
         }
-        if($cookies.role && $cookies.sessionid){
+        if($cookies.role){
             user.role = $cookies.role;
         }
         return {
