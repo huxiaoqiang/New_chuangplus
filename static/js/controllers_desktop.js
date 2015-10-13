@@ -36,8 +36,8 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.get_company_info();
     }]).
-    controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','$location','HeaderService',
-        function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$location,$header){
+    controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','$location','HeaderService','$rootScope',
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$location,$header,$rootScope){
         console.log('DT_HeaderCtrl');
         $scope.company_id = '';
         $scope.not_in_search = true;
@@ -1938,8 +1938,11 @@ angular.module('chuangplus.controllers', []).
         $scope.scale_show = false;
         $scope.auth = false;
         $scope.show_field = function(){
-            $(".field-list").slideDown("fast");
             $scope.field = true;
+            setTimeout(function(){
+                if($scope.field)
+                    $(".field-list").slideDown("fast");
+            },100);
         };
         $scope.hide_field = function(){
             $(".field-list").slideUp("fast");
