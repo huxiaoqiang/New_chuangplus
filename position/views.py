@@ -1014,7 +1014,7 @@ def user_unlike_position(request,position_id):
 @user_permission('login')
 def close_position(request,position_id):
     re = dict()
-    if request.method == 'POST':
+    if request.method == 'GET':
         try:
             position = Position.objects.get(id=position_id)
         except DoesNotExist:
@@ -1024,7 +1024,7 @@ def close_position(request,position_id):
         position.save()
         re['error'] = error(1,'succeed!')
     else:
-        re['error'] = error(2,'Error, need POST')
+        re['error'] = error(3,'Error, need GET')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission('login')
