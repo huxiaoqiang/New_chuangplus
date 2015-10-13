@@ -302,6 +302,7 @@ def search_position(request):
     #    re['error'] = error(3, 'error, need get!')
     #    return HttpResponse(json.dumps(re), content_type = 'application/json')
     qs = Position.objects.all().order_by('index')
+    qs = qs.filter(status='open')
     ##cpn = Companyinfo.objects.all()
     if "id" in request.GET.keys():
         if len(request.GET["id"]) > 0:
