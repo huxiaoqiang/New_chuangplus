@@ -288,30 +288,10 @@ def delete_position(request,position_id):
     except:
         re['error'] = error(299,'Unknown Error!')
         return HttpResponse(json.dumps(re),content_type = 'application/json')
-    
-    try:
-        assert request.user != None
-        assert request.user.is_staff
-        cpn = Companyinfo.objects.get(user = request.user)
-        assert posi in cpn.position    
-    except:
-        re['error'] = error(100,"Permission denied!")
-    
-    cpn.positions.remove(posi)
-    cpn.save()
-
-    try:
-        posi.delete()
-    except (DatabaseError):
-        re['error'] = error(252,"Database error: Failed to delete!")
-        return HttpResponse(json.dumps(re), content_type = 'application/json')
-    except:
-        re['error'] = error(299,'Unknown Error!')
-        return HttpResponse(json.dumps(re),content_type = 'application/json')
-      
+    posi.status = 'deleted'
+    posi.save()
     re['error'] = error(1,'Delete position succeed!')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
-
 
 def search_position(request):
     re = dict()

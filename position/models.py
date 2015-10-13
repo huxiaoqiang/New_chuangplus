@@ -8,7 +8,7 @@ import re
 # Create your models here
 
 TYPE = ('technology','product','design','operate','marketing','functions','others')
-STATUS = ('open','closed')
+STATUS = ('open','closed','deleted')
 
 class Position(Document):
     company = ReferenceField(Companyinfo,required=True)
