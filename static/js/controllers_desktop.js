@@ -1941,33 +1941,48 @@ angular.module('chuangplus.controllers', []).
             $scope.field = true;
             setTimeout(function(){
                 if($scope.field)
-                    $(".field-list").slideDown("fast");
-            },100);
+                setTimeout(function(){
+                    if($scope.field)
+                        $(".field-list").slideDown("fast");
+                },170);
+            },170);
         };
         $scope.hide_field = function(){
-            $(".field-list").slideUp("fast");
-            $scope.field = false;
+                $(".field-list").slideUp("fast");
+                $scope.field = false;
         };
         $(".company-field").mouseenter($scope.show_field);
         $(".company-field").mouseleave($scope.hide_field);
 
         $scope.show_scale = function(){
-            $(".scale-list").slideDown("fast");
+            setTimeout(function(){
+                if($scope.scale_show)
+                setTimeout(function(){
+                if($scope.scale_show)
+                    $(".scale-list").slideDown("fast");
+                },170);
+            },170);
             $scope.scale_show = true;
         };
         $scope.hide_scale = function(){
-            $(".scale-list").slideUp("fast");
-            $scope.scale_show = false;
+                $(".scale-list").slideUp("fast");
+                $scope.scale_show = false;
         };
         $(".company-scale").mouseenter($scope.show_scale);
         $(".company-scale").mouseleave($scope.hide_scale);
 
         $scope.show_auth = function(){
-            $(".organization-list").slideDown("fast");
+            setTimeout(function(){
+                if($scope.auth)
+                setTimeout(function(){
+                if($scope.auth)
+                    $(".organization-list").slideDown("fast");
+                },170);
+            },170);
             $scope.auth = true;
         };
         $scope.hide_auth = function(){
-            $(".organization-list").slideUp("fast");
+                $(".organization-list").slideUp("fast");
             $scope.auth = false;
         };
         $(".company-auth").mouseenter($scope.show_auth);
@@ -3191,8 +3206,14 @@ angular.module('chuangplus.controllers', []).
             $scope.get_company_list($scope.param);
         };
         $scope.show_field = function(){
-            $(".field-list").slideDown("fast");
             $scope.field = true;
+            setTimeout(function(){
+                if($scope.field)
+                setTimeout(function(){
+                    if($scope.field)
+                        $(".field-list").slideDown("fast");
+                },170);
+            },170);
         };
         $scope.hide_field = function(){
             $(".field-list").slideUp("fast");
@@ -3202,8 +3223,14 @@ angular.module('chuangplus.controllers', []).
         $(".company-field").mouseleave($scope.hide_field);
 
         $scope.show_type = function(){
-            $(".type-list").slideDown("fast");
             $scope.type = true;
+            setTimeout(function(){
+                if($scope.type)
+                setTimeout(function(){
+                    if($scope.type)
+            $(".type-list").slideDown("fast");
+                },170);
+            },170);
         };
         $scope.hide_type = function(){
             $(".type-list").slideUp("fast");
@@ -3213,8 +3240,14 @@ angular.module('chuangplus.controllers', []).
         $(".position-type").mouseleave($scope.hide_type);
 
         $scope.show_salary = function(){
-            $(".salary_min").slideDown("fast");
             $scope.salary = true;
+            setTimeout(function(){
+                if($scope.salary)
+                setTimeout(function(){
+                    if($scope.salary)
+                        $(".salary_min").slideDown("fast");
+                },170);
+            },170);
         };
         $scope.hide_salary = function(){
             $(".salary_min").slideUp("fast");
@@ -3224,8 +3257,14 @@ angular.module('chuangplus.controllers', []).
         $(".salary_set").mouseleave($scope.hide_salary);
 
         $scope.show_work_days = function(){
-            $(".work_days_max").slideDown("fast");
             $scope.work_days = true;
+            setTimeout(function(){
+                if($scope.work_days)
+                setTimeout(function(){
+                    if($scope.work_days)
+                        $(".work_days_max").slideDown("fast");
+                },170);
+            },170);
         };
         $scope.hide_work_days = function(){
             $(".work_days_max").slideUp("fast");
