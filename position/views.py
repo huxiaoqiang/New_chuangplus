@@ -12,6 +12,7 @@ from account.models import Companyinfo,Userinfo
 from datetime import datetime, timedelta
 from django.core.mail import EmailMessage
 from StringIO import StringIO
+import random
 import zipfile
 import traceback
 import time
@@ -311,6 +312,7 @@ def delete_position(request,position_id):
     re['error'] = error(1,'Delete position succeed!')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
+
 def search_position(request):
     re = dict()
     #try:
@@ -318,8 +320,7 @@ def search_position(request):
     #except:
     #    re['error'] = error(3, 'error, need get!')
     #    return HttpResponse(json.dumps(re), content_type = 'application/json')
-    
-    qs = Position.objects.all()
+    qs = Position.objects.all().order_by('index')
     ##cpn = Companyinfo.objects.all()
     if "id" in request.GET.keys():
         if len(request.GET["id"]) > 0:
@@ -567,8 +568,8 @@ def search_position(request):
                 re['error'] = error(299,'Unknown Error!')
                 return HttpResponse(json.dumps(re),content_type = 'application/json')
     #todo fen ye
-    orderValue = "id"
-    qs.order_by(orderValue)
+    #orderValue = ""
+    #qs.order_by(orderValue)
     shang = qs.count() / POSITIONS_PER_PAGE
     yushu = 1 if qs.count() % POSITIONS_PER_PAGE else 0
     page_number =  shang + yushu
@@ -588,8 +589,6 @@ def search_position(request):
     re['page'] =page
     re["error"] = error(1,"Search succeed!")
     return HttpResponse(json.dumps(re),content_type = 'application/json')
-
-
 
 def get_position_with_company(request,position_id):
     re = dict()
@@ -1067,10 +1066,10 @@ def open_position(request,position_id):
 def test(request):
     re = dict()
     if request.method == "GET":
-        pos = Position.objects.all()
-        data = {}
+        pos = UserPosition.objects.filter(interested =True)
+        data = []
         for i in pos:
-            data[i.name] = str(i.id)
+            data.append(str(i.position.id))
         re['data'] = data
     else:
         re['error'] = error(3,"Error, need Get")

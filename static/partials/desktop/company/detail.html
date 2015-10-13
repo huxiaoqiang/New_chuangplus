@@ -114,20 +114,24 @@
                         <span class="team-head">团队成员</span>
                         <div class="team-member">
                             <div ng-repeat="member in member_list" class="member">
-                                <div class="avatar">
-                                    <img src="/api/file/[[member.m_avatar_id]]/download" alt="成员头像">
-                                </div>
-                                <div class="member-description">
-                                    <div class="vertical-center">
-                                        <p class="m-name">[[member.m_name]]</p>
-                                        <p class="m-position">[[member.m_position]]</p>
-                                    </div>
-                                </div>
-                                <div class="member-intro">
-                                    <div class="vertical-center" title="[[member.m_introduction]]">
-                                        <my-text text="member.m_introduction"></my-text>
-                                    </div>
-                                </div>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <div class="member-description">
+                                                <img src="/api/file/[[member.m_avatar_id]]/download" alt="成员头像">
+                                                <div>
+                                                [[member.m_name]]<br>
+                                                [[member.m_position]]
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="member-intro">
+                                                    <my-text text="member.m_introduction"></my-text>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
                                 <div style="clear: both"></div>
                             </div>
                         </div>

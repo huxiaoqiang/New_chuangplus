@@ -90,6 +90,8 @@ angular.module('chuangplus.services', []).
             'code271':'邮箱验证码失效，请重新发送邮箱验证码',
             'code272':"登录错误",
             'code273':"您的info用户名已经被注册，请去普通登录页登录",
+            'code275':"参数错误",
+            'code274':'需要post position_id和username',
             'code299':'未知错误'
         };
         return {
@@ -490,16 +492,13 @@ angular.module('chuangplus.services', []).
     }])
     .service('UserService', ['urls', '$http', '$cookies', function(urls, $http, $cookies){
         var user = {};
-        // $.get(urls.api + '/user/status', function(data){
-        //     user = data;
-        // });
-        if($cookies.username){
+        if($cookies.username && $cookies.sessionid){
             user.username = $cookies.username;
         }
         if($cookies.id){
             user.id = $cookies.id;
         }
-        if($cookies.role){
+        if($cookies.role && $cookies.sessionid){
             user.role = $cookies.role;
         }
         return {

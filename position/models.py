@@ -20,7 +20,7 @@ class Position(Document):
     end_time = DateTimeField()
     position_description = StringField(max_length=2000)
     position_request = StringField(max_length=2000)
-    days_per_week = IntField(default=3)
+    days_per_week = IntField(default=3) #0 flexible, 2, 3 ,4 ,5, 6
     internship_time = IntField(default=1)
     salary_min = IntField(default=0)
     salary_max = IntField(default=0)
@@ -28,9 +28,16 @@ class Position(Document):
     attention_num = IntField(default=0)
     part_or_full_time = IntField(default=0)
     status = StringField(max_length=15,choices=STATUS,default='open')
-
+    index = IntField(default = 30,required=True)
     def __str__(self):
         return self.name
+
+class SortPosition(Document):
+    position = ReferenceField(Position,required = True)
+    companyIndex = IntField(required = True)
+    value = IntField(required = True)
+    def __str__(self):
+        return self.position.name
 
 class UserPosition(Document):
     company = ReferenceField(Companyinfo)

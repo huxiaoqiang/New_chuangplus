@@ -7,13 +7,13 @@ from app.common_api import error,user_permission
 from django.db import DatabaseError
 from django.core.mail import send_mail
 from random import randint
-from position.models import Position,UserPosition
+from position.models import Position,UserPosition,SortPosition
 from bson.objectid import ObjectId
 from django.db.models import Q
 import urllib2,urllib2
 import json
 import traceback
-
+import random
 # Create your views here.
 from .models import *
 from position.models import *
@@ -321,7 +321,11 @@ def login(request):
             resp.set_cookie('role',request.session['role'])
             return resp
         else:
-            user_login = User.objects.get(email = username)
+            try:
+                user_login = User.objects.get(email = username)
+            except DoesNotExist:
+                re['error'] = error(108,"username or password error!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
             username = ""
             if user_login is not None:
                 username = user_login.username
@@ -1326,7 +1330,7 @@ def get_company_list(request):
         scale = request.GET.get('scale', '')
         status = request.GET.get('status', '')
 
-        companies = Companyinfo.objects(info_complete=True)
+        companies = Companyinfo.objects(info_complete=True).all().order_by('index')
 
         if text != '':
             companies = companies.filter(
@@ -1357,19 +1361,14 @@ def get_company_list(request):
                 except:
                     re['error'] = error(299,'Unknown Error!')
                     return HttpResponse(json.dumps(re),content_type = 'application/json')
-
-        orderValue = "id"
-        companies.order_by(orderValue)
         shang = companies.count() / POSITIONS_PER_PAGE
         yushu = 1 if companies.count() % POSITIONS_PER_PAGE else 0
         page_number =  shang + yushu
         companies = companies[(page - 1) * POSITIONS_PER_PAGE: page * POSITIONS_PER_PAGE]
-
-
         companies_re = json.loads(companies.to_json())
         for cpn in companies_re:
             position_type = []
-            if len(cpn['positions']) != 0:
+            if 'positions' in cpn and  len(cpn['positions']) != 0:
                 for p in cpn['positions']:
                     try:
                         position = Position.objects.get(id=p['$oid'])
@@ -1378,7 +1377,11 @@ def get_company_list(request):
                         return HttpResponse(json.dumps(re), content_type = 'application/json')
                     if position.position_type not in position_type:
                         position_type.append(position.position_type)
+            else:
+                cpn['positions'] = []
             cpn['position_type'] = position_type
+
+
         re['error'] = error(1, "get company list successfully")
         re['data'] = companies_re
         re['page_number'] = page_number
@@ -1450,9 +1453,15 @@ def process_position(request,position_id):
 
 
 @user_permission('login')
-def process_single(request,position_id,username):
+def process_single(request):
     re = dict()
-    if request.method == 'GET':
+    position_id = request.POST.get('position_id','')
+    username = request.POST.get('username','')
+    if(position_id == '' or username == ''):
+        re['error'] = error(274,'need post position_id or username')
+        return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+    if request.method == 'POST':
         try:
             position = Position.objects.get(id=position_id)
         except DoesNotExist:
@@ -1472,7 +1481,7 @@ def process_single(request,position_id,username):
         up.save()
         re['error'] = error(1,'succeed!')
     else:
-        re['error'] = error(3,'Error, need GET')
+        re['error'] = error(2,'Error, need POST')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission('login')
@@ -1508,6 +1517,7 @@ def search_submit_intern(request):
     if request.method == 'GET':
         type = request.GET.get('position_type', '')
         processed = request.GET.get('processed','')
+        interested = request.GET.get('interested','')
         try:
             company = Companyinfo.objects.get(username=request.user.username)
             #company = Companyinfo.objects.get(username='tsinghuachuangplus')
@@ -1527,6 +1537,7 @@ def search_submit_intern(request):
             else:
                 re['error'] = error(275,'param error!')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
+
         if type != '':
             try:
                 assert type in TYPE
@@ -1540,6 +1551,15 @@ def search_submit_intern(request):
                 re['error'] = error(260,'Position does not exist')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             up = up.filter(position__in = positions)
+
+        if interested != '':
+            if interested == 'false':
+                up = up.filter(interested = False)
+            elif interested == 'true':
+                up = up.filter(interested = True)
+            else:
+                re['error'] = error(275,'param error!')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
 
         page = 1
         if "page" in request.GET.keys():
@@ -1569,6 +1589,7 @@ def search_submit_intern(request):
             userinfo['position_name'] = item.position.name
             userinfo['position_id'] = p['_id']['$oid']
             userinfo['process'] = item.processed
+            userinfo['interested'] = item.interested
             user_list.append(userinfo)
         re['error'] = error(1,'succeed ')
         re['data'] = user_list
@@ -1704,9 +1725,10 @@ def hr_set_interested_user(request,position_id,username):
         re['error'] = error(3,'Error, need GET')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
-def interested_list_position(request,position_id):
+def interested_list_position(request):
     re = dict()
-    if request.method == "GET":
+    if "position_id" in request.GET.keys():
+        position_id = request.GET["position_id"]
         try:
             position = Position.objects.get(id = position_id)
         except (AssertionError, ValueError, UnicodeDecodeError):
@@ -1734,9 +1756,10 @@ def interested_list_position(request,position_id):
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re), content_type = "application/json")
 
-def interested_list_company(request,company_id):
+def interested_list_company(request):
     re = dict()
-    if request.method == "GET":
+    if "company_id" in request.GET.keys():
+        company_id = request.GET["company_id"]
         try:
             company = Companyinfo.objects.get(id = company_id)
         except (AssertionError, ValueError, UnicodeDecodeError):
@@ -1778,3 +1801,35 @@ def interested_list_company(request,company_id):
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re),content_type="application/json")
 
+def run_one_times(request):
+    re = dict()
+    if request.method == "GET":
+        qs = Position.objects.all()
+        '''
+        n = Position.objects.filter().count()
+        item = []
+        for i in range(0,n+1):
+            item.append(i+1)
+        random.shuffle(item)
+        num = 0
+        '''
+        for i in qs:
+            sp = SortPosition.objects.get(position = i)
+            i.index = sp.value + int(sp.companyIndex * 0.3)
+            i.save()
+            sp.save()
+            #num = num + 1
+    else:
+        re['error'] = error(3,"Error, need GET")
+    return HttpResponse(json.dumps(re),content_type="application/json")
+def look_position_sort(request):
+    re = dict()
+    if request.method == "GET":
+        qs = Position.objects.all()
+        data = {}
+        for i in qs:
+            data[i.name] = i.index
+        re['data'] = data
+    else:
+        re['error'] = error(1,"adfaf")
+    return HttpResponse(json.dumps(re),content_type="application/json")

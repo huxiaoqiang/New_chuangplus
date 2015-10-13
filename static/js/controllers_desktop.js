@@ -1650,6 +1650,18 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.company_id = $routeParams.company_id;
         $scope.position_list = {};
+        $scope.close_position = function(index){
+            $http.post(urls.api+"/position/"+$scope.position_list[index]['_id']['$oid']+"/close").
+              success(function(data){
+                if(data.error.code==1){
+                  console.log('关闭职位成功');
+                  $scope.get_position_list();
+                }
+                else{
+                  $scope.error = $errMsg.format_error('',data.error);
+                }
+              });
+        };
         $scope.delete_position = function(index){
             $http.get(urls.api+"/position/"+$scope.position_list[index]['_id']['$oid']+"/delete").
               success(function(data){
@@ -1960,6 +1972,13 @@ angular.module('chuangplus.controllers', []).
         };
         $(".company-auth").mouseenter($scope.show_auth);
         $(".company-auth").mouseleave($scope.hide_auth);
+
+
+        //记录页面情况
+        document.getElementById('main-container').onscroll = function record_position(){
+            $rootScope.company_list_position = document.getElementById('main-container').scrollTop;
+            alert('scroll');
+        };
     }]).
     controller('DT_CompanyDetailCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errorMsg){
