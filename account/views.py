@@ -321,7 +321,11 @@ def login(request):
             resp.set_cookie('role',request.session['role'])
             return resp
         else:
-            user_login = User.objects.get(email = username)
+            try:
+                user_login = User.objects.get(email = username)
+            except DoesNotExist:
+                re['error'] = error(108,"username or password error!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
             username = ""
             if user_login is not None:
                 username = user_login.username
@@ -1326,7 +1330,7 @@ def get_company_list(request):
         scale = request.GET.get('scale', '')
         status = request.GET.get('status', '')
 
-        companies = Companyinfo.objects(info_complete=True)
+        companies = Companyinfo.objects(info_complete=True).all().order_by('index')
 
         if text != '':
             companies = companies.filter(
@@ -1357,19 +1361,14 @@ def get_company_list(request):
                 except:
                     re['error'] = error(299,'Unknown Error!')
                     return HttpResponse(json.dumps(re),content_type = 'application/json')
-
-        orderValue = "id"
-        companies.order_by(orderValue)
         shang = companies.count() / POSITIONS_PER_PAGE
         yushu = 1 if companies.count() % POSITIONS_PER_PAGE else 0
         page_number =  shang + yushu
         companies = companies[(page - 1) * POSITIONS_PER_PAGE: page * POSITIONS_PER_PAGE]
-
-
         companies_re = json.loads(companies.to_json())
         for cpn in companies_re:
             position_type = []
-            if len(cpn['positions']) != 0:
+            if 'positions' in cpn and  len(cpn['positions']) != 0:
                 for p in cpn['positions']:
                     try:
                         position = Position.objects.get(id=p['$oid'])
@@ -1378,7 +1377,11 @@ def get_company_list(request):
                         return HttpResponse(json.dumps(re), content_type = 'application/json')
                     if position.position_type not in position_type:
                         position_type.append(position.position_type)
+            else:
+                cpn['positions'] = []
             cpn['position_type'] = position_type
+
+
         re['error'] = error(1, "get company list successfully")
         re['data'] = companies_re
         re['page_number'] = page_number
@@ -1450,9 +1453,15 @@ def process_position(request,position_id):
 
 
 @user_permission('login')
-def process_single(request,position_id,username):
+def process_single(request):
     re = dict()
-    if request.method == 'GET':
+    position_id = request.POST.get('position_id','')
+    username = request.POST.get('username','')
+    if(position_id == '' or username == ''):
+        re['error'] = error(274,'need post position_id or username')
+        return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+    if request.method == 'POST':
         try:
             position = Position.objects.get(id=position_id)
         except DoesNotExist:
@@ -1472,7 +1481,7 @@ def process_single(request,position_id,username):
         up.save()
         re['error'] = error(1,'succeed!')
     else:
-        re['error'] = error(3,'Error, need GET')
+        re['error'] = error(2,'Error, need POST')
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
 @user_permission('login')
@@ -1798,27 +1807,27 @@ def run_one_times(request):
         qs = Companyinfo.objects.all()
         n = Companyinfo.objects.filter().count()
         item = []
-        for i in range(0,n):
-            item.append(i)
+        for i in range(0,n+1):
+            item.append(i+1)
         random.shuffle(item)
         num = 0
         for i in qs:
-            sort_com = Sortcompany(company = i)
-            l = Position.objects.filter(company = i).count()
-            sort_com.positionNumber = l
-            sort_com.index = item[num]
-            num = num +1
-            sort_com.save()
+            if str(i.id) == "5600bb0038d95e5975e54ed7":
+                i.index = 0
+            else:
+                i.index = item[num]
+            i.save()
+            num = num + 1
     else:
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re),content_type="application/json")
 def look_companysort(request):
     re = dict()
     if request.method == "GET":
-        qs = Sortcompany.objects.all()
+        qs = Companyinfo.objects.all()
         data = {}
         for i in qs:
-            data[i.company.abbreviation] = i.index
+            data[i.abbreviation] = i.index
         re['data'] = data
     else:
         re['error'] = error(1,"adfaf")

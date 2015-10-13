@@ -16,7 +16,8 @@
                   <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
                     <li><a tabindex="-1" href="/company/[[company_id]]/position/[[position._id.$oid]]/edit">编辑信息</a></li>
                     <li><a tabindex="-1" href="/company/position/[[position._id.$oid]]/submit/list">查看投递</a></li>
-                    <li><a tabindex="-1" href="#" ng-click="delete_position($index)">关闭岗位</a></li>
+                    <li><a tabindex="-1" href="#" ng-click="close_position($index)">关闭岗位</a></li>
+                    <li><a tabindex="-1" href="#" ng-click="delete_position($index)">删除岗位</a></li>
                   </ul>
                 </div>
                 <p class="position_name">[[position.position_type_value]]|[[position.name]]</p>
