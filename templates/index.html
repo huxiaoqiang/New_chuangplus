@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title ng-bind="'犀牛 | ' + $root.title">犀牛 | </title>
-    <script src="http://s11.cnzz.com/z_stat.php?id=1256549519&web_id=1256549519" language="JavaScript"></script>
+
     <link rel="stylesheet" href="/static/lib/semantic/css/semantic.min.css"/>
     <link rel="stylesheet" href="/static/lib/bootstrap/bootstrap.min.css"/>
     <link rel="stylesheet" href="/static/lib/font-awesome/font-awesome.min.css"/>
@@ -38,7 +38,9 @@
 
   </head>
   <body style="margin: 0px;">
-
+    <div style="display: none;">
+        <script src="http://s11.cnzz.com/z_stat.php?id=1256549519&web_id=1256549519" language="JavaScript"></script>
+    </div>
     <div id='wrap'>
       {% include "header.html" %}
       <div ng-view autoscroll="true" class="column clearfix" id="main-container">
