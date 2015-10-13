@@ -29,6 +29,16 @@ header #header .navbar .navbar-header #head-logo img {
   padding-top: 6px;
   margin-left: 15px;
 }
+header #header .navbar .navbar-header .navbar-nav {
+  float: left;
+  margin: 0;
+}
+header #header .navbar .navbar-header .nav > li {
+  position: relative;
+  display: block;
+  float: left;
+  margin: 0;
+}
 header #header .navbar .navbar-item.not-login {
   margin-left: 47px;
   width: 400px;
