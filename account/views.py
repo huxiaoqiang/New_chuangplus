@@ -1815,7 +1815,7 @@ def run_one_times(request):
         '''
         for i in qs:
             sp = SortPosition.objects.get(position = i)
-            i.index = sp.value + sp.companyIndex
+            i.index = sp.value + int(sp.companyIndex * 0.3)
             i.save()
             sp.save()
             #num = num + 1

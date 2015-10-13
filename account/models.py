@@ -17,6 +17,7 @@ except ImportError:
 TYPE = ('technology','product','design','operate','marketing','functions','others')
 class Userinfo(Document):
     is_info = BooleanField(default=False)
+    student_id = StringField()
     user = ReferenceField(User,required=True)
     username = StringField(max_length=30,required=True)
     user_avatar_id = StringField(max_length=30)
@@ -30,7 +31,7 @@ class Userinfo(Document):
     #1,2,3,4 undergraduate 11 12 13 master 21 22 doctor
     grade = IntField()
     gender = IntField()  #0 is woman 1 is man
-    work_days = IntField()
+    work_days = IntField(default=3)  #0 flexible, 2, 3 ,4 ,5, 6
     position_type = ListField(StringField(max_length=30,choices=TYPE))
     resume_id = StringField(max_length=30)
     resume_name = StringField(max_length=100)
