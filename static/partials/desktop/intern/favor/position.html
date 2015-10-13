@@ -19,7 +19,7 @@
                 <ul ng-repeat="position in positions">
                     <li>
                         <a href="/position/[[position._id.$oid]]/detail">
-                        <div class="favor-list-item" ng-class="{closed:position.status == 'closed'}" ng-class="{deleted:position.status == 'deleted'}">
+                        <div class="favor-list-item" ng-class="{closed:position.status == 'closed',deleted:position.status == 'deleted'}">
                             <div class="middle-block">
                                 <div class="info">
                                     <div class="item-info info-1">
