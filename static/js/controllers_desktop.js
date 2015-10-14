@@ -181,10 +181,14 @@ angular.module('chuangplus.controllers', []).
                     if(data.error.code == 1){
                         $rootScope.is_tsinghua = $scope.is_tsinghua;
                         $scope.error = $errMsg.format_error("登录成功",data.error);
+                        if(data.role == 1)
+                            setTimeout(function(){window.location.href='/'},1000);
+                        else{
                             if(data.completive == '1')
                                 setTimeout(function(){window.location.href='/'},1000);
                             else
                                 $location.url('/intern/information');
+                        }
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
