@@ -8,6 +8,12 @@
       <div class="info-input-content">     
           <div class="panel-list">
             <div class="info-block-title">注册成功，请填写基本信息</div>
+            <div ng-if="is_tsinghua_local && tsinghua_occu">
+            <div class="login-notice">您的清华info用户名已被占用，请填写新的用户名</div>
+            <span  class="panel-group-top info-input purple-border">
+              <input class="panel-elem elem-width-full" type="text" ng-model="user_info.username" ng-blur="check_username()" placeholder="新用户名" required>
+            </span>
+            </div>
 
             <span ng-if="is_tsinghua_local" class="panel-group-top info-input purple-border">
               <input class="panel-elem elem-width-full" type="text" ng-model="user_info.university" value="清华大学" required>

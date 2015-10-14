@@ -18,8 +18,8 @@ is_staff      |BooleanFiled|          |True：企业用户，False：个人用�
 字段   |类型   |修饰   |解释
 ----------|----------|----------|----------
 id            |primarykey  |          |主键
+student_id    |StringField |          |
 is_info       |BooleanField|          |True:info账号，False不是info账号
-student_id    |stringField |          |清华学生账号
 user          |ReferenceField|关联数据|对应的user
 username      |StringField |同User中  |用户名
 email         |EmailFiele  |同User中  |邮箱
@@ -137,7 +137,7 @@ part_or_full_time   |IntField       |default=0     |实习还是全职
 submit_number     |IntField       |default=0     |职位已经投递的人数
 status              |Stringfield    |choices=STATUS|职位状态(STATUS见表下)
 TYPE = ('technology','product','design','operate','marketing','functions','others')<br/>
-STATUS = ('open','closed')
+STATUS = ('open','closed','deleted')
 
 ###职位排序的参数Sortposition
 字段         | 类型          | 修饰   |解释
@@ -236,6 +236,16 @@ set_csrf(data)
 	"completive":0 or 1(信息完全)
 	"role" : 0（学生用户） or 1(代表公司用户)
 }
+如果是用户名被占用则返回
+```
+   {
+   'completive' : 
+   'student_id' :学号
+   'occupation' :被占用，恒为'1'
+   'role' : 0
+   'error':
+   }
+```
 ```
 ###/api/account/login
 用户登录 （method : post）
@@ -721,6 +731,10 @@ hr设置对某个简历投递者感兴趣（method:get）
     "position_id" :职位id
 	"username":  投递简历者的用户名
    }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> dabdea2a2078c5022adbaffd5582d7a423c18708
 ```
 
 ###/api/account/hr_get_interested_by_position?position_id=xxxxxxxx
@@ -737,8 +751,15 @@ hr根据职位获取感兴趣的简历投递者(method：get)
 	error:
 	data :数据库中userinfo的所有内容 
    }
+<<<<<<< HEAD
 ```
 
+=======
+```
+=======
+```
+>>>>>>> 9ca7537a58d3331045786ac3be0d47ce2bced81e
+>>>>>>> dabdea2a2078c5022adbaffd5582d7a423c18708
 
 ###/api/acount/hr_get_interested_by_company?company_id=xxxxxxxxxxx
 hr获取整个公司的感兴趣的简历投递者(method：get)
@@ -748,4 +769,40 @@ hr获取整个公司的感兴趣的简历投递者(method：get)
     company_id :公司id
    }
 、、、
+<<<<<<< HEAD
 返回参数同上
+=======
+返回参数同上
+
+###/api/acount/userinfo/set_username_by_tsinghua
+设置被占用的用户名(method:POST)
+参数如下：
+```javascript
+   {
+   student_id : 学号
+   username : 设置的用户名(希望post之前检查一下是否唯一)
+   email ：邮箱(希望post之前检查一下是否唯一)
+   university:
+   major:
+   grade:
+   }
+```
+返回值
+```javascript
+   {
+	role : 0
+	errorcode
+   }
+```
+
+###/api/account/(?P<company_id>.*?)/(?P<index>.*?)/sort_company
+手动设置某个公司的排序（method:get）
+参数如下：
+```javascript
+   {
+    'company_id' : 公司id
+	'index'      ：要设置的公司的排序序号
+   }
+```
+返回errorcode及message
+>>>>>>> dabdea2a2078c5022adbaffd5582d7a423c18708

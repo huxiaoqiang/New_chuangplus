@@ -1,5 +1,5 @@
 <div id="container">
-    <div id="userresume_edit" ng-if="have_resume_info == true">
+    <div id="userresume_edit" ng-if="false">
         <div class="view">
             <div class="first-line">
                 <span class="name">[[intern_info.real_name]]</span>
@@ -13,11 +13,15 @@
                   <span class="grade" ng-if="intern_info.grade==2">本科二年级</span>
                   <span class="grade" ng-if="intern_info.grade==3">本科三年级</span>
                   <span class="grade" ng-if="intern_info.grade==4">本科四年级</span>
+                  <span class="grade" ng-if="intern_info.grade==5">本科五年级</span>
                   <span class="grade" ng-if="intern_info.grade==11">硕士一年级</span>
                   <span class="grade" ng-if="intern_info.grade==12">硕士二年级</span>
                   <span class="grade" ng-if="intern_info.grade==13">硕士三年级</span>
-                  <span class="grade" ng-if="intern_info.grade==21">博士低年级</span>
-                  <span class="grade" ng-if="intern_info.grade==22">博士高年级</span>
+                  <span class="grade" ng-if="intern_info.grade==21">博士一年级</span>
+                  <span class="grade" ng-if="intern_info.grade==22">博士二年级</span>
+                  <span class="grade" ng-if="intern_info.grade==23">博士三年级</span>
+                  <span class="grade" ng-if="intern_info.grade==24">博士四年级</span>
+                  <span class="grade" ng-if="intern_info.grade==25">博士五年级</span>
             </div>
             <p class="work_days">每周可工作时长：[[intern_info.work_days]]天/周</p>
             <p class="cellphone">TEL：[[intern_info.cellphone]]</p>
@@ -30,11 +34,11 @@
         </div>
         <button class="edit-resume-btn" ng-click="edit_resume()">编辑简历</button>
     </div>
-    <div class="no-resume-info" ng-if="have_resume_info == false">
+    <a class="no-resume-info" href="/intern/resume/edit" style="display: block;" >
         <p>您还没有上传简历哦~</p>
         <p class="go-txt">去填写</p>
         <div class="go">
-            <a href="/intern/resume/edit"><img src="/static/image/icon/go-01.png"></a>
+            <img src="/static/image/icon/go-01.png">
         </div>
-    </div>
+    </a>
 </div>

@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^password/set_withcode$',views.set_password_verifycode, name='set_password_verifycode'),
     url(r'^userinfo/get$',views.get_userinfo, name='get_userinfo'),
     url(r'^userinfo/set$',views.set_userinfo, name='set_userinfo'),
+    url(r'^userinfo/set_username_by_tsinghua$',views.set_username_by_tsinghua,name='set_username_by_tsinghua'),
     url(r'^userinfo/set_by_tsinghua$',views.set_userinfo_by_tsinghua, name='set_userinfo_by_tsinghua'),
     url(r'^userinfo/checkall$',views.check_userinfo_all_complete, name='check_userinfo_all_complete'),
     url(r'^userinfo/check$',views.check_userinfo_complete, name='check_userinfo_complete'),
@@ -37,7 +38,7 @@ urlpatterns = [
     url(r'^financing/(?P<fin_id>.*?)/delete', views.delete_financinginfo, name='delete_financinginfo'),
     url(r'^financing/(?P<company_id>.*?)/list', views.get_financinginfo_list, name='get_financinginfo_list'),
     url(r'hr_get_interested_by_position$',views.interested_list_position,name='interested_list_position'),
-    url(r'^hr_get_interested_by_company$',views.interested_list_company,name='interested_list_company'),	
+    url(r'^hr_get_interested_by_company$',views.interested_list_company,name='interested_list_company'),    
     url(r'^company/list', views.get_company_list, name='get_company_list'),
     url(r'^company/(?P<company_id>.*?)/detail_with_positions', views.get_companyinfo_detail_with_positions, name='get_companyinfo_detail_with_positions'),
     url(r'^company/(?P<company_id>.*?)/detail', views.get_companyinfo_detail, name='get_companyinfo_detail'),
@@ -59,6 +60,7 @@ urlpatterns = [
     url(r'^admin/company/(?P<company_id>.*?)/detail_with_financing', views.get_company_with_financing, name='get_company_with_financing'),
     url(r'^admin/image/list', views.get_image_list, name='get_image_list'),
     url(r'^(?P<query>.*?)/search_count$', views.search_count, name='search_count'),
+    url(r'^(?P<company_id>.*?)/(?P<index>.*?)/sort_company',views.set_company_sort,name='set_company_sort'),
 ]
 
 #urlpatterns = format_suffix_patterns(urlpatterns)

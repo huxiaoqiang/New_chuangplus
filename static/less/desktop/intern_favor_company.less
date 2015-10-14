@@ -4,8 +4,23 @@
     #favor-company-list{
         font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
         padding-top: 5%;
+        .tips:hover{
+          text-decoration: none;
+          cursor: pointer;
+          .inner{
+            .go-txt{
+                margin-bottom: 8px;
+            }
+            .go{
+              img{
+                  width: 30px;
+              }
+            }
+          }
+        }
         .tips{
             width: 50%;
+            display: block;
             background-color: white;
             height: 200px;
             margin: 0 auto;
@@ -29,19 +44,9 @@
 
                 .go{
                     text-align: center;
-                    a{
-                        cursor: pointer;
-                        img{
-                            width: 25px;
-                        }
+                    img{
+                        width: 25px;
                     }
-                    a:hover{
-                        cursor: pointer;
-                        img{
-                            width: 30px;
-                        }
-                    }
-
                 }
             }
         }

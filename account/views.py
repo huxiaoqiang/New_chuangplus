@@ -156,12 +156,57 @@ def check_email_exist(request):
         re['error'] = error(2,"error, need POST!")
     return HttpResponse(json.dumps(re), content_type = 'application/json')
 
+
+def set_username_by_tsinghua(request):
+    re = dict()
+    if request.method == "POST":
+        
+        #print  "student_id" in request.GET.keys()
+        student_id = request.POST.get('student_id')
+        print student_id
+        #print  "username" in request.GET.keys()
+        student_name = request.POST.get('username')
+        email  = request.POST.get("email")
+        university = request.POST.get("university")
+        major = request.POST.get("major")
+        grade = request.POST.get("grade")
+        userinfo = Userinfo.objects.filter(student_id = student_id)
+        if userinfo:
+            userinfo = Userinfo.objects.get(student_id = student_id)
+            print student_name
+            userinfo.username = student_name
+            userinfo.email = email
+            userinfo.university = university
+            userinfo.major = major
+            userinfo.grade = grade
+            userinfo.save()
+            user = userinfo.user
+            user.username = student_name
+            user.email = email
+            user.save()
+        else:
+            re['error'] = error(33,"userinfo doesnot exist")
+            return HttpResponse(json.dumps(re),content_type = "application/json")
+        re["error"] = error(1,"login succeed!")
+        re['role'] = 0
+        request.session['role'] = 0
+        resp = HttpResponse(json.dumps(re),content_type = "application/json")
+        resp.set_cookie('username',student_name)
+        resp.set_cookie('role',request.session['role'])
+        return resp
+    else:
+        re['error'] = error(2,'error,need post!')
+        return HttpResponse(json.dumps(re), content_type = 'application/json')
+
+
+
 #login by tsinghua
 def login_by_tsinghua(request):
     re = dict()
     if request.method=="POST":
 
         #Validate the captcha
+        
         session_captcha = request.session.get('captcha', '')
         request_captcha = request.POST.get('captcha','')
 
@@ -172,60 +217,136 @@ def login_by_tsinghua(request):
         if session_captcha.upper() != request_captcha.upper():
             re['error'] = error(101,'Captcha error!')
             return HttpResponse(json.dumps(re), content_type = 'application/json')
-        username = request.POST.get('username','')
-        password = request.POST.get('password','')
+        
+        username = request.POST.get('username')
+        password = request.POST.get('password')
         if username == '' or password == '':
             re['error'] = error(111,'username or password is empty!')
             return HttpResponse(json.dumps(re),content_type = 'application/json')
         data = {}
+        
         data['username'] = username
         data['password'] = password
         req = urllib2.Request(url,json.dumps(data))
         conn = urllib2.urlopen(req)
         content = conn.read()
         map = json.loads(content)
+        
         is_succeed = map['error']['message']
         if is_succeed == "login success.":
-            try:
-                finduser = Userinfo.objects.get(username=username)
-                if finduser.is_info == False:
-                    re['error'] = error(273,'username exist!')
-                    HttpResponse(json.dumps(re), content_type = 'application/json')
-                else:
-                    completive = 1
-                    if finduser.university is None :
-                        completive = 0
-                    if finduser.major is None:
-                        completive = 0
-                    if finduser.grade is None:
-                        completive = 0
-                    if finduser.email is None:
-                        completive = 0
-                    if completive == 0:
+            student_id = map['info']['id']
+            student_name = map['info']['username']
+            userinfo = Userinfo.objects.filter(student_id = student_id, is_info = True)
+            if userinfo:
+                print "login the second time"
+                userinfo = Userinfo.objects.get(student_id = student_id, is_info = True)
+                n = len(userinfo.username)
+                print n
+                if n > 16:
+                    print "n > 16"
+                    comparison = (userinfo.username)[0:16]
+                    is_digit = (userinfo.username)[16:n].isdigit()
+                    print comparison == '*&occupation&**&' 
+                    print is_digit
+                    if comparison == '*&occupation&**&' and is_digit:
+                        print "rename"
+                        user = auth.authenticate(username = userinfo.username,password = password)
+                        if user is not None and user.is_active:
+                            try:
+                                auth.login(request,user)
+                            except:
+                                print "login error"
+                                re["error"] = error(272,"login error!")
+                                return HttpResponse(json.dumps(re),content_type = "application/json")
                         re['completive'] = '0'
-                    else:
-                        re['completive'] = '1'
-            except DoesNotExist:
-                reguser = User.create_user(username=username, password=password)
-                userinfo = Userinfo(username=username,user=reguser)
-                userinfo.is_info = True
-                userinfo.date_joined = datetime_now()
-                userinfo.update_time = datetime_now()
-                userinfo.save(force_insert=True)
-                re['completive'] = '0'
-            user = auth.authenticate(username=username, password=password)
-            if user is not None and user.is_active:
-                try:
-                    auth.login(request, user)
-                except:
-                    re['error'] = error(272,'login error')
-            request.session['role'] = 0
-            re['error'] = error(1,'login succeed!')
-            re['role'] = 0
-            resp = HttpResponse(json.dumps(re),content_type = 'application/json')
-            resp.set_cookie('username',username)
-            resp.set_cookie('role',request.session['role'])
-            return resp
+                        re['occupation'] = '1'
+                        re['student_id'] = student_id
+                        re['error'] = error(32,"username is occupied")
+                        re['role'] = 0
+                        print "jump"
+                        resp = HttpResponse(json.dumps(re),content_type = "application/json")
+                        return resp
+                completive = 1
+                if userinfo.university is None:
+                    completive = 0
+                if userinfo.major is None:
+                    completive = 0
+                if userinfo.grade is None:
+                    completive = 0
+                if userinfo.email is None:
+                    completive = 0
+                if completive == 0:
+                    re['completive'] = '0'
+                else:
+                    re['completive'] = '1'
+                user = auth.authenticate(username = userinfo.username,password = password)
+                if user is not None and user.is_active:
+                    try:
+                        print "login check"
+                        auth.login(request,user)
+                    except:
+                        re['error'] = error(272,"login,error")
+                request.session['role'] = 0
+                re['error'] = error(1,"login succeed!")
+                re['role'] = 0
+                resp = HttpResponse(json.dumps(re),content_type = 'application/json')
+                resp.set_cookie('username',userinfo.username)
+                resp.set_cookie('role',request.session['role'])
+                return resp
+            else:
+                user_old = User.objects.filter(username = student_name)
+                if user_old:#username is occupied
+                    print "chutu"
+                    re['occupation'] = '1'
+                    flag = str(random.randint(0,10000))
+                    reguser = User.create_user(username = '*&occupation&**&' + flag,password = password)
+                    reguser.is_staff = False
+                    reguser.save()
+                    reguserinfo = Userinfo(user = reguser,is_info = True)
+                    reguserinfo.username = '*&occupation&**&' + flag
+                    reguserinfo.student_id = student_id
+                    reguserinfo.data_joined = datetime_now()
+                    reguserinfo.update_time = datetime_now()
+                    reguserinfo.save(force_insert = True)
+                    user = auth.authenticate(username = '*&occupation&**&'+flag,password = password)
+                    if user is not None and user.is_active:
+                        try:
+                            auth.login(request,user)
+                        except:
+                            re["error"] = error(272,"login error!")
+                            return HttpResponse(json.dumps(re),content_type = "application/json")
+                    re['completive'] = '0'
+                    re['student_id'] = student_id
+                    re['error'] = error(32,"username is occupied")
+                    re['role'] = 0
+                    resp = HttpResponse(json.dumps(re),content_type = "application/json")
+                    return resp
+                else:
+                    print "hello,new"
+                    reguser = User.create_user(username = student_name,password = password)
+                    reguser.is_staff = False
+                    reguser.save()
+                    reguserinfo = Userinfo(username = student_name,user = reguser)
+                    reguserinfo.student_id = student_id
+                    reguserinfo.is_info = True
+                    reguserinfo.data_joined = datetime_now()
+                    reguserinfo.update_time = datetime_now()
+                    reguserinfo.save(force_insert = True)
+                    re['completive'] = '0'
+                    user = auth.authenticate(username = student_name,password = password)
+                    if user is not None and user.is_active:
+                        try:
+                            auth.login(request,user)
+                        except:
+                            re["error"] = error(272,"login error!")
+                            return HttpResponse(json.dumps(re),content_type = "application/json")
+                    request.session['role'] = 0
+                    re['error'] = error(1,"login,succeed!")
+                    re['role'] = 0
+                    resp = HttpResponse(json.dumps(re),content_type = "application/json")
+                    resp.set_cookie('username',student_name)
+                    resp.set_cookie('role',request.session['role'])
+                    return resp
         else:
             re['error'] = error(108, 'username or password error!')
     else:
@@ -473,10 +594,17 @@ def set_userinfo(request):
     re = dict()
     if request.method == 'POST':
         u = Userinfo.objects.get(username=request.user.username)
+        email = request.POST.get('email','')
+        if email != '' and email != u.email:
+            try:
+                find_email = User.objects.get(email = email)
+                if(find_email != None):
+                    re['error'] = error(115,'email has been registered!')
+                    return HttpResponse(json.dumps(re), content_type = 'application/json')
+            except DoesNotExist:
+                u.email = email
 
-        u.email = request.POST.get('email', u.email)
-        request.user.email = u.email
-
+        request.user.email = email
         try:
             request.user.save()
         except:
@@ -681,6 +809,8 @@ def get_position_favor(request):
     if request.method == "GET":
         try:
             up = UP_Relationship.objects(user=request.user)
+            #user = User.objects.get(username='hutest')
+            #up = UP_Relationship.objects(user=user)
         except DoesNotExist:
             re['error'] = error(261,"Position does not exist")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
@@ -854,10 +984,24 @@ def get_company_favor(request):
         for item in uc:
             try:
                 company = Companyinfo.objects.get(id = item.company.id)
+                company_re = json.loads(company.to_json())
+                position_type = []
+                if 'positions' in company_re and len(company_re['positions']) != 0:
+                    for p in company_re['positions']:
+                        try:
+                            position = Position.objects.get(id = p['$oid'])
+                        except DoesNotExist:
+                            re['error'] = error(260,'Position does not exist')
+                            return HttpResponse(json.dumps(re), content_type = 'application/json')
+                        if position.status == 'open' and position.position_type not in position_type:
+                            position_type.append(position.position_type)
+                else:
+                    company_re['positions'] = []
+                company_re['position_type'] = position_type
             except DoesNotExist:
                 re['error'] = error(105,'Companyinfo dose not exist')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
-            company_favor_list.append(json.loads(company.to_json()))
+            company_favor_list.append(company_re)
         re['data'] = company_favor_list
         re['error'] = error(1,'Get favor company list successfully')
     else:
@@ -1375,7 +1519,7 @@ def get_company_list(request):
                     except DoesNotExist:
                         re['error'] = error(260,'Position does not exist')
                         return HttpResponse(json.dumps(re), content_type = 'application/json')
-                    if position.position_type not in position_type:
+                    if position.status == 'open' and  position.position_type not in position_type:
                         position_type.append(position.position_type)
             else:
                 cpn['positions'] = []
@@ -1822,6 +1966,69 @@ def run_one_times(request):
     else:
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re),content_type="application/json")
+
+def add_student_id(request):
+    re = dict()
+    if request.method == "GET":
+        userlist = Userinfo.objects.filter(is_info=True,student_id=None)
+        if userlist:
+            for i in userlist:
+                username = i.user.username
+                password = i.user.password
+                print username + " " + str(password)
+                data = {}
+                data['username'] = username
+                data['password'] = password
+                req = urllib2.Request(url,json.dumps(data))
+                conn = urllib2.urlopen(req)
+                content = conn.read()
+                map = json.loads(content)
+                data = {}
+                is_succeed = "login success."
+                is_succeed = map['error']['message']
+                if is_succeed == "login success.":
+                    student_id = map['info']['id']
+                    student_name = map['info']['username']
+                    i.student_id = student_id
+                    i.save()
+                    data[i.username] = i.student_id
+        re['data'] = data
+        re['error'] = error(1,"succeed")
+    else:
+        re['error'] = error(3,"Need GET")
+    return HttpResponse(json.dumps(re),content_type = "application/json")
+
+def set_company_sort(request,company_id,index):
+    re =dict()
+    if request.method == "GET":
+        try:
+            cpn = Companyinfo.objects.get(id = company_id)
+            index_old = cpn.index
+        except DoesNotExist:
+            re['error'] = error(105,"Companyinfo dose not exist")
+            return HttpResponse(json.dumps(re),content_type = 'application/json')
+        cpn_list = Companyinfo.objects.all()
+        if index_old < index:
+            up = 0
+        else:
+            up = 1
+        for i in cpn_list:
+            if up == 0:
+                if i.index > index_old and i.index <= index:
+                    i.index -= 1
+                    i.save()
+            else:
+                if i.index < index_old and i.index >= index:
+                    i.index +=1
+                    i.save()
+        cpn.index = index
+        cpn.save()
+        re['error'] = error(1,"succeed")
+        return HttpResponse(json.dumps(re),content_type = 'application/json')    
+    else:
+        re['error'] = error(3,"Need GET")
+        return HttpResponse(json.dumps(re),content_type = 'application/json')
+
 def look_position_sort(request):
     re = dict()
     if request.method == "GET":

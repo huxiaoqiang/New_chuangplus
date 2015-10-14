@@ -1320,8 +1320,8 @@ angular.module('chuangplus_mobile.controllers', [])
              
         };
     }])
-    .controller('MB_LoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
-    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
+    .controller('MB_LoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope', '$location',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope, $location ) {
         console.log("MB_LoginCtrl");
         $scope.captcha_url = urls.api+"/captcha/image/";
         $scope.login_info = {};
@@ -1334,6 +1334,7 @@ angular.module('chuangplus_mobile.controllers', [])
             $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
         };
         $scope.is_captcha_ok = 0;
+        $rootScope.tsinghua_occu = '0';
 
         $scope.check_captcha = function(){
             $csrf.set_csrf($scope.capcha_info);
@@ -1361,8 +1362,8 @@ angular.module('chuangplus_mobile.controllers', [])
 
         $scope.login_user = function(){
             console.log($scope.is_captcha_ok);
-            if($scope.is_captcha_ok == 1)
-            {
+            ///if($scope.is_captcha_ok == 1)
+            //{
                 $csrf.set_csrf($scope.login_info);
                 console.log($scope.login_info);
 
@@ -1393,13 +1394,22 @@ angular.module('chuangplus_mobile.controllers', [])
                             else
                                 window.location.href = '/mobile/info';
                         }
+                        else if(data.error.code == 32){
+                            console.log("存在");
+                            $rootScope.tsinghua_occu = '1';
+                            $rootScope.student_id = data.student_id;
+                            $location.path('/mobile/info');
+//                            window.location.href='/mobile/info';
+                        }
                         else
                         {
                             $notice.show($errMsg.format_error("",data.error).message);
                         }
                 });
 
-            }
+            //}
+            //else
+            //    $notice.show('验证码错误');
         };
         $scope.refresh_captcha();
         $rootScope.loading = false;
@@ -1979,6 +1989,16 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.user_info = {};
         $scope.info.username = $user.username();
 
+        $scope.tsinghua_occu = ($rootScope.tsinghua_occu == '1');
+        if ($scope.tsinghua_occu) 
+        {
+            $scope.user_info.student_id = $rootScope.student_id;
+            $rootScope.loading = false;
+            $scope.user_info.university = "清华大学";
+            $rootScope.is_tsinghua = true;
+            $scope.is_tsinghua_local = $rootScope.is_tsinghua;
+        }
+        else
         $http.get(urls.api+"/account/userinfo/get").
             success(function(data){
             if(data.error.code == 1){
@@ -1994,6 +2014,39 @@ angular.module('chuangplus_mobile.controllers', [])
                 $rootScope.loading = false;
             }
         });
+
+
+        $scope.check_username = {};
+
+        $scope.check_username = function(){
+            $scope.check_username.username = $scope.user_info.username;
+            $csrf.set_csrf($scope.check_username);
+
+            if($scope.check_username.username.length > 5)
+                $http.post(urls.api+"/account/checkusername", $.param($scope.check_username)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        console.log(data);
+                        if(data.username.exist != 'false')
+                        {
+                            $notice.show('用户名已存在');
+                        //    $('#username-pass').hide();
+                            $scope.info_check = 0;
+                            ///return false;
+                        }
+                        //else
+                            //$('#username-pass').show();
+                    }
+                });
+            else
+            {
+                $notice.show('用户名长度最短6位');
+                $scope.info_check = 0;
+                ///return false;
+            }
+            $scope.info_check = 1;
+            ///return true;
+        };
         
 
         $scope.update_info = function(){
@@ -2005,6 +2058,22 @@ angular.module('chuangplus_mobile.controllers', [])
                     (($rootScope.is_tsinghua && $scope.user_info.email != undefined) || !$rootScope.is_tsinghua))
                 {
                     $csrf.set_csrf($scope.user_info);
+                    if($scope.tsinghua_occu)
+                    {
+                        if($scope.info_check == 1)
+                            $http.post(urls.api+"/account/userinfo/set_username_by_tsinghua", $.param($scope.user_info))
+                            .success(function(data){
+                            if(data.error.code == 1){
+                                window.location.href=urls.mobile_index;
+                            }
+                            else{
+                                $notice.show($errMsg.format_error("",data.error).message);
+                            }
+                        });
+                        else
+                            $notice.show("请填写合法的信息");
+                    }
+                    else
                     $http.post(urls.api+"/account/userinfo/set_by_tsinghua", $.param($scope.user_info))
                         .success(function(data){
                         if(data.error.code == 1){
@@ -2014,6 +2083,7 @@ angular.module('chuangplus_mobile.controllers', [])
                             $notice.show($errMsg.format_error("",data.error).message);
                         }
                     });
+                    
                 }
                 else
                     $notice.show("请填写合法的信息");

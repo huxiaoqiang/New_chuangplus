@@ -490,7 +490,8 @@ angular.module('chuangplus.services', []).
             }
         };
     }])
-    .service('UserService', ['urls', '$http', '$cookies', function(urls, $http, $cookies){
+    .service('UserService', ['urls', '$http', '$cookies', '$rootScope',
+        function(urls, $http, $cookies,$rootScope){
         var user = {};
         if($cookies.username){
             user.username = $cookies.username;
@@ -502,8 +503,27 @@ angular.module('chuangplus.services', []).
             user.role = $cookies.role;
         }
         return {
+            'check_info' : function(){
+                if(user.username != undefined && user.role == 0){
+                    $http.get(urls.api+"/account/userinfo/get").
+                        success(function(udata){
+                        if(udata.error.code == 1){
+                            $rootScope.is_tsinghua = udata.data.is_info;
+                            if( udata.data.major == undefined ||
+                                udata.data.university == undefined ||
+                                udata.data.grade == undefined ||
+                                ($rootScope.is_tsinghua && udata.data.email == undefined)){
+                                console.log('需要填写信息');
+                                window.location.href='/intern/information';
+                            }
+                        }
+                        else
+                            $notice.show($errMsg.format_error("",udata.error).message);
+                    });
+                }
+            },
             'username': function(){
-                return user.username;
+                return $cookies.username;
             },
             'refresh': function(){
                 $.get(urls.api + '/user/status', function(data){
