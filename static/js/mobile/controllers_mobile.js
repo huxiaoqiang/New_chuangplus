@@ -2011,9 +2011,9 @@ angular.module('chuangplus_mobile.controllers', [])
         });
 
 
+        $scope.check_username = {};
 
         $scope.check_username = function(){
-            $scope.check_username = {};
             $scope.check_username.username = $scope.user_info.username;
             $csrf.set_csrf($scope.check_username);
 
@@ -2055,6 +2055,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     $csrf.set_csrf($scope.user_info);
                     if($scope.tsinghua_occu)
                     {
+                        $scope.check_username();
                         if($scope.info_check == 1)
                             $http.post(urls.api+"/account/userinfo/set_username_by_tsinghua", $.param($scope.user_info))
                             .success(function(data){
