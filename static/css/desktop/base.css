@@ -4613,7 +4613,10 @@ body > #wrap_no_header_footer #main-container {
   width: 80px;
   text-align: center;
 }
-#show_intern_info .interested a .active {
+#show_intern_info .interested .interested_content #item_interested {
+  text-decoration: none;
+}
+#show_intern_info .interested a.active {
   background-color: #8f4e96;
   color: white;
   border-radius: 4px;
