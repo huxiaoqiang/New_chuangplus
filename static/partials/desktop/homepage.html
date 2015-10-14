@@ -7,6 +7,7 @@
                 </slide>
             </carousel>
         </div>
+        {% if user.is_authenticated %}
         <div ng-if="role == 1 && username != undefined" class="company-block">
             <div class="company-item"><a ng-href=[[url]]>编辑公司信息</a></div>
             <div class="company-item"><a href="/company/[[company_id]]/position/new/edit">发布新职位</a></div>
@@ -19,7 +20,7 @@
             <div class="intern-item"><a href="/intern/favor/position">我收藏的职位</a></div>
             <div class="intern-item"><a href="/intern/favor/company">我收藏的公司</a></div>
         </div>
-
+        {% endif %}
         <div class="info-block-1">
             <img src="/static/image/logo/underconstruction-01.jpg">
         </div>        
