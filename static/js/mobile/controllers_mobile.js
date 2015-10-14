@@ -1986,7 +1986,13 @@ angular.module('chuangplus_mobile.controllers', [])
 
         $scope.tsinghua_occu = ($location.search()['tsinghua_occu'] == '1');
         if ($scope.tsinghua_occu) 
+        {
             $scope.user_info.student_id = $location.search()['student_id'];
+            $rootScope.loading = false;
+            $scope.user_info.university = "清华大学";
+            $rootScope.is_tsinghua = true;
+            $scope.is_tsinghua_local = $rootScope.is_tsinghua;
+        }
         else
         $http.get(urls.api+"/account/userinfo/get").
             success(function(data){
