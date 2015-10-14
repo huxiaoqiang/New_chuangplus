@@ -1361,8 +1361,8 @@ angular.module('chuangplus_mobile.controllers', [])
 
         $scope.login_user = function(){
             console.log($scope.is_captcha_ok);
-            if($scope.is_captcha_ok == 1)
-            {
+            ///if($scope.is_captcha_ok == 1)
+            //{
                 $csrf.set_csrf($scope.login_info);
                 console.log($scope.login_info);
 
@@ -1404,7 +1404,9 @@ angular.module('chuangplus_mobile.controllers', [])
                         }
                 });
 
-            }
+            //}
+            //else
+            //    $notice.show('验证码错误');
         };
         $scope.refresh_captcha();
         $rootScope.loading = false;
@@ -2055,7 +2057,6 @@ angular.module('chuangplus_mobile.controllers', [])
                     $csrf.set_csrf($scope.user_info);
                     if($scope.tsinghua_occu)
                     {
-                        $scope.check_username();
                         if($scope.info_check == 1)
                             $http.post(urls.api+"/account/userinfo/set_username_by_tsinghua", $.param($scope.user_info))
                             .success(function(data){
