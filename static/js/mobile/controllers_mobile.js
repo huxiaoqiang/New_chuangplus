@@ -2027,7 +2027,7 @@ angular.module('chuangplus_mobile.controllers', [])
                             $notice.show('用户名已存在');
                         //    $('#username-pass').hide();
                             $scope.info_check = 0;
-                            return false;
+                            ///return false;
                         }
                         //else
                             //$('#username-pass').show();
@@ -2037,10 +2037,10 @@ angular.module('chuangplus_mobile.controllers', [])
             {
                 $notice.show('用户名长度最短6位');
                 $scope.info_check = 0;
-                return false;
+                ///return false;
             }
             $scope.info_check = 1;
-            return true;
+            ///return true;
         };
         
 
