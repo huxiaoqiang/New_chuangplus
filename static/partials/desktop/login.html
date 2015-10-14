@@ -24,6 +24,8 @@
                     <img ng-src='[[captcha_url]]' id="captcha_img" alt="验证码">
                     <a ng-click="refresh()" class="fresh"><i class="fa fa-refresh"></i></a>
                 </div>
+                <label class="login-notice"><input type="checkbox" ng-model="is_tsinghua">使用清华info账号登录</label>
+
                 <button id="login_button">登录 <i ng-show="submit_loading" class="fa fa-spinner fa-spin"></i></button>
 
                 <br/>

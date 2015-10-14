@@ -158,7 +158,8 @@ angular.module('chuangplus.controllers', []).
             window.location.href = '/';
         };
     }]).
-    controller('DT_LoginCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
+    controller('DT_LoginCtrl',['$scope','$rootScope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService',
+        function($scope,$rootScope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_LoginCtrl');
         $scope.login_info = {};
         //$scope.login_info.role = 1;
@@ -166,14 +167,28 @@ angular.module('chuangplus.controllers', []).
         $scope.refresh = function(){
             $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
         };
+
         $scope.login_user = function(){
             $csrf.set_csrf($scope.login_info);
             $scope.submit_loading = true;
-            $http.post(urls.api+"/account/login", $.param($scope.login_info)).
+
+            if($scope.is_tsinghua == true)
+                $scope.url = urls.api+"/account/login_by_tsinghua";
+            else
+                $scope.url = urls.api+"/account/login";
+            $http.post($scope.url, $.param($scope.login_info)).
                 success(function(data){
                     if(data.error.code == 1){
+                        $rootScope.is_tsinghua = $scope.is_tsinghua;
                         $scope.error = $errMsg.format_error("登录成功",data.error);
-                        setTimeout(function(){window.location.href='/'},1000);
+                        if($scope.is_tsinghua != true)
+                            setTimeout(function(){window.location.href='/'},1000);
+                        else{
+                            if(data.completive == '1')
+                                setTimeout(function(){window.location.href='/'},1000);
+                            else
+                                setTimeout(function(){$location.path('/intern/information');},1000);
+                        }
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
@@ -1610,7 +1625,8 @@ angular.module('chuangplus.controllers', []).
     controller('DT_AboutCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_AboutCtrl');
     }]).
-    controller('DT_InformationCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_InformationCtrl',['$scope', '$http', 'CsrfService', 'urls','$rootScope','UserService','$location',
+      function($scope, $http, $csrf, urls,$rootScope,$user,$location){
       console.log('DT_InformationCtrl');
       $scope.infos = {};
       $scope.info_user = function(){
@@ -1627,8 +1643,13 @@ angular.module('chuangplus.controllers', []).
             }
           });
       };
+      $scope.is_tsinghua == $rootScope.is_tsinghua;
+      $scope.username = $user.username();
+      if($scope.is_tsinghua == true)
+        $scope.infos.university = "清华大学";
     }]).
-    controller('DT_CompanyPositionManageCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_CompanyPositionManageCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService',
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_CompanyPositionManageCtrl');
         $scope.position_type = {
             "technology":"技术",
@@ -3707,6 +3728,4 @@ angular.module('chuangplus.controllers', []).
                 });
             }
         }
-
-    
     }]);

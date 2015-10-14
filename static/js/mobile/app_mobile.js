@@ -38,7 +38,6 @@ var app = angular.module('chuangplus_mobile', [
         $routeProvider.when('/mobile/register', {templateUrl: urls.part_mobile + '/register.html', title:'注册'});
         $routeProvider.when('/mobile/login', {templateUrl: urls.part_mobile + '/login.html', title:'登录'});
         $routeProvider.when('/mobile/info', {templateUrl: urls.part_mobile + '/info.html',title:'基本信息填写'});
-        $routeProvider.when('/mobile/info:params', {templateUrl: urls.part_mobile + '/info.html',title:'基本信息填写'});
 
         //$routeProvider.when('/mobile/position/filter', {templateUrl: urls.part_mobile + '/position/filter.html',title:'筛选'});
         $routeProvider.when('/mobile/position/list', {templateUrl: urls.part_mobile + '/position/list.html',title:'职位列表'});
@@ -68,7 +67,7 @@ var app = angular.module('chuangplus_mobile', [
             $rootScope.title = current.$$route.title;
         });
     $rootScope.$on('$routeChangeStart', function(){
-        if($user.username() == undefined && $location.path() != '/mobile/login' && $location.path() != '/mobile/register')
+        if($user.username() == undefined && $location.path() != '/mobile/login' && $location.path() != '/mobile/register' && $location.path() != '/mobile/info')
         {
             window.location.href='/mobile/login';
             return;
