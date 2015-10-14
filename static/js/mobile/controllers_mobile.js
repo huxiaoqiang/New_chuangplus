@@ -445,9 +445,9 @@ angular.module('chuangplus_mobile.controllers', [])
             if($scope.filter.workdays != 0)
             {
                 if($scope.filter_params == "")
-                    $scope.filter_params += '?min_workdays' + $scope.filter.workdays;
+                    $scope.filter_params += '?max_workday=' + $scope.filter.workdays;
                 else
-                    $scope.filter_params += '&min_workday=' + $scope.filter.workdays;
+                    $scope.filter_params += '&max_workday=' + $scope.filter.workdays;
                 $scope.workdays_notice = '每周' + $scope.filter.workdays + '天';
             }
             else
@@ -588,9 +588,9 @@ angular.module('chuangplus_mobile.controllers', [])
             if($scope.filter.workdays != 0)
             {
                 if($scope.filter_params == null)
-                    $scope.filter_params += '?min_workdays' + $scope.filter.workdays;
+                    $scope.filter_params += '?max_workday=' + $scope.filter.workdays;
                 else
-                    $scope.filter_params += '&min_workday=' + $scope.filter.workdays;
+                    $scope.filter_params += '&max_workday=' + $scope.filter.workdays;
                 $scope.workdays_notice = '每周' + $scope.filter.workdays + '天';
             }
             else
@@ -693,9 +693,9 @@ angular.module('chuangplus_mobile.controllers', [])
             if($scope.filter.workdays != 0)
             {
                 if($scope.filter_params == "")
-                    $scope.filter_params += '?min_workdays' + $scope.filter.workdays;
+                    $scope.filter_params += '?max_workday=' + $scope.filter.workdays;
                 else
-                    $scope.filter_params += '&min_workday=' + $scope.filter.workdays;
+                    $scope.filter_params += '&max_workday=' + $scope.filter.workdays;
                 $scope.workdays_notice = '每周' + $scope.filter.workdays + '天';
             }
             else
