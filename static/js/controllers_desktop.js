@@ -184,7 +184,7 @@ angular.module('chuangplus.controllers', []).
                             if(data.completive == '1')
                                 setTimeout(function(){window.location.href='/'},1000);
                             else
-                                setTimeout(function(){$location.url('/intern/information');},1000);
+                                $location.url('/intern/information');
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
