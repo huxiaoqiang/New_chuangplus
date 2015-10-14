@@ -242,10 +242,10 @@ def login_by_tsinghua(request):
                 userinfo = Userinfo.objects.get(student_id = student_id, is_info = True)
                 n = len(userinfo.username)
                 print n
-                if n > 12:
+                if n > 16:
                     print "n > 12"
-                    comparison = (userinfo.username)[0:12]
-                    is_digit = (userinfo.username)[12:n].isdigit()
+                    comparison = (userinfo.username)[0:16]
+                    is_digit = (userinfo.username)[16:n].isdigit()
                     print comparison == '*&occupation&**&' and is_digit
                     if comparison == '*&occupation&**&' and is_digit:
                         print "rename"
