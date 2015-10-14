@@ -492,9 +492,6 @@ angular.module('chuangplus.services', []).
     }])
     .service('UserService', ['urls', '$http', '$cookies', function(urls, $http, $cookies){
         var user = {};
-        // $.get(urls.api + '/user/status', function(data){
-        //     user = data;
-        // });
         if($cookies.username){
             user.username = $cookies.username;
         }

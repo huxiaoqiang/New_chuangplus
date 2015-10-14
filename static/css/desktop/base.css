@@ -29,6 +29,16 @@ header #header .navbar .navbar-header #head-logo img {
   padding-top: 6px;
   margin-left: 15px;
 }
+header #header .navbar .navbar-header .navbar-nav {
+  float: left;
+  margin: 0;
+}
+header #header .navbar .navbar-header .nav > li {
+  position: relative;
+  display: block;
+  float: left;
+  margin: 0;
+}
 header #header .navbar .navbar-item.not-login {
   margin-left: 47px;
   width: 400px;
@@ -666,6 +676,8 @@ body > #wrap {
   background-color: rgba(191, 191, 191, 0.1);
   cursor: pointer;
   margin-bottom: 5px;
+  height: 30px;
+  line-height: 30px;
 }
 #container #pisition-list .col-sm-4 .search-tab .search-item .field-list {
   display: none;
@@ -679,6 +691,7 @@ body > #wrap {
 #container #pisition-list .col-sm-4 .search-tab .search-item .field-list table tbody tr td a {
   text-decoration: none;
   color: #000000;
+  padding: 0 10px;
 }
 #container #pisition-list .col-sm-4 .search-tab .search-item .field-list table tbody tr td a.active {
   background-color: #8f4e96;
@@ -703,6 +716,7 @@ body > #wrap {
 #container #pisition-list .col-sm-4 .search-tab .search-item .type-list table tbody tr td a {
   text-decoration: none;
   color: #000000;
+  padding: 0 10px;
 }
 #container #pisition-list .col-sm-4 .search-tab .search-item .type-list table tbody tr td a.active {
   background-color: #8f4e96;
@@ -743,6 +757,7 @@ body > #wrap {
 #container #pisition-list .col-sm-4 .search-tab .search-item .work_days_max table tbody tr td a {
   text-decoration: none;
   color: #000000;
+  padding: 0 10px;
 }
 #container #pisition-list .col-sm-4 .search-tab .search-item .work_days_max table tbody tr td a.active {
   background-color: #8f4e96;
@@ -2762,6 +2777,8 @@ form.financing_add input {
   background-color: rgba(191, 191, 191, 0.1);
   cursor: pointer;
   margin-bottom: 5px;
+  height: 30px;
+  line-height: 30px;
 }
 #container #company_list .col-md-4 .search-tab .search-item input[type=checkbox] {
   cursor: pointer;
@@ -2793,6 +2810,7 @@ form.financing_add input {
 #container #company_list .col-md-4 .search-tab .search-item .field-list table tbody tr td a {
   text-decoration: none;
   color: #000000;
+  padding: 0 10px;
 }
 #container #company_list .col-md-4 .search-tab .search-item .field-list table tbody tr td a.active {
   background-color: #8f4e96;
@@ -2814,6 +2832,7 @@ form.financing_add input {
 #container #company_list .col-md-4 .search-tab .search-item .scale-list a {
   text-decoration: none;
   color: #000000;
+  padding: 0 10px;
 }
 #container #company_list .col-md-4 .search-tab .search-item .scale-list a.active {
   background-color: #8f4e96;
@@ -2835,6 +2854,7 @@ form.financing_add input {
 #container #company_list .col-md-4 .search-tab .search-item .organization-list a {
   text-decoration: none;
   color: #000000;
+  padding: 0 10px;
 }
 #container #company_list .col-md-4 .search-tab .search-item .organization-list a.active {
   background-color: #8f4e96;
@@ -3486,6 +3506,8 @@ form.financing_add input {
   margin-bottom: 15px;
   width: 100%;
   box-shadow: 2px 2px 7px 2px #dfdfdf;
+  background: white !important;
+  font-family: 'Lantinghei SC', 'Open Sans', 'Arial', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'STHeiti', 'WenQuanYi Micro Hei', 'SimSun', 'sans-serif';
 }
 #container #homepage .intern-block .intern-item {
   float: left;

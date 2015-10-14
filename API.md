@@ -136,7 +136,7 @@ part_or_full_time   |IntField       |default=0     |实习还是全职
 submit_number     |IntField       |default=0     |职位已经投递的人数
 status              |Stringfield    |choices=STATUS|职位状态(STATUS见表下)
 TYPE = ('technology','product','design','operate','marketing','functions','others')<br/>
-STATUS = ('open','closed')
+STATUS = ('open','closed','deleted')
 
 ###职位排序的参数Sortposition
 字段         | 类型          | 修饰   |解释
