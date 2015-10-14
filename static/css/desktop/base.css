@@ -1725,7 +1725,20 @@ form.financing_add input {
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   padding-top: 5%;
 }
+#container #favor-position-list .block:hover {
+  text-decoration: none !important;
+}
+#container #favor-position-list .block:hover .inner {
+  cursor: pointer;
+}
+#container #favor-position-list .block:hover .inner .go-txt {
+  margin-bottom: 8px;
+}
+#container #favor-position-list .block:hover .inner .go img {
+  width: 30px;
+}
 #container #favor-position-list .block {
+  display: block;
   width: 50%;
   background-color: white;
   height: 200px;
@@ -1751,17 +1764,8 @@ form.financing_add input {
 #container #favor-position-list .block .inner .go {
   text-align: center;
 }
-#container #favor-position-list .block .inner .go a {
-  cursor: pointer;
-}
-#container #favor-position-list .block .inner .go a img {
+#container #favor-position-list .block .inner .go img {
   width: 25px;
-}
-#container #favor-position-list .block .inner .go a:hover {
-  cursor: pointer;
-}
-#container #favor-position-list .block .inner .go a:hover img {
-  width: 30px;
 }
 #container #favor-position-list .col-sm-4 {
   width: 100%;
@@ -1951,8 +1955,19 @@ form.financing_add input {
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   padding-top: 5%;
 }
+#container #favor-company-list .tips:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+#container #favor-company-list .tips:hover .inner .go-txt {
+  margin-bottom: 8px;
+}
+#container #favor-company-list .tips:hover .inner .go img {
+  width: 30px;
+}
 #container #favor-company-list .tips {
   width: 50%;
+  display: block;
   background-color: white;
   height: 200px;
   margin: 0 auto;
@@ -1977,17 +1992,8 @@ form.financing_add input {
 #container #favor-company-list .tips .inner .go {
   text-align: center;
 }
-#container #favor-company-list .tips .inner .go a {
-  cursor: pointer;
-}
-#container #favor-company-list .tips .inner .go a img {
+#container #favor-company-list .tips .inner .go img {
   width: 25px;
-}
-#container #favor-company-list .tips .inner .go a:hover {
-  cursor: pointer;
-}
-#container #favor-company-list .tips .inner .go a:hover img {
-  width: 30px;
 }
 #container #favor-company-list .col-md-8 {
   width: 100%;
@@ -2163,6 +2169,9 @@ form.financing_add input {
 #container #intern-post-list .tips:hover {
   cursor: pointer;
   text-decoration: none;
+}
+#container #intern-post-list .tips:hover .inner .go-txt {
+  margin-bottom: 8px;
 }
 #container #intern-post-list .tips:hover .inner .go img {
   width: 30px;
