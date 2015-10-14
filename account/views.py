@@ -1997,14 +1997,38 @@ def add_student_id(request):
     else:
         re['error'] = error(3,"Need GET")
     return HttpResponse(json.dumps(re),content_type = "application/json")
-'''
-def set_company_sort(request,company_id,index)
+
+def set_company_sort(request,company_id,index):
     re =dict()
     if request.method == "GET":
-    
+        try:
+            cpn = Companyinfo.objects.get(id = company_id)
+            index_old = cpn.index
+        except DoesNotExist:
+            re['error'] = error(105,"Companyinfo dose not exist")
+            return HttpResponse(json.dumps(re),content_type = 'application/json')
+        cpn_list = Companyinfo.objects.all()
+        if index_old < index:
+            up = 0
+        else:
+            up = 1
+        for i in cpn_list:
+            if up == 0:
+                if i.index > index_old and i.index <= index:
+                    i.index -= 1
+                    i.save()
+            else:
+                if i.index < index_old and i.index >= index:
+                    i.index +=1
+                    i.save()
+        cpn.index = index
+        cpn.save()
+        re['error'] = error(1,"succeed")
+        return HttpResponse(json.dumps(re),content_type = 'application/json')    
     else:
-        re['error'] = error(3,""N)
-'''
+        re['error'] = error(3,"Need GET")
+        return HttpResponse(json.dumps(re),content_type = 'application/json')
+
 def look_position_sort(request):
     re = dict()
     if request.method == "GET":
