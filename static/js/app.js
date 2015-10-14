@@ -103,7 +103,8 @@ angular.module('chuangplus', [
             $rootScope.title = current.$$route.title;
         });
         $rootScope.$on('$routeChangeStart', function(){
-        if($user.username() == undefined && $location.path() != '/login' && $location.path() != '/register' && $location.path() != '/intern/information')
+        if($user.username() == undefined && $location.path() != '/login' && $location.path() != '/register' && $location.path() != '/intern/information'
+            && $location.path() != '/company/list' && $location.path() != '/position/list' && $location.path() != '/')
         {
             window.location.href='/login';
             return;

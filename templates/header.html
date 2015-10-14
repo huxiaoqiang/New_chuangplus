@@ -25,25 +25,25 @@
                  <li ng-class = "{'active':header.resume}" ng-click="resume_active()"><a href="/intern/resume/view">查看简历</a></li>
                  {% endif %}
                  
-                  <li class="dropmenu"on-mouseover="drop=true" ng-click="drop=true" on-mouseout="drop=false" >
+                  <li ng-class = "{'active':header.user}" class="dropmenu" on-mouseover="drop=true" ng-click="drop=true" on-mouseout="drop=false" >
                         <a href="#" class="dropmenu-toggle" style="text-overflow: ellipsis;width:126px;overflow: hidden;">[[username]]<b class="caret"></b></a>
 
                     {% if role == 1 %}
                    
                         <ul class="dropdown-menu" ng-class = "{'active':header.resume}" ng-click="user_active()" ng-show="drop">
-                           <li><a ng-href=[[url]]>编辑公司信息</a></li>
-                           <li><a href="/company/[[company_id]]/position/new/edit">发布岗位</a></li>
-                           <li><a href="/company/[[company_id]]/position/manage">管理职位</a></li>
-                           <li><a href="/company/account">账户设置</a></li>
+                           <li><a ng-href=[[url]] ng-click="user_active()">编辑公司信息</a></li>
+                           <li><a ng-click="user_active()" href="/company/[[company_id]]/position/new/edit">发布岗位</a></li>
+                           <li><a ng-click="user_active()" href="/company/[[company_id]]/position/manage">管理职位</a></li>
+                           <li><a ng-click="user_active()" href="/company/account">账户设置</a></li>
                            <li><a ng-click="logout()">退出登录</a></li>
                         </ul>
                     {% elif role == 0 %}
                     
                         <ul class="dropdown-menu" ng-show="drop">
-                           <li><a href="/intern/post">我的投递</a></li>
-                           <li><a href="/intern/favor/company">收藏的公司</a></li>
-                           <li><a href="/intern/favor/position">收藏的岗位</a></li>
-                           <li><a href="/intern/info">账户设置</a></li>
+                           <li><a ng-click="user_active()" href="/intern/post">我的投递</a></li>
+                           <li><a ng-click="user_active()" href="/intern/favor/company">收藏的公司</a></li>
+                           <li><a ng-click="user_active()" href="/intern/favor/position">收藏的岗位</a></li>
+                           <li><a ng-click="user_active()" href="/intern/info">账户设置</a></li>
                            <li><a ng-click="logout()">退出登录</a></li>
                         </ul>
                     {% elif role == -1 %}

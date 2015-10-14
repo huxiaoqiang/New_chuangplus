@@ -594,10 +594,17 @@ def set_userinfo(request):
     re = dict()
     if request.method == 'POST':
         u = Userinfo.objects.get(username=request.user.username)
+        email = request.POST.get('email','')
+        if email != '' and email != u.email:
+            try:
+                find_email = User.objects.get(email = email)
+                if(find_email != None):
+                    re['error'] = error(115,'email has been registered!')
+                    return HttpResponse(json.dumps(re), content_type = 'application/json')
+            except DoesNotExist:
+                u.email = email
 
-        u.email = request.POST.get('email', u.email)
-        request.user.email = u.email
-
+        request.user.email = email
         try:
             request.user.save()
         except:
