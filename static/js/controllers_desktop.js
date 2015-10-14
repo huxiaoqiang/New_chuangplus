@@ -158,8 +158,8 @@ angular.module('chuangplus.controllers', []).
             window.location.href = '/';
         };
     }]).
-    controller('DT_LoginCtrl',['$scope','$rootScope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService',
-        function($scope,$rootScope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
+    controller('DT_LoginCtrl',['$scope','$rootScope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','$location',
+        function($scope,$rootScope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,$location){
         console.log('DT_LoginCtrl');
         $scope.login_info = {};
         //$scope.login_info.role = 1;
@@ -1625,8 +1625,8 @@ angular.module('chuangplus.controllers', []).
     controller('DT_AboutCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_AboutCtrl');
     }]).
-    controller('DT_InformationCtrl',['$scope', '$http', 'CsrfService', 'urls','$rootScope','UserService','$location',
-      function($scope, $http, $csrf, urls,$rootScope,$user,$location){
+    controller('DT_InformationCtrl',['$scope', '$http', 'CsrfService', 'urls','$rootScope','UserService',
+      function($scope, $http, $csrf, urls,$rootScope,$user){
       console.log('DT_InformationCtrl');
       $scope.infos = {};
       $scope.info_user = function(){
