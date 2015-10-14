@@ -189,7 +189,7 @@ def set_username_by_tsinghua(request):
         re['role'] = 0
         request.session['role'] = 0
         resp = HttpResponse(json.dumps(re),content_type = "application/json")
-        resp.set_cookie('username',username)
+        resp.set_cookie('username',student_name)
         resp.set_cookie('role',request.session['role'])
         return resp
     else:
