@@ -32,12 +32,20 @@
             </div>
         </div>
         <div class="interested">
-            <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 感兴趣
-            </label>
-            <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" value="checked"> 不感兴趣
-            </label>
+            <!--<div>
+                <a href="#" ng-class="{active:interested_filed == 'interested'}" ng-click="interested_select('interested')">感兴趣</a>
+                <a href="#"> </a>
+                <a href="#" ng-class="{active:interested_filed == 'uninterested'}" ng-click="interested_select('uninterested')">不感兴趣</a>
+            </div>-->
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="interested_content" ng-class="{active:interested_filed == 'interested'}"><a href="#" ng-class="{active:interested_filed == 'interested'}" ng-click="interested_select('interested')">感兴趣</a></td>
+                        <td style="width: 10px;"></td>
+                        <td class="interested_content" ng-class="{active:interested_filed == 'uninterested'}"><a href="#" ng-click="interested_select('uninterested')" ng-class="{active:interested_filed == 'uninterested'}">不感兴趣</a></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </aside>

@@ -819,9 +819,9 @@ angular.module('chuangplus.controllers', []).
         $scope.chosed_index = -1;
         $scope.filter_chosen = {
             'page' : 1,
-            'processed': 0, //0 for unprocessed, 1 for processed, 2 for all
-            'interested' :0, //0 for uninterested, 1 for uinterested, 2 for all
-            'postition_type': ''
+            'processed': 2, //0 for unprocessed, 1 for processed, 2 for all
+            'interested' :2, //0 for uninterested, 1 for uinterested, 2 for all
+            'position_type': ''
         };
         $scope.position_type = {
             "":"全部",
@@ -864,8 +864,13 @@ angular.module('chuangplus.controllers', []).
                 for(var key in param_data) {
                     if(!(key == 'position_type' && param_data[key] == '') &&
                         !(key == 'processed' && param_data[key] == 2) &&
-                        !(key == 'interested' && param_data[key] == 2))
-                        param.push(key + '=' + param_data[key]);
+                        !(key == 'interested' && param_data[key] == 2)){
+                        if(key == 'processed' || key == 'interested'){
+                            param.push(key + '=' + (param_data[key] == 1))
+                        }
+                        else
+                            param.push(key + '=' + param_data[key]);
+                    }
                 }
                 param = param.join('&');
                 param = '?' + param;
@@ -920,6 +925,19 @@ angular.module('chuangplus.controllers', []).
             $scope.get_submit_list();
         };
 
+        $scope.interested_change = false;
+        $scope.interested_filed = "";
+        $scope.interested_select = function(interested){
+            if($scope.interested_filed == interested){
+                $scope.interested_change = false;
+            }
+            else{
+                $scope.interested_change = true;
+                $scope.interested_filed = interested;
+            }
+            //$scope.get_company_list($scope.param);
+        };
+
         $scope.process = function(index){
             if(index == -1){
                 return;
@@ -935,14 +953,18 @@ angular.module('chuangplus.controllers', []).
             $http.post(urls.api+"/account/company/process_single", $.param(param)).
                 success(function(data){
                     if(data.error.code == 1){
-                        alert($scope.submit_list[index].position_id,$scope.submit_list[index].username);
-                        console.log("OK");
+                        //alert($scope.submit_list[index].position_id,$scope.submit_list[index].username);
+                        //console.log("OK");
                     }
                 });
         };
         $scope.view_detail = function(index){
             $scope.intern_info = $scope.submit_list[index];
             $scope.process(index);
+            if($scope.intern_info.interested == true)
+                $scope.interested_filed = "interested";
+            else
+                $scope.interested_filed = "uninterested";
             if($scope.chosed_index == -1){
                 $scope.chosed_index = index;
                 $scope.toggle_show();
