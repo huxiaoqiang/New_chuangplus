@@ -792,6 +792,7 @@ angular.module('chuangplus.controllers', []).
                 });
         };
         $scope.upload = function(file,file_t){
+            alert("必须为doc或PDF格式");
             var param = {
                "file_type": file_t,
                "description": $user.username(),
