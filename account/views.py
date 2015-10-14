@@ -160,9 +160,10 @@ def check_email_exist(request):
 def set_username_by_tsinghua(request):
     re = dict()
     if request.method == "POST":
-
+        
         #print  "student_id" in request.GET.keys()
         student_id = request.POST.get('student_id')
+        print student_id
         #print  "username" in request.GET.keys()
         student_name = request.POST.get('username')
         email  = request.POST.get("email")
@@ -172,6 +173,7 @@ def set_username_by_tsinghua(request):
         userinfo = Userinfo.objects.filter(student_id = student_id)
         if userinfo:
             userinfo = Userinfo.objects.get(student_id = student_id)
+            print student_name
             userinfo.username = student_name
             userinfo.email = email
             userinfo.university = university
@@ -182,6 +184,11 @@ def set_username_by_tsinghua(request):
             user.username = student_name
             user.email = email
             user.save()
+            try:
+                print "login check"
+                auth.login(request,user)
+            except:
+                re['error'] = error(272,"login,error")
         else:
             re['error'] = error(33,"userinfo doesnot exist")
             return HttpResponse(json.dumps(re),content_type = "application/json")
@@ -238,7 +245,8 @@ def login_by_tsinghua(request):
             if userinfo:
                 print "login the second time"
                 userinfo = Userinfo.objects.get(student_id = student_id, is_info = True)
-                print userinfo.user.username
+                #if userinfo.username == "occupation":
+                #   
                 completive = 1
                 if userinfo.university is None:
                     completive = 0
@@ -1954,7 +1962,14 @@ def add_student_id(request):
     else:
         re['error'] = error(3,"Need GET")
     return HttpResponse(json.dumps(re),content_type = "application/json")
-
+'''
+def set_company_sort(request,company_id,index)
+    re =dict()
+    if request.method == "GET":
+    
+    else:
+        re['error'] = error(3,""N)
+'''
 def look_position_sort(request):
     re = dict()
     if request.method == "GET":
