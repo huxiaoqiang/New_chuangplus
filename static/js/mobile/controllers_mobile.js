@@ -2025,12 +2025,12 @@ angular.module('chuangplus_mobile.controllers', [])
                         if(data.username.exist != 'false')
                         {
                             $notice.show('用户名已存在');
-                            $('#username-pass').hide();
+                        //    $('#username-pass').hide();
                             $scope.info_check = 0;
                             return false;
                         }
-                        else
-                            $('#username-pass').show();
+                        //else
+                            //$('#username-pass').show();
                     }
                 });
             else
