@@ -140,7 +140,7 @@ angular.module('chuangplus.controllers', []).
             else if(url.indexOf("resume")>0){
                 $scope.header = $header.resume();
             }
-            else if(url.indexOf("login")>0||url.indexOf("register")>0||url.indexOf("password")>0||url.indexOf("intern")>0||url.indexOf("feedback")>0||url.indexOf("about")>0){
+            else if(url.indexOf("login")>0||url.indexOf("register")>0||url.indexOf("password")>0||url.indexOf("intern")==1||url.indexOf("feedback")>0||url.indexOf("about")>0){
                 $scope.header = $header.none();
             }
             else{
