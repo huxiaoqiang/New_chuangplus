@@ -522,7 +522,7 @@ angular.module('chuangplus.services', []).
                 }
             },
             'username': function(){
-                return user.username;
+                return $cookies.username;
             },
             'refresh': function(){
                 $.get(urls.api + '/user/status', function(data){
