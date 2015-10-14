@@ -1625,8 +1625,8 @@ angular.module('chuangplus.controllers', []).
     controller('DT_AboutCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_AboutCtrl');
     }]).
-    controller('DT_InformationCtrl',['$scope', '$http', 'CsrfService', 'urls','$rootScope','UserService',
-      function($scope, $http, $csrf, urls,$rootScope,$user){
+    controller('DT_InformationCtrl',['$scope', '$http', 'CsrfService', 'urls','$rootScope','UserService','$location',
+      function($scope, $http, $csrf, urls,$rootScope,$user,$location){
       console.log('DT_InformationCtrl');
       $scope.infos = {};
       $scope.info_user = function(){
