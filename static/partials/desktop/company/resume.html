@@ -10,7 +10,19 @@
             <div class="second-line">
                 <span class="university">[[intern_info.university]]</span>
                 <span class="department">[[intern_info.major]]</span>
-                <span class="grade">[[intern_info.grade]]</span>
+                <span class="grade" ng-if="intern_info.grade==1">本科一年级</span>
+                <span class="grade" ng-if="intern_info.grade==2">本科二年级</span>
+                <span class="grade" ng-if="intern_info.grade==3">本科三年级</span>
+                <span class="grade" ng-if="intern_info.grade==4">本科四年级</span>
+                <span class="grade" ng-if="intern_info.grade==5">本科五年级</span>
+                <span class="grade" ng-if="intern_info.grade==11">硕士一年级</span>
+                <span class="grade" ng-if="intern_info.grade==12">硕士二年级</span>
+                <span class="grade" ng-if="intern_info.grade==13">硕士三年级</span>
+                <span class="grade" ng-if="intern_info.grade==21">博士一年级</span>
+                <span class="grade" ng-if="intern_info.grade==22">博士二年级</span>
+                <span class="grade" ng-if="intern_info.grade==23">博士三年级</span>
+                <span class="grade" ng-if="intern_info.grade==24">博士四年级</span>
+                <span class="grade" ng-if="intern_info.grade==25">博士五年级</span>
             </div>
             <p class="work_days">每周可工作时长：[[intern_info.work_days]]天/周</p>
             <p class="cellphone">TEL：[[intern_info.cellphone]]</p>
