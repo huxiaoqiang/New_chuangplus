@@ -230,8 +230,7 @@ def login_by_tsinghua(request):
         content = conn.read()
         map = json.loads(content)
         
-        is_succeed = "login success."
-        #is_succeed = map['error']['message']
+        is_succeed = map['error']['message']
         if is_succeed == "login success.":
             student_id = map['info']['id']
             student_name = map['info']['username']
@@ -253,7 +252,7 @@ def login_by_tsinghua(request):
                     re['completive'] = '0'
                 else:
                     re['completive'] = '1'
-                user = auth.authenticate(username = student_name,password = password)
+                user = auth.authenticate(username = userinfo.username,password = password)
                 if user is not None and user.is_active:
                     try:
                         print "login check"
@@ -264,7 +263,7 @@ def login_by_tsinghua(request):
                 re['error'] = error(1,"login succeed!")
                 re['role'] = 0
                 resp = HttpResponse(json.dumps(re),content_type = 'application/json')
-                resp.set_cookie('username',student_name)
+                resp.set_cookie('username',userinfo.username)
                 resp.set_cookie('role',request.session['role'])
                 return resp
             else:
@@ -1910,6 +1909,29 @@ def run_one_times(request):
     else:
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re),content_type="application/json")
+'''
+def add_student_id(request):
+	re = dict()
+	if request.method == "GET":
+		userlist = Userinfo.objects.filter(is_info=True,student_id=None)
+		if userlist:
+			for i in userlist:
+				username = i.user.username
+				password = i.user.password
+				data = {}
+				data['username'] = username
+				data['password'] = password
+				req = urllib2.Request(url,json.dumps(data))
+				conn = urllib2.urlopen(req)
+				content = conn.read()
+				map = json.loads(content)
+				is_succeed = "login success."
+				map[e
+	
+	else:
+		re['error'] = error(3,"Need GET")
+	return HttpResponse(json.dumps(re),content_type = "application/json")
+'''
 def look_position_sort(request):
     re = dict()
     if request.method == "GET":
