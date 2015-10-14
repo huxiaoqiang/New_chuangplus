@@ -97,9 +97,21 @@ angular.module('chuangplus', [
 //        AnalyticsProvider.trackUrlParams(true);
 //        AnalyticsProvider.useDisplayFeatures(true);
 //    }).
-    run(['$location', '$rootScope', function($location, $rootScope){
+    run(['$location', '$rootScope','UserService', function($location, $rootScope,$user){
         //Configure header title of the page
         $rootScope.$on('$routeChangeSuccess', function(event, current, previous){
             $rootScope.title = current.$$route.title;
         });
+        $rootScope.$on('$routeChangeStart', function(){
+        if($user.username() == undefined && $location.path() != '/login' && $location.path() != '/register' && $location.path() != '/intern/information'
+            && $location.path() != '/company/list' && $location.path() != '/position/list' && $location.path() != '/')
+        {
+            window.location.href='/login';
+            return;
+        }
+        if($location.path() != '/intern/information' && $location.path() != '/login' && $location.path() != '/register')
+            $user.check_info();
+        $rootScope.loading = true;
+        //console.log('route begin change');
+    });
     }]);

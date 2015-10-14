@@ -783,3 +783,14 @@ hr获取整个公司的感兴趣的简历投递者(method：get)
 	errorcode
    }
 ```
+
+###/api/account/(?P<company_id>.*?)/(?P<index>.*?)/sort_company
+手动设置某个公司的排序（method:get）
+参数如下：
+```javascript
+   {
+    'company_id' : 公司id
+	'index'      ：要设置的公司的排序序号
+   }
+```
+返回errorcode及message

@@ -240,8 +240,32 @@ def login_by_tsinghua(request):
             if userinfo:
                 print "login the second time"
                 userinfo = Userinfo.objects.get(student_id = student_id, is_info = True)
-                #if userinfo.username == "occupation":
-                #   
+                n = len(userinfo.username)
+                print n
+                if n > 16:
+                    print "n > 16"
+                    comparison = (userinfo.username)[0:16]
+                    is_digit = (userinfo.username)[16:n].isdigit()
+                    print comparison == '*&occupation&**&' 
+                    print is_digit
+                    if comparison == '*&occupation&**&' and is_digit:
+                        print "rename"
+                        user = auth.authenticate(username = userinfo.username,password = password)
+                        if user is not None and user.is_active:
+                            try:
+                                auth.login(request,user)
+                            except:
+                                print "login error"
+                                re["error"] = error(272,"login error!")
+                                return HttpResponse(json.dumps(re),content_type = "application/json")
+                        re['completive'] = '0'
+                        re['occupation'] = '1'
+                        re['student_id'] = student_id
+                        re['error'] = error(32,"username is occupied")
+                        re['role'] = 0
+                        print "jump"
+                        resp = HttpResponse(json.dumps(re),content_type = "application/json")
+                        return resp
                 completive = 1
                 if userinfo.university is None:
                     completive = 0
@@ -274,17 +298,17 @@ def login_by_tsinghua(request):
                 if user_old:#username is occupied
                     print "chutu"
                     re['occupation'] = '1'
-                    flag = str(random.randint(0,100))
-                    reguser = User.create_user(username = 'occupation' + flag,password = password)
+                    flag = str(random.randint(0,10000))
+                    reguser = User.create_user(username = '*&occupation&**&' + flag,password = password)
                     reguser.is_staff = False
                     reguser.save()
                     reguserinfo = Userinfo(user = reguser,is_info = True)
-                    reguserinfo.username = 'occupation' + flag
+                    reguserinfo.username = '*&occupation&**&' + flag
                     reguserinfo.student_id = student_id
                     reguserinfo.data_joined = datetime_now()
                     reguserinfo.update_time = datetime_now()
                     reguserinfo.save(force_insert = True)
-                    user = auth.authenticate(username = 'occupation'+flag,password = password)
+                    user = auth.authenticate(username = '*&occupation&**&'+flag,password = password)
                     if user is not None and user.is_active:
                         try:
                             auth.login(request,user)
@@ -1973,14 +1997,38 @@ def add_student_id(request):
     else:
         re['error'] = error(3,"Need GET")
     return HttpResponse(json.dumps(re),content_type = "application/json")
-'''
-def set_company_sort(request,company_id,index)
+
+def set_company_sort(request,company_id,index):
     re =dict()
     if request.method == "GET":
-    
+        try:
+            cpn = Companyinfo.objects.get(id = company_id)
+            index_old = cpn.index
+        except DoesNotExist:
+            re['error'] = error(105,"Companyinfo dose not exist")
+            return HttpResponse(json.dumps(re),content_type = 'application/json')
+        cpn_list = Companyinfo.objects.all()
+        if index_old < index:
+            up = 0
+        else:
+            up = 1
+        for i in cpn_list:
+            if up == 0:
+                if i.index > index_old and i.index <= index:
+                    i.index -= 1
+                    i.save()
+            else:
+                if i.index < index_old and i.index >= index:
+                    i.index +=1
+                    i.save()
+        cpn.index = index
+        cpn.save()
+        re['error'] = error(1,"succeed")
+        return HttpResponse(json.dumps(re),content_type = 'application/json')    
     else:
-        re['error'] = error(3,""N)
-'''
+        re['error'] = error(3,"Need GET")
+        return HttpResponse(json.dumps(re),content_type = 'application/json')
+
 def look_position_sort(request):
     re = dict()
     if request.method == "GET":

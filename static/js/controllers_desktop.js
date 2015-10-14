@@ -140,7 +140,7 @@ angular.module('chuangplus.controllers', []).
             else if(url.indexOf("resume")>0){
                 $scope.header = $header.resume();
             }
-            else if(url.indexOf("login")>0||url.indexOf("register")>0||url.indexOf("password")>0||url.indexOf("intern")>0||url.indexOf("feedback")>0||url.indexOf("about")>0){
+            else if(url.indexOf("login")>0||url.indexOf("register")>0||url.indexOf("password")>0||url.indexOf("intern")==1||url.indexOf("feedback")>0||url.indexOf("about")>0){
                 $scope.header = $header.none();
             }
             else{
@@ -181,14 +181,10 @@ angular.module('chuangplus.controllers', []).
                     if(data.error.code == 1){
                         $rootScope.is_tsinghua = $scope.is_tsinghua;
                         $scope.error = $errMsg.format_error("登录成功",data.error);
-                        if($scope.is_tsinghua != true)
-                            setTimeout(function(){window.location.href='/'},1000);
-                        else{
                             if(data.completive == '1')
                                 setTimeout(function(){window.location.href='/'},1000);
                             else
-                                setTimeout(function(){$location.url('/intern/information')},1000);
-                        }
+                                $location.url('/intern/information');
                     }
                     else{
                         $scope.error = $errMsg.format_error('',data.error);
@@ -513,6 +509,7 @@ angular.module('chuangplus.controllers', []).
             'currentPage' : 1
         };
         $scope.get_positions = function(){
+            $scope.loading = true;
             $http.get(urls.api+"/account/userinfo/position/submit/list").
                 success(function(data){
                     if(data.error.code == 1){
@@ -536,6 +533,7 @@ angular.module('chuangplus.controllers', []).
                     else{
                         console.log(data.error.message);
                     }
+                    $scope.loading = false;
             });
         };
         $scope.get_positions();
@@ -1634,16 +1632,15 @@ angular.module('chuangplus.controllers', []).
         $http.post(urls.api+"/account/userinfo/set",$.param($scope.infos)).
           success(function(data){
             if (data.error.code == 1){
-              console.log("Set information successfully!");
-              //alert("个人信息设置成功");
-              setTimeout(function(){window.location.href='/'},100);
+              $scope.error = $errMsg.format_error('个人信息设置成功',data.error);
+              setTimeout(function(){window.location.href='/'},500);
             }
             else{
               console.log(data.error.message);
+              $scope.error = $errMsg.format_error('',data.error);
             }
           });
       };
-
       $scope.is_tsinghua == $rootScope.is_tsinghua;
       $scope.username = $user.username();
       if($scope.is_tsinghua == true)
@@ -3295,12 +3292,6 @@ angular.module('chuangplus.controllers', []).
         };
         $(".work_days").mouseenter($scope.show_work_days);
         $(".work_days").mouseleave($scope.hide_work_days);
-
-
-
-
-
-
 
         $scope.get_positions = function(data){
             $scope.loading = true;
