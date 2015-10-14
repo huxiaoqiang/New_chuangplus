@@ -1,8 +1,14 @@
 <div id="container">
   <div id="information">
     <form class="information-form" ng-submit="info_user()">
-          <div class="txt">请填写基本信息</div>
+          <div class="txt" ng-if="is_tsinghua==false">请填写基本信息</div>
+          <div class="txt" ng-if="is_tsinghua==true">登录成功，您的用户名是[[username]],请填写用户基本信息</div>
       <div id="info_form">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" ng-if="is_tsinghua==true" class="form-control" placeholder="邮箱(用于登录和密码找回)" ng-model="infos.emails" required>
+	      </div>
+	    </div>
         <div class="form-group">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="学校" ng-model="infos.university" required>
@@ -38,5 +44,4 @@
         </div>
 	</form>
   </div>
-
 </div>
