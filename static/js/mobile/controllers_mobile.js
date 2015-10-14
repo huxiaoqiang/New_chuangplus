@@ -1984,6 +1984,10 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.user_info = {};
         $scope.info.username = $user.username();
 
+        $scope.tsinghua_occu = ($location.search()['tsinghua_occu'] == '1');
+        if ($scope.tsinghua_occu) 
+            $scope.user_info.student_id = $location.search()['student_id'];
+        else
         $http.get(urls.api+"/account/userinfo/get").
             success(function(data){
             if(data.error.code == 1){
@@ -1993,9 +1997,6 @@ angular.module('chuangplus_mobile.controllers', [])
                 $scope.user_info.university = data.data.university;
                 $scope.user_info.grade = data.data.grade;
                 $scope.user_info.email = data.data.email;
-                $scope.tsinghua_occu = ($location.search()['tsinghua_occu'] == '1');
-                if ($scope.tsinghua_occu) 
-                    $scope.user_info.student_id = $location.search()['student_id'];
                 if ($scope.is_tsinghua_local)
                     $scope.user_info.university = "清华大学";
                 //$rootScope.is_tsinghua = true;
