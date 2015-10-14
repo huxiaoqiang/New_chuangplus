@@ -1297,8 +1297,9 @@ form.financing_add input {
   width: 100%;
 }
 #container #edit_position .form-position .left-info .input-group .col-sm-6 table tbody tr td label input.radio {
-  width: 30px;
+  width: 20px;
   height: 13px;
+  margin-top: 2px;
   float: left;
 }
 #container #edit_position .form-position .left-info .input-group .col-sm-6 .salary {
