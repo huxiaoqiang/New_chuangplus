@@ -603,7 +603,7 @@ def set_userinfo(request):
                     return HttpResponse(json.dumps(re), content_type = 'application/json')
             except DoesNotExist:
                 u.email = email
-                
+
         request.user.email = email
         try:
             request.user.save()
