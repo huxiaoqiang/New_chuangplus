@@ -1398,7 +1398,8 @@ angular.module('chuangplus_mobile.controllers', [])
                             console.log("存在");
                             $rootScope.tsinghua_occu = '1';
                             $rootScope.student_id = data.student_id;
-                            window.location.href='/mobile/info';
+                            $location.path('/mobile/info');
+//                            window.location.href='/mobile/info';
                         }
                         else
                         {
