@@ -1643,6 +1643,7 @@ angular.module('chuangplus.controllers', []).
             }
           });
       };
+      
       $scope.is_tsinghua == $rootScope.is_tsinghua;
       $scope.username = $user.username();
       if($scope.is_tsinghua == true)
