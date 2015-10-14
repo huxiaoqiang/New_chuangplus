@@ -187,7 +187,7 @@ angular.module('chuangplus.controllers', []).
                             if(data.completive == '1')
                                 setTimeout(function(){window.location.href='/'},1000);
                             else
-                                setTimeout(function(){$location.path('/intern/information');},1000);
+                                setTimeout(function(){$location.url('/intern/information')},1000);
                         }
                     }
                     else{
@@ -1643,7 +1643,7 @@ angular.module('chuangplus.controllers', []).
             }
           });
       };
-      
+
       $scope.is_tsinghua == $rootScope.is_tsinghua;
       $scope.username = $user.username();
       if($scope.is_tsinghua == true)
