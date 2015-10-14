@@ -1393,6 +1393,10 @@ angular.module('chuangplus_mobile.controllers', [])
                             else
                                 window.location.href = '/mobile/info';
                         }
+                        else if(data.error.code == 32){
+                            console.log("存在");
+                            window.location.href='/mobile/info?tsinghua_occu=1&student_id='+ data.data.student_id;
+                        }
                         else
                         {
                             $notice.show($errMsg.format_error("",data.error).message);
@@ -1988,12 +1992,48 @@ angular.module('chuangplus_mobile.controllers', [])
                 $scope.user_info.university = data.data.university;
                 $scope.user_info.grade = data.data.grade;
                 $scope.user_info.email = data.data.email;
+                $scope.tsinghua_occu = ($location.search()['tsinghua_occu'] == '1');
+                if ($scope.tsinghua_occu) 
+                    $scope.user_info.student_id = $location.search()['student_id'];
                 if ($scope.is_tsinghua_local)
                     $scope.user_info.university = "清华大学";
                 //$rootScope.is_tsinghua = true;
                 $rootScope.loading = false;
             }
         });
+
+
+
+        $scope.check_username = function(){
+            $scope.check_username = {};
+            $scope.check_username.username = $scope.user_info.username;
+            $csrf.set_csrf($scope.check_username);
+
+            if($scope.check_username.username.length > 5)
+                $http.post(urls.api+"/account/checkusername", $.param($scope.check_username)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        console.log(data);
+                        if(data.username.exist != 'false')
+                        {
+                            $notice.show('用户名已存在');
+                            $('#username-pass').hide();
+                            $scope.info_check = 0;
+                            return false;
+                        }
+                        else
+                            $('#username-pass').show();
+                    }
+                });
+            else
+            {
+                $notice.show('用户名长度最短6位');
+                $scope.info_check = 0;
+                return false;
+            }
+            $scope.info_check = 1;
+            return true;
+        };
         
 
         $scope.update_info = function(){
@@ -2005,6 +2045,22 @@ angular.module('chuangplus_mobile.controllers', [])
                     (($rootScope.is_tsinghua && $scope.user_info.email != undefined) || !$rootScope.is_tsinghua))
                 {
                     $csrf.set_csrf($scope.user_info);
+                    if($scope.tsinghua_occu)
+                    {
+                        if($scope.info_check == 1)
+                            $http.post(urls.api+"/account/userinfo/set_username_by_tsinghua", $.param($scope.user_info))
+                            .success(function(data){
+                            if(data.error.code == 1){
+                                window.location.href=urls.mobile_index;
+                            }
+                            else{
+                                $notice.show($errMsg.format_error("",data.error).message);
+                            }
+                        });
+                        else
+                            $notice.show("请填写合法的信息");
+                    }
+                    else
                     $http.post(urls.api+"/account/userinfo/set_by_tsinghua", $.param($scope.user_info))
                         .success(function(data){
                         if(data.error.code == 1){
@@ -2014,6 +2070,7 @@ angular.module('chuangplus_mobile.controllers', [])
                             $notice.show($errMsg.format_error("",data.error).message);
                         }
                     });
+                    
                 }
                 else
                     $notice.show("请填写合法的信息");
