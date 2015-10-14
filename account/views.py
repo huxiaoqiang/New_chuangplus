@@ -230,8 +230,7 @@ def login_by_tsinghua(request):
         content = conn.read()
         map = json.loads(content)
         
-        is_succeed = "login success."
-        #is_succeed = map['error']['message']
+        is_succeed = map['error']['message']
         if is_succeed == "login success.":
             student_id = map['info']['id']
             student_name = map['info']['username']
@@ -253,7 +252,7 @@ def login_by_tsinghua(request):
                     re['completive'] = '0'
                 else:
                     re['completive'] = '1'
-                user = auth.authenticate(username = student_name,password = password)
+                user = auth.authenticate(username = userinfo.username,password = password)
                 if user is not None and user.is_active:
                     try:
                         print "login check"
@@ -264,7 +263,7 @@ def login_by_tsinghua(request):
                 re['error'] = error(1,"login succeed!")
                 re['role'] = 0
                 resp = HttpResponse(json.dumps(re),content_type = 'application/json')
-                resp.set_cookie('username',student_name)
+                resp.set_cookie('username',userinfo.username)
                 resp.set_cookie('role',request.session['role'])
                 return resp
             else:
@@ -944,10 +943,24 @@ def get_company_favor(request):
         for item in uc:
             try:
                 company = Companyinfo.objects.get(id = item.company.id)
+                company_re = json.loads(company.to_json())
+                position_type = []
+                if 'positions' in company_re and len(company_re['positions']) != 0:
+                    for p in company_re['positions']:
+                        try:
+                            position = Position.objects.get(id = p['$oid'])
+                        except DoesNotExist:
+                            re['error'] = error(260,'Position does not exist')
+                            return HttpResponse(json.dumps(re), content_type = 'application/json')
+                        if position.status == 'open' and position.position_type not in position_type:
+                            position_type.append(position.position_type)
+                else:
+                    company_re['positions'] = []
+                company_re['position_type'] = position_type
             except DoesNotExist:
                 re['error'] = error(105,'Companyinfo dose not exist')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
-            company_favor_list.append(json.loads(company.to_json()))
+            company_favor_list.append(company_re)
         re['data'] = company_favor_list
         re['error'] = error(1,'Get favor company list successfully')
     else:
@@ -1912,6 +1925,38 @@ def run_one_times(request):
     else:
         re['error'] = error(3,"Error, need GET")
     return HttpResponse(json.dumps(re),content_type="application/json")
+
+def add_student_id(request):
+    re = dict()
+    if request.method == "GET":
+        userlist = Userinfo.objects.filter(is_info=True,student_id=None)
+        if userlist:
+            for i in userlist:
+                username = i.user.username
+                password = i.user.password
+                print username + " " + str(password)
+                data = {}
+                data['username'] = username
+                data['password'] = password
+                req = urllib2.Request(url,json.dumps(data))
+                conn = urllib2.urlopen(req)
+                content = conn.read()
+                map = json.loads(content)
+                data = {}
+                is_succeed = "login success."
+                is_succeed = map['error']['message']
+                if is_succeed == "login success.":
+                    student_id = map['info']['id']
+                    student_name = map['info']['username']
+                    i.student_id = student_id
+                    i.save()
+                    data[i.username] = i.student_id
+        re['data'] = data
+        re['error'] = error(1,"succeed")
+    else:
+        re['error'] = error(3,"Need GET")
+    return HttpResponse(json.dumps(re),content_type = "application/json")
+
 def look_position_sort(request):
     re = dict()
     if request.method == "GET":

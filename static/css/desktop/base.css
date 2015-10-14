@@ -1297,8 +1297,9 @@ form.financing_add input {
   width: 100%;
 }
 #container #edit_position .form-position .left-info .input-group .col-sm-6 table tbody tr td label input.radio {
-  width: 30px;
+  width: 20px;
   height: 13px;
+  margin-top: 2px;
   float: left;
 }
 #container #edit_position .form-position .left-info .input-group .col-sm-6 .salary {
@@ -1678,6 +1679,17 @@ form.financing_add input {
 #container #userresume_edit .edit-resume-btn:hover {
   background-color: #98769E;
 }
+#container .no-resume-info:hover {
+  text-decoration: none;
+}
+#container .no-resume-info:hover .go {
+  top: -40px;
+}
+#container .no-resume-info:hover .go img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
 #container .no-resume-info {
   width: 50%;
   background-color: white;
@@ -1689,9 +1701,9 @@ form.financing_add input {
   border: 1px solid #bfbfbf;
 }
 #container .no-resume-info p {
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   text-align: center;
-  font-size: 1.5em;
-  font-family: "微软雅黑";
+  font-size: 1.4em;
 }
 #container .no-resume-info .go-txt {
   margin-left: -30px;
@@ -1702,17 +1714,9 @@ form.financing_add input {
   left: 40px;
   top: -38px;
 }
-#container .no-resume-info .go a {
-  cursor: pointer;
-}
-#container .no-resume-info .go a img {
+#container .no-resume-info .go img {
   width: 25px;
-}
-#container .no-resume-info .go a:hover {
-  cursor: pointer;
-}
-#container .no-resume-info .go a:hover img {
-  width: 30px;
+  height: 25px;
 }
 #container {
   margin: 0 auto;
@@ -1722,7 +1726,20 @@ form.financing_add input {
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   padding-top: 5%;
 }
+#container #favor-position-list .block:hover {
+  text-decoration: none !important;
+}
+#container #favor-position-list .block:hover .inner {
+  cursor: pointer;
+}
+#container #favor-position-list .block:hover .inner .go-txt {
+  margin-bottom: 8px;
+}
+#container #favor-position-list .block:hover .inner .go img {
+  width: 30px;
+}
 #container #favor-position-list .block {
+  display: block;
   width: 50%;
   background-color: white;
   height: 200px;
@@ -1748,17 +1765,8 @@ form.financing_add input {
 #container #favor-position-list .block .inner .go {
   text-align: center;
 }
-#container #favor-position-list .block .inner .go a {
-  cursor: pointer;
-}
-#container #favor-position-list .block .inner .go a img {
+#container #favor-position-list .block .inner .go img {
   width: 25px;
-}
-#container #favor-position-list .block .inner .go a:hover {
-  cursor: pointer;
-}
-#container #favor-position-list .block .inner .go a:hover img {
-  width: 30px;
 }
 #container #favor-position-list .col-sm-4 {
   width: 100%;
@@ -1948,8 +1956,19 @@ form.financing_add input {
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   padding-top: 5%;
 }
+#container #favor-company-list .tips:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+#container #favor-company-list .tips:hover .inner .go-txt {
+  margin-bottom: 8px;
+}
+#container #favor-company-list .tips:hover .inner .go img {
+  width: 30px;
+}
 #container #favor-company-list .tips {
   width: 50%;
+  display: block;
   background-color: white;
   height: 200px;
   margin: 0 auto;
@@ -1974,17 +1993,8 @@ form.financing_add input {
 #container #favor-company-list .tips .inner .go {
   text-align: center;
 }
-#container #favor-company-list .tips .inner .go a {
-  cursor: pointer;
-}
-#container #favor-company-list .tips .inner .go a img {
+#container #favor-company-list .tips .inner .go img {
   width: 25px;
-}
-#container #favor-company-list .tips .inner .go a:hover {
-  cursor: pointer;
-}
-#container #favor-company-list .tips .inner .go a:hover img {
-  width: 30px;
 }
 #container #favor-company-list .col-md-8 {
   width: 100%;
@@ -2157,7 +2167,19 @@ form.financing_add input {
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   padding-top: 5%;
 }
+#container #intern-post-list .tips:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+#container #intern-post-list .tips:hover .inner .go-txt {
+  margin-bottom: 8px;
+}
+#container #intern-post-list .tips:hover .inner .go img {
+  width: 30px;
+  height: 30px;
+}
 #container #intern-post-list .tips {
+  display: block;
   width: 50%;
   background-color: white;
   height: 200px;
@@ -2183,17 +2205,9 @@ form.financing_add input {
 #container #intern-post-list .tips .inner .go {
   text-align: center;
 }
-#container #intern-post-list .tips .inner .go a {
-  cursor: pointer;
-}
-#container #intern-post-list .tips .inner .go a img {
+#container #intern-post-list .tips .inner .go img {
+  height: 25px;
   width: 25px;
-}
-#container #intern-post-list .tips .inner .go a:hover {
-  cursor: pointer;
-}
-#container #intern-post-list .tips .inner .go a:hover img {
-  width: 30px;
 }
 #container #intern-post-list .col-md-8 {
   width: 100%;

@@ -5,7 +5,24 @@
         font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 
         padding-top: 5%;
+        .block:hover{
+            text-decoration: none !important;
+            .inner{
+                cursor: pointer;
+                p{
+                }
+                .go-txt{
+                    margin-bottom: 8px;
+                }      
+                .go{
+                    img{
+                        width: 30px;
+                    }
+                }      
+            }
+        }
         .block{
+            display: block;
             width: 50%;
             background-color: white;
             height: 200px;
@@ -30,19 +47,9 @@
 
                 .go{
                     text-align: center;
-                    a{
-                        cursor: pointer;
-                        img{
-                            width: 25px;
-                        }
+                    img{
+                        width: 25px;
                     }
-                    a:hover{
-                        cursor: pointer;
-                        img{
-                            width: 30px;
-                        }
-                    }
-
                 }
             }
         }

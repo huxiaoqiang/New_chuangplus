@@ -18,6 +18,7 @@ is_staff      |BooleanFiled|          |True：企业用户，False：个人用�
 字段   |类型   |修饰   |解释
 ----------|----------|----------|----------
 id            |primarykey  |          |主键
+student_id    |StringField |          |
 is_info       |BooleanField|          |True:info账号，False不是info账号
 user          |ReferenceField|关联数据|对应的user
 username      |StringField |同User中  |用户名
