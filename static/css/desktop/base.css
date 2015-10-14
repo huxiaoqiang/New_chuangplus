@@ -1678,6 +1678,17 @@ form.financing_add input {
 #container #userresume_edit .edit-resume-btn:hover {
   background-color: #98769E;
 }
+#container .no-resume-info:hover {
+  text-decoration: none;
+}
+#container .no-resume-info:hover .go {
+  top: -40px;
+}
+#container .no-resume-info:hover .go img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
 #container .no-resume-info {
   width: 50%;
   background-color: white;
@@ -1689,9 +1700,9 @@ form.financing_add input {
   border: 1px solid #bfbfbf;
 }
 #container .no-resume-info p {
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   text-align: center;
-  font-size: 1.5em;
-  font-family: "微软雅黑";
+  font-size: 1.4em;
 }
 #container .no-resume-info .go-txt {
   margin-left: -30px;
@@ -1702,17 +1713,9 @@ form.financing_add input {
   left: 40px;
   top: -38px;
 }
-#container .no-resume-info .go a {
-  cursor: pointer;
-}
-#container .no-resume-info .go a img {
+#container .no-resume-info .go img {
   width: 25px;
-}
-#container .no-resume-info .go a:hover {
-  cursor: pointer;
-}
-#container .no-resume-info .go a:hover img {
-  width: 30px;
+  height: 25px;
 }
 #container {
   margin: 0 auto;
