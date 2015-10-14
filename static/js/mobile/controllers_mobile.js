@@ -1334,6 +1334,7 @@ angular.module('chuangplus_mobile.controllers', [])
             $scope.captcha_url = urls.api+'/captcha/image/?'+Math.random();
         };
         $scope.is_captcha_ok = 0;
+        $rootScope.tsinghua_occu = '0';
 
         $scope.check_captcha = function(){
             $csrf.set_csrf($scope.capcha_info);
@@ -1397,7 +1398,8 @@ angular.module('chuangplus_mobile.controllers', [])
                             console.log("存在");
                             $rootScope.tsinghua_occu = '1';
                             $rootScope.student_id = data.student_id;
-//                            window.location.href='/mobile/info?tsinghua_occu=1&student_id='+ data.student_id;
+                            $location.path('/mobile/info');
+//                            window.location.href='/mobile/info';
                         }
                         else
                         {
