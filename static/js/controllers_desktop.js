@@ -1029,7 +1029,14 @@ angular.module('chuangplus.controllers', []).
             //console.log($(e.target).attr('id'));
 
             //TODO: fix the unanswered area
-            if($(e.target).attr('className')!="view" && $(e.target).attr('className')!="resume" && $(e.target).attr('id')!="header" && $(e.target).attr('id')!="show_intern_info" && $(e.target).attr('id')!="submit_div" && $(e.target).attr('className')!="resume_name" && $(e.target).attr('id')!="processed" && $(e.target).attr('id')!= "interested"){
+            if($(e.target).attr('className')!="view" &&
+                $(e.target).attr('className')!="resume" &&
+                $(e.target).attr('id')!="header" &&
+                $(e.target).attr('id')!="show_intern_info" &&
+                $(e.target).attr('id')!="submit_div" &&
+                $(e.target).attr('className')!="resume_name" &&
+                $(e.target).attr('id')!="processed" &&
+                $(e.target).attr('className')!= "interested_content"){
                 $scope.view_detail($scope.chosed_index);
             }
             else if($(e.target).attr('id') =="processed" && $('#sideToggle').attr("checked") != "checked") {
@@ -3447,7 +3454,7 @@ angular.module('chuangplus.controllers', []).
             else{
                 $scope.salary_change = true;
                 $scope.param.salary = salary;
-                if(salary!='')
+                if(salary!=null)
                     $scope.salary_choose = salary+"K";
                 else
                     $scope.salary_choose = "月薪下限";
