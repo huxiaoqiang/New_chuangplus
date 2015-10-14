@@ -1395,7 +1395,8 @@ angular.module('chuangplus_mobile.controllers', [])
                         }
                         else if(data.error.code == 32){
                             console.log("存在");
-                            $location.path('/mobile/info').search({'tsinghua_occu':'1','student_id':data.student_id});
+                            $rootScope.tsinghua_occu = '1';
+                            $rootScope.student_id = data.student_id;
 //                            window.location.href='/mobile/info?tsinghua_occu=1&student_id='+ data.student_id;
                         }
                         else
@@ -1986,10 +1987,10 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.user_info = {};
         $scope.info.username = $user.username();
 
-        $scope.tsinghua_occu = ($location.search()['tsinghua_occu'] == '1');
+        $scope.tsinghua_occu = ($rootScope.tsinghua_occu == '1');
         if ($scope.tsinghua_occu) 
         {
-            $scope.user_info.student_id = $location.search()['student_id'];
+            $scope.user_info.student_id = $rootScope.student_id;
             $rootScope.loading = false;
             $scope.user_info.university = "清华大学";
             $rootScope.is_tsinghua = true;
