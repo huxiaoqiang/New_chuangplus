@@ -1630,16 +1630,15 @@ angular.module('chuangplus.controllers', []).
         $http.post(urls.api+"/account/userinfo/set",$.param($scope.infos)).
           success(function(data){
             if (data.error.code == 1){
-              console.log("Set information successfully!");
-              //alert("个人信息设置成功");
-              setTimeout(function(){window.location.href='/'},100);
+              $scope.error = $errMsg.format_error('个人信息设置成功',data.error);
+              setTimeout(function(){window.location.href='/'},500);
             }
             else{
               console.log(data.error.message);
+              $scope.error = $errMsg.format_error('',data.error);
             }
           });
       };
-
       $scope.is_tsinghua == $rootScope.is_tsinghua;
       $scope.username = $user.username();
       if($scope.is_tsinghua == true)
