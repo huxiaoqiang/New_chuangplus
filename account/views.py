@@ -240,8 +240,29 @@ def login_by_tsinghua(request):
             if userinfo:
                 print "login the second time"
                 userinfo = Userinfo.objects.get(student_id = student_id, is_info = True)
-                #if userinfo.username == "occupation":
-                #   
+                n = len(userinfo.username)
+                print n
+                if n > 12:
+                    print "n > 12"
+                    comparison = (userinfo.username)[0:12]
+                    is_digit = (userinfo.username)[12:n].isdigit()
+                    print comparison == '*&occupation&**&' and is_digit
+                    if comparison == '*&occupation&**&' and is_digit:
+                        print "rename"
+                        re['completive'] = '0'
+                        re['occupation'] = '1'
+                        re['student_id'] = student_id
+                        re['error'] = error(32,"username is occupied!")
+                        re['role'] = 0
+                        user = auth.authenticate(username = userinfo.username,password = password)
+                        if user is not None and user.is_active:
+                            try:
+                                auth.login(request,user)
+                            except:
+                                re["error"] = error(272,"login error!")
+                                return HttpResponse(json.dumps(re),content_type = "application/json")
+                        resp = HttpResponse(json.dumps(re),content_type = "application/json")
+                        return resp
                 completive = 1
                 if userinfo.university is None:
                     completive = 0
@@ -274,17 +295,17 @@ def login_by_tsinghua(request):
                 if user_old:#username is occupied
                     print "chutu"
                     re['occupation'] = '1'
-                    flag = str(random.randint(0,100))
-                    reguser = User.create_user(username = 'occupation' + flag,password = password)
+                    flag = str(random.randint(0,10000))
+                    reguser = User.create_user(username = '*&occupation&**&' + flag,password = password)
                     reguser.is_staff = False
                     reguser.save()
                     reguserinfo = Userinfo(user = reguser,is_info = True)
-                    reguserinfo.username = 'occupation' + flag
+                    reguserinfo.username = '*&occupation&**&' + flag
                     reguserinfo.student_id = student_id
                     reguserinfo.data_joined = datetime_now()
                     reguserinfo.update_time = datetime_now()
                     reguserinfo.save(force_insert = True)
-                    user = auth.authenticate(username = 'occupation'+flag,password = password)
+                    user = auth.authenticate(username = '*&occupation&**&'+flag,password = password)
                     if user is not None and user.is_active:
                         try:
                             auth.login(request,user)
@@ -570,17 +591,10 @@ def set_userinfo(request):
     re = dict()
     if request.method == 'POST':
         u = Userinfo.objects.get(username=request.user.username)
-        email = request.POST.get('email','')
-        if email != '' and email != u.email:
-            try:
-                find_email = User.objects.get(email = email)
-                if(find_email != None):
-                    re['error'] = error(115,'email has been registered!')
-                    return HttpResponse(json.dumps(re), content_type = 'application/json')
-            except DoesNotExist:
-                u.email = email
 
-        request.user.email = email
+        u.email = request.POST.get('email', u.email)
+        request.user.email = u.email
+
         try:
             request.user.save()
         except:
