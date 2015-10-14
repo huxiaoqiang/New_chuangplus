@@ -1320,8 +1320,8 @@ angular.module('chuangplus_mobile.controllers', [])
              
         };
     }])
-    .controller('MB_LoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
-    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
+    .controller('MB_LoginCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope', '$location',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope, $location ) {
         console.log("MB_LoginCtrl");
         $scope.captcha_url = urls.api+"/captcha/image/";
         $scope.login_info = {};
