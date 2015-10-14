@@ -250,18 +250,20 @@ def login_by_tsinghua(request):
                     print is_digit
                     if comparison == '*&occupation&**&' and is_digit:
                         print "rename"
-                        re['completive'] = '0'
-                        re['occupation'] = '1'
-                        re['student_id'] = student_id
-                        re['error'] = error(32,"username is occupied!")
-                        re['role'] = 0
                         user = auth.authenticate(username = userinfo.username,password = password)
                         if user is not None and user.is_active:
                             try:
                                 auth.login(request,user)
                             except:
+                                print "login error"
                                 re["error"] = error(272,"login error!")
                                 return HttpResponse(json.dumps(re),content_type = "application/json")
+                        re['completive'] = '0'
+                        re['occupation'] = '1'
+                        re['student_id'] = student_id
+                        re['error'] = error(32,"username is occupied")
+                        re['role'] = 0
+                        print "jump"
                         resp = HttpResponse(json.dumps(re),content_type = "application/json")
                         return resp
                 completive = 1
