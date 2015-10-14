@@ -1395,7 +1395,8 @@ angular.module('chuangplus_mobile.controllers', [])
                         }
                         else if(data.error.code == 32){
                             console.log("存在");
-                            window.location.href='/mobile/info?tsinghua_occu=1&student_id='+ data.data.student_id;
+                            $location.path('/mobile/info').search({'tsinghua_occu':'1','student_id':data.student_id});
+//                            window.location.href='/mobile/info?tsinghua_occu=1&student_id='+ data.student_id;
                         }
                         else
                         {
