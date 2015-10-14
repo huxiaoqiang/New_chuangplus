@@ -475,6 +475,21 @@ def search_position(request):
                 re['error'] = error(299,'Unknown Error!')
                 return HttpResponse(json.dumps(re),content_type = 'application/json')
 
+    if "max_workday" in request.GET.keys():
+        if request.GET["max_workday"] != 0:
+            try:
+                max_workday = int(request.GET["max_workday"])
+                qs = qs.filter(days_per_week__lte  = max_workday)
+            except (ValueError):
+                re['error'] = error(234,"Invaild search max daysperweek!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            except (DatabaseError):
+                re['error'] = error(251,"Database error: Failed to search!")
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
+            except:
+                re['error'] = error(299,'Unknown Error!')
+                return HttpResponse(json.dumps(re),content_type = 'application/json')
+
     if "salary_min" in request.GET.keys():
         if len(request.GET["salary_min"]) > 0:
             try:
