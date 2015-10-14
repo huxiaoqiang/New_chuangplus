@@ -490,7 +490,8 @@ angular.module('chuangplus.services', []).
             }
         };
     }])
-    .service('UserService', ['urls', '$http', '$cookies', function(urls, $http, $cookies){
+    .service('UserService', ['urls', '$http', '$cookies', '$rootScope',
+        function(urls, $http, $cookies,$rootScope){
         var user = {};
         if($cookies.username){
             user.username = $cookies.username;
