@@ -1,8 +1,14 @@
 <div id="container">
   <div id="information">
     <form class="information-form" ng-submit="info_user()">
-          <div class="txt">请填写基本信息</div>
+          <div class="txt" ng-if="is_tsinghua==false">请填写基本信息</div>
+          <div class="txt" ng-if="is_tsinghua==true">登录成功，您的用户名是[[username]],请填写用户基本信息</div>
       <div id="info_form">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" ng-if="is_tsinghua==true" class="form-control" placeholder="邮箱(用于登录和密码找回)" ng-model="infos.emails" required>
+	      </div>
+	    </div>
         <div class="form-group">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="学校" ng-model="infos.university" required>
@@ -22,18 +28,20 @@
                   <option value="2">本科二年级</option>
                   <option value="3">本科三年级</option>
                   <option value="4">本科四年级</option>
+                  <option value="5">本科五年级</option>
                   <option value="11">硕士一年级</option>
                   <option value="12">硕士二年级</option>
                   <option value="13">硕士三年级</option>
-                  <option value="21">博士低年级</option>
-                  <option value="22">博士高年级</option>
+                  <option value="21">博士一年级</option>
+                  <option value="22">博士二年级</option>
+                  <option value="23">博士三年级</option>
+                  <option value="24">博士四年级</option>
+                  <option value="25">博士五年级</option>
                 </select>
             </div>
         </div>
-
         <button id="enter_button">进入犀牛</button>
         </div>
 	</form>
   </div>
-
 </div>
