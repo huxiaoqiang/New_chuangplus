@@ -243,10 +243,11 @@ def login_by_tsinghua(request):
                 n = len(userinfo.username)
                 print n
                 if n > 16:
-                    print "n > 12"
+                    print "n > 16"
                     comparison = (userinfo.username)[0:16]
                     is_digit = (userinfo.username)[16:n].isdigit()
-                    print comparison == '*&occupation&**&' and is_digit
+                    print comparison == '*&occupation&**&' 
+                    print is_digit
                     if comparison == '*&occupation&**&' and is_digit:
                         print "rename"
                         re['completive'] = '0'
