@@ -4605,6 +4605,24 @@ body > #wrap_no_header_footer #main-container {
   bottom: 20%;
   left: 110px;
 }
+#show_intern_info .interested {
+  margin-top: 20px;
+}
+#show_intern_info .interested .interested_content {
+  line-height: 30px;
+  width: 80px;
+  text-align: center;
+}
+#show_intern_info .interested a .active {
+  background-color: #8f4e96;
+  color: white;
+  border-radius: 4px;
+}
+#show_intern_info .interested .active {
+  background-color: #8f4e96;
+  border-radius: 4px;
+  color: white;
+}
 .cropArea {
   background: inherit;
   margin: auto;

@@ -725,13 +725,13 @@ angular.module('chuangplus.controllers', []).
         $scope.submit(i);
     }
     };
-  
+
     $scope.param = function(index){
 	$scope.index = index;
     };
 
     }]).
-    controller('DT_InternResumeViewCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload', 
+    controller('DT_InternResumeViewCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload){
         $scope.filename = "无简历附件";
         $scope.intern_info = {};
@@ -838,7 +838,14 @@ angular.module('chuangplus.controllers', []).
         //$scope.active_index = null;
         $scope.submit_list = [];
         $scope.chosed_index = -1;
+        $scope.filter_chosen = {
+            'page' : 1,
+            'processed': 2, //0 for unprocessed, 1 for processed, 2 for all
+            'interested' :2, //0 for uninterested, 1 for uinterested, 2 for all
+            'position_type': ''
+        };
         $scope.position_type = {
+            "":"全部",
             "technology":"技术",
             'product':"产品",
             'design':"设计",
@@ -847,26 +854,23 @@ angular.module('chuangplus.controllers', []).
             'functions':"职能",
             'others':"其他"
         };
-        $scope.search_params = {
-          position_type:''
-        };
-        $scope.search_params = {
-            "position_type":''
-        };
+        //$scope.search_params = {//下拉标记参数
+        //    "position_type":''
+        //};
         $scope.task = {
             'pageCount' : 1,
             'currentPage' : 1
         };
-        $scope.param = {
-            'page' : 1
-        };
+        //$scope.param = {
+        //    'page' : 1
+        //};
         $scope.show_right_bar = false;
         $scope.toggleRightBar = function(){
             $scope.show_right_bar = !$scope.show_right_bar;
         };
         $scope.get_submit_list = function(){
             var param = [];
-            var param_data = $scope.param;
+            var param_data = $scope.filter_chosen;
             if(param_data != null){
                 //param = '?';
                 //if(param_data.hasOwnProperty('page')){
@@ -879,7 +883,15 @@ angular.module('chuangplus.controllers', []).
                 //    param += "position_type=" + param_data.position_type;
                 //}
                 for(var key in param_data) {
-                    param.push(key + '=' + param_data[key]);
+                    if(!(key == 'position_type' && param_data[key] == '') &&
+                        !(key == 'processed' && param_data[key] == 2) &&
+                        !(key == 'interested' && param_data[key] == 2)){
+                        if(key == 'processed' || key == 'interested'){
+                            param.push(key + '=' + (param_data[key] == 1))
+                        }
+                        else
+                            param.push(key + '=' + param_data[key]);
+                    }
                 }
                 param = param.join('&');
                 param = '?' + param;
@@ -890,17 +902,18 @@ angular.module('chuangplus.controllers', []).
                         $scope.submit_list = data.data;
                         $scope.task.pageCount = data.page_number;
                         if($scope.submit_list.length == 0){
-                           if(param_data.hasOwnProperty('position_type')){
-                                $scope.marked_words = "尚未有人投递 " + $scope.position_type[param_data.position_type]+" 相关职位";
-                            }
-                            else{
-                               $scope.marked_words = "尚未有人投递简历";
-                           }
+                           //if(param_data.hasOwnProperty('position_type')){
+                           //     $scope.marked_words = "尚无筛选结果";
+                           // }
+                           // else{
+                           //    $scope.marked_words = "尚未有人投递简历";
+                           //}
+                           $scope.marked_words = "尚无筛选结果";
                         }
                     }
                     else{
                         console.log(data.error.message);
-                        // TODO
+                        // TODO: here is an error
                         $scope.error = $errMsg.format_error('',data.error);
                     }
                 });
@@ -915,30 +928,41 @@ angular.module('chuangplus.controllers', []).
                 });
         };
         $scope.get_company_info();
+
+        //TODO: merge them
+        $scope.view_result = function(){
+            $scope.get_submit_list();
+        }
         $scope.change = function(position_type){
-            $scope.param.position_type = position_type;
+            $scope.filter_chosen.position_type = position_type;
             $scope.get_submit_list();
         };
         $scope.view_unprocessed = function(){
-            $scope.param = {
-                'page' : 1,
-                'processed':false
-            };
-            $scope.search_params_position_type = '';
+            $scope.filter_chosen.processed = 0;
+            $scope.get_submit_list();
+        };
+        $scope.view_interested = function(){
+            $scope.filter_chosen.interested = 1;
             $scope.get_submit_list();
         };
 
-        $scope.view_interested = function(){
-            //TODO: back-end url should be fixed
-            $scope.param = {
-                'page' : 1,
-                'interested': true
-            };
-            $scope.search_params_position_type = '';
-            $scope.get_submit_list();
+        $scope.interested_change = false;
+        $scope.interested_filed = "";
+        $scope.interested_select = function(interested){
+            if($scope.interested_filed == interested){
+                $scope.interested_change = false;
+            }
+            else{
+                $scope.interested_change = true;
+                $scope.interested_filed = interested;
+            }
+            //$scope.get_company_list($scope.param);
         };
 
         $scope.process = function(index){
+            if(index == -1){
+                return;
+            }
             if($scope.submit_list[index].process == true){
                 return;
             }
@@ -950,14 +974,18 @@ angular.module('chuangplus.controllers', []).
             $http.post(urls.api+"/account/company/process_single", $.param(param)).
                 success(function(data){
                     if(data.error.code == 1){
-                        alert($scope.submit_list[index].position_id,$scope.submit_list[index].username);
-                        console.log("OK");
+                        //alert($scope.submit_list[index].position_id,$scope.submit_list[index].username);
+                        //console.log("OK");
                     }
                 });
         };
         $scope.view_detail = function(index){
             $scope.intern_info = $scope.submit_list[index];
             $scope.process(index);
+            if($scope.intern_info.interested == true)
+                $scope.interested_filed = "interested";
+            else
+                $scope.interested_filed = "uninterested";
             if($scope.chosed_index == -1){
                 $scope.chosed_index = index;
                 $scope.toggle_show();
@@ -996,12 +1024,19 @@ angular.module('chuangplus.controllers', []).
         };
         //$scope.close = false;
         $(document).on("click",function(e){
-            //TODO
             //console.log($(e.target).attr('id')!="header" && $(e.target).attr('id')!="submit_div");
             //console.log($("#header"));
             //console.log($(e.target).attr('id'));
-            if($(e.target).attr('className')!="view" && $(e.target).attr('className')!="resume" && $(e.target).attr('id')!="header" && $(e.target).attr('id')!="show_intern_info" && $(e.target).attr('id')!="submit_div" && $(e.target).attr('className')!="resume_name"){
+
+            //TODO: fix the unanswered area
+            if($(e.target).attr('className')!="view" && $(e.target).attr('className')!="resume" && $(e.target).attr('id')!="header" && $(e.target).attr('id')!="show_intern_info" && $(e.target).attr('id')!="submit_div" && $(e.target).attr('className')!="resume_name" && $(e.target).attr('id')!="processed" && $(e.target).attr('id')!= "interested"){
                 $scope.view_detail($scope.chosed_index);
+            }
+            else if($(e.target).attr('id') =="processed" && $('#sideToggle').attr("checked") != "checked") {
+                $scope.view_unprocessed();
+            }
+            else if($(e.target).attr('id') == "interested" && $('#sideToggle').attr("checked") != "checked") {
+                $scope.view_interested();
             }
         });
     }]).
@@ -1500,7 +1535,7 @@ angular.module('chuangplus.controllers', []).
             }
         });
     };
-                                      
+
     $scope.get_financing_list = function(){
         $http.get(urls.api+"/account/financing/"+$scope.company_id+"/list").
         success(function(data){
@@ -1518,7 +1553,7 @@ angular.module('chuangplus.controllers', []).
     };
     $scope.check_favor_position();
     $scope.get_position_detail();
-                                       
+
     $scope.userinfo = {};
     $http.get(urls.api + "/account/userinfo/get").
         success(function(data){
@@ -1541,7 +1576,7 @@ angular.module('chuangplus.controllers', []).
                 console.log(data.error.message);
             }
         });
-    
+
     $http.get(urls.api+"/position/"+$scope.position_id+"/check_submit").
         success(function(data){
             if(data.error.code == 1){
@@ -1581,7 +1616,7 @@ angular.module('chuangplus.controllers', []).
             $scope.img_src = "/static/image/icon/shoucang-01.png";
 		    });
 	    }
-		
+
 	};
     $scope.check_userinfo = function(){
         $http.get(urls.api+"/account/userinfo/check").
@@ -1610,9 +1645,9 @@ angular.module('chuangplus.controllers', []).
                     else{
                		console.log(data.error.message);
            	    }
-        }); 
+        });
     };
-    
+
     $scope.complete_resume = function(){
          setTimeout(function(){window.location.href='/intern/resume/edit'},300);
          $('#myModal').modal('hide');
@@ -1703,7 +1738,7 @@ angular.module('chuangplus.controllers', []).
                 });
         };
         $scope.get_position_list();
-        
+
     }]).
     controller('DT_CompanyPositionEditCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
         console.log('DT_CompanyPositionEditCtrl');
@@ -2203,7 +2238,7 @@ angular.module('chuangplus.controllers', []).
     controller('DT_CompanyTestCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService','Upload','ImgResizeService',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg,Upload, $imgResize){
         console.log('DT_CompanyTestCtrl');
-        
+
         $scope.company_id = $routeParams.company_id;
         $scope.add_member_flag = false;
         $scope.member_add = {};
@@ -2402,9 +2437,9 @@ angular.module('chuangplus.controllers', []).
             if(file != null && file != undefined)
             {
                 if(!/image\/\w+/.test(file.type)){
-                    alert("文件必须为图片！"); 
-                    return false; 
-                } 
+                    alert("文件必须为图片！");
+                    return false;
+                }
                 //alert('here');
                 $imgResize.startUpload(file,file_t,category,$scope);
                 $scope.resize_area = true;
@@ -2458,7 +2493,7 @@ angular.module('chuangplus.controllers', []).
             $scope.$apply(function($scope){
               $scope.resize_area = false;
             });
-                
+
         };
         angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
         //$scope.$watch('imageDataURI',function(newValue,oldValue, scope){
@@ -2559,7 +2594,7 @@ angular.module('chuangplus.controllers', []).
             $scope.$apply(function($scope){
               $scope.resize_area = false;
             });
-                
+
         };
         angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
         //$scope.$watch('imageDataURI',function(newValue,oldValue, scope){
@@ -3105,9 +3140,9 @@ angular.module('chuangplus.controllers', []).
             if(file != null && file != undefined)
             {
                 if(!/image\/\w+/.test(file.type)){
-                    alert("文件必须为图片！"); 
-                    return false; 
-                } 
+                    alert("文件必须为图片！");
+                    return false;
+                }
                 //alert('here');
                 $imgResize.startUpload(file,file_t,category,$scope);
                 $scope.resize_area = true;
@@ -3149,7 +3184,7 @@ angular.module('chuangplus.controllers', []).
             $scope.$apply(function($scope){
               $scope.resize_area = false;
             });
-                
+
         };
         angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
     }]).
@@ -3184,7 +3219,7 @@ angular.module('chuangplus.controllers', []).
                 'functions':true,
                 'others':true
 
-                
+
             },
             "salary": ''
         };
@@ -3455,7 +3490,7 @@ angular.module('chuangplus.controllers', []).
         }
         });
 
-        $scope.view_tab = 'tab1';        
+        $scope.view_tab = 'tab1';
         $scope.changeTab = function(tab){
             $scope.view_tab = tab;
         };
@@ -3476,7 +3511,7 @@ angular.module('chuangplus.controllers', []).
                 $scope.error = $errMsg.format_error("",data.error);
             }
             });
-        }   
+        }
         else if($scope.view_tab == 'tab2'){
         $csrf.set_csrf($scope.user_pwd);
         $http.post(urls.api+"/account/password/set", $.param($scope.user_pwd))
@@ -3489,8 +3524,8 @@ angular.module('chuangplus.controllers', []).
                 $scope.error = $errMsg.format_error('',data.error);
             }
             });
-        } 
-    }   
+        }
+    }
 
     }]).
     controller('DT_InternEnterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
@@ -3601,7 +3636,7 @@ angular.module('chuangplus.controllers', []).
                 $http.get(urls.api+"/account/admin/company/list"+param).
                 success(function(data){
                 $scope.param.pageCount = data.page_number;
-                
+
                     $scope.company_list = data.data;
                     for(var i=0;i<$scope.company_list.length;i++){
                         $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
@@ -3673,25 +3708,25 @@ angular.module('chuangplus.controllers', []).
         $scope.error = {};
         $scope.e_check = {};
         $scope.company_id = '';
-                                        
+
         $http.get(urls.api+"/account/company/detail").
         success(function(data){
             if(data.error.code == 1){
                 $scope.user_info = data.data;
                 $scope.company_id = data.data._id.$oid;
-                
+
             }
                 else{
                 console.log(data.error.message);
                 }
         });
-                                        
+
 
         $scope.view_tab = 'tab1';
         $scope.changeTab = function(tab){
             $scope.view_tab = tab;
         };
-                                        
+
         $scope.showError = function(ngModelController,error){
             return ngModelController.$error[error];
         };
