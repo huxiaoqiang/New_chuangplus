@@ -1,14 +1,14 @@
 <div id="container">
     <div id="intern-post-list">
-	    <div class="tips" ng-show="positions.length == 0">
+	    <a class="tips" ng-show="positions.length == 0">
             <div class="inner">
                 <p>您还没有投递任何职位</p>
                 <p class="go-txt">快去职位列表看看吧</p>
                 <div class="go">
-                    <a href="/position/list"><img src="/static/image/icon/go-01.png"></a>
+                    <img src="/static/image/icon/go-01.png">
                 </div>
             </div>
-	    </div>
+	    </a>
         <div class="col-md-8">
             <div ng-show="loading" class="loading">
                 <img src="/static/image/icon/loading.gif">
