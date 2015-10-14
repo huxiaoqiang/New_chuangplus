@@ -261,7 +261,7 @@ def login_by_tsinghua(request):
                         re['completive'] = '0'
                         re['occupation'] = '1'
                         re['student_id'] = student_id
-                        re['error'] = error(32,"username is occupied!")
+                        re['error'] = error(32,"username is occupied")
                         re['role'] = 0
                         resp = HttpResponse(json.dumps(re),content_type = "application/json")
                         return resp
