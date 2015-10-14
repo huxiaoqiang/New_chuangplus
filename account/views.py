@@ -769,6 +769,8 @@ def get_position_favor(request):
     if request.method == "GET":
         try:
             up = UP_Relationship.objects(user=request.user)
+            #user = User.objects.get(username='hutest')
+            #up = UP_Relationship.objects(user=user)
         except DoesNotExist:
             re['error'] = error(261,"Position does not exist")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
