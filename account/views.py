@@ -184,11 +184,6 @@ def set_username_by_tsinghua(request):
             user.username = student_name
             user.email = email
             user.save()
-            try:
-                print "login check"
-                auth.login(request,user)
-            except:
-                re['error'] = error(272,"login,error")
         else:
             re['error'] = error(33,"userinfo doesnot exist")
             return HttpResponse(json.dumps(re),content_type = "application/json")
@@ -289,6 +284,13 @@ def login_by_tsinghua(request):
                     reguserinfo.data_joined = datetime_now()
                     reguserinfo.update_time = datetime_now()
                     reguserinfo.save(force_insert = True)
+                    user = auth.authenticate(username = 'occupation'+flag,password = password)
+                    if user is not None and user.is_active:
+                        try:
+                            auth.login(request,user)
+                        except:
+                            re["error"] = error(272,"login error!")
+                            return HttpResponse(json.dumps(re),content_type = "application/json")
                     re['completive'] = '0'
                     re['student_id'] = student_id
                     re['error'] = error(32,"username is occupied")
