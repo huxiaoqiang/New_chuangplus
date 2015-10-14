@@ -792,6 +792,7 @@ angular.module('chuangplus.controllers', []).
                 });
         };
         $scope.upload = function(file,file_t){
+            alert("必须为doc或PDF格式");
             var param = {
                "file_type": file_t,
                "description": $user.username(),
@@ -1030,6 +1031,7 @@ angular.module('chuangplus.controllers', []).
 
             //TODO: fix the unanswered area
             if($(e.target).attr('className')!="view" &&
+<<<<<<< HEAD
 			!$(e.target).hasClass("resume") &&
 			!$(e.target).hasClass("view") 
 				&& !$(e.target).hasClass("first-line") 
@@ -1051,6 +1053,15 @@ angular.module('chuangplus.controllers', []).
 			&& $(e.target).attr('id')!="item_interested" 
 			&& $(e.target).attr('id')!="processed"
 			&& !$(e.target).hasClass("interested")){
+=======
+                $(e.target).attr('className')!="resume" &&
+                $(e.target).attr('id')!="header" &&
+                $(e.target).attr('id')!="show_intern_info" &&
+                $(e.target).attr('id')!="submit_div" &&
+                $(e.target).attr('className')!="resume_name" &&
+                $(e.target).attr('id')!="processed" &&
+                $(e.target).attr('className')!= "interested_content"){
+>>>>>>> 3111170f6f0c16892e706625de7eb714b0de346d
                 $scope.view_detail($scope.chosed_index);
             }
             else if($(e.target).attr('id') =="processed" && $('#sideToggle').attr("checked") != "checked") {
@@ -3468,7 +3479,7 @@ angular.module('chuangplus.controllers', []).
             else{
                 $scope.salary_change = true;
                 $scope.param.salary = salary;
-                if(salary!='')
+                if(salary!=null)
                     $scope.salary_choose = salary+"K";
                 else
                     $scope.salary_choose = "月薪下限";
