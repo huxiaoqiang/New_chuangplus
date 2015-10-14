@@ -509,6 +509,7 @@ angular.module('chuangplus.controllers', []).
             'currentPage' : 1
         };
         $scope.get_positions = function(){
+            $scope.loading = true;
             $http.get(urls.api+"/account/userinfo/position/submit/list").
                 success(function(data){
                     if(data.error.code == 1){
@@ -532,6 +533,7 @@ angular.module('chuangplus.controllers', []).
                     else{
                         console.log(data.error.message);
                     }
+                    $scope.loading = false;
             });
         };
         $scope.get_positions();
@@ -3290,12 +3292,6 @@ angular.module('chuangplus.controllers', []).
         };
         $(".work_days").mouseenter($scope.show_work_days);
         $(".work_days").mouseleave($scope.hide_work_days);
-
-
-
-
-
-
 
         $scope.get_positions = function(data){
             $scope.loading = true;
