@@ -651,30 +651,32 @@ angular.module('chuangplus.controllers', []).
             });
        };
         $scope.get_positions = function(){
-        $http.get(urls.api+"/account/userinfo/position/favor/list").
-            success(function(data){
-                if(data.error.code == 1){
-                    $scope.positions = data.data;
-                    for(var i = 0; i < $scope.positions.length; i ++){
-                        $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
-                        if($scope.positions[i].company.scale == 0){
-                            $scope.positions[i].company.scale_value = "初创";
+            $scope.loading = true;
+            $http.get(urls.api+"/account/userinfo/position/favor/list").
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.positions = data.data;
+                        for(var i = 0; i < $scope.positions.length; i ++){
+                            $scope.positions[i].position_type_value = $scope.position_type[$scope.positions[i].position_type];
+                            if($scope.positions[i].company.scale == 0){
+                                $scope.positions[i].company.scale_value = "初创";
+                            }
+                            else if($scope.positions[i].company.scale == 1){
+                                $scope.positions[i].company.scale_value = "快速发展";
+                            }
+                            else{
+                                $scope.positions[i].company.scale_value = "成熟";
+                            }
+                            $scope.positions[i].company.field_type = $scope.field_type[$scope.positions[i].company.field];
+                $scope.check_submit(i);
                         }
-                        else if($scope.positions[i].company.scale == 1){
-                            $scope.positions[i].company.scale_value = "快速发展";
-                        }
-                        else{
-                            $scope.positions[i].company.scale_value = "成熟";
-                        }
-                        $scope.positions[i].company.field_type = $scope.field_type[$scope.positions[i].company.field];
-            $scope.check_submit(i);
                     }
-                }
-                else{
-                    console.log(data.error.message);
-                }
-        });
-    };
+                    else{
+                        console.log(data.error.message);
+                    }
+                $scope.loading = false;
+            });
+        };
     $scope.check_submit = function(index){
     $http.get(urls.api+"/position/"+$scope.positions[index]._id.$oid+"/check_submit").
             success(function(data){
