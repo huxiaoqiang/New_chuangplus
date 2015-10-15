@@ -1,5 +1,5 @@
 <div id="container">
-    <div id="userresume_edit" ng-if="false">
+    <div id="userresume_edit" ng-if="have_resume_info == true">
         <div class="view">
             <div class="first-line">
                 <span class="name">[[intern_info.real_name]]</span>
@@ -34,7 +34,7 @@
         </div>
         <button class="edit-resume-btn" ng-click="edit_resume()">编辑简历</button>
     </div>
-    <a class="no-resume-info" href="/intern/resume/edit" style="display: block;" >
+    <a ng-if="have_resume_info == false" class="no-resume-info" href="/intern/resume/edit" style="display: block;" >
         <p>您还没有上传简历哦~</p>
         <p class="go-txt">去填写</p>
         <div class="go">
