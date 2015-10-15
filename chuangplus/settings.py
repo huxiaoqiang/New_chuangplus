@@ -105,7 +105,7 @@ connect('chuangplus', host='123.57.87.25', port=27017)
 #############
 SESSION_ENGINE = 'mongoengine.django.sessions'
 SESSION_SERIALIZER = 'mongoengine.django.sessions.BSONSerializer'
-SESSION_COOKIE_AGE = 60*30
+SESSION_COOKIE_AGE = 60*60
 
 
 # add authentication

@@ -110,9 +110,10 @@ def register(request):
                     #re['status'] = userinfo.status
                     re['role'] = role
                     resp = HttpResponse(json.dumps(re), content_type = 'application/json')
-                    resp.set_cookie('username', username)
+                    dt = datetime.datetime.now() + datetime.timedelta(hours = int(1))
+                    resp.set_cookie('username', username,expires=dt)
                     #resp.set_cookie('status', userinfo.status)
-                    resp.set_cookie('role', int(role))
+                    resp.set_cookie('role', int(role),expires=dt)
                     return resp
                 else:
                     re['error'] = error(106,"register fail!")
@@ -185,14 +186,15 @@ def set_username_by_tsinghua(request):
             user.email = email
             user.save()
         else:
-            re['error'] = error(33,"userinfo doesnot exist")
+            re['error'] = error(33,"userinfo does not exist")
             return HttpResponse(json.dumps(re),content_type = "application/json")
         re["error"] = error(1,"login succeed!")
         re['role'] = 0
         request.session['role'] = 0
         resp = HttpResponse(json.dumps(re),content_type = "application/json")
-        resp.set_cookie('username',student_name)
-        resp.set_cookie('role',request.session['role'])
+        dt = datetime.datetime.now() + datetime.timedelta(hours = int(1))
+        resp.set_cookie('username',student_name, expires=dt)
+        resp.set_cookie('role',request.session['role'],expires=dt)
         return resp
     else:
         re['error'] = error(2,'error,need post!')
@@ -290,8 +292,9 @@ def login_by_tsinghua(request):
                 re['error'] = error(1,"login succeed!")
                 re['role'] = 0
                 resp = HttpResponse(json.dumps(re),content_type = 'application/json')
-                resp.set_cookie('username',userinfo.username)
-                resp.set_cookie('role',request.session['role'])
+                dt = datetime.datetime.now() + datetime.timedelta(hours = int(1))
+                resp.set_cookie('username',userinfo.username,expires=dt)
+                resp.set_cookie('role',request.session['role'],expires=dt)
                 return resp
             else:
                 user_old = User.objects.filter(username = student_name)
@@ -344,8 +347,9 @@ def login_by_tsinghua(request):
                     re['error'] = error(1,"login,succeed!")
                     re['role'] = 0
                     resp = HttpResponse(json.dumps(re),content_type = "application/json")
-                    resp.set_cookie('username',student_name)
-                    resp.set_cookie('role',request.session['role'])
+                    dt = datetime.datetime.now() + datetime.timedelta(hours = int(1))
+                    resp.set_cookie('username',student_name,expires=dt)
+                    resp.set_cookie('role',request.session['role'],expires=dt)
                     return resp
         else:
             re['error'] = error(108, 'username or password error!')
@@ -440,8 +444,9 @@ def login(request):
             re['role'] = request.session['role']
             print "re[role]: " + str(re['role'])
             resp = HttpResponse(json.dumps(re), content_type = 'application/json')
-            resp.set_cookie('username', username)
-            resp.set_cookie('role',request.session['role'])
+            dt = datetime.datetime.now() + datetime.timedelta(hours = int(1))
+            resp.set_cookie('username', username,expires=dt)
+            resp.set_cookie('role',request.session['role'],expires=dt)
             return resp
         else:
             try:
@@ -477,8 +482,9 @@ def login(request):
                 re['error'] = error(1, 'login succeed!')
                 re['role'] = request.session['role']
                 resp = HttpResponse(json.dumps(re), content_type = 'application/json')
-                resp.set_cookie('username', user.username)
-                resp.set_cookie('role',request.session['role'])
+                dt = datetime.datetime.now() + datetime.timedelta(hours = int(1))
+                resp.set_cookie('username', user.username,expires=dt)
+                resp.set_cookie('role',request.session['role'],expires=dt)
                 return resp
             else:
                 re['error'] = error(108, 'username or password error!')

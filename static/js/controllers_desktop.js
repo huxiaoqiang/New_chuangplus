@@ -149,7 +149,8 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.choose_header();
         $scope.search = function(){
-            window.location.href="/search?query="+search_text+"&type=0&page=1";
+      //      $location.path().search({'query':$scope.search_text,'type':'0','page':'1'});
+//            window.location.href="/search?query="++"&type=0&page=1";
         };
     }]).
     controller('DT_NoHeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
@@ -201,9 +202,9 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.refresh();
     }]).
-    controller('DT_SearchCtrl',['$scope', '$http', 'CsrfService', 'urls','$routeParams','ErrorService',
-        function($scope, $http, $csrf, urls,$routeParams,$errMsg){
-            $scope.param = $routeParams;
+    controller('DT_SearchCtrl',['$scope', '$http', 'CsrfService', 'urls','$routeParams','ErrorService','$location',
+        function($scope, $http, $csrf, urls,$routeParams,$errMsg,$location){
+            $scope.param = $location.search();
             $scope.get_count = function(){
                 $http.get(urls.api+"/account/"+$scope.param.query+"/search_count").
                   success(function(data){
@@ -841,8 +842,8 @@ angular.module('chuangplus.controllers', []).
         $scope.chosed_index = -1;
         $scope.filter_chosen = {
             'page' : 1,
-            'processed': 2, //0 for unprocessed, 1 for processed, 2 for all
-            'interested' :2, //0 for uninterested, 1 for uinterested, 2 for all
+            'processed': 2,   //0 for unprocessed, 1 for processed, 2 for all
+            'interested' :2,  //0 for uninterested, 1 for uinterested, 2 for all
             'position_type': ''
         };
         $scope.position_type = {
@@ -1031,13 +1032,27 @@ angular.module('chuangplus.controllers', []).
 
             //TODO: fix the unanswered area
             if($(e.target).attr('className')!="view" &&
-                $(e.target).attr('className')!="resume" &&
-                $(e.target).attr('id')!="header" &&
-                $(e.target).attr('id')!="show_intern_info" &&
-                $(e.target).attr('id')!="submit_div" &&
-                $(e.target).attr('className')!="resume_name" &&
-                $(e.target).attr('id')!="processed" &&
-                $(e.target).attr('className')!= "interested_content"){
+			!$(e.target).hasClass("resume") &&
+			!$(e.target).hasClass("view") 
+				&& !$(e.target).hasClass("first-line") 
+					&& !$(e.target).hasClass("name") &&!$(e.target).hasClass("gender")
+				&& !$(e.target).hasClass("second-line") 
+					&& !$(e.target).hasClass("university") && !$(e.target).hasClass("department") && !$(e.target).hasClass("grade") &&
+			!$(e.target).hasClass("work_days") &&
+			!$(e.target).hasClass("cellphone") &&
+			!$(e.target).hasClass("line") &&
+			!$(e.target).hasClass("description") &&
+			!$(e.target).is("li") &&
+			!$(e.target).hasClass("resume") &&
+				!$(e.target).hasClass("resume_file") && !$(e.target).is('img') &&
+			$(e.target).attr('id')!="header" && 
+			$(e.target).attr('id')!="show_intern_info" 
+			&& $(e.target).attr('id')!="submit_div"
+			&& !$(e.target).is("table") && !$(e.target).is("tbody") && !$(e.target).is("tr") && !$(e.target).is("td")&&!$(e.target).hasClass("resume_file_downoad")
+				&& !$(e.target).hasClass("resume_name")
+			&& $(e.target).attr('id')!="item_interested" 
+			&& $(e.target).attr('id')!="processed"
+			&& !$(e.target).hasClass("interested")){
                 $scope.view_detail($scope.chosed_index);
             }
             else if($(e.target).attr('id') =="processed" && $('#sideToggle').attr("checked") != "checked") {
