@@ -841,8 +841,8 @@ angular.module('chuangplus.controllers', []).
         $scope.chosed_index = -1;
         $scope.filter_chosen = {
             'page' : 1,
-            'processed': 2, //0 for unprocessed, 1 for processed, 2 for all
-            'interested' :2, //0 for uninterested, 1 for uinterested, 2 for all
+            'processed': 2,   //0 for unprocessed, 1 for processed, 2 for all
+            'interested' :2,  //0 for uninterested, 1 for uinterested, 2 for all
             'position_type': ''
         };
         $scope.position_type = {
