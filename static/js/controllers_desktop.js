@@ -149,7 +149,8 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.choose_header();
         $scope.search = function(){
-            window.location.href="/search?query="+search_text+"&type=0&page=1";
+      //      $location.path().search({'query':$scope.search_text,'type':'0','page':'1'});
+//            window.location.href="/search?query="++"&type=0&page=1";
         };
     }]).
     controller('DT_NoHeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
@@ -201,9 +202,9 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.refresh();
     }]).
-    controller('DT_SearchCtrl',['$scope', '$http', 'CsrfService', 'urls','$routeParams','ErrorService',
-        function($scope, $http, $csrf, urls,$routeParams,$errMsg){
-            $scope.param = $routeParams;
+    controller('DT_SearchCtrl',['$scope', '$http', 'CsrfService', 'urls','$routeParams','ErrorService','$location',
+        function($scope, $http, $csrf, urls,$routeParams,$errMsg,$location){
+            $scope.param = $location.search();
             $scope.get_count = function(){
                 $http.get(urls.api+"/account/"+$scope.param.query+"/search_count").
                   success(function(data){

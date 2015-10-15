@@ -4407,6 +4407,7 @@ body,
   height: 100%;
 }
 body > #wrap {
+  min-width: 960px;
   height: auto;
   min-height: 94%;
 }
