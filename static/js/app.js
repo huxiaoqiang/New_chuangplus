@@ -42,7 +42,7 @@ angular.module('chuangplus', [
         $routeProvider.when('/', {templateUrl: urls.part_desktop + '/homepage.html', controller: 'DT_HomepageCtrl', title: '首页'});
         $routeProvider.when('/login', {templateUrl: urls.part_desktop + '/login.html', controller: 'DT_LoginCtrl', title: '登录'});
         $routeProvider.when('/admin/login', {templateUrl: urls.part_admin + '/login.html', controller: 'DT_AdminLoginCtrl', title: '管理员登录'});
-        $routeProvider.when('/search', {templateUrl: urls.part_desktop + '/search.html', controller: 'DT_SearchCtrl', title: '搜索页'});
+        $routeProvider.when('/search:param', {templateUrl: urls.part_desktop + '/search.html', controller: 'DT_SearchCtrl', title: '搜索页'});
 
         $routeProvider.when('/register', {templateUrl: urls.part_desktop + '/register.html', controller: 'DT_RegisterCtrl', title: '注册'});
         $routeProvider.when('/password/forgetpwd', {templateUrl: urls.part_desktop + '/password/findpwd.html', controller: 'DT_FindPwdCtrl', title: '找回密码'});
