@@ -606,12 +606,12 @@ def set_userinfo(request):
             except DoesNotExist:
                 u.email = email
 
-        request.user.email = email
-        try:
-            request.user.save()
-        except:
-            re['error'] = error(250, 'Database error: Failed to save')
-            return HttpResponse(json.dumps(re), content_type = 'application/json')
+            request.user.email = email
+            try:
+                request.user.save()
+            except:
+                re['error'] = error(250, 'Database error: Failed to save')
+                return HttpResponse(json.dumps(re), content_type = 'application/json')
 
         u.real_name = request.POST.get('real_name', u.real_name)
 
