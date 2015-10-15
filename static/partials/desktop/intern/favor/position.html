@@ -27,10 +27,10 @@
                     <ul ng-repeat="position in positions">
                         <li>
                             <a href="/position/[[position._id.$oid]]/detail">
-                            <div ng-class="{closed:position.status == 'closed',deleted:position.status == 'deleted'}">
+                            <div class="" ng-class="{closed:position.status == 'closed',deleted:position.status == 'deleted'}">
                                 <span class="text" ng-show="position.status == 'closed'||position.status == 'deleted'">已失效</span>
                             </div>
-                            <div class="favor-list-item" ng-class="{closed:position.status == 'closed',deleted:position.status == 'deleted'}">
+                            <div class="favor-list-item">
                                 <div class="middle-block">
                                     <div class="info">
                                         <div class="item-info info-1">

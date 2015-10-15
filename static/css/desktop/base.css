@@ -1572,7 +1572,7 @@ form.financing_add input {
 }
 #container #userresume .resume .upload-resume {
   float: right;
-  margin-top: -33px;
+  margin-top: -50px;
   margin-right: 30px;
   background-color: #8f4e96;
   color: white;
@@ -1726,20 +1726,7 @@ form.financing_add input {
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   padding-top: 5%;
 }
-#container #favor-position-list .block:hover {
-  text-decoration: none !important;
-}
-#container #favor-position-list .block:hover .inner {
-  cursor: pointer;
-}
-#container #favor-position-list .block:hover .inner .go-txt {
-  margin-bottom: 8px;
-}
-#container #favor-position-list .block:hover .inner .go img {
-  width: 30px;
-}
 #container #favor-position-list .block {
-  display: block;
   width: 50%;
   background-color: white;
   height: 200px;
@@ -1765,8 +1752,17 @@ form.financing_add input {
 #container #favor-position-list .block .inner .go {
   text-align: center;
 }
-#container #favor-position-list .block .inner .go img {
+#container #favor-position-list .block .inner .go a {
+  cursor: pointer;
+}
+#container #favor-position-list .block .inner .go a img {
   width: 25px;
+}
+#container #favor-position-list .block .inner .go a:hover {
+  cursor: pointer;
+}
+#container #favor-position-list .block .inner .go a:hover img {
+  width: 30px;
 }
 #container #favor-position-list .col-sm-4 {
   width: 100%;
@@ -1789,6 +1785,15 @@ form.financing_add input {
   margin-top: 10px;
   width: 100%;
 }
+#container #favor-position-list .col-sm-4 .col-md-8 .loading {
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 50px;
+  background-color: #ffffff;
+  text-align: center;
+  height: 130px;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
+}
 #container #favor-position-list .col-sm-4 .col-md-8 ul li {
   list-style-type: none;
   background-color: #ffffff;
@@ -1796,6 +1801,22 @@ form.financing_add input {
   border-radius: 4px;
   margin-bottom: 15px;
   height: 120px;
+}
+#container #favor-position-list .col-sm-4 .col-md-8 ul li .deleted {
+  position: absolute;
+  width: 900px;
+  height: 120px;
+  z-index: 20000;
+  background-color: #bfbfbf;
+  opacity: 0.7;
+  border-radius: 4px;
+  padding: 50px 420px 50px 420px;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
+}
+#container #favor-position-list .col-sm-4 .col-md-8 ul li .deleted .text {
+  opacity: 1;
+  font-size: large;
+  color: #222;
 }
 #container #favor-position-list .col-sm-4 .col-md-8 ul li .favor-list-item {
   width: 100%;
