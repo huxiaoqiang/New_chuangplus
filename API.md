@@ -732,6 +732,9 @@ hr设置对某个简历投递者感兴趣（method:get）
 	"username":  投递简历者的用户名
    }
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> dabdea2a2078c5022adbaffd5582d7a423c18708
 ```
 
 ###/api/account/hr_get_interested_by_position?position_id=xxxxxxxx
@@ -748,10 +751,15 @@ hr根据职位获取感兴趣的简历投递者(method：get)
 	error:
 	data :数据库中userinfo的所有内容 
    }
+<<<<<<< HEAD
+```
+
+=======
 ```
 =======
 ```
 >>>>>>> 9ca7537a58d3331045786ac3be0d47ce2bced81e
+>>>>>>> dabdea2a2078c5022adbaffd5582d7a423c18708
 
 ###/api/acount/hr_get_interested_by_company?company_id=xxxxxxxxxxx
 hr获取整个公司的感兴趣的简历投递者(method：get)
@@ -761,6 +769,9 @@ hr获取整个公司的感兴趣的简历投递者(method：get)
     company_id :公司id
    }
 、、、
+<<<<<<< HEAD
+返回参数同上
+=======
 返回参数同上
 
 ###/api/acount/userinfo/set_username_by_tsinghua
@@ -794,3 +805,4 @@ hr获取整个公司的感兴趣的简历投递者(method：get)
    }
 ```
 返回errorcode及message
+>>>>>>> dabdea2a2078c5022adbaffd5582d7a423c18708

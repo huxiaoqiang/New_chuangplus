@@ -434,9 +434,11 @@ def login(request):
                 else:
                     re['completive'] = '1'
             #print 'completive ' + str(completive)
+            print user.is_staff
             request.session['role'] = 1 if user.is_staff else 0
             re['error'] = error(1, 'login succeed!')
             re['role'] = request.session['role']
+            print "re[role]: " + str(re['role'])
             resp = HttpResponse(json.dumps(re), content_type = 'application/json')
             resp.set_cookie('username', username)
             resp.set_cookie('role',request.session['role'])
