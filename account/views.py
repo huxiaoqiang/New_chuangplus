@@ -1851,15 +1851,18 @@ def hr_set_interested_user(request):
     if request.method == "POST":
         position_id = request.POST.get('position_id','')
         username = request.POST.get('username','')
-        if(position_id == '' or username == ''):
-            re['error'] = error(274,'need post position_id and username')
+        interested = request.POST.get('interested','')
+        if(position_id == '' or username == '' or interested == ''):
+            re['error'] = error(274,'need post position_id,username and interested')
             return HttpResponse(json.dumps(re),content_type = 'application/json')
         try:
             position = Position.objects.get(id = position_id)
             user = User.objects.get(username = username)
             up = UserPosition.objects.get(user = user,position = position)
-
-            up.interested = True
+            if interested == '0':
+                up.interested = False
+            elif interested == '1':
+                up.interested = True
             up.save()
         except (AssertionError, ValueError, UnicodeDecodeError):
             re['error'] = error(231,"Invaild search query!")
