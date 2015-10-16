@@ -723,13 +723,15 @@ post如下字段
 ```
 返回errorcode
 
-###/api/account/(?P<position_id>.*?)/(?P<username>.*?)/hr_set_interested
+###/api/account/hr_set_interested_user
 hr设置对某个简历投递者感兴趣（method:get）
 参数如下
 ```javascript
    {
     "position_id" :职位id
 	"username":  投递简历者的用户名
+  "interested": 是否感兴趣(interested: 1, uninterested: 0)
+
    }
 <<<<<<< HEAD
 =======

@@ -968,6 +968,7 @@ angular.module('chuangplus.controllers', []).
             $scope.show_right_bar = !$scope.show_right_bar;
         };
         $scope.get_submit_list = function(){
+            $scope.loading = true;
             var param = [];
             var param_data = $scope.filter_chosen;
             if(param_data != null){
@@ -1015,6 +1016,7 @@ angular.module('chuangplus.controllers', []).
                         // TODO: here is an error
                         $scope.error = $errMsg.format_error('',data.error);
                     }
+                    $scope.loading = false;
                 });
         };
         $scope.get_submit_list();
@@ -1055,7 +1057,23 @@ angular.module('chuangplus.controllers', []).
                 $scope.interested_change = true;
                 $scope.interested_filed = interested;
             }
-            //$scope.get_company_list($scope.param);
+
+            var param = {
+                "position_id":$scope.submit_list[$scope.chosed_index].position_id,
+                "username" : $scope.submit_list[$scope.chosed_index].username,
+                "interested": ($scope.interested_filed == "interested") ? 1 : 0
+            };
+            $csrf.set_csrf(param);
+            if($scope.interested_change == true) {
+                $http.post(urls.api+"/account/hr_set_interested_user", $.param(param)).
+                success(function(data){
+                    if(data.error.code == 1){
+                        $scope.submit_list[$scope.chosed_index].interested = ($scope.interested_filed == "interested") ? true : false;
+                        //alert($scope.submit_list[index].position_id,$scope.submit_list[index].username);
+                        //console.log("OK");
+                    }
+                });
+            }
         };
 
         $scope.process = function(index){
@@ -1130,10 +1148,10 @@ angular.module('chuangplus.controllers', []).
             //TODO: fix the unanswered area
             if($(e.target).attr('className')!="view" &&
 			!$(e.target).hasClass("resume") &&
-			!$(e.target).hasClass("view") 
-				&& !$(e.target).hasClass("first-line") 
+			!$(e.target).hasClass("view")
+				&& !$(e.target).hasClass("first-line")
 					&& !$(e.target).hasClass("name") &&!$(e.target).hasClass("gender")
-				&& !$(e.target).hasClass("second-line") 
+				&& !$(e.target).hasClass("second-line")
 					&& !$(e.target).hasClass("university") && !$(e.target).hasClass("department") && !$(e.target).hasClass("grade") &&
 			!$(e.target).hasClass("work_days") &&
 			!$(e.target).hasClass("cellphone") &&
@@ -1142,12 +1160,12 @@ angular.module('chuangplus.controllers', []).
 			!$(e.target).is("li") &&
 			!$(e.target).hasClass("resume") &&
 				!$(e.target).hasClass("resume_file") && !$(e.target).is('img') &&
-			$(e.target).attr('id')!="header" && 
-			$(e.target).attr('id')!="show_intern_info" 
+			$(e.target).attr('id')!="header" &&
+			$(e.target).attr('id')!="show_intern_info"
 			&& $(e.target).attr('id')!="submit_div"
 			&& !$(e.target).is("table") && !$(e.target).is("tbody") && !$(e.target).is("tr") && !$(e.target).is("td")&&!$(e.target).hasClass("resume_file_downoad")
 				&& !$(e.target).hasClass("resume_name")
-			&& $(e.target).attr('id')!="item_interested" 
+			&& $(e.target).attr('id')!="item_interested"
 			&& $(e.target).attr('id')!="processed"
 			&& !$(e.target).hasClass("interested")){
                 $scope.view_detail($scope.chosed_index);
@@ -3531,7 +3549,7 @@ angular.module('chuangplus.controllers', []).
         else
             $scope.selectPage(1);
 
-        
+
         $scope.choose = function(field){
             if($scope.param.field == field){
                 $scope.field_change = false;
