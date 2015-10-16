@@ -103,6 +103,7 @@ header #header .navbar .navbar-item.login li.dropmenu {
 }
 header #header .navbar .navbar-item.login li.dropmenu .dropdown-menu {
   min-width: 100px;
+  z-index: 100;
   display: none;
 }
 header #header .navbar .navbar-item.login li.dropmenu .dropdown-menu a {
@@ -1802,18 +1803,18 @@ form.financing_add input {
   margin-bottom: 15px;
   height: 120px;
 }
-#container #favor-position-list .col-sm-4 .col-md-8 ul li .deleted {
+#container #favor-position-list .col-sm-4 .col-md-8 ul li .invalid {
   position: absolute;
   width: 900px;
   height: 120px;
-  z-index: 20000;
+  z-index: 10;
   background-color: #bfbfbf;
   opacity: 0.7;
   border-radius: 4px;
-  padding: 50px 420px 50px 420px;
+  padding: 50px 400px 50px 400px;
   box-shadow: 2px 2px 7px 2px #dfdfdf;
 }
-#container #favor-position-list .col-sm-4 .col-md-8 ul li .deleted .text {
+#container #favor-position-list .col-sm-4 .col-md-8 ul li .invalid .text {
   opacity: 1;
   font-size: large;
   color: #222;
@@ -5013,6 +5014,27 @@ img-crop canvas {
   float: left;
   margin-left: 90px;
   width: 900px;
+}
+#container #search_result .col-md-8 .detail .left-block .result {
+  font-size: 16px;
+  height: 43px;
+  width: 750px;
+  padding: 0 40px;
+  margin-bottom: 17px;
+  background: white;
+  box-shadow: 1px 1px 3px 1px #dfdfdf;
+  border-radius: 4px;
+}
+#container #search_result .col-md-8 .detail .left-block .result .key {
+  line-height: 43px;
+  float: left;
+}
+#container #search_result .col-md-8 .detail .left-block .result .key span {
+  color: #8f4e96;
+}
+#container #search_result .col-md-8 .detail .left-block .result .count {
+  line-height: 43px;
+  float: right;
 }
 #container #search_result .col-md-8 .detail .left-block .header {
   margin-left: 10px;

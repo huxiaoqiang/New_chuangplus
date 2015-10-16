@@ -207,6 +207,7 @@ angular.module('chuangplus.controllers', []).
             $scope.search_param = $location.search();
             $scope.tab1 = true;
             $scope.tab2 = false;
+            $scope.first_load = true;
             $scope.param_position = {
                     field: null,
                     pageCount: 1,
@@ -299,6 +300,7 @@ angular.module('chuangplus.controllers', []).
                             }
                         }
                         $scope.loading = false;
+                        $scope.first_load = false;
                     }
                     else
                         console.log(data.error.message);
@@ -327,7 +329,8 @@ angular.module('chuangplus.controllers', []).
                                 $scope.position_list[i].company.scale_value = "成熟";
                             }
                         }
-                        $scope.loading = false;
+                        if(!$scope.first_load)
+                            $scope.loading = false;
                     }
                     else
                         console.log(data.error.message);
