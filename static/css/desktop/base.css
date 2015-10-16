@@ -1417,15 +1417,17 @@ form.financing_add input {
   list-style: none;
   float: left;
   width: 50%;
-  height: 25px;
+  height: 29px;
   text-align: center;
-  line-height: 25px;
+  line-height: 29px;
   border-radius: 0;
+  margin: 5px 0 13px 0;
   background-color: #EFEFEF;
 }
 #container #userinfo .info-form .tabs li a {
   text-decoration: none;
   text-align: center;
+  display: block;
   border-radius: 0;
   width: 100%;
   height: 100%;
@@ -1437,7 +1439,10 @@ form.financing_add input {
   background-color: #FFFFFF;
 }
 #container #userinfo .info-form .tabs li.active a {
+  width: 100%;
+  height: 100%;
   color: #000000;
+  display: block;
 }
 #container #userinfo .info-form .tab-pane {
   padding: 2em;
