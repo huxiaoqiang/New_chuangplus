@@ -148,8 +148,8 @@ angular.module('chuangplus.controllers', []).
             }
         };
         $scope.choose_header();
-        $scope.search = function(){
-      //      $location.path().search({'query':$scope.search_text,'type':'0','page':'1'});
+        $scope.search_it = function(){
+            $location.path('/search').search({'query':$scope.search_text,'type':'0'});
 //            window.location.href="/search?query="++"&type=0&page=1";
         };
     }]).
@@ -204,9 +204,70 @@ angular.module('chuangplus.controllers', []).
     }]).
     controller('DT_SearchCtrl',['$scope', '$http', 'CsrfService', 'urls','$routeParams','ErrorService','$location',
         function($scope, $http, $csrf, urls,$routeParams,$errMsg,$location){
-            $scope.param = $location.search();
+            $scope.search_param = $location.search();
+            $scope.tab1 = true;
+            $scope.tab2 = false;
+            $scope.param_position = {
+                    field: null,
+                    pageCount: 1,
+                    currentPage: 1
+                };
+            $scope.param_company = {
+                    field: null,
+                    pageCount: 1,
+                    currentPage: 1
+            };        
+            $scope.position_type = {
+            "technology":"技术",
+            'product':"产品",
+            'design':"设计",
+            'operate':"运营",
+            'marketing':"市场",
+            'functions':"职能",
+            'others':"其他"
+            };
+            $scope.scale = ["初创","快速发展","成熟"];
+            $scope.field_type={
+                'social':"社交",
+                'e-commerce':"电子商务",
+                'education':"教育",
+                'health_medical':"健康医疗",
+                'culture_creativity':"文化创意",
+                'living_consumption':"生活消费",
+                'hardware':"硬件",
+                'O2O':"O2O",
+                'others':"其他"
+            };
+            $scope.selectPageCompany = function(page){
+                if(page > 0)
+                {
+                    $scope.param_company.currentPage = page;
+                    //$rootScope.company_list_param_cachce = $scope.param;
+                    $scope.search_company();
+                    document.body.scrollTop = 0;
+                    $scope.loading = true;
+                }
+            };
+            $scope.selectPagePosition = function(page){
+                if(page > 0)
+                {
+                    $scope.param_position.currentPage = page;
+                    //$rootScope.company_list_param_cachce = $scope.param;
+                    $scope.search_position();
+                    document.body.scrollTop = 0;
+                    $scope.loading = true;
+                }
+            };
+            $scope.tab1_click = function(){
+                $scope.tab1 = true;
+                $scope.tab2 = false;
+            };
+            $scope.tab2_click = function(){
+                $scope.tab1 = false;
+                $scope.tab2 = true;
+            };
             $scope.get_count = function(){
-                $http.get(urls.api+"/account/"+$scope.param.query+"/search_count").
+                $http.get(urls.api+"/account/"+$scope.search_param.query+"/search_count").
                   success(function(data){
                     if(data.error.code=1){
                         $scope.company_count = data.company_count;
@@ -219,26 +280,60 @@ angular.module('chuangplus.controllers', []).
             $scope.get_count();
 
             $scope.search_company = function(){
-                var param = "text=" + $scope.param.query + "page="+$scope.param.page;
-                $http.get(urls.api+"/account/company/list"+param).
+                var search_param = "?text=" + $scope.search_param.query + "&page="+$scope.param_company.currentPage;
+                $http.get(urls.api+"/account/company/list"+search_param).
                   success(function(data){
                     if(data.error.code == 1)
+                    {
+                        //if($scope.param_company.pageCount < 0)
+                            $scope.param_company.pageCount = data.page_number;
                         $scope.company_list = data.data;
-                    else
-                        console.log(data.error.message);
-                  });
-            };
-            $scope.search_position = function(){
-                var param = "name=" + $scope.param.query + "page="+$scope.param.page;
-                $http.get(urls.api+"/position/search"+param).
-                  success(function(data){
-                    if(data.error.code==1)
-                        $scope.position_list = data.positions;
+                        $scope.loading = false;
+                        for(var i=0;i<$scope.company_list.length;i++){
+                            $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
+                            $scope.company_list[i].scale_value = $scope.scale[$scope.company_list[i].scale];
+                            $scope.company_list[i].field_type = $scope.field_type[$scope.company_list[i].field];
+                            $scope.company_list[i].position_type_value = {};
+                            for(var j = 0; j < $scope.company_list[i].position_type.length; j ++){
+                                $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
+                            }
+                        }
+                        $scope.loading = false;
+                    }
                     else
                         console.log(data.error.message);
                   });
             };
             $scope.search_company();
+            $scope.search_position = function(){
+                var search_param = "?name=" + $scope.search_param.query + "&page="+$scope.param_position.currentPage;
+                $http.get(urls.api+"/position/search"+search_param).
+                  success(function(data){
+                    if(data.error.code==1)
+                    {
+                        $scope.position_list = data.positions;
+                        //if($scope.param.position.pageCount < -1)
+                            $scope.param_position.pageCount = data.page_number;
+                        for(var i=0; i<$scope.position_list.length;i++){
+                            $scope.position_list[i].position_type_value = $scope.position_type[$scope.position_list[i].position_type];
+                            $scope.position_list[i].company.field_type = $scope.field_type[$scope.position_list[i].company.field];
+                            if($scope.position_list[i].company.scale == 0){
+                                $scope.position_list[i].company.scale_value = "初创";
+                            }
+                            else if($scope.position_list[i].company.scale == 1){
+                                $scope.position_list[i].company.scale_value = "快速发展";
+                            }
+                            else{
+                                $scope.position_list[i].company.scale_value = "成熟";
+                            }
+                        }
+                        $scope.loading = false;
+                    }
+                    else
+                        console.log(data.error.message);
+                  });
+            };
+            $scope.search_position();
     }]).
     controller('DT_RegisterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','ErrorService',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$errMsg){
