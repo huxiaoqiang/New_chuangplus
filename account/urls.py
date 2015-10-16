@@ -37,6 +37,7 @@ urlpatterns = [
     url(r'^financing/(?P<fin_id>.*?)/set', views.set_financinginfo, name='set_financinginfo'),
     url(r'^financing/(?P<fin_id>.*?)/delete', views.delete_financinginfo, name='delete_financinginfo'),
     url(r'^financing/(?P<company_id>.*?)/list', views.get_financinginfo_list, name='get_financinginfo_list'),
+    url(r'^hr_set_interested_user$',views.hr_set_interested_user,name='hr_set_interested_user'),
     url(r'hr_get_interested_by_position$',views.interested_list_position,name='interested_list_position'),
     url(r'^hr_get_interested_by_company$',views.interested_list_company,name='interested_list_company'),    
     url(r'^company/list', views.get_company_list, name='get_company_list'),

@@ -1845,11 +1845,15 @@ def get_company_num(request):
         re['error'] = error(3,'Error,need GET')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
-    
-def hr_set_interested_user(request,position_id,username):
+@user_permission('login')
+def hr_set_interested_user(request):
     re = dict()
-    #print username
-    if request.method == "GET":
+    if request.method == "POST":
+        position_id = request.POST.get('position_id','')
+        username = request.POST.get('username','')
+        if(position_id == '' or username == ''):
+            re['error'] = error(274,'need post position_id and username')
+            return HttpResponse(json.dumps(re),content_type = 'application/json')
         try:
             position = Position.objects.get(id = position_id)
             user = User.objects.get(username = username)
@@ -1868,7 +1872,7 @@ def hr_set_interested_user(request,position_id,username):
             return HttpResponse(json.dumps(re), content_type = 'application/json')
         re['error'] = error(1,"succeed!")
     else:
-        re['error'] = error(3,'Error, need GET')
+        re['error'] = error(2,'Error, need POST')
     return HttpResponse(json.dumps(re),content_type = 'application/json')
 
 def interested_list_position(request):
