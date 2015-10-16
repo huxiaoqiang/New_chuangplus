@@ -1431,6 +1431,7 @@ form.financing_add input {
   height: 100%;
   font-size: 1em;
   color: #bfbfbf;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
 #container #userinfo .info-form .tabs li.active {
   background-color: #FFFFFF;
@@ -1449,11 +1450,13 @@ form.financing_add input {
   border-radius: 6px;
   width: 374px;
   font-size: 1em;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
 #container #userinfo .info-form .tab-pane .form-horizontal .form-group select {
   border-radius: 6px;
   width: 374px;
   font-size: 1em;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
 #container #userinfo .info-form .tab-pane .form-horizontal .btn.btn-primary {
   width: 374px;
@@ -1462,6 +1465,7 @@ form.financing_add input {
   border-radius: 6px;
   background-color: #8F4E96;
   color: white;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   font-size: 1em;
 }
 #container {
