@@ -1699,7 +1699,6 @@ form.financing_add input {
   margin-top: 10%;
   border-radius: 4px;
   padding: 60px 48px;
-  border: 1px solid #bfbfbf;
 }
 #container .no-resume-info p {
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
@@ -1728,6 +1727,7 @@ form.financing_add input {
   padding-top: 5%;
 }
 #container #favor-position-list .block {
+  display: block;
   width: 50%;
   background-color: white;
   height: 200px;
@@ -1739,7 +1739,6 @@ form.financing_add input {
   width: 100%;
   height: 100%;
   padding: 10% 10%;
-  border: 1px solid #bfbfbf;
   border-radius: 4px;
 }
 #container #favor-position-list .block .inner p {
@@ -2001,7 +2000,6 @@ form.financing_add input {
   width: 100%;
   height: 100%;
   padding: 10% 10%;
-  border: 1px solid #bfbfbf;
   border-radius: 4px;
 }
 #container #favor-company-list .tips .inner p {
@@ -2213,7 +2211,6 @@ form.financing_add input {
   width: 100%;
   height: 100%;
   padding: 10% 10%;
-  border: 1px solid #bfbfbf;
   border-radius: 4px;
 }
 #container #intern-post-list .tips .inner p {
