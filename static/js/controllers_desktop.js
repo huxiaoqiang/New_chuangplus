@@ -149,6 +149,7 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.choose_header();
         $scope.search_it = function(){
+            $scope.search = false;
             $location.path('/search').search({'query':$scope.search_text,'type':'0'});
 //            window.location.href="/search?query="++"&type=0&page=1";
         };
