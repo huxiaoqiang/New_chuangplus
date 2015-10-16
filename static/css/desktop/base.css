@@ -4499,6 +4499,15 @@ body > #wrap_no_header_footer #main-container {
 #container #company_resume .col-sm-9 .btn.active {
   background-color: #8f4e96;
 }
+#container #company_resume .col-sm-9 .loading {
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 128px;
+  background-color: #ffffff;
+  text-align: center;
+  height: 600px;
+  box-shadow: 2px 2px 7px 2px #dfdfdf;
+}
 #container #company_resume .col-sm-9 .submit_list {
   min-height: 500px;
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;

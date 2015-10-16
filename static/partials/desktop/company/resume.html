@@ -64,12 +64,15 @@
 <div id="container" >
     <div id="company_resume">
         <div class="col-sm-9">
-            <div class="head-button">
+            <div ng-show="loading" class="loading">
+                <img src="/static/image/icon/loading.gif">
+            </div>
+            <div class="head-button" ng-show="!loading">
                 <input id = "processed" class="btn active" type="button" value="查看未处理" ng-click="view_unprocessed()">
                 <input id = "interested" class="btn active" type="button" value="查看感兴趣" ng-click="view_interested()">
 <!--                <input class="btn" type="button" value="清除不符合条件">-->
             </div>
-            <div class="submit_list">
+            <div class="submit_list" ng-show="!loading">
                 <div ng-show="submit_list.length == 0" class="no_submit">
                     [[marked_words]]
                 </div>

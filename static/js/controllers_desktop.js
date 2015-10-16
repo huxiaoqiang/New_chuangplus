@@ -873,6 +873,7 @@ angular.module('chuangplus.controllers', []).
             $scope.show_right_bar = !$scope.show_right_bar;
         };
         $scope.get_submit_list = function(){
+            $scope.loading = true;
             var param = [];
             var param_data = $scope.filter_chosen;
             if(param_data != null){
@@ -920,6 +921,7 @@ angular.module('chuangplus.controllers', []).
                         // TODO: here is an error
                         $scope.error = $errMsg.format_error('',data.error);
                     }
+                    $scope.loading = false;
                 });
         };
         $scope.get_submit_list();
@@ -963,14 +965,15 @@ angular.module('chuangplus.controllers', []).
 
             var param = {
                 "position_id":$scope.submit_list[$scope.chosed_index].position_id,
-                "username" : $scope.submit_list[$scope.chosed_index].username
+                "username" : $scope.submit_list[$scope.chosed_index].username,
+                "interested": ($scope.interested_filed == "interested") ? 1 : 0
             };
             $csrf.set_csrf(param);
             if($scope.interested_change == true) {
-                $http.post(urls.api+"/api/account/" + param.position_id + "/" + param.username + "/hr_set_interested", $.param(param)).
+                $http.post(urls.api+"/account/hr_set_interested_user", $.param(param)).
                 success(function(data){
                     if(data.error.code == 1){
-                        $scope.submit_list[$scope.chosed_index].interested = ($scope.interested_filed = "interested") ? true : false;
+                        $scope.submit_list[$scope.chosed_index].interested = ($scope.interested_filed == "interested") ? true : false;
                         //alert($scope.submit_list[index].position_id,$scope.submit_list[index].username);
                         //console.log("OK");
                     }
