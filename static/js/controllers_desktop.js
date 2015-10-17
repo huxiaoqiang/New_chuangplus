@@ -957,16 +957,10 @@ angular.module('chuangplus.controllers', []).
             'functions':"职能",
             'others':"其他"
         };
-        //$scope.search_params = {//下拉标记参数
-        //    "position_type":''
-        //};
         $scope.task = {
             'pageCount' : 1,
             'currentPage' : 1
         };
-        //$scope.param = {
-        //    'page' : 1
-        //};
         $scope.show_right_bar = false;
         $scope.toggleRightBar = function(){
             $scope.show_right_bar = !$scope.show_right_bar;
@@ -1034,23 +1028,32 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.get_company_info();
 
-        //TODO: merge them
+        /*
+        * @function: filter_select
+        * @detail: filter resumes by intereset, process and type
+        * @time: 2015-10
+        */
         $scope.view_result = function(){
             $scope.get_submit_list();
         }
-        $scope.change = function(position_type){
+        $scope.choose_type = function(position_type){
             $scope.filter_chosen.position_type = position_type;
             $scope.get_submit_list();
         };
-        $scope.view_unprocessed = function(){
-            $scope.filter_chosen.processed = 0;
+        $scope.choose_process = function(process_type){
+            $scope.filter_chosen.processed = process_type;
             $scope.get_submit_list();
         };
-        $scope.view_interested = function(){
-            $scope.filter_chosen.interested = 1;
+        $scope.choose_interest = function(interest_type){
+            $scope.filter_chosen.interested = interest_type;
             $scope.get_submit_list();
         };
 
+        /*
+        * @function: interested_select
+        * @detail: interest mark in the resume detail
+        * @time: 2015-10
+        */
         $scope.interested_change = false;
         $scope.interested_filed = "";
         $scope.interested_select = function(interested){
@@ -1076,7 +1079,6 @@ angular.module('chuangplus.controllers', []).
                         //$scope.$apply(function($scope){
                             $scope.submit_list[$scope.chosed_index].interested = ($scope.interested_filed == "interested") ? true : false;
                         //});
-                        
                         //alert($scope.submit_list[index].position_id,$scope.submit_list[index].username);
                         //console.log("OK");
                     }

@@ -2,6 +2,50 @@
   #company_resume{
     font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
     margin-top: 70px;
+    .col-sm-12{
+      .select-filter{
+        background-color: white;
+        border-radius: 3px;
+        padding: 5px 20px;
+        dt{
+          width: 12.5%;
+          padding-right: 10px;
+          float: left;
+          font-weight: normal;
+          text-align: right;
+          color:grey;
+        }
+        dl{
+          margin: 10px 0px;
+        }
+        a{
+          color: black;
+          display: block;
+          text-align: center;
+        }
+        .clearfix:after{
+          clear:both;
+          height:0;
+          overflow:hidden;
+          display:block;
+          visibility:hidden;
+          content:".";
+        }
+        .filterType span{
+          width:12%;
+          display:inline-block;
+          padding: 0px 20px;
+        }
+        a.active{
+          background-color: #8f4e96;
+          color: white;
+          text-decoration: none;
+        }
+      }
+      
+
+
+    }
     .col-sm-9{
        .btn{
         width: 160px;

@@ -4496,6 +4496,45 @@ body > #wrap_no_header_footer #main-container {
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   margin-top: 70px;
 }
+#container #company_resume .col-sm-12 .select-filter {
+  background-color: white;
+  border-radius: 3px;
+  padding: 5px 20px;
+}
+#container #company_resume .col-sm-12 .select-filter dt {
+  width: 12.5%;
+  padding-right: 10px;
+  float: left;
+  font-weight: normal;
+  text-align: right;
+  color: grey;
+}
+#container #company_resume .col-sm-12 .select-filter dl {
+  margin: 10px 0px;
+}
+#container #company_resume .col-sm-12 .select-filter a {
+  color: black;
+  display: block;
+  text-align: center;
+}
+#container #company_resume .col-sm-12 .select-filter .clearfix:after {
+  clear: both;
+  height: 0;
+  overflow: hidden;
+  display: block;
+  visibility: hidden;
+  content: ".";
+}
+#container #company_resume .col-sm-12 .select-filter .filterType span {
+  width: 12%;
+  display: inline-block;
+  padding: 0px 20px;
+}
+#container #company_resume .col-sm-12 .select-filter a.active {
+  background-color: #8f4e96;
+  color: white;
+  text-decoration: none;
+}
 #container #company_resume .col-sm-9 .btn {
   width: 160px;
   margin-left: 9px;
