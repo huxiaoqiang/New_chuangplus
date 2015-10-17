@@ -26,9 +26,72 @@
                     <div ng-if="positions.length>0">
                     <ul ng-repeat="position in positions">
                         <li>
-                            <a href="/position/[[position._id.$oid]]/detail">
-                            <div class="" ng-class="{closed:position.status == 'closed',deleted:position.status == 'deleted'}">
-                                <span class="text" ng-show="position.status == 'closed'||position.status == 'deleted'">已失效</span>
+                            <!-岗位已删除-!>
+                            <a ng-href="#" ng-if="position.status=='deleted'">
+                            <div class="" ng-class="{invalid:position.status == 'closed'||position.status == 'deleted'}">
+                                <span class="text" ng-show="position.status == 'closed'">岗位已关闭</span>
+                                <span class="text" ng-show="position.status == 'deleted'">岗位已删除</span>
+                            </div>
+                            <div class="favor-list-item">
+                                <div class="middle-block">
+                                    <div class="info">
+                                        <div class="item-info info-1">
+                                            <div class="vertical-center">
+                                                <p class="position">[[position.position_type_value]]|[[position.name]]</p>
+                                                <div class="position-tags">
+                                                    <span class="tags" ng-if="position.part_or_full_time==0">实习[[position.days_per_week]]天/周</span>
+                                                    <span class="tags" ng-if="position.part_or_full_time==1">全职</span>
+                                                    <span class="tags">[[position.salary_min]]k-[[position.salary_max]]k</span>
+                                                </div>
+                                                <div class="submit-time">
+                                                    <p>发布时间：[[position.release_time.$date |date :'yyyy-MM-dd']]</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <img class="line-img" src="/static/image/icon/shadowline1.png">
+                                        <div class="item-info info-4">
+                                            <div class="vertical-center">
+                                                <div class="tags" ng-repeat="tag in position.company.welfare_tags">[[tag]]</div>
+                                            </div>
+                                        </div>
+                                        <img class="line-img" src="/static/image/icon/shadowline2.png">
+                                        <div class="item-pic">
+                                            <div class="vertical-center">
+                                                <img src="/api/file/[[position.company.logo_id]]/download" class="company-pic" alt="公司logo">
+                                            </div>
+                                        </div>
+                                        <div class="item-info info-2">
+                                            <div class="vertical-center">
+                                                <p class="company">[[position.company.abbreviation]]</p>
+                                                <p class="company-discrpt">&nbsp;&nbsp;[[position.company.brief_introduction]]</p>
+                                                <p class="auth">[[position.company.auth_organization]]</p>
+                                            </div>
+                                        </div>
+                                        <div class="item-info info-3">
+                                            <div class="vertical-center">
+                                                <div class="label-1" ng-show="position.company.field != null">
+                                                    <img src="/static/image/icon/111-01.png">
+                                                    <p>[[position.company.field_type]]</p>
+                                                </div>
+                                                <div class="label-1" ng-show="position.company.scale != null">
+                                                    <img src="/static/image/icon/222-01.png">
+                                                    <p>[[position.company.scale_value]]</p>
+                                                </div>
+                                                <div class="label-1" ng-show="position.company.city != null">
+                                                    <img src="/static/image/icon/333-01.png">
+                                                    <p class="last-p">[[position.company.city]]</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </a>
+                            <!-岗位被关闭或开放-!>
+                            <a ng-href="/position/[[position._id.$oid]]/detail" ng-if="position.status!='deleted'">
+                            <div class="" ng-class="{invalid:position.status == 'closed'||position.status == 'deleted'}">
+                                <span class="text" ng-show="position.status == 'closed'">岗位已关闭</span>
+                                <span class="text" ng-show="position.status == 'deleted'">岗位已删除</span>
                             </div>
                             <div class="favor-list-item">
                                 <div class="middle-block">

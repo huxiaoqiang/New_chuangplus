@@ -15,8 +15,8 @@
             </div>
             <div ng-show="!loading">
                 <ul ng-repeat="position in positions">
-                    <a href="/position/[[position._id.$oid]]/detail">
                     <li>
+                        <a href="/position/[[position._id.$oid]]/detail">
                         <div class="favor-list-item">
                             <div class="middle-block">
                                 <div class="info">
@@ -73,6 +73,7 @@
                             </div>
 
                         </div>
+                        </a>                        
                         <div class="right-side">
                             <b class="tips status" ng-if="position.status == 'closed'">职位关闭</b>
                             <b class="tips done"  ng-if="position.status == 'open'">职位在招</b>
@@ -81,7 +82,6 @@
                             <b class="tips done" ng-if="position.interested==true">HR感兴趣</b>
                         </div>
                     </li>
-                    </a>
                 </ul>
                 <page ng-show="task.pageCount!=0" num-pages="task.pageCount" current-page="task.currentPage" on-select-page="selectPage(page)">
                 </page>
