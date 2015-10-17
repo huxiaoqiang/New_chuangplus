@@ -4552,6 +4552,23 @@ body > #wrap_no_header_footer #main-container {
   background-color: #8f4e96;
   border-color: #98769E;
 }
+#container #company_resume .col-sm-9 #submit_single_div {
+  width: 76%;
+  float: left;
+}
+#container #company_resume .col-sm-9 #status_div {
+  float: left;
+  height: 100%;
+}
+#container #company_resume .col-sm-9 #status_div .status_tags {
+  border-radius: 10px;
+  background-color: #8f4e96;
+  display: block;
+  color: white;
+  line-height: 30px;
+  width: 65px;
+  text-align: center;
+}
 #container .col-sm-3 .logo img {
   width: 100%;
 }

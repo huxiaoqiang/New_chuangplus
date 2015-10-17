@@ -78,11 +78,24 @@
                 </div>
                 <div ng-show="submit_list.length != 0" >
                     <div id="submit_div" ng-repeat="user in submit_list" class="submit_item" ng-click="view_detail($index)" ng-class="{'active': ($index==chosed_index)}">
-                        <div id="submit_div">
+                        <div id="submit_single_div">
                             <span class="real_name">[[user.real_name]]</span>&nbsp;&nbsp;&nbsp;&nbsp;<br/>
                             应聘岗位：<span class="position_name">[[user.position_name]]</span><br/>
+                             <span class="basic-info">[[user.university]]/[[user.major]]</span>
                         </div>
-                        <span class="basic-info">[[user.university]]/[[user.major]]</span>
+                        <div id="status_div">
+                            <table style="height: 100%;">
+                                <tbody>
+                                    <tr>
+                                        <td style="vertical-align:middle;" ng-show="[[user.process]] == true"><a class="status_tags">已处理</a></td>
+                                        <td style="vertical-align:middle;" ng-show="[[user.process]] == false"><a class="status_tags">未处理</a></td>
+                                        <td style="width: 10px;"></td>
+                                        <td style="vertical-align:middle;" ng-show="[[user.interested]] == true"><a class="status_tags">感兴趣</a></td>
+                                        <td style="vertical-align:middle;" ng-show="[[user.interested]] == false"><a class="status_tags">不感兴趣</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <page ng-show="task.pageCount!=1" num-pages="task.pageCount" current-page="task.currentPage" on-select-page="selectPage(page)">
                     </page>

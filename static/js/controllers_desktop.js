@@ -835,8 +835,8 @@ angular.module('chuangplus.controllers', []).
     controller('DT_RegEnterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', 'ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $errMsg){
         console.log('DT_RegEnterCtrl');
     }]).
-    controller('DT_CompanyResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService',
-        function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_CompanyResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','$rootScope', 'ErrorService',
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $rootScope, $errMsg){
         console.log('DT_CompanyResumeCtrl');
         $scope.company_id = $routeParams.company_id;
         //$scope.active_index = null;
@@ -973,7 +973,11 @@ angular.module('chuangplus.controllers', []).
                 $http.post(urls.api+"/account/hr_set_interested_user", $.param(param)).
                 success(function(data){
                     if(data.error.code == 1){
-                        $scope.submit_list[$scope.chosed_index].interested = ($scope.interested_filed == "interested") ? true : false;
+
+                        //$scope.$apply(function($scope){
+                            $scope.submit_list[$scope.chosed_index].interested = ($scope.interested_filed == "interested") ? true : false;
+                        //});
+                        
                         //alert($scope.submit_list[index].position_id,$scope.submit_list[index].username);
                         //console.log("OK");
                     }
@@ -1002,31 +1006,33 @@ angular.module('chuangplus.controllers', []).
                 });
         };
         $scope.view_detail = function(index){
-            $scope.intern_info = $scope.submit_list[index];
-            $scope.process(index);
-            if($scope.intern_info.interested == true)
-                $scope.interested_filed = "interested";
-            else
-                $scope.interested_filed = "uninterested";
-            if($scope.chosed_index == -1){
-                $scope.chosed_index = index;
-                $scope.toggle_show();
-            }
-            else{
-                if($scope.chosed_index == index){
-                    $scope.chosed_index = -1;
+            if(index != -1){
+                $scope.intern_info = $scope.submit_list[index];
+                $scope.process(index);
+                if($scope.intern_info.interested == true)
+                    $scope.interested_filed = "interested";
+                else
+                    $scope.interested_filed = "uninterested";
+                if($scope.chosed_index == -1){
+                    $scope.chosed_index = index;
                     $scope.toggle_show();
                 }
                 else{
-                    if($('#sideToggle').attr("checked") == "checked"){
-                        $scope.chosed_index = index;
+                    if($scope.chosed_index == index){
+                        $scope.chosed_index = -1;
                         $scope.toggle_show();
-                        setTimeout($scope.toggle_show,500);
-                        $scope.show_right_bar = true;
                     }
                     else{
-                        $scope.toggle_show();
-                        $scope.chosed_index = index;
+                        if($('#sideToggle').attr("checked") == "checked"){
+                            $scope.chosed_index = index;
+                            $scope.toggle_show();
+                            setTimeout($scope.toggle_show,500);
+                            $scope.show_right_bar = true;
+                        }
+                        else{
+                            $scope.toggle_show();
+                            $scope.chosed_index = index;
+                        }
                     }
                 }
             }
