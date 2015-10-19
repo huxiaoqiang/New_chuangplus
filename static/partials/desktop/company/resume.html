@@ -10,6 +10,8 @@
             <div class="second-line">
                 <span class="university">[[intern_info.university]]</span>
                 <span class="department">[[intern_info.major]]</span>
+                <span class="grade">[[intern_info.grade]]</span>
+                <!--
                 <span class="grade" ng-if="intern_info.grade==1">本科一年级</span>
                 <span class="grade" ng-if="intern_info.grade==2">本科二年级</span>
                 <span class="grade" ng-if="intern_info.grade==3">本科三年级</span>
@@ -23,6 +25,7 @@
                 <span class="grade" ng-if="intern_info.grade==23">博士三年级</span>
                 <span class="grade" ng-if="intern_info.grade==24">博士四年级</span>
                 <span class="grade" ng-if="intern_info.grade==25">博士五年级</span>
+                -->
             </div>
             <p class="work_days">每周可工作时长：[[intern_info.work_days]]天/周</p>
             <p class="cellphone">TEL：[[intern_info.cellphone]]</p>
@@ -44,11 +47,6 @@
             </div>
         </div>
         <div class="interested">
-            <!--<div>
-                <a href="#" ng-class="{active:interested_filed == 'interested'}" ng-click="interested_select('interested')">感兴趣</a>
-                <a href="#"> </a>
-                <a href="#" ng-class="{active:interested_filed == 'uninterested'}" ng-click="interested_select('uninterested')">不感兴趣</a>
-            </div>-->
             <table>
                 <tbody>
                     <tr>
@@ -113,26 +111,29 @@
                 </div>
                 <div ng-show="submit_list.length != 0" >
                     <div id="submit_div" ng-repeat="user in submit_list" class="submit_item" ng-click="view_detail($index)" ng-class="{'active': ($index==chosed_index)}">
-                        <div id="submit_single_div">
-                            <span class="real_name">[[user.real_name]]</span>&nbsp;&nbsp;&nbsp;&nbsp;<br/>
-                            应聘岗位：<span class="position_name">[[user.position_name]]</span><br/>
-                             <span class="basic-info">[[user.university]]/[[user.major]]</span>
-                        </div>
-                        <!--
-                        <div id="status_div">
-                            <table style="height: 100%;">
-                                <tbody>
-                                    <tr>
-                                        <td style="vertical-align:middle;" ng-show="[[user.process]] == true"><a class="status_tags">已处理</a></td>
-                                        <td style="vertical-align:middle;" ng-show="[[user.process]] == false"><a class="status_tags">未处理</a></td>
-                                        <td style="width: 10px;"></td>
-                                        <td style="vertical-align:middle;" ng-show="[[user.interested]] == true"><a class="status_tags">感兴趣</a></td>
-                                        <td style="vertical-align:middle;" ng-show="[[user.interested]] == false"><a class="status_tags">不感兴趣</a></td>
-                                    </tr>
-                                </tbody>
+                        <div id="left_submit">
+                            <table style="height: 100%;width: 100%;">
+                                <tr>
+                                    <td style="vertical-align:middle;">
+                                        <span class="real_name">[[user.real_name]]</span>&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+                                        <div style="overflow: hidden; height: 1px; margin: 2px 0px;"></div>
+                                        <span class="basic-info">[[user.university]] / [[user.major]] / [[user.grade]]</span>
+                                    </td>
+                                </tr>
                             </table>
                         </div>
-                        -->
+                        <div id="right_submit">
+                            <table style="height: 100%;width: 100%;">
+                                <tr>
+                                    <td class="plain_text" style="vertical-align:middle; width:76px;">
+                                        <p >应聘岗位: </p>
+                                    </td>
+                                    <td style="vertical-align:middle;">
+                                        <span class="position_name">[[user.position_name]]</span><br/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                     <page ng-show="task.pageCount!=1" num-pages="task.pageCount" current-page="task.currentPage" on-select-page="selectPage(page)">
                     </page>
@@ -141,11 +142,12 @@
         </div>
         <div class="col-sm-3">
             <div class="logo">
-                <img src="/api/file/[[companyinfo.logo_id]]/download">
+                <img src="/api/file/[[companyinfo.logo_id]]/download" style="border-radius: 8px;">
             </div>
             <p class="abbreviation">[[companyinfo.abbreviation]]</p>
             <p class="brief_introduction">[[companyinfo.brief_introduction]]</p>
             <p class="position_sum">在招岗位数：[[companyinfo.positions.length]]</p>
+            <!--
             <select ng-change="change(filter_chosen.position_type)" class="filter_chosen_position_type" ng-model="filter_chosen.position_type">
                 <option value="" ng-select="filter_chosen.position_type=''">全部</option>
                 <option value="technology" ng-select="filter_chosen.position_type='technology'">技术</option>
@@ -156,6 +158,7 @@
                 <option value="functions" ng-select="filter_chosen.position_type='functions'">职能</option>
                 <option value="others" ng-select="filter_chosen.position_type='others'">其他</option>
             </select>
+            -->
         </div>
     </div>
 </div>

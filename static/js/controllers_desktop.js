@@ -961,10 +961,34 @@ angular.module('chuangplus.controllers', []).
             'pageCount' : 1,
             'currentPage' : 1
         };
+        $scope.grade_name = {
+            1: '本科一年级',
+            2: '本科二年级',
+            3: '本科三年级',
+            4: '本科四年级',
+            5: '本科五年级',
+            11: '硕士一年级',
+            12: '硕士二年级',
+            13: '硕士三年级',
+            21: '博士一年级',
+            22: '博士二年级',
+            23: '博士三年级',
+            24: '博士四年级',
+            25: '博士五年级'
+        }
         $scope.show_right_bar = false;
         $scope.toggleRightBar = function(){
             $scope.show_right_bar = !$scope.show_right_bar;
         };
+        $scope.get_grade_name = function(){
+            for(var i = 0; i < $scope.submit_list.length; i++){
+                var temp = $scope.submit_list[i];
+                if(temp.grade != undefined)
+                    temp.grade = $scope.grade_name[temp.grade];
+                else
+                    temp.grade = '未知年级'
+            }
+        }
         $scope.get_submit_list = function(){
             $scope.loading = true;
             var param = [];
@@ -998,6 +1022,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.submit_list = data.data;
+                        $scope.get_grade_name();
                         $scope.task.pageCount = data.page_number;
                         if($scope.submit_list.length == 0){
                            //if(param_data.hasOwnProperty('position_type')){
@@ -1075,7 +1100,6 @@ angular.module('chuangplus.controllers', []).
                 $http.post(urls.api+"/account/hr_set_interested_user", $.param(param)).
                 success(function(data){
                     if(data.error.code == 1){
-
                         //$scope.$apply(function($scope){
                             $scope.submit_list[$scope.chosed_index].interested = ($scope.interested_filed == "interested") ? true : false;
                         //});
@@ -1175,6 +1199,8 @@ angular.module('chuangplus.controllers', []).
 			$(e.target).attr('id')!="header" &&
 			$(e.target).attr('id')!="show_intern_info"
 			&& $(e.target).attr('id')!="submit_div"
+            && $(e.target).attr('id')!="left_submit"
+            && $(e.target).attr('id')!="right_submit"
 			&& !$(e.target).is("table") && !$(e.target).is("tbody") && !$(e.target).is("tr") && !$(e.target).is("td")&&!$(e.target).hasClass("resume_file_downoad")
 				&& !$(e.target).hasClass("resume_name")
 			&& $(e.target).attr('id')!="item_interested"

@@ -4500,6 +4500,7 @@ body > #wrap_no_header_footer #main-container {
   background-color: white;
   border-radius: 3px;
   padding: 5px 20px;
+  box-shadow: 2px 2px 7px 2px #e1e0e2;
 }
 #container #company_resume .col-sm-12 .select-filter dt {
   width: 12.5%;
@@ -4534,6 +4535,10 @@ body > #wrap_no_header_footer #main-container {
   background-color: #8f4e96;
   color: white;
   text-decoration: none;
+  border-radius: 3px;
+}
+#container #company_resume .col-sm-12 .select-filter a:hover {
+  text-decoration: none;
 }
 #container #company_resume .col-sm-9 .btn {
   width: 160px;
@@ -4547,7 +4552,7 @@ body > #wrap_no_header_footer #main-container {
 }
 #container #company_resume .col-sm-9 .loading {
   width: 100%;
-  margin: 0 auto;
+  margin: 15px 0;
   padding-top: 128px;
   background-color: #ffffff;
   text-align: center;
@@ -4575,18 +4580,35 @@ body > #wrap_no_header_footer #main-container {
   height: 100px;
   background-color: white;
   box-shadow: 2px 2px 7px 2px #e1e0e2;
-  border-radius: 6px;
+  border-radius: 3px;
   margin-top: 15px;
   padding: 15px;
 }
 #container #company_resume .col-sm-9 .submit_list .submit_item .real_name {
-  font-size: 20px;
+  font-size: 18px;
 }
 #container #company_resume .col-sm-9 .submit_list .submit_item .position_name {
-  font-size: 20px;
+  font-size: 17px;
+}
+#container #company_resume .col-sm-9 .submit_list .submit_item .plain_text p {
+  margin: 0;
+  text-align: left;
+  font-size: 16px;
+  color: #707070;
 }
 #container #company_resume .col-sm-9 .submit_list .submit_item .basic-info {
   margin-top: 10px;
+  color: #707070;
+}
+#container #company_resume .col-sm-9 .submit_list .submit_item #left_submit {
+  float: left;
+  width: 65%;
+  height: 100%;
+}
+#container #company_resume .col-sm-9 .submit_list .submit_item #right_submit {
+  float: left;
+  width: 35%;
+  height: 100%;
 }
 #container #company_resume .col-sm-9 .submit_list .submit_item.active {
   background-color: rgba(243, 243, 243, 0.53);
@@ -4598,33 +4620,22 @@ body > #wrap_no_header_footer #main-container {
   background-color: #8f4e96;
   border-color: #98769E;
 }
-#container #company_resume .col-sm-9 #submit_single_div {
-  width: 76%;
-  float: left;
-}
-#container #company_resume .col-sm-9 #status_div {
-  float: left;
-  height: 100%;
-}
-#container #company_resume .col-sm-9 #status_div .status_tags {
-  border-radius: 10px;
-  background-color: #8f4e96;
-  display: block;
-  color: white;
-  line-height: 30px;
-  width: 65px;
-  text-align: center;
+#container .col-sm-3 {
+  margin-top: 15px;
 }
 #container .col-sm-3 .logo img {
   width: 100%;
 }
 #container .col-sm-3 .abbreviation {
-  font-size: 20px;
+  font-size: 18px;
   color: black;
   margin-top: 10px;
 }
+#container .col-sm-3 .brief_introduction {
+  color: #707070;
+}
 #container .col-sm-3 .position_sum {
-  font-size: 20px;
+  font-size: 17px;
   color: black;
 }
 #container .col-sm-3 .search_params_position_type {
