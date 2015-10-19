@@ -980,6 +980,11 @@ angular.module('chuangplus.controllers', []).
         $scope.toggleRightBar = function(){
             $scope.show_right_bar = !$scope.show_right_bar;
         };
+        /*
+        * @function: get_grade_name
+        * @detail: get the grade name of the person in submit_list
+        * @time: 2015-10
+        */
         $scope.get_grade_name = function(){
             for(var i = 0; i < $scope.submit_list.length; i++){
                 var temp = $scope.submit_list[i];
