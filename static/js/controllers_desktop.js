@@ -1193,7 +1193,12 @@ angular.module('chuangplus.controllers', []).
 			!$(e.target).hasClass("cellphone") &&
 			!$(e.target).hasClass("line") &&
 			!$(e.target).hasClass("description") &&
+            !$(e.target).hasClass("basic-info") &&
+            !$(e.target).hasClass("real_name") &&
+            !$(e.target).hasClass("plain_text") &&
+            !$(e.target).hasClass("position_name") &&
 			!$(e.target).is("li") &&
+            !$(e.target).is("p") &&
 			!$(e.target).hasClass("resume") &&
 				!$(e.target).hasClass("resume_file") && !$(e.target).is('img') &&
 			$(e.target).attr('id')!="header" &&
