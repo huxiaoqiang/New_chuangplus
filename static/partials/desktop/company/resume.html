@@ -63,23 +63,76 @@
 </aside>
 <div id="container" >
     <div id="company_resume">
+        <div class="col-sm-12">
+            <div class="select-filter">
+                <dl class="clearfix">
+                    <dt>类别：</dt>
+                    <dd class="filterType">
+                        <span><a href="#" ng-class="{'active': (filter_chosen.position_type== '')}" ng-click="choose_type('')">全部</a></span>
+                        <span><a href="#" ng-class="{'active': (filter_chosen.position_type== 'technology')}" ng-click="choose_type('technology')">技术</a></span>
+                        <span><a href="#" ng-class="{'active': (filter_chosen.position_type== 'design')}" ng-click="choose_type('design')">设计</a></span>
+                        <span><a href="#" ng-class="{'active': (filter_chosen.position_type== 'product')}" ng-click="choose_type('product')">产品</a></span>
+                        <span><a href="#" ng-class="{'active': (filter_chosen.position_type== 'marketing')}" ng-click="choose_type('marketing')">市场/销售</a></span>
+                        <span><a href="#" ng-class="{'active': (filter_chosen.position_type== 'operate')}" ng-click="choose_type('operate')">运营</a></span>
+                        <span><a href="#" ng-class="{'active': (filter_chosen.position_type== 'functions')}" ng-click="choose_type('functions')">职能</a></span>
+                    </dd>
+                </dl>
+                <div style="border-top: #BBB9B9 1px dashed; overflow: hidden; height: 1px; margin: 8px 20px;"></div>
+                <dl class="clearfix">
+                    <dt>是否处理：</dt>
+                    <dd class="filterType">
+                        <span><a href="#" ng-class="{'active': (filter_chosen.processed== 2)}" ng-click="choose_process(2)">全部</a></span>
+                        <span><a href="#" ng-class="{'active': (filter_chosen.processed== 1)}" ng-click="choose_process(1)">已处理</a></span>
+                        <span><a href="#" ng-class="{'active': (filter_chosen.processed== 0)}" ng-click="choose_process(0)">未处理</a></span>
+                    </dd>
+                </dl>
+                <div style="border-top: #BBB9B9 1px dashed; overflow: hidden; height: 1px; margin: 8px 20px;"></div>
+                <dl class="clearfix">
+                    <dt>是否感兴趣：</dt>
+                    <dd class="filterType">
+                        <span><a href="#" ng-class="{'active': (filter_chosen.interested== 2)}" ng-click="choose_interest(2)">全部</a></span>
+                        <span><a href="#" ng-class="{'active': (filter_chosen.interested== 1)}" ng-click="choose_interest(1)">感兴趣</a></span>
+                        <span><a href="#" ng-class="{'active': (filter_chosen.interested== 0)}" ng-click="choose_interest(0)">不感兴趣</a></span>
+                    </dd>
+                </dl>
+            </div>
+        </div>
         <div class="col-sm-9">
-            <div class="head-button">
+            <div ng-show="loading" class="loading">
+                <img src="/static/image/icon/loading.gif">
+            </div>
+            <!--
+            <div class="head-button" ng-show="!loading">
                 <input id = "processed" class="btn active" type="button" value="查看未处理" ng-click="view_unprocessed()">
                 <input id = "interested" class="btn active" type="button" value="查看感兴趣" ng-click="view_interested()">
-<!--                <input class="btn" type="button" value="清除不符合条件">-->
             </div>
-            <div class="submit_list">
+            -->
+            <div class="submit_list" ng-show="!loading">
                 <div ng-show="submit_list.length == 0" class="no_submit">
                     [[marked_words]]
                 </div>
                 <div ng-show="submit_list.length != 0" >
                     <div id="submit_div" ng-repeat="user in submit_list" class="submit_item" ng-click="view_detail($index)" ng-class="{'active': ($index==chosed_index)}">
-                        <div id="submit_div">
+                        <div id="submit_single_div">
                             <span class="real_name">[[user.real_name]]</span>&nbsp;&nbsp;&nbsp;&nbsp;<br/>
                             应聘岗位：<span class="position_name">[[user.position_name]]</span><br/>
+                             <span class="basic-info">[[user.university]]/[[user.major]]</span>
                         </div>
-                        <span class="basic-info">[[user.university]]/[[user.major]]</span>
+                        <!--
+                        <div id="status_div">
+                            <table style="height: 100%;">
+                                <tbody>
+                                    <tr>
+                                        <td style="vertical-align:middle;" ng-show="[[user.process]] == true"><a class="status_tags">已处理</a></td>
+                                        <td style="vertical-align:middle;" ng-show="[[user.process]] == false"><a class="status_tags">未处理</a></td>
+                                        <td style="width: 10px;"></td>
+                                        <td style="vertical-align:middle;" ng-show="[[user.interested]] == true"><a class="status_tags">感兴趣</a></td>
+                                        <td style="vertical-align:middle;" ng-show="[[user.interested]] == false"><a class="status_tags">不感兴趣</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        -->
                     </div>
                     <page ng-show="task.pageCount!=1" num-pages="task.pageCount" current-page="task.currentPage" on-select-page="selectPage(page)">
                     </page>

@@ -77,9 +77,9 @@
                 <img src="/static/image/logo/erweima-01.png">
             </div>
             <div class="search_input"  on-mouseover="search_mouseover()" on-mouseout="search_mouseout()" ng-show="search">
-                <form name="search_form" ng-submit="search()">
+                <form name="search_form" ng-submit="search_it()">
                     <input type="text" class="form-control" placeholder="搜索公司或职位" ng-model="search_text">
-                    <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
+                    <button type="submit" class="search-btn" ng-click="search_it()"><i class="fa fa-search"></i></button>
                 </form>
             </div>
             {% endif %}
@@ -98,9 +98,11 @@
             <div class="qrcode_img login" ng-if="scan">
                 <img src="/static/image/logo/erweima-01.png">
             </div>
-            <div class="search_input login"  on-mouseover="search_mouseover()" on-mouseout="search_mouseout()" ng-show="search">
-                <input type="text" class="form-control" placeholder="搜索公司或职位">
-                <button class="search-btn"><i class="fa fa-search"></i></button>
+            <div class="search_input"  on-mouseover="search_mouseover()" on-mouseout="search_mouseout()" ng-show="search">
+                <form name="search_form" ng-submit="search_it()">
+                    <input type="text" class="form-control" placeholder="搜索公司或职位" ng-model="search_text">
+                    <button type="submit" class="search-btn" ng-click="search_it()"><i class="fa fa-search"></i></button>
+                </form>
             </div>
             {% endif %}
         </nav>

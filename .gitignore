@@ -25,6 +25,8 @@ requirements.txt
 
 API.md
 
+settings.py
+
 *.xml
 
 *.css

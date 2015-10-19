@@ -91,7 +91,7 @@ angular.module('chuangplus.services', []).
             'code272':"登录错误",
             'code273':"您的info用户名已经被注册，请去普通登录页登录",
             'code275':"参数错误",
-            'code274':'需要post position_id和username',
+            'code274':'需要post position_id,username和interested',
             'code299':'未知错误'
         };
         return {
