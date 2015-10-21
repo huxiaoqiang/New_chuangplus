@@ -25,10 +25,8 @@ module.exports = function(grunt) {
                     "static/lib/angular-1.2.6/angular-cookies.min.js",
                     "static/lib/angular-1.2.6/angular-sanitize.min.js",
                     "static/lib/angular-1.2.6/tinymce.js",
-
                     "static/lib/imgcorp/ng-img-crop.js",
                     "static/lib/semantic/angular-semantic-ui.min.js",
-
                     "static/lib/jquery-1.11.0.min.js",
                     "static/lib/bootstrap/bootstrap.min.js",
                     "static/lib/bootstrap/ui-bootstrap-tpls-0.10.0.min.js",
