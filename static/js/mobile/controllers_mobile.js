@@ -871,8 +871,8 @@ angular.module('chuangplus_mobile.controllers', [])
          function($scope, $http, urls, $routeParams) {
     
     }])
-    .controller('MB_CompanyPositionCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
-    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
+    .controller('MB_CompanyPositionCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope', '$location',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope,$location ) {
         $scope.get_company = function(){
         $scope.company_id = $routeParams.company_id;
         console.log($scope.company_id);
