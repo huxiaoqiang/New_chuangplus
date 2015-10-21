@@ -25,10 +25,8 @@ module.exports = function(grunt) {
                     "static/lib/angular-1.2.6/angular-cookies.min.js",
                     "static/lib/angular-1.2.6/angular-sanitize.min.js",
                     "static/lib/angular-1.2.6/tinymce.js",
-
                     "static/lib/imgcorp/ng-img-crop.js",
                     "static/lib/semantic/angular-semantic-ui.min.js",
-
                     "static/lib/jquery-1.11.0.min.js",
                     "static/lib/bootstrap/bootstrap.min.js",
                     "static/lib/bootstrap/ui-bootstrap-tpls-0.10.0.min.js",
@@ -41,12 +39,11 @@ module.exports = function(grunt) {
             },
             mb_apps:{
                 src: [
-                    'static/mobile/js/app_mobile.js',
-                    'static/mobile/js/services_mobile.js',
-                    'static/mobile/js/filters_mobile.js',
-                    'static/mobile/js/directives_mobile.js',
-                    'static/mobile/js/controllers_mobile.js',
-                    'static/mobile/js/jquery_cookie.js'
+                    'static/js/mobile/app_mobile.js',
+                    'static/js/mobile/services_mobile.js',
+                    'static/js/mobile/filters_mobile.js',
+                    'static/js/mobile/directives_mobile.js',
+                    'static/js/mobile/controllers_mobile.js'
                 ],
                 dest:"static/dest/mb_chuangplus_angular_s1.js"
             },
@@ -57,7 +54,7 @@ module.exports = function(grunt) {
                     "static/js/mobile/jquery_cookie.js",
                     "static/lib/angular-1.2.6/angular-route.min.js",
                     "static/lib/angular-1.2.6/angular-cookies.min.js",
-                    "/static/lib/angular-1.2.6/angular-touch.min.js",
+                    "static/lib/angular-1.2.6/angular-touch.min.js",
                     "static/lib/mobile-angular/js/mobile-angular-ui.min.js",
                     "static/lib/mobile-angular/js/mobile-angular-ui.gestures.min.js"
                 ],

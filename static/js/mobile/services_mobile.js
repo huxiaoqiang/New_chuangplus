@@ -222,7 +222,7 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
             }
         };
     }]).
-    factory('safeApply',['$rootScope',function($rootScope) {
+    factory('safeApply',['$rootScope',function($rootScope){
     return function(scope, fn) {
         var phase = scope.$root.$$phase;
         if (phase == '$apply' || phase == '$digest') {
