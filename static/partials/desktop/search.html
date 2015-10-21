@@ -8,10 +8,10 @@
                         <div class="count">结果总数：[[company_count + position_count]]</div>
                     </div>
                     <div class="header">
-                        <span class="tab" ng-class="{'tab-active':tab1}" ng-click="tab1_click()">公司</span>
-                        <span class="tab" ng-class="{'tab-active':tab2}" ng-click="tab2_click()">职位</span>
+                        <span class="tab" ng-class="{'tab-active':tab == 1}" ng-click="tab1_click()">公司</span>
+                        <span class="tab" ng-class="{'tab-active':tab == 2}" ng-click="tab2_click()">职位</span>
                     </div>
-                    <div ng-if="tab1" id="company">
+                    <div ng-if="tab == 1" id="company">
                         <div ng-show="loading" class="loading">
                             <img src="/static/image/icon/loading.gif">
                         </div>
@@ -83,7 +83,7 @@
                         </page>
                         </div>
                     </div>
-                    <div ng-if="tab2" id="position_list">
+                    <div ng-if="tab == 2" id="position_list">
                         <div ng-show="loading" class="loading">
                             <img src="/static/image/icon/loading.gif">
                         </div>
