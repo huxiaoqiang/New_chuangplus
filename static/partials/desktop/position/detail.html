@@ -1,5 +1,9 @@
 <div id="container">
     <div id="position-detail">
+        <div ng-show="loading" class="loading">
+            <img src="/static/image/icon/loading.gif">
+        </div>
+        <div ng-show="!loading">
         <div class="col-md-4">
             <img class="qrcode" src="/api/file/[[position.company.qrcode_id]]/download" alt="微信二维码">
             <div class="company-dscrpt">
@@ -164,6 +168,7 @@
             <span class="item" ng-show="!resume_submitted && !userinfo_complete && !post_submitted" data-toggle="modal" data-target="#myModal2">[[submit_value]]</span>
         </div>
     </div>
+</div>
 </div>
 
     <!--Modal-->
