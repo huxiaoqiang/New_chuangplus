@@ -49,14 +49,7 @@ module.exports = function(grunt) {
             },
             mb_libs:{
                 src:[
-                    "static/lib/angular-1.2.6/angular.min.js",
-                    "static/lib/jquery-1.11.0.min.js",
-                    "static/js/mobile/jquery_cookie.js",
-                    "static/lib/angular-1.2.6/angular-route.min.js",
-                    "static/lib/angular-1.2.6/angular-cookies.min.js",
-                    "static/lib/angular-1.2.6/angular-touch.min.js",
-                    "static/lib/mobile-angular/js/mobile-angular-ui.min.js",
-                    "static/lib/mobile-angular/js/mobile-angular-ui.gestures.min.js"
+                    "static/lib/angular-1.2.6/angular.min.js"
                 ],
                 dest:"static/dest/mb_libs.js"
             }
@@ -84,7 +77,6 @@ module.exports = function(grunt) {
             },
             mb_main_script:{
                 src: [
-                    "static/dest/mb_libs.js",
                     "static/dest/mb_chuangplus_angular.js"
                 ],
                 dest: "static/dest/mb_chuangplus.min.js"
