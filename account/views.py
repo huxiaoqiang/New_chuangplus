@@ -50,7 +50,7 @@ def register(request):
         email = request.POST.get('email', '')
         role = request.POST.get('role','0')
         if username == '' or password == '' or email == '':
-            re['error'] = error(112,"Username or password or email is empty,fail to register!")
+            re['error'] = error(111,"Username or password or email is empty,fail to register!")
             return HttpResponse(json.dumps(re), content_type = 'application/json')
 
         #check the email
