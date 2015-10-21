@@ -1966,7 +1966,8 @@ angular.module('chuangplus_mobile.controllers', []).controller('MB_CompanyListCt
   'UserService',
   'ErrorService',
   '$rootScope',
-  function ($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope) {
+  '$location',
+  function ($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope, $location) {
     console.log('MB_PositionFavorCtrl');
     $user.check_login();
     $scope.positions = {};
@@ -1989,6 +1990,10 @@ angular.module('chuangplus_mobile.controllers', []).controller('MB_CompanyListCt
       'hardware': '\u786c\u4ef6',
       'O2O': 'O2O',
       'others': '\u5176\u5b83'
+    };
+    $scope.go_detail = function (id) {
+      $location.path('/mobile/position/detail').search({ 'position_id': id });
+      alert(id);
     };
     $scope.get_userInfo = function () {
       $scope.userinfo = {};
@@ -2109,7 +2114,8 @@ angular.module('chuangplus_mobile.controllers', []).controller('MB_CompanyListCt
   'UserService',
   'ErrorService',
   '$rootScope',
-  function ($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope) {
+  '$location',
+  function ($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope, $location) {
     $user.check_login();
     $scope.company_list = {};
     $scope.position_type = {
@@ -2145,6 +2151,9 @@ angular.module('chuangplus_mobile.controllers', []).controller('MB_CompanyListCt
       'hardware': '\u786c\u4ef6',
       'O2O': 'O2O',
       'others': '\u5176\u5b83'
+    };
+    $scope.go_detail = function (id) {
+      $location.path('/mobile/company/detail').search({ 'company_id': id });
     };
     $scope.get_company_list = function () {
       $http.get(urls.api + '/account/userinfo/company/favor/list').success(function (data) {
@@ -2473,7 +2482,8 @@ angular.module('chuangplus_mobile.controllers', []).controller('MB_CompanyListCt
   'UserService',
   'ErrorService',
   '$rootScope',
-  function ($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope) {
+  '$location',
+  function ($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope, $location) {
     console.log('MB_PostListCtrl');
     $user.check_login();
     $scope.positions = {};
@@ -2504,6 +2514,9 @@ angular.module('chuangplus_mobile.controllers', []).controller('MB_CompanyListCt
     $scope.is_processed = {
       true: 'HR\u5df2\u5904\u7406',
       false: 'HR\u672a\u5904\u7406'
+    };
+    $scope.go_detail = function (id) {
+      $location.path('/mobile/position/detail').search({ 'position_id': id });
     };
     $scope.get_positions = function () {
       $http.get(urls.api + '/account/userinfo/position/submit/list').success(function (data) {
