@@ -18,7 +18,7 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
             }
         };
     }])
-    .service('NoticeService', function($cookies){
+    .service('NoticeService',['$cookies',function($cookies){
         $(".notice-bar").html("欢迎来到犀牛");
         return {
             'show': function(data) {
@@ -27,7 +27,7 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
                 setTimeout(function(){$(".notice-bar").slideUp("fast");},1800);
             }
         };
-    })
+    }])
     .service("ErrorService",['$cookies' ,function($cookies){
         var error_message = {
             'code15':"文件大小超过10M",
@@ -222,14 +222,7 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
             }
         };
     }]).
-    filter('id2date', function(){
-        return function(value) {
-            var secs = parseInt(value.substring(0,8), 16)*1000;
-            var tmp_date = new Date(secs);
-            return tmp_date.getFullYear() + '年' + (tmp_date.getMonth() + 1) + '月' + tmp_date.getDate() + '日';
-        };
-    }).
-    factory('safeApply', function($rootScope) {
+    factory('safeApply',['$rootScope',function($rootScope) {
     return function(scope, fn) {
         var phase = scope.$root.$$phase;
         if (phase == '$apply' || phase == '$digest') {
@@ -240,5 +233,5 @@ angular.module('chuangplus_mobile.services', ['chuangplus_mobile.services']).
             scope.$apply(fn);
         }
     }
-    });
+    }]);
 

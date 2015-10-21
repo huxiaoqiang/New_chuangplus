@@ -10,7 +10,6 @@ angular.module('chuangplus', [
     'ngCookies',
     'ngFileUpload',
     'ngScrollTo',
-    'angular-google-analytics',
     'chuangplus.filters',
     'chuangplus.services',
     'chuangplus.directives',

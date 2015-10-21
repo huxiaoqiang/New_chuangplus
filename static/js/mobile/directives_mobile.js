@@ -8,7 +8,7 @@ angular.module('chuangplus_mobile.directives', []).
             elm.text(version);
         };
     }]).
-    directive('onFinishRenderFilters', function ($timeout) {
+    directive('onFinishRenderFilters',['$timeout',function ($timeout) {
         return {
             restrict: 'A',
             link: function(scope, element, attr) {
@@ -19,8 +19,8 @@ angular.module('chuangplus_mobile.directives', []).
                 }
             }
         };
-    })
-    .directive('onBlur', function(safeApply) {
+    }])
+    .directive('onBlur',['safeApply',function(safeApply) {
       return {
         restrict : 'A',
         link : function(scope, elm, attrs) {
@@ -29,8 +29,8 @@ angular.module('chuangplus_mobile.directives', []).
           });
         }
       };
-    }).
-    directive('onFocus', function(safeApply) {
+    }]).
+    directive('onFocus',['safeApply',function(safeApply) {
       return {
         restrict : 'A',
         link : function(scope, elm, attrs) {
@@ -39,8 +39,8 @@ angular.module('chuangplus_mobile.directives', []).
           });
         }
       };
-    }).
-    directive('onMouseover', function(safeApply) {
+    }]).
+    directive('onMouseover',['safeApply',function(safeApply) {
       return {
         restrict : 'A',
         link : function(scope, elm, attrs) {
@@ -49,8 +49,8 @@ angular.module('chuangplus_mobile.directives', []).
           });
         }
       };
-    }).
-    directive('onMouseout', function(safeApply) {
+    }]).
+    directive('onMouseout',['safeApply',function(safeApply) {
       return {
         restrict : 'A',
         link : function(scope, elm, attrs) {
@@ -59,7 +59,7 @@ angular.module('chuangplus_mobile.directives', []).
           });
         }
       };
-    }).
+    }]).
     directive('myText', function() {
         return{
             restrict : 'E',

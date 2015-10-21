@@ -7,7 +7,6 @@ var app = angular.module('chuangplus_mobile', [
     "ngRoute",
     "ngTouch",
     'ngCookies',
-    'ngFileUpload',
     "mobile-angular-ui",
     'mobile-angular-ui.gestures',
     'chuangplus_mobile.filters',
