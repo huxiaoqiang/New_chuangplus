@@ -18,7 +18,7 @@
             </a>
 
             <div class="comp-list">
-                <a class="comp-listbox" href="/mobile/position/detail/[[position._id.$oid]]" ng-repeat="position in positions">
+                <a class="comp-listbox" ng-click="go_detail('[[position._id.$oid]]')" ng-repeat="position in positions">
                     <img class="comp-prev-img" src="/api/file/[[position.company.logo_id]]/download">
                     <div class="posi-close">[[position.position_cond]]</div>
                     <div class="hr-solve">[[position.is_processed]]</div>
