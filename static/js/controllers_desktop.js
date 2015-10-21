@@ -1716,6 +1716,7 @@ angular.module('chuangplus.controllers', []).
         window.location.href = "/company/" + $scope.company_id + "/detail";
     };
     $scope.get_position_detail = function(){
+        $scope.loading = true;
         $http.get(urls.api+"/position/"+ $scope.position_id +"/get_with_company").
         success(function(data){
             if(data.error.code == 1){
@@ -1741,6 +1742,7 @@ angular.module('chuangplus.controllers', []).
                     $scope.position.company.position_type_value[i] = $scope.position_type[$scope.position.company.position_type[i]];
                     console.log( $scope.position_type[$scope.position.company.position_type[i]]);
                 }
+                $scope.loading = false;
             }
             else{
                 console.log(data.error.message)
