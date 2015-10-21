@@ -4492,10 +4492,8 @@ body > #wrap_no_header_footer #main-container {
   position: absolute;
   bottom: 0px;
 }
-#container {
-  margin-top: -35px !important;
-}
 #container #company_resume {
+  margin-top: 28px !important;
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   margin-top: 70px;
 }
