@@ -1617,6 +1617,7 @@ angular.module('chuangplus_mobile.controllers', [])
         };
         $scope.go_detail = function(id){
             $location.path('/mobile/position/detail').search({'position_id':id});
+            alert(id);
         };
         $scope.get_userInfo = function(){
             $scope.userinfo = {};
