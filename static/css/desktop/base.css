@@ -4493,6 +4493,7 @@ body > #wrap_no_header_footer #main-container {
   bottom: 0px;
 }
 #container #company_resume {
+  margin-top: 28px !important;
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
   margin-top: 70px;
 }
@@ -4539,6 +4540,9 @@ body > #wrap_no_header_footer #main-container {
 }
 #container #company_resume .col-sm-12 .select-filter a:hover {
   text-decoration: none;
+}
+#container #company_resume .col-sm-9 {
+  margin-top: 10px;
 }
 #container #company_resume .col-sm-9 .btn {
   width: 160px;

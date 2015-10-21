@@ -42,11 +42,11 @@ var app = angular.module('chuangplus_mobile', [
         //$routeProvider.when('/mobile/position/filter', {templateUrl: urls.part_mobile + '/position/filter.html',title:'筛选'});
         $routeProvider.when('/mobile/position/list', {templateUrl: urls.part_mobile + '/position/list.html',title:'职位列表'});
         $routeProvider.when('/mobile/position/import', {templateUrl: urls.part_mobile + '/position/import.html',title:'职位导入'});
-        $routeProvider.when('/mobile/position/detail/:position_id', {templateUrl: urls.part_mobile + '/position/detail.html',title:'职位详情'});
+        $routeProvider.when('/mobile/position/detail', {templateUrl: urls.part_mobile + '/position/detail.html',title:'职位详情'});
         $routeProvider.when('/mobile/position/collect', {templateUrl: urls.part_mobile + '/position/collect.html',title:'职位收藏列表'});
 
         //$routeProvider.when('/mobile/company/filter', {templateUrl: urls.part_mobile + '/company/filter.html',title:'公司筛选'});
-        $routeProvider.when('/mobile/company/detail/:company_id', {templateUrl: urls.part_mobile + '/company/detail.html',title:'公司详情'});
+        $routeProvider.when('/mobile/company/detail', {templateUrl: urls.part_mobile + '/company/detail.html',title:'公司详情'});
         $routeProvider.when('/mobile/company/posi/:company_id', {templateUrl: urls.part_mobile + '/company/posi.html',title:'公司所有职位'});
         //$routeProvider.when('/mobile/company/list', {templateUrl: urls.part_mobile + '/company/list.html',controller:'MB_CompanyListCtrl', title:'公司列表'});
         $routeProvider.when('/mobile/company/collect', {templateUrl: urls.part_mobile + '/company/collect.html',title:'公司收藏列表'});
@@ -67,10 +67,33 @@ var app = angular.module('chuangplus_mobile', [
             $rootScope.title = current.$$route.title;
         });
     $rootScope.$on('$routeChangeStart', function(){
-        if($user.username() == undefined && $location.path() != '/mobile/login' && $location.path() != '/mobile/register' && $location.path() != '/mobile/info')
+        $rootScope.is_login = $user.is_login();
+
+        var login_exception = [
+            '/mobile/login',
+            '/mobile/index',
+            '/mobile/register',
+            '/mobile/info',
+            '/mobile/company/detail',
+            '/mobile/position/detail',
+            '/mobile/home',
+            '/mobile/position/list'
+        ];
+
+        if($user.username() == undefined)
         {
-            window.location.href='/mobile/login';
-            return;
+            var pass = false;
+            for (var i = login_exception.length - 1; i >= 0; i--) {
+                if($location.path() == login_exception[i])
+                    pass = true;
+            };
+            if(!pass){
+                //$rootScope.loading = true;
+                $rootScope.login_url = $location.path();
+                $location.path('/mobile/login');
+//                window.location.href='/mobile/login';
+                return;
+            }
         }
         if($location.path() != '/mobile/info' && $location.path() != '/mobile/login' && $location.path() != '/mobile/register')
             $user.check_info();

@@ -49,7 +49,7 @@
 
 
     <div class="comp-posi-list">
-        <a ng-repeat="position in company.position_list" class="comp-posi-block" ng-href="/mobile/position/detail/[[position._id.$oid]]">
+        <a ng-repeat="position in company.position_list" class="comp-posi-block" ng-click="go_detail_position('[[position._id.$oid]]')" >
             <div class="comp-posi-detail"> 查看岗位详情 <i class="fa fa-chevron-right "></i> </div>
             <div class="comp-posi-title">
                 [[position.position_type_value]] / [[position.name]]
@@ -76,7 +76,7 @@
 </div>
 </div>
 <div class="navbar navbar-app navbar-absolute-bottom">
-    <a class="nav-bar-2 selected" href="/mobile/company/detail/[[company_id]]">返回公司</a>
+    <a class="nav-bar-2 selected" ng-click="go_detail_company()">返回公司</a>
     <a class="nav-bar-2 " ng-click="post()">[[post_value]]</a>
 </div>
 </div>
