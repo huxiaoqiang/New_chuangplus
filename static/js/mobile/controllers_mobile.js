@@ -902,7 +902,10 @@ angular.module('chuangplus_mobile.controllers', [])
                 'others':'其它'
         };
         $scope.company_id = $routeParams.company_id;
-        $scope.go_detail = function(){
+        $scope.go_detail_position = function(id){
+            $location.path('/mobile/position/detail').search({'position_id':id});
+        };
+        $scope.go_detail_company = function(){
             $location.path('/mobile/company/detail').search({'company_id':$scope.company_id});
         };
         $http.get(urls.api+"/account/company/" + $scope.company_id + "/detail_with_positions").
