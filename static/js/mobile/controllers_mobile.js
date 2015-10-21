@@ -1996,7 +1996,7 @@ angular.module('chuangplus_mobile.controllers', [])
                     console.log(data);
                     if(data.error.code == 1){
                         $user.logout();
-                        window.location.href="/mobile/login";
+                        window.location.href="/mobile/index";
                     }
                 });
         };
