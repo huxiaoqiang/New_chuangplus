@@ -934,6 +934,7 @@ def get_position_submit(request):
                 re['error'] = error(260,"Position does not exist")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
             position_re = json.loads(posi.to_json())
+            position_re['interested'] = item['interested']
             try:
                 company = Companyinfo.objects.get(id=posi.company.id)
             except DoesNotExist:
