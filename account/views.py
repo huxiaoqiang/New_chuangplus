@@ -1786,6 +1786,7 @@ def search_count(request,query):
         if query != '':
             try:
                 companies = Companyinfo.objects(Q(abbreviation__contains = query)|Q(ICregist_name__contains = query))
+                companies = companies.filter(info_complete=True)
             except (AssertionError, ValueError, UnicodeDecodeError):
                 re['error'] = error(231,"Invaild search query!")
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
