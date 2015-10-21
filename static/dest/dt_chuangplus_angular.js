@@ -1199,7 +1199,6 @@ angular.module('chuangplus.controllers', []).controller('DT_HomepageCtrl', [
     document.body.onscroll = function record_position() {
       $rootScope.search_list_position = document.body.scrollTop;
       $rootScope.search_tab_cache = $scope.tab;
-      $scope.tab = 1;
     };
     //换页
     $scope.position_type = {
