@@ -8,9 +8,12 @@
          </div>
       </div>
       <div class="btn-group pull-left">
-        <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle" >
+        <div ng-if="$root.is_login" ui-toggle="uiSidebarLeft" class="btn sidebar-toggle" >
           <i class="fa fa-bars" style="color: white;"></i>
         </div>
+        <a ng-if="!$root.is_login" class="btn sidebar-toggle" href="/mobile/login" style="font-weight: 400; font-size: 16px !important; color:white;">
+                登录
+        </a>
       </div>
   </div>
 </div>

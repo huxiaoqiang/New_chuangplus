@@ -5,9 +5,12 @@
 <div class="main-content scrollable" >
 <div class="scrollable-content">
     <div class="header-bar">
-        <div class="logo sidebar-toggle" ui-toggle="uiSidebarLeft">
+        <div ng-if="$root.is_login" class="logo sidebar-toggle" ui-toggle="uiSidebarLeft">
                 <i class="fa fa-bars" style="color: white;"></i>
         </div>
+        <a ng-if="!$root.is_login" class="logo" href="/mobile/login" style="font-weight: 400; font-size: 16px; color:white;">
+                登录
+        </a>
         <a class="right-btn" href="/mobile/index" >
                 <i class="fa fa-home"></i>
         </a>
