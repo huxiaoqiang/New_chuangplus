@@ -24,7 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['angel.student.tsinghua.edu.cn']
 
 # Application definition
 
@@ -98,8 +98,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media/'
 
 from mongoengine import connect
-connect('chuangplus', host='123.56.88.173', port=27017, username='chuangplus', password='THUcj2014')
-#connect('chuangplus', host='123.57.87.25', port=27017)
+#connect('chuangplus', host='123.56.88.173', port=27017, username='chuangplus', password='THUcj2014')
+connect('chuangplus', host='123.57.87.25', port=27017)
 
 
 #############

@@ -934,8 +934,8 @@ angular.module('chuangplus.controllers', []).
     controller('DT_RegEnterCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', 'ErrorService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $errMsg){
         console.log('DT_RegEnterCtrl');
     }]).
-    controller('DT_CompanyResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService',
-        function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
+    controller('DT_CompanyResumeCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','$rootScope', 'ErrorService',
+        function($scope, $http, $csrf, urls, $filter, $routeParams, $user, $rootScope, $errMsg){
         console.log('DT_CompanyResumeCtrl');
         $scope.company_id = $routeParams.company_id;
         //$scope.active_index = null;
@@ -957,20 +957,43 @@ angular.module('chuangplus.controllers', []).
             'functions':"职能",
             'others':"其他"
         };
-        //$scope.search_params = {//下拉标记参数
-        //    "position_type":''
-        //};
         $scope.task = {
             'pageCount' : 1,
             'currentPage' : 1
         };
-        //$scope.param = {
-        //    'page' : 1
-        //};
+        $scope.grade_name = {
+            1: '本科一年级',
+            2: '本科二年级',
+            3: '本科三年级',
+            4: '本科四年级',
+            5: '本科五年级',
+            11: '硕士一年级',
+            12: '硕士二年级',
+            13: '硕士三年级',
+            21: '博士一年级',
+            22: '博士二年级',
+            23: '博士三年级',
+            24: '博士四年级',
+            25: '博士五年级'
+        }
         $scope.show_right_bar = false;
         $scope.toggleRightBar = function(){
             $scope.show_right_bar = !$scope.show_right_bar;
         };
+        /*
+        * @function: get_grade_name
+        * @detail: get the grade name of the person in submit_list
+        * @time: 2015-10
+        */
+        $scope.get_grade_name = function(){
+            for(var i = 0; i < $scope.submit_list.length; i++){
+                var temp = $scope.submit_list[i];
+                if(temp.grade != undefined)
+                    temp.grade = $scope.grade_name[temp.grade];
+                else
+                    temp.grade = '未知年级'
+            }
+        }
         $scope.get_submit_list = function(){
             $scope.loading = true;
             var param = [];
@@ -1004,6 +1027,7 @@ angular.module('chuangplus.controllers', []).
                 success(function(data){
                     if(data.error.code == 1){
                         $scope.submit_list = data.data;
+                        $scope.get_grade_name();
                         $scope.task.pageCount = data.page_number;
                         if($scope.submit_list.length == 0){
                            //if(param_data.hasOwnProperty('position_type')){
@@ -1034,23 +1058,32 @@ angular.module('chuangplus.controllers', []).
         };
         $scope.get_company_info();
 
-        //TODO: merge them
+        /*
+        * @function: filter_select
+        * @detail: filter resumes by intereset, process and type
+        * @time: 2015-10
+        */
         $scope.view_result = function(){
             $scope.get_submit_list();
         }
-        $scope.change = function(position_type){
+        $scope.choose_type = function(position_type){
             $scope.filter_chosen.position_type = position_type;
             $scope.get_submit_list();
         };
-        $scope.view_unprocessed = function(){
-            $scope.filter_chosen.processed = 0;
+        $scope.choose_process = function(process_type){
+            $scope.filter_chosen.processed = process_type;
             $scope.get_submit_list();
         };
-        $scope.view_interested = function(){
-            $scope.filter_chosen.interested = 1;
+        $scope.choose_interest = function(interest_type){
+            $scope.filter_chosen.interested = interest_type;
             $scope.get_submit_list();
         };
 
+        /*
+        * @function: interested_select
+        * @detail: interest mark in the resume detail
+        * @time: 2015-10
+        */
         $scope.interested_change = false;
         $scope.interested_filed = "";
         $scope.interested_select = function(interested){
@@ -1072,7 +1105,9 @@ angular.module('chuangplus.controllers', []).
                 $http.post(urls.api+"/account/hr_set_interested_user", $.param(param)).
                 success(function(data){
                     if(data.error.code == 1){
-                        $scope.submit_list[$scope.chosed_index].interested = ($scope.interested_filed == "interested") ? true : false;
+                        //$scope.$apply(function($scope){
+                            $scope.submit_list[$scope.chosed_index].interested = ($scope.interested_filed == "interested") ? true : false;
+                        //});
                         //alert($scope.submit_list[index].position_id,$scope.submit_list[index].username);
                         //console.log("OK");
                     }
@@ -1101,31 +1136,33 @@ angular.module('chuangplus.controllers', []).
                 });
         };
         $scope.view_detail = function(index){
-            $scope.intern_info = $scope.submit_list[index];
-            $scope.process(index);
-            if($scope.intern_info.interested == true)
-                $scope.interested_filed = "interested";
-            else
-                $scope.interested_filed = "uninterested";
-            if($scope.chosed_index == -1){
-                $scope.chosed_index = index;
-                $scope.toggle_show();
-            }
-            else{
-                if($scope.chosed_index == index){
-                    $scope.chosed_index = -1;
+            if(index != -1){
+                $scope.intern_info = $scope.submit_list[index];
+                $scope.process(index);
+                if($scope.intern_info.interested == true)
+                    $scope.interested_filed = "interested";
+                else
+                    $scope.interested_filed = "uninterested";
+                if($scope.chosed_index == -1){
+                    $scope.chosed_index = index;
                     $scope.toggle_show();
                 }
                 else{
-                    if($('#sideToggle').attr("checked") == "checked"){
-                        $scope.chosed_index = index;
+                    if($scope.chosed_index == index){
+                        $scope.chosed_index = -1;
                         $scope.toggle_show();
-                        setTimeout($scope.toggle_show,500);
-                        $scope.show_right_bar = true;
                     }
                     else{
-                        $scope.toggle_show();
-                        $scope.chosed_index = index;
+                        if($('#sideToggle').attr("checked") == "checked"){
+                            $scope.chosed_index = index;
+                            $scope.toggle_show();
+                            setTimeout($scope.toggle_show,500);
+                            $scope.show_right_bar = true;
+                        }
+                        else{
+                            $scope.toggle_show();
+                            $scope.chosed_index = index;
+                        }
                     }
                 }
             }
@@ -1161,12 +1198,19 @@ angular.module('chuangplus.controllers', []).
 			!$(e.target).hasClass("cellphone") &&
 			!$(e.target).hasClass("line") &&
 			!$(e.target).hasClass("description") &&
+            !$(e.target).hasClass("basic-info") &&
+            !$(e.target).hasClass("real_name") &&
+            !$(e.target).hasClass("plain_text") &&
+            !$(e.target).hasClass("position_name") &&
 			!$(e.target).is("li") &&
+            !$(e.target).is("p") &&
 			!$(e.target).hasClass("resume") &&
 				!$(e.target).hasClass("resume_file") && !$(e.target).is('img') &&
 			$(e.target).attr('id')!="header" &&
 			$(e.target).attr('id')!="show_intern_info"
 			&& $(e.target).attr('id')!="submit_div"
+            && $(e.target).attr('id')!="left_submit"
+            && $(e.target).attr('id')!="right_submit"
 			&& !$(e.target).is("table") && !$(e.target).is("tbody") && !$(e.target).is("tr") && !$(e.target).is("td")&&!$(e.target).hasClass("resume_file_downoad")
 				&& !$(e.target).hasClass("resume_name")
 			&& $(e.target).attr('id')!="item_interested"
