@@ -6,10 +6,10 @@
                     <i class="fa fa-bars" style="color: white;"></i>
             </div>
             -->
-            <div ng-if="is_login" class="logo sidebar-toggle" ui-toggle="uiSidebarLeft">
+            <div ng-if="$root.is_login" class="logo sidebar-toggle" ui-toggle="uiSidebarLeft">
                     <i class="fa fa-bars" style="color: white;"></i>
             </div>
-            <a ng-if="!is_login" class="logo" href="/mobile/login" style="font-weight: 400; font-size: 16px; color:white;">
+            <a ng-if="!$root.is_login" class="logo" href="/mobile/login" style="font-weight: 400; font-size: 16px; color:white;">
                     登录
             </a>
             <a class="right-btn" href="/mobile/index" >
@@ -167,7 +167,7 @@
                         </a>
                 -->
                 <div ng-repeat="company in company_list" on-finish-render-filters>   
-                    <a class="comp-listbox" ng-href="/mobile/company/detail/[[company._id.$oid]]"> <!-- /[[company._id.$oid]] -->
+                    <a class="comp-listbox" ng-click="go_detail('[[company._id.$oid]]')"> <!-- /[[company._id.$oid]] -->
                         <img class="comp-prev-img" src="/api/file/[[company.logo_id]]/download">
                         <img class="comp-more-info-arrow" src="/static/image/icon/jiantou.png">
                         <div ng-if="company.is_auth" class="comp-auth"></div>

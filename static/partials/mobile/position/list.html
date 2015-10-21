@@ -1,9 +1,12 @@
 <div class="main-content scrollable" ng-controller="MB_PositionListCtrl">
 <div class="scrollable-content" id='scrollable-content'>
         <div class="header-bar">
-            <div class="logo sidebar-toggle" ui-toggle="uiSidebarLeft">
+            <div ng-if="$root.is_login" class="logo sidebar-toggle" ui-toggle="uiSidebarLeft">
                     <i class="fa fa-bars" style="color: white;"></i>
             </div>
+            <a ng-if="!$root.is_login" class="logo" href="/mobile/login" style="font-weight: 400; font-size: 16px; color:white;">
+                登录
+            </a>
             <a class="right-btn" href="/mobile/index" >
                     <i class="fa fa-home"></i>
             </a>
@@ -172,7 +175,7 @@
 
             <div class="comp-list" >
                 <div ng-repeat="position in positions" on-finish-render-filters>
-                    <a class="comp-listbox" ng-href="/mobile/position/detail/[[position._id.$oid]]" >
+                    <a class="comp-listbox" ng-click="go_detail('[[position._id.$oid]]')" >
                         <img class="comp-more-info-arrow" src="/static/image/icon/jiantou.png">
                         <img class="comp-prev-img" ng-src="/api/file/[[position.company.logo_id]]/download">
                         <div class="comp-list-info-block">
