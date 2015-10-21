@@ -1088,6 +1088,10 @@ angular.module('chuangplus.controllers', []).controller('DT_HomepageCtrl', [
     $scope.choose_header();
     $scope.search_it = function () {
       $scope.search = false;
+      $rootScope.search_position_param_cache = undefined;
+      $rootScope.search_company_param_cache = undefined;
+      $rootScope.search_tab_cache = undefined;
+      $rootScope.search_list_position = 0;
       $location.path('/search').search({
         'query': $scope.search_text,
         'type': '0'
@@ -1169,11 +1173,11 @@ angular.module('chuangplus.controllers', []).controller('DT_HomepageCtrl', [
   '$routeParams',
   'ErrorService',
   '$location',
-  function ($scope, $http, $csrf, urls, $routeParams, $errMsg, $location) {
+  '$rootScope',
+  function ($scope, $http, $csrf, urls, $routeParams, $errMsg, $location, $rootScope) {
     $scope.search_param = $location.search();
-    $scope.tab1 = true;
-    $scope.tab2 = false;
-    $scope.first_load = true;
+    $scope.tab = 1;
+    $scope.now_ready = false;
     $scope.param_position = {
       field: null,
       pageCount: 1,
@@ -1184,6 +1188,20 @@ angular.module('chuangplus.controllers', []).controller('DT_HomepageCtrl', [
       pageCount: 1,
       currentPage: 1
     };
+    if ($rootScope.search_tab_cache != undefined) {
+      if ($rootScope.search_position_param_cache != undefined)
+        $scope.param_position = $rootScope.search_position_param_cache;
+      if ($rootScope.search_company_param_cache != undefined)
+        $scope.param_company = $rootScope.search_company_param_cache;
+      $scope.tab = $rootScope.search_tab_cache;
+      document.body.scrollTop = $rootScope.search_list_position;
+    }
+    document.body.onscroll = function record_position() {
+      $rootScope.search_list_position = document.body.scrollTop;
+      $rootScope.search_tab_cache = $scope.tab;
+      $scope.tab = 1;
+    };
+    //换页
     $scope.position_type = {
       'technology': '\u6280\u672f',
       'product': '\u4ea7\u54c1',
@@ -1216,6 +1234,9 @@ angular.module('chuangplus.controllers', []).controller('DT_HomepageCtrl', [
         $scope.search_company();
         document.body.scrollTop = 0;
         $scope.loading = true;
+        $rootScope.search_tab_cache = $scope.tab;
+        $rootScope.search_company_param_cache = $scope.param_company;
+        $rootScope.search_position_param_cache = $scope.param_position;
       }
     };
     $scope.selectPagePosition = function (page) {
@@ -1225,15 +1246,17 @@ angular.module('chuangplus.controllers', []).controller('DT_HomepageCtrl', [
         $scope.search_position();
         document.body.scrollTop = 0;
         $scope.loading = true;
+        $rootScope.search_position_param_cache = $scope.param_position;
+        $rootScope.search_company_param_cache = $scope.param_company;
       }
     };
     $scope.tab1_click = function () {
-      $scope.tab1 = true;
-      $scope.tab2 = false;
+      $scope.tab = 1;
+      $rootScope.search_tab_cache = $scope.tab;
     };
     $scope.tab2_click = function () {
-      $scope.tab1 = false;
-      $scope.tab2 = true;
+      $scope.tab = 2;
+      $rootScope.search_tab_cache = $scope.tab;
     };
     $scope.get_count = function () {
       $http.get(urls.api + '/account/' + $scope.search_param.query + '/search_count').success(function (data) {
@@ -1247,51 +1270,53 @@ angular.module('chuangplus.controllers', []).controller('DT_HomepageCtrl', [
     $scope.get_count();
     $scope.search_company = function () {
       var search_param = '?text=' + $scope.search_param.query + '&page=' + $scope.param_company.currentPage;
-      $http.get(urls.api + '/account/company/list' + search_param).success(function (data) {
-        if (data.error.code == 1) {
-          //if($scope.param_company.pageCount < 0)
-          $scope.param_company.pageCount = data.page_number;
-          $scope.company_list = data.data;
-          $scope.loading = false;
-          for (var i = 0; i < $scope.company_list.length; i++) {
-            $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
-            $scope.company_list[i].scale_value = $scope.scale[$scope.company_list[i].scale];
-            $scope.company_list[i].field_type = $scope.field_type[$scope.company_list[i].field];
-            $scope.company_list[i].position_type_value = {};
-            for (var j = 0; j < $scope.company_list[i].position_type.length; j++) {
-              $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
+      if ($scope.param_company.currentPage > 0)
+        $http.get(urls.api + '/account/company/list' + search_param).success(function (data) {
+          if (data.error.code == 1) {
+            //if($scope.param_company.pageCount < 0)
+            $scope.param_company.pageCount = data.page_number;
+            $scope.company_list = data.data;
+            $scope.loading = false;
+            for (var i = 0; i < $scope.company_list.length; i++) {
+              $scope.company_list[i].position_number = $scope.company_list[i].positions.length;
+              $scope.company_list[i].scale_value = $scope.scale[$scope.company_list[i].scale];
+              $scope.company_list[i].field_type = $scope.field_type[$scope.company_list[i].field];
+              $scope.company_list[i].position_type_value = {};
+              for (var j = 0; j < $scope.company_list[i].position_type.length; j++) {
+                $scope.company_list[i].position_type_value[j] = $scope.position_type[$scope.company_list[i].position_type[j]];
+              }
             }
-          }
-          $scope.loading = false;
-          $scope.first_load = false;
-        } else
-          console.log(data.error.message);
-      });
+            if ($scope.tab == 1)
+              $scope.loading = false;
+          } else
+            console.log(data.error.message);
+        });
     };
     $scope.search_company();
     $scope.search_position = function () {
       var search_param = '?name=' + $scope.search_param.query + '&page=' + $scope.param_position.currentPage;
-      $http.get(urls.api + '/position/search' + search_param).success(function (data) {
-        if (data.error.code == 1) {
-          $scope.position_list = data.positions;
-          //if($scope.param.position.pageCount < -1)
-          $scope.param_position.pageCount = data.page_number;
-          for (var i = 0; i < $scope.position_list.length; i++) {
-            $scope.position_list[i].position_type_value = $scope.position_type[$scope.position_list[i].position_type];
-            $scope.position_list[i].company.field_type = $scope.field_type[$scope.position_list[i].company.field];
-            if ($scope.position_list[i].company.scale == 0) {
-              $scope.position_list[i].company.scale_value = '\u521d\u521b';
-            } else if ($scope.position_list[i].company.scale == 1) {
-              $scope.position_list[i].company.scale_value = '\u5feb\u901f\u53d1\u5c55';
-            } else {
-              $scope.position_list[i].company.scale_value = '\u6210\u719f';
+      if ($scope.param_position.currentPage > 0)
+        $http.get(urls.api + '/position/search' + search_param).success(function (data) {
+          if (data.error.code == 1) {
+            $scope.position_list = data.positions;
+            //if($scope.param.position.pageCount < -1)
+            $scope.param_position.pageCount = data.page_number;
+            for (var i = 0; i < $scope.position_list.length; i++) {
+              $scope.position_list[i].position_type_value = $scope.position_type[$scope.position_list[i].position_type];
+              $scope.position_list[i].company.field_type = $scope.field_type[$scope.position_list[i].company.field];
+              if ($scope.position_list[i].company.scale == 0) {
+                $scope.position_list[i].company.scale_value = '\u521d\u521b';
+              } else if ($scope.position_list[i].company.scale == 1) {
+                $scope.position_list[i].company.scale_value = '\u5feb\u901f\u53d1\u5c55';
+              } else {
+                $scope.position_list[i].company.scale_value = '\u6210\u719f';
+              }
             }
-          }
-          if (!$scope.first_load)
-            $scope.loading = false;
-        } else
-          console.log(data.error.message);
-      });
+            if ($scope.tab == 2)
+              $scope.loading = false;
+          } else
+            console.log(data.error.message);
+        });
     };
     $scope.search_position();
   }
