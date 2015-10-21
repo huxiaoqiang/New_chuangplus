@@ -1590,8 +1590,8 @@ angular.module('chuangplus_mobile.controllers', [])
         $rootScope.loading = false;
     }
     ])
-    .controller('MB_PositionFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
-    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
+    .controller('MB_PositionFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope','$location',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope,$location) {
         console.log('MB_PositionFavorCtrl');
         $user.check_login();
         $scope.positions = {};
@@ -1614,6 +1614,9 @@ angular.module('chuangplus_mobile.controllers', [])
                 'hardware':'硬件',
                 'O2O':'O2O',
                 'others':'其它'
+        };
+        $scope.go_detail = function(id){
+            $location.path('/mobile/position/detail').search({'position_id':id});
         };
         $scope.get_userInfo = function(){
             $scope.userinfo = {};
@@ -1749,8 +1752,8 @@ angular.module('chuangplus_mobile.controllers', [])
             ); 
         };
     }])
-    .controller('MB_CompanyFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
-    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
+    .controller('MB_CompanyFavorCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope', '$location',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ,$location) {
         $user.check_login();
         $scope.company_list = {};
         $scope.position_type = {
@@ -1786,6 +1789,9 @@ angular.module('chuangplus_mobile.controllers', [])
                 'hardware':'硬件',
                 'O2O':'O2O',
                 'others':'其它'
+        };
+        $scope.go_detail = function(id){
+            $location.path('/mobile/company/detail').search({'company_id':id});
         };
         $scope.get_company_list = function(){
             $http.get(urls.api+"/account/userinfo/company/favor/list").
@@ -2147,8 +2153,8 @@ angular.module('chuangplus_mobile.controllers', [])
             }
         };
     }])
-    .controller('MB_PostListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope',
-    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope ) {
+    .controller('MB_PostListCtrl', ['$scope', '$http', 'urls', 'CsrfService', '$routeParams', 'NoticeService', 'UserService','ErrorService', '$rootScope', '$location',
+    function($scope, $http, urls, $csrf, $routeParams, $notice, $user, $errMsg, $rootScope,$location ) {
         console.log('MB_PostListCtrl');
         $user.check_login();
         $scope.positions = {};
@@ -2179,6 +2185,9 @@ angular.module('chuangplus_mobile.controllers', [])
         $scope.is_processed = {
             true:'HR已处理',
             false:'HR未处理'
+        };
+        $scope.go_detail = function(id){
+            $location.path('/mobile/position/detail').search({'position_id':id});
         };
         $scope.get_positions = function(){
             $http.get(urls.api+"/account/userinfo/position/submit/list").

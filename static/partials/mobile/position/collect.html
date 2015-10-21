@@ -14,7 +14,7 @@
             <div class="comp-list">
                 <div class="comp-listbox"  ng-repeat="position in positions" >
                     <div ng-class="{'closed': 'gray-mask', 'open': ''}[position.status]">
-                        <a href="/mobile/position/detail/[[position._id.$oid]]">
+                        <a ng-click="go_detail('[[position._id.$oid]]')">
                             <img class="comp-prev-img" src="/api/file/[[position.company.logo_id]]/download">
                             <div class="comp-info-block">
                                 <div class="comp-name">[[position.position_type_value]] | [[position.name]]</div>
