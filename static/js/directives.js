@@ -8,7 +8,7 @@ angular.module('chuangplus.directives', []).
             elm.text(version);
         };
     }]).
-    directive('onBlur', function(safeApply) {
+    directive('onBlur',['safeApply',function(safeApply) {
       return {
         restrict : 'A',
         link : function(scope, elm, attrs) {
@@ -17,8 +17,8 @@ angular.module('chuangplus.directives', []).
           });
         }
       };
-    }).
-    directive('onFocus', function(safeApply) {
+    }]).
+    directive('onFocus',['safeApply',function(safeApply) {
       return {
         restrict : 'A',
         link : function(scope, elm, attrs) {
@@ -27,8 +27,8 @@ angular.module('chuangplus.directives', []).
           });
         }
       };
-    }).
-    directive('onMouseover', function(safeApply) {
+    }]).
+    directive('onMouseover',['safeApply',function(safeApply) {
       return {
         restrict : 'A',
         link : function(scope, elm, attrs) {
@@ -37,8 +37,8 @@ angular.module('chuangplus.directives', []).
           });
         }
       };
-    }).
-    directive('onMouseout', function(safeApply) {
+    }]).
+    directive('onMouseout', ['safeApply', function(safeApply) {
       return {
         restrict : 'A',
         link : function(scope, elm, attrs) {
@@ -47,7 +47,7 @@ angular.module('chuangplus.directives', []).
           });
         }
       };
-    }).
+    }]).
     directive('myText', function() {
         return{
             restrict : 'E',
