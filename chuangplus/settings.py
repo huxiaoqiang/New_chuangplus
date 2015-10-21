@@ -24,7 +24,7 @@ DEBUG = False
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['angel.student.tsinghua.edu.cn']
+ALLOWED_HOSTS = ['angel.student.tsinghua.edu.cn','123.56.88.173']
 
 # Application definition
 
