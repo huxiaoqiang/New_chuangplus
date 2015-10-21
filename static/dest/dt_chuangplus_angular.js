@@ -745,24 +745,21 @@ angular.module('chuangplus.services', []).value('version', '0.1').service('CsrfS
       }
     };
   }
-]).filter('id2date', function () {
-  return function (value) {
-    var secs = parseInt(value.substring(0, 8), 16) * 1000;
-    var tmp_date = new Date(secs);
-    return tmp_date.getFullYear() + '\u5e74' + (tmp_date.getMonth() + 1) + '\u6708' + tmp_date.getDate() + '\u65e5';
-  };
-}).factory('safeApply', function ($rootScope) {
-  return function (scope, fn) {
-    var phase = scope.$root.$$phase;
-    if (phase == '$apply' || phase == '$digest') {
-      if (fn && typeof fn === 'function') {
-        fn();
+]).factory('safeApply', [
+  '$rootScope',
+  function ($rootScope) {
+    return function (scope, fn) {
+      var phase = scope.$root.$$phase;
+      if (phase == '$apply' || phase == '$digest') {
+        if (fn && typeof fn === 'function') {
+          fn();
+        }
+      } else {
+        scope.$apply(fn);
       }
-    } else {
-      scope.$apply(fn);
-    }
-  };
-});
+    };
+  }
+]);
 ;
 'use strict';
 /* Filters */
@@ -773,7 +770,13 @@ angular.module('chuangplus.filters', []).filter('interpolate', [
       return String(text).replace(/\%VERSION\%/gm, version);
     };
   }
-]);
+]).filter('id2date', function () {
+  return function (value) {
+    var secs = parseInt(value.substring(0, 8), 16) * 1000;
+    var tmp_date = new Date(secs);
+    return tmp_date.getFullYear() + '\u5e74' + (tmp_date.getMonth() + 1) + '\u6708' + tmp_date.getDate() + '\u65e5';
+  };
+});
 ;
 'use strict';
 /* Directives */
