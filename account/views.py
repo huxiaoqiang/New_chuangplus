@@ -711,6 +711,7 @@ def get_companyinfo_detail_with_positions(request,company_id):
         position_list = []
         position_type = []
         for position in companyinfo_re['positions']:
+            #TODO
             try:
                 position_info = Position.objects.get(id=position['$oid'])
             except DoesNotExist:

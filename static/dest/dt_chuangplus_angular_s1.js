@@ -3218,7 +3218,7 @@ angular.module('chuangplus.controllers', []).
                     $scope.company = data.data;
                     if($scope.company.homepage.indexOf("http://") == -1 && $scope.company.homepage.indexOf("https://") == -1)
                         $scope.company.homepage = "http://" + $scope.company.homepage;
-                    $scope.company.position_number = $scope.company.positions.length;
+                    $scope.company.position_number = $scope.position_list.length;
                     $scope.company.scale_value = $scope.scale[$scope.company.scale];
                     $scope.company.field_type = $scope.field_type[$scope.company.field];
                       $scope.company.position_type_value = {};
