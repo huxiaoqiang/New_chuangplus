@@ -25,7 +25,7 @@
                  <li ng-class = "{'active':header.resume}" ng-click="resume_active()"><a href="/intern/resume/view">查看简历</a></li>
                  {% endif %}
                  
-                  <li ng-class = "{'active':header.user}" class="dropmenu" on-mouseover="drop=true" ng-click="drop=true" on-mouseout="drop=false" >
+                  <li ng-class = "{'active':header.user}" class="dropmenu" on-mouseover="drop=true,search=false" ng-click="drop=true" on-mouseout="drop=false" >
                         <a href="#" class="dropmenu-toggle" style="text-overflow: ellipsis;width:126px;overflow: hidden;">[[username]]<b class="caret"></b></a>
 
                     {% if role == 1 %}
