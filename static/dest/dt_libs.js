@@ -1,4 +1,4 @@
-/*! chuangplus 2015-10-21 */
+/*! chuangplus 2015-10-22 */
 /*
     json2.js
     2015-02-25
