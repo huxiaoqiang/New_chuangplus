@@ -716,9 +716,10 @@ def get_companyinfo_detail_with_positions(request,company_id):
             except DoesNotExist:
                 re['error'] = error(260,'Position does not exist')
                 return HttpResponse(json.dumps(re), content_type = 'application/json')
-            position_list.append(json.loads(position_info.to_json()))
-            if position_info.position_type not in position_type:
-                position_type.append(position_info.position_type)
+            if position_info.status == 'open':
+                position_list.append(json.loads(position_info.to_json()))
+                if position_info.position_type not in position_type:
+                    position_type.append(position_info.position_type)
         re['data'] = companyinfo_re
         re['data']['position_list'] = position_list
         re['data']['position_type'] = position_type
