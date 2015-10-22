@@ -26,7 +26,7 @@ TEMPLATE_DEBUG = True
 #SESSION_COOKIE_SECURE = True
 #CSRF_COOKIE_SECURE = True
 
-ALLOWED_HOSTS = ['angel.student.tsinghua.edu.cn']
+ALLOWED_HOSTS = ['angel.student.tsinghua.edu.cn','123.56.88.173']
 
 # Application definition
 

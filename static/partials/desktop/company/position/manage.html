@@ -1,9 +1,9 @@
 <div id="container">
     <div id="position_manage">
-        <div ng-if="position_list == null">尚未发布任何职位
+        <div ng-if="position_list.length == 0">尚未发布任何职位
 
         </div>
-        <div ng-if="position_list != null">
+        <div ng-if="position_list.length != 0">
 <!--            <div class="head-button">
                 <input class="btn active" type="button" value="查看未处理">
                 <input class="btn" type="button" value="查看全部">

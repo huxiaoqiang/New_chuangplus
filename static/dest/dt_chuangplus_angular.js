@@ -1,4 +1,4 @@
-/*! chuangplus 2015-10-21 */
+/*! chuangplus 2015-10-22 */
 //front end configuration
 'use strict';
 // Declare app level module which depends on filters, and services
@@ -1096,6 +1096,10 @@ angular.module('chuangplus.controllers', []).controller('DT_HomepageCtrl', [
         'query': $scope.search_text,
         'type': '0'
       });  //            window.location.href="/search?query="++"&type=0&page=1";
+    };
+    $scope.show_menu = function () {
+      $scope.drop = true;
+      $scope.search = false;
     };
   }
 ]).controller('DT_NoHeaderCtrl', [

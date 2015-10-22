@@ -13,19 +13,9 @@ media/*
 
 requirements.txt
 
-requirements.txt
-
-requirements.txt
-
-requirements.txt
-
-requirements.txt
-
-requirements.txt
-
 API.md
 
-settings.py
+chuangplus/settings.py
 
 *.xml
 
