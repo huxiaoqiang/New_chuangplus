@@ -159,6 +159,10 @@ angular.module('chuangplus.controllers', []).
             $location.path('/search').search({'query':$scope.search_text,'type':'0'});
 //            window.location.href="/search?query="++"&type=0&page=1";
         };
+        $scope.show_menu = function(){
+            $scope.drop = true;
+            $scope.search = false;
+        };
     }]).
     controller('DT_NoHeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_NoHeaderCtrl');
