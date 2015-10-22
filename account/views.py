@@ -1517,14 +1517,18 @@ def get_company_list(request):
         for cpn in companies_re:
             position_type = []
             if 'positions' in cpn and  len(cpn['positions']) != 0:
+                positions = []
                 for p in cpn['positions']:
                     try:
                         position = Position.objects.get(id=p['$oid'])
                     except DoesNotExist:
                         re['error'] = error(260,'Position does not exist')
                         return HttpResponse(json.dumps(re), content_type = 'application/json')
-                    if position.status == 'open' and  position.position_type not in position_type:
-                        position_type.append(position.position_type)
+                    if position.status == 'open':
+                        positions.append(p)
+                        if position.position_type not in position_type:
+                            position_type.append(position.position_type)
+                cpn['positions'] = positions
             else:
                 cpn['positions'] = []
             cpn['position_type'] = position_type
