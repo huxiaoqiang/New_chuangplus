@@ -23,8 +23,8 @@ SECRET_KEY = 'hlx@non!799vl^7!=y$z)oojr44ynn23-3-xr*i3ekj3k(r@kn'
 DEBUG = True
 
 TEMPLATE_DEBUG = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+#SESSION_COOKIE_SECURE = True
+#CSRF_COOKIE_SECURE = True
 
 ALLOWED_HOSTS = ['angel.student.tsinghua.edu.cn']
 
