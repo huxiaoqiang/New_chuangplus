@@ -990,6 +990,7 @@ def get_company_favor(request):
             try:
                 company = Companyinfo.objects.get(id = item.company.id)
                 company_re = json.loads(company.to_json())
+                del company_re['username']
                 position_type = []
                 if 'positions' in company_re and len(company_re['positions']) != 0:
                     for p in company_re['positions']:
@@ -1516,6 +1517,7 @@ def get_company_list(request):
         companies = companies[(page - 1) * POSITIONS_PER_PAGE: page * POSITIONS_PER_PAGE]
         companies_re = json.loads(companies.to_json())
         for cpn in companies_re:
+            del cpn['username']
             position_type = []
             if 'positions' in cpn and  len(cpn['positions']) != 0:
                 positions = []
