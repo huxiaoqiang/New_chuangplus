@@ -1155,7 +1155,7 @@ angular.module('chuangplus.controllers', []).controller('DT_HomepageCtrl', [
             if (data.completive == '1')
               setTimeout(function () {
                 if ($rootScope.dt_login_url != undefined)
-                  $location.path($rootScope.dt_login_url);
+                  window.location.href = $rootScope.dt_login_url;
                 else
                   window.location.href = '/';
               }, 1000);
@@ -2472,7 +2472,7 @@ angular.module('chuangplus.controllers', []).controller('DT_HomepageCtrl', [
           $scope.error = $errMsg.format_error('\u4e2a\u4eba\u4fe1\u606f\u8bbe\u7f6e\u6210\u529f', data.error);
           setTimeout(function () {
             if ($rootScope.dt_login_url != undefined)
-              $location.path($rootScope.dt_login_url);
+              window.location.href = $rootScope.dt_login_url;
             else
               window.location.href = '/';
           }, 500);

@@ -199,7 +199,7 @@ angular.module('chuangplus.controllers', []).
                             if(data.completive == '1')
                                 setTimeout(function(){
                                     if($rootScope.dt_login_url != undefined)
-                                        $location.path($rootScope.dt_login_url);
+                                         window.location.href = $rootScope.dt_login_url;
                                     else
                                         window.location.href='/';
                             },1000);
@@ -1897,7 +1897,7 @@ angular.module('chuangplus.controllers', []).
               $scope.error = $errMsg.format_error('个人信息设置成功',data.error);
               setTimeout(function(){
                                     if($rootScope.dt_login_url != undefined)
-                                        $location.path($rootScope.dt_login_url);
+                                        window.location.href= $rootScope.dt_login_url;
                                     else
                                         window.location.href='/';
               },500);
