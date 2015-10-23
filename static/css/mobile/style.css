@@ -502,11 +502,35 @@ a:hover {
   top: 10px;
   right: 10px;
   color: #8F4E96;
+  background: url('/static/image/icon/v.png') no-repeat right 0px center;
+  padding-right: 16px;
+  background-size: 15px 15px;
+}
+.comp-req-title span {
+  font-size: 12px;
+  background: url('/static/image/icon/v.png') no-repeat left;
+  padding-left: 16px;
+  background-position-y: 3px;
+  background-position-x: 3px;
+  margin-right: 13px;
+  background-size: 13px 13px;
+  display: -webkit-inline-box;
 }
 .comp-listbox .comp-name {
   line-height: 18px;
   font-size: 15px;
+  color: #8F4E96;
   overflow: hidden;
+}
+.comp-listbox .comp-name span {
+  font-size: 12px;
+  background: url('/static/image/icon/v.png') no-repeat left;
+  padding-left: 16px;
+  background-position-y: 2px;
+  background-position-x: 3px;
+  margin-right: 13px;
+  background-size: 13px 13px;
+  display: -webkit-inline-box;
 }
 .comp-listbox .comp-desc {
   line-height: 18px;
