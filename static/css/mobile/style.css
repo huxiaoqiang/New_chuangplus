@@ -908,6 +908,10 @@ ul {
 .comp-listbox table {
   font-size: 12px;
 }
+.comp-listbox table td a {
+  text-decoration: underline;
+  color: blue;
+}
 .comp-listbox tr:last-of-type .fi-cond item {
   display: block;
   margin-bottom: 0;
