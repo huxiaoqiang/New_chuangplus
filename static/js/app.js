@@ -106,7 +106,8 @@ angular.module('chuangplus', [
         if($user.username() == undefined && $location.path() != '/login' && $location.path() != '/register' && $location.path() != '/intern/information'
             && $location.path() != '/company/list' && $location.path() != '/position/list' && $location.path() != '/'  && $location.path() != '/search')
         {
-            window.location.href='/login';
+            $rootScope.dt_login_url = $location.path();
+            $location.path('/login');
             return;
         }
         if($location.path() != '/intern/information' && $location.path() != '/login' && $location.path() != '/register')

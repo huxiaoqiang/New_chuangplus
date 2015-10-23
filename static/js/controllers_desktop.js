@@ -197,7 +197,12 @@ angular.module('chuangplus.controllers', []).
                             setTimeout(function(){window.location.href='/'},1000);
                         else{
                             if(data.completive == '1')
-                                setTimeout(function(){window.location.href='/'},1000);
+                                setTimeout(function(){
+                                    if($rootScope.dt_login_url != undefined)
+                                        $location.path($rootScope.dt_login_url);
+                                    else
+                                        window.location.href='/';
+                            },1000);
                             else
                                 $location.url('/intern/information');
                         }
@@ -1880,8 +1885,8 @@ angular.module('chuangplus.controllers', []).
     controller('DT_AboutCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService', function($scope, $http, $csrf, urls, $filter, $routeParams, $user){
         console.log('DT_AboutCtrl');
     }]).
-    controller('DT_InformationCtrl',['$scope', '$http', 'CsrfService', 'urls','$rootScope','UserService','ErrorService',
-      function($scope, $http, $csrf, urls,$rootScope,$user,$errMsg){
+    controller('DT_InformationCtrl',['$scope', '$http', 'CsrfService', 'urls','$rootScope','UserService','ErrorService','$location',
+      function($scope, $http, $csrf, urls,$rootScope,$user,$errMsg, $location){
       console.log('DT_InformationCtrl');
       $scope.infos = {};
       $scope.info_user = function(){
@@ -1890,7 +1895,12 @@ angular.module('chuangplus.controllers', []).
           success(function(data){
             if (data.error.code == 1){
               $scope.error = $errMsg.format_error('个人信息设置成功',data.error);
-              setTimeout(function(){window.location.href='/'},500);
+              setTimeout(function(){
+                                    if($rootScope.dt_login_url != undefined)
+                                        $location.path($rootScope.dt_login_url);
+                                    else
+                                        window.location.href='/';
+              },500);
             }
             else{
               console.log(data.error.message);
