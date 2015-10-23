@@ -9,6 +9,7 @@
                 <div class="header"> 我的投递</div>
             </div> 
 
+            <div ng-show="!$root.loading">
             <a ng-show="positions.length == 0" class="empty-block" href="/mobile/position/list">
                 <div class="empty-title">
                     你还没有投递任何岗位
@@ -56,6 +57,7 @@
                         </div>
                     </div>
                 </a>
+            </div>
             </div>
         </div>
     </div>

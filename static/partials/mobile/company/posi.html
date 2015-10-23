@@ -1,82 +1,84 @@
 <div ng-controller="MB_CompanyPositionCtrl">
-<div class="notice-bar">
-    notice
-</div>
-<div class="main-content scrollable" >
-<div class="scrollable-content">
-    <div class="header-bar">
-        <div class="logo sidebar-toggle" ui-toggle="uiSidebarLeft">
-                <i class="fa fa-bars" style="color: white;"></i>
+    <div class="notice-bar">
+        notice
+    </div>
+    <div class="main-content scrollable" >
+        <div class="scrollable-content">
+            <div class="header-bar">
+                <div class="logo sidebar-toggle" ui-toggle="uiSidebarLeft">
+                        <i class="fa fa-bars" style="color: white;"></i>
+                </div>
+                <a class="right-btn" href="/mobile/index" >
+                        <i class="fa fa-home"></i>
+                </a>
+                <div ng-include="'/static/partials/mobile/partials/sidebar-left.html'" ></div>
+                <div class="header"> 犀牛·帮你找实习</div>
+            </div>    
+
+
+            <div ng-show="!$root.loading">
+                <div class="comp-detail">
+                    <div class="comp-listbox " >
+                        <img class="comp-title-img" src="/api/file/[[company.logo_id]]/download">
+
+                        <div style="display: block;position: relative;left: 104px; padding-right: 111px;">
+                        <div class="comp-name">[[company.abbreviation]]<span ng-if="company.is_auth" style="font-size: 12px;color: #8F4E96;"> | [[company.auth_organization]]认证</span></div>
+                        <div class="comp-desc">[[company.brief_introduction]]</div>
+                        <div class="comp-desc-list">
+                            <span class="comp-desc-tag">
+                                [[company.field_value]]
+                            </span>
+                            <span class="comp-desc-tag">
+                                [[company.scale_value]]期
+                            </span>
+                            <span class="comp-desc-tag">
+                                [[company.city]]
+                            </span>
+                        </div>
+
+                        <div class="comp-req-list">
+                            <span class="comp-req-title">[[company.positions.length]]岗位在招</span>
+                            <span class="comp-req-tag" ng-repeat="tag in company.position_type_value">[[tag]]</span>
+                        </div>
+
+                        <div class="comp-benefit-list">
+                            <span class="comp-benefit-tag" ng-repeat="tag in company.welfare_tags">[[tag]]</span>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="comp-posi-list">
+                    <a ng-repeat="position in company.position_list" class="comp-posi-block" ng-click="go_detail_position('[[position._id.$oid]]')" >
+                        <div class="comp-posi-detail"> 查看岗位详情 <i class="fa fa-chevron-right "></i> </div>
+                        <div class="comp-posi-title">
+                            [[position.position_type_value]] / [[position.name]]
+                        </div>
+                        <div class="comp-desc-list">
+                            <span class="comp-desc-tag" ng-if="position.part_or_full_time == 0">
+                                实习[[position.days_per_week]]天/周
+                            </span>
+                            <span class="comp-desc-tag" ng-if="position.part_or_full_time == 1">
+                                全职
+                            </span>
+                            <span class="comp-desc-tag">
+                                [[position.salary_min]]K-[[position.salary_max]]K
+                            </span>
+                            <span class="comp-desc-tag" ng-if="position.part_or_full_time == 0 && position.internship_time != 0">
+                                至少工作[[position.internship_time]]个月
+                            </span>
+                        </div>
+                    </a>
+                </div>
+                <div ng-if="company.position_list.length == 0" style="text-align: center;padding-top: 10px;font-size: 14px;background: white;">
+                    该公司尚未发布任何职位~
+                </div>
+            </div>
         </div>
-        <a class="right-btn" href="/mobile/index" >
-                <i class="fa fa-home"></i>
-        </a>
-        <div ng-include="'/static/partials/mobile/partials/sidebar-left.html'" ></div>
-        <div class="header"> 犀牛·帮你找实习</div>
-    </div>    
-
-
-    <div class="comp-detail">
-        <div class="comp-listbox " >
-            <img class="comp-title-img" src="/api/file/[[company.logo_id]]/download">
-
-            <div style="display: block;position: relative;left: 104px; padding-right: 111px;">
-            <div class="comp-name">[[company.abbreviation]]<span ng-if="company.is_auth" style="font-size: 12px;color: #8F4E96;"> | [[company.auth_organization]]认证</span></div>
-            <div class="comp-desc">[[company.brief_introduction]]</div>
-            <div class="comp-desc-list">
-                <span class="comp-desc-tag">
-                    [[company.field_value]]
-                </span>
-                <span class="comp-desc-tag">
-                    [[company.scale_value]]期
-                </span>
-                <span class="comp-desc-tag">
-                    [[company.city]]
-                </span>
-            </div>
-
-            <div class="comp-req-list">
-                <span class="comp-req-title">[[company.positions.length]]岗位在招</span>
-                <span class="comp-req-tag" ng-repeat="tag in company.position_type_value">[[tag]]</span>
-            </div>
-
-            <div class="comp-benefit-list">
-                <span class="comp-benefit-tag" ng-repeat="tag in company.welfare_tags">[[tag]]</span>
-            </div>
-            </div>
-        </div>
     </div>
-
-
-    <div class="comp-posi-list">
-        <a ng-repeat="position in company.position_list" class="comp-posi-block" ng-click="go_detail_position('[[position._id.$oid]]')" >
-            <div class="comp-posi-detail"> 查看岗位详情 <i class="fa fa-chevron-right "></i> </div>
-            <div class="comp-posi-title">
-                [[position.position_type_value]] / [[position.name]]
-            </div>
-            <div class="comp-desc-list">
-                <span class="comp-desc-tag" ng-if="position.part_or_full_time == 0">
-                    实习[[position.days_per_week]]天/周
-                </span>
-                <span class="comp-desc-tag" ng-if="position.part_or_full_time == 1">
-                    全职
-                </span>
-                <span class="comp-desc-tag">
-                    [[position.salary_min]]K-[[position.salary_max]]K
-                </span>
-                <span class="comp-desc-tag" ng-if="position.part_or_full_time == 0 && position.internship_time != 0">
-                    至少工作[[position.internship_time]]个月
-                </span>
-            </div>
-        </a>
+    <div class="navbar navbar-app navbar-absolute-bottom">
+        <a class="nav-bar-2 selected" ng-click="go_detail_company()">返回公司</a>
+        <a class="nav-bar-2 " ng-click="post()">[[post_value]]</a>
     </div>
-    <div ng-if="company.position_list.length == 0" style="text-align: center;padding-top: 10px;font-size: 14px;background: white;">
-        该公司尚未发布任何职位~
-    </div>
-</div>
-</div>
-<div class="navbar navbar-app navbar-absolute-bottom">
-    <a class="nav-bar-2 selected" ng-click="go_detail_company()">返回公司</a>
-    <a class="nav-bar-2 " ng-click="post()">[[post_value]]</a>
-</div>
 </div>

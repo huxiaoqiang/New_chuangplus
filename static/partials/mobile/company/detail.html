@@ -18,6 +18,7 @@
         <div class="header"> 公司详情</div>
     </div>    
 
+    <div ng-show="!$root.loading">
     <div class="comp-detail " >
         <a class="comp-listbox no-margin" href="/mobile/company/posi/[[company_id]]">
             <img class="comp-title-img" src="/api/file/[[company.logo_id]]/download">
@@ -139,6 +140,7 @@
         </div>
 
 
+    </div>
     </div>
 </div>
 </div>

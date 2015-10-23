@@ -17,125 +17,128 @@
                 <div ng-include="'/static/partials/mobile/partials/sidebar-left.html'" ></div>
                 <div class="header"> 职位详情</div>
             </div>    
-            <div class="comp-detail">
-                    <div class="posi-detail padding">
 
-                        <div class="detail-name">[[position.position_type_value]] / [[position.name]]</div>
-                        <div class="post-time-corner">
-                            发布时间：[[position.release_time.$date |date :'yyyy/MM/dd']]
-                        </div>
-                        <div class="posi-condition"> 
-                            <div class="posi-condition-elem" ng-if="position.status == 'open'">
-                                职位在招
+            <div ng-show="!$root.loading">
+                <div class="comp-detail">
+                        <div class="posi-detail padding">
+
+                            <div class="detail-name">[[position.position_type_value]] / [[position.name]]</div>
+                            <div class="post-time-corner">
+                                发布时间：[[position.release_time.$date |date :'yyyy/MM/dd']]
                             </div>
-                            <div class="posi-condition-elem" ng-if="position.status == 'closed'">
-                                职位关闭
+                            <div class="posi-condition"> 
+                                <div class="posi-condition-elem" ng-if="position.status == 'open'">
+                                    职位在招
+                                </div>
+                                <div class="posi-condition-elem" ng-if="position.status == 'closed'">
+                                    职位关闭
+                                </div>
+
+                                <div class="posi-condition-elem">
+                                    [[position.submit_num]]人已投递
+                                </div>
                             </div>
-
-                            <div class="posi-condition-elem">
-                                [[position.submit_num]]人已投递
+                            <div class="comp-desc-list">
+                                <span class="comp-desc-tag">
+                                    [[position.field_value]]
+                                </span>
+                                <span class="comp-desc-tag">
+                                    [[position.scale_value]]期
+                                </span>
+                                <span class="comp-desc-tag">
+                                    [[position.company.city]]
+                                </span>
                             </div>
-                        </div>
-                        <div class="comp-desc-list">
-                            <span class="comp-desc-tag">
-                                [[position.field_value]]
-                            </span>
-                            <span class="comp-desc-tag">
-                                [[position.scale_value]]期
-                            </span>
-                            <span class="comp-desc-tag">
-                                [[position.company.city]]
-                            </span>
-                        </div>
-                        <div class="comp-desc-list">
-                            <span class="comp-desc-tag" ng-if="position.part_or_full_time == 0">
-                                实习[[position.days_per_week]]天/周
-                            </span>
-                            <span class="comp-desc-tag" ng-if="position.part_or_full_time == 1">
-                                全职
-                            </span>
-                            <span class="comp-desc-tag">
-                                [[position.salary_min]]K-[[position.salary_max]]K
-                            </span>
-                            <span class="comp-desc-tag" ng-if="position.part_or_full_time == 0 && position.internship_time != 0">
-                                至少工作[[position.internship_time]]个月
-                            </span>
-                        </div>
-                        <!--
-                        <div class="comp-benefit-list">
-                            <div class="comp-benefit-tag">
-                                班车接送xx
+                            <div class="comp-desc-list">
+                                <span class="comp-desc-tag" ng-if="position.part_or_full_time == 0">
+                                    实习[[position.days_per_week]]天/周
+                                </span>
+                                <span class="comp-desc-tag" ng-if="position.part_or_full_time == 1">
+                                    全职
+                                </span>
+                                <span class="comp-desc-tag">
+                                    [[position.salary_min]]K-[[position.salary_max]]K
+                                </span>
+                                <span class="comp-desc-tag" ng-if="position.part_or_full_time == 0 && position.internship_time != 0">
+                                    至少工作[[position.internship_time]]个月
+                                </span>
                             </div>
-                            <div class="comp-benefit-tag">
-                                午餐补助
+                            <!--
+                            <div class="comp-benefit-list">
+                                <div class="comp-benefit-tag">
+                                    班车接送xx
+                                </div>
+                                <div class="comp-benefit-tag">
+                                    午餐补助
+                                </div>
                             </div>
+                            -->
                         </div>
-                        -->
-                    </div>
-                    <div class="comp-map padding">
-                        <div class="icon">
-                        <i class="fa fa-map-marker"></i>
+                        <div class="comp-map padding">
+                            <div class="icon">
+                            <i class="fa fa-map-marker"></i>
+                            </div>
+                            <div class="addr"> [[position.work_address]] </div>
+                            
                         </div>
-                        <div class="addr"> [[position.work_address]] </div>
-                        
-                    </div>
-            </div>
-
-            <div class="comp-detail">
-                <a class="comp-listbox no-margin" ng-click="go_detail()" >
-                    <img class="comp-prev-img" src="/api/file/[[position.company.logo_id]]/download">
-                    <div ng-if="position.company.is_auth" class="comp-auth">[[position.company.auth_organization]]认证</div>
-                    <div class="comp-more-info" >查看<br>公司<img src="/static/image/icon/jiantou.png"></div>
-                    <div class="comp-info-block">
-                        <div class="comp-name">[[position.company.abbreviation]]</div>
-                        <div class="comp-desc">[[position.company.brief_introduction]]</div>
-
-                        <div class="comp-req-list">
-                            <span class="comp-req-title">[[position.position_number]]岗位在招</span>
-                            <span class="comp-req-tag" ng-repeat="tag in position.company.position_type_value">[[tag]]</span>
-                        </div>
-                        <div class="comp-desc-list">
-                            <span class="comp-desc-tag">
-                                [[position.field_value]]
-                            </span>
-                            <span class="comp-desc-tag">
-                                [[position.scale_value]]期
-                            </span>
-                            <span class="comp-desc-tag">
-                                [[position.company.city]]
-                            </span>
-                        </div>
-
-                        <div class="comp-benefit-list">
-                            <span class="comp-benefit-tag" ng-repeat="tag in position.company.welfare_tags">[[tag]]</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="detail-desc padding">
-                <div class="desc-block">
-                    <span class="desc-title">
-                        工作内容
-                    </span>
-                    <span class="desc-content">
-                        <div class="value">
-                            <my-text text="position.position_description" ></my-text>
-                        </div>
-                    </span>
                 </div>
 
-                <div class="desc-block">
-                    <span class="desc-title">
-                        职位要求
-                    </span>
-                    <span class="desc-content">
-                        <div class="value">
-                        <my-text text="position.position_request" ></my-text>
-                    </div>
-                    </span>
+                <div class="comp-detail">
+                    <a class="comp-listbox no-margin" ng-click="go_detail()" >
+                        <img class="comp-prev-img" src="/api/file/[[position.company.logo_id]]/download">
+                        <div ng-if="position.company.is_auth" class="comp-auth">[[position.company.auth_organization]]认证</div>
+                        <div class="comp-more-info" >查看<br>公司<img src="/static/image/icon/jiantou.png"></div>
+                        <div class="comp-info-block">
+                            <div class="comp-name">[[position.company.abbreviation]]</div>
+                            <div class="comp-desc">[[position.company.brief_introduction]]</div>
+
+                            <div class="comp-req-list">
+                                <span class="comp-req-title">[[position.position_number]]岗位在招</span>
+                                <span class="comp-req-tag" ng-repeat="tag in position.company.position_type_value">[[tag]]</span>
+                            </div>
+                            <div class="comp-desc-list">
+                                <span class="comp-desc-tag">
+                                    [[position.field_value]]
+                                </span>
+                                <span class="comp-desc-tag">
+                                    [[position.scale_value]]期
+                                </span>
+                                <span class="comp-desc-tag">
+                                    [[position.company.city]]
+                                </span>
+                            </div>
+
+                            <div class="comp-benefit-list">
+                                <span class="comp-benefit-tag" ng-repeat="tag in position.company.welfare_tags">[[tag]]</span>
+                            </div>
+                        </div>
+                    </a>
                 </div>
 
+                <div class="detail-desc padding">
+                    <div class="desc-block">
+                        <span class="desc-title">
+                            工作内容
+                        </span>
+                        <span class="desc-content">
+                            <div class="value">
+                                <my-text text="position.position_description" ></my-text>
+                            </div>
+                        </span>
+                    </div>
+
+                    <div class="desc-block">
+                        <span class="desc-title">
+                            职位要求
+                        </span>
+                        <span class="desc-content">
+                            <div class="value">
+                            <my-text text="position.position_request" ></my-text>
+                        </div>
+                        </span>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>

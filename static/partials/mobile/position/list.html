@@ -13,6 +13,7 @@
             <div ng-include="'/static/partials/mobile/partials/sidebar-left.html'" ></div>
             <div class="header"> 犀牛 | 创业企业实习</div>
         </div>    
+        
         <div id="filter-content1" class="filter-content">
             <div class="padding">
                 <div class="filter-squ">
@@ -152,73 +153,76 @@
             </div>
 
         </div>
-
-        <div id="list-content" ng-show="!filter_show">
-            <div class="require-bar">
-                <div class="requires">
-                    <div class="require-box elem-width-4" ng-click="show_filter(1)">[[workdays_notice]] <i class="fa" ng-class="{'fa-caret-down':filter_now != 1, 'fa-caret-up':filter_now == 1}"></i></div>
-                    <div class="require-box elem-width-4" ng-click="show_filter(2)">[[salary_notice]] <i class="fa "ng-class="{'fa-caret-down':filter_now != 2, 'fa-caret-up':filter_now == 2}"></i></div>
-                    <div class="require-box elem-width-4" ng-click="show_filter(3)">[[filed_notice]] <i class="fa" ng-class="{'fa-caret-down':filter_now != 3, 'fa-caret-up':filter_now == 3}"></i></div>
-                    <div class="require-box elem-width-4" ng-click="show_filter(4)">[[type_notice]] <i class="fa" ng-class="{'fa-caret-down':filter_now != 4, 'fa-caret-up':filter_now == 4}"></i></div>
-                </div>
-                <!--
-                    <div class="require-btn" ng-click="show_filter()">&nbsp;</div>
-                -->
+        <div class="require-bar">
+            <div class="requires">
+                <div class="require-box elem-width-4" ng-click="show_filter(1)">[[workdays_notice]] <i class="fa" ng-class="{'fa-caret-down':filter_now != 1, 'fa-caret-up':filter_now == 1}"></i></div>
+                <div class="require-box elem-width-4" ng-click="show_filter(2)">[[salary_notice]] <i class="fa "ng-class="{'fa-caret-down':filter_now != 2, 'fa-caret-up':filter_now == 2}"></i></div>
+                <div class="require-box elem-width-4" ng-click="show_filter(3)">[[filed_notice]] <i class="fa" ng-class="{'fa-caret-down':filter_now != 3, 'fa-caret-up':filter_now == 3}"></i></div>
+                <div class="require-box elem-width-4" ng-click="show_filter(4)">[[type_notice]] <i class="fa" ng-class="{'fa-caret-down':filter_now != 4, 'fa-caret-up':filter_now == 4}"></i></div>
             </div>
+            <!--
+                <div class="require-btn" ng-click="show_filter()">&nbsp;</div>
+            -->
+        </div>
 
-            <div class="search-bar">
-                <form ng-submit="submit_search()">
-                      <input class=" search-input form-control" type="text" ng-model="filter.search_name" placeholder="输入关键词进行搜索">
-                      <a class="search-btn" ng-click="submit_search()"><i class="fa fa-search"></i>搜索</a>
-                </form>
-            </div>
+        <div class="search-bar">
+            <form ng-submit="submit_search()">
+                  <input class=" search-input form-control" type="text" ng-model="filter.search_name" placeholder="输入关键词进行搜索">
+                  <a class="search-btn" ng-click="submit_search()"><i class="fa fa-search"></i>搜索</a>
+            </form>
+        </div>
 
-            <div class="comp-list" >
-                <div ng-repeat="position in positions" on-finish-render-filters>
-                    <a class="comp-listbox" ng-click="go_detail('[[position._id.$oid]]')" >
-                        <img class="comp-more-info-arrow" src="/static/image/icon/jiantou.png">
-                        <img class="comp-prev-img" ng-src="/api/file/[[position.company.logo_id]]/download">
-                        <div class="comp-list-info-block">
-                            <div class="comp-name">[[position.position_type_value]] | [[position.name]]</div>
+        
+        <div ng-show="!$root.loading">
+            <div id="list-content" ng-show="!filter_show">
 
-                            <div class="comp-req-list">
-                                <div class="comp-req-title">[[position.company.abbreviation]] <div ng-if="position.company.is_auth" style="display: -webkit-inline-box;">|</div><span ng-if="position.company.is_auth" style="font-size: 12px;color: #8F4E96;"> [[position.company.auth_organization]]认证</span></div>
+                <div class="comp-list" >
+                    <div ng-repeat="position in positions" on-finish-render-filters>
+                        <a class="comp-listbox" ng-click="go_detail('[[position._id.$oid]]')" >
+                            <img class="comp-more-info-arrow" src="/static/image/icon/jiantou.png">
+                            <img class="comp-prev-img" ng-src="/api/file/[[position.company.logo_id]]/download">
+                            <div class="comp-list-info-block">
+                                <div class="comp-name">[[position.position_type_value]] | [[position.name]]</div>
+
+                                <div class="comp-req-list">
+                                    <div class="comp-req-title">[[position.company.abbreviation]] <div ng-if="position.company.is_auth" style="display: -webkit-inline-box;">|</div><span ng-if="position.company.is_auth" style="font-size: 12px;color: #8F4E96;"> [[position.company.auth_organization]]认证</span></div>
+                                </div>
+                                <div class="comp-desc">[[position.company.brief_introduction]]</div>
+
+                                <div class="comp-desc-list">
+                                    <span class="comp-desc-tag" ng-if="position.part_or_full_time == 0">
+                                        实习[[position.days_per_week]]天/周
+                                    </span>
+                                    <span class="comp-desc-tag" ng-if="position.part_or_full_time == 1">
+                                        全职
+                                    </span>
+                                    <span class="comp-desc-tag">
+                                        [[position.salary_min]]K-[[position.salary_max]]K
+                                    </span>
+                                    <span class="comp-desc-tag">
+                                        [[position.field_value]]
+                                    </span>
+                                    <span class="comp-desc-tag">
+                                        [[position.company.scale_value]]期
+                                    </span>
+                                    <span class="comp-desc-tag">
+                                        [[position.company.city]]
+                                    </span>
+                                </div>
+
+                                <div class="post-time">
+                                    发布时间：[[position.release_time.$date |date :'yyyy/MM/dd']]
+                                </div>
                             </div>
-                            <div class="comp-desc">[[position.company.brief_introduction]]</div>
-
-                            <div class="comp-desc-list">
-                                <span class="comp-desc-tag" ng-if="position.part_or_full_time == 0">
-                                    实习[[position.days_per_week]]天/周
-                                </span>
-                                <span class="comp-desc-tag" ng-if="position.part_or_full_time == 1">
-                                    全职
-                                </span>
-                                <span class="comp-desc-tag">
-                                    [[position.salary_min]]K-[[position.salary_max]]K
-                                </span>
-                                <span class="comp-desc-tag">
-                                    [[position.field_value]]
-                                </span>
-                                <span class="comp-desc-tag">
-                                    [[position.company.scale_value]]期
-                                </span>
-                                <span class="comp-desc-tag">
-                                    [[position.company.city]]
-                                </span>
-                            </div>
-
-                            <div class="post-time">
-                                发布时间：[[position.release_time.$date |date :'yyyy/MM/dd']]
-                            </div>
-                        </div>
+                        </a>
+                    </div>
+                    <a class="load-more-btn" ng-click="load_more_item()" ng-show="pagenow > 0">
+                        <div ng-show="!more_loading">点击加载更多</div>
+                        <div ng-show="more_loading">正在加载 <i class="fa fa-spinner fa-spin" ></i></div>
                     </a>
-                </div>
-                <a class="load-more-btn" ng-click="load_more_item()" ng-show="pagenow > 0">
-                    <div ng-show="!more_loading">点击加载更多</div>
-                    <div ng-show="more_loading">正在加载 <i class="fa fa-spinner fa-spin" ></i></div>
-                </a>
-                <div class="no-more-btn" ng-show="pagenow <= 0">
-                    没有更多了
+                    <div class="no-more-btn" ng-show="pagenow <= 0">
+                        没有更多了
+                    </div>
                 </div>
             </div>
         </div>
