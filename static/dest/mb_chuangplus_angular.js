@@ -1,4 +1,4 @@
-/*! chuangplus 2015-10-22 */
+/*! chuangplus 2015-10-23 */
 // 
 // Here is how to define your module 
 // has dependent on mobile-angular-ui
@@ -1993,7 +1993,6 @@ angular.module('chuangplus_mobile.controllers', []).controller('MB_CompanyListCt
     };
     $scope.go_detail = function (id) {
       $location.path('/mobile/position/detail').search({ 'position_id': id });
-      alert(id);
     };
     $scope.get_userInfo = function () {
       $scope.userinfo = {};
