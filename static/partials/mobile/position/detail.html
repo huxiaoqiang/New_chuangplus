@@ -148,7 +148,7 @@
         <a ng-if="!is_login" class="nav-bar-2 selected" ng-click="notice('请先登录')">[[is_submit]]</a>
         <a ng-click="post()" class="nav-bar-2 ">[[post_value]]</a>
     </div>
-    <div ui-content-for="overlays">
+    <div ng-if="is_login && !resume_compelete" ui-content-for="overlays">
         <div class="modal" ui-if='addresume' ui-state='addresume'>
           <div class="modal-backdrop in"></div>
           <div class="modal-dialog">
@@ -169,7 +169,7 @@
           </div>
         </div>
     </div>
-    <div ui-content-for="overlays">
+    <div ng-if="is_login && resume_compelete" ui-content-for="overlays">
         <div class="modal" ui-if='submitresume' ui-state='submitresume'>
           <div class="modal-backdrop in"></div>
           <div class="modal-dialog">
