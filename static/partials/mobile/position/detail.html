@@ -144,30 +144,50 @@
     </div>
     <div class="navbar navbar-app navbar-absolute-bottom">
         <a ng-if="is_login && !resume_compelete" class="nav-bar-2 selected" ui-turn-on="addresume">[[is_submit]]</a>
-        <a ng-if="is_login && resume_compelete" class="nav-bar-2 selected" ng-click="submit_posi()">[[is_submit]]</a>
+        <a ng-if="is_login && resume_compelete" class="nav-bar-2 selected" ui-turn-on="submitresume">[[is_submit]]</a>
         <a ng-if="!is_login" class="nav-bar-2 selected" ng-click="notice('请先登录')">[[is_submit]]</a>
         <a ng-click="post()" class="nav-bar-2 ">[[post_value]]</a>
     </div>
     <div ui-content-for="overlays">
         <div class="modal" ui-if='addresume' ui-state='addresume'>
-  <div class="modal-backdrop in"></div>
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button class="close" 
-                ui-turn-off="addresume">&times;</button>
-        <h4 class="modal-title">您的简历信息不完善</h4>
-      </div>
-      <div class="modal-body">
-        <p>是否跳转到简历编辑页面？</p>
-      </div>
-      <div class="modal-footer">
-        <a ui-turn-off="addresume" class="btn btn-primary" ng-href="/mobile/home/editresume/[[position_id]]">确认</a>
-        <button ui-turn-off="addresume" class="btn btn-default">取消</button>
-      </div>
+          <div class="modal-backdrop in"></div>
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button class="close" 
+                        ui-turn-off="addresume">&times;</button>
+                <h4 class="modal-title">您的简历信息不完善</h4>
+              </div>
+              <div class="modal-body">
+                <p>是否跳转到简历编辑页面？</p>
+              </div>
+              <div class="modal-footer">
+                <a ui-turn-off="addresume" class="btn btn-primary" ng-href="/mobile/home/editresume/[[position_id]]">确认</a>
+                <button ui-turn-off="addresume" class="btn btn-default">取消</button>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
-  </div>
-</div>
-
+    <div ui-content-for="overlays">
+        <div class="modal" ui-if='submitresume' ui-state='submitresume'>
+          <div class="modal-backdrop in"></div>
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button class="close" 
+                        ui-turn-off="submitresume">&times;</button>
+                <h4 class="modal-title">确认投递简历</h4>
+              </div>
+              <div class="modal-body">
+                <p>是否确认投递[[position.position_type_value]] / [[position.name]]？</p>
+              </div>
+              <div class="modal-footer">
+                <a ui-turn-off="submitresume" class="btn btn-primary" ng-click="submit_posi()">确认</a>
+                <button ui-turn-off="submitresume" class="btn btn-default">取消</button>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
 </div>
