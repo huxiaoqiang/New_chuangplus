@@ -2559,12 +2559,16 @@ angular.module('chuangplus.controllers', []).
             });
         };
         $scope.change_in = function(){
-            if(!$scope.favor_exist)
+            if(!$scope.favor_exist){
                 $scope.img_src = "/static/image/icon/shoucang2-01.png";
+                $scope.post_value = '取消收藏';
+            }
         };
         $scope.change_out = function(){
-            if(!$scope.favor_exist)
+            if(!$scope.favor_exist){
                 $scope.img_src = "/static/image/icon/shoucang-01.png";
+                $scope.post_value = '已收藏';
+            }
         };
         $scope.change2_in = function(){
             $scope.img2_src="/static/image/icon/weixin2-01.png";
@@ -3210,10 +3214,17 @@ angular.module('chuangplus.controllers', []).
             });
         };
         $scope.change_in = function(){
-            $scope.img_src = "/static/image/icon/shoucang2-01.png";
+            if(!$scope.favored){
+                $scope.img_src = "/static/image/icon/shoucang2-01.png";
+            }
+            else
+                $scope.post_value = '取消收藏';
         };
         $scope.change_out = function(){
-            $scope.img_src = "/static/image/icon/shoucang-01.png";
+            if(!$scope.favored)
+                $scope.img_src = "/static/image/icon/shoucang-01.png";
+            else
+                $scope.post_value = '收藏';
         };
         $scope.change2_in = function(){
             $scope.img2_src="/static/image/icon/weixin2-01.png";

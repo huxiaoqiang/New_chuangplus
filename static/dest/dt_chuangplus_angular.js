@@ -2288,12 +2288,16 @@ angular.module('chuangplus.controllers', []).controller('DT_HomepageCtrl', [
       });
     };
     $scope.change_in = function () {
-      if (!$scope.favor_exist)
+      if (!$scope.favor_exist) {
         $scope.img_src = '/static/image/icon/shoucang2-01.png';
+        $scope.post_value = '\u53d6\u6d88\u6536\u85cf';
+      }
     };
     $scope.change_out = function () {
-      if (!$scope.favor_exist)
+      if (!$scope.favor_exist) {
         $scope.img_src = '/static/image/icon/shoucang-01.png';
+        $scope.post_value = '\u5df2\u6536\u85cf';
+      }
     };
     $scope.change2_in = function () {
       $scope.img2_src = '/static/image/icon/weixin2-01.png';
@@ -2949,10 +2953,16 @@ angular.module('chuangplus.controllers', []).controller('DT_HomepageCtrl', [
       });
     };
     $scope.change_in = function () {
-      $scope.img_src = '/static/image/icon/shoucang2-01.png';
+      if (!$scope.favored) {
+        $scope.img_src = '/static/image/icon/shoucang2-01.png';
+      } else
+        $scope.post_value = '\u53d6\u6d88\u6536\u85cf';
     };
     $scope.change_out = function () {
-      $scope.img_src = '/static/image/icon/shoucang-01.png';
+      if (!$scope.favored)
+        $scope.img_src = '/static/image/icon/shoucang-01.png';
+      else
+        $scope.post_value = '\u6536\u85cf';
     };
     $scope.change2_in = function () {
       $scope.img2_src = '/static/image/icon/weixin2-01.png';
