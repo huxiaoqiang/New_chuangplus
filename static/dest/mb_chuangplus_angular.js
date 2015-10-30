@@ -1977,6 +1977,9 @@ angular.module('chuangplus_mobile.controllers', []).controller('MB_CompanyListCt
     $scope.go_detail = function (id) {
       $location.path('/mobile/position/detail').search({ 'position_id': id });
     };
+    $scope.setPostIndex = function (index) {
+      $scope.postIndex = index;
+    };
     $scope.get_userInfo = function () {
       $scope.userinfo = {};
       $http.get(urls.api + '/account/userinfo/get').success(function (data) {
