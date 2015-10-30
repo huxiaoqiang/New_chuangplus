@@ -2784,6 +2784,9 @@ angular.module('chuangplus.controllers', []).
         $scope.enableCrop=true;
         $scope.resImgSize=160;
         //$scope.aspectRatio=1.2;
+        $scope.imgLoadDone = function(){
+            $scope.imgLoading = false;
+        };
         $scope.startUpload = function(file_t,category)
         {
             var data=$scope.resImageDataURI.split(',')[1];
@@ -2800,6 +2803,7 @@ angular.module('chuangplus.controllers', []).
             $scope.resize_area = false;
         };
         $scope.test = function(){
+            $scope.imgLoading = true;
             $("#fileInput").click();
             if(document.querySelector('#fileInput').value != '')
                 $scope.resize_area = true;

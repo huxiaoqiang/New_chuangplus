@@ -235,13 +235,17 @@ angular.module('chuangplus', [
       $rootScope.title = current.$$route.title;
     });
     $rootScope.$on('$routeChangeStart', function () {
-      if ($user.username() == undefined && $location.path() != '/login' && $location.path() != '/register' && $location.path() != '/intern/information' && $location.path() != '/company/list' && $location.path() != '/position/list' && $location.path() != '/' && $location.path() != '/search') {
-        $rootScope.dt_login_url = $location.path();
-        $location.path('/login');
-        return;
-      }
-      if ($location.path() != '/intern/information' && $location.path() != '/login' && $location.path() != '/register')
-        $user.check_info();
+      /*
+        if($user.username() == undefined && $location.path() != '/login' && $location.path() != '/register' && $location.path() != '/intern/information'
+            && $location.path() != '/company/list' && $location.path() != '/position/list' && $location.path() != '/'  && $location.path() != '/search')
+        {
+            $rootScope.dt_login_url = $location.path();
+            $location.path('/login');
+            return;
+        }
+        if($location.path() != '/intern/information' && $location.path() != '/login' && $location.path() != '/register')
+            $user.check_info();
+*/
       $rootScope.loading = true;  //console.log('route begin change');
     });
   }
@@ -3382,6 +3386,9 @@ angular.module('chuangplus.controllers', []).controller('DT_HomepageCtrl', [
     $scope.enableCrop = true;
     $scope.resImgSize = 160;
     //$scope.aspectRatio=1.2;
+    $scope.imgLoadDone = function () {
+      $scope.imgLoading = false;
+    };
     $scope.startUpload = function (file_t, category) {
       var data = $scope.resImageDataURI.split(',')[1];
       data = window.atob(data);
@@ -3398,6 +3405,7 @@ angular.module('chuangplus.controllers', []).controller('DT_HomepageCtrl', [
       $scope.resize_area = false;
     };
     $scope.test = function () {
+      $scope.imgLoading = true;
       $('#fileInput').click();
       if (document.querySelector('#fileInput').value != '')
         $scope.resize_area = true;
