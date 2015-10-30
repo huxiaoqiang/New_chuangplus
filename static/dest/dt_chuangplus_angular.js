@@ -1,4 +1,4 @@
-/*! chuangplus 2015-10-23 */
+/*! chuangplus 2015-10-30 */
 //front end configuration
 'use strict';
 // Declare app level module which depends on filters, and services

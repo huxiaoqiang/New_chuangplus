@@ -1,4 +1,4 @@
-/*! chuangplus 2015-10-23 */
+/*! chuangplus 2015-10-30 */
 /*
  AngularJS v1.2.6
  (c) 2010-2014 Google, Inc. http://angularjs.org

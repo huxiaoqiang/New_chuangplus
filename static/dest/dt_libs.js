@@ -1,4 +1,4 @@
-/*! chuangplus 2015-10-23 */
+/*! chuangplus 2015-10-30 */
 /*
     json2.js
     2015-02-25
@@ -2242,7 +2242,7 @@ ngImgCrop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', 
 
     // Dimensions
     var minCanvasDims=[100,100],
-        maxCanvasDims=[300,300];
+        maxCanvasDims=[500,500];
 
     // Result Image size
     var resImgSize=200;
@@ -2291,9 +2291,9 @@ ngImgCrop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', 
     var resetCropHost=function() {
       if(image!==null) {
         theArea.setImage(image);
-        var imageDims=[image.width, image.height],
-            imageRatio=image.width/image.height,
-            canvasDims=imageDims;
+        var imageDims=[image.width, image.height];
+        var imageRatio=image.width/image.height;
+        var canvasDims=imageDims;
 
         if(canvasDims[0]>maxCanvasDims[0]) {
           canvasDims[0]=maxCanvasDims[0];
@@ -2313,8 +2313,13 @@ ngImgCrop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', 
           canvasDims[0] = canvasDims[1];
         else
           canvasDims[1] = canvasDims[0];
-        elCanvas.prop('width',canvasDims[0]).prop('height',canvasDims[1]).css({'margin-left': -canvasDims[0]/2+'px', 'margin-top': -canvasDims[1]/2+'px'});
 
+        if(image.width <= 0 || image.height <= 0){
+          canvasDims[0] = canvasDims[1] = 350;
+        }
+
+        elCanvas.prop('width',canvasDims[0]).prop('height',canvasDims[1]).css({'margin-left': -canvasDims[0]/2+'px', 'margin-top': -canvasDims[1]/2+'px'});
+        console.log();
         theArea.setX(ctx.canvas.width/2);
         theArea.setY(ctx.canvas.height/2);
         theArea.setSize(Math.min(200, ctx.canvas.width/2, ctx.canvas.height/2));

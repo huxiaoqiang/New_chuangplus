@@ -1,4 +1,4 @@
-/*! chuangplus 2015-10-23 */
+/*! chuangplus 2015-10-30 */
 // 
 // Here is how to define your module 
 // has dependent on mobile-angular-ui
