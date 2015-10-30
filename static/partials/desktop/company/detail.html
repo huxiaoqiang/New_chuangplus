@@ -80,11 +80,11 @@
                             <span class="tab" ng-class="{'tab-active':tab1}" ng-click="tab1_click()">公司介绍</span>
                             <span class="tab" ng-class="{'tab-active':tab2}" ng-click="tab2_click()">职位列表</span>
                             <div class="img-button" ng-show="role==0 && username!=null">
-                                <span class="favor" ng-if="!favored" ng-click="favor()" ng-mouseover="change_in()" ng-mouseout="change_out()" ng-model="post_value">
-                                    <img class="img-1" src="[[img_src]]">收藏
+                                <span class="favor" ng-if="!favored" ng-click="favor()" ng-mouseover="change_in()" ng-mouseout="change_out()">
+                                    <img class="img-1" src="[[img_src]]">[[post_value]]
                                 </span>
-                                <span class="favor" ng-if="favored" ng-click="unfavor()" ng-mouseover="change_in()" ng-mouseout="change_out()" ng-model="post_value">
-                                    <img class="img-1" src="[[img_src]]">已收藏
+                                <span class="favor" ng-if="favored" ng-click="unfavor()" ng-mouseover="change_in()" ng-mouseout="change_out()">
+                                    <img class="img-1" src="[[img_src]]">[[post_value]]
                                 </span>
                                 <span class="favor" ng-mouseover="change2_in()" ng-mouseout="change2_out()">
                                     <img src="[[img2_src]]">分享
