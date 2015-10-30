@@ -2703,6 +2703,7 @@ form.financing_add input {
   text-align: right;
 }
 #container #position-detail .position-dscrpt .dscrpt-title .img-button span {
+  cursor: pointer;
   margin-left: 10px;
   font-size: 13px;
   color: #707070;
