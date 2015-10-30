@@ -143,23 +143,6 @@ app.run([
           '/mobile/home',
           '/mobile/position/list'
         ];
-      if ($user.username() == undefined) {
-        var pass = false;
-        for (var i = login_exception.length - 1; i >= 0; i--) {
-          if ($location.path() == login_exception[i])
-            pass = true;
-        }
-        ;
-        if (!pass) {
-          //$rootScope.loading = true;
-          $rootScope.login_url = $location.path();
-          $location.path('/mobile/login');
-          //                window.location.href='/mobile/login';
-          return;
-        }
-      }
-      if ($location.path() != '/mobile/info' && $location.path() != '/mobile/login' && $location.path() != '/mobile/register')
-        $user.check_info();
       $rootScope.loading = true;  //console.log('route begin change');
     });
   }
@@ -1363,7 +1346,7 @@ angular.module('chuangplus_mobile.controllers', []).controller('MB_CompanyListCt
           $scope.company = data.data;
           $scope.company.field_value = $scope.cfield[$scope.company.field];
           $scope.company.scale_value = $scope.latest_scale[$scope.company.scale];
-          $scope.company.position_number = $scope.company.positions.length;
+          $scope.company.position_number = $scope.company.position_list.length;
           $scope.company.position_type_value = {};
           for (var i = 0; i < $scope.company.position_type.length; i++)
             $scope.company.position_type_value[i] = $scope.position_type[$scope.company.position_type[i]];
@@ -1609,7 +1592,7 @@ angular.module('chuangplus_mobile.controllers', []).controller('MB_CompanyListCt
         $scope.position.scale_value = $scope.latest_scale[$scope.position.company.scale];
         $scope.position.field_value = $scope.cfield[$scope.position.company.field];
         $scope.position.position_type_value = $scope.position_type[$scope.position.position_type];
-        $scope.position.position_number = $scope.position.company.positions.length;
+        $scope.position.position_number = $scope.position.company.position_list.length;
         $http.get(urls.api + '/account/company/' + $scope.position.company._id.$oid + '/detail_with_positions').success(function (data) {
           console.log(data);
           if (data.error.code == 1) {
