@@ -2964,7 +2964,7 @@ angular.module('chuangplus.controllers', []).controller('DT_HomepageCtrl', [
       if (!$scope.favored)
         $scope.img_src = '/static/image/icon/shoucang-01.png';
       else
-        $scope.post_value = '\u6536\u85cf';
+        $scope.post_value = '\u5df2\u6536\u85cf';
     };
     $scope.change2_in = function () {
       $scope.img2_src = '/static/image/icon/weixin2-01.png';

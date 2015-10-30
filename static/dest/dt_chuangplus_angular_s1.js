@@ -3228,7 +3228,7 @@ angular.module('chuangplus.controllers', []).
             if(!$scope.favored)
                 $scope.img_src = "/static/image/icon/shoucang-01.png";
             else
-                $scope.post_value = '收藏';
+                $scope.post_value = '已收藏';
         };
         $scope.change2_in = function(){
             $scope.img2_src="/static/image/icon/weixin2-01.png";
