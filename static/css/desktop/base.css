@@ -3600,10 +3600,26 @@ form.financing_add input {
 }
 #container #homepage .info-block-1 {
   box-shadow: 2px 2px 7px 2px #dfdfdf;
+  background-color: white;
   margin-bottom: 15px;
 }
-#container #homepage .info-block-1 img {
-  width: 100%;
+#container #homepage .info-block-1 .ui .column {
+  background-image: url("/static/image/number-01.png");
+  height: 170px;
+  background-repeat: no-repeat;
+  background-size: 180px;
+  background-position-x: 75px;
+}
+#container #homepage .info-block-1 .ui .column .number {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 3em;
+  color: white;
+}
+#container #homepage .info-block-1 .ui .column .text {
+  margin-top: 50px;
+  text-align: center;
+  font-size: 2em;
 }
 #container #homepage .info-block-2 {
   box-shadow: 2px 2px 7px 2px #dfdfdf;

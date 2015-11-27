@@ -35,6 +35,21 @@ angular.module('chuangplus.controllers', []).
                 });
         };
         $scope.get_company_info();
+        $scope.get_number = function(){
+            $http.get(urls.api+"/account/post_number").success(function(data){
+                if(data.error.code == 1)
+                    $scope.post_num = data.data;
+            });
+            $http.get(urls.api+"/account/company_number").success(function(data){
+                if(data.error.code == 1)
+                    $scope.company_num = data.data;
+            });
+            $http.get(urls.api+"/account/_number").success(function(data){
+                if(data.error.code == 1)
+                    $scope.position_num = data.data;
+            });
+        };
+        $scope.get_number();
     }]).
     controller('DT_HeaderCtrl',['$scope', '$http', 'CsrfService', 'urls', '$filter', '$routeParams', 'UserService','$location','HeaderService','$rootScope',
         function($scope, $http, $csrf, urls, $filter, $routeParams, $user,$location,$header,$rootScope){
