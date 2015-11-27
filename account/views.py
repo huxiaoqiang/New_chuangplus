@@ -29,6 +29,7 @@ def register(request):
     re=dict()
     if request.method == "POST":
         #Validate the captcha
+        #获得验证码
         session_captcha = request.session.get('captcha', '')
         request_captcha = request.POST.get('captcha','')
 
@@ -2059,3 +2060,36 @@ def look_position_sort(request):
     else:
         re['error'] = error(1,"adfaf")
     return HttpResponse(json.dumps(re),content_type="application/json")
+
+def get_position_number(request):
+    if request.method == "GET":
+        re = dict()
+        qs = Position.objects.all().order_by('index')
+        qs = qs.filter(status='open')
+        re['data'] = len(qs)
+        re['error'] = error(1,"Success")
+    else:
+        re['error'] = error(3,"Error, need Get")
+    return HttpResponse(json.dumps(re),content_type = 'application/json')
+
+
+def get_post_number(request):
+    if request.method == "GET":
+        re = dict()
+        qs = UserPosition.objects.all().order_by('id')
+        re['data'] = len(qs)
+        re['error'] = error(1,"Success")
+    else:
+        re['error'] = error(3,"Error, need Get")
+    return HttpResponse(json.dumps(re),content_type = 'application/json')
+
+
+def get_company_number(request):
+    if request.method == "GET":
+        re = dict()
+        qs = Companyinfo.objects.all().order_by('id')
+        re['data'] = len(qs)
+        re['error'] = error(1,"Success")
+    else:
+        re['error'] = error(3,"Error, need Get")
+    return HttpResponse(json.dumps(re),content_type = 'application/json')
