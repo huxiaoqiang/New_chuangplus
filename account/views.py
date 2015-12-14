@@ -360,16 +360,16 @@ def login(request):
     if request.method=="POST":
 
         #Validate the captcha
-        session_captcha = request.session.get('captcha', '')
-        request_captcha = request.POST.get('captcha','')
+        #session_captcha = request.session.get('captcha', '')
+        #request_captcha = request.POST.get('captcha','')
 
-        if session_captcha == '' or request_captcha == '':
-            re['error'] = error(99,"Need captcha!")
-            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        #if session_captcha == '' or request_captcha == '':
+        #    re['error'] = error(99,"Need captcha!")
+        #    return HttpResponse(json.dumps(re), content_type = 'application/json')
 
-        if session_captcha.upper() != request_captcha.upper():
-            re['error'] = error(101,'Captcha error!')
-            return HttpResponse(json.dumps(re), content_type = 'application/json')
+        #if session_captcha.upper() != request_captcha.upper():
+        #    re['error'] = error(101,'Captcha error!')
+        #    return HttpResponse(json.dumps(re), content_type = 'application/json')
 
         username = request.POST.get('username', '')
         password = request.POST.get('password', '')
