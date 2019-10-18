@@ -3,7 +3,7 @@ Pillow==2.8.1
 argparse==1.2.1
 colorama==0.2.5
 html5lib==0.999
-requests==2.2.1
+requests==2.20.0
 six==1.5.2
 ssh-import-id==3.21
 urllib3==1.7.1
