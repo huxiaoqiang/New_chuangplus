@@ -1,4 +1,4 @@
-Django==1.6
+Django==1.11.23
 Pillow==2.8.1
 argparse==1.2.1
 colorama==0.2.5
