@@ -1,5 +1,5 @@
 Django==1.6
-Pillow==2.8.1
+Pillow==9.0.1
 argparse==1.2.1
 colorama==0.2.5
 html5lib==0.999
